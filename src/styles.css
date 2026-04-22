@@ -899,58 +899,75 @@ h1, h2, h3, p { margin: 0; }
 
 .formats {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 12px;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
 }
 
-@media (max-width: 1068px) { .formats { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px)  { .formats { grid-template-columns: 1fr; } }
+@media (max-width: 900px)  { .formats { grid-template-columns: 1fr; } }
 
 .format {
-	padding: 48px 36px;
 	background: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.06);
-	border-radius: 0;
-	transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease;
-	display: flex;
-	flex-direction: column;
-	min-height: 300px;
+	overflow: hidden;
+	transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), border-color 0.25s ease, box-shadow 0.3s ease;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
 }
 
 .format:hover {
 	transform: translateY(-4px);
-	background: #fff;
 	border-color: rgba(0,0,0,0.12);
 	box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08);
 }
 
-.format__mark {
+.format__link { display: flex; flex-direction: column; height: 100%; color: inherit; }
+
+.format__photo {
+	aspect-ratio: 16/10;
+	background: #F5F5F7;
+	overflow: hidden;
+}
+
+.format__photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 40%;
+	transition: transform 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+.format:hover .format__photo img { transform: scale(1.04); }
+
+.format__body { padding: 32px 36px 36px; flex-grow: 1; display: flex; flex-direction: column; }
+
+.format__label {
 	font-family: var(--ff-display);
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: 600;
-	letter-spacing: 0.24em;
+	letter-spacing: .18em;
+	text-transform: uppercase;
 	color: #86868B;
-	margin-bottom: 40px;
+	margin-bottom: 12px;
+	display: block;
 }
 
 .format__title {
 	font-family: var(--ff-display);
-	font-size: 24px;
+	font-size: 26px;
 	line-height: 1.16667;
 	font-weight: 600;
 	letter-spacing: .009em;
 	color: #1D1D1F;
-	margin-bottom: 12px;
+	margin-bottom: 10px;
 }
 
 .format__text {
 	font-family: var(--ff-text);
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 1.47059;
 	letter-spacing: -0.022em;
 	color: #6E6E73;
-	margin-top: auto;
+	margin-bottom: 16px;
+	flex-grow: 1;
 }
 
 /* ========================================================================
@@ -1879,7 +1896,7 @@ h1, h2, h3, p { margin: 0; }
 	color: #0071E3;
 }
 
-.format__more { color: #2997FF; }
+.format__more { color: #0071E3; }
 .voc__more { padding: 0 24px 24px; color: #0071E3; }
 
 /* Featured video */
