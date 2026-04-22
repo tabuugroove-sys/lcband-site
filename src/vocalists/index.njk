@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+title: Вокалисты — Luxury Cover Band
+description: "Четыре вокалиста Luxury Cover Band: Ирина, Стас, Teddy, LAZ. Каждый ведёт свою часть программы — от русской эстрады до латинского блока."
+keywords: "вокалисты кавер группа, певица кавер бенд москва, вокалист luxury cover band, ирина стас teddy laz"
+permalink: /vocalists/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Вокалисты</span>
+		</p>
+		<p class="page-hero__eyebrow">Четыре голоса</p>
+		<h1 class="page-hero__title">Вокалисты<br><span class="muted">Luxury Cover Band.</span></h1>
+		<p class="page-hero__lead">Ирина, Стас, Teddy, LAZ — четыре характера, которые вместе держат любую программу и любой зал.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="vocalists">
+			{% for v in vocalists %}
+			<li class="voc">
+				<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}">
+					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — {{ v.role }}" loading="lazy"></div>
+					<h3 class="voc__name">{{ v.name }}</h3>
+					<p class="voc__role">{{ v.role }}</p>
+					<p class="voc__bio">{{ v.tagline }}</p>
+					<span class="voc__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

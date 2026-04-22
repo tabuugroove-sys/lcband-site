@@ -144,12 +144,16 @@
 		});
 	}
 
+	function videoUrl(key, quality) {
+		const base = (window.SITE_BASE || "/").replace(/\/?$/, "/");
+		return `${base}assets/video/mp4/${key}-${quality}.mp4`;
+	}
+
 	function swapQuality() {
 		if (!currentVideoKey || !lightboxVideoEl) return;
 		const pos = lightboxVideoEl.currentTime || 0;
 		const wasPaused = lightboxVideoEl.paused;
-		const src = `assets/video/mp4/${currentVideoKey}-${currentQuality}.mp4`;
-		lightboxVideoEl.src = src;
+		lightboxVideoEl.src = videoUrl(currentVideoKey, currentQuality);
 		lightboxVideoEl.currentTime = pos;
 		if (!wasPaused) lightboxVideoEl.play().catch(() => {});
 	}
@@ -167,7 +171,7 @@
 		if (lightboxImg) lightboxImg.style.display = 'none';
 		lightboxVideoEl.style.display = 'block';
 		lightboxVideoEl.poster = poster || '';
-		lightboxVideoEl.src = `assets/video/mp4/${key}-${currentQuality}.mp4`;
+		lightboxVideoEl.src = videoUrl(key, currentQuality);
 		lightbox.classList.add('is-open');
 		lightbox.setAttribute('aria-hidden', 'false');
 		document.body.style.overflow = 'hidden';

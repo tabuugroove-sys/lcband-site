@@ -1,0 +1,191 @@
+[
+	{
+		"slug": "russian",
+		"title": "Русская программа",
+		"label": "Русская",
+		"eyebrow": "Русская",
+		"headline": "Эстрада. Поп. Классика.",
+		"lead": "От Меладзе и Аллегровой до Ленинграда и Дианы Арбениной. Русская программа собирает любой зал — от корпоратива до закрытого ивента.",
+		"bullets": [
+			"Поп-эстрада 80-х / 90-х / 2000-х",
+			"Современный русский поп (MOT, Артик&Асти, Баста, Тима Белорусских)",
+			"Рок (Цой, Кино, ДДТ, Сплин, Ленинград)",
+			"Авторские мэшапы из знакомых треков",
+			"Русский шансон блоком — по запросу"
+		],
+		"poster": "assets/photos/vocalists.jpg",
+		"video": null,
+		"keywords": "кавер группа русская программа, кавер группа москва русский репертуар, группа эстрада на мероприятие"
+	},
+	{
+		"slug": "english",
+		"title": "English / Pop",
+		"label": "English",
+		"eyebrow": "English · Pop",
+		"headline": "Pop-хиты от Dance Monkey до Perfect.",
+		"lead": "Международная поп-программа на английском — современные хиты и проверенные классики. Для ивентов, где аудитория смешанная или ждёт «мирового» звучания.",
+		"bullets": [
+			"Современный поп (Dua Lipa, Ed Sheeran, Harry Styles, The Weeknd, Billie Eilish)",
+			"Поп-рок (Coldplay, Imagine Dragons, OneRepublic)",
+			"Соул / R&B (Bruno Mars, Amy Winehouse, Adele)",
+			"Танцевальные мэшапы"
+		],
+		"poster": "assets/video/posters/thematic-pop-dance-monkey.jpg",
+		"video": "thematic-pop-dance-monkey",
+		"keywords": "кавер группа английский репертуар, pop cover band moscow, international cover band"
+	},
+	{
+		"slug": "italian",
+		"title": "Итальянская программа",
+		"label": "Italia",
+		"eyebrow": "Italia",
+		"headline": "Ретро и современная Италия.",
+		"lead": "Adriano Celentano, Pino Daniele, Eros Ramazzotti, Laura Pausini — и современные итальянские хиты. Русским составом, с правильной фонетикой.",
+		"bullets": [
+			"Классика 60–80-х (Celentano, Lucio Dalla, Mina)",
+			"Современная эстрада (Eros Ramazzotti, Tiziano Ferro)",
+			"Фильмовая Италия (Amore no, Felicità, Cuando Calienta El Sol)",
+			"Под италонские свадьбы и тематические ивенты"
+		],
+		"poster": "assets/video/posters/thematic-italian.jpg",
+		"video": "thematic-italian",
+		"keywords": "итальянская кавер группа, кавер группа на итальянскую свадьбу, итальянская программа москва"
+	},
+	{
+		"slug": "french",
+		"title": "Французская программа",
+		"label": "France",
+		"eyebrow": "France",
+		"headline": "Chanson française. Je Veux.",
+		"lead": "Французская программа — от Эдит Пиаф до ZAZ. Для камерных ивентов, винных вечеров, французских корпоративов.",
+		"bullets": [
+			"Классический шансон (Edith Piaf, Charles Aznavour, Dalida)",
+			"Современная Франция (ZAZ, Indila, Stromae)",
+			"Фильмовая Франция (Je t'aime, La Vie en Rose)",
+			"Чтение текстов на языке оригинала"
+		],
+		"poster": "assets/video/posters/thematic-french.jpg",
+		"video": "thematic-french",
+		"keywords": "французская кавер группа, chanson francaise кавер, группа на французский вечер"
+	},
+	{
+		"slug": "spanish",
+		"title": "Испанская программа",
+		"label": "España",
+		"eyebrow": "España",
+		"headline": "Latino. Salsa. Fiesta.",
+		"lead": "Macarena, Despacito, Bailando — испанская программа, которая ставит на ноги любой зал. Латино-вокалисты, ритм и энергия Кубы.",
+		"bullets": [
+			"Classic latino hits (Ricky Martin, Enrique Iglesias, Marc Anthony)",
+			"Современный Latino (Bad Bunny, Rosalía, Shakira)",
+			"Флешмоб-блок (Macarena, Bailando, Despacito)",
+			"Фламенко-переходы"
+		],
+		"poster": "assets/video/posters/thematic-spanish-macarena.jpg",
+		"video": "thematic-spanish-macarena",
+		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"
+	},
+	{
+		"slug": "retro",
+		"title": "Ретро программа",
+		"label": "Retro",
+		"eyebrow": "Retro",
+		"headline": "Стиляги. Боярский. 90-е.",
+		"lead": "Три блока ретро — советские стиляги 60-х, эстрада 70–80-х (Боярский, Пугачёва, Магомаев) и хиты 90-х для поколения, на которых мы выросли.",
+		"bullets": [
+			"Стиляги (Песенка про медведей, Королева красоты)",
+			"Эстрада (Боярский, Пугачёва, Магомаев, Круг)",
+			"Международное ретро (Modern Talking — You're My Heart)",
+			"90-е (ICON-программа)",
+			"Фирменные костюмы под эпоху"
+		],
+		"poster": "assets/video/posters/thematic-retro-stilyagi.jpg",
+		"video": "thematic-retro-stilyagi",
+		"keywords": "ретро кавер группа, стиляги программа, 90-е кавер группа москва, боярский кавер"
+	},
+	{
+		"slug": "jazz",
+		"title": "Джаз программа",
+		"label": "Jazz",
+		"eyebrow": "Jazz",
+		"headline": "Swing. Soul. Standards.",
+		"lead": "Живой джаз — от Синатры до Амалии Родригеш. Камерный формат для галерей, ресторанов, tasting-ужинов. Или полноформатный swing-блок на большой сцене.",
+		"bullets": [
+			"Jazz standards (Fly Me to the Moon, Autumn Leaves, Girl from Ipanema)",
+			"Swing блок (Sinatra, Tony Bennett, Dean Martin)",
+			"Soul (Etta James, Nina Simone, Aretha Franklin)",
+			"Bossa Nova / Latin Jazz переходы"
+		],
+		"poster": "assets/costumes/black-red.jpg",
+		"video": null,
+		"keywords": "джаз кавер группа, jazz cover band moscow, swing программа на корпоратив"
+	},
+	{
+		"slug": "rock",
+		"title": "Рок программа",
+		"label": "Rock",
+		"eyebrow": "Rock",
+		"headline": "Classic Rock. Hard. Stadium.",
+		"lead": "Рок-блок — от Queen и AC/DC до Muse и Foo Fighters. Запрос на энергию и стадионный драйв — собираем программу под сцену и аудиторию.",
+		"bullets": [
+			"Classic Rock (Queen, Rolling Stones, Led Zeppelin)",
+			"Hard Rock (AC/DC, Guns N' Roses, Aerosmith)",
+			"Современный рок (Muse, Foo Fighters, Green Day)",
+			"Русский рок блок (Цой, Наутилус, ДДТ)"
+		],
+		"poster": "assets/photos/concert-light.jpg",
+		"video": null,
+		"keywords": "рок кавер группа, кавер бенд рок москва, queen кавер, русский рок группа"
+	},
+	{
+		"slug": "chanson",
+		"title": "Шансон программа",
+		"label": "Шансон",
+		"eyebrow": "Шансон",
+		"headline": "Лирика. Душевность. Настроение.",
+		"lead": "Русский шансон — бардовская лирика и современные хиты. Камерный формат для интимных вечеров, мужских компаний, ресторанов.",
+		"bullets": [
+			"Классика шансона (Круг, Лепс, Розенбаум)",
+			"Современный шансон",
+			"Авторская лирика",
+			"Акустический формат с гитарой"
+		],
+		"poster": "assets/costumes/all-black.jpg",
+		"video": null,
+		"keywords": "шансон кавер группа, русский шансон на мероприятие, группа шансон москва"
+	},
+	{
+		"slug": "caucasus",
+		"title": "Кавказская программа",
+		"label": "Кавказская",
+		"eyebrow": "Кавказская",
+		"headline": "Лезгинка. Застольная.",
+		"lead": "Кавказский блок — лезгинка, застольные песни, свадебные хиты Закавказья. Для Кавказских свадеб, юбилеев, тематических вечеров.",
+		"bullets": [
+			"Танцевальная лезгинка (с живыми ударными)",
+			"Застольные песни (армянская, грузинская, азербайджанская)",
+			"Свадебные блоки",
+			"Международные хиты в Кавказской аранжировке"
+		],
+		"poster": "assets/costumes/gold.jpg",
+		"video": null,
+		"keywords": "кавказская кавер группа, лезгинка группа, кавер на кавказскую свадьбу москва"
+	},
+	{
+		"slug": "instrumental",
+		"title": "Инструментальная программа",
+		"label": "Instrumental",
+		"eyebrow": "Instrumental",
+		"headline": "Sax. Piano. Violin. Harp.",
+		"lead": "Солисты из состава — для приёмов, велком-коктейлей, рассадки гостей, коротких интерьерных сетов. Без вокала, живой инструмент, тонкая подача.",
+		"bullets": [
+			"Саксофон-соло (jazz standards, pop covers, lounge)",
+			"Пианист (классика, поп, кроссовер)",
+			"Скрипка (кроссовер, film scores)",
+			"Арфа (классика, модерн)"
+		],
+		"poster": "assets/photos/sax.jpg",
+		"video": null,
+		"keywords": "саксофонист на мероприятие, пианист на корпоратив, живая музыка welcome, инструментал на ивент"
+	}
+]

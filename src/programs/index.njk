@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+title: Программы — Luxury Cover Band
+description: "11 тематических программ: русская, английская, итальянская, французская, испанская, ретро, джаз, рок, шансон, кавказская, инструментальная. 500+ песен на 12 языках."
+keywords: "программы кавер группы, русская программа, итальянская кавер группа, французская программа, джаз кавер, ретро программа, рок кавер группа"
+permalink: /programs/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Программы</span>
+		</p>
+		<p class="page-hero__eyebrow">11 программ</p>
+		<h1 class="page-hero__title">Программы<br><span class="muted">под любой формат.</span></h1>
+		<p class="page-hero__lead">От русской эстрады до латинской fiesta, от французского шансона до кавказской лезгинки. Каждая программа — собственный репертуар, подача и визуальный язык.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="caps">
+			{% for p in programs %}
+			<li class="cap">
+				<a class="cap__link" href="{{ ('/programs/' + p.slug + '/') | url }}">
+					<h3 class="cap__title">{{ p.title }}</h3>
+					<p class="cap__text">{{ p.lead }}</p>
+					<span class="cap__more">Смотреть программу ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

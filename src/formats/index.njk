@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: Форматы работы — Luxury Cover Band
+description: "Четыре формата работы: хор-коллаборация в стиле Лаб Беляева, home-band для корпоративных выступлений, караоке с живым бендом, welcome-программа."
+keywords: "форматы кавер группы, хор на корпоратив, хаус бенд, живое караоке, welcome программа"
+permalink: /formats/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Форматы</span>
+		</p>
+		<p class="page-hero__eyebrow">Четыре роли</p>
+		<h1 class="page-hero__title">Форматы<br><span class="muted">работы.</span></h1>
+		<p class="page-hero__lead">Мы не просто «концерт на корпоратив». Мы встраиваемся в формат события — от хоровой коллаборации до живого караоке.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="formats formats--list">
+			{% for f in formats %}
+			<li class="format format--light">
+				<a class="format__link" href="{{ ('/formats/' + f.slug + '/') | url }}">
+					<div class="format__mark">0{{ loop.index }}</div>
+					<h3 class="format__title">{{ f.title }}</h3>
+					<p class="format__text">{{ f.lead }}</p>
+					<span class="format__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

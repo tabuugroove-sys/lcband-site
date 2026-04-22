@@ -1,0 +1,362 @@
+---
+layout: layouts/base.njk
+title: Luxury Cover Band — кавер-группа Москва · 500+ песен на 12 языках
+description: "Luxury Cover Band (LC Band) — топовый международный кавер-бенд. 500+ песен в 12 языках, опыт стадионов и ТВ. Свадьбы, корпоративы, ТВ-проекты, туры. Состав 2–20 человек, 20+ сценических образов."
+keywords: "кавер группа москва, кавер бенд, Luxury Cover Band, LC Band, группа на свадьбу, группа на корпоратив, живая музыка, международная кавер группа"
+preloadImage: assets/hero/hero-red.jpg
+permalink: /
+---
+
+<!-- =============== HERO (4-COLOR SWITCHABLE LINEUP) =============== -->
+<section class="hero" data-hero>
+	<div class="hero__stage">
+		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — красный образ на LED-стене" loading="eager" fetchpriority="high" data-hero-img="red">
+		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — чёрно-белый образ"  loading="eager" data-hero-img="bw">
+		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — золотой образ на сцене"       loading="eager" data-hero-img="gold">
+		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — белый образ на звёздном фоне"  loading="eager" data-hero-img="white">
+	</div>
+	<div class="hero__scrim"></div>
+	<div class="hero__content">
+		<p class="hero__eyebrow">International Cover Band</p>
+		<h1 class="hero__title">{{ site.name }}</h1>
+		<p class="hero__tagline" data-hero-tagline>
+			<span data-tagline="red"   class="is-active">Красная сцена. Полный состав. Эпик.</span>
+			<span data-tagline="bw"   >Чёрно-белая классика. Строгий свет.</span>
+			<span data-tagline="gold" >Золото. Большой ивент. Глэм.</span>
+			<span data-tagline="white">Белый на звёздах. Свадебный формат.</span>
+		</p>
+		<div class="hero__cta">
+			<a class="btn btn--primary" href="#book">Забронировать</a>
+			<a class="btn btn--ghost" href="#video">Смотреть видео →</a>
+		</div>
+		<div class="hero__picker" role="tablist" aria-label="Выбор образа">
+			<button class="hero__dot hero__dot--red is-active"  data-hero-dot="red"   role="tab" aria-label="Красный образ"       aria-selected="true"></button>
+			<button class="hero__dot hero__dot--bw"             data-hero-dot="bw"    role="tab" aria-label="Чёрно-белый образ"  aria-selected="false"></button>
+			<button class="hero__dot hero__dot--gold"           data-hero-dot="gold"  role="tab" aria-label="Золотой образ"      aria-selected="false"></button>
+			<button class="hero__dot hero__dot--white"          data-hero-dot="white" role="tab" aria-label="Белый образ"        aria-selected="false"></button>
+		</div>
+	</div>
+	<a class="hero__scroll" href="#about" aria-label="К описанию"><span></span></a>
+</section>
+
+<!-- =============== ABOUT / STATS =============== -->
+<section class="section section--dark" id="about">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">О группе</p>
+		<h2 class="section__title section__title--light">Не просто каверы —<br><span class="muted-light">сцена мирового уровня.</span></h2>
+		<p class="section__lead section__lead--light">
+			Опытные музыканты со стадионной и ТВ-практикой. Выпускаем собственные треки, делаем фиты со звёздами. От 2 до 20 человек на сцене — звук, который держит зал от первого до последнего ряда.
+		</p>
+	</div>
+	<div class="container reveal">
+		<div class="stats">
+			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">языков</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">сценических образов</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">музыкантов на сцене</div></div>
+		</div>
+	</div>
+</section>
+
+<!-- =============== VOCALISTS =============== -->
+<section class="section section--light" id="vocalists">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Вокалисты</p>
+		<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
+		<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="vocalists">
+			{% for v in vocalists %}
+			<li class="voc">
+				<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}" aria-label="{{ v.name }} — подробно">
+					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — вокалист Luxury Cover Band" loading="lazy"></div>
+					<h3 class="voc__name">{{ v.name }}</h3>
+					<p class="voc__role">{{ v.role }}</p>
+					<p class="voc__bio">{{ v.tagline }}</p>
+					<span class="voc__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<!-- =============== PROGRAMS =============== -->
+<section class="section section--elev" id="programs-intro">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Программы</p>
+		<h2 class="section__title">11 тематических<br><span class="muted">программ.</span></h2>
+		<p class="section__lead">От русской эстрады до испанского латино, от французского шансона до кавказской лезгинки — собираем программу под аудиторию и формат события.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="caps">
+			{% for p in programs %}
+			<li class="cap">
+				<a class="cap__link" href="{{ ('/programs/' + p.slug + '/') | url }}">
+					<div class="cap__icon" aria-hidden="true">{% if p.slug == 'russian' %}Ru{% elif p.slug == 'english' %}En{% elif p.slug == 'italian' %}It{% elif p.slug == 'french' %}Fr{% elif p.slug == 'spanish' %}Es{% elif p.slug == 'retro' %}▶{% elif p.slug == 'jazz' %}♪{% elif p.slug == 'rock' %}⚡{% elif p.slug == 'chanson' %}★{% elif p.slug == 'caucasus' %}◆{% else %}♫{% endif %}</div>
+					<h3 class="cap__title">{{ p.title }}</h3>
+					<p class="cap__text">{{ p.lead | truncate(100) }}</p>
+					<span class="cap__more">Смотреть программу ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<!-- =============== FORMATS =============== -->
+<section class="section section--black" id="formats">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Форматы работы</p>
+		<h2 class="section__title section__title--light">Одна команда —<br><span class="muted-light">четыре роли.</span></h2>
+		<p class="section__lead section__lead--light">Мы не просто играем концерт. Мы встраиваемся в формат события — от хоровой коллаборации до караоке-шоу с гостями.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="formats">
+			{% for f in formats %}
+			<li class="format">
+				<a class="format__link" href="{{ ('/formats/' + f.slug + '/') | url }}">
+					<div class="format__mark">{{ "0" + (loop.index | string) }}</div>
+					<h3 class="format__title">{{ f.title }}</h3>
+					<p class="format__text">{{ f.lead | truncate(140) }}</p>
+					<span class="format__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<!-- =============== LOOKS (COSTUMES LINEUP) =============== -->
+<section class="section section--dark" id="looks">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Образы</p>
+		<h2 class="section__title section__title--light">Один бенд.<br><span class="muted-light">Семнадцать настроений.</span></h2>
+		<p class="section__lead section__lead--light">Каждый набор — полноценная визуальная история. Под свадьбу, корпоратив, закрытый ивент или тематическое шоу. Проведите по галерее →</p>
+	</div>
+
+	<div class="lineup" id="lineup" role="region" aria-label="Галерея сценических образов">
+		{% set costumes = [
+			{slug:'gold', title:'Золото'},
+			{slug:'white', title:'Белый'},
+			{slug:'red', title:'Красный'},
+			{slug:'red-group', title:'Красный · состав'},
+			{slug:'all-black', title:'All Black'},
+			{slug:'black-white', title:'Чёрно-белый'},
+			{slug:'black-silver', title:'Чёрно-серебряный'},
+			{slug:'black-red', title:'Чёрно-красный'},
+			{slug:'black-couple', title:'Чёрный · дуэт'},
+			{slug:'pink', title:'PINK'},
+			{slug:'blue', title:'Синий'},
+			{slug:'dark-green', title:'Тёмно-зелёный'},
+			{slug:'dark-green-group', title:'Тёмно-зелёный · состав'},
+			{slug:'gold-studio', title:'Золотистое'},
+			{slug:'beige-glitter', title:'Бежевый глиттер'},
+			{slug:'shimmer', title:'Переливы'},
+			{slug:'flowers', title:'Цветы'}
+		] %}
+		{% for c in costumes %}
+		<figure class="lineup__card"><img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy"><figcaption>{{ c.title }}</figcaption></figure>
+		{% endfor %}
+	</div>
+</section>
+
+<!-- =============== VIDEO (4 CATEGORIES) =============== -->
+<section class="section section--light" id="video">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Видео</p>
+		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
+		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
+	</div>
+
+	{% macro vcard(key, poster, label, name) %}
+	<a class="video-card" href="#" data-video="{{ key }}"><img src="{{ ('/assets/video/posters/' + poster) | url }}" alt="{{ name }} — {{ label }}" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">{{ label }}</span><span class="video-card__name">{{ name }}</span></div></a>
+	{% endmacro %}
+
+	<div class="video-row reveal">
+		<div class="container"><h3 class="video-row__title">Студийное промо</h3></div>
+		<div class="video-shelf">
+			{{ vcard('promo-main-reel', 'promo-main-reel.jpg', 'Главный ролик', 'Luxury Cover Band · Reel') }}
+			{{ vcard('promo-egoistka', 'promo-egoistka.jpg', 'Клип', 'Эгоистка · 2020–2025') }}
+			{{ vcard('promo-loca-loca', 'promo-loca-loca.jpg', 'Промо', 'Loca Loca · LAZ') }}
+			{{ vcard('promo-lets-get-it-started', 'promo-lets-get-it-started.jpg', 'Промо', 'Let\'s Get It Started') }}
+			{{ vcard('promo-letet', 'promo-letet.jpg', 'Клип', 'Лететь по белому свету') }}
+		</div>
+	</div>
+
+	<div class="video-row reveal">
+		<div class="container"><h3 class="video-row__title">Лайвы с концертов</h3></div>
+		<div class="video-shelf">
+			{{ vcard('live-icon', 'live-icon.jpg', 'Live', 'Эпичный лайв в ICON') }}
+			{{ vcard('live-big-lineup', 'live-big-lineup.jpg', 'Live', 'Большой состав · 4 вокала') }}
+			{{ vcard('live-berezy', 'live-berezy.jpg', 'Live', 'Берёзы Парк') }}
+			{{ vcard('live-soho', 'live-soho.jpg', 'Live', 'Live in Soho') }}
+			{{ vcard('live-perfect', 'live-perfect.jpg', 'Live', 'Perfect · лайв') }}
+		</div>
+	</div>
+
+	<div class="video-row reveal">
+		<div class="container"><h3 class="video-row__title">Примеры интерактивов</h3></div>
+		<div class="video-shelf">
+			{{ vcard('interact-wedding-shallow', 'interact-wedding-shallow.jpg', 'Свадебный танец', 'Shallow · первый танец') }}
+			{{ vcard('interact-kids-teddi', 'interact-kids-teddi.jpg', 'Дети / мастер-класс', 'Teddy · дети') }}
+			{{ vcard('interact-chainsmokers', 'interact-chainsmokers.jpg', 'Зал', 'Don\'t Let Me Down · Chainsmokers') }}
+			{{ vcard('interact-macarena', 'thematic-spanish-macarena.jpg', 'Флешмоб', 'Macarena · Teddy') }}
+		</div>
+	</div>
+
+	<div class="video-row reveal">
+		<div class="container">
+			<h3 class="video-row__title">Тематические программы</h3>
+			<p class="video-row__sub">Русская · English · Italia · France · España · Retro · Jazz · Rock · Chanson · Кавказская · Инструментальная</p>
+		</div>
+		<div class="video-shelf">
+			{{ vcard('thematic-pop-dance-monkey', 'thematic-pop-dance-monkey.jpg', 'English · Pop', 'Dance Monkey') }}
+			<a class="video-card" href="{{ '/programs/russian/' | url }}"><img src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Русская программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Русская</span><span class="video-card__name">Поп · Эстрада</span></div></a>
+			{{ vcard('thematic-italian', 'thematic-italian.jpg', 'Italia', 'Amore no') }}
+			{{ vcard('thematic-french', 'thematic-french.jpg', 'France', 'Je Veux · Live') }}
+			{{ vcard('thematic-spanish-macarena', 'thematic-spanish-macarena.jpg', 'España', 'Macarena') }}
+			{{ vcard('thematic-retro-stilyagi', 'thematic-retro-stilyagi.jpg', 'Retro', 'Стиляги · 90-е · Боярский') }}
+			<a class="video-card" href="{{ '/programs/jazz/' | url }}"><img src="{{ '/assets/costumes/black-red.jpg' | url }}" alt="Джазовая программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Jazz</span><span class="video-card__name">Swing · Soul · Standards</span></div></a>
+			<a class="video-card" href="{{ '/programs/rock/' | url }}"><img src="{{ '/assets/photos/concert-light.jpg' | url }}" alt="Рок программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Rock</span><span class="video-card__name">Classic · Hard · Queen / AC·DC</span></div></a>
+			<a class="video-card" href="{{ '/programs/chanson/' | url }}"><img src="{{ '/assets/costumes/all-black.jpg' | url }}" alt="Шансон программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Шансон</span><span class="video-card__name">Русский шансон · лирика</span></div></a>
+			<a class="video-card" href="{{ '/programs/caucasus/' | url }}"><img src="{{ '/assets/costumes/gold.jpg' | url }}" alt="Кавказская программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Кавказская</span><span class="video-card__name">Лезгинка · застольная</span></div></a>
+			<a class="video-card" href="{{ '/programs/instrumental/' | url }}"><img src="{{ '/assets/photos/sax.jpg' | url }}" alt="Инструментальная программа" loading="lazy"><span class="video-card__play" aria-hidden="true"></span><div class="video-card__meta"><span class="video-card__label">Instrumental</span><span class="video-card__name">Sax · Piano · Violin · Harp</span></div></a>
+		</div>
+	</div>
+</section>
+
+<!-- =============== EVENTS TEASER =============== -->
+<section class="section section--elev" id="events-intro">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">События</p>
+		<h2 class="section__title">Под какое<br><span class="muted">мероприятие?</span></h2>
+		<p class="section__lead">Свадьбы, корпоративы, юбилеи, ТВ-съёмки, зарубежные туры — под каждый формат своя программа, райдер и состав.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="events-grid">
+			{% for e in events %}
+			<li class="event-tile">
+				<a href="{{ ('/events/' + e.slug + '/') | url }}">
+					<h3 class="event-tile__title">{{ e.title }}</h3>
+					<p class="event-tile__text">{{ e.lead | truncate(120) }}</p>
+					<span class="event-tile__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<!-- =============== LIVE CONCERTS (GALLERY) =============== -->
+<section class="section section--black" id="live">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Концерты</p>
+		<h2 class="section__title section__title--light">От частных ивентов<br><span class="muted-light">до стадионов.</span></h2>
+		<p class="section__lead section__lead--light">Корпоративные и частные события, свадьбы, ТВ-сцены и большие открытые площадки.</p>
+	</div>
+	<div class="container reveal">
+		<div class="live-grid">
+			<a class="live-grid__tile live-grid__tile--wide" href="{{ '/assets/photos/concert-big.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="Большой концерт Luxury Cover Band" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/concert-10k.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Выступление на стадионной сцене" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/concert-event.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/concert-event.jpg' | url }}" alt="Вечерний ивент" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/concert-light.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/concert-light.jpg' | url }}" alt="Концерт со световым шоу" loading="lazy"></a>
+			<a class="live-grid__tile live-grid__tile--wide" href="{{ '/assets/photos/concert-teddi.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/concert-teddi.jpg' | url }}" alt="Концертная фотосъёмка" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/sax.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/sax.jpg' | url }}" alt="Саксофонист LCB" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/vocalists.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Вокалисты LCB" loading="lazy"></a>
+			<a class="live-grid__tile" href="{{ '/assets/photos/hero-studio.jpg' | url }}" data-lightbox><img src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Студийное фото группы" loading="lazy"></a>
+		</div>
+	</div>
+</section>
+
+<!-- =============== REPERTOIRE =============== -->
+<section class="section section--light" id="repertoire">
+	<div class="container reveal">
+		<div class="repertoire">
+			<div class="repertoire__text">
+				<p class="section__eyebrow">Репертуар</p>
+				<h2 class="section__title">500+ песен.<br><span class="muted">12 языков.</span></h2>
+				<p class="section__lead">Pop, Rock, Jazz, Soul, Funk — и авторские Remix/Mashup-версии. Полный список — в отдельном документе.</p>
+				<div class="repertoire__cta">
+					<a class="btn btn--dark" href="{{ '/assets/repertoire/index.html' | url }}" target="_blank" rel="noopener">Открыть репертуар</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire.pdf' | url }}" download>Скачать PDF</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire-2024.docx' | url }}" download>Скачать DOCX</a>
+				</div>
+			</div>
+			<div class="repertoire__badges">
+				{% for tag in ['Pop','Rock','Jazz','Soul','Funk','Retro','Italiano','Français','Español','English','Русский','Шансон','Кавказская','Инструментал','Mashup','Remix'] %}
+				<span class="tag">{{ tag }}</span>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =============== RIDERS =============== -->
+<section class="section section--dark" id="riders">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Технические райдеры</p>
+		<h2 class="section__title section__title--light">Основной состав —<br><span class="muted-light">плюс варианты под задачу.</span></h2>
+		<p class="section__lead section__lead--light">Главный райдер — 6 человек. Под площадку, бюджет или специфику события подстраиваем состав до 4, 5 или 7 музыкантов. Для зарубежных туров — отдельный английский райдер.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="riders">
+			<li class="rider rider--main">
+				<div class="rider__badge">Основной</div>
+				<h3 class="rider__title">6 человек · 3+3</h3>
+				<p class="rider__text">Основной состав: 3 вокала + 3 инструментала. Полноценное шоу под любой зал.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-6pc-main.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">6 человек · Open air</h3>
+				<p class="rider__text">Под открытые площадки и уличные сцены.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-6pc-openair.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">7 человек · 3+4</h3>
+				<p class="rider__text">Расширенный состав для больших сцен и многоголосия.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-7pc.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">5 человек</h3>
+				<p class="rider__text">Компактный состав без потери энергии.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-5pc.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">4 человека</h3>
+				<p class="rider__text">Voc + Sx + Gtr + Dr/Key. Для камерных площадок.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-4pc.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">Tour · 6 человек</h3>
+				<p class="rider__text">Гастрольный райдер с hospitality и техническими нюансами тура.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-tour-6pc.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider">
+				<h3 class="rider__title">Hospitality · 6 человек</h3>
+				<p class="rider__text">Бытовой райдер: размещение, питание, трансфер, гардероб.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-hospitality-6pc.pdf' | url }}" download>Скачать PDF →</a>
+			</li>
+			<li class="rider rider--eng">
+				<div class="rider__badge">English</div>
+				<h3 class="rider__title">Technical Rider · 6 pc</h3>
+				<p class="rider__text">English version for international tours and venues.</p>
+				<a class="rider__link" href="{{ '/assets/riders/rider-6pc-english.pdf' | url }}" download>Download PDF →</a>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<!-- =============== BOOK =============== -->
+<section class="section section--book" id="book">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Бронирование</p>
+		<h2 class="section__title section__title--light">Напишите —<br><span class="muted-light">соберём программу под ваше событие.</span></h2>
+		<p class="section__lead section__lead--light">Расскажите дату, место и формат. Пришлём состав, тайминг и смету в течение дня.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Telegram</a>
+			<a class="btn btn--ghost-light" href="#top">Наверх</a>
+		</div>
+	</div>
+</section>

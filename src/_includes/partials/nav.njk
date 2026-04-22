@@ -1,0 +1,16 @@
+<header class="nav" id="nav">
+	<div class="nav__inner">
+		<a class="nav__logo" href="{{ '/' | url }}" aria-label="{{ site.name }} — на главную">
+			<span class="nav__logo-full">{{ site.name }}</span>
+			<span class="nav__logo-short">{{ site.shortName }}</span>
+		</a>
+		<nav class="nav__links" aria-label="Основная навигация">
+			{% for item in site.nav %}
+				<a href="{{ item.href | url }}"{% if item.cta %} class="nav__cta"{% endif %}>{{ item.label }}</a>
+			{% endfor %}
+		</nav>
+		<button class="nav__burger" aria-label="Меню" aria-expanded="false">
+			<span></span><span></span><span></span>
+		</button>
+	</div>
+</header>

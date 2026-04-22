@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<title>{{ title or site.name }}{% if title %} — {{ site.shortName }}{% endif %}</title>
+	<meta name="description" content="{{ description or site.description }}">
+	{% if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
+	<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+	<meta name="theme-color" content="#000000">
+	<meta name="format-detection" content="telephone=no">
+
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:title" content="{{ title or site.name }}">
+	<meta property="og:description" content="{{ description or site.tagline }}">
+	<meta property="og:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
+	<meta property="og:site_name" content="{{ site.name }}">
+	<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="{{ title or site.name }}">
+	<meta name="twitter:description" content="{{ description or site.tagline }}">
+	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
+
+	{% if preloadImage %}<link rel="preload" as="image" href="{{ preloadImage | url }}">{% endif %}
+	<link rel="stylesheet" href="{{ '/styles.css' | url }}">
+
+	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
+
+	{% block schema %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "MusicGroup",
+		"name": "{{ site.name }}",
+		"alternateName": "{{ site.shortName }}",
+		"description": "{{ site.description }}",
+		"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro"],
+		"image": "{{ site.url }}/{{ site.defaultOgImage }}",
+		"url": "{{ site.url }}",
+		"numberOfEmployees": "6",
+		"areaServed": ["Москва", "Россия", "Международные туры"]
+	}
+	</script>
+	{% endblock %}
+</head>
+<body>
+
+	{% include "partials/nav.njk" %}
+
+	<main id="top">
+		{% block content %}{{ content | safe }}{% endblock %}
+	</main>
+
+	{% include "partials/footer.njk" %}
+	{% include "partials/lightbox.njk" %}
+
+	<script src="{{ '/main.js' | url }}" defer></script>
+</body>
+</html>

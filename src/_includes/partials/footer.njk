@@ -1,0 +1,50 @@
+<footer class="footer">
+	<div class="container">
+		<div class="footer__nav">
+			<div class="footer__col">
+				<h4 class="footer__col-title">Программы</h4>
+				<ul>
+					{% for p in programs %}
+						<li><a href="{{ ('/programs/' + p.slug + '/') | url }}">{{ p.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h4 class="footer__col-title">Вокалисты</h4>
+				<ul>
+					{% for v in vocalists %}
+						<li><a href="{{ ('/vocalists/' + v.slug + '/') | url }}">{{ v.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h4 class="footer__col-title">Форматы</h4>
+				<ul>
+					{% for f in formats %}
+						<li><a href="{{ ('/formats/' + f.slug + '/') | url }}">{{ f.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h4 class="footer__col-title">События</h4>
+				<ul>
+					{% for e in events %}
+						<li><a href="{{ ('/events/' + e.slug + '/') | url }}">{{ e.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="footer__col">
+				<h4 class="footer__col-title">Связаться</h4>
+				<ul>
+					<li><a href="{{ site.telegram }}">Telegram</a></li>
+					<li><a href="{{ '/#book' | url }}">Забронировать</a></li>
+					<li><a href="{{ '/#riders' | url }}">Райдеры</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer__bottom">
+			<span class="footer__brand">{{ site.name }} · {{ site.shortName }}</span>
+			<span class="footer__meta">{{ site.city }} · Международные туры · © 2026</span>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,30 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>{{ site.url }}/</loc>
+		<lastmod>2026-04-22</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url><loc>{{ site.url }}/programs/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/vocalists/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/formats/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/events/</loc><priority>0.8</priority></url>
+	{% for p in programs %}
+	<url><loc>{{ site.url }}/programs/{{ p.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for v in vocalists %}
+	<url><loc>{{ site.url }}/vocalists/{{ v.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for f in formats %}
+	<url><loc>{{ site.url }}/formats/{{ f.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for e in events %}
+	<url><loc>{{ site.url }}/events/{{ e.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	<url><loc>{{ site.url }}/assets/repertoire/index.html</loc><priority>0.6</priority></url>
+</urlset>
