@@ -842,8 +842,28 @@ h1, h2, h3, p { margin: 0; }
 	border-radius: 0;
 	background: #fff;
 }
-/* Photos hidden until real assets arrive — tiles show title/sub/CTAs on white */
+/* Photos hidden by default — enable per-tile via .tile--has-photo */
 .tile__img { display: none; }
+.tile--has-photo .tile__img {
+	display: block;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+/* Soft white scrim at top ensures dark overlay text reads on any photo (light or dark bg) */
+.tile--has-photo::before {
+	content: "";
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	height: 55%;
+	background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.35) 55%, rgba(255,255,255,0) 100%);
+	pointer-events: none;
+	z-index: 1;
+}
+.tile--has-photo .tile__content { z-index: 2; }
 .tile__content {
 	position: absolute;
 	top: 32px;
