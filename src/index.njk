@@ -243,17 +243,21 @@ permalink: /
 		<p class="section__lead">Свадьбы, корпоративы, юбилеи, ТВ-съёмки, зарубежные туры — под каждый формат своя программа, райдер и состав.</p>
 	</div>
 	<div class="container reveal">
-		<ul class="events-grid">
-			{% for e in events %}
-			<li class="event-tile">
-				<a href="{{ ('/events/' + e.slug + '/') | url }}">
-					<h3 class="event-tile__title">{{ e.title }}</h3>
-					<p class="event-tile__text">{{ e.lead | truncate(120) }}</p>
-					<span class="event-tile__more">Подробнее ›</span>
-				</a>
-			</li>
-			{% endfor %}
-		</ul>
+			<ul class="events-grid">
+				{% for e in events %}
+				<li class="event-tile">
+					<a href="{{ ('/events/' + e.slug + '/') | url }}">
+						<div class="event-tile__photo"><img src="{{ ('/assets/video/posters/' + e.featuredVideo + '.jpg') | url }}" alt="{{ e.title }} — Luxury Cover Band" loading="lazy"></div>
+						<div class="event-tile__body">
+							<span class="event-tile__eyebrow">{{ e.eyebrow }}</span>
+							<h3 class="event-tile__title">{{ e.title }}</h3>
+							<p class="event-tile__text">{{ e.headline }}</p>
+							<span class="event-tile__more">Подробнее ›</span>
+						</div>
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
 	</div>
 </section>
 
