@@ -6,6 +6,23 @@
 (() => {
 	'use strict';
 
+	// ---------- Locale memory + redirect ----------
+	try {
+		const path = window.location.pathname;
+		const base = (document.querySelector('base')?.getAttribute('href') || '/').replace(/\/+$/, '/');
+		const rel = path.startsWith(base) ? path.slice(base.length - 1) : path;
+		const match = rel.match(/^\/(br|ae)(\/|$)/);
+		if (match) {
+			localStorage.setItem('lcb_locale', match[1]);
+		} else if (rel === '/' || rel === '') {
+			const saved = localStorage.getItem('lcb_locale');
+			if (saved === 'br' || saved === 'ae') {
+				window.location.replace(base + saved + '/');
+				return;
+			}
+		}
+	} catch (e) { /* storage blocked — ignore */ }
+
 	// ---------- Sticky nav ----------
 	const nav = document.getElementById('nav');
 	const onScroll = () => {

@@ -1,0 +1,228 @@
+---
+layout: layouts/base.njk
+title: Luxury Cover Band — international cover band · 500+ songs in 12 languages
+description: "Luxury Cover Band (LC Band) is a top international cover band. 500+ songs in 12 languages, stadium and TV experience. Weddings, corporate events, TV projects, tours. Lineup from 2 to 20 musicians, 20+ stage looks."
+keywords: "cover band Dubai, wedding band Dubai, corporate event band UAE, live music Dubai, Luxury Cover Band, LC Band"
+preloadImage: assets/hero/hero-red.jpg
+permalink: /ae/
+---
+
+<!-- =============== HERO (EN) =============== -->
+<section class="hero" data-hero>
+	<div class="hero__stage">
+		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — red look on LED wall" loading="eager" fetchpriority="high" data-hero-img="red">
+		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — black and white look"  loading="eager" data-hero-img="bw">
+		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — gold look on stage"  loading="eager" data-hero-img="gold">
+		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — white look on starry backdrop"  loading="eager" data-hero-img="white">
+		<video class="hero__video" data-hero-video playsinline preload="none"></video>
+	</div>
+	<div class="hero__scrim"></div>
+	<button class="hero__play" data-hero-play type="button" aria-label="Watch video in these costumes"></button>
+	<button class="hero__close" data-hero-close type="button" aria-label="Close video" hidden></button>
+	<div class="hero__content">
+		<p class="hero__eyebrow">International Cover Band</p>
+		<h1 class="hero__title">{{ site.name }}</h1>
+		<p class="hero__tagline" data-hero-tagline>
+			<span data-tagline="red"   class="is-active">Red stage. Full lineup. Epic.</span>
+			<span data-tagline="bw"   >Black-and-white classics. Crisp lighting.</span>
+			<span data-tagline="gold" >Gold. Big event. Glam.</span>
+			<span data-tagline="white">White on stars. Wedding format.</span>
+		</p>
+		<div class="hero__cta">
+			<a class="btn btn--primary" href="#book">Book now</a>
+		</div>
+		<div class="hero__picker" role="tablist" aria-label="Choose look">
+			<button class="hero__dot hero__dot--red is-active"  data-hero-dot="red"   role="tab" aria-label="Red look"       aria-selected="true"></button>
+			<button class="hero__dot hero__dot--bw"             data-hero-dot="bw"    role="tab" aria-label="Black and white look" aria-selected="false"></button>
+			<button class="hero__dot hero__dot--gold"           data-hero-dot="gold"  role="tab" aria-label="Gold look"      aria-selected="false"></button>
+			<button class="hero__dot hero__dot--white"          data-hero-dot="white" role="tab" aria-label="White look"     aria-selected="false"></button>
+		</div>
+	</div>
+	<a class="hero__scroll" href="#about" aria-label="Scroll to description"><span></span></a>
+</section>
+
+<!-- =============== ABOUT / STATS =============== -->
+<section class="section section--elev" id="about">
+	<div class="container about-split reveal">
+		<div class="about-split__media">
+			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on stage — stadium experience" loading="lazy">
+		</div>
+		<div class="about-split__body">
+			<p class="section__eyebrow">About the band</p>
+			<h2 class="section__title">World-class stage.</h2>
+			<p class="section__lead">Stadium experience. TV appearances. Original tracks with featured artists.</p>
+			<div class="cta-row cta-row--left">
+				<a class="btn btn--blue" href="#videos">Learn more</a>
+				<a class="btn btn--blue-ghost" href="#book">Book</a>
+			</div>
+		</div>
+	</div>
+	<div class="container reveal">
+		<div class="stats">
+			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">songs in repertoire</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">languages</div></div>
+			<a class="stat stat--link" href="{{ '/costumes/' | url }}"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">stage looks</div></a>
+			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">musicians on stage</div></div>
+		</div>
+	</div>
+</section>
+
+<!-- =============== VOCALISTS =============== -->
+<section class="section section--light section--flush" id="vocalists">
+	<div class="hero-banner hero-banner--bleed reveal">
+		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — four vocalists, studio shoot" loading="lazy">
+		<div class="hero-banner__overlay">
+			<p class="section__eyebrow">Vocalists</p>
+			<h2 class="section__title">Four voices.<br><span class="muted">Four characters.</span></h2>
+			<p class="section__lead">Each leads their own part of the show. We combine in duets, trios and quartets to match your event.</p>
+			<div class="cta-row">
+				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Learn more</a>
+				<a class="btn btn--blue-ghost" href="#book">Book</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =============== DIRECTIONS (6 tiles) =============== -->
+<section class="section section--flush" id="directions">
+	<div class="reveal">
+		<ul class="tile-grid tile-grid--bleed">
+			<li class="tile tile--has-photo">
+				<img class="tile__img" src="{{ '/assets/photos/corporate.jpg' | url }}" alt="Corporate events — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Corporate events</h3>
+					<p class="tile__sub">Your brand, live on a big stage.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+			<li class="tile tile--has-photo">
+				<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Weddings — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Weddings</h3>
+					<p class="tile__sub">A show for the first dance and the dinner.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/wedding/' | url }}">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+			<li class="tile tile--has-photo">
+				<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Birthdays — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Birthdays</h3>
+					<p class="tile__sub">A show people remember for years.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+			<li class="tile tile--has-photo">
+				<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Client events — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Client events</h3>
+					<p class="tile__sub">Openings, launches, private dinners.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+			<li class="tile tile--has-photo">
+				<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Themed programs — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Themed programs</h3>
+					<p class="tile__sub">11 programs — for any audience.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Original music — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Original music</h3>
+					<p class="tile__sub">Original tracks with featured artists and for brands.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="#author-music">Learn more</a>
+						<a class="btn btn--blue-ghost" href="#book">Book</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<!-- =============== VIDEO =============== -->
+<section class="section" id="videos">
+	{% set promos = [
+		{slug:'promo-egoistka', title:'Egoistka · 2020–2025', eyebrow:'Clip'},
+		{slug:'promo-main-reel', title:'Main Reel', eyebrow:'Promo'},
+		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Promo'},
+		{slug:'promo-letet', title:'Letet', eyebrow:'Promo'},
+		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Promo'}
+	] %}
+	{% set lives = [
+		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'Live'},
+		{slug:'live-perfect', title:'Perfect', eyebrow:'Live'},
+		{slug:'live-soho', title:'Soho Rooms', eyebrow:'Live'},
+		{slug:'live-berezy', title:'Beryozy', eyebrow:'Live'},
+		{slug:'live-icon', title:'Icon', eyebrow:'Live'},
+		{slug:'interact-wedding-shallow', title:'Shallow · wedding', eyebrow:'Interactive'},
+		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Interactive'}
+	] %}
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">See how<br><span class="muted">it works on stage.</span></h2>
+		<p class="section__lead">Studio promos, live concert footage, audience interactives and themed programs.</p>
+	</div>
+
+	<div class="video-rail video-rail--big reveal" role="region" aria-label="Promo videos">
+		<ul class="video-rail__track">
+			{% for v in promos %}
+			<li class="vtile vtile--big">
+				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<span class="vtile__play" aria-hidden="true"></span>
+					<div class="vtile__caption">
+						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
+						<span class="vtile__title">{{ v.title }}</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="video-rail video-rail--small reveal" role="region" aria-label="Live videos">
+		<ul class="video-rail__track">
+			{% for v in lives %}
+			<li class="vtile vtile--small">
+				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<span class="vtile__play" aria-hidden="true"></span>
+					<div class="vtile__caption">
+						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
+						<span class="vtile__title">{{ v.title }}</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<!-- =============== BOOK =============== -->
+<section class="section section--book" id="book">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Booking</p>
+		<h2 class="section__title">Drop us a line —<br><span class="muted">we'll build a show for your event.</span></h2>
+		<p class="section__lead">Tell us the date, the venue and the format. We'll send the lineup, schedule and quote the same day.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--ghost-dark" href="#top">Top</a>
+		</div>
+	</div>
+</section>
