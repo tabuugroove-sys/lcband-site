@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Репертуар — Luxury Cover Band
+description: "500+ песен на 12 языках. Pop, Rock, Jazz, Soul, Funk — и авторские Remix/Mashup-версии. Полный список и PDF-версия."
+keywords: "репертуар кавер группы, список песен, luxury cover band репертуар, pdf репертуар"
+permalink: /repertoire/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Репертуар</span>
+		</p>
+		<p class="page-hero__eyebrow">Репертуар</p>
+		<h1 class="page-hero__title">500+ песен.<br><span class="muted">12 языков.</span></h1>
+		<p class="page-hero__lead">Pop, Rock, Jazz, Soul, Funk — и авторские Remix/Mashup-версии.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<div class="repertoire">
+			<div class="repertoire__text">
+				<p class="section__lead">Полный список песен доступен в интерактивной версии на странице, PDF или DOCX.</p>
+				<div class="repertoire__cta">
+					<a class="btn btn--dark" href="{{ '/assets/repertoire/index.html' | url }}" target="_blank" rel="noopener">Открыть репертуар</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire.pdf' | url }}" download>Скачать PDF</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire-2024.docx' | url }}" download>Скачать DOCX</a>
+				</div>
+			</div>
+			<div class="repertoire__badges">
+				{% for tag in ['Pop','Rock','Jazz','Soul','Funk','Retro','Italiano','Français','Español','English','Русский','Шансон','Кавказская','Инструментал','Mashup','Remix'] %}
+				<span class="tag">{{ tag }}</span>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
