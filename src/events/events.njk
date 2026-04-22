@@ -1,0 +1,67 @@
+---
+pagination:
+  data: events
+  size: 1
+  alias: event
+permalink: "/events/{{ event.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ event.title }} — {{ site.shortName }}"
+  description: "{{ event.lead }}"
+  keywords: "{{ event.keywords }}"
+---
+
+<section class="page-hero">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/events/' | url }}">События</a> <span>·</span>
+			<span>{{ event.title }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ event.eyebrow }}</p>
+		<h1 class="page-hero__title">{{ event.headline }}</h1>
+		<p class="page-hero__lead">{{ event.lead }}</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Структура<br><span class="muted">программы.</span></h2>
+		<ul class="blocks">
+			{% for b in event.blocks %}
+			<li class="block">
+				<div class="block__num">0{{ loop.index }}</div>
+				<h3 class="block__title">{{ b.title }}</h3>
+				<p class="block__text">{{ b.text }}</p>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+{% if event.featuredVideo %}
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Видео</p>
+		<h2 class="section__title">Как это<br><span class="muted">выглядит.</span></h2>
+	</div>
+	<div class="container reveal">
+		<div class="featured-video">
+			<a class="video-card video-card--wide" href="#" data-video="{{ event.featuredVideo }}">
+				<img src="{{ ('/assets/video/posters/' + event.featuredVideo + '.jpg') | url }}" alt="{{ event.title }} — видео" loading="lazy">
+				<span class="video-card__play" aria-hidden="true"></span>
+			</a>
+		</div>
+	</div>
+</section>
+{% endif %}
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">{{ event.cta }}.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/events/' | url }}">Все события</a>
+		</div>
+	</div>
+</section>

@@ -4,3 +4,5 @@ __MACOSX/
 ._*
 Thumbs.db
 .claude/
+node_modules/
+_site/

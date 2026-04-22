@@ -1,0 +1,83 @@
+---
+pagination:
+  data: programs
+  size: 1
+  alias: program
+permalink: "/programs/{{ program.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ program.title }} — {{ site.shortName }}"
+  description: "{{ program.lead }}"
+  keywords: "{{ program.keywords }}"
+  ogImage: "{{ program.poster }}"
+---
+
+<section class="page-hero">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/programs/' | url }}">Программы</a> <span>·</span>
+			<span>{{ program.label }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
+		<h1 class="page-hero__title">{{ program.headline }}</h1>
+		<p class="page-hero__lead">{{ program.lead }}</p>
+	</div>
+	{% if program.poster %}
+	<div class="page-hero__media">
+		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
+		{% if program.video %}
+		<a class="page-hero__play" href="#" data-video="{{ program.video }}" aria-label="Смотреть видео"><span></span></a>
+		{% endif %}
+	</div>
+	{% endif %}
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Что входит<br><span class="muted">в программу.</span></h2>
+		<ul class="bullets">
+			{% for b in program.bullets %}
+			<li class="bullet">
+				<span class="bullet__check">✓</span>
+				<span class="bullet__text">{{ b }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Варианты</p>
+		<h2 class="section__title">Другие программы.</h2>
+		<p class="section__lead">{{ site.stats.songs }} песен, {{ site.stats.languages }} языков — собираем вечер из любых комбинаций.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="caps">
+			{% for p in programs %}
+				{% if p.slug != program.slug %}
+				<li class="cap">
+					<a class="cap__link" href="{{ ('/programs/' + p.slug + '/') | url }}">
+						<h3 class="cap__title">{{ p.title }}</h3>
+						<p class="cap__text">{{ p.lead | truncate(100) }}</p>
+						<span class="cap__more">Смотреть ›</span>
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Бронирование</p>
+		<h2 class="section__title section__title--light">Хочу<br><span class="muted-light">{{ program.title | lower }}.</span></h2>
+		<p class="section__lead section__lead--light">Напишите дату, место и формат — подберём состав и пришлём тайминг.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/programs/' | url }}">Все программы</a>
+		</div>
+	</div>
+</section>

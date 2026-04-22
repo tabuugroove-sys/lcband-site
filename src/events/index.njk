@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: События — Luxury Cover Band
+description: "Кавер-группа на свадьбу, корпоратив, юбилей, ТВ-съёмки, зарубежные туры. Подбираем программу и состав под каждый формат."
+keywords: "кавер группа на свадьбу, группа на корпоратив, кавер на юбилей, кавер группа москва"
+permalink: /events/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>События</span>
+		</p>
+		<p class="page-hero__eyebrow">Под какое мероприятие?</p>
+		<h1 class="page-hero__title">События.</h1>
+		<p class="page-hero__lead">От частной свадьбы до ТВ-эфира — подбираем программу, райдер и состав под формат.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="events-grid events-grid--list">
+			{% for e in events %}
+			<li class="event-tile">
+				<a href="{{ ('/events/' + e.slug + '/') | url }}">
+					<div class="event-tile__eyebrow">{{ e.eyebrow }}</div>
+					<h3 class="event-tile__title">{{ e.title }}</h3>
+					<p class="event-tile__text">{{ e.lead }}</p>
+					<span class="event-tile__more">Подробнее ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

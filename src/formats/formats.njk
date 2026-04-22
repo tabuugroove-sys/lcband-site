@@ -1,0 +1,49 @@
+---
+pagination:
+  data: formats
+  size: 1
+  alias: format
+permalink: "/formats/{{ format.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ format.title }} — {{ site.shortName }}"
+  description: "{{ format.lead }}"
+  keywords: "{{ format.keywords }}"
+---
+
+<section class="page-hero">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/formats/' | url }}">Форматы</a> <span>·</span>
+			<span>{{ format.title }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ format.eyebrow }}</p>
+		<h1 class="page-hero__title">{{ format.headline }}</h1>
+		<p class="page-hero__lead">{{ format.lead }}</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Что входит<br><span class="muted">в формат.</span></h2>
+		<ul class="bullets">
+			{% for b in format.bullets %}
+			<li class="bullet">
+				<span class="bullet__check">✓</span>
+				<span class="bullet__text">{{ b }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">{{ format.cta }}.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/formats/' | url }}">Все форматы</a>
+		</div>
+	</div>
+</section>

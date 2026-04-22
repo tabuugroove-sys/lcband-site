@@ -1,0 +1,90 @@
+---
+pagination:
+  data: vocalists
+  size: 1
+  alias: vocalist
+permalink: "/vocalists/{{ vocalist.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
+  description: "{{ vocalist.tagline }}"
+  keywords: "{{ vocalist.keywords }}"
+  ogImage: "{{ vocalist.photo }}"
+---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": "{{ vocalist.name }}",
+	"jobTitle": "{{ vocalist.role }}",
+	"description": "{{ vocalist.bio }}",
+	"image": "{{ site.url }}/{{ vocalist.photo }}",
+	"url": "{{ site.url }}{{ page.url }}",
+	"memberOf": {
+		"@type": "MusicGroup",
+		"name": "{{ site.name }}",
+		"url": "{{ site.url }}"
+	}
+}
+</script>
+{% endblock %}
+
+<section class="page-hero page-hero--split">
+	<div class="page-hero__text container">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/vocalists/' | url }}">Вокалисты</a> <span>·</span>
+			<span>{{ vocalist.name }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ vocalist.role }}</p>
+		<h1 class="page-hero__title">{{ vocalist.name }}</h1>
+		<p class="page-hero__lead">{{ vocalist.tagline }}</p>
+		<p class="page-hero__body">{{ vocalist.bio }}</p>
+		<div class="page-hero__tags">
+			{% for s in vocalist.specialty %}
+				<span class="tag">{{ s }}</span>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="page-hero__photo">
+		<img src="{{ ('/' + vocalist.photo) | url }}" alt="{{ vocalist.name }} — вокалист Luxury Cover Band" loading="eager">
+	</div>
+</section>
+
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Остальные вокалисты</p>
+		<h2 class="section__title">Все четыре голоса.</h2>
+		<p class="section__lead">Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="vocalists">
+			{% for v in vocalists %}
+				{% if v.slug != vocalist.slug %}
+				<li class="voc">
+					<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}">
+						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }}" loading="lazy"></div>
+						<h3 class="voc__name">{{ v.name }}</h3>
+						<p class="voc__role">{{ v.role }}</p>
+						<p class="voc__bio">{{ v.tagline }}</p>
+						<span class="voc__more">Подробнее ›</span>
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">Забронировать с {{ vocalist.name }}.</h2>
+		<p class="section__lead section__lead--light">Уточните дату и формат — подберём состав под программу.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/vocalists/' | url }}">Все вокалисты</a>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,27 @@
+{
+	"name": "Luxury Cover Band",
+	"shortName": "LC Band",
+	"url": "https://tabuugroove-sys.github.io/lcband-site",
+	"tagline": "Международный кавер-бенд. 500+ песен на 12 языках.",
+	"description": "Luxury Cover Band (LC Band) — топовый международный кавер-бенд. 500+ песен в 12 языках, опыт стадионов и ТВ. Свадьбы, корпоративы, ТВ-проекты, туры. Состав 2–20 человек, 20+ сценических образов.",
+	"defaultOgImage": "assets/hero/hero-red.jpg",
+	"phone": "",
+	"telegram": "https://t.me/tabuugroove",
+	"email": "",
+	"city": "Москва",
+	"stats": {
+		"songs": "500+",
+		"languages": "12",
+		"looks": "20+",
+		"lineup": "2–20"
+	},
+	"nav": [
+		{ "href": "/", "label": "Главная" },
+		{ "href": "/vocalists/", "label": "Вокалисты" },
+		{ "href": "/programs/", "label": "Программы" },
+		{ "href": "/formats/", "label": "Форматы" },
+		{ "href": "/events/", "label": "События" },
+		{ "href": "/#riders", "label": "Райдеры" },
+		{ "href": "/#book", "label": "Бронь", "cta": true }
+	]
+}
