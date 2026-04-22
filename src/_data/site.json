@@ -22,7 +22,7 @@
 		{ "href": "/costumes/", "label": "Костюмы" },
 		{ "href": "/formats/", "label": "Форматы" },
 		{ "href": "/events/", "label": "События" },
-		{ "href": "/#riders", "label": "Райдеры" },
+		{ "href": "/riders/", "label": "Райдеры" },
 		{ "href": "/#book", "label": "Бронь", "cta": true }
 	]
 }
