@@ -338,7 +338,6 @@ h1, h2, h3, p { margin: 0; }
 .hero__bg--bw    { object-position: center 30%; }
 .hero__bg--gold  { object-position: center 26%; }
 .hero__bg--white { object-position: center 22%; }
-.hero__bg--duet  { object-position: center 38%; }
 
 .hero__bg.is-active {
 	opacity: 1;
@@ -447,7 +446,6 @@ h1, h2, h3, p { margin: 0; }
 .hero__dot--bw::before    { background: linear-gradient(135deg, #F5F5F7 0%, #1D1D1F 100%); }
 .hero__dot--gold::before  { background: linear-gradient(135deg, #F5C45D 0%, #C89532 100%); }
 .hero__dot--white::before { background: linear-gradient(135deg, #FFFFFF 0%, #DCDCE0 100%); }
-.hero__dot--duet::before  { background: linear-gradient(135deg, #C8102E 0%, #1D1D1F 100%); }
 
 .hero__dot:hover {
 	border-color: rgba(255,255,255,0.8);
