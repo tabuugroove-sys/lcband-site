@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Кремовый фон с лёгкой текстурой -->
+    <radialGradient id="creamBg" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#faf4e6"/>
+      <stop offset="70%" stop-color="#f0e6d0"/>
+      <stop offset="100%" stop-color="#e4d5b0"/>
+    </radialGradient>
+    
+    <!-- Глубокое тёмное золото для буквы -->
+    <linearGradient id="darkGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a6d2a"/>
+      <stop offset="35%" stop-color="#a88338"/>
+      <stop offset="55%" stop-color="#c9a658"/>
+      <stop offset="75%" stop-color="#8a6d2a"/>
+      <stop offset="100%" stop-color="#5a4418"/>
+    </linearGradient>
+    
+    <!-- Бордовый акцент -->
+    <linearGradient id="burgundy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6b1f2a"/>
+      <stop offset="100%" stop-color="#3d1218"/>
+    </linearGradient>
+    
+    <linearGradient id="frameGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8902e"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6714"/>
+    </linearGradient>
+    
+    <filter id="emboss" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#3d2a0a" flood-opacity="0.25"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Кремовый фон -->
+  <rect width="512" height="512" rx="100" ry="100" fill="url(#creamBg)"/>
+  
+  <!-- Тонкая двойная рамка -->
+  <rect x="24" y="24" width="464" height="464" rx="84" ry="84" 
+        fill="none" stroke="url(#frameGold)" stroke-width="1.5" opacity="0.7"/>
+  <rect x="34" y="34" width="444" height="444" rx="76" ry="76" 
+        fill="none" stroke="url(#frameGold)" stroke-width="0.8" opacity="0.4"/>
+  
+  <!-- Декоративный орнамент сверху -->
+  <g fill="url(#frameGold)" opacity="0.65">
+    <path d="M 236 80 L 256 70 L 276 80 L 266 90 L 256 85 L 246 90 Z"/>
+    <circle cx="256" cy="80" r="2"/>
+  </g>
+  
+  <!-- Декоративный орнамент снизу (зеркально) -->
+  <g fill="url(#frameGold)" opacity="0.65">
+    <path d="M 236 432 L 256 442 L 276 432 L 266 422 L 256 427 L 246 422 Z"/>
+    <circle cx="256" cy="432" r="2"/>
+  </g>
+  
+  <!-- Основная буква L с серифами в стиле Didot -->
+  <g filter="url(#emboss)">
+    <!-- Вертикаль с тонким клином -->
+    <path d="M 176 120 
+             L 240 120 
+             L 240 132
+             L 228 132
+             L 228 368 
+             L 352 368 
+             L 352 356
+             L 364 356
+             L 364 392 
+             L 176 392 
+             L 176 380
+             L 188 380
+             L 188 132
+             L 176 132
+             Z" 
+          fill="url(#darkGold)"/>
+    
+    <!-- Тонкий внутренний блик -->
+    <rect x="214" y="138" width="2" height="228" 
+          fill="#f4dc9a" opacity="0.6"/>
+  </g>
+  
+  <!-- Бордовая декоративная полоса под L (как благородная лента) -->
+  <rect x="160" y="404" width="192" height="2" fill="url(#burgundy)" opacity="0.7"/>
+  <circle cx="256" cy="405" r="3" fill="url(#burgundy)"/>
+</svg>
