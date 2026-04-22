@@ -825,11 +825,11 @@ h1, h2, h3, p { margin: 0; }
 	.tile-grid { grid-template-columns: 1fr; }
 }
 
-/* Edge-to-edge variant: white gaps (6px) between tiles and on left/right edges */
+/* Edge-to-edge variant: 6px gaps between tiles and on left/right edges — page bg (grey) shows through */
 .tile-grid--bleed {
 	gap: 6px;
 	padding: 0 6px;
-	background: #fff;
+	background: #f5f5f7;
 }
 @media (max-width: 734px) {
 	.tile-grid--bleed { grid-template-columns: 1fr; gap: 6px; }
@@ -840,16 +840,10 @@ h1, h2, h3, p { margin: 0; }
 	aspect-ratio: 4/3;
 	overflow: hidden;
 	border-radius: 0;
-	background: #f5f5f7;
+	background: #fff;
 }
-.tile__img {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-}
+/* Photos hidden until real assets arrive — tiles show title/sub/CTAs on white */
+.tile__img { display: none; }
 .tile__content {
 	position: absolute;
 	top: 32px;
