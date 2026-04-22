@@ -772,6 +772,19 @@ h1, h2, h3, p { margin: 0; }
 	overflow: hidden;
 	background: #f5f5f7;
 }
+/* Edge-to-edge full-bleed variant (like Apple's stacked product blocks) */
+.hero-banner--bleed {
+	max-width: none;
+	margin: 0 0 64px;
+	border-radius: 0;
+}
+/* Flush section: no horizontal padding; vertical padding only below hero (via hero-banner margin) */
+.section--flush { padding: 0 0 var(--sec-pad); }
+/* Thin white separator between stacked full-bleed blocks */
+.section--flush + .section,
+.section + .section--flush,
+.section--flush + .section--flush { border-top: 6px solid #fff; }
+
 .hero-banner__img {
 	width: 100%;
 	height: auto;
