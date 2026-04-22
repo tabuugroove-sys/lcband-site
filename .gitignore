@@ -6,3 +6,9 @@ Thumbs.db
 .claude/
 node_modules/
 _site/
+
+# Nano Banana backups (keep local only)
+src/assets/.nanobanana-backup/
+
+# Dev tools (not for public)
+tools/
