@@ -73,7 +73,7 @@ permalink: /
 	<div class="container reveal">
 		<ul class="vocalists">
 			{% for v in vocalists %}
-			<li class="voc">
+			<li class="voc" data-slug="{{ v.slug }}">
 				<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}" aria-label="{{ v.name }} — подробно">
 					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — вокалист Luxury Cover Band" loading="lazy"></div>
 					<h3 class="voc__name">{{ v.name }}</h3>
