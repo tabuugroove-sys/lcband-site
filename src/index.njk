@@ -7,15 +7,18 @@ preloadImage: assets/hero/hero-red.jpg
 permalink: /
 ---
 
-<!-- =============== HERO (4-COLOR SWITCHABLE LINEUP) =============== -->
+<!-- =============== HERO (4-COLOR SWITCHABLE LINEUP + INLINE VIDEO) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
 		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — красный образ на LED-стене" loading="eager" fetchpriority="high" data-hero-img="red">
 		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — чёрно-белый образ"  loading="eager" data-hero-img="bw">
 		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — золотой образ на сцене"       loading="eager" data-hero-img="gold">
 		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — белый образ на звёздном фоне"  loading="eager" data-hero-img="white">
+		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>
+	<button class="hero__play" data-hero-play type="button" aria-label="Смотреть видео в этих костюмах"></button>
+	<button class="hero__close" data-hero-close type="button" aria-label="Закрыть видео" hidden></button>
 	<div class="hero__content">
 		<p class="hero__eyebrow">International Cover Band</p>
 		<h1 class="hero__title">{{ site.name }}</h1>
@@ -27,7 +30,6 @@ permalink: /
 		</p>
 		<div class="hero__cta">
 			<a class="btn btn--primary" href="#book">Забронировать</a>
-			<a class="btn btn--ghost" href="#video">Смотреть видео →</a>
 		</div>
 		<div class="hero__picker" role="tablist" aria-label="Выбор образа">
 			<button class="hero__dot hero__dot--red is-active"  data-hero-dot="red"   role="tab" aria-label="Красный образ"       aria-selected="true"></button>
