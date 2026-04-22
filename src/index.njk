@@ -157,6 +157,63 @@ permalink: /
 	</div>
 </section>
 
+<!-- =============== VIDEO RAILS (Apple-style 2 rows) =============== -->
+<section class="section" id="videos">
+	{% set promos = [
+		{slug:'promo-egoistka', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
+		{slug:'promo-main-reel', title:'Main Reel', eyebrow:'Промо'},
+		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Промо'},
+		{slug:'promo-letet', title:'Лететь', eyebrow:'Промо'},
+		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Промо'}
+	] %}
+	{% set lives = [
+		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'Лайв'},
+		{slug:'live-perfect', title:'Perfect', eyebrow:'Лайв'},
+		{slug:'live-soho', title:'Soho Rooms', eyebrow:'Лайв'},
+		{slug:'live-berezy', title:'Берёзы', eyebrow:'Лайв'},
+		{slug:'live-icon', title:'Icon', eyebrow:'Лайв'},
+		{slug:'interact-wedding-shallow', title:'Shallow · свадьба', eyebrow:'Интерактив'},
+		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Интерактив'}
+	] %}
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
+		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
+	</div>
+
+	<div class="video-rail video-rail--big reveal" role="region" aria-label="Промо-видео">
+		<ul class="video-rail__track">
+			{% for v in promos %}
+			<li class="vtile vtile--big">
+				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<span class="vtile__play" aria-hidden="true"></span>
+					<div class="vtile__caption">
+						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
+						<span class="vtile__title">{{ v.title }}</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="video-rail video-rail--small reveal" role="region" aria-label="Лайв-видео">
+		<ul class="video-rail__track">
+			{% for v in lives %}
+			<li class="vtile vtile--small">
+				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<span class="vtile__play" aria-hidden="true"></span>
+					<div class="vtile__caption">
+						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
+						<span class="vtile__title">{{ v.title }}</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
 <!-- =============== LOOKS (COSTUMES LINEUP) =============== -->
 <section class="section section--elev" id="looks">
 	<div class="container container--narrow reveal">
