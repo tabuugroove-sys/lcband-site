@@ -67,7 +67,7 @@ permalink: /
 	</div>
 </section>
 
-<!-- =============== VOCALISTS =============== -->
+<!-- =============== VOCALISTS (hero only — cards moved to /vocalists/) =============== -->
 <section class="section section--light section--flush" id="vocalists">
 	<div class="hero-banner hero-banner--bleed reveal">
 		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — четыре вокалиста, студийная съёмка" loading="lazy">
@@ -76,25 +76,10 @@ permalink: /
 			<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
 			<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
 			<div class="cta-row">
-				<a class="btn btn--blue" href="#directions">Узнать больше</a>
+				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Узнать больше</a>
 				<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
 			</div>
 		</div>
-	</div>
-	<div class="container reveal">
-		<ul class="vocalists">
-			{% for v in vocalists %}
-			<li class="voc" data-slug="{{ v.slug }}">
-				<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}" aria-label="{{ v.name }} — подробно">
-					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — вокалист Luxury Cover Band" loading="lazy"></div>
-					<h3 class="voc__name">{{ v.name }}</h3>
-					<p class="voc__role">{{ v.role }}</p>
-					<p class="voc__bio">{{ v.tagline }}</p>
-					<span class="voc__more">Подробнее ›</span>
-				</a>
-			</li>
-			{% endfor %}
-		</ul>
 	</div>
 </section>
 
