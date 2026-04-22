@@ -343,4 +343,45 @@
 		});
 	});
 
+	// ---------- Video rails: infinite loop scroll ----------
+	document.querySelectorAll('.video-rail__track').forEach(track => {
+		const originals = Array.from(track.children);
+		if (originals.length < 2) return;
+		const n = originals.length;
+		originals.forEach(item => track.insertBefore(item.cloneNode(true), track.firstChild));
+		originals.forEach(item => track.appendChild(item.cloneNode(true)));
+
+		const setWidth = () => track.scrollWidth / 3;
+
+		const centerOn = (idx) => {
+			const el = track.children[idx];
+			if (!el) return;
+			track.scrollLeft = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
+		};
+
+		requestAnimationFrame(() => centerOn(n));
+
+		let rafId = null;
+		let jumping = false;
+		track.addEventListener('scroll', () => {
+			if (jumping || rafId) return;
+			rafId = requestAnimationFrame(() => {
+				rafId = null;
+				const w = setWidth();
+				const left = track.scrollLeft;
+				if (left < w * 0.5) {
+					jumping = true;
+					track.scrollLeft = left + w;
+					requestAnimationFrame(() => { jumping = false; });
+				} else if (left > w * 2.5) {
+					jumping = true;
+					track.scrollLeft = left - w;
+					requestAnimationFrame(() => { jumping = false; });
+				}
+			});
+		}, { passive: true });
+
+		window.addEventListener('resize', () => requestAnimationFrame(() => centerOn(n)), { passive: true });
+	});
+
 })();
