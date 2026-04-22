@@ -238,14 +238,16 @@
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
 		const order = ['red', 'bw', 'gold', 'white'];
-		// Costume → matching promo clip. Until we verify which videos actually
-		// feature which costumes, all 4 fall back to the main reel (mixed).
-		// TODO: map each costume to a clip where the band wears that exact outfit.
+		// Costume → matching clip. Verified from poster frames:
+		//   red = Egoistka (band fully in red, red LED wall)
+		//   white = Лететь (white outfits, blue starfield)
+		// bw + gold → main reel fallback until we confirm a clip that shows band
+		// in that specific costume (TODO: need a dedicated BW and GOLD clip).
 		const heroVideoMap = {
-			red:   'promo-main-reel',
+			red:   'promo-egoistka',
 			bw:    'promo-main-reel',
 			gold:  'promo-main-reel',
-			white: 'promo-main-reel'
+			white: 'promo-letet'
 		};
 		let current = 'red';
 		let autoTimer = null;
