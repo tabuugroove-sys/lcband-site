@@ -157,7 +157,7 @@ permalink: /
 			{slug:'flowers', title:'Цветы'}
 		] %}
 		{% for c in costumes %}
-		<figure class="lineup__card"><img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy"><figcaption>{{ c.title }}</figcaption></figure>
+		<figure class="lineup__card" data-slug="{{ c.slug }}"><img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy"><figcaption>{{ c.title }}</figcaption></figure>
 		{% endfor %}
 	</div>
 </section>
