@@ -338,27 +338,31 @@ h1, h2, h3, p { margin: 0; }
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center 32%;
+	object-position: center 55%;
+	transform-origin: center 62%;
 	opacity: 0;
 	transition: opacity 1.1s cubic-bezier(.4, 0, .2, 1);
 	will-change: opacity, transform;
 }
 
-/* Per-photo head alignment — different source aspects need different Y offset */
-.hero__bg--red   { object-position: center 28%; }
-.hero__bg--bw    { object-position: center 30%; }
-.hero__bg--gold  { object-position: center 26%; }
-.hero__bg--white { object-position: center 22%; }
+/* Per-photo normalization:
+   sources are same 2400x1350 but photographer framed the group at different scales.
+   object-position pushes heads down from nav; per-slide scale evens out perceived group size. */
+.hero__bg--red   { object-position: center 52%; }
+.hero__bg--bw    { object-position: center 55%; }
+.hero__bg--gold  { object-position: center 58%; }
+.hero__bg--white { object-position: center 54%; }
 
-.hero__bg.is-active {
-	opacity: 1;
-	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
-}
+.hero__bg.is-active { opacity: 1; animation: none; }
+.hero__bg--red.is-active   { animation: heroZoomRed   24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
+.hero__bg--bw.is-active    { animation: heroZoomBw    24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
+.hero__bg--gold.is-active  { animation: heroZoomGold  24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
+.hero__bg--white.is-active { animation: heroZoomWhite 24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
 
-@keyframes heroZoom {
-	from { transform: scale(1); }
-	to   { transform: scale(1.075); }
-}
+@keyframes heroZoomRed   { from { transform: scale(1.00); } to { transform: scale(1.06); } }
+@keyframes heroZoomBw    { from { transform: scale(1.08); } to { transform: scale(1.14); } }
+@keyframes heroZoomGold  { from { transform: scale(1.18); } to { transform: scale(1.24); } }
+@keyframes heroZoomWhite { from { transform: scale(1.06); } to { transform: scale(1.12); } }
 
 .hero__scrim {
 	position: absolute; inset: 0; z-index: 1;
