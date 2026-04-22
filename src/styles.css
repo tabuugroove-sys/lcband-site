@@ -205,8 +205,8 @@ h1, h2, h3, p { margin: 0; }
 }
 
 .nav__logo-mark {
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
 	display: block;
 	flex-shrink: 0;
 }
