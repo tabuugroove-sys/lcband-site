@@ -237,13 +237,14 @@
 		const heroPlay = hero.querySelector('[data-hero-play]');
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
-		const order = ['red', 'bw', 'gold', 'white'];
+		const order = ['red', 'bw', 'gold', 'white', 'duet'];
 		// Costume → matching promo clip (can be refined later)
 		const heroVideoMap = {
 			red:   'promo-loca-loca',
 			bw:    'promo-egoistka',
 			gold:  'live-icon',
-			white: 'interact-wedding-shallow'
+			white: 'interact-wedding-shallow',
+			duet:  'interact-wedding-shallow'
 		};
 		let current = 'red';
 		let autoTimer = null;
