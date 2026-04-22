@@ -157,32 +157,6 @@ permalink: /
 	</div>
 </section>
 
-<!-- =============== FORMATS =============== -->
-<section class="section section--light" id="formats">
-	<div class="container container--narrow reveal">
-		<p class="section__eyebrow">Форматы работы</p>
-		<h2 class="section__title">Одна команда —<br><span class="muted">четыре роли.</span></h2>
-		<p class="section__lead">Мы не просто играем концерт. Мы встраиваемся в формат события — от хоровой коллаборации до караоке-шоу с гостями.</p>
-	</div>
-	<div class="container reveal">
-			<ul class="formats">
-				{% for f in formats %}
-				<li class="format">
-					<a class="format__link" href="{{ ('/formats/' + f.slug + '/') | url }}">
-						<div class="format__photo"><img src="{{ ('/' + f.poster) | url }}" alt="{{ f.title }} — формат LC Band" loading="lazy"></div>
-						<div class="format__body">
-							<span class="format__label">{{ f.eyebrow }}</span>
-							<h3 class="format__title">{{ f.title }}</h3>
-							<p class="format__text">{{ f.headline }}</p>
-							<span class="format__more">Подробнее ›</span>
-						</div>
-					</a>
-				</li>
-				{% endfor %}
-			</ul>
-	</div>
-</section>
-
 <!-- =============== LOOKS (COSTUMES LINEUP) =============== -->
 <section class="section section--elev" id="looks">
 	<div class="container container--narrow reveal">
