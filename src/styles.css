@@ -824,17 +824,16 @@ h1, h2, h3, p { margin: 0; }
 .caps {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 12px;
+	gap: 16px;
 }
 
 @media (max-width: 1068px) { .caps { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 734px)  { .caps { grid-template-columns: 1fr; } }
 
 .cap {
-	padding: 48px 40px;
 	background: #fff;
-	border-radius: 0;
-	transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+	overflow: hidden;
+	transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), box-shadow 0.3s ease;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
 }
 
@@ -843,22 +842,45 @@ h1, h2, h3, p { margin: 0; }
 	box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08);
 }
 
-.cap__icon {
+.cap__link { display: flex; flex-direction: column; height: 100%; color: inherit; }
+
+.cap__photo {
+	aspect-ratio: 4/3;
+	background: #F5F5F7;
+	overflow: hidden;
+}
+
+.cap__photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 30%;
+	transition: transform 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+.cap:hover .cap__photo img { transform: scale(1.04); }
+
+.cap__body { padding: 28px 32px 32px; flex-grow: 1; display: flex; flex-direction: column; }
+
+.cap__label {
 	font-family: var(--ff-display);
-	font-size: 32px;
-	line-height: 1;
-	margin-bottom: 22px;
-	color: #1D1D1F;
-	font-weight: 300;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: #86868B;
+	margin-bottom: 12px;
+	display: block;
 }
 
 .cap__title {
 	font-family: var(--ff-display);
-	font-size: 21px;
+	font-size: 22px;
 	line-height: 1.19048;
 	font-weight: 600;
 	letter-spacing: .011em;
-	margin-bottom: 10px;
+	color: #1D1D1F;
+	margin-bottom: 8px;
 }
 
 .cap__text {
@@ -867,6 +889,8 @@ h1, h2, h3, p { margin: 0; }
 	line-height: 1.47059;
 	letter-spacing: -0.022em;
 	color: #6E6E73;
+	margin-bottom: 16px;
+	flex-grow: 1;
 }
 
 /* ========================================================================
@@ -1848,7 +1872,7 @@ h1, h2, h3, p { margin: 0; }
 
 .cap__more, .format__more, .voc__more {
 	display: inline-block;
-	margin-top: 16px;
+	margin-top: auto;
 	font-family: var(--ff-display);
 	font-size: 14px;
 	font-weight: 500;
