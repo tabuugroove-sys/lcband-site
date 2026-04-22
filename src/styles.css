@@ -723,6 +723,29 @@ h1, h2, h3, p { margin: 0; }
 .about-split__body .section__title   { margin-bottom: 18px; }
 .about-split__body .section__lead    { margin-bottom: 28px; max-width: 560px; }
 
+.hero-center { text-align: center; }
+.hero-center .section__lead { margin-left: auto; margin-right: auto; margin-bottom: 28px; }
+
+.cta-row {
+	display: flex;
+	gap: 14px;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-bottom: 56px;
+}
+.cta-row--left { justify-content: flex-start; margin-bottom: 0; }
+
+.vocalists-hero {
+	margin: 0 auto 72px;
+	max-width: 1180px;
+}
+.vocalists-hero img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 18px;
+}
+
 .stats {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -852,6 +875,61 @@ h1, h2, h3, p { margin: 0; }
 
 @media (max-width: 1068px) { .caps { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 734px)  { .caps { grid-template-columns: 1fr; } }
+
+/* Instagram-style 3x2 grid — square tiles, tight gaps, minimal chrome */
+.caps--ig {
+	grid-template-columns: repeat(3, 1fr);
+	gap: 4px;
+}
+.caps--ig .cap {
+	box-shadow: none;
+	background: transparent;
+	border-radius: 0;
+}
+.caps--ig .cap:hover { transform: none; box-shadow: none; }
+.caps--ig .cap__photo { aspect-ratio: 1/1; border-radius: 0; }
+.caps--ig .cap__body { padding: 16px 4px 0; }
+.caps--ig .cap__title { font-size: 18px; margin-bottom: 4px; }
+.caps--ig .cap__text { font-size: 14px; margin-bottom: 8px; }
+.caps--ig .cap__more { font-size: 13px; }
+@media (max-width: 1068px) { .caps--ig { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .caps--ig { grid-template-columns: repeat(2, 1fr); gap: 2px; } }
+
+/* Cover-overlay variant — image fills tile, title overlaid bottom-left */
+.cap--cover { position: relative; overflow: hidden; }
+.cap--cover .cap__link { display: block; height: 100%; }
+.cap--cover .cap__photo { aspect-ratio: 1/1; width: 100%; height: 100%; }
+.cap--cover .cap__photo img {
+	width: 100%; height: 100%;
+	object-fit: cover;
+	object-position: center;
+	transition: transform 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+.cap--cover:hover .cap__photo img { transform: scale(1.05); }
+.cap--cover .cap__overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: flex-end;
+	padding: 24px 28px;
+	background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%);
+	pointer-events: none;
+}
+.cap--cover .cap__overlay .cap__title {
+	font-family: var(--ff-display);
+	font-size: clamp(20px, 2.2vw, 28px);
+	font-weight: 600;
+	letter-spacing: -0.005em;
+	line-height: 1.15;
+	color: #fff;
+	margin: 0;
+}
+
+.caps-more {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
 
 .cap {
 	background: #fff;
