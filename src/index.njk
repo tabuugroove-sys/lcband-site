@@ -61,7 +61,7 @@ permalink: /
 		<div class="stats">
 			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
 			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">языков</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">сценических образов</div></div>
+			<a class="stat stat--link" href="{{ '/costumes/' | url }}"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">сценических образов</div></a>
 			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">музыкантов на сцене</div></div>
 		</div>
 	</div>
@@ -211,40 +211,6 @@ permalink: /
 			</li>
 			{% endfor %}
 		</ul>
-	</div>
-</section>
-
-<!-- =============== LOOKS (COSTUMES LINEUP) =============== -->
-<section class="section section--elev" id="looks">
-	<div class="container container--narrow reveal">
-		<p class="section__eyebrow">Образы</p>
-		<h2 class="section__title">Один бенд.<br><span class="muted">Семнадцать настроений.</span></h2>
-		<p class="section__lead">Каждый набор — полноценная визуальная история. Под свадьбу, корпоратив, закрытый ивент или тематическое шоу. Проведите по галерее →</p>
-	</div>
-
-	<div class="lineup" id="lineup" role="region" aria-label="Галерея сценических образов">
-		{% set costumes = [
-			{slug:'gold', title:'Золото'},
-			{slug:'white', title:'Белый'},
-			{slug:'red', title:'Красный'},
-			{slug:'red-group', title:'Красный · состав'},
-			{slug:'all-black', title:'All Black'},
-			{slug:'black-white', title:'Чёрно-белый'},
-			{slug:'black-silver', title:'Чёрно-серебряный'},
-			{slug:'black-red', title:'Чёрно-красный'},
-			{slug:'black-couple', title:'Чёрный · дуэт'},
-			{slug:'pink', title:'PINK'},
-			{slug:'blue', title:'Синий'},
-			{slug:'dark-green', title:'Тёмно-зелёный'},
-			{slug:'dark-green-group', title:'Тёмно-зелёный · состав'},
-			{slug:'gold-studio', title:'Золотистое'},
-			{slug:'beige-glitter', title:'Бежевый глиттер'},
-			{slug:'shimmer', title:'Переливы'},
-			{slug:'flowers', title:'Цветы'}
-		] %}
-		{% for c in costumes %}
-		<figure class="lineup__card" data-slug="{{ c.slug }}"><img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy"><figcaption>{{ c.title }}</figcaption></figure>
-		{% endfor %}
 	</div>
 </section>
 
