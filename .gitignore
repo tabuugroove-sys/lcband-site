@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+__MACOSX/
+._*
+Thumbs.db
+.claude/
