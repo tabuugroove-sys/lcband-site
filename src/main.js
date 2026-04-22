@@ -237,14 +237,15 @@
 		const heroPlay = hero.querySelector('[data-hero-play]');
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
-		const order = ['red', 'bw', 'gold', 'white', 'duet'];
-		// Costume → matching promo clip (can be refined later)
+		const order = ['red', 'bw', 'gold', 'white'];
+		// Costume → matching promo clip. Until we verify which videos actually
+		// feature which costumes, all 4 fall back to the main reel (mixed).
+		// TODO: map each costume to a clip where the band wears that exact outfit.
 		const heroVideoMap = {
-			red:   'promo-loca-loca',
-			bw:    'promo-egoistka',
-			gold:  'live-icon',
-			white: 'interact-wedding-shallow',
-			duet:  'interact-wedding-shallow'
+			red:   'promo-main-reel',
+			bw:    'promo-main-reel',
+			gold:  'promo-main-reel',
+			white: 'promo-main-reel'
 		};
 		let current = 'red';
 		let autoTimer = null;
