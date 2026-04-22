@@ -700,6 +700,29 @@ h1, h2, h3, p { margin: 0; }
    Stats row — Apple's gradient text + tight numeric rhythm
    ======================================================================== */
 
+.about-split {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 72px;
+	align-items: center;
+	margin-bottom: 96px;
+}
+
+@media (max-width: 900px) {
+	.about-split { grid-template-columns: 1fr; gap: 32px; margin-bottom: 56px; }
+}
+
+.about-split__media img {
+	width: 100%;
+	aspect-ratio: 16/10;
+	object-fit: cover;
+	object-position: center 35%;
+}
+
+.about-split__body .section__eyebrow { margin-bottom: 18px; }
+.about-split__body .section__title   { margin-bottom: 18px; }
+.about-split__body .section__lead    { margin-bottom: 28px; max-width: 560px; }
+
 .stats {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
