@@ -228,13 +228,23 @@
 	lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 	document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-	// ---------- Hero 4-color switcher ----------
+	// ---------- Hero 4-color switcher + inline video ----------
 	const hero = document.querySelector('[data-hero]');
 	if (hero) {
 		const dots = hero.querySelectorAll('[data-hero-dot]');
 		const imgs = hero.querySelectorAll('[data-hero-img]');
 		const taglines = hero.querySelectorAll('[data-tagline]');
+		const heroPlay = hero.querySelector('[data-hero-play]');
+		const heroClose = hero.querySelector('[data-hero-close]');
+		const heroVideo = hero.querySelector('[data-hero-video]');
 		const order = ['red', 'bw', 'gold', 'white'];
+		// Costume → matching promo clip (can be refined later)
+		const heroVideoMap = {
+			red:   'promo-loca-loca',
+			bw:    'promo-egoistka',
+			gold:  'live-icon',
+			white: 'interact-wedding-shallow'
+		};
 		let current = 'red';
 		let autoTimer = null;
 		let userInteracted = false;
@@ -261,12 +271,54 @@
 			autoTimer = setInterval(() => setActive(nextKey()), 5500);
 		}
 
+		function stopAuto() {
+			if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+		}
+
+		function playHeroVideo() {
+			if (!heroVideo) return;
+			const key = heroVideoMap[current] || 'promo-main-reel';
+			const slow = navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || ''));
+			const quality = slow ? '720' : '1080';
+			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
+			heroVideo.src = `${base}assets/video/mp4/${key}-${quality}.mp4`;
+			heroVideo.setAttribute('controls', '');
+			stopAuto();
+			userInteracted = true;
+			hero.classList.add('is-playing');
+			const p = heroVideo.play();
+			if (p && typeof p.catch === 'function') {
+				p.catch(() => {
+					heroVideo.muted = true;
+					heroVideo.play().catch(() => {});
+				});
+			}
+		}
+
+		function stopHeroVideo() {
+			if (!heroVideo) return;
+			heroVideo.pause();
+			heroVideo.removeAttribute('src');
+			heroVideo.load();
+			heroVideo.removeAttribute('controls');
+			heroVideo.muted = false;
+			hero.classList.remove('is-playing');
+		}
+
 		dots.forEach(d => {
 			d.addEventListener('click', () => {
 				userInteracted = true;
-				if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+				stopAuto();
+				if (hero.classList.contains('is-playing')) stopHeroVideo();
 				setActive(d.dataset.heroDot);
 			});
+		});
+
+		heroPlay?.addEventListener('click', playHeroVideo);
+		heroClose?.addEventListener('click', stopHeroVideo);
+		heroVideo?.addEventListener('ended', stopHeroVideo);
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopHeroVideo();
 		});
 
 		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
