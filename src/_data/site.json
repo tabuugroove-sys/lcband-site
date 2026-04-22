@@ -19,6 +19,7 @@
 		{ "href": "/", "label": "Главная" },
 		{ "href": "/vocalists/", "label": "Вокалисты" },
 		{ "href": "/programs/", "label": "Программы" },
+		{ "href": "/costumes/", "label": "Костюмы" },
 		{ "href": "/formats/", "label": "Форматы" },
 		{ "href": "/events/", "label": "События" },
 		{ "href": "/#riders", "label": "Райдеры" },

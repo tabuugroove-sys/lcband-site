@@ -1,0 +1,51 @@
+---
+layout: layouts/base.njk
+title: Костюмы — Luxury Cover Band
+description: "20+ сценических образов Luxury Cover Band. Золото, красный, белый, all black, переливы, цветы — под свадьбу, корпоратив, ТВ-съёмку и тематическое шоу."
+keywords: "сценические костюмы кавер группа, образы luxury cover band, сценические образы, костюмы для кавер бенда"
+permalink: /costumes/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Костюмы</span>
+		</p>
+		<p class="page-hero__eyebrow">Образы</p>
+		<h1 class="page-hero__title">Один бенд.<br><span class="muted">Семнадцать настроений.</span></h1>
+		<p class="page-hero__lead">Каждый набор — полноценная визуальная история. Под свадьбу, корпоратив, закрытый ивент или тематическое шоу.</p>
+	</div>
+</section>
+
+<section class="section section--flush">
+	{% set costumes = [
+		{slug:'gold', title:'Золото'},
+		{slug:'white', title:'Белый'},
+		{slug:'red', title:'Красный'},
+		{slug:'red-group', title:'Красный · состав'},
+		{slug:'all-black', title:'All Black'},
+		{slug:'black-white', title:'Чёрно-белый'},
+		{slug:'black-silver', title:'Чёрно-серебряный'},
+		{slug:'black-red', title:'Чёрно-красный'},
+		{slug:'black-couple', title:'Чёрный · дуэт'},
+		{slug:'pink', title:'PINK'},
+		{slug:'blue', title:'Синий'},
+		{slug:'dark-green', title:'Тёмно-зелёный'},
+		{slug:'dark-green-group', title:'Тёмно-зелёный · состав'},
+		{slug:'gold-studio', title:'Золотистое'},
+		{slug:'beige-glitter', title:'Бежевый глиттер'},
+		{slug:'shimmer', title:'Переливы'},
+		{slug:'flowers', title:'Цветы'}
+	] %}
+	<ul class="ig-grid">
+		{% for c in costumes %}
+		<li class="ig-tile">
+			<a class="ig-tile__link" href="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" data-lightbox>
+				<img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy">
+				<span class="ig-tile__caption">{{ c.title }}</span>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</section>
