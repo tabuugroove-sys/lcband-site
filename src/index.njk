@@ -52,8 +52,8 @@ permalink: /
 			<h2 class="section__title">Сцена мирового уровня.</h2>
 			<p class="section__lead">Стадионная практика. ТВ-эфир. Свои треки со звёздами.</p>
 			<div class="cta-row cta-row--left">
-				<a class="btn btn--dark" href="#video">Узнать больше</a>
-				<a class="btn btn--ghost-dark" href="#book">Забронировать</a>
+				<a class="btn btn--blue" href="#video">Узнать больше</a>
+				<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
 			</div>
 		</div>
 	</div>
@@ -69,19 +69,19 @@ permalink: /
 
 <!-- =============== VOCALISTS =============== -->
 <section class="section section--light" id="vocalists">
-	<div class="container container--narrow reveal hero-center">
-		<p class="section__eyebrow">Вокалисты</p>
-		<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
-		<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
-		<div class="cta-row">
-			<a class="btn btn--dark" href="#directions">Узнать больше</a>
-			<a class="btn btn--ghost-dark" href="#book">Забронировать</a>
-		</div>
-	</div>
 	<div class="container reveal">
-		<figure class="vocalists-hero">
-			<img src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — четыре вокалиста, студийная съёмка" loading="lazy">
-		</figure>
+		<div class="hero-banner">
+			<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — четыре вокалиста, студийная съёмка" loading="lazy">
+			<div class="hero-banner__overlay">
+				<p class="section__eyebrow">Вокалисты</p>
+				<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
+				<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
+				<div class="cta-row">
+					<a class="btn btn--blue" href="#directions">Узнать больше</a>
+					<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="container reveal">
 		<ul class="vocalists">
@@ -100,50 +100,75 @@ permalink: /
 	</div>
 </section>
 
-<!-- =============== DIRECTIONS (6 tiles) =============== -->
+<!-- =============== DIRECTIONS (6 tiles, 2-up Apple-style) =============== -->
 <section class="section section--elev" id="directions">
-	<div class="container container--narrow reveal hero-center">
-		<p class="section__eyebrow">Направления</p>
-		<h2 class="section__title">Шесть форматов.</h2>
-		<p class="section__lead">Собираем шоу под задачу — от корпоратива до авторского концерта.</p>
-	</div>
 	<div class="container reveal">
-		<ul class="caps caps--ig caps--cover">
-			<li class="cap cap--cover">
-				<a class="cap__link" href="{{ '/events/corporate/' | url }}">
-					<div class="cap__photo"><img src="{{ '/assets/photos/concert-event.jpg' | url }}" alt="Корпоративы — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Корпоративы</h3></div>
-				</a>
+		<ul class="tile-grid">
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/concert-event.jpg' | url }}" alt="Корпоративы — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Корпоративы</h3>
+					<p class="tile__sub">Живой бренд на большой сцене.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
-			<li class="cap cap--cover">
-				<a class="cap__link" href="{{ '/events/wedding/' | url }}">
-					<div class="cap__photo"><img src="{{ '/assets/photos/concert-light.jpg' | url }}" alt="Свадьбы — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Свадьбы</h3></div>
-				</a>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/concert-light.jpg' | url }}" alt="Свадьбы — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Свадьбы</h3>
+					<p class="tile__sub">Шоу под первый танец и банкет.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/wedding/' | url }}">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
-			<li class="cap cap--cover">
-				<a class="cap__link" href="{{ '/events/birthday/' | url }}">
-					<div class="cap__photo"><img src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="Дни рождения — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Дни рождения</h3></div>
-				</a>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="Дни рождения — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Дни рождения</h3>
+					<p class="tile__sub">Концерт, который помнят годами.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
-			<li class="cap cap--cover">
-				<a class="cap__link" href="{{ '/events/corporate/' | url }}">
-					<div class="cap__photo"><img src="{{ '/assets/photos/concert-moscow.jpg' | url }}" alt="Клиентские мероприятия — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Клиентские мероприятия</h3></div>
-				</a>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/concert-moscow.jpg' | url }}" alt="Клиентские мероприятия — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Клиентские мероприятия</h3>
+					<p class="tile__sub">Открытия, презентации, ужины.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
-			<li class="cap cap--cover">
-				<a class="cap__link" href="{{ '/programs/' | url }}">
-					<div class="cap__photo"><img src="{{ '/assets/photos/concert-2021.jpg' | url }}" alt="Тематические программы — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Тематические программы</h3></div>
-				</a>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/concert-2021.jpg' | url }}" alt="Тематические программы — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Тематические программы</h3>
+					<p class="tile__sub">11 программ — под любую аудиторию.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
-			<li class="cap cap--cover">
-				<a class="cap__link" href="#author-music">
-					<div class="cap__photo"><img src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Авторская музыка — Luxury Cover Band" loading="lazy"></div>
-					<div class="cap__overlay"><h3 class="cap__title">Авторская музыка</h3></div>
-				</a>
+			<li class="tile">
+				<img class="tile__img" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Авторская музыка — Luxury Cover Band" loading="lazy">
+				<div class="tile__content">
+					<h3 class="tile__title">Авторская музыка</h3>
+					<p class="tile__sub">Свои треки со звёздами и для бренда.</p>
+					<div class="cta-row">
+						<a class="btn btn--blue" href="#author-music">Узнать больше</a>
+						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
