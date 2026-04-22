@@ -784,6 +784,9 @@ h1, h2, h3, p { margin: 0; }
 	transition: transform 0.6s cubic-bezier(.4, 0, .2, 1);
 }
 
+/* Per-slug framing for vocalist photos */
+.voc[data-slug="laz"] .voc__photo img { object-position: center 18%; }
+
 .voc:hover .voc__photo img { transform: scale(1.04); }
 
 .voc__name {
