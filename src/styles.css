@@ -825,6 +825,16 @@ h1, h2, h3, p { margin: 0; }
 	.tile-grid { grid-template-columns: 1fr; }
 }
 
+/* Edge-to-edge variant: white gaps (6px) between tiles and on left/right edges */
+.tile-grid--bleed {
+	gap: 6px;
+	padding: 0 6px;
+	background: #fff;
+}
+@media (max-width: 734px) {
+	.tile-grid--bleed { grid-template-columns: 1fr; gap: 6px; }
+}
+
 .tile {
 	position: relative;
 	aspect-ratio: 4/3;
