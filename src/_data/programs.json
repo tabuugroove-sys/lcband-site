@@ -13,8 +13,8 @@
 			"Авторские мэшапы из знакомых треков",
 			"Русский шансон блоком — по запросу"
 		],
-		"poster": "assets/photos/vocalists.jpg",
-		"video": null,
+		"poster": "assets/video/posters/promo-egoistka.jpg",
+		"video": "promo-egoistka",
 		"keywords": "кавер группа русская программа, кавер группа москва русский репертуар, группа эстрада на мероприятие"
 	},
 	{
@@ -116,8 +116,8 @@
 			"Soul (Etta James, Nina Simone, Aretha Franklin)",
 			"Bossa Nova / Latin Jazz переходы"
 		],
-		"poster": "assets/costumes/black-red.jpg",
-		"video": null,
+		"poster": "assets/video/posters/live-berezy.jpg",
+		"video": "live-berezy",
 		"keywords": "джаз кавер группа, jazz cover band moscow, swing программа на корпоратив"
 	},
 	{
@@ -133,8 +133,8 @@
 			"Современный рок (Muse, Foo Fighters, Green Day)",
 			"Русский рок блок (Цой, Наутилус, ДДТ)"
 		],
-		"poster": "assets/photos/concert-light.jpg",
-		"video": null,
+		"poster": "assets/video/posters/live-icon.jpg",
+		"video": "live-icon",
 		"keywords": "рок кавер группа, кавер бенд рок москва, queen кавер, русский рок группа"
 	},
 	{
@@ -150,8 +150,8 @@
 			"Авторская лирика",
 			"Акустический формат с гитарой"
 		],
-		"poster": "assets/costumes/all-black.jpg",
-		"video": null,
+		"poster": "assets/video/posters/live-soho.jpg",
+		"video": "live-soho",
 		"keywords": "шансон кавер группа, русский шансон на мероприятие, группа шансон москва"
 	},
 	{
@@ -167,8 +167,8 @@
 			"Свадебные блоки",
 			"Международные хиты в Кавказской аранжировке"
 		],
-		"poster": "assets/costumes/gold.jpg",
-		"video": null,
+		"poster": "assets/video/posters/promo-main-reel.jpg",
+		"video": "promo-main-reel",
 		"keywords": "кавказская кавер группа, лезгинка группа, кавер на кавказскую свадьбу москва"
 	},
 	{
@@ -184,8 +184,8 @@
 			"Скрипка (кроссовер, film scores)",
 			"Арфа (классика, модерн)"
 		],
-		"poster": "assets/photos/sax.jpg",
-		"video": null,
+		"poster": "assets/video/posters/live-perfect.jpg",
+		"video": "live-perfect",
 		"keywords": "саксофонист на мероприятие, пианист на корпоратив, живая музыка welcome, инструментал на ивент"
 	}
 ]
