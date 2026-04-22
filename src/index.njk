@@ -96,10 +96,13 @@ permalink: /
 			{% for p in programs %}
 			<li class="cap">
 				<a class="cap__link" href="{{ ('/programs/' + p.slug + '/') | url }}">
-					<div class="cap__icon" aria-hidden="true">{% if p.slug == 'russian' %}Ru{% elif p.slug == 'english' %}En{% elif p.slug == 'italian' %}It{% elif p.slug == 'french' %}Fr{% elif p.slug == 'spanish' %}Es{% elif p.slug == 'retro' %}▶{% elif p.slug == 'jazz' %}♪{% elif p.slug == 'rock' %}⚡{% elif p.slug == 'chanson' %}★{% elif p.slug == 'caucasus' %}◆{% else %}♫{% endif %}</div>
-					<h3 class="cap__title">{{ p.title }}</h3>
-					<p class="cap__text">{{ p.lead | truncate(100) }}</p>
-					<span class="cap__more">Смотреть программу ›</span>
+<div class="cap__photo"><img src="{{ ('/' + p.poster) | url }}" alt="{{ p.title }} — кавер-группа {{ site.name }}" loading="lazy"></div>
+						<div class="cap__body">
+							<span class="cap__label">{{ p.eyebrow }}</span>
+							<h3 class="cap__title">{{ p.title }}</h3>
+							<p class="cap__text">{{ p.headline }}</p>
+							<span class="cap__more">Смотреть программу ›</span>
+						</div>
 				</a>
 			</li>
 			{% endfor %}
