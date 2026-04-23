@@ -1107,9 +1107,10 @@ h1, h2, h3, p { margin: 0; }
 }
 .tile__content {
 	position: absolute;
-	top: 32px;
+	top: 50%;
 	left: 0;
 	right: 0;
+	transform: translateY(-50%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -1140,7 +1141,7 @@ h1, h2, h3, p { margin: 0; }
 }
 @media (max-width: 734px) {
 	.tile { aspect-ratio: 16/10; }
-	.tile__content { top: 20px; padding: 0 16px; }
+	.tile__content { padding: 0 16px; }
 }
 
 .stats {
