@@ -541,6 +541,45 @@ h1, h2, h3, p { margin: 0; }
 }
 .hero__close:hover { background: rgba(50, 50, 52, 0.9); }
 
+.hero__quality {
+	position: absolute;
+	top: 24px;
+	right: 80px;
+	z-index: 4;
+	display: flex;
+	gap: 4px;
+	padding: 4px;
+	border-radius: 999px;
+	background: rgba(28, 28, 30, 0.72);
+	-webkit-backdrop-filter: blur(18px);
+	backdrop-filter: blur(18px);
+	border: 1px solid rgba(255,255,255,0.18);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+.hero.is-playing .hero__quality {
+	opacity: 1;
+	pointer-events: auto;
+}
+.hero__quality button {
+	font-family: var(--ff-display);
+	font-size: 12px;
+	font-weight: 500;
+	color: rgba(255,255,255,0.75);
+	background: transparent;
+	border: 0;
+	padding: 6px 10px;
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+.hero__quality button:hover { color: #fff; }
+.hero__quality button.is-active {
+	color: #1D1D1F;
+	background: #fff;
+}
+
 .hero__scroll {
 	position: absolute;
 	top: 24px;

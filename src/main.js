@@ -253,6 +253,8 @@
 		const heroPlay = hero.querySelector('[data-hero-play]');
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
+		const heroQualityBtns = hero.querySelectorAll('[data-hero-q]');
+		let heroQuality = '1080';
 		const order = ['red', 'bw', 'gold', 'white'];
 		// Costume → matching clip (sourced from LCB promo 2025 reels):
 		//   red   = Эгоистка (red suits, red LED)
@@ -298,9 +300,10 @@
 			if (!heroVideo) return;
 			const key = heroVideoMap[current] || 'promo-main-reel';
 			const slow = navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || ''));
-			const quality = slow ? '720' : '1080';
+			if (slow && heroQuality === '1080') heroQuality = '720';
+			syncQualityButtons();
 			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
-			heroVideo.src = `${base}assets/video/mp4/${key}-${quality}.mp4`;
+			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
 			heroVideo.setAttribute('controls', '');
 			stopAuto();
 			userInteracted = true;
@@ -312,6 +315,24 @@
 					heroVideo.play().catch(() => {});
 				});
 			}
+		}
+
+		function syncQualityButtons() {
+			heroQualityBtns.forEach(b => b.classList.toggle('is-active', b.dataset.heroQ === heroQuality));
+		}
+
+		function changeQuality(q) {
+			if (q === heroQuality) return;
+			heroQuality = q;
+			syncQualityButtons();
+			if (!heroVideo || !hero.classList.contains('is-playing')) return;
+			const key = heroVideoMap[current] || 'promo-main-reel';
+			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
+			const wasPlaying = !heroVideo.paused;
+			const currentTime = heroVideo.currentTime;
+			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
+			heroVideo.currentTime = currentTime;
+			if (wasPlaying) heroVideo.play().catch(() => {});
 		}
 
 		function stopHeroVideo() {
@@ -336,6 +357,9 @@
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
 		heroVideo?.addEventListener('ended', stopHeroVideo);
+		heroQualityBtns.forEach(b => {
+			b.addEventListener('click', () => changeQuality(b.dataset.heroQ));
+		});
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopHeroVideo();
 		});
