@@ -347,11 +347,13 @@ h1, h2, h3, p { margin: 0; }
 
 /* Per-photo normalization:
    sources are same 2400x1350 but photographer framed the group at different scales.
-   object-position pushes heads down from nav; per-slide scale evens out perceived group size. */
-.hero__bg--red   { object-position: center 52%; }
-.hero__bg--bw    { object-position: center 55%; }
-.hero__bg--gold  { object-position: center 58%; }
-.hero__bg--white { object-position: center 54%; }
+   object-position pushes heads down from nav; per-slide scale evens out perceived group size.
+   Static transform is applied always (even at opacity 0) so incoming slides don't
+   flash un-zoomed before the keyframes kick in. */
+.hero__bg--red   { object-position: center 52%; transform: scale(1.00); }
+.hero__bg--bw    { object-position: center 55%; transform: scale(1.08); }
+.hero__bg--gold  { object-position: center 58%; transform: scale(1.18); }
+.hero__bg--white { object-position: center 54%; transform: scale(1.06); }
 
 .hero__bg.is-active { opacity: 1; animation: none; }
 .hero__bg--red.is-active   { animation: heroZoomRed   24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
@@ -359,6 +361,7 @@ h1, h2, h3, p { margin: 0; }
 .hero__bg--gold.is-active  { animation: heroZoomGold  24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
 .hero__bg--white.is-active { animation: heroZoomWhite 24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
 
+/* Keyframes start at the same scale as the static rule — zero-jump handoff */
 @keyframes heroZoomRed   { from { transform: scale(1.00); } to { transform: scale(1.06); } }
 @keyframes heroZoomBw    { from { transform: scale(1.08); } to { transform: scale(1.14); } }
 @keyframes heroZoomGold  { from { transform: scale(1.18); } to { transform: scale(1.24); } }
