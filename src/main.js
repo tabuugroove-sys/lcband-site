@@ -254,15 +254,15 @@
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
 		const order = ['red', 'bw', 'gold', 'white'];
-		// Costume → matching clip. Verified from poster frames:
-		//   red = Egoistka (band fully in red, red LED wall)
-		//   white = Лететь (white outfits, blue starfield)
-		// bw + gold → main reel fallback until we confirm a clip that shows band
-		// in that specific costume (TODO: need a dedicated BW and GOLD clip).
+		// Costume → matching clip (sourced from LCB promo 2025 reels):
+		//   red   = Эгоистка (red suits, red LED)
+		//   bw    = LAZ Loca Loca (black-white styling)
+		//   gold  = РЕТРО "You're my heart" (gold, glam)
+		//   white = Лететь по белому свету (white suits, starfield)
 		const heroVideoMap = {
 			red:   'promo-egoistka',
-			bw:    'promo-main-reel',
-			gold:  'promo-main-reel',
+			bw:    'promo-loca-loca',
+			gold:  'thematic-retro-heart',
 			white: 'promo-letet'
 		};
 		let current = 'red';
