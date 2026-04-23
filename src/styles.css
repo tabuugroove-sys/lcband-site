@@ -1107,15 +1107,19 @@ h1, h2, h3, p { margin: 0; }
 }
 .tile__content {
 	position: absolute;
-	top: 50%;
+	top: 32px;
 	left: 0;
 	right: 0;
-	transform: translateY(-50%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
 	padding: 0 28px;
+}
+/* wedding tile only: move text+CTA to vertical center so buttons sit on white suits */
+.tile--center .tile__content {
+	top: 50%;
+	transform: translateY(-50%);
 }
 .tile__title {
 	font-family: var(--ff-display);
@@ -1141,7 +1145,8 @@ h1, h2, h3, p { margin: 0; }
 }
 @media (max-width: 734px) {
 	.tile { aspect-ratio: 16/10; }
-	.tile__content { padding: 0 16px; }
+	.tile__content { top: 20px; padding: 0 16px; }
+	.tile--center .tile__content { top: 50%; padding: 0 16px; }
 }
 
 .stats {
