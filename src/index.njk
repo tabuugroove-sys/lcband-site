@@ -19,6 +19,13 @@ permalink: /
 	<div class="hero__scrim"></div>
 	<button class="hero__play" data-hero-play type="button" aria-label="Смотреть видео в этих костюмах"></button>
 	<button class="hero__close" data-hero-close type="button" aria-label="Закрыть видео"></button>
+	<div class="hero__controls" data-hero-controls>
+		<button class="hero__toggle" data-hero-toggle type="button" aria-label="Пауза"></button>
+		<div class="hero__progress" data-hero-progress>
+			<div class="hero__progress-filled" data-hero-progress-filled></div>
+		</div>
+		<span class="hero__time" data-hero-time>0:00 / 0:00</span>
+	</div>
 	<div class="hero__quality" data-hero-quality role="group" aria-label="Качество видео">
 		<button type="button" data-hero-q="720">720p</button>
 		<button type="button" data-hero-q="1080" class="is-active">1080p</button>

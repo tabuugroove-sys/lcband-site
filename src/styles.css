@@ -541,6 +541,90 @@ h1, h2, h3, p { margin: 0; }
 }
 .hero__close:hover { background: rgba(50, 50, 52, 0.92); transform: scale(1.05); }
 
+.hero__controls {
+	position: absolute;
+	left: 24px;
+	right: 24px;
+	bottom: 24px;
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: rgba(28, 28, 30, 0.78);
+	-webkit-backdrop-filter: blur(18px);
+	backdrop-filter: blur(18px);
+	border: 1px solid rgba(255,255,255,0.22);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+.hero.is-playing .hero__controls {
+	opacity: 1;
+	pointer-events: auto;
+}
+.hero__toggle {
+	flex: 0 0 auto;
+	width: 36px; height: 36px;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.12);
+	border: 0;
+	cursor: pointer;
+	position: relative;
+	transition: background-color 0.2s ease;
+}
+.hero__toggle:hover { background: rgba(255,255,255,0.22); }
+.hero__toggle::before,
+.hero__toggle::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px; height: 14px;
+	background: #fff;
+	border-radius: 1px;
+}
+.hero__toggle::before { left: 12px; }
+.hero__toggle::after  { right: 12px; }
+.hero__toggle.is-paused::before {
+	left: 13px;
+	width: 0; height: 0;
+	background: transparent;
+	border-style: solid;
+	border-width: 7px 0 7px 11px;
+	border-color: transparent transparent transparent #fff;
+	border-radius: 0;
+}
+.hero__toggle.is-paused::after { display: none; }
+
+.hero__progress {
+	flex: 1 1 auto;
+	height: 4px;
+	border-radius: 2px;
+	background: rgba(255,255,255,0.2);
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+.hero__progress-filled {
+	position: absolute;
+	top: 0; left: 0; bottom: 0;
+	width: 0%;
+	background: #fff;
+	border-radius: 2px;
+	transition: width 0.1s linear;
+}
+.hero__time {
+	flex: 0 0 auto;
+	font-family: var(--ff-display);
+	font-size: 12px;
+	font-variant-numeric: tabular-nums;
+	color: rgba(255,255,255,0.85);
+	min-width: 90px;
+	text-align: right;
+}
+
 .hero__quality {
 	position: absolute;
 	bottom: 80px;
