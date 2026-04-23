@@ -1918,6 +1918,7 @@ a.stat--link:hover { opacity: 0.7; }
 .section--book {
 	background: radial-gradient(ellipse at top, #FFFFFF 0%, #F5F5F7 65%);
 	text-align: center;
+	border-top: 6px solid #fff;
 }
 
 .section--book .section__eyebrow,
