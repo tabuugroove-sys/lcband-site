@@ -18,7 +18,12 @@ permalink: /
 	</div>
 	<div class="hero__scrim"></div>
 	<button class="hero__play" data-hero-play type="button" aria-label="Смотреть видео в этих костюмах"></button>
-	<button class="hero__close" data-hero-close type="button" aria-label="Закрыть видео" hidden></button>
+	<button class="hero__close" data-hero-close type="button" aria-label="Закрыть видео"></button>
+	<div class="hero__quality" data-hero-quality role="group" aria-label="Качество видео">
+		<button type="button" data-hero-q="720">720p</button>
+		<button type="button" data-hero-q="1080" class="is-active">1080p</button>
+		<button type="button" data-hero-q="2160">4K</button>
+	</div>
 	<div class="hero__content">
 		<p class="hero__eyebrow">International Cover Band</p>
 		<h1 class="hero__title">{{ site.name }}</h1>
