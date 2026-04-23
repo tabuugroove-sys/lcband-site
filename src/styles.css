@@ -352,7 +352,7 @@ h1, h2, h3, p { margin: 0; }
 .hero__bg--red   { object-position: center 52%; transform: scale(1.00); transform-origin: center 62%; }
 .hero__bg--bw    { object-position: center 55%; transform: scale(1.18); transform-origin: center 62%; }
 .hero__bg--gold  { object-position: center 60%; transform: scale(1.50); transform-origin: center 62%; }
-.hero__bg--white { object-position: center 0%;  transform: scale(1.28); transform-origin: center 8%; }
+.hero__bg--white { object-position: center 0%;  transform: scale(1.28); transform-origin: center -15%; }
 
 .hero__bg.is-active { opacity: 1; animation: none; }
 .hero__bg--red.is-active   { animation: heroZoomRed   24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
