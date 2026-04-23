@@ -338,33 +338,23 @@ h1, h2, h3, p { margin: 0; }
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center 55%;
-	transform-origin: center 62%;
+	object-position: center 50%;
 	opacity: 0;
 	transition: opacity 1.1s cubic-bezier(.4, 0, .2, 1);
 	will-change: opacity, transform;
 }
 
-/* Per-photo normalization: align all head positions to ~19% of hero height.
-   Source images have heads at different Y (red 266, bw 355, gold 462, white 163 of 1350)
-   — we compensate with per-slide scale + transform-origin so all heads land near the
-   same viewport Y after cover-cropping and scaling. */
-.hero__bg--red   { object-position: center 52%; transform: scale(1.00); transform-origin: center 62%; }
-.hero__bg--bw    { object-position: center 55%; transform: scale(1.18); transform-origin: center 62%; }
-.hero__bg--gold  { object-position: center 60%; transform: scale(1.50); transform-origin: center 62%; }
-.hero__bg--white { object-position: center 0%;  transform: scale(1.28); transform-origin: center -15%; }
+/* Source images are pre-aligned (heads at y≈266/1350 ≈ 20% from top) so all
+   slides use identical framing. No per-slide transforms needed. */
+.hero__bg.is-active {
+	opacity: 1;
+	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
+}
 
-.hero__bg.is-active { opacity: 1; animation: none; }
-.hero__bg--red.is-active   { animation: heroZoomRed   24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
-.hero__bg--bw.is-active    { animation: heroZoomBw    24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
-.hero__bg--gold.is-active  { animation: heroZoomGold  24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
-.hero__bg--white.is-active { animation: heroZoomWhite 24s cubic-bezier(.42, 0, .58, 1) infinite alternate; }
-
-/* Keyframes start at the same scale as the static rule — zero-jump handoff */
-@keyframes heroZoomRed   { from { transform: scale(1.00); } to { transform: scale(1.06); } }
-@keyframes heroZoomBw    { from { transform: scale(1.18); } to { transform: scale(1.24); } }
-@keyframes heroZoomGold  { from { transform: scale(1.50); } to { transform: scale(1.56); } }
-@keyframes heroZoomWhite { from { transform: scale(1.28); } to { transform: scale(1.34); } }
+@keyframes heroZoom {
+	from { transform: scale(1.00); }
+	to   { transform: scale(1.06); }
+}
 
 .hero__scrim {
 	position: absolute; inset: 0; z-index: 1;
