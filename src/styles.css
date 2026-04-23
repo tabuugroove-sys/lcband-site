@@ -397,10 +397,11 @@ h1, h2, h3, p { margin: 0; }
 	font-size: clamp(44px, 8vw, 80px);
 	line-height: 1.04;
 	letter-spacing: -0.015em;
-	margin-bottom: 20px;
+	margin-bottom: 32px;
 }
 
 .hero__tagline {
+	display: none;
 	font-family: var(--ff-display);
 	font-weight: 400;
 	font-size: clamp(19px, 2.2vw, 28px);

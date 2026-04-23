@@ -250,7 +250,6 @@
 	if (hero) {
 		const dots = hero.querySelectorAll('[data-hero-dot]');
 		const imgs = hero.querySelectorAll('[data-hero-img]');
-		const taglines = hero.querySelectorAll('[data-tagline]');
 		const heroPlay = hero.querySelector('[data-hero-play]');
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
@@ -278,7 +277,6 @@
 				d.setAttribute('aria-selected', on ? 'true' : 'false');
 			});
 			imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
-			taglines.forEach(t => t.classList.toggle('is-active', t.dataset.tagline === key));
 		}
 
 		function nextKey() {
