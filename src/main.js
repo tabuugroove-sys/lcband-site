@@ -254,7 +254,18 @@
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
 		const heroQualityBtns = hero.querySelectorAll('[data-hero-q]');
+		const heroToggle = hero.querySelector('[data-hero-toggle]');
+		const heroProgress = hero.querySelector('[data-hero-progress]');
+		const heroProgressFilled = hero.querySelector('[data-hero-progress-filled]');
+		const heroTime = hero.querySelector('[data-hero-time]');
 		let heroQuality = '1080';
+
+		function fmtTime(sec) {
+			if (!isFinite(sec)) return '0:00';
+			const m = Math.floor(sec / 60);
+			const s = Math.floor(sec % 60);
+			return `${m}:${s < 10 ? '0' : ''}${s}`;
+		}
 		const order = ['red', 'bw', 'gold', 'white'];
 		// Costume → matching clip (sourced from LCB promo 2025 reels):
 		//   red   = Эгоистка (red suits, red LED)
@@ -304,7 +315,6 @@
 			syncQualityButtons();
 			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
 			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
-			heroVideo.setAttribute('controls', '');
 			stopAuto();
 			userInteracted = true;
 			hero.classList.add('is-playing');
@@ -340,9 +350,14 @@
 			heroVideo.pause();
 			heroVideo.removeAttribute('src');
 			heroVideo.load();
-			heroVideo.removeAttribute('controls');
 			heroVideo.muted = false;
 			hero.classList.remove('is-playing');
+		}
+
+		function togglePlayPause() {
+			if (!heroVideo) return;
+			if (heroVideo.paused) heroVideo.play().catch(() => {});
+			else heroVideo.pause();
 		}
 
 		dots.forEach(d => {
@@ -359,6 +374,22 @@
 		heroVideo?.addEventListener('ended', stopHeroVideo);
 		heroQualityBtns.forEach(b => {
 			b.addEventListener('click', () => changeQuality(b.dataset.heroQ));
+		});
+
+		heroToggle?.addEventListener('click', togglePlayPause);
+		heroVideo?.addEventListener('play',  () => heroToggle?.classList.remove('is-paused'));
+		heroVideo?.addEventListener('pause', () => heroToggle?.classList.add('is-paused'));
+		heroVideo?.addEventListener('timeupdate', () => {
+			if (!heroVideo.duration) return;
+			const pct = (heroVideo.currentTime / heroVideo.duration) * 100;
+			if (heroProgressFilled) heroProgressFilled.style.width = pct + '%';
+			if (heroTime) heroTime.textContent = `${fmtTime(heroVideo.currentTime)} / ${fmtTime(heroVideo.duration)}`;
+		});
+		heroProgress?.addEventListener('click', (e) => {
+			if (!heroVideo?.duration) return;
+			const rect = heroProgress.getBoundingClientRect();
+			const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+			heroVideo.currentTime = pct * heroVideo.duration;
 		});
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopHeroVideo();
