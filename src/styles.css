@@ -1116,10 +1116,29 @@ h1, h2, h3, p { margin: 0; }
 	text-align: center;
 	padding: 0 28px;
 }
-/* wedding tile only: move text+CTA to vertical center so buttons sit on white suits */
+/* wedding tile only: move text+CTA slightly up-left onto the whitest suit area
+   and wrap in a frosted white pill so title/buttons always read cleanly */
 .tile--center .tile__content {
-	top: 50%;
+	top: 38%;
+	left: 10%;
+	right: auto;
 	transform: translateY(-50%);
+	max-width: 440px;
+	padding: 22px 26px;
+	background: rgba(255, 255, 255, 0.72);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border-radius: 24px;
+	box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+@media (max-width: 734px) {
+	.tile--center .tile__content {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		max-width: 85%;
+		padding: 18px 20px;
+	}
 }
 .tile__title {
 	font-family: var(--ff-display);
