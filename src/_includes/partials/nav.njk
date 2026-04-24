@@ -5,7 +5,29 @@
 		</a>
 		<nav class="nav__links" aria-label="Основная навигация">
 			{% for item in site.nav %}
-				<a href="{{ item.href | url }}"{% if item.cta %} class="nav__cta"{% endif %}>{{ item.label }}</a>
+				{% set kids = [] %}
+				{% set labelField = 'title' %}
+				{% if item.href == '/events/' %}{% set kids = events %}{% set labelField = 'eyebrow' %}{% endif %}
+				{% if item.href == '/programs/' %}{% set kids = programs %}{% set labelField = 'label' %}{% endif %}
+				{% if item.href == '/formats/' %}{% set kids = formats %}{% endif %}
+				{% if item.href == '/vocalists/' %}{% set kids = vocalists %}{% set labelField = 'name' %}{% endif %}
+
+				{% if kids | length %}
+				<div class="nav__item nav__item--has-dropdown">
+					<a class="nav__link" href="{{ item.href | url }}" aria-haspopup="true">{{ item.label }}</a>
+					<div class="nav__dropdown" role="menu" aria-label="{{ item.label }} — подразделы">
+						<ul class="nav__dropdown-list">
+							{% for child in kids %}
+							<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				{% else %}
+				<div class="nav__item">
+					<a class="nav__link{% if item.cta %} nav__cta{% endif %}" href="{{ item.href | url }}">{{ item.label }}</a>
+				</div>
+				{% endif %}
 			{% endfor %}
 		</nav>
 		<button class="nav__burger" aria-label="Меню" aria-expanded="false">
