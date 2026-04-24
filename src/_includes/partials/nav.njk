@@ -16,11 +16,37 @@
 				<div class="nav__item nav__item--has-dropdown">
 					<a class="nav__link" href="{{ item.href | url }}" aria-haspopup="true">{{ item.label }}</a>
 					<div class="nav__dropdown" role="menu" aria-label="{{ item.label }} — подразделы">
-						<ul class="nav__dropdown-list">
-							{% for child in kids %}
-							<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
-							{% endfor %}
-						</ul>
+						<div class="nav__dropdown-inner">
+							<div class="nav__dropdown-cols">
+								<div class="nav__dropdown-col nav__dropdown-col--main">
+									<p class="nav__dropdown-label">{{ item.label }}</p>
+									<ul class="nav__dropdown-list">
+										{% for child in kids %}
+										<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
+										{% endfor %}
+									</ul>
+									<a class="nav__dropdown-more" href="{{ item.href | url }}">Смотреть все ›</a>
+								</div>
+								<div class="nav__dropdown-col nav__dropdown-col--related">
+									<p class="nav__dropdown-label">Ещё на сайте</p>
+									<ul class="nav__dropdown-related">
+										{% for other in site.nav %}
+											{% if other.href != item.href and other.href != '/' and not other.cta %}
+											<li><a href="{{ other.href | url }}">{{ other.label }}</a></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</div>
+								<div class="nav__dropdown-col nav__dropdown-col--cta">
+									<p class="nav__dropdown-label">Готовы обсуждать?</p>
+									<ul class="nav__dropdown-related">
+										<li><a href="{{ '/#book' | url }}">Забронировать</a></li>
+										<li><a href="{{ site.telegram }}">Написать в Telegram</a></li>
+										<li><a href="{{ '/#video' | url }}">Смотреть видео</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				{% else %}
