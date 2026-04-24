@@ -26,18 +26,26 @@ eleventyComputed:
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Как строится</p>
 		<h2 class="section__title">Структура<br><span class="muted">программы.</span></h2>
-		<ul class="blocks">
-			{% for b in event.blocks %}
-			<li class="block">
-				<div class="block__num">0{{ loop.index }}</div>
-				<h3 class="block__title">{{ b.title }}</h3>
-				<p class="block__text">{{ b.text }}</p>
-			</li>
-			{% endfor %}
-		</ul>
 	</div>
 </section>
+
+{% for b in event.blocks %}
+<section class="feature-block feature-block--{% if loop.index0 % 2 == 0 %}light{% else %}elev{% endif %}{% if loop.index0 % 2 == 1 %} feature-block--reverse{% endif %}">
+	<div class="feature-block__inner reveal">
+		{% if b.image %}
+		<div class="feature-block__media">
+			<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.title }} — {{ event.title }}" loading="lazy">
+		</div>
+		{% endif %}
+		<div class="feature-block__body">
+			<h3 class="feature-block__title">{{ b.title }}</h3>
+			<p class="feature-block__text">{{ b.text }}</p>
+		</div>
+	</div>
+</section>
+{% endfor %}
 
 {% if event.featuredVideo %}
 <section class="section section--elev">
@@ -92,3 +100,4 @@ eleventyComputed:
 		</div>
 	</div>
 </section>
+

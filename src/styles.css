@@ -1021,6 +1021,13 @@ h1, h2, h3, p { margin: 0; }
    Video rails — Apple-style horizontal scroll with two rows (big + small)
    ======================================================================== */
 
+/* Videos section — gray bg + zero bottom padding so only a thin 6px
+   white separator sits between the last rail and the book section,
+   matching the 6px gutter rhythm of the tile grid above */
+#videos {
+	background: #f5f5f7;
+	padding-bottom: 0;
+}
 .video-rail {
 	background: #f5f5f7;
 	padding: 6px 0;
@@ -1147,29 +1154,132 @@ h1, h2, h3, p { margin: 0; }
 	text-align: center;
 	padding: 0 28px;
 }
-/* wedding tile only: move text+CTA slightly up-left onto the whitest suit area
-   and wrap in a frosted white pill so title/buttons always read cleanly */
-.tile--center .tile__content {
-	top: 38%;
-	left: 10%;
+/* Wedding tile: centered copy with radial halo-scrim behind the text.
+   Photo stays centered (all musicians visible), scrim fades to transparent
+   at the edges so the shot reads as a photo, not a card.
+   Selector also covers .tile--v3 so /v3/ iteration page keeps rendering. */
+.tile--center .tile__img,
+.tile--v3 .tile__img {
+	object-position: center;
+}
+.tile--center::before,
+.tile--v3::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(ellipse 55% 42% at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 45%, rgba(0,0,0,0) 75%);
+	z-index: 1;
+	pointer-events: none;
+}
+.tile--center .tile__content,
+.tile--v3 .tile__content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
 	right: auto;
-	transform: translateY(-50%);
-	max-width: 440px;
-	padding: 22px 26px;
-	background: rgba(255, 255, 255, 0.72);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	border-radius: 24px;
-	box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+	bottom: auto;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	max-width: 520px;
+	padding: 0 24px;
+	background: none;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+	border-radius: 0;
+	box-shadow: none;
+	z-index: 2;
+}
+.tile--center .tile__title,
+.tile--center .tile__sub,
+.tile--v3 .tile__title,
+.tile--v3 .tile__sub {
+	color: #fff;
+	text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+	max-width: none;
+}
+/* Ghost CTA becomes white-outline/white-text so it reads on any photo
+   background (the blue-on-white-dress issue) */
+.tile--center .btn--blue-ghost,
+.tile--v3 .btn--blue-ghost {
+	color: #fff;
+	border-color: rgba(255,255,255,0.85);
+	background: rgba(255,255,255,0.08);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+.tile--center .btn--blue-ghost:hover,
+.tile--v3 .btn--blue-ghost:hover {
+	background: rgba(255,255,255,0.18);
+	border-color: #fff;
 }
 @media (max-width: 734px) {
-	.tile--center .tile__content {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		max-width: 85%;
-		padding: 18px 20px;
+	.tile--center::before,
+	.tile--v3::before {
+		background: radial-gradient(ellipse 72% 40% at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 80%);
 	}
+	.tile--center .tile__content,
+	.tile--v3 .tile__content {
+		max-width: calc(100% - 32px);
+		padding: 0 16px;
+	}
+}
+
+/* V4 preview: reserved slot for future experiments. Currently renders
+   identically to main — prior halo/white-text overrides were removed
+   per user feedback (non-wedding tiles already read fine). */
+
+/* ========================================================================
+   VARIANT SWITCHER — floating nav on preview pages (/v4/)
+   ======================================================================== */
+.variant-switcher {
+	position: fixed;
+	bottom: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 14px;
+	background: rgba(20, 20, 22, 0.88);
+	-webkit-backdrop-filter: blur(18px);
+	backdrop-filter: blur(18px);
+	border-radius: 999px;
+	box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+	font-family: var(--ff-display);
+	font-size: 13px;
+}
+.variant-switcher__label {
+	color: rgba(255,255,255,0.6);
+	padding-right: 6px;
+	white-space: nowrap;
+}
+.variant-switcher__link {
+	color: #fff;
+	text-decoration: none;
+	padding: 6px 12px;
+	border-radius: 999px;
+	opacity: 0.7;
+	transition: opacity 0.15s ease, background-color 0.15s ease;
+	white-space: nowrap;
+}
+.variant-switcher__link:hover { opacity: 1; }
+.variant-switcher__link.is-active {
+	background: #fff;
+	color: #1D1D1F;
+	opacity: 1;
+}
+@media (max-width: 734px) {
+	.variant-switcher {
+		bottom: 8px;
+		font-size: 11px;
+		padding: 8px 10px;
+		gap: 4px;
+	}
+	.variant-switcher__link { padding: 5px 9px; }
 }
 .tile__title {
 	font-family: var(--ff-display);
@@ -1966,9 +2076,8 @@ a.stat--link:hover { opacity: 0.7; }
    ======================================================================== */
 
 .section--book {
-	background: radial-gradient(ellipse at top, #FFFFFF 0%, #F5F5F7 65%);
+	background: #F5F5F7;
 	text-align: center;
-	border-top: 6px solid #fff;
 }
 
 .section--book .section__eyebrow,
@@ -2360,49 +2469,78 @@ a.stat--link:hover { opacity: 0.7; }
 	padding-top: 3px;
 }
 
-/* Event blocks */
+/* ========================================================================
+   FEATURE BLOCKS (pure-Apple variant) — standalone full-width sections,
+   image + text side-by-side, alternating sides, alternating backgrounds.
+   Used on /events/wedding-pure/ (compare vs. editorial numbered blocks).
+   ======================================================================== */
 
-.blocks {
+.feature-block {
+	padding: clamp(60px, 9vw, 120px) 0;
+}
+.feature-block--light { background: #fff; color: #1D1D1F; }
+.feature-block--elev  { background: #F5F5F7; color: #1D1D1F; }
+
+.feature-block__inner {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 24px;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
+	grid-template-columns: 1fr 1fr;
+	gap: 64px;
+	align-items: center;
 }
 
-@media (max-width: 1000px) { .blocks { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px)  { .blocks { grid-template-columns: 1fr; } }
+/* Reverse variant — image right, text left */
+.feature-block--reverse .feature-block__media { grid-column: 2; grid-row: 1; }
+.feature-block--reverse .feature-block__body  { grid-column: 1; grid-row: 1; }
 
-.block {
-	padding: 32px 28px;
-	background: #F5F5F7;
-	border-radius: 0;
+.feature-block__media img {
+	width: 100%;
+	aspect-ratio: 16/10;
+	object-fit: cover;
+	display: block;
 }
 
-.block__num {
+.feature-block__body {
+	max-width: 520px;
+}
+
+.feature-block__title {
 	font-family: var(--ff-display);
-	font-size: 13px;
+	font-size: clamp(32px, 4vw, 48px);
+	line-height: 1.1;
 	font-weight: 600;
-	letter-spacing: 0.2em;
-	color: #0071E3;
-	margin-bottom: 20px;
-}
-
-.block__title {
-	font-family: var(--ff-display);
-	font-size: 21px;
-	line-height: 1.19;
-	font-weight: 600;
-	letter-spacing: .011em;
+	letter-spacing: -0.015em;
 	color: #1D1D1F;
-	margin-bottom: 8px;
+	margin: 0 0 20px;
 }
 
-.block__text {
+.feature-block__text {
 	font-family: var(--ff-text);
-	font-size: 15px;
-	line-height: 1.47;
-	letter-spacing: -0.022em;
+	font-size: clamp(17px, 1.6vw, 21px);
+	line-height: 1.4;
+	letter-spacing: 0.011em;
 	color: #6E6E73;
+	margin: 0;
 }
+
+@media (max-width: 900px) {
+	.feature-block {
+		padding: clamp(48px, 8vw, 80px) 0;
+	}
+	.feature-block__inner {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
+	.feature-block--reverse .feature-block__media,
+	.feature-block--reverse .feature-block__body {
+		grid-column: 1;
+	}
+	.feature-block--reverse .feature-block__media { grid-row: 1; }
+	.feature-block--reverse .feature-block__body  { grid-row: 2; }
+}
+
 
 /* Events grid */
 
