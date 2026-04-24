@@ -57,11 +57,12 @@ eleventyComputed:
 		<ul class="caps">
 			{% for p in programs %}
 				{% if p.slug != program.slug %}
-				<li class="cap">
+				<li class="cap cap--cover">
 					<a class="cap__link" href="{{ ('/programs/' + p.slug + '/') | url }}">
-						<h3 class="cap__title">{{ p.title }}</h3>
-						<p class="cap__text">{{ p.lead | truncate(100) }}</p>
-						<span class="cap__more">Смотреть ›</span>
+						<div class="cap__photo"><img src="{{ ('/' + p.poster) | url }}" alt="{{ p.title }} — LC Band" loading="lazy"></div>
+						<div class="cap__overlay">
+							<h3 class="cap__title">{{ p.title }}</h3>
+						</div>
 					</a>
 				</li>
 				{% endif %}
