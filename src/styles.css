@@ -275,11 +275,12 @@ h1, h2, h3, p { margin: 0; }
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
-	transform: translateY(-6px);
+	/* Panel itself does NOT translate — only its items do. Translating the
+	   whole panel briefly poked its top edge into the nav-bar (light strip
+	   visible against the dark bar). Items handle the slide-down feel. */
 	/* 240ms grace on CLOSE so diagonal mouse paths don't lose the menu */
 	transition:
 		opacity 0.32s cubic-bezier(.4,0,.6,1) 0.24s,
-		transform 0.32s cubic-bezier(.4,0,.6,1) 0.24s,
 		visibility 0.32s ease 0.24s;
 	z-index: 1;
 }
@@ -288,11 +289,9 @@ h1, h2, h3, p { margin: 0; }
 	opacity: 1;
 	visibility: visible;
 	pointer-events: auto;
-	transform: translateY(0);
 	/* Open immediately (no delay on the hover-in side) */
 	transition:
 		opacity 0.32s cubic-bezier(.4,0,.6,1) 0s,
-		transform 0.32s cubic-bezier(.4,0,.6,1) 0s,
 		visibility 0.32s ease 0s;
 }
 
@@ -303,7 +302,6 @@ h1, h2, h3, p { margin: 0; }
 .nav__inner:has(.nav__item--has-dropdown:hover) .nav__item--has-dropdown:not(:hover) .nav__dropdown {
 	opacity: 0;
 	visibility: hidden;
-	transform: translateY(-6px);
 	transition: none;
 }
 
