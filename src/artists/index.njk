@@ -10,6 +10,7 @@ permalink: /artists/
 	{
 		name: "LAZ",
 		streamName: "Lazzy",
+		displayName: "LAZZY",
 		avatar: "https://i.scdn.co/image/ab6761610000517491bd05ac6cc9716c362ef68f",
 		url: "https://open.spotify.com/artist/0Z3SHUFgUTeU0kOOL9iBiC",
 		accent: "laz",
@@ -47,6 +48,7 @@ permalink: /artists/
 	{
 		name: "Stas",
 		streamName: "Zace",
+		displayName: "ZACE",
 		avatar: "https://i.scdn.co/image/ab67616d00001e02ecbf6c5913a5a2a43a0e48d7",
 		url: "https://open.spotify.com/artist/0e0gkHOeuKzCCj75EbLRAF",
 		accent: "stas",
@@ -83,8 +85,12 @@ permalink: /artists/
 					<img src="{{ artist.avatar }}" alt="{{ artist.name }} — аватарка на стриминге" loading="lazy">
 				</a>
 				<div>
+					{% if artist.displayName %}
+					<h2>{{ artist.displayName }}</h2>
+					{% else %}
 					<p class="artist-column__source">Spotify · {{ artist.streamName }}</p>
 					<h2>{{ artist.name }}</h2>
+					{% endif %}
 				</div>
 			</header>
 
