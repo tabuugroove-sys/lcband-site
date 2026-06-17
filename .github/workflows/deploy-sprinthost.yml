@@ -1,0 +1,46 @@
+name: Deploy to Sprinthost preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: sprinthost-preview
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Build preview
+        run: PATHPREFIX=/ npx @11ty/eleventy
+
+      - name: Install deploy client
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy static files without videos
+        env:
+          SSHPASS: ${{ secrets.SPRINTHOST_PASSWORD }}
+          SPRINTHOST_HOST: ${{ secrets.SPRINTHOST_HOST }}
+          SPRINTHOST_USER: ${{ secrets.SPRINTHOST_USER }}
+        run: |
+          test -n "$SSHPASS"
+          test -n "$SPRINTHOST_HOST"
+          test -n "$SPRINTHOST_USER"
+          cd _site
+          tar czf - --exclude='*.mp4' . | sshpass -e ssh \
+            -o StrictHostKeyChecking=no \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=4 \
+            "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
+            "tar xzf - -C ~/domains/a1279060.xsph.ru/public_html/"
