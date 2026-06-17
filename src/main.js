@@ -212,7 +212,11 @@
 		const wasPaused = lightboxVideoEl.paused;
 		const attempt = ++playAttemptId;
 		lightbox?.classList.add('is-video-loading');
+		lightboxVideoEl.pause();
+		lightboxVideoEl.removeAttribute('src');
+		lightboxVideoEl.load();
 		lightboxVideoEl.src = videoUrl(currentVideoKey, currentQuality);
+		lightboxVideoEl.load();
 		lightboxVideoEl.addEventListener('loadedmetadata', () => {
 			if (attempt !== playAttemptId || !Number.isFinite(pos) || pos <= 0) return;
 			lightboxVideoEl.currentTime = Math.min(pos, Math.max(lightboxVideoEl.duration - 0.2, 0));
@@ -272,7 +276,11 @@
 		updateVideoNav();
 		lightboxVideoEl.style.display = 'block';
 		lightboxVideoEl.poster = currentVideoPoster;
+		lightboxVideoEl.pause();
+		lightboxVideoEl.removeAttribute('src');
+		lightboxVideoEl.load();
 		lightboxVideoEl.src = videoUrl(key, currentQuality);
+		lightboxVideoEl.load();
 		lightbox.classList.add('is-open');
 		lightbox.classList.add('is-video-loading');
 		lightbox.setAttribute('aria-hidden', 'false');
