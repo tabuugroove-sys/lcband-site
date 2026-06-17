@@ -325,16 +325,6 @@
 		});
 	});
 
-	document.querySelectorAll('.video-card').forEach(card => {
-		card.addEventListener('click', (e) => {
-			e.preventDefault();
-			const key = card.dataset.video;
-			const name = card.querySelector('.video-card__name')?.textContent || 'Видео';
-			const poster = card.querySelector('img')?.src;
-			openVideo(key, name, poster);
-		});
-	});
-
 	document.querySelectorAll('[data-video-carousel]').forEach(track => {
 		const section = track.closest('.program-video-carousel') || document;
 		const prev = section.querySelector('[data-video-carousel-prev]');
@@ -350,12 +340,14 @@
 	});
 
 	document.addEventListener('click', (e) => {
-		const a = e.target.closest('.vtile__link[data-video]');
+		const a = e.target.closest('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play');
 			if (!a) return;
 			e.preventDefault();
 			e.stopPropagation();
 			a.blur();
-			openVideo(a.dataset.video, a.querySelector('.vtile__title')?.textContent || '', a.querySelector('img')?.src);
+			const title = a.querySelector('.vtile__title, .video-card__name')?.textContent?.trim() || a.getAttribute('aria-label') || 'Видео';
+			const poster = a.querySelector('img')?.src || a.closest('.page-hero')?.querySelector('.page-hero__media img')?.src || '';
+			openVideo(a.dataset.video, title, poster);
 		});
 
 	lightboxClose?.addEventListener('click', closeLightbox);

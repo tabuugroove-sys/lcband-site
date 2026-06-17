@@ -64,6 +64,38 @@
 		],
 		"poster": "assets/video/posters/thematic-pop-dance-monkey.jpg",
 		"video": "thematic-pop-dance-monkey",
+		"videos": [
+			{
+				"slug": "thematic-pop-dance-monkey",
+				"title": "Dance Monkey",
+				"label": "English pop",
+				"poster": "assets/video/posters/thematic-pop-dance-monkey.jpg"
+			},
+			{
+				"slug": "live-perfect",
+				"title": "Perfect",
+				"label": "Live ballad",
+				"poster": "assets/video/posters/live-perfect.jpg"
+			},
+			{
+				"slug": "promo-cold-heart",
+				"title": "Cold Heart",
+				"label": "Pop show",
+				"poster": "assets/video/posters/promo-cold-heart.jpg"
+			},
+			{
+				"slug": "promo-lets-get-it-started",
+				"title": "Let's Get It Started",
+				"label": "Dance live",
+				"poster": "assets/video/posters/promo-lets-get-it-started.jpg"
+			},
+			{
+				"slug": "interact-chainsmokers",
+				"title": "Chainsmokers",
+				"label": "Interactive",
+				"poster": "assets/video/posters/interact-chainsmokers.jpg"
+			}
+		],
 		"keywords": "кавер группа английский репертуар, pop cover band moscow, international cover band"
 	},
 	{
@@ -81,6 +113,26 @@
 		],
 		"poster": "assets/video/posters/thematic-italian.jpg",
 		"video": "thematic-italian",
+		"videos": [
+			{
+				"slug": "thematic-italian",
+				"title": "Italian show",
+				"label": "Italia",
+				"poster": "assets/video/posters/thematic-italian.jpg"
+			},
+			{
+				"slug": "promo-amore-no",
+				"title": "Amore No",
+				"label": "Italian pop",
+				"poster": "assets/video/posters/promo-amore-no.jpg"
+			},
+			{
+				"slug": "live-lets-get-loud",
+				"title": "Let's Get Loud",
+				"label": "Latin energy",
+				"poster": "assets/video/posters/live-lets-get-loud.jpg"
+			}
+		],
 		"keywords": "итальянская кавер группа, кавер группа на итальянскую свадьбу, итальянская программа москва"
 	},
 	{
@@ -98,6 +150,26 @@
 		],
 		"poster": "assets/video/posters/thematic-french.jpg",
 		"video": "thematic-french",
+		"videos": [
+			{
+				"slug": "thematic-french",
+				"title": "French chanson",
+				"label": "France",
+				"poster": "assets/video/posters/thematic-french.jpg"
+			},
+			{
+				"slug": "live-jazz-vintage",
+				"title": "Vintage live",
+				"label": "Jazz / chanson",
+				"poster": "assets/video/posters/live-jazz-vintage.jpg"
+			},
+			{
+				"slug": "live-soho",
+				"title": "SOHO Rooms",
+				"label": "Club live",
+				"poster": "assets/video/posters/live-soho.jpg"
+			}
+		],
 		"keywords": "французская кавер группа, chanson francaise кавер, группа на французский вечер"
 	},
 	{
@@ -114,7 +186,33 @@
 			"Фламенко-переходы"
 		],
 		"poster": "assets/video/posters/thematic-spanish-macarena.jpg",
-		"video": "thematic-spanish-macarena",
+		"video": "teddy-macarena",
+		"videos": [
+			{
+				"slug": "teddy-macarena",
+				"title": "Teddy · Macarena",
+				"label": "España",
+				"poster": "assets/video/posters/teddy-macarena.jpg"
+			},
+			{
+				"slug": "interact-macarena",
+				"title": "Macarena interactive",
+				"label": "Latino live",
+				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
+			},
+			{
+				"slug": "promo-loca-loca",
+				"title": "Loca Loca",
+				"label": "Latino pop",
+				"poster": "assets/video/posters/promo-loca-loca.jpg"
+			},
+			{
+				"slug": "live-lets-get-loud",
+				"title": "Let's Get Loud",
+				"label": "Fiesta",
+				"poster": "assets/video/posters/live-lets-get-loud.jpg"
+			}
+		],
 		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"
 	},
 	{
@@ -133,6 +231,32 @@
 		],
 		"poster": "assets/video/posters/thematic-retro-stilyagi.jpg",
 		"video": "thematic-retro-stilyagi",
+		"videos": [
+			{
+				"slug": "thematic-retro-stilyagi",
+				"title": "Стиляги",
+				"label": "Retro 60s",
+				"poster": "assets/video/posters/thematic-retro-stilyagi.jpg"
+			},
+			{
+				"slug": "thematic-retro-boyar",
+				"title": "Боярский",
+				"label": "Эстрада",
+				"poster": "assets/video/posters/thematic-retro-boyar.jpg"
+			},
+			{
+				"slug": "thematic-retro-90s",
+				"title": "90-е",
+				"label": "Dance block",
+				"poster": "assets/video/posters/thematic-retro-90s.jpg"
+			},
+			{
+				"slug": "thematic-retro-heart",
+				"title": "Retro heart",
+				"label": "Classic",
+				"poster": "assets/video/posters/thematic-retro-heart.jpg"
+			}
+		],
 		"keywords": "ретро кавер группа, стиляги программа, 90-е кавер группа москва, боярский кавер"
 	},
 	{
@@ -150,6 +274,26 @@
 		],
 		"poster": "assets/video/posters/live-berezy.jpg",
 		"video": "live-berezy",
+		"videos": [
+			{
+				"slug": "live-berezy",
+				"title": "Берёзы live",
+				"label": "Live",
+				"poster": "assets/video/posters/live-berezy.jpg"
+			},
+			{
+				"slug": "live-jazz-vintage",
+				"title": "Vintage jazz",
+				"label": "Jazz",
+				"poster": "assets/video/posters/live-jazz-vintage.jpg"
+			},
+			{
+				"slug": "live-soho",
+				"title": "SOHO Rooms",
+				"label": "Lounge live",
+				"poster": "assets/video/posters/live-soho.jpg"
+			}
+		],
 		"keywords": "джаз кавер группа, jazz cover band moscow, swing программа на корпоратив"
 	},
 	{
@@ -167,6 +311,26 @@
 		],
 		"poster": "assets/video/posters/live-icon.jpg",
 		"video": "live-icon",
+		"videos": [
+			{
+				"slug": "live-icon",
+				"title": "Icon",
+				"label": "Epic live",
+				"poster": "assets/video/posters/live-icon.jpg"
+			},
+			{
+				"slug": "live-big-lineup",
+				"title": "Big Lineup",
+				"label": "Live band",
+				"poster": "assets/video/posters/live-big-lineup.jpg"
+			},
+			{
+				"slug": "promo-lets-get-it-started",
+				"title": "Let's Get It Started",
+				"label": "Rock dance",
+				"poster": "assets/video/posters/promo-lets-get-it-started.jpg"
+			}
+		],
 		"keywords": "рок кавер группа, кавер бенд рок москва, queen кавер, русский рок группа"
 	},
 	{
@@ -184,6 +348,26 @@
 		],
 		"poster": "assets/video/posters/live-soho.jpg",
 		"video": "live-soho",
+		"videos": [
+			{
+				"slug": "live-soho",
+				"title": "SOHO Rooms",
+				"label": "Live",
+				"poster": "assets/video/posters/live-soho.jpg"
+			},
+			{
+				"slug": "live-baskov-lcb",
+				"title": "Николай Басков · LC Band",
+				"label": "Большая сцена",
+				"poster": "assets/video/posters/live-baskov-lcb.jpg"
+			},
+			{
+				"slug": "live-baskov-revva",
+				"title": "Басков / Ревва",
+				"label": "Live",
+				"poster": "assets/video/posters/live-baskov-revva.jpg"
+			}
+		],
 		"keywords": "шансон кавер группа, русский шансон на мероприятие, группа шансон москва"
 	},
 	{
@@ -201,6 +385,26 @@
 		],
 		"poster": "assets/video/posters/promo-main-reel.jpg",
 		"video": "promo-main-reel",
+		"videos": [
+			{
+				"slug": "promo-main-reel",
+				"title": "Main showreel",
+				"label": "Showreel",
+				"poster": "assets/video/posters/promo-main-reel.jpg"
+			},
+			{
+				"slug": "live-big-lineup",
+				"title": "Big Lineup",
+				"label": "Live",
+				"poster": "assets/video/posters/live-big-lineup.jpg"
+			},
+			{
+				"slug": "live-baskov-revva",
+				"title": "Басков / Ревва",
+				"label": "Большая сцена",
+				"poster": "assets/video/posters/live-baskov-revva.jpg"
+			}
+		],
 		"keywords": "кавказская кавер группа, лезгинка группа, кавер на кавказскую свадьбу москва"
 	},
 	{
@@ -218,6 +422,26 @@
 		],
 		"poster": "assets/video/posters/live-perfect.jpg",
 		"video": "live-perfect",
+		"videos": [
+			{
+				"slug": "live-perfect",
+				"title": "Perfect",
+				"label": "Live",
+				"poster": "assets/video/posters/live-perfect.jpg"
+			},
+			{
+				"slug": "live-berezy",
+				"title": "Берёзы live",
+				"label": "Acoustic mood",
+				"poster": "assets/video/posters/live-berezy.jpg"
+			},
+			{
+				"slug": "live-jazz-vintage",
+				"title": "Vintage jazz",
+				"label": "Instrumental vibe",
+				"poster": "assets/video/posters/live-jazz-vintage.jpg"
+			}
+		],
 		"keywords": "саксофонист на мероприятие, пианист на корпоратив, живая музыка welcome, инструментал на ивент"
 	}
 ]
