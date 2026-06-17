@@ -86,10 +86,15 @@
 	const lightboxClose = lightbox?.querySelector('.lightbox__close');
 	let lightboxVideoEl = null;
 	let lightboxPicker = null;
+	let lightboxPrev = null;
+	let lightboxNext = null;
 	let currentVideoKey = null;
+	let currentVideoTitle = '';
+	let currentVideoPoster = '';
 	let currentQuality = '1080';
 	let stallCount = 0;
 	let stallTimer = null;
+	let playAttemptId = 0;
 
 	function networkSuggestsLow() {
 		const c = navigator.connection;
@@ -119,6 +124,30 @@
 		`;
 		lightbox.appendChild(lightboxPicker);
 
+		lightboxPrev = document.createElement('button');
+		lightboxPrev.className = 'lightbox__nav lightbox__nav--prev';
+		lightboxPrev.type = 'button';
+		lightboxPrev.setAttribute('aria-label', 'Предыдущее видео');
+		lightboxPrev.innerHTML = '<span aria-hidden="true">‹</span>';
+		lightbox.appendChild(lightboxPrev);
+
+		lightboxNext = document.createElement('button');
+		lightboxNext.className = 'lightbox__nav lightbox__nav--next';
+		lightboxNext.type = 'button';
+		lightboxNext.setAttribute('aria-label', 'Следующее видео');
+		lightboxNext.innerHTML = '<span aria-hidden="true">›</span>';
+		lightbox.appendChild(lightboxNext);
+
+		lightboxPrev.addEventListener('click', (e) => {
+			e.stopPropagation();
+			openAdjacentVideo(-1);
+		});
+
+		lightboxNext.addEventListener('click', (e) => {
+			e.stopPropagation();
+			openAdjacentVideo(1);
+		});
+
 		lightboxPicker.addEventListener('click', (e) => {
 			const btn = e.target.closest('button');
 			if (!btn) return;
@@ -136,6 +165,7 @@
 
 		// Stall detection → auto-downgrade
 		lightboxVideoEl.addEventListener('waiting', () => {
+			lightbox?.classList.add('is-video-loading');
 			if (stallCount < 0) return; // manual mode
 			stallCount += 1;
 			if (stallTimer) clearTimeout(stallTimer);
@@ -149,13 +179,23 @@
 			}
 		});
 
+		['canplay', 'playing', 'loadeddata'].forEach(eventName => {
+			lightboxVideoEl.addEventListener(eventName, () => {
+				lightbox?.classList.remove('is-video-loading');
+			});
+		});
+
+		lightboxVideoEl.addEventListener('loadstart', () => {
+			lightbox?.classList.add('is-video-loading');
+		});
+
 		lightboxVideoEl.addEventListener('error', () => {
 			if (currentQuality === '1080') {
 				currentQuality = '720';
 				showToast('1080p недоступно, переключили на 720p');
 				swapQuality();
 			} else {
-				closeLightbox();
+				lightbox?.classList.remove('is-video-loading');
 				showToast('Видео ещё загружается на хостинг');
 			}
 		});
@@ -170,35 +210,84 @@
 		if (!currentVideoKey || !lightboxVideoEl) return;
 		const pos = lightboxVideoEl.currentTime || 0;
 		const wasPaused = lightboxVideoEl.paused;
+		const attempt = ++playAttemptId;
+		lightbox?.classList.add('is-video-loading');
 		lightboxVideoEl.src = videoUrl(currentVideoKey, currentQuality);
-		lightboxVideoEl.currentTime = pos;
-		if (!wasPaused) lightboxVideoEl.play().catch(() => {});
+		lightboxVideoEl.addEventListener('loadedmetadata', () => {
+			if (attempt !== playAttemptId || !Number.isFinite(pos) || pos <= 0) return;
+			lightboxVideoEl.currentTime = Math.min(pos, Math.max(lightboxVideoEl.duration - 0.2, 0));
+		}, { once: true });
+		if (!wasPaused) lightboxVideoEl.play().catch(() => {
+			lightbox?.classList.remove('is-video-loading');
+		});
+	}
+
+	function getVideoItems() {
+		const nodes = [...document.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play')];
+		const seen = new Set();
+		return nodes.reduce((items, node) => {
+			const key = node.dataset.video;
+			if (!key || seen.has(key)) return items;
+			seen.add(key);
+			const title = node.querySelector('.vtile__title, .video-card__name')?.textContent?.trim() || node.getAttribute('aria-label') || 'Видео';
+			const poster = node.querySelector('img')?.src || '';
+			items.push({ key, title, poster });
+			return items;
+		}, []);
+	}
+
+	function updateVideoNav() {
+		const items = getVideoItems();
+		const show = !!currentVideoKey && items.length > 1;
+		[lightboxPrev, lightboxNext].forEach(btn => {
+			if (!btn) return;
+			btn.style.display = show ? 'flex' : 'none';
+		});
+	}
+
+	function openAdjacentVideo(direction) {
+		const items = getVideoItems();
+		if (!currentVideoKey || items.length < 2) return;
+		const index = items.findIndex(item => item.key === currentVideoKey);
+		if (index < 0) return;
+		const next = items[(index + direction + items.length) % items.length];
+		openVideo(next.key, next.title, next.poster);
 	}
 
 	function openVideo(key, title, poster) {
 		if (!lightbox) return;
 		buildVideoUI();
 		currentVideoKey = key;
+		currentVideoTitle = title || 'Видео';
+		currentVideoPoster = poster || '';
 		stallCount = 0;
-		currentQuality = networkSuggestsLow() ? '720' : '1080';
+		currentQuality = '720';
+		const attempt = ++playAttemptId;
 
 		// Reset picker to Auto
+		lightboxPicker.style.display = '';
 		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === 'auto'));
 
 		if (lightboxImg) lightboxImg.style.display = 'none';
+		updateVideoNav();
 		lightboxVideoEl.style.display = 'block';
-		lightboxVideoEl.poster = poster || '';
+		lightboxVideoEl.poster = currentVideoPoster;
 		lightboxVideoEl.src = videoUrl(key, currentQuality);
 		lightbox.classList.add('is-open');
+		lightbox.classList.add('is-video-loading');
 		lightbox.setAttribute('aria-hidden', 'false');
 		document.body.style.overflow = 'hidden';
-		lightboxVideoEl.play().catch(() => {/* autoplay blocked — user plays manually */});
+		lightboxVideoEl.play().catch(() => {
+			if (attempt === playAttemptId) lightbox.classList.remove('is-video-loading');
+		});
 	}
 
 	function openImage(src, alt) {
 		if (!lightbox || !lightboxImg) return;
 		if (lightboxVideoEl) lightboxVideoEl.style.display = 'none';
 		if (lightboxPicker) lightboxPicker.style.display = 'none';
+		if (lightboxPrev) lightboxPrev.style.display = 'none';
+		if (lightboxNext) lightboxNext.style.display = 'none';
 		lightboxImg.style.display = '';
 		lightboxImg.src = src;
 		lightboxImg.alt = alt || '';
@@ -218,8 +307,13 @@
 			lightboxVideoEl.removeAttribute('src');
 			lightboxVideoEl.load();
 		}
+		lightbox.classList.remove('is-video-loading');
 		if (lightboxPicker) lightboxPicker.style.display = '';
+		if (lightboxPrev) lightboxPrev.style.display = 'none';
+		if (lightboxNext) lightboxNext.style.display = 'none';
 		currentVideoKey = null;
+		currentVideoTitle = '';
+		currentVideoPoster = '';
 		stallCount = 0;
 	}
 
@@ -241,9 +335,37 @@
 		});
 	});
 
+	document.querySelectorAll('[data-video-carousel]').forEach(track => {
+		const section = track.closest('.program-video-carousel') || document;
+		const prev = section.querySelector('[data-video-carousel-prev]');
+		const next = section.querySelector('[data-video-carousel-next]');
+		const scrollByCard = (dir) => {
+			const card = track.querySelector('.video-card');
+			const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0') || 0;
+			const amount = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.82;
+			track.scrollBy({ left: amount * dir, behavior: 'smooth' });
+		};
+		prev?.addEventListener('click', () => scrollByCard(-1));
+		next?.addEventListener('click', () => scrollByCard(1));
+	});
+
+	document.addEventListener('click', (e) => {
+		const a = e.target.closest('.vtile__link[data-video]');
+			if (!a) return;
+			e.preventDefault();
+			e.stopPropagation();
+			a.blur();
+			openVideo(a.dataset.video, a.querySelector('.vtile__title')?.textContent || '', a.querySelector('img')?.src);
+		});
+
 	lightboxClose?.addEventListener('click', closeLightbox);
 	lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-	document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeLightbox();
+		if (!lightbox?.classList.contains('is-open') || !currentVideoKey) return;
+		if (e.key === 'ArrowLeft') openAdjacentVideo(-1);
+		if (e.key === 'ArrowRight') openAdjacentVideo(1);
+	});
 
 	// ---------- Hero 4-color switcher + inline video ----------
 	const hero = document.querySelector('[data-hero]');
@@ -415,21 +537,32 @@
 
 	// ---------- Video rails: infinite loop scroll ----------
 	document.querySelectorAll('.video-rail__track').forEach(track => {
+		if (track.dataset.loopReady === '1') return;
+		track.dataset.loopReady = '1';
 		const originals = Array.from(track.children);
 		if (originals.length < 2) return;
 		const n = originals.length;
-		originals.forEach(item => track.insertBefore(item.cloneNode(true), track.firstChild));
+		[...originals].reverse().forEach(item => track.insertBefore(item.cloneNode(true), track.firstChild));
 		originals.forEach(item => track.appendChild(item.cloneNode(true)));
 
-		const setWidth = () => track.scrollWidth / 3;
+		const copies = 3;
+		const setWidth = () => track.scrollWidth / copies;
 
-		const centerOn = (idx) => {
+		const isSmallRail = !!track.closest('.video-rail--small');
+
+		const alignOn = (idx) => {
 			const el = track.children[idx];
 			if (!el) return;
+			if (isSmallRail) {
+				track.scrollLeft = el.offsetLeft;
+				return;
+			}
 			track.scrollLeft = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
 		};
 
-		requestAnimationFrame(() => centerOn(n));
+		requestAnimationFrame(() => {
+			alignOn(n);
+		});
 
 		let rafId = null;
 		let jumping = false;
@@ -451,7 +584,9 @@
 			});
 		}, { passive: true });
 
-		window.addEventListener('resize', () => requestAnimationFrame(() => centerOn(n)), { passive: true });
+		window.addEventListener('resize', () => requestAnimationFrame(() => {
+			alignOn(n);
+		}), { passive: true });
 	});
 
 })();

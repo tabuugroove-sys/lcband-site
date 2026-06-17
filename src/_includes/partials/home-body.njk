@@ -147,12 +147,12 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
-				<img class="tile__img" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Авторская музыка — Luxury Cover Band в Apple Music, Spotify, VK Музыке" loading="lazy">
+				<img class="tile__img" src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Авторская музыка Luxury Cover Band — живое выступление на сцене, собственные треки в Apple Music и Spotify" loading="lazy" width="1920" height="1280" style="object-position: left center;">
 				<div class="tile__content">
 					<h3 class="tile__title">Авторская музыка</h3>
 					<p class="tile__sub">Свои треки со звёздами и для бренда.</p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="#author-music">Узнать больше</a>
+						<a class="btn btn--blue" href="{{ '/artists/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="#book">Забронировать</a>
 					</div>
 				</div>
@@ -165,19 +165,29 @@
 <section class="section" id="videos">
 	{% set promos = [
 		{slug:'promo-egoistka', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
+		{slug:'thematic-retro-heart', title:'You\'re My Heart · Ретро', eyebrow:'Тематик'},
+		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Промо'},
+		{slug:'promo-amore-no', title:'Amore No · Итальянская', eyebrow:'Тематик'},
+		{slug:'thematic-italian', title:'Cosa sei · Итальянская', eyebrow:'Тематик'},
+		{slug:'promo-cold-heart', title:'Cold Heart', eyebrow:'Промо'},
+		{slug:'interact-wedding-shallow', title:'Shallow · свадьба', eyebrow:'Интерактив'},
 		{slug:'promo-main-reel', title:'Main Reel', eyebrow:'Промо'},
-		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Промо'},
 		{slug:'promo-letet', title:'Лететь', eyebrow:'Промо'},
-		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Промо'}
+		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Промо'}
 	] %}
 	{% set lives = [
+		{slug:'live-icon', title:'Эпичный Лайв · Icon', eyebrow:'Лайв'},
+		{slug:'teddy-macarena', title:'Teddy · Macarena', eyebrow:'Интерактив'},
+		{slug:'live-baskov-lcb', title:'Басков · LC Band', eyebrow:'Лайв'},
+		{slug:'live-lets-get-loud', title:'Let\'s Get Loud · Лайв', eyebrow:'Лайв'},
+		{slug:'live-baskov-revva', title:'Басков + Ревва · Лайв', eyebrow:'Лайв'},
+		{slug:'live-jazz-vintage', title:'Джазовая · Винтажная', eyebrow:'Тематик'},
 		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'Лайв'},
 		{slug:'live-perfect', title:'Perfect', eyebrow:'Лайв'},
 		{slug:'live-soho', title:'Soho Rooms', eyebrow:'Лайв'},
 		{slug:'live-berezy', title:'Берёзы', eyebrow:'Лайв'},
-		{slug:'live-icon', title:'Icon', eyebrow:'Лайв'},
-		{slug:'interact-wedding-shallow', title:'Shallow · свадьба', eyebrow:'Интерактив'},
-		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Интерактив'}
+		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Интерактив'},
+		{slug:'live-dance-monkey', title:'Dance Monkey · Лайв', eyebrow:'Лайв'}
 	] %}
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
@@ -240,4 +250,3 @@
 	<a href="{{ '/v4/' | url }}" class="variant-switcher__link{% if tilesVariant == 'v4' %} is-active{% endif %}">V4 · all tiles halo</a>
 </div>
 {% endif %}
-

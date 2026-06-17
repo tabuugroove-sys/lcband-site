@@ -15,6 +15,38 @@
 		],
 		"poster": "assets/video/posters/promo-egoistka.jpg",
 		"video": "promo-egoistka",
+		"videos": [
+			{
+				"slug": "promo-egoistka",
+				"title": "Эгоистка",
+				"label": "Русский pop",
+				"poster": "assets/video/posters/promo-egoistka.jpg"
+			},
+			{
+				"slug": "promo-letet",
+				"title": "Лететь",
+				"label": "Русская лирика",
+				"poster": "assets/video/posters/promo-letet.jpg"
+			},
+			{
+				"slug": "live-baskov-lcb",
+				"title": "Николай Басков · LC Band",
+				"label": "Live",
+				"poster": "assets/video/posters/live-baskov-lcb.jpg"
+			},
+			{
+				"slug": "live-baskov-revva",
+				"title": "Басков / Ревва · live",
+				"label": "Большая сцена",
+				"poster": "assets/video/posters/live-baskov-revva.jpg"
+			},
+			{
+				"slug": "live-soho",
+				"title": "SOHO Rooms",
+				"label": "Club live",
+				"poster": "assets/video/posters/live-soho.jpg"
+			}
+		],
 		"keywords": "кавер группа русская программа, кавер группа москва русский репертуар, группа эстрада на мероприятие"
 	},
 	{

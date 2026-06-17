@@ -1,21 +1,28 @@
 ---
 layout: layouts/base.njk
-title: Авторская музыка артистов Luxury Cover Band
-description: "Страницы LAZ, Teddy и Stas на стриминге: аватарки артистов и список доступных треков."
+title: Luxury Cover Band АРТИСТЫ
+description: "Авторские треки артистов Luxury Cover Band: LAZ, Teddy и Stas."
 keywords: "LAZ треки, Teddy треки, Stas Zace треки, авторская музыка Luxury Cover Band"
 permalink: /artists/
 ---
 
+{% set waveBars = [18, 26, 34, 22, 42, 30, 50, 28, 44, 36, 58, 32, 46, 40, 54, 24, 38, 48, 30, 56, 34, 44, 26, 52, 36, 46, 28, 40, 58, 34, 50, 24] %}
+
 {% set artists = [
-	{
-		name: "LAZ",
-		streamName: "Lazzy",
-		displayName: "LAZZY",
-		avatar: "https://i.scdn.co/image/ab6761610000517491bd05ac6cc9716c362ef68f",
+		{
+			name: "LAZ",
+			streamName: "Lazzy",
+			displayName: "LAZZY",
+			avatar: "https://i.scdn.co/image/ab6761610000517491bd05ac6cc9716c362ef68f",
 		url: "https://open.spotify.com/artist/0Z3SHUFgUTeU0kOOL9iBiC",
 		accent: "laz",
 		tracks: [
-			{ title: "Marry", year: "2026" }
+			{
+				title: "Marry",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/86/cd/1686cd03-89b6-a7d0-55de-e90fcbb4d300/859732382843_cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fb/4c/65/fb4c65a4-812c-663f-856e-094bae487ff9/mzaf_8798530714336511795.plus.aac.p.m4a"
+			}
 		]
 	},
 	{
@@ -25,107 +32,348 @@ permalink: /artists/
 		url: "https://open.spotify.com/artist/2MbVKnQGTWtuMnEZ9V7Sif",
 		accent: "teddy",
 		tracks: [
-			{ title: "Bloquia", year: "2026" },
-			{ title: "Agua para Felipe", year: "2025" },
-			{ title: "Orígenes", year: "2023" },
-			{ title: "Cha Cha Bum", year: "2023" },
-			{ title: "Caminando", year: "2023" },
-			{ title: "С тобой", year: "2023" },
-			{ title: "La Cuchara", year: "2023" },
-			{ title: "La Talla", year: "2023" },
-			{ title: "El Paragua", year: "2023" },
-			{ title: "Un Pesaón", year: "2023" },
-			{ title: "Dominó", year: "2021" },
-			{ title: "Palo Monte", year: "2021" },
-			{ title: "Paciencia", year: "2021" },
-			{ title: "La Maña", year: "2021" },
-			{ title: "Vete", year: "2021" },
-			{ title: "Nagüito", year: "2021" },
-			{ title: "Mi Novela", year: "2021" },
-			{ title: "Ухожу В Закат", year: "2021" }
+			{
+				title: "Bloquia",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e2/ea/89/e2ea8914-a50b-7c60-ea13-21ba55eb438f/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ea/b4/c0/eab4c0f9-bf8f-9eb2-2e3b-bfa24f28309f/mzaf_2773561060976650793.plus.aac.p.m4a"
+			},
+			{
+				title: "Agua para Felipe",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/71/86/6271861a-42b4-de0d-df6b-adf969243678/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2a/bf/d5/2abfd581-85cc-6701-9fc0-13c4787e599d/mzaf_14429195669834965265.plus.aac.p.m4a"
+			},
+			{
+				title: "Orígenes",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f6/4c/5bf64c5f-59bf-2633-733d-07456f0a5ec3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/96/e1/09/96e1091a-d95a-f735-74ae-c3f5ed720f30/mzaf_14232525161339569320.plus.aac.p.m4a"
+			},
+			{
+				title: "Cha Cha Bum",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f6/4c/5bf64c5f-59bf-2633-733d-07456f0a5ec3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/55/c2/8d/55c28dd7-484f-5f44-47d8-1ab32f77f889/mzaf_15591086717164706066.plus.aac.p.m4a"
+			},
+			{
+				title: "Caminando",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f6/4c/5bf64c5f-59bf-2633-733d-07456f0a5ec3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/2e/57/ad/2e57ad96-7c8e-be57-ed4b-16df3009dbeb/mzaf_11455580491378566337.plus.aac.p.m4a"
+			},
+			{
+				title: "С тобой",
+				year: "2023",
+				cover: "https://cdn-images.dzcdn.net/images/cover/ed091cc0097cef07dce9e85dccb6abc3/250x250-000000-80-0-0.jpg",
+				preview: ""
+			},
+			{
+				title: "La Cuchara",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/4f/ff/e7/4fffe720-04e7-33ad-4011-575240f5b177/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/4d/a1/ca/4da1cabf-3e94-f583-bc9c-c6690ecd73eb/mzaf_5990072452393158256.plus.aac.p.m4a"
+			},
+			{
+				title: "La Talla",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c0/19/7d/c0197dc9-5ffc-d231-ca17-ed4064ddb9b4/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/aa/0f/e6/aa0fe602-d157-1733-3fac-e24514855b11/mzaf_4473036444574532213.plus.aac.p.m4a"
+			},
+			{
+				title: "El Paragua",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f6/4c/5bf64c5f-59bf-2633-733d-07456f0a5ec3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/0a/d9/7a/0ad97a04-28e7-6977-b4b3-c3be433c470e/mzaf_3625815066772458508.plus.aac.p.m4a"
+			},
+			{
+				title: "Un Pesaón",
+				year: "2023",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/f6/4c/5bf64c5f-59bf-2633-733d-07456f0a5ec3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/ea/f1/a8/eaf1a838-fa99-4090-2855-6c4467224046/mzaf_958035587528258352.plus.aac.p.m4a"
+			},
+			{
+				title: "Dominó",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e2/22/bc/e222bcc4-0cbd-ea62-e6de-98f4720d3e3b/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/27/d5/13/27d513f3-1bf7-e0c1-40bb-4cf6dae89976/mzaf_7371792763601460885.plus.aac.p.m4a"
+			},
+			{
+				title: "Palo Monte",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/12/2d/30/122d30a3-aa19-eac9-562c-b16626487da3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/98/8a/7e/988a7e9f-4885-9bd5-daaa-ac6ed80dd7b6/mzaf_13249091292514622903.plus.aac.p.m4a"
+			},
+			{
+				title: "Paciencia",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/22/9f/f0/229ff0f0-1dc1-3bad-55a6-33b0ab58a0bc/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/9a/f6/97/9af6971d-1c77-28bc-1b7b-91e6dfc92f15/mzaf_6400998582447457663.plus.aac.p.m4a"
+			},
+			{
+				title: "La Maña",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/12/2d/30/122d30a3-aa19-eac9-562c-b16626487da3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/5a/a0/79/5aa07969-6d91-a223-5d3d-c439189781da/mzaf_17631812702307225623.plus.aac.p.m4a"
+			},
+			{
+				title: "Vete",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/12/2d/30/122d30a3-aa19-eac9-562c-b16626487da3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/b3/06/b5/b306b587-695f-eb7f-ebec-af1d0295137b/mzaf_7389551504046261031.plus.aac.p.m4a"
+			},
+			{
+				title: "Nagüito",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/12/2d/30/122d30a3-aa19-eac9-562c-b16626487da3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/bf/b7/1c/bfb71ce6-12a5-5d1d-5bec-2318694c4ab4/mzaf_10531323653621039454.plus.aac.p.m4a"
+			},
+			{
+				title: "Mi Novela",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/12/2d/30/122d30a3-aa19-eac9-562c-b16626487da3/0.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/d6/6c/ff/d66cff04-d133-f41f-1dc8-619efb06dd1c/mzaf_7668667463898473842.plus.aac.p.m4a"
+			},
+			{
+				title: "Ухожу В Закат",
+				year: "2021",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f0/35/95/f035952d-1793-92ea-a6b1-dfe2b8b2aede/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/0d/82/80/0d828032-549a-3ec3-c32b-0972e6b0e6b7/mzaf_15376184852501050578.plus.aac.p.m4a"
+			}
 		]
 	},
-	{
-		name: "Stas",
-		streamName: "Zace",
-		displayName: "ZACE",
-		avatar: "https://i.scdn.co/image/ab67616d00001e02ecbf6c5913a5a2a43a0e48d7",
+		{
+			name: "Stas",
+			streamName: "Zace",
+			displayName: "ZACE",
+			avatar: "https://i.scdn.co/image/ab67616d00001e02ecbf6c5913a5a2a43a0e48d7",
 		url: "https://open.spotify.com/artist/0e0gkHOeuKzCCj75EbLRAF",
 		accent: "stas",
 		tracks: [
-			{ title: "Колючая", year: "2026" },
-			{ title: "Донбасс", year: "2026" },
-			{ title: "Продажная", year: "2026" },
-			{ title: "О боже как красива", year: "2026" },
-			{ title: "Пускай", year: "2026" },
-			{ title: "Медленно", year: "2025" },
-			{ title: "Медленно - Slowed", year: "2025" },
-			{ title: "Медленно - Speed up remix", year: "2025" },
-			{ title: "Напиши", year: "2025" },
-			{ title: "Всё пройдёт", year: "2025" },
-			{ title: "Теперь мы никто", year: "2025" },
-			{ title: "Она одна такая", year: "2025" },
-			{ title: "Я вернусь", year: "2024" }
+			{
+				title: "Колючая",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7c/c3/4a/7cc34afb-ee5c-9cdc-d86d-d8f11b56348f/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/84/f5/95/84f59561-1659-d3ca-f365-9569a9d89dfd/mzaf_2715632415341906012.plus.aac.p.m4a"
+			},
+			{
+				title: "Донбасс",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/62/0f/ab/620fab45-4d80-2858-5fe6-868b57e41a7b/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/01/78/6b0178f8-8096-733e-0fa7-f7114c5d7771/mzaf_3748896112372679565.plus.aac.p.m4a"
+			},
+			{
+				title: "Продажная",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/39/ee/a9/39eea9ea-d69e-06f6-3539-519e05de39e2/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d6/7b/6f/d67b6f43-82ad-ea53-bd0f-aef434890378/mzaf_4203273685775738102.plus.aac.p.m4a"
+			},
+			{
+				title: "О боже как красива",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f4/1b/e5/f41be585-0f48-175e-3af8-6bebef74ef81/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f5/8b/c3/f58bc39f-829f-c7f6-428d-25405f652e7d/mzaf_10537992667645133414.plus.aac.p.m4a"
+			},
+			{
+				title: "Пускай",
+				year: "2026",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c3/33/af/c333af24-e16d-a13b-eda0-180cc3035b53/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f7/b5/92/f7b592ff-63cc-b31b-6750-b18e057ea519/mzaf_5137803745188325859.plus.aac.p.m4a"
+			},
+			{
+				title: "Медленно",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ae/3c/57/ae3c5759-c87a-ca75-fa7f-b7d8c4b53595/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2f/d7/61/2fd761a5-2ab0-13f2-434d-21058814393c/mzaf_5138071462661572028.plus.aac.p.m4a"
+			},
+			{
+				title: "Медленно (Slowed)",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ae/3c/57/ae3c5759-c87a-ca75-fa7f-b7d8c4b53595/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e4/8e/8a/e48e8a57-59bd-ed9c-c066-7cb338180426/mzaf_10806108283718809302.plus.aac.p.m4a"
+			},
+			{
+				title: "Медленно (Speed up remix)",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ae/3c/57/ae3c5759-c87a-ca75-fa7f-b7d8c4b53595/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/16/ab/ee/16abeecf-771e-f132-ac95-e18dd78c1b4c/mzaf_12049289802521484756.plus.aac.p.m4a"
+			},
+			{
+				title: "Напиши",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/5e/0e/de/5e0edee4-7d2f-81eb-898b-3a640d08be73/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2d/d3/35/2dd335cb-6f30-f69e-93cc-46c77e57e950/mzaf_272537871775489340.plus.aac.p.m4a"
+			},
+			{
+				title: "Всё пройдёт",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ac/be/bf/acbebf2e-875d-56b4-8fbc-93e9743c20b9/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2b/b7/97/2bb7976e-ce80-bb46-1379-fd5f1cc10087/mzaf_4636743642622304213.plus.aac.p.m4a"
+			},
+			{
+				title: "Теперь мы никто",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cf/65/02/cf6502fe-197e-ae7d-1d0e-c94812f31d04/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0b/ad/2b/0bad2b95-9cf6-187b-faaf-55f3fae6e8e6/mzaf_14552451621224482941.plus.aac.p.m4a"
+			},
+			{
+				title: "Она одна такая",
+				year: "2025",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/59/cf/e5/59cfe5d4-765e-558d-0794-8c22d924eced/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a8/2d/33/a82d3303-ea71-bf31-ba5b-a9c0cb613a72/mzaf_1432562754239067448.plus.aac.p.m4a"
+			},
+			{
+				title: "Я вернусь",
+				year: "2024",
+				cover: "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/81/1c/1a/811c1abf-ac6e-5f00-9b91-05e443282d84/cover.jpg/300x300bb.jpg",
+				preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/c4/2e/51/c42e518b-f61f-86d9-1bca-a9f7b618c88b/mzaf_11960114087293625297.plus.aac.p.m4a"
+			}
 		]
 	}
 ] %}
 
 <section class="artist-catalog">
 	<div class="artist-catalog__hero">
-		<p class="artist-catalog__kicker">LC Band artists</p>
-		<h1>Артисты на стриминге</h1>
-		<p class="artist-catalog__lead">Три страницы артистов и список треков, которые сейчас видны на их стриминг-профилях.</p>
+		<p class="artist-catalog__kicker">Luxury Cover Band АРТИСТЫ</p>
+		<h1>Авторская музыка</h1>
+		<p class="artist-catalog__lead">Авторские треки LAZ, Teddy и Stas в одном спокойном плейлисте.</p>
 	</div>
 
 	<div class="artist-catalog__columns" aria-label="Артисты и треки">
 		{% for artist in artists %}
 		<article class="artist-column artist-column--{{ artist.accent }}">
-			<header class="artist-column__head">
-				<a class="artist-column__avatar" href="{{ artist.url }}" target="_blank" rel="noopener" aria-label="{{ artist.name }} на Spotify">
-					<img src="{{ artist.avatar }}" alt="{{ artist.name }} — аватарка на стриминге" loading="lazy">
-				</a>
-				<div>
-					{% if artist.displayName %}
-					<h2>{{ artist.displayName }}</h2>
-					{% else %}
-					<p class="artist-column__source">Spotify · {{ artist.streamName }}</p>
-					<h2>{{ artist.name }}</h2>
-					{% endif %}
-				</div>
-			</header>
+				<header class="artist-column__head">
+					<img class="artist-column__avatar" src="{{ artist.avatar }}" alt="{{ artist.name }} — аватарка" loading="lazy">
+					<div>
+						{% if artist.displayName %}
+						<h2>{{ artist.displayName }}</h2>
+						{% else %}
+						<p class="artist-column__source">{{ artist.streamName }}</p>
+						<h2>{{ artist.name }}</h2>
+						{% endif %}
+					</div>
+				</header>
 
 			<ol class="artist-column__tracks">
 				{% for track in artist.tracks %}
-				<li>
-					<span class="artist-column__track-title">{{ track.title }}</span>
-					<span class="artist-column__track-year">{{ track.year }}</span>
+				<li class="track-row{% if not track.preview %} track-row--disabled{% endif %}">
+					<img class="track-row__cover" src="{{ track.cover }}" alt="{{ track.title }} — обложка" loading="lazy">
+					<button
+						class="track-row__play"
+						type="button"
+						{% if track.preview %}
+						data-preview="{{ track.preview }}"
+						aria-label="Воспроизвести {{ track.title }}"
+						{% else %}
+						disabled
+						aria-label="Превью для {{ track.title }} недоступно"
+						title="Превью недоступно"
+						{% endif %}
+					>
+						<span class="track-row__play-icon" aria-hidden="true"></span>
+					</button>
+					<div class="track-row__body">
+						<div class="track-row__meta">
+							<span class="track-row__title">{{ track.title }}</span>
+							<span class="track-row__year">{{ track.year }}</span>
+						</div>
+						<div class="track-wave" aria-hidden="true">
+							{% for bar in waveBars %}
+							<span style="--h: {{ bar }}%"></span>
+							{% endfor %}
+						</div>
+					</div>
 				</li>
 				{% endfor %}
 			</ol>
 
-			<a class="artist-column__link" href="{{ artist.url }}" target="_blank" rel="noopener">Открыть страницу артиста</a>
+			<a class="artist-column__link" href="{{ artist.url }}" target="_blank" rel="noopener">Профиль артиста</a>
 		</article>
 		{% endfor %}
 	</div>
 </section>
 
+<script>
+(() => {
+	const rows = Array.from(document.querySelectorAll(".track-row"));
+	const buttons = Array.from(document.querySelectorAll(".track-row__play[data-preview]"));
+	const audio = new Audio();
+	let currentRow = null;
+	let frame = null;
+
+	const resetRow = (row) => {
+		if (!row) return;
+		row.classList.remove("is-playing");
+		const button = row.querySelector(".track-row__play");
+		if (button) button.setAttribute("aria-label", "Воспроизвести " + row.querySelector(".track-row__title").textContent.trim());
+		row.querySelectorAll(".track-wave span").forEach((bar) => bar.classList.remove("is-filled"));
+	};
+
+	const paintWave = () => {
+		if (!currentRow || !audio.duration) return;
+		const progress = Math.min(audio.currentTime / audio.duration, 1);
+		const bars = Array.from(currentRow.querySelectorAll(".track-wave span"));
+		bars.forEach((bar, index) => {
+			bar.classList.toggle("is-filled", index / Math.max(bars.length - 1, 1) <= progress);
+		});
+		frame = requestAnimationFrame(paintWave);
+	};
+
+	const playRow = async (row, button) => {
+		if (currentRow === row && !audio.paused) {
+			audio.pause();
+			resetRow(row);
+			return;
+		}
+
+		cancelAnimationFrame(frame);
+		resetRow(currentRow);
+		currentRow = row;
+		audio.src = button.dataset.preview;
+		audio.currentTime = 0;
+		row.classList.add("is-playing");
+		button.setAttribute("aria-label", "Пауза " + row.querySelector(".track-row__title").textContent.trim());
+
+		try {
+			await audio.play();
+			paintWave();
+		} catch (error) {
+			resetRow(row);
+		}
+	};
+
+	buttons.forEach((button) => {
+		button.addEventListener("click", () => playRow(button.closest(".track-row"), button));
+	});
+
+	audio.addEventListener("ended", () => {
+		cancelAnimationFrame(frame);
+		resetRow(currentRow);
+		currentRow = null;
+	});
+
+	rows.forEach((row) => {
+		row.querySelectorAll(".track-wave span").forEach((bar, index) => {
+			if (index < 2) bar.classList.add("is-filled");
+		});
+	});
+})();
+</script>
+
 <style>
 .artist-catalog {
 	min-height: 100vh;
-	padding: calc(var(--nav-h) + 72px) 22px 96px;
-	background:
-		radial-gradient(circle at 14% 18%, rgba(255, 49, 95, 0.18), transparent 30%),
-		radial-gradient(circle at 88% 10%, rgba(17, 186, 164, 0.16), transparent 28%),
-		linear-gradient(180deg, #0b0b0b 0%, #111 42%, #f5f5f2 42.1%, #f7f7f4 100%);
-	color: #f7f7f4;
+	padding: calc(var(--nav-h) + 54px) 22px 72px;
+	background: #0f0f0f;
+	color: #f5f5f2;
 }
 
 .artist-catalog__hero {
-	max-width: 1120px;
-	margin: 0 auto 48px;
+	max-width: 1180px;
+	margin: 0 auto 34px;
 	display: grid;
-	grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-	gap: clamp(24px, 6vw, 84px);
+	grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+	gap: 24px;
 	align-items: end;
 }
 
@@ -133,157 +381,228 @@ permalink: /artists/
 	grid-column: 1 / -1;
 	font-size: 12px;
 	line-height: 1.2;
-	font-weight: 700;
-	letter-spacing: 0.24em;
+	font-weight: 750;
+	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: #ffcc4d;
+	color: rgba(245, 245, 242, 0.58);
 }
 
 .artist-catalog h1 {
-	max-width: 740px;
 	font-family: var(--ff-display);
-	font-size: clamp(46px, 8vw, 104px);
-	line-height: 0.92;
+	font-size: clamp(44px, 7vw, 82px);
+	line-height: 0.94;
 	font-weight: 700;
 	letter-spacing: 0;
 }
 
 .artist-catalog__lead {
-	max-width: 430px;
-	font-size: clamp(17px, 2vw, 22px);
-	line-height: 1.35;
-	color: rgba(247, 247, 244, 0.74);
+	max-width: 420px;
+	font-size: 16px;
+	line-height: 1.45;
+	color: rgba(245, 245, 242, 0.66);
 }
 
 .artist-catalog__columns {
-	max-width: 1120px;
+	max-width: 1180px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 18px;
+	gap: 14px;
 	align-items: start;
 }
 
 .artist-column {
-	--artist-accent: #ffcc4d;
-	position: relative;
-	min-height: 100%;
-	padding: clamp(20px, 3vw, 30px);
-	background: rgba(255,255,255,0.94);
-	color: #111;
-	border: 1px solid rgba(0,0,0,0.08);
+	--artist-accent: #f5f5f2;
+	min-width: 0;
+	padding: 18px;
+	background: #161616;
+	border: 1px solid rgba(255,255,255,0.09);
 	border-radius: 8px;
-	box-shadow: 0 28px 70px rgba(0,0,0,0.2);
-	overflow: hidden;
 }
 
-.artist-column::before {
-	content: "";
-	position: absolute;
-	inset: 0 0 auto;
-	height: 7px;
-	background: var(--artist-accent);
-}
-
-.artist-column--laz { --artist-accent: #ff315f; }
-.artist-column--teddy { --artist-accent: #11baa4; }
-.artist-column--stas { --artist-accent: #ffcc4d; }
+.artist-column--laz { --artist-accent: #f05c74; }
+.artist-column--teddy { --artist-accent: #62c9b8; }
+.artist-column--stas { --artist-accent: #d7c16a; }
 
 .artist-column__head {
 	display: grid;
-	grid-template-columns: 96px minmax(0, 1fr);
-	gap: 18px;
+	grid-template-columns: 58px minmax(0, 1fr);
+	gap: 14px;
 	align-items: center;
-	margin-top: 6px;
+	margin-bottom: 18px;
 }
 
 .artist-column__avatar {
-	display: block;
-	width: 96px;
-	height: 96px;
+	width: 58px;
+	height: 58px;
 	border-radius: 50%;
-	overflow: hidden;
-	background: #111;
-	border: 3px solid var(--artist-accent);
-}
-
-.artist-column__avatar img {
-	width: 100%;
-	height: 100%;
 	object-fit: cover;
+	background: #222;
 }
 
 .artist-column__source {
-	font-size: 11px;
+	font-size: 12px;
+	line-height: 1.2;
 	font-weight: 700;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-	color: #6e6e73;
+	color: var(--artist-accent);
 }
 
 .artist-column h2 {
-	margin-top: 8px;
+	margin-top: 4px;
 	font-family: var(--ff-display);
-	font-size: clamp(30px, 4vw, 48px);
-	line-height: 0.96;
+	font-size: 30px;
+	line-height: 1;
 	font-weight: 700;
 	letter-spacing: 0;
 }
 
 .artist-column__tracks {
-	margin-top: 28px;
 	padding: 0;
 	list-style: none;
 	display: grid;
-	gap: 1px;
-	background: rgba(0,0,0,0.1);
+	gap: 8px;
 }
 
-.artist-column__tracks li {
+.track-row {
+	display: grid;
+	grid-template-columns: 48px 42px minmax(0, 1fr);
+	gap: 10px;
+	align-items: center;
+	min-height: 66px;
+	padding: 8px;
+	background: #101010;
+	border: 1px solid rgba(255,255,255,0.07);
+	border-radius: 8px;
+}
+
+.track-row--disabled {
+	opacity: 0.62;
+}
+
+.track-row__cover {
+	width: 48px;
+	height: 48px;
+	border-radius: 6px;
+	object-fit: cover;
+	background: #252525;
+}
+
+.track-row__play {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	border: 0;
+	background: #f5f5f2;
+	color: #101010;
+	cursor: pointer;
+	transition: transform 160ms ease, background 160ms ease, opacity 160ms ease;
+}
+
+.track-row__play:hover {
+	transform: scale(1.04);
+}
+
+.track-row__play:disabled {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+
+.track-row__play-icon {
+	display: block;
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	border-top: 9px solid transparent;
+	border-bottom: 9px solid transparent;
+	border-left: 13px solid currentColor;
+}
+
+.track-row.is-playing .track-row__play {
+	background: var(--artist-accent);
+}
+
+.track-row.is-playing .track-row__play-icon {
+	width: 12px;
+	height: 16px;
+	margin-left: 0;
+	border: 0;
+	background:
+		linear-gradient(currentColor 0 0) left / 4px 100% no-repeat,
+		linear-gradient(currentColor 0 0) right / 4px 100% no-repeat;
+}
+
+.track-row__body {
+	min-width: 0;
+}
+
+.track-row__meta {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) auto;
-	gap: 14px;
+	gap: 10px;
 	align-items: baseline;
-	padding: 12px 0;
-	background: rgba(255,255,255,0.96);
+	margin-bottom: 8px;
 }
 
-.artist-column__track-title {
-	font-size: 16px;
-	line-height: 1.25;
-	font-weight: 650;
-	letter-spacing: 0;
+.track-row__title {
+	font-size: 14px;
+	line-height: 1.2;
+	font-weight: 720;
+	color: #f5f5f2;
 	overflow-wrap: anywhere;
 }
 
-.artist-column__track-year {
-	font-size: 12px;
+.track-row__year {
+	font-size: 11px;
+	line-height: 1;
 	font-weight: 700;
-	color: #8e8e93;
+	color: rgba(245,245,242,0.38);
+}
+
+.track-wave {
+	display: grid;
+	grid-template-columns: repeat(32, 1fr);
+	gap: 2px;
+	align-items: center;
+	height: 32px;
+}
+
+.track-wave span {
+	display: block;
+	height: var(--h);
+	min-height: 3px;
+	background: rgba(245,245,242,0.24);
+	border-radius: 999px;
+	transition: background 120ms linear;
+}
+
+.track-wave span.is-filled {
+	background: var(--artist-accent);
 }
 
 .artist-column__link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 42px;
-	margin-top: 24px;
-	padding: 10px 18px;
-	border-radius: 999px;
-	background: #111;
-	color: #fff;
-	font-size: 14px;
-	line-height: 1.15;
+	margin-top: 16px;
+	color: rgba(245,245,242,0.58);
+	font-size: 13px;
+	line-height: 1.2;
 	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-color: rgba(245,245,242,0.25);
+	text-underline-offset: 4px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
 	.artist-catalog__columns {
 		grid-template-columns: 1fr;
 	}
 
 	.artist-column {
-		max-width: 680px;
+		max-width: 760px;
 		width: 100%;
 		margin: 0 auto;
 	}
@@ -291,29 +610,40 @@ permalink: /artists/
 
 @media (max-width: 720px) {
 	.artist-catalog {
-		padding: calc(var(--nav-h) + 48px) 16px 64px;
-		background:
-			radial-gradient(circle at 16% 10%, rgba(255, 49, 95, 0.22), transparent 34%),
-			linear-gradient(180deg, #0a0a0a 0%, #111 36%, #f7f7f4 36.1%, #f7f7f4 100%);
+		padding: calc(var(--nav-h) + 34px) 14px 54px;
 	}
 
 	.artist-catalog__hero {
 		grid-template-columns: 1fr;
-		gap: 20px;
-		margin-bottom: 32px;
+		gap: 14px;
+		margin-bottom: 22px;
 	}
 
-	.artist-catalog__lead {
-		color: rgba(247, 247, 244, 0.8);
+	.artist-catalog h1 {
+		font-size: 42px;
 	}
 
-	.artist-column__head {
-		grid-template-columns: 82px minmax(0, 1fr);
+	.artist-column {
+		padding: 14px;
 	}
 
-	.artist-column__avatar {
-		width: 82px;
-		height: 82px;
+	.track-row {
+		grid-template-columns: 44px 38px minmax(0, 1fr);
+		gap: 8px;
+	}
+
+	.track-row__cover {
+		width: 44px;
+		height: 44px;
+	}
+
+	.track-row__play {
+		width: 38px;
+		height: 38px;
+	}
+
+	.track-wave {
+		gap: 1px;
 	}
 }
 </style>

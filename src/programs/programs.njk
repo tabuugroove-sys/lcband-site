@@ -33,6 +33,32 @@ eleventyComputed:
 	{% endif %}
 </section>
 
+{% if program.videos %}
+<section class="section section--light program-video-carousel">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Видео</p>
+		<h2 class="section__title">Русская программа<br><span class="muted">в живом формате.</span></h2>
+		<p class="section__lead">Несколько фрагментов программы — клипы и live-выступления, чтобы быстро показать настроение русскоязычного блока.</p>
+		<div class="program-video-carousel__controls" aria-label="Навигация по видео">
+			<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Предыдущее видео">‹</button>
+			<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Следующее видео">›</button>
+		</div>
+	</div>
+	<div class="video-shelf video-shelf--program reveal" data-video-carousel>
+		{% for item in program.videos %}
+		<a class="video-card" href="#" data-video="{{ item.slug }}">
+			<img src="{{ ('/' + item.poster) | url }}" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
+			<span class="video-card__play" aria-hidden="true"></span>
+			<span class="video-card__meta">
+				<span class="video-card__label">{{ item.label }}</span>
+				<span class="video-card__name">{{ item.title }}</span>
+			</span>
+		</a>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+
 <section class="section section--light">
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Что входит<br><span class="muted">в программу.</span></h2>
