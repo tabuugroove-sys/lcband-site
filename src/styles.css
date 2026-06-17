@@ -1217,11 +1217,10 @@ h1, h2, h3, p { margin: 0; }
 	transform: translate(-50%, -100%);
 	transform-origin: 50% 100%;
 	contain: layout paint;
-	opacity: .72;
-	animation: bulletSmoke 4.8s ease-in-out var(--d, 0s) infinite;
+	opacity: 0;
+	animation: bulletSmoke 2.8s ease-out var(--d, 0s) 1 both;
 	-webkit-mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,.24) 10%, #000 28%, #000 68%, rgba(0,0,0,.38) 84%, transparent 100%);
 	mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,.24) 10%, #000 28%, #000 68%, rgba(0,0,0,.38) 84%, transparent 100%);
-	will-change: transform, opacity;
 }
 .tile__smoke span::before,
 .tile__smoke span::after {
@@ -1232,7 +1231,6 @@ h1, h2, h3, p { margin: 0; }
 	background-position: center bottom;
 	background-size: 100% 100%;
 	mix-blend-mode: multiply;
-	will-change: transform, opacity;
 }
 .tile__smoke span::before {
 	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 190' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='-30%25' y='-10%25' width='160%25' height='130%25'%3E%3CfeGaussianBlur stdDeviation='1.8'/%3E%3C/filter%3E%3Cg fill='none' stroke='%236d6d6d' stroke-linecap='round' filter='url(%23b)'%3E%3Cpath d='M38 188 C31 169 57 159 43 139 C29 119 51 105 48 84 C46 65 26 61 37 43 C44 31 57 24 47 7' stroke-width='5' stroke-opacity='.28'/%3E%3Cpath d='M36 186 C43 169 22 155 35 136 C48 118 29 105 34 88 C39 70 54 63 45 45 C39 34 25 25 34 12' stroke-width='3' stroke-opacity='.20'/%3E%3Cpath d='M40 184 C48 166 55 153 47 137 C40 124 39 111 51 96 C60 84 58 72 49 61' stroke-width='2' stroke-opacity='.14'/%3E%3C/g%3E%3C/svg%3E");
@@ -1253,14 +1251,14 @@ h1, h2, h3, p { margin: 0; }
 		transform: translate(-50%, -100%) translate(0, 18px) scale(.38, .26) rotate(-2deg);
 	}
 	12% {
-		opacity: .22;
+		opacity: .2;
 	}
 	26% {
-		opacity: .56;
+		opacity: .52;
 		transform: translate(-50%, -100%) translate(calc(var(--dx, 0px) * .16), -4px) scale(.7, .72) rotate(1deg);
 	}
 	58% {
-		opacity: .34;
+		opacity: .24;
 		transform: translate(-50%, -100%) translate(calc(var(--dx, 0px) * .45), -34px) scale(.96, 1.04) rotate(2deg);
 	}
 	100% {
