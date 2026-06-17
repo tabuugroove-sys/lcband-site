@@ -1,8 +1,8 @@
 ---
 layout: layouts/base.njk
 title: Luxury Cover Band АРТИСТЫ
-description: "Авторские треки артистов Luxury Cover Band: LAZ, Teddy и Stas."
-keywords: "LAZ треки, Teddy треки, Stas Zace треки, авторская музыка Luxury Cover Band"
+description: "Авторские треки артистов Luxury Cover Band: Lazzy, Bumbata и Zace."
+keywords: "Lazzy треки, Bumbata треки, Zace треки, авторская музыка Luxury Cover Band"
 permalink: /artists/
 ---
 
@@ -12,7 +12,6 @@ permalink: /artists/
 		{
 			name: "LAZ",
 			streamName: "Lazzy",
-			displayName: "LAZZY",
 			avatar: "https://i.scdn.co/image/ab6761610000517491bd05ac6cc9716c362ef68f",
 		url: "https://open.spotify.com/artist/0Z3SHUFgUTeU0kOOL9iBiC",
 		accent: "laz",
@@ -145,7 +144,6 @@ permalink: /artists/
 		{
 			name: "Stas",
 			streamName: "Zace",
-			displayName: "ZACE",
 			avatar: "https://i.scdn.co/image/ab67616d00001e02ecbf6c5913a5a2a43a0e48d7",
 		url: "https://open.spotify.com/artist/0e0gkHOeuKzCCj75EbLRAF",
 		accent: "stas",
@@ -236,21 +234,16 @@ permalink: /artists/
 	<div class="artist-catalog__hero">
 		<p class="artist-catalog__kicker">Luxury Cover Band АРТИСТЫ</p>
 		<h1>Авторская музыка</h1>
-		<p class="artist-catalog__lead">Авторские треки LAZ, Teddy и Stas в одном спокойном плейлисте.</p>
+		<p class="artist-catalog__lead">Авторские треки Lazzy, Bumbata и Zace в одном спокойном плейлисте.</p>
 	</div>
 
 	<div class="artist-catalog__columns" aria-label="Артисты и треки">
 		{% for artist in artists %}
 		<article class="artist-column artist-column--{{ artist.accent }}">
 				<header class="artist-column__head">
-					<img class="artist-column__avatar" src="{{ artist.avatar }}" alt="{{ artist.name }} — аватарка" loading="lazy">
+					<img class="artist-column__avatar" src="{{ artist.avatar }}" alt="{{ artist.streamName }} — аватарка" loading="lazy">
 					<div>
-						{% if artist.displayName %}
-						<h2>{{ artist.displayName }}</h2>
-						{% else %}
-						<p class="artist-column__source">{{ artist.streamName }}</p>
-						<h2>{{ artist.name }}</h2>
-						{% endif %}
+						<h2>{{ artist.streamName }}</h2>
 					</div>
 				</header>
 
