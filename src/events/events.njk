@@ -36,7 +36,7 @@ eleventyComputed:
 	<div class="feature-block__inner reveal">
 		{% if b.image %}
 		<div class="feature-block__media">
-			<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.title }} — {{ event.title }}" loading="lazy">
+			<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.imageAlt or (b.title + ' — ' + event.title) }}" loading="lazy">
 		</div>
 		{% endif %}
 		<div class="feature-block__body">
@@ -100,4 +100,3 @@ eleventyComputed:
 		</div>
 	</div>
 </section>
-
