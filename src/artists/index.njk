@@ -357,8 +357,8 @@ permalink: /artists/
 .artist-catalog {
 	min-height: 100vh;
 	padding: calc(var(--nav-h) + 54px) 22px 72px;
-	background: #0f0f0f;
-	color: #f5f5f2;
+	background: #f7f7f4;
+	color: #151515;
 }
 
 .artist-catalog__hero {
@@ -377,7 +377,7 @@ permalink: /artists/
 	font-weight: 750;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: rgba(245, 245, 242, 0.58);
+	color: rgba(21, 21, 21, 0.48);
 }
 
 .artist-catalog h1 {
@@ -392,7 +392,7 @@ permalink: /artists/
 	max-width: 420px;
 	font-size: 16px;
 	line-height: 1.45;
-	color: rgba(245, 245, 242, 0.66);
+	color: rgba(21, 21, 21, 0.62);
 }
 
 .artist-catalog__columns {
@@ -405,17 +405,18 @@ permalink: /artists/
 }
 
 .artist-column {
-	--artist-accent: #f5f5f2;
+	--artist-accent: #151515;
 	min-width: 0;
 	padding: 18px;
-	background: #161616;
-	border: 1px solid rgba(255,255,255,0.09);
+	background: rgba(255,255,255,0.72);
+	border: 1px solid rgba(15,15,15,0.1);
 	border-radius: 8px;
+	box-shadow: 0 18px 48px rgba(20, 20, 20, 0.06);
 }
 
-.artist-column--laz { --artist-accent: #f05c74; }
-.artist-column--teddy { --artist-accent: #62c9b8; }
-.artist-column--stas { --artist-accent: #d7c16a; }
+.artist-column--laz { --artist-accent: #d43f5a; }
+.artist-column--teddy { --artist-accent: #168978; }
+.artist-column--stas { --artist-accent: #9d8425; }
 
 .artist-column__head {
 	display: grid;
@@ -430,7 +431,7 @@ permalink: /artists/
 	height: 58px;
 	border-radius: 50%;
 	object-fit: cover;
-	background: #222;
+	background: #e8e8e3;
 }
 
 .artist-column__source {
@@ -463,8 +464,8 @@ permalink: /artists/
 	align-items: center;
 	min-height: 66px;
 	padding: 8px;
-	background: #101010;
-	border: 1px solid rgba(255,255,255,0.07);
+	background: rgba(255,255,255,0.88);
+	border: 1px solid rgba(15,15,15,0.08);
 	border-radius: 8px;
 }
 
@@ -477,7 +478,7 @@ permalink: /artists/
 	height: 48px;
 	border-radius: 6px;
 	object-fit: cover;
-	background: #252525;
+	background: #e5e5df;
 }
 
 .track-row__play {
@@ -488,8 +489,8 @@ permalink: /artists/
 	height: 42px;
 	border-radius: 50%;
 	border: 0;
-	background: #f5f5f2;
-	color: #101010;
+	background: #151515;
+	color: #fff;
 	cursor: pointer;
 	transition: transform 160ms ease, background 160ms ease, opacity 160ms ease;
 }
@@ -515,6 +516,7 @@ permalink: /artists/
 
 .track-row.is-playing .track-row__play {
 	background: var(--artist-accent);
+	color: #fff;
 }
 
 .track-row.is-playing .track-row__play-icon {
@@ -543,7 +545,7 @@ permalink: /artists/
 	font-size: 14px;
 	line-height: 1.2;
 	font-weight: 720;
-	color: #f5f5f2;
+	color: #171717;
 	overflow-wrap: anywhere;
 }
 
@@ -551,7 +553,7 @@ permalink: /artists/
 	font-size: 11px;
 	line-height: 1;
 	font-weight: 700;
-	color: rgba(245,245,242,0.38);
+	color: rgba(21,21,21,0.38);
 }
 
 .track-wave {
@@ -566,7 +568,7 @@ permalink: /artists/
 	display: block;
 	height: var(--h);
 	min-height: 3px;
-	background: rgba(245,245,242,0.24);
+	background: rgba(21,21,21,0.16);
 	border-radius: 999px;
 	transition: background 120ms linear;
 }
@@ -580,12 +582,12 @@ permalink: /artists/
 	align-items: center;
 	justify-content: center;
 	margin-top: 16px;
-	color: rgba(245,245,242,0.58);
+	color: rgba(21,21,21,0.58);
 	font-size: 13px;
 	line-height: 1.2;
 	font-weight: 700;
 	text-decoration: underline;
-	text-decoration-color: rgba(245,245,242,0.25);
+	text-decoration-color: rgba(21,21,21,0.25);
 	text-underline-offset: 4px;
 }
 
