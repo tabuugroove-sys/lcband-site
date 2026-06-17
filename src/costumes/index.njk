@@ -18,21 +18,21 @@ permalink: /costumes/
 	</div>
 </section>
 
-<section class="costumes-feature" aria-label="Красные сценические образы Luxury Cover Band">
-	<a class="costumes-feature__link" href="{{ '/assets/costumes/vocalists-red-feature.jpg' | url }}" data-lightbox>
-		<img src="{{ '/assets/costumes/vocalists-red-feature.jpg' | url }}" alt="Красные сценические костюмы вокалистов Luxury Cover Band для корпоратива и свадьбы" title="Красные сценические костюмы кавер-группы Luxury Cover Band" loading="eager" fetchpriority="high">
-	</a>
-</section>
-
-<section class="costumes-feature" aria-label="Чёрные блестящие сценические костюмы Luxury Cover Band">
-	<a class="costumes-feature__link" href="{{ '/assets/costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg' | url }}" data-lightbox>
-		<img src="{{ '/assets/costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg' | url }}" alt="Чёрные блестящие сценические костюмы вокалистов Luxury Cover Band на выступлении кавер-группы" title="Чёрные блестящие костюмы вокалистов кавер-группы Luxury Cover Band" loading="lazy">
-		<span class="sr-only">Чёрные блестящие костюмы вокалистов кавер-группы Luxury Cover Band для свадьбы, корпоратива и сценического шоу.</span>
-	</a>
-</section>
-
 <section class="section section--flush">
 	{% set costumes = [
+		{
+			slug:'vocalists-red-feature',
+			title:'Красные костюмы',
+			alt:'Красные сценические костюмы вокалистов Luxury Cover Band для корпоратива и свадьбы',
+			imageTitle:'Красные сценические костюмы кавер-группы Luxury Cover Band',
+			priority:true
+		},
+		{
+			slug:'black-sequin-stage-costumes-cover-band-vocalists',
+			title:'Чёрный глиттер',
+			alt:'Чёрные блестящие сценические костюмы вокалистов Luxury Cover Band на выступлении кавер-группы',
+			imageTitle:'Чёрные блестящие костюмы вокалистов кавер-группы Luxury Cover Band'
+		},
 		{slug:'gold', title:'Золото'},
 		{slug:'white', title:'Белый'},
 		{slug:'red', title:'Красный'},
@@ -55,7 +55,7 @@ permalink: /costumes/
 		{% for c in costumes %}
 		<li class="ig-tile">
 			<a class="ig-tile__link" href="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" data-lightbox>
-				<img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — образ Luxury Cover Band" loading="lazy">
+				<img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.alt or (c.title + ' — образ Luxury Cover Band') }}" title="{{ c.imageTitle or (c.title + ' — сценический образ Luxury Cover Band') }}" loading="{{ 'eager' if c.priority else 'lazy' }}"{% if c.priority %} fetchpriority="high"{% endif %}>
 				<span class="ig-tile__caption">{{ c.title }}</span>
 			</a>
 		</li>
