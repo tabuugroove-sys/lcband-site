@@ -18,7 +18,7 @@
 	"nav": [
 		{ "href": "/", "label": "Главная" },
 		{ "href": "/vocalists/", "label": "Вокалисты" },
-		{ "href": "/programs/", "label": "Программы" },
+		{ "href": "/programs/", "label": "Тематические программы" },
 		{ "href": "/costumes/", "label": "Костюмы" },
 		{ "href": "/formats/", "label": "Форматы" },
 		{ "href": "/sax/", "label": "Саксофон" },
