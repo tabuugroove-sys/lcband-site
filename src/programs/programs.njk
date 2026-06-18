@@ -16,7 +16,7 @@ eleventyComputed:
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">
 			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
-			<a href="{{ '/programs/' | url }}">Программы</a> <span>·</span>
+			<a href="{{ '/programs/' | url }}">Тематические программы</a> <span>·</span>
 			<span>{{ program.label }}</span>
 		</p>
 		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
@@ -76,7 +76,7 @@ eleventyComputed:
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Варианты</p>
-		<h2 class="section__title">Другие программы.</h2>
+		<h2 class="section__title">Другие тематические программы.</h2>
 		<p class="section__lead">{{ site.stats.songs }} песен, {{ site.stats.languages }} языков — собираем вечер из любых комбинаций.</p>
 	</div>
 	<div class="container reveal">
@@ -104,7 +104,7 @@ eleventyComputed:
 		<p class="section__lead section__lead--light">Напишите дату, место и формат — подберём состав и пришлём тайминг.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
-			<a class="btn btn--ghost-light" href="{{ '/programs/' | url }}">Все программы</a>
+			<a class="btn btn--ghost-light" href="{{ '/programs/' | url }}">Все тематические программы</a>
 		</div>
 	</div>
 </section>
