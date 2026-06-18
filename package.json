@@ -6,7 +6,9 @@
   "scripts": {
     "build": "eleventy",
     "dev": "PATHPREFIX=/ eleventy --serve",
-    "preview": "PATHPREFIX=/ eleventy"
+    "preview": "PATHPREFIX=/ eleventy",
+    "seo:audit": "node tools/seo-audit.mjs",
+    "seo:check": "PATHPREFIX=/ eleventy && node tools/seo-audit.mjs"
   },
   "repository": {
     "type": "git",

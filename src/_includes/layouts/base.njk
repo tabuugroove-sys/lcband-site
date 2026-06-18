@@ -34,15 +34,44 @@
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "MusicGroup",
-		"name": "{{ site.name }}",
-		"alternateName": "{{ site.shortName }}",
-		"description": "{{ site.description }}",
-		"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro"],
-		"image": "{{ site.url }}/{{ site.defaultOgImage }}",
-		"url": "{{ site.url }}",
-		"numberOfEmployees": "6",
-		"areaServed": ["Москва", "Россия", "Международные туры"]
+		"@graph": [
+			{
+				"@type": "MusicGroup",
+				"@id": "{{ site.url }}/#musicgroup",
+				"name": "{{ site.name }}",
+				"alternateName": "{{ site.shortName }}",
+				"description": "{{ site.description }}",
+				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
+				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
+				"url": "{{ site.url }}",
+				"sameAs": ["{{ site.telegram }}"],
+				"areaServed": ["Москва", "Россия", "Международные туры"]
+			},
+			{
+				"@type": "LocalBusiness",
+				"@id": "{{ site.url }}/#business",
+				"name": "{{ site.name }}",
+				"description": "{{ site.description }}",
+				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
+				"url": "{{ site.url }}",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "{{ site.city }}",
+					"addressCountry": "RU"
+				},
+				"areaServed": ["Москва", "Московская область", "Россия", "Международные туры"],
+				"priceRange": "$$",
+				"sameAs": ["{{ site.telegram }}"]
+			},
+			{
+				"@type": "WebSite",
+				"@id": "{{ site.url }}/#website",
+				"name": "{{ site.name }}",
+				"url": "{{ site.url }}",
+				"inLanguage": "ru-RU",
+				"publisher": { "@id": "{{ site.url }}/#musicgroup" }
+			}
+		]
 	}
 	</script>
 	{% endblock %}

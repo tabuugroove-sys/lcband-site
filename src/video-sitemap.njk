@@ -1,0 +1,37 @@
+---
+permalink: /video-sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	{% for program in programs %}
+	{% for video in program.videos %}
+	<url>
+		<loc>{{ site.url }}/programs/{{ program.slug }}/</loc>
+		<video:video>
+			<video:thumbnail_loc>{{ site.url }}/{{ video.poster }}</video:thumbnail_loc>
+			<video:title>{{ video.title }} — {{ program.title }}</video:title>
+			<video:description>{{ program.lead }}</video:description>
+			<video:content_loc>{{ site.url }}/assets/video/mp4/{{ video.slug }}-720.mp4</video:content_loc>
+			<video:family_friendly>yes</video:family_friendly>
+			<video:requires_subscription>no</video:requires_subscription>
+		</video:video>
+	</url>
+	{% endfor %}
+	{% endfor %}
+	{% for event in events %}
+	{% if event.featuredVideo %}
+	<url>
+		<loc>{{ site.url }}/events/{{ event.slug }}/</loc>
+		<video:video>
+			<video:thumbnail_loc>{{ site.url }}/assets/video/posters/{{ event.featuredVideo }}.jpg</video:thumbnail_loc>
+			<video:title>{{ event.title }} — видео {{ site.name }}</video:title>
+			<video:description>{{ event.lead }}</video:description>
+			<video:content_loc>{{ site.url }}/assets/video/mp4/{{ event.featuredVideo }}-720.mp4</video:content_loc>
+			<video:family_friendly>yes</video:family_friendly>
+			<video:requires_subscription>no</video:requires_subscription>
+		</video:video>
+	</url>
+	{% endif %}
+	{% endfor %}
+</urlset>

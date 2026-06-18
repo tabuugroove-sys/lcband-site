@@ -1,0 +1,62 @@
+---
+permalink: /image-sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+	<url>
+		<loc>{{ site.url }}/</loc>
+		{% for image in ["assets/hero/hero-red.jpg", "assets/hero/hero-bw.jpg", "assets/hero/hero-gold.jpg", "assets/hero/hero-white.jpg", "assets/photos/vocalists.jpg", "assets/photos/themes.jpg", "assets/photos/author-music-stage.jpg"] %}
+		<image:image>
+			<image:loc>{{ site.url }}/{{ image }}</image:loc>
+			<image:title>{{ site.name }} — live cover band</image:title>
+		</image:image>
+		{% endfor %}
+	</url>
+	<url>
+		<loc>{{ site.url }}/costumes/</loc>
+		{% for image in ["vocalists-red-feature.jpg", "black-sequin-stage-costumes-cover-band-vocalists.jpg", "gold.jpg", "white.jpg", "red.jpg", "red-group.jpg", "all-black.jpg", "black-white.jpg", "black-silver.jpg", "black-red.jpg", "black-couple.jpg", "pink.jpg", "blue.jpg", "dark-green.jpg", "dark-green-group.jpg", "gold-studio.jpg", "beige-glitter.jpg", "shimmer.jpg", "flowers.jpg"] %}
+		<image:image>
+			<image:loc>{{ site.url }}/assets/costumes/{{ image }}</image:loc>
+			<image:title>Сценические костюмы {{ site.name }}</image:title>
+		</image:image>
+		{% endfor %}
+	</url>
+	{% for event in events %}
+	<url>
+		<loc>{{ site.url }}/events/{{ event.slug }}/</loc>
+		{% for block in event.blocks %}
+		{% if block.image %}
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/{{ block.image }}</image:loc>
+			<image:title>{{ block.imageAlt or (block.title + " — " + event.title) }}</image:title>
+		</image:image>
+		{% endif %}
+		{% endfor %}
+	</url>
+	{% endfor %}
+	{% for program in programs %}
+	<url>
+		<loc>{{ site.url }}/programs/{{ program.slug }}/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/{{ program.poster }}</image:loc>
+			<image:title>{{ program.title }} — {{ site.name }}</image:title>
+		</image:image>
+		{% for video in program.videos %}
+		<image:image>
+			<image:loc>{{ site.url }}/{{ video.poster }}</image:loc>
+			<image:title>{{ video.title }} — {{ program.title }}</image:title>
+		</image:image>
+		{% endfor %}
+	</url>
+	{% endfor %}
+	{% for vocalist in vocalists %}
+	<url>
+		<loc>{{ site.url }}/vocalists/{{ vocalist.slug }}/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/{{ vocalist.photo }}</image:loc>
+			<image:title>{{ vocalist.name }} — вокалист {{ site.name }}</image:title>
+		</image:image>
+	</url>
+	{% endfor %}
+</urlset>

@@ -11,6 +11,45 @@ eleventyComputed:
   keywords: "{{ event.keywords }}"
 ---
 
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "MusicGroup",
+			"@id": "{{ site.url }}/#musicgroup",
+			"name": "{{ site.name }}",
+			"url": "{{ site.url }}"
+		},
+		{
+			"@type": "Service",
+			"@id": "{{ site.url }}{{ page.url }}#service",
+			"name": "{{ event.title }} — {{ site.name }}",
+			"description": "{{ event.lead }}",
+			"serviceType": "Живая музыка и кавер-группа на мероприятие",
+			"provider": { "@id": "{{ site.url }}/#musicgroup" },
+			"areaServed": ["Москва", "Россия", "Международные туры"],
+			"url": "{{ site.url }}{{ page.url }}"
+		}
+		{% if event.featuredVideo %},
+		{
+			"@type": "VideoObject",
+			"@id": "{{ site.url }}{{ page.url }}#video-{{ event.featuredVideo }}",
+			"name": "{{ event.title }} — видео {{ site.name }}",
+			"description": "{{ event.lead }}",
+			"thumbnailUrl": "{{ site.url }}/assets/video/posters/{{ event.featuredVideo }}.jpg",
+			"contentUrl": "{{ site.url }}/assets/video/mp4/{{ event.featuredVideo }}-720.mp4",
+			"embedUrl": "{{ site.url }}{{ page.url }}",
+			"uploadDate": "2026-06-18",
+			"publisher": { "@id": "{{ site.url }}/#musicgroup" }
+		}
+		{% endif %}
+	]
+}
+</script>
+{% endblock %}
+
 <section class="page-hero">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">

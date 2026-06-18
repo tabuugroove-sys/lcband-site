@@ -70,9 +70,9 @@
 		"headline": "Международные туры. Дубай. Европа.",
 		"lead": "Работаем в зарубежных контрактах — сезонные резидентуры, турне, Gulf-контракты. Есть английский райдер, опыт долгосрочных контрактов (Дубай), готовность к релокациям.",
 		"blocks": [
-			{ "title": "Residency-контракты", "text": "От 2 недель до 6 месяцев на одной площадке — Gulf, Mediterranean.", "image": "hero-gold.jpg" },
+			{ "title": "Residency-контракты", "text": "От 2 недель до 6 месяцев на одной площадке — Gulf, Mediterranean.", "image": "concert-10k.jpg", "imageAlt": "Международные резидентские контракты Luxury Cover Band — живая музыка для зарубежных площадок" },
 			{ "title": "Tour-контракты", "text": "Турне из 3+ городов — работаем с tech rider под tour.", "image": "concert-10k.jpg" },
-			{ "title": "Private jet / yacht", "text": "Камерный формат — 2–4 человека — для узкой частной события.", "image": "hero-duet.jpg" }
+			{ "title": "Private jet / yacht", "text": "Камерный формат — 2–4 человека — для узкой частной события.", "image": "concert-event.jpg", "imageAlt": "Камерное выступление Luxury Cover Band для частного зарубежного события" }
 		],
 		"cta": "Обсудить зарубежный контракт",
 		"keywords": "international cover band tour, cover band dubai, кавер группа за границей, tour contract band",

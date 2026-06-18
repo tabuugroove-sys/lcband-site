@@ -11,4 +11,6 @@ _site/
 src/assets/.nanobanana-backup/
 
 # Dev tools (not for public)
-tools/
+tools/*
+!tools/seo-audit.mjs
+output/

@@ -18,10 +18,14 @@ export default function (eleventyConfig) {
 
 	// Canonical absolute URL helper
 	eleventyConfig.addFilter("absoluteUrl", function (url, base) {
-		base = base || "https://tabuugroove-sys.github.io/lcband-site/";
+		base = base || "https://luxuryband.ru/";
 		if (!url) return base;
 		if (url.startsWith("http")) return url;
 		return base.replace(/\/$/, "") + (url.startsWith("/") ? url : "/" + url);
+	});
+
+	eleventyConfig.addFilter("xmlDate", () => {
+		return new Date().toISOString().split("T")[0];
 	});
 
 	return {

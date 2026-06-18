@@ -12,6 +12,45 @@ eleventyComputed:
   ogImage: "{{ program.poster }}"
 ---
 
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "MusicGroup",
+			"@id": "{{ site.url }}/#musicgroup",
+			"name": "{{ site.name }}",
+			"url": "{{ site.url }}"
+		},
+		{
+			"@type": "Service",
+			"@id": "{{ site.url }}{{ page.url }}#service",
+			"name": "{{ program.title }}",
+			"description": "{{ program.lead }}",
+			"serviceType": "Тематическая программа кавер-группы",
+			"provider": { "@id": "{{ site.url }}/#musicgroup" },
+			"areaServed": ["Москва", "Россия", "Международные туры"],
+			"url": "{{ site.url }}{{ page.url }}"
+		}
+		{% for item in program.videos %},
+		{
+			"@type": "VideoObject",
+			"@id": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}",
+			"name": "{{ item.title }} — {{ program.title }}",
+			"description": "{{ program.lead }}",
+			"thumbnailUrl": "{{ site.url }}/{{ item.poster }}",
+			"contentUrl": "{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4",
+			"embedUrl": "{{ site.url }}{{ page.url }}",
+			"uploadDate": "2026-06-18",
+			"publisher": { "@id": "{{ site.url }}/#musicgroup" }
+		}
+		{% endfor %}
+	]
+}
+</script>
+{% endblock %}
+
 <section class="page-hero">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">

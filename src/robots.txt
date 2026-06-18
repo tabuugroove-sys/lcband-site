@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Sitemap: https://luxuryband.ru/sitemap.xml
+Sitemap: https://luxuryband.ru/image-sitemap.xml
+Sitemap: https://luxuryband.ru/video-sitemap.xml
