@@ -1,6 +1,6 @@
 /* Luxury Cover Band — main.js
    Nav, mobile burger, scroll-reveal, lightbox (image + video), hero switcher.
-   Video player: 720p/1080p manual picker + auto-downgrade on slow network / stalls.
+   Video player: 720p/1080p/4K manual picker + auto-downgrade on slow network / stalls.
 */
 
 (() => {
@@ -95,6 +95,7 @@
 	let stallCount = 0;
 	let stallTimer = null;
 	let playAttemptId = 0;
+	const qualityAvailability = new Map();
 
 	function networkSuggestsLow() {
 		const c = navigator.connection;
@@ -121,6 +122,7 @@
 			<button data-q="auto" class="is-active">Авто</button>
 			<button data-q="720">720p</button>
 			<button data-q="1080" class="hd">1080p</button>
+			<button data-q="2160" class="hd" hidden>4K</button>
 		`;
 		lightbox.appendChild(lightboxPicker);
 
@@ -170,7 +172,7 @@
 			stallCount += 1;
 			if (stallTimer) clearTimeout(stallTimer);
 			stallTimer = setTimeout(() => { stallCount = 0; }, 30000);
-			if (stallCount >= 2 && currentQuality === '1080') {
+			if (stallCount >= 2 && (currentQuality === '1080' || currentQuality === '2160')) {
 				currentQuality = '720';
 				const btn720 = lightboxPicker.querySelector('[data-q="720"]');
 				lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b === btn720));
@@ -190,7 +192,11 @@
 		});
 
 		lightboxVideoEl.addEventListener('error', () => {
-			if (currentQuality === '1080') {
+			if (currentQuality === '2160') {
+				currentQuality = '1080';
+				showToast('4K недоступно, переключили на 1080p');
+				swapQuality();
+			} else if (currentQuality === '1080') {
 				currentQuality = '720';
 				showToast('1080p недоступно, переключили на 720p');
 				swapQuality();
@@ -204,6 +210,36 @@
 	function videoUrl(key, quality) {
 		const base = (window.SITE_BASE || "/").replace(/\/?$/, "/");
 		return `${base}assets/video/mp4/${key}-${quality}.mp4`;
+	}
+
+	function setPickerQuality(quality) {
+		if (!lightboxPicker) return;
+		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === quality));
+	}
+
+	function videoQualityExists(key, quality) {
+		const cacheKey = `${key}-${quality}`;
+		if (qualityAvailability.has(cacheKey)) return qualityAvailability.get(cacheKey);
+		const request = fetch(videoUrl(key, quality), { method: 'HEAD', cache: 'force-cache' })
+			.then(res => res.ok)
+			.catch(() => false);
+		qualityAvailability.set(cacheKey, request);
+		return request;
+	}
+
+	function updatePickerAvailability(key) {
+		const btn4k = lightboxPicker?.querySelector('[data-q="2160"]');
+		if (!btn4k) return;
+		btn4k.hidden = true;
+		videoQualityExists(key, '2160').then(exists => {
+			if (currentVideoKey !== key) return;
+			btn4k.hidden = !exists;
+			if (!exists && currentQuality === '2160') {
+				currentQuality = '1080';
+				setPickerQuality(currentQuality);
+				swapQuality();
+			}
+		});
 	}
 
 	function swapQuality() {
@@ -270,7 +306,8 @@
 
 		// Reset picker to Auto
 		lightboxPicker.style.display = '';
-		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === 'auto'));
+		setPickerQuality('auto');
+		updatePickerAvailability(key);
 
 		if (lightboxImg) lightboxImg.style.display = 'none';
 		updateVideoNav();
@@ -381,6 +418,7 @@
 		const heroProgressFilled = hero.querySelector('[data-hero-progress-filled]');
 		const heroTime = hero.querySelector('[data-hero-time]');
 		let heroQuality = '1080';
+		let heroQualityKey = '';
 
 		function fmtTime(sec) {
 			if (!isFinite(sec)) return '0:00';
@@ -432,9 +470,11 @@
 		function playHeroVideo() {
 			if (!heroVideo) return;
 			const key = heroVideoMap[current] || 'promo-main-reel';
+			heroQualityKey = key;
 			const slow = navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || ''));
 			if (slow && heroQuality === '1080') heroQuality = '720';
 			syncQualityButtons();
+			updateHeroQualityAvailability(key);
 			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
 			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
 			stopAuto();
@@ -451,6 +491,17 @@
 
 		function syncQualityButtons() {
 			heroQualityBtns.forEach(b => b.classList.toggle('is-active', b.dataset.heroQ === heroQuality));
+		}
+
+		function updateHeroQualityAvailability(key) {
+			const btn4k = hero.querySelector('[data-hero-q="2160"]');
+			if (!btn4k) return;
+			btn4k.hidden = true;
+			videoQualityExists(key, '2160').then(exists => {
+				if (heroQualityKey !== key) return;
+				btn4k.hidden = !exists;
+				if (!exists && heroQuality === '2160') changeQuality('1080');
+			});
 		}
 
 		function changeQuality(q) {
