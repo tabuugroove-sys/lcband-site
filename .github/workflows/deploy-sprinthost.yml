@@ -45,7 +45,7 @@ jobs:
             "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
             "tar xzf - -C ~/domains/a1279060.xsph.ru/public_html/"
 
-      - name: Deploy corrected live video files
+      - name: Deploy selected video files
         env:
           SSHPASS: ${{ secrets.SPRINTHOST_PASSWORD }}
           SPRINTHOST_HOST: ${{ secrets.SPRINTHOST_HOST }}
@@ -59,7 +59,13 @@ jobs:
             assets/video/mp4/live-big-lineup-720.mp4 \
             assets/video/mp4/live-big-lineup-1080.mp4 \
             assets/video/mp4/live-berezy-720.mp4 \
-            assets/video/mp4/live-berezy-1080.mp4 | sshpass -e ssh \
+            assets/video/mp4/live-berezy-1080.mp4 \
+            assets/video/mp4/live-simple-the-best-720.mp4 \
+            assets/video/mp4/live-simple-the-best-1080.mp4 \
+            assets/video/mp4/live-adele-hello-720.mp4 \
+            assets/video/mp4/live-adele-hello-1080.mp4 \
+            assets/video/mp4/promo-cold-heart-720.mp4 \
+            assets/video/mp4/promo-cold-heart-1080.mp4 | sshpass -e ssh \
             -o StrictHostKeyChecking=no \
             -o ServerAliveInterval=15 \
             -o ServerAliveCountMax=4 \
