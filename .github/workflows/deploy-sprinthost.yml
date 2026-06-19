@@ -38,12 +38,18 @@ jobs:
           test -n "$SPRINTHOST_HOST"
           test -n "$SPRINTHOST_USER"
           cd _site
-          tar czf - --exclude='*.mp4' . | sshpass -e ssh \
-            -o StrictHostKeyChecking=no \
-            -o ServerAliveInterval=15 \
-            -o ServerAliveCountMax=4 \
-            "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
-            "tar xzf - -C ~/domains/a1279060.xsph.ru/public_html/"
+          tar czf /tmp/lcband-static.tgz --exclude='*.mp4' .
+          for remote_dir in \
+            '~/domains/a1279060.xsph.ru/public_html' \
+            '~/domains/luxuryband.ru/public_html'
+          do
+            sshpass -e ssh \
+              -o StrictHostKeyChecking=no \
+              -o ServerAliveInterval=15 \
+              -o ServerAliveCountMax=4 \
+              "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
+              "tar xzf - -C $remote_dir" < /tmp/lcband-static.tgz
+          done
 
       - name: Deploy selected video files
         env:
@@ -55,7 +61,7 @@ jobs:
           test -n "$SPRINTHOST_HOST"
           test -n "$SPRINTHOST_USER"
           cd _site
-          tar czf - \
+          tar czf /tmp/lcband-videos.tgz \
             assets/video/mp4/live-big-lineup-720.mp4 \
             assets/video/mp4/live-big-lineup-1080.mp4 \
             assets/video/mp4/live-berezy-720.mp4 \
@@ -65,9 +71,15 @@ jobs:
             assets/video/mp4/live-adele-hello-720.mp4 \
             assets/video/mp4/live-adele-hello-1080.mp4 \
             assets/video/mp4/promo-cold-heart-720.mp4 \
-            assets/video/mp4/promo-cold-heart-1080.mp4 | sshpass -e ssh \
-            -o StrictHostKeyChecking=no \
-            -o ServerAliveInterval=15 \
-            -o ServerAliveCountMax=4 \
-            "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
-            "tar xzf - -C ~/domains/a1279060.xsph.ru/public_html/"
+            assets/video/mp4/promo-cold-heart-1080.mp4
+          for remote_dir in \
+            '~/domains/a1279060.xsph.ru/public_html' \
+            '~/domains/luxuryband.ru/public_html'
+          do
+            sshpass -e ssh \
+              -o StrictHostKeyChecking=no \
+              -o ServerAliveInterval=15 \
+              -o ServerAliveCountMax=4 \
+              "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
+              "tar xzf - -C $remote_dir" < /tmp/lcband-videos.tgz
+          done
