@@ -2913,11 +2913,41 @@ a.stat--link:hover { opacity: 0.7; }
 .feature-block--reverse .feature-block__media { grid-column: 2; grid-row: 1; }
 .feature-block--reverse .feature-block__body  { grid-column: 1; grid-row: 1; }
 
+.feature-block__media--video {
+	width: 100%;
+	aspect-ratio: auto;
+	scroll-snap-align: none;
+	box-shadow: none;
+	background: transparent;
+}
+
 .feature-block__media img {
 	width: 100%;
 	aspect-ratio: 16/10;
 	object-fit: cover;
 	display: block;
+}
+
+.feature-block__media--video:hover {
+	transform: none;
+	box-shadow: none;
+}
+
+.feature-block__media--video .video-card__play {
+	width: 76px;
+	height: 76px;
+	background: rgba(255,255,255,0.3);
+	border-color: rgba(255,255,255,0.62);
+	box-shadow: 0 10px 32px rgba(0,0,0,0.24);
+}
+
+.feature-block__media--video:focus-visible {
+	outline: 3px solid #2F7CF6;
+	outline-offset: 4px;
+}
+
+.feature-block__media--video:hover img {
+	transform: scale(1.025);
 }
 
 .feature-block__body {

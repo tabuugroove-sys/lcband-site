@@ -74,9 +74,16 @@ eleventyComputed:
 <section class="feature-block feature-block--{% if loop.index0 % 2 == 0 %}light{% else %}elev{% endif %}{% if loop.index0 % 2 == 1 %} feature-block--reverse{% endif %}">
 	<div class="feature-block__inner reveal">
 		{% if b.image %}
-		<div class="feature-block__media">
-			<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.imageAlt or (b.title + ' — ' + event.title) }}" loading="lazy">
-		</div>
+			{% if b.video %}
+			<a class="feature-block__media feature-block__media--video video-card" href="#" data-video="{{ b.video }}" aria-label="Смотреть видео {{ b.title }}">
+				<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.imageAlt or (b.title + ' — ' + event.title) }}" loading="lazy">
+				<span class="video-card__play" aria-hidden="true"></span>
+			</a>
+			{% else %}
+			<div class="feature-block__media">
+				<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.imageAlt or (b.title + ' — ' + event.title) }}" loading="lazy">
+			</div>
+			{% endif %}
 		{% endif %}
 		<div class="feature-block__body">
 			<h3 class="feature-block__title">{{ b.title }}</h3>
