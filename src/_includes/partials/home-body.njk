@@ -162,7 +162,7 @@
 <!-- =============== VIDEO RAILS (Apple-style 2 rows) =============== -->
 <section class="section" id="videos">
 	{% set promos = [
-		{slug:'promo-egoistka', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
+		{slug:'promo-egoistka', poster:'promo-egoistka-2026', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
 		{slug:'promo-danza-cuduro', title:'Danza Cuduro · Live', eyebrow:'Лайв'},
 		{slug:'thematic-retro-heart', title:'You\'re My Heart · Ретро', eyebrow:'Тематик'},
 		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Промо'},
@@ -200,7 +200,7 @@
 			{% for v in promos %}
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
