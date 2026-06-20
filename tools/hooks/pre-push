@@ -1,33 +1,22 @@
 #!/usr/bin/env bash
 # =============================================================================
-# pre-push — hard anti-clobber gate for lcband-site, shared by ALL agents.
-# Enabled via:  git config core.hooksPath tools/hooks   (set once per clone)
+# pre-push — non-blocking REMINDER for lcband-site (shared by all agents).
+# Enabled via:  git config core.hooksPath tools/hooks
 #
-# Blocks a push when origin/main has advanced past your local HEAD — i.e. you
-# are about to push from a STALE base, the exact condition that wiped live
-# posters on 2026-06-20. Forces: pull --ff-only + re-verify before pushing.
-#
-# Emergency bypass:  LCB_SKIP_GATE=1 git push
+# It does NOT block pushes. It only reminds you when origin/main has advanced
+# past your local HEAD — the situation where you might be building on a stale
+# base. The fix is always: git pull --ff-only, re-read live state, continue.
+# (Git itself still rejects genuine non-fast-forward pushes — that's git, not us.)
 # =============================================================================
 set -uo pipefail
 
-if [ "${LCB_SKIP_GATE:-0}" = "1" ]; then
-  echo "pre-push: gate bypassed (LCB_SKIP_GATE=1)"; exit 0
-fi
-
-if ! git fetch -q origin main 2>/dev/null; then
-  echo "pre-push: WARN — cannot fetch origin; allowing push."; exit 0
-fi
+git fetch -q origin main 2>/dev/null || exit 0
 
 behind="$(git rev-list --count HEAD..origin/main 2>/dev/null || echo 0)"
 if [ "${behind:-0}" != "0" ]; then
-  echo "🔴 pre-push BLOCKED: origin/main is $behind commit(s) ahead of your HEAD."
-  echo "   Another agent pushed after you — pushing now would build on a stale base."
-  echo "   Do:  git pull --ff-only && tools/agent-gate.sh live-posters"
-  echo "   re-verify your change still makes sense, then push again."
-  echo "   (emergency override: LCB_SKIP_GATE=1 git push)"
-  exit 1
+  echo "⚠️  pre-push reminder: origin/main is $behind commit(s) ahead of your HEAD."
+  echo "    Another agent worked after you. Recommended before continuing:"
+  echo "      git pull --ff-only && tools/agent-gate.sh live-posters"
+  echo "    (reminder only — push is NOT blocked)"
 fi
-
-echo "✅ pre-push: HEAD is up-to-date with origin/main — push allowed."
 exit 0

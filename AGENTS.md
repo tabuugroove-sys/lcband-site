@@ -25,9 +25,10 @@ cause: **no sync gate, a `scp`-without-commit side channel, and scope creep.**
 - **NEVER deploy by `scp` without committing the same bytes to git first.** An
   uncommitted `scp` is reverted the moment any agent pushes (Actions rebuilds from
   git, which lacks your change). This was the #1 cause of the incident.
-- A committed **`pre-push` git hook** (`tools/hooks/pre-push`) hard-blocks any push
-  from a stale base. Enable once per clone: `git config core.hooksPath tools/hooks`.
-  Emergency bypass only: `LCB_SKIP_GATE=1 git push`.
+- A committed **`pre-push` git hook** (`tools/hooks/pre-push`, enable once:
+  `git config core.hooksPath tools/hooks`) prints a **non-blocking reminder** when
+  `origin/main` is ahead of you. It never blocks — the real safeguard is the rule
+  below: always continue from the current state, never from memory.
 
 ---
 

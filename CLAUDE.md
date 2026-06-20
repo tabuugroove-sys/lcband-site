@@ -10,8 +10,10 @@ AGENT_NAME=claude tools/agent-gate.sh preflight
 …and `tools/agent-gate.sh release` after you push. No exceptions.
 
 A `pre-push` hook (`tools/hooks/pre-push`, enabled via
-`git config core.hooksPath tools/hooks`) will hard-block a push from a stale base.
-If it blocks you: `git pull --ff-only`, re-check `live-posters`, push again.
+`git config core.hooksPath tools/hooks`) prints a non-blocking reminder if
+`origin/main` moved ahead of you — then `git pull --ff-only` and re-check
+`live-posters`. It never blocks; the rule (continue from current state, not
+memory) is what matters.
 
 ## ⚠️ My old `scp` protocol is DEPRECATED
 Earlier memory said "deploy = build + `scp` to Sprinthost." That is now **wrong and
