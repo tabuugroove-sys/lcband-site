@@ -9,6 +9,10 @@ AGENT_NAME=claude tools/agent-gate.sh preflight
 ```
 …and `tools/agent-gate.sh release` after you push. No exceptions.
 
+A `pre-push` hook (`tools/hooks/pre-push`, enabled via
+`git config core.hooksPath tools/hooks`) will hard-block a push from a stale base.
+If it blocks you: `git pull --ff-only`, re-check `live-posters`, push again.
+
 ## ⚠️ My old `scp` protocol is DEPRECATED
 Earlier memory said "deploy = build + `scp` to Sprinthost." That is now **wrong and
 dangerous**: a push by any agent triggers GitHub Actions, which rebuilds from git
