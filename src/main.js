@@ -91,6 +91,7 @@
 	let currentVideoKey = null;
 	let currentVideoTitle = '';
 	let currentVideoPoster = '';
+	let currentVideoRail = null; // carousel the open video belongs to — arrows stay within it
 	let currentQuality = '1080';
 	let stallCount = 0;
 	let stallTimer = null;
@@ -263,7 +264,8 @@
 	}
 
 	function getVideoItems() {
-		const nodes = [...document.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play')];
+		const scope = currentVideoRail || document; // keep arrow-nav within the same carousel
+		const nodes = [...scope.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play')];
 		const seen = new Set();
 		return nodes.reduce((items, node) => {
 			const key = node.dataset.video;
@@ -359,6 +361,7 @@
 		currentVideoKey = null;
 		currentVideoTitle = '';
 		currentVideoPoster = '';
+		currentVideoRail = null;
 		stallCount = 0;
 	}
 
@@ -392,6 +395,7 @@
 			a.blur();
 			const title = a.querySelector('.vtile__title, .video-card__name')?.textContent?.trim() || a.getAttribute('aria-label') || 'Видео';
 			const poster = a.querySelector('img')?.src || a.closest('.page-hero')?.querySelector('.page-hero__media img')?.src || '';
+			currentVideoRail = a.closest('.video-rail, [data-video-carousel], .program-video-carousel') || null;
 			openVideo(a.dataset.video, title, poster);
 		});
 
