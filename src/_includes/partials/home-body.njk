@@ -200,7 +200,7 @@
 			{% for v in promos %}
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620d" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
@@ -216,7 +216,7 @@
 			{% for v in lives %}
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260620d" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
