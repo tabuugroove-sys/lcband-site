@@ -77,7 +77,10 @@ jobs:
             assets/video/mp4/live-adele-hello-720.mp4 \
             assets/video/mp4/live-adele-hello-1080.mp4 \
             assets/video/mp4/promo-cold-heart-720.mp4 \
-            assets/video/mp4/promo-cold-heart-1080.mp4
+            assets/video/mp4/promo-cold-heart-1080.mp4 \
+            assets/video/mp4/promo-danza-cuduro-720.mp4 \
+            assets/video/mp4/promo-danza-cuduro-1080.mp4 \
+            assets/video/mp4/promo-danza-cuduro-2160.mp4
           for remote_dir in \
             '~/domains/a1279060.xsph.ru/public_html' \
             '~/domains/luxuryband.ru/public_html'
