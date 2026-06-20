@@ -13,4 +13,8 @@ src/assets/.nanobanana-backup/
 # Dev tools (not for public)
 tools/*
 !tools/seo-audit.mjs
+!tools/agent-gate.sh
 output/
+
+# Multi-agent coordination lock (local only, never commit)
+.agent-lock
