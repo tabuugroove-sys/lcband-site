@@ -8,7 +8,9 @@ export default function (eleventyConfig) {
 
 	// Search-engine verification files — keep exact filename at site root
 	eleventyConfig.addPassthroughCopy("src/yandex_aee9a8b3d1cfc306.html");
+	eleventyConfig.addPassthroughCopy("src/google9d309273640d9fd4.html");
 	eleventyConfig.ignores.add("src/yandex_*.html");
+	eleventyConfig.ignores.add("src/google*.html");
 
 	// Watch these for dev rebuild
 	eleventyConfig.addWatchTarget("src/styles.css");
