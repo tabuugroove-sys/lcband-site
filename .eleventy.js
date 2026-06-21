@@ -6,6 +6,10 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy({ "src/assets/repertoire": "assets/repertoire" });
 
+	// Search-engine verification files — keep exact filename at site root
+	eleventyConfig.addPassthroughCopy("src/yandex_aee9a8b3d1cfc306.html");
+	eleventyConfig.ignores.add("src/yandex_*.html");
+
 	// Watch these for dev rebuild
 	eleventyConfig.addWatchTarget("src/styles.css");
 	eleventyConfig.addWatchTarget("src/main.js");
