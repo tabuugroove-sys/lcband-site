@@ -1,0 +1,36 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }} ({{ site.shortName }})
+
+> {{ site.description }}
+
+Премиум кавер-группа из Москвы. Живая музыка на свадьбы, корпоративы, юбилеи, частные и государственные мероприятия, ТВ-проекты и зарубежные туры. Состав {{ site.stats.lineup }} музыкантов, {{ site.stats.songs }} песен на {{ site.stats.languages }} языках, {{ site.stats.shows }} выступлений в {{ site.stats.countries }} странах. Сайт: {{ site.url }}
+
+## События и услуги
+{%- for e in events %}
+- [{{ e.title }}]({{ site.url }}/events/{{ e.slug }}/): {{ e.lead }}
+{%- endfor %}
+
+## О группе и репертуар
+- [О группе]({{ site.url }}/about/): опыт, вокалисты, география — стадионы, федеральное ТВ, топ-звёзды, первые лица.
+- [Репертуар]({{ site.url }}/repertoire/): {{ site.stats.songs }} песен на {{ site.stats.languages }} языках — Pop, Rock, Jazz, Soul, Funk, Latin и авторские ремиксы.
+- [Вокалисты]({{ site.url }}/vocalists/): состав вокалистов группы.
+- [Форматы работы]({{ site.url }}/formats/): home band, караоке-шоу, welcome, хор-коллаборация.
+- [Саксофонист]({{ site.url }}/sax/): живой саксофон на мероприятие.
+
+## Тематические программы
+{%- for p in programs %}
+- [{{ p.title }}]({{ site.url }}/programs/{{ p.slug }}/)
+{%- endfor %}
+
+## Контакт
+- Telegram: {{ site.telegram }}
+{%- if site.youtube %}
+- YouTube: {{ site.youtube }}
+{%- endif %}
+{%- if site.vk %}
+- ВКонтакте: {{ site.vk }}
+{%- endif %}
+- Город: {{ site.city }} · работаем по России и за рубежом.
