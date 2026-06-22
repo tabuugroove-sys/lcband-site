@@ -88,10 +88,10 @@ eleventyComputed:
 		<div class="stats">
 			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">выступлений</div></div>
 			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">стран</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.tvShows }}</div><div class="stat__label">ТВ-проектов</div></div>
 			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">лет на сцене</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
 		</div>
-		<p class="trust-line">Стадионы и залы на 2000–5000 человек, эфиры на федеральных каналах (включая Первый), совместные номера с топ-звёздами — этот опыт работает на вашем событии.</p>
+		{% if event.trustLine %}<p class="trust-line">{{ event.trustLine }}</p>{% endif %}
 	</div>
 </section>
 
