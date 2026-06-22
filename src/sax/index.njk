@@ -10,7 +10,8 @@ permalink: /sax/
 {% block head %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap"></noscript>
 {% endblock %}
 
 {% set repertoire = [
@@ -95,7 +96,7 @@ permalink: /sax/
 				<h2 class="sx-h2">Один артист — два настроения вечера.</h2>
 			</div>
 			<figure class="sx-band__photo">
-				<img src="{{ '/assets/photos/sax-band-show-dj-knobs-original-faces.jpg' | url }}" alt="Саксофонист Luxury Cover Band выступает на сцене вместе с вокалистами группы" loading="lazy">
+				<img src="{{ '/assets/photos/sax-band-show-dj-knobs-original-faces.jpg' | url }}" alt="Саксофонист Luxury Cover Band выступает на сцене вместе с вокалистами группы" width="1920" height="1280" loading="lazy">
 			</figure>
 			<div class="sx-band__body">
 				<p>Пока гости собираются, саксофон звучит на welcome: первые бокалы, фотографии, лёгкий джаз и ощущение, что праздник уже начался. При заказе Luxury Cover Band такой выход до 30 минут можно поставить бонусом.</p>
@@ -144,11 +145,11 @@ permalink: /sax/
 			</div>
 			<div class="sx-gallery">
 				<figure class="sx-figure">
-					<img src="{{ '/assets/photos/sax-day.jpg' | url }}" alt="Саксофонист Luxury Cover Band на выездной регистрации у воды в Москве" loading="lazy">
+					<img src="{{ '/assets/photos/sax-day.jpg' | url }}" alt="Саксофонист Luxury Cover Band на выездной регистрации у воды в Москве" width="954" height="1649" loading="lazy">
 					<figcaption>День · у воды</figcaption>
 				</figure>
 				<figure class="sx-figure">
-					<img src="{{ '/assets/photos/sax-night.jpg' | url }}" alt="Саксофонист Luxury Cover Band на вечернем мероприятии, black tie" loading="lazy">
+					<img src="{{ '/assets/photos/sax-night.jpg' | url }}" alt="Саксофонист Luxury Cover Band на вечернем мероприятии, black tie" width="1040" height="1752" loading="lazy">
 					<figcaption>Вечер · Black Tie</figcaption>
 				</figure>
 			</div>
