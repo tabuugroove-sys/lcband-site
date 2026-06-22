@@ -32,6 +32,17 @@ eleventyComputed:
 			"areaServed": ["Москва", "Россия", "Международные туры"],
 			"url": "{{ site.url }}{{ page.url }}"
 		}
+		{% if event.faq %},
+		{
+			"@type": "FAQPage",
+			"@id": "{{ site.url }}{{ page.url }}#faq",
+			"mainEntity": [
+				{%- for item in event.faq %}
+				{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+				{%- endfor %}
+			]
+		}
+		{% endif %}
 		{% if event.featuredVideo %},
 		{
 			"@type": "VideoObject",
@@ -133,6 +144,23 @@ eleventyComputed:
 			</li>
 			{% endfor %}
 		</ul>
+	</div>
+</section>
+{% endif %}
+
+{% if event.faq %}
+<section class="section section--light" id="faq">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Вопросы</p>
+		<h2 class="section__title">Частые<br><span class="muted">вопросы.</span></h2>
+		<div class="faq">
+			{% for item in event.faq %}
+			<details class="faq__item"{% if loop.first %} open{% endif %}>
+				<summary class="faq__q">{{ item.q }}</summary>
+				<div class="faq__a"><p>{{ item.a }}</p></div>
+			</details>
+			{% endfor %}
+		</div>
 	</div>
 </section>
 {% endif %}

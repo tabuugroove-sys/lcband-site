@@ -3254,3 +3254,20 @@ a.stat--link:hover { opacity: 0.7; }
 	.sax-hero__media { max-width: 380px; margin: 0 auto; }
 	.sax-scenarios { grid-template-columns: 1fr; }
 }
+
+/* FAQ accordion (event pages) */
+.faq { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,.12); }
+.faq__item { border-bottom: 1px solid rgba(0,0,0,.12); }
+.faq__q {
+	cursor: pointer; list-style: none; display: block;
+	padding: 1.15rem 2.4rem 1.15rem 0;
+	font-weight: 600; font-size: 1.05rem; line-height: 1.4; position: relative;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after {
+	content: "+"; position: absolute; right: .3rem; top: 1rem;
+	font-size: 1.6rem; font-weight: 400; line-height: 1; opacity: .55; transition: transform .2s ease;
+}
+.faq__item[open] .faq__q::after { content: "−"; }
+.faq__a { padding: 0 0 1.3rem; max-width: 62ch; }
+.faq__a p { margin: 0; opacity: .8; line-height: 1.65; }
