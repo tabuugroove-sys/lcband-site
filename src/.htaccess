@@ -1,19 +1,17 @@
 # luxuryband.ru — канонизация хоста и устранение дублей (SEO)
 # Управляется из git (src/.htaccess → passthrough → public_html). Не править на сервере вручную.
+# ВАЖНО: http→https НЕ трогаем — это делает сам хостинг. Своё правило https зациклило сайт
+# (на этом хостинге %{HTTPS} != on за прокси). Поэтому ниже только www, index.html и старый ассет.
 
 RewriteEngine On
 
-# 1) www → без www, сразу на https (один 301, без http-хопа)
+# 1) старый сырой ассет репертуара → нормальная страница (должно идти ДО правила index.html)
+RewriteRule ^assets/repertoire/index\.html$ /repertoire/ [L,R=301]
+
+# 2) www → без www (целимся сразу в https — хостинг гарантирует https)
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
-# 2) http → https (для не-www запросов)
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# 3) /index.html → /  (корень и любые подпапки) — убирает дубль главной и вложенных
+# 3) /index.html → /  (корень и подпапки) — убирает дубль главной и вложенных
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
-RewriteRule ^ /%1 [L,R=301]
-
-# 4) сырой ассет старого репертуара → нормальная страница /repertoire/
-RewriteRule ^assets/repertoire/index\.html$ /repertoire/ [L,R=301]
+RewriteRule ^(([^/]+/)*)index\.html$ /%1 [L,R=301]
