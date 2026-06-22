@@ -157,7 +157,7 @@ eleventyComputed:
 			{% for item in event.faq %}
 			<details class="faq__item"{% if loop.first %} open{% endif %}>
 				<summary class="faq__q">{{ item.q }}</summary>
-				<div class="faq__a"><p>{{ item.a }}</p></div>
+				<div class="faq__a"><p>{% if item.aHtml %}{{ item.aHtml | safe }}{% else %}{{ item.a }}{% endif %}</p></div>
 			</details>
 			{% endfor %}
 		</div>
