@@ -3272,6 +3272,9 @@ a.stat--link:hover { opacity: 0.7; }
 .faq__a { padding: 0 0 1.3rem; max-width: 62ch; }
 .faq__a p { margin: 0; opacity: .8; line-height: 1.65; }
 
+/* About credentials paragraphs (homepage) */
+.about-split__text { margin: 1rem 0 0; opacity: .82; line-height: 1.7; max-width: 56ch; }
+
 /* Related internal links (event pages) */
 .related-links { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem .7rem; padding: 0; margin: 1.4rem 0 0; }
 .related-links a {
