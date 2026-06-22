@@ -3275,6 +3275,9 @@ a.stat--link:hover { opacity: 0.7; }
 /* About credentials paragraphs (homepage) */
 .about-split__text { margin: 1rem 0 0; opacity: .82; line-height: 1.7; max-width: 56ch; }
 
+/* Trust line under stats (event pages) */
+.trust-line { margin: 1.6rem auto 0; max-width: 68ch; text-align: center; opacity: .72; line-height: 1.6; }
+
 /* Related internal links (event pages) */
 .related-links { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem .7rem; padding: 0; margin: 1.4rem 0 0; }
 .related-links a {
