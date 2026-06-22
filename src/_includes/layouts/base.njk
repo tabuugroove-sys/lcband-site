@@ -44,7 +44,12 @@
 				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"url": "{{ site.url }}",
-				"sameAs": ["{{ site.telegram }}"],
+				"sameAs": [
+					"{{ site.telegram }}"
+					{% if site.youtube %}, "{{ site.youtube }}"{% endif %}
+					{% if site.vk %}, "{{ site.vk }}"{% endif %}
+					{% if site.instagram %}, "{{ site.instagram }}"{% endif %}
+				],
 				"areaServed": ["Москва", "Россия", "Международные туры"]
 			},
 			{
@@ -61,7 +66,12 @@
 				},
 				"areaServed": ["Москва", "Московская область", "Россия", "Международные туры"],
 				"priceRange": "$$",
-				"sameAs": ["{{ site.telegram }}"]
+				"sameAs": [
+					"{{ site.telegram }}"
+					{% if site.youtube %}, "{{ site.youtube }}"{% endif %}
+					{% if site.vk %}, "{{ site.vk }}"{% endif %}
+					{% if site.instagram %}, "{{ site.instagram }}"{% endif %}
+				]
 			},
 			{
 				"@type": "WebSite",

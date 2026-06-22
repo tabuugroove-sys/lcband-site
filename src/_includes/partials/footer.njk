@@ -36,9 +36,13 @@
 			<div class="footer__col">
 				<h4 class="footer__col-title">Связаться</h4>
 				<ul>
-					<li><a href="{{ site.telegram }}">Написать в Телеграм</a></li>
-					<li><a href="{{ site.telegram }}">Написать в Телеграм</a></li>
-					<li><a href="{{ '/#riders' | url }}">Райдеры</a></li>
+					<li><a href="{{ site.telegram }}">Телеграм</a></li>
+					{% if site.youtube %}<li><a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a></li>{% endif %}
+					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">ВКонтакте</a></li>{% endif %}
+					{% if site.instagram %}<li><a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
+					<li><a href="{{ '/about/' | url }}">О группе</a></li>
+					<li><a href="{{ '/repertoire/' | url }}">Репертуар</a></li>
+					<li><a href="{{ '/riders/' | url }}">Райдеры</a></li>
 				</ul>
 			</div>
 		</div>
