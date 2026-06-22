@@ -4,6 +4,7 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/styles.css");
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
+	eleventyConfig.addPassthroughCopy("src/.htaccess");
 	eleventyConfig.addPassthroughCopy({ "src/assets/repertoire": "assets/repertoire" });
 
 	// Search-engine verification files — keep exact filename at site root

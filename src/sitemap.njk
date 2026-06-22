@@ -16,6 +16,8 @@ eleventyExcludeFromCollections: true
 	<url><loc>{{ site.url }}/artists/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/formats/</loc><priority>0.8</priority></url>
 	<url><loc>{{ site.url }}/events/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/repertoire/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/sax/</loc><priority>0.7</priority></url>
 	{% for p in programs %}
 	<url><loc>{{ site.url }}/programs/{{ p.slug }}/</loc><priority>0.7</priority></url>
 	{% endfor %}
@@ -28,5 +30,4 @@ eleventyExcludeFromCollections: true
 	{% for e in events %}
 	<url><loc>{{ site.url }}/events/{{ e.slug }}/</loc><priority>0.7</priority></url>
 	{% endfor %}
-	<url><loc>{{ site.url }}/assets/repertoire/index.html</loc><priority>0.6</priority></url>
 </urlset>
