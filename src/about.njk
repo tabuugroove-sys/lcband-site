@@ -1,0 +1,85 @@
+---
+layout: layouts/base.njk
+title: О группе — Luxury Cover Band
+description: "Luxury Cover Band — 15–20 лет на сцене, 2000+ выступлений в 40 странах: стадионы, федеральные ТВ, первые лица государства, топ-звёзды. Свои лейблы и авторская музыка."
+keywords: "о группе luxury cover band, опыт кавер группы, международная кавер группа, выступления на стадионах, кавер группа на тв"
+permalink: /about/
+---
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+				{ "@type": "ListItem", "position": 2, "name": "О группе", "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
+	]
+}
+</script>
+{% endblock %}
+
+<section class="page-hero">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>О группе</span>
+		</p>
+		<p class="page-hero__eyebrow">О группе</p>
+		<h1 class="page-hero__title">Сцена мирового уровня.</h1>
+		<p class="page-hero__lead">15–20 лет на сцене, 2000+ выступлений в 40 странах — и этот опыт работает на вашем событии.</p>
+	</div>
+</section>
+
+<section class="section section--flush">
+	<div class="container reveal">
+		<div class="stats">
+			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">выступлений</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">стран</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">лет на сцене</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.tvShows }}</div><div class="stat__label">ТВ-проектов</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">языков</div></div>
+			<a class="stat stat--link" href="{{ '/costumes/' | url }}"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">сценических образов</div></a>
+			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">музыкантов на сцене</div></div>
+		</div>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Опыт</p>
+		<h2 class="section__title">Большие сцены<br><span class="muted">и большие события.</span></h2>
+		<p class="about-split__text">Музыканты группы — 15–20 лет на сцене: концерты на стадионах и в залах на 2000–5000 человек, регулярные эфиры на федеральных каналах (включая Первый), совместные номера с топ-звёздами эстрады.</p>
+	</div>
+</section>
+
+<section class="section">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Вокалисты</p>
+		<h2 class="section__title">Свои треки<br><span class="muted">и громкие коллаборации.</span></h2>
+		<p class="about-split__text">Вокалисты ведут собственные лейблы, выпускают авторскую музыку на стриминговых площадках, записали 5 совместных треков (фитов) со звёздами и сотрудничают с российскими и мировыми артистами.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">География и события</p>
+		<h2 class="section__title">40 стран<br><span class="muted">и сцены любого уровня.</span></h2>
+		<p class="about-split__text">Более 2000 выступлений в 40 странах: 3 раза — для первых лиц государства, регулярно — на приёмах высокого уровня (в том числе формата BRICS) с известными политиками и звёздами, для министров и глав крупнейших корпораций (среди них Яндекс, Газпром, Сбербанк), а также на свадьбах и корпоративах.</p>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">Соберём программу под ваше событие.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
+			<a class="btn btn--ghost-light" href="{{ '/events/' | url }}">Все события</a>
+		</div>
+	</div>
+</section>

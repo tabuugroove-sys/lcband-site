@@ -162,7 +162,7 @@ permalink: /sax/
 			<h2 class="section__title">Частые<br><span class="muted">вопросы.</span></h2>
 			<div class="faq">
 				{% for item in saxFaq %}
-				<details class="faq__item"{% if loop.first %} open{% endif %}>
+				<details class="faq__item">
 					<summary class="faq__q">{{ item.q }}</summary>
 					<div class="faq__a"><p>{{ item.a | replace("Телеграм", '<a href="' + site.telegram + '">Телеграм</a>') | safe }}</p></div>
 				</details>

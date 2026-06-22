@@ -176,7 +176,7 @@ eleventyComputed:
 		<h2 class="section__title">Частые<br><span class="muted">вопросы.</span></h2>
 		<div class="faq">
 			{% for item in event.faq %}
-			<details class="faq__item"{% if loop.first %} open{% endif %}>
+			<details class="faq__item">
 				<summary class="faq__q">{{ item.q }}</summary>
 				<div class="faq__a"><p>{% set _ans = item.aHtml if item.aHtml else item.a %}{{ _ans | replace("Телеграм", '<a href="' + site.telegram + '">Телеграм</a>') | safe }}</p></div>
 			</details>
