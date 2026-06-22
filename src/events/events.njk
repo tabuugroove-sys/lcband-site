@@ -41,6 +41,17 @@ eleventyComputed:
 				{ "@type": "ListItem", "position": 3, "name": {{ event.title | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
 			]
 		}
+		{% set _img0 = event.blocks[0].image %}{% if _img0 %},
+		{
+			"@type": "ImageObject",
+			"@id": "{{ site.url }}{{ page.url }}#primaryimage",
+			"url": "{{ site.url }}/assets/photos/{{ _img0 }}",
+			"contentUrl": "{{ site.url }}/assets/photos/{{ _img0 }}",
+			"caption": {{ (event.blocks[0].imageAlt or (event.title + " — Luxury Cover Band")) | dump | safe }},
+			"representativeOfPage": true,
+			"creator": { "@id": "{{ site.url }}/#musicgroup" }
+		}
+		{% endif %}
 		{% if event.faq %},
 		{
 			"@type": "FAQPage",

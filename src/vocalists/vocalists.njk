@@ -65,7 +65,7 @@ eleventyComputed:
 				{% if v.slug != vocalist.slug %}
 				<li class="voc">
 					<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}">
-						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }}" loading="lazy"></div>
+						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — вокалист Luxury Cover Band" loading="lazy"></div>
 						<h3 class="voc__name">{{ v.name }}</h3>
 						<p class="voc__role">{{ v.role }}</p>
 						<p class="voc__bio">{{ v.tagline }}</p>
