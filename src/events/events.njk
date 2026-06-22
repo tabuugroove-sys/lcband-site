@@ -32,6 +32,15 @@ eleventyComputed:
 			"areaServed": ["Москва", "Россия", "Международные туры"],
 			"url": "{{ site.url }}{{ page.url }}"
 		}
+		,
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+				{ "@type": "ListItem", "position": 2, "name": "События", "item": "{{ site.url }}/events/" },
+				{ "@type": "ListItem", "position": 3, "name": {{ event.title | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
 		{% if event.faq %},
 		{
 			"@type": "FAQPage",
@@ -164,6 +173,19 @@ eleventyComputed:
 	</div>
 </section>
 {% endif %}
+
+<section class="section section--flush">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Ещё у нас</p>
+		<ul class="related-links">
+			<li><a href="{{ '/programs/' | url }}">Тематические программы</a></li>
+			<li><a href="{{ '/repertoire/' | url }}">Репертуар — 500+ песен</a></li>
+			<li><a href="{{ '/vocalists/' | url }}">Вокалисты</a></li>
+			<li><a href="{{ '/formats/' | url }}">Форматы работы</a></li>
+			<li><a href="{{ '/sax/' | url }}">Саксофонист</a></li>
+		</ul>
+	</div>
+</section>
 
 <section class="section section--book">
 	<div class="container container--narrow reveal">

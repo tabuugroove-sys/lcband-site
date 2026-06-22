@@ -32,6 +32,14 @@ permalink: /sax/
 	] }
 ] %}
 
+{% set saxFaq = [
+	{ q: "Саксофонист отдельно или вместе с группой?", a: "И так, и так. Саксофонист работает соло — welcome, церемония, ужин, сет с DJ — или в составе Luxury Cover Band." },
+	{ q: "Где уместен живой саксофон?", a: "Welcome и рассадка, выездная церемония, ужин, первый танец, танцпол с DJ. Джаз, босса-нова, поп, соул, латина." },
+	{ q: "Сыграете вместе с DJ?", a: "Да, формат sax + DJ: живой саксофон поверх диджей-сета на танцполе." },
+	{ q: "Какой репертуар у саксофониста?", a: "Джаз и босса-нова, поп и соул, итальянское и латина — от Bésame Mucho и Fly Me To The Moon до Cold Heart и Havana." },
+	{ q: "Как заказать саксофониста?", a: "Напишите в Телеграм дату, место и формат — подберём программу и пришлём условия." }
+] %}
+
 <div class="sx">
 
 	<section class="sx-hero">
@@ -146,6 +154,45 @@ permalink: /sax/
 			</div>
 		</div>
 	</section>
+
+	<section class="section section--light" id="faq">
+		<div class="container container--narrow">
+			<p class="section__eyebrow">Вопросы</p>
+			<h2 class="section__title">Частые<br><span class="muted">вопросы.</span></h2>
+			<div class="faq">
+				{% for item in saxFaq %}
+				<details class="faq__item"{% if loop.first %} open{% endif %}>
+					<summary class="faq__q">{{ item.q }}</summary>
+					<div class="faq__a"><p>{{ item.a | replace("Телеграм", '<a href="' + site.telegram + '">Телеграм</a>') | safe }}</p></div>
+				</details>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+					{ "@type": "ListItem", "position": 2, "name": "Саксофонист", "item": "{{ site.url }}{{ page.url }}" }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"@id": "{{ site.url }}{{ page.url }}#faq",
+				"mainEntity": [
+					{%- for item in saxFaq %}
+					{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+					{%- endfor %}
+				]
+			}
+		]
+	}
+	</script>
 
 	<section class="sx-book" id="sx-book">
 		<div class="sx-book__inner">

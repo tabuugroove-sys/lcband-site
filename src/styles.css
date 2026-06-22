@@ -3271,3 +3271,11 @@ a.stat--link:hover { opacity: 0.7; }
 .faq__item[open] .faq__q::after { content: "−"; }
 .faq__a { padding: 0 0 1.3rem; max-width: 62ch; }
 .faq__a p { margin: 0; opacity: .8; line-height: 1.65; }
+
+/* Related internal links (event pages) */
+.related-links { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem .7rem; padding: 0; margin: 1.4rem 0 0; }
+.related-links a {
+	display: inline-block; padding: .55rem 1.1rem; border: 1px solid rgba(0,0,0,.16); border-radius: 999px;
+	font-size: .95rem; text-decoration: none; color: inherit; transition: background .15s ease, border-color .15s ease;
+}
+.related-links a:hover { background: rgba(0,0,0,.05); border-color: rgba(0,0,0,.4); }
