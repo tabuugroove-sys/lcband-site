@@ -2894,14 +2894,30 @@ a.stat--link:hover { opacity: 0.7; }
 .spanish-promo__bars span {
 	width: 15%;
 	border-radius: 999px 999px 0 0;
-	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255, 64, 138, 0.72));
+	background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255, 64, 138, 0.72));
+	box-shadow: 0 0 28px rgba(255,255,255,0.08);
 }
 
-.spanish-promo__bars span:nth-child(1) { height: 46%; }
-.spanish-promo__bars span:nth-child(2) { height: 62%; }
-.spanish-promo__bars span:nth-child(3) { height: 86%; }
-.spanish-promo__bars span:nth-child(4) { height: 72%; }
-.spanish-promo__bars span:nth-child(5) { height: 56%; }
+.spanish-promo__bars span:nth-child(1) {
+	height: 46%;
+	background: linear-gradient(180deg, rgba(35, 77, 255, 0.10), rgba(29, 94, 255, 0.34) 28%, rgba(255, 44, 137, 0.58) 100%);
+}
+.spanish-promo__bars span:nth-child(2) {
+	height: 62%;
+	background: linear-gradient(180deg, rgba(82, 32, 255, 0.12), rgba(213, 48, 255, 0.44) 35%, rgba(255, 70, 116, 0.72) 100%);
+}
+.spanish-promo__bars span:nth-child(3) {
+	height: 86%;
+	background: linear-gradient(180deg, rgba(255, 56, 190, 0.14), rgba(255, 49, 88, 0.56) 46%, rgba(255, 139, 54, 0.78) 100%);
+}
+.spanish-promo__bars span:nth-child(4) {
+	height: 72%;
+	background: linear-gradient(180deg, rgba(0, 130, 255, 0.12), rgba(255, 43, 117, 0.42) 42%, rgba(255, 83, 92, 0.72) 100%);
+}
+.spanish-promo__bars span:nth-child(5) {
+	height: 56%;
+	background: linear-gradient(180deg, rgba(18, 207, 120, 0.13), rgba(52, 91, 255, 0.30) 36%, rgba(255, 53, 116, 0.58) 100%);
+}
 
 .spanish-promo__card-title {
 	position: relative;
