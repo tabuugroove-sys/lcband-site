@@ -103,7 +103,7 @@ eleventyComputed:
 		{% for item in program.videos %}
 		<li class="vtile vtile--big">
 			<a class="vtile__link" href="#" data-video="{{ item.slug }}">
-				<img class="vtile__poster" src="{{ ('/' + item.poster) | url }}" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
+				<img class="vtile__poster" src="{{ ('/' + item.poster) | url }}?v=20260623a" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
 				<span class="vtile__play" aria-hidden="true"></span>
 				<div class="vtile__caption">
 					<span class="vtile__eyebrow">{{ item.label }}</span>
