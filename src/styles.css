@@ -1302,6 +1302,11 @@ h1, h2, h3, p { margin: 0; }
 	background: #f5f5f7;
 	padding: 6px 0;
 }
+.video-rail--program {
+	background: transparent;
+	padding-top: 8px;
+	padding-bottom: 24px;
+}
 .video-rail + .video-rail { padding-top: 0; }
 .video-rail__track {
 	display: flex;
@@ -2172,6 +2177,10 @@ a.stat--link:hover { opacity: 0.7; }
 
 .program-video-carousel {
 	padding-bottom: 56px;
+}
+
+.program-video-carousel .video-rail--program {
+	margin-top: 18px;
 }
 
 .program-video-carousel--index {
