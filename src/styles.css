@@ -2943,13 +2943,13 @@ a.stat--link:hover { opacity: 0.7; }
 }
 
 .spanish-promo__orb--one {
-	left: 2%;
-	top: 46%;
+	left: 0;
+	top: 56%;
 }
 
 .spanish-promo__orb--two {
-	right: 6%;
-	top: 3%;
+	right: 1%;
+	top: -1%;
 }
 
 .spanish-promo__orb--three {
@@ -3045,11 +3045,11 @@ a.stat--link:hover { opacity: 0.7; }
 	}
 	.spanish-promo__orb--one {
 		left: -4%;
-		top: 52%;
+		top: 60%;
 	}
 	.spanish-promo__orb--two {
-		right: -1%;
-		top: 2%;
+		right: -5%;
+		top: -2%;
 	}
 	.spanish-promo__orb--three {
 		right: -3%;
