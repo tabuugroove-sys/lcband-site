@@ -51,18 +51,41 @@ eleventyComputed:
 </script>
 {% endblock %}
 
-<section class="page-hero">
+<section class="page-hero{% if program.slug == 'spanish' %} page-hero--spanish-promo{% endif %}">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">
 			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
 			<a href="{{ '/programs/' | url }}">Тематические программы</a> <span>·</span>
 			<span>{{ program.label }}</span>
 		</p>
-		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
-		<h1 class="page-hero__title">{{ program.headline }}</h1>
-		<p class="page-hero__lead">{{ program.lead }}</p>
+		{% if program.slug != 'spanish' %}
+			<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
+			<h1 class="page-hero__title">{{ program.headline }}</h1>
+			<p class="page-hero__lead">{{ program.lead }}</p>
+		{% endif %}
 	</div>
-	{% if program.poster %}
+	{% if program.slug == 'spanish' %}
+	<div class="spanish-promo">
+		<div class="spanish-promo__visual" aria-hidden="true">
+			<div class="spanish-promo__card">
+				<img class="spanish-promo__lights" src="{{ '/assets/photos/spanish-hero/lights-bokeh.jpg' | url }}" alt="" loading="eager">
+				<div class="spanish-promo__bars">
+					<span></span><span></span><span></span><span></span><span></span>
+				</div>
+				<p class="spanish-promo__card-title">Macarena<br>Despacito<br>Bailando</p>
+				<p class="spanish-promo__card-copy">{{ program.lead }}</p>
+			</div>
+			<img class="spanish-promo__orb spanish-promo__orb--one" src="{{ '/assets/photos/spanish-hero/teddy-stage.jpg' | url }}" alt="" loading="eager">
+			<img class="spanish-promo__orb spanish-promo__orb--two" src="{{ '/assets/photos/spanish-hero/teddy-white.jpg' | url }}" alt="" loading="eager">
+			<img class="spanish-promo__orb spanish-promo__orb--three" src="{{ '/assets/photos/spanish-hero/latin-duo.jpg' | url }}" alt="" loading="eager">
+		</div>
+		<div class="spanish-promo__copy">
+			<p class="spanish-promo__eyebrow">{{ program.eyebrow }}</p>
+			<h1 class="spanish-promo__title">{{ program.headline }}</h1>
+			<p class="spanish-promo__lead">{{ program.lead }}</p>
+		</div>
+	</div>
+	{% elif program.poster %}
 	<div class="page-hero__media">
 		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
 		{% if program.video %}
