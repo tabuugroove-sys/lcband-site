@@ -90,10 +90,28 @@
 		"video": "teddy-macarena",
 		"videos": [
 			{
-				"slug": "teddy-macarena",
-				"title": "Teddy · Macarena",
-				"label": "España",
+				"slug": "luxury-latin-dance-master-class",
+				"title": "Teddy · Танцевальный мастер-класс",
+				"label": "Latino",
+				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
+			},
+			{
+				"slug": "latin-music-luxury-cover-band",
+				"title": "Latin music Luxury Cover Band",
+				"label": "Latino",
+				"poster": "assets/video/posters/promo-loca-loca.jpg"
+			},
+			{
+				"slug": "teddy-latina-promo",
+				"title": "Видео Тедди · ЛАТИНА",
+				"label": "Latino",
 				"poster": "assets/video/posters/teddy-macarena.jpg"
+			},
+			{
+				"slug": "teddy-jzhet",
+				"title": "Видео Тедди жжет",
+				"label": "Latino",
+				"poster": "assets/video/posters/promo-loca-loca.jpg"
 			}
 		],
 		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"
