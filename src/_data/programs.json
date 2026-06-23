@@ -90,28 +90,22 @@
 		"video": "teddy-macarena",
 		"videos": [
 			{
-				"slug": "luxury-latin-dance-master-class",
-				"title": "Teddy · Танцевальный мастер-класс",
-				"label": "Latino",
-				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
-			},
-			{
 				"slug": "latin-music-luxury-cover-band",
 				"title": "Latin music Luxury Cover Band",
 				"label": "Latino",
 				"poster": "assets/video/posters/latin-music-luxury-cover-band.jpg"
 			},
 			{
-				"slug": "teddy-latina-promo",
-				"title": "Видео Тедди · ЛАТИНА",
-				"label": "Latino",
-				"poster": "assets/video/posters/teddy-macarena.jpg"
+				"slug": "live-baskov-revva",
+				"title": "Басков + Ревва + Укупник",
+				"label": "Лайв",
+				"poster": "assets/video/posters/live-baskov-revva.jpg"
 			},
 			{
-				"slug": "teddy-jzhet",
-				"title": "Видео Тедди жжет",
+				"slug": "luxury-latin-dance-master-class",
+				"title": "Teddy · Танцевальный мастер-класс",
 				"label": "Latino",
-				"poster": "assets/video/posters/promo-loca-loca.jpg"
+				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
 			}
 		],
 		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"
