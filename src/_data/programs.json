@@ -94,48 +94,6 @@
 				"title": "Teddy · Macarena",
 				"label": "España",
 				"poster": "assets/video/posters/teddy-macarena.jpg"
-			},
-			{
-				"slug": "interact-macarena",
-				"title": "Macarena interactive",
-				"label": "Latino live",
-				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
-			},
-			{
-				"slug": "promo-loca-loca",
-				"title": "Loca Loca",
-				"label": "Latino pop",
-				"poster": "assets/video/posters/promo-loca-loca.jpg"
-			},
-			{
-				"slug": "live-lets-get-loud",
-				"title": "Let's Get Loud",
-				"label": "Fiesta",
-				"poster": "assets/video/posters/live-lets-get-loud.jpg"
-			},
-			{
-				"slug": "luxury-latin-dance-master-class",
-				"title": "Teddy · Танцевальный мастер-класс",
-				"label": "Latino",
-				"poster": "assets/video/posters/thematic-spanish-macarena.jpg"
-			},
-			{
-				"slug": "latin-music-luxury-cover-band",
-				"title": "Latin music Luxury Cover Band",
-				"label": "Latino",
-				"poster": "assets/video/posters/promo-loca-loca.jpg"
-			},
-			{
-				"slug": "teddy-latina-promo",
-				"title": "Видео Тедди · ЛАТИНА",
-				"label": "Latino",
-				"poster": "assets/video/posters/teddy-macarena.jpg"
-			},
-			{
-				"slug": "teddy-jzhet",
-				"title": "Видео Тедди жжет",
-				"label": "Latino",
-				"poster": "assets/video/posters/promo-loca-loca.jpg"
 			}
 		],
 		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"
