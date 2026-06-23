@@ -122,7 +122,7 @@ eleventyComputed:
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		<h2 class="section__title">Что входит<br><span class="muted">в программу.</span></h2>
+		<h2 class="section__title">Что входит<br><span class="muted{% if program.slug == 'spanish' %} muted--spanish-gradient{% endif %}">в программу.</span></h2>
 		<ul class="bullets">
 			{% for b in program.bullets %}
 			<li class="bullet">
