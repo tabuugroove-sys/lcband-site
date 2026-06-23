@@ -2873,35 +2873,14 @@ a.stat--link:hover { opacity: 0.7; }
 
 .spanish-promo__lights {
 	position: absolute;
-	inset: auto -20% 0 -10%;
-	width: 130%;
-	height: 62%;
+	inset: auto -22% -2% -8%;
+	width: 132%;
+	height: 68%;
 	object-fit: cover;
-	opacity: 0.5;
+	opacity: 0.64;
 	mix-blend-mode: screen;
-	filter: saturate(1.35) blur(1px);
+	filter: saturate(1.25) blur(0.4px);
 }
-
-.spanish-promo__bars {
-	position: absolute;
-	inset: 24% 7% 4% 25%;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	opacity: 0.5;
-}
-
-.spanish-promo__bars span {
-	width: 15%;
-	border-radius: 999px 999px 0 0;
-	background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255, 64, 138, 0.72));
-}
-
-.spanish-promo__bars span:nth-child(1) { height: 46%; }
-.spanish-promo__bars span:nth-child(2) { height: 62%; }
-.spanish-promo__bars span:nth-child(3) { height: 86%; }
-.spanish-promo__bars span:nth-child(4) { height: 72%; }
-.spanish-promo__bars span:nth-child(5) { height: 56%; }
 
 .spanish-promo__card-title {
 	position: relative;
