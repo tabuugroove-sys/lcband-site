@@ -2977,10 +2977,11 @@ a.stat--link:hover { opacity: 0.7; }
 .spanish-promo__title {
 	font-family: var(--ff-display);
 	font-size: clamp(56px, 7vw, 118px);
-	line-height: 0.98;
+	line-height: 1.06;
 	font-weight: 750;
 	letter-spacing: -0.055em;
-	margin: 0 0 26px;
+	margin: 0 0 30px;
+	padding-bottom: 0.08em;
 	background: linear-gradient(92deg, #e92f73 0%, #ff4b33 36%, #ffc642 64%, #15c86f 82%, #0b7cff 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
