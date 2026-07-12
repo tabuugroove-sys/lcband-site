@@ -25,8 +25,10 @@
 
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
-	{% if preloadImage %}<link rel="preload" as="image" href="{{ preloadImage | url }}">{% endif %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=26' | url }}">
+	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
+	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404 #}
+	{% if preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
+	<link rel="stylesheet" href="{{ '/styles.css?v=27' | url }}">
 
 	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
 
