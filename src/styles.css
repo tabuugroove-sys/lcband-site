@@ -444,6 +444,10 @@ h1, h2, h3, p { margin: 0; }
 	.nav__links {
 		position: fixed;
 		top: var(--nav-h); left: 0; right: 0;
+		/* height:100% from the desktop rule resolves against the header (it is
+		   the containing block because of its backdrop-filter), clipping the
+		   open menu to the 48px bar. Mobile panel must size from content. */
+		height: auto;
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0;
@@ -470,6 +474,17 @@ h1, h2, h3, p { margin: 0; }
 		width: 100%;
 		border-bottom: 1px solid rgba(255,255,255,0.08);
 		letter-spacing: -0.022em;
+		/* dark panel — the desktop rgba(0,0,0,.8) link color is invisible here */
+		color: rgba(255, 255, 255, 0.92);
+	}
+	.nav__links a:hover { color: #fff; }
+	/* The staggered fade-in is :hover-driven — on touch nothing ever sets
+	   opacity back to 1, so sub-items stay invisible. Show them statically. */
+	.nav__dropdown-list li,
+	.nav__dropdown-related li,
+	.nav__dropdown-label {
+		opacity: 1;
+		transform: none;
 	}
 	/* Dropdowns on mobile: unfold inline under parent, indented */
 	.nav__dropdown {
