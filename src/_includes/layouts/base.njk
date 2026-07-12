@@ -26,9 +26,15 @@
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
-	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404 #}
-	{% if preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=28' | url }}">
+	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404.
+	   preloadHeroMobileWebp: на мобильном hero отдаётся webp из <picture> —
+	   прелоадим его, а jpg прелоадим только на десктопе (без двойной загрузки) #}
+	{% if preloadHeroMobileWebp %}
+	<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}" media="(min-width: 735px)">
+	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
+		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
+	<link rel="stylesheet" href="{{ '/styles.css?v=29' | url }}">
 
 	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
 

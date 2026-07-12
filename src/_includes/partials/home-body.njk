@@ -1,10 +1,28 @@
 <!-- =============== HERO (4-COLOR SWITCHABLE LINEUP + INLINE VIDEO) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — красный образ на LED-стене" loading="eager" fetchpriority="high" data-hero-img="red">
-		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — чёрно-белый образ"  loading="eager" data-hero-img="bw">
-		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — золотой образ на сцене"       loading="eager" data-hero-img="gold">
-		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — белый образ на звёздном фоне"  loading="eager" data-hero-img="white">
+		{#- Мобильный получает webp 640-1280w вместо 2400px jpg; eager — только
+		    активный красный образ, остальные три lazy -#}
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — красный образ на LED-стене" loading="eager" fetchpriority="high" data-hero-img="red">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — чёрно-белый образ"  loading="lazy" data-hero-img="bw">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — золотой образ на сцене"       loading="lazy" data-hero-img="gold">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — белый образ на звёздном фоне"  loading="lazy" data-hero-img="white">
+		</picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>
@@ -67,7 +85,16 @@
 <!-- =============== VOCALISTS (hero only — cards moved to /vocalists/) =============== -->
 <section class="section section--light section--flush" id="vocalists">
 	<div class="hero-banner hero-banner--bleed{% if tilesVariant == 'v4' %} hero-banner--v4{% endif %} reveal">
-		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — четыре вокалиста, студийная съёмка" loading="lazy">
+		{#- Мобильный: отдельный квадратный кроп (вокалисты крупно), не сжатый
+		    широкий кадр. Десктоп: webp-варианты полного кадра. -#}
+		<picture class="hero-banner__pic">
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/photos/vocalists-mobile-640.webp' | url }} 640w, {{ '/assets/photos/vocalists-mobile-960.webp' | url }} 960w">
+			<source media="(max-width: 734px)" srcset="{{ '/assets/photos/vocalists-mobile.jpg' | url }}">
+			<source type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/photos/vocalists-1280.webp' | url }} 1280w, {{ '/assets/photos/vocalists-1920.webp' | url }} 1920w, {{ '/assets/photos/vocalists-2600.webp' | url }} 2600w">
+			<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — четыре вокалиста, студийная съёмка" loading="lazy">
+		</picture>
 		<div class="hero-banner__overlay">
 			<p class="section__eyebrow">Вокалисты</p>
 			<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
@@ -85,7 +112,11 @@
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed{% if tilesVariant == 'v4' %} tile-grid--v4{% endif %}">
 			<li class="tile tile--has-photo">
-				<img class="tile__img" src="{{ '/assets/photos/corporate.jpg?v=6' | url }}" alt="Корпоративы — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/corporate-768.webp' | url }} 768w, {{ '/assets/photos/corporate-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/corporate.jpg?v=6' | url }}" alt="Корпоративы — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Корпоративы</h3>
 					<p class="tile__sub">Живой бренд на большой сцене.</p>
@@ -96,7 +127,11 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--{{ weddingVariant | default('center') }}">
-				<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Свадьбы — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/wedding-768.webp' | url }} 768w, {{ '/assets/photos/wedding-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Свадьбы — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Свадьбы</h3>
 					<p class="tile__sub">Шоу под первый танец и банкет.</p>
@@ -107,7 +142,11 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
-				<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Дни рождения — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/birthday-768.webp' | url }} 768w, {{ '/assets/photos/birthday-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Дни рождения — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Дни рождения</h3>
 					<p class="tile__sub">Концерт, который помнят годами.</p>
@@ -118,7 +157,11 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
-				<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Клиентские мероприятия — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/clients-768.webp' | url }} 768w, {{ '/assets/photos/clients-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Клиентские мероприятия — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Клиентские мероприятия</h3>
 					<p class="tile__sub">Выставки, конкурсы, ужины.</p>
@@ -129,7 +172,11 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--smoky">
-				<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Тематические программы — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/themes-768.webp' | url }} 768w, {{ '/assets/photos/themes-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Тематические программы — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__smoke" aria-hidden="true">
 					<span style="--x: 45.9%; --y: 85.1%; --dx: 8px; --d: 0s; --dur: 3.2s;"></span>
 					<span style="--x: 48.8%; --y: 81.7%; --dx: -6px; --d: 1.1s; --dur: 3.8s;"></span>
@@ -145,7 +192,11 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
-				<img class="tile__img" src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Авторская музыка Luxury Cover Band — живое выступление на сцене, собственные треки в Apple Music и Spotify" loading="lazy" width="1920" height="1280" style="object-position: left center;">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/author-music-stage-768.webp' | url }} 768w, {{ '/assets/photos/author-music-stage-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Авторская музыка Luxury Cover Band — живое выступление на сцене, собственные треки в Apple Music и Spotify" loading="lazy" width="1920" height="1280" style="object-position: left center;">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Авторская музыка</h3>
 					<p class="tile__sub">Свои треки со звёздами и для бренда.</p>
@@ -202,7 +253,11 @@
 			{% for v in promos %}
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<picture class="vtile__pic">
+						<source media="(max-width: 734px)" type="image/webp" sizes="84vw"
+							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
@@ -218,7 +273,11 @@
 			{% for v in lives %}
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<picture class="vtile__pic">
+						<source media="(max-width: 734px)" type="image/webp" sizes="72vw"
+							srcset="{{ ('/assets/video/posters/' + v.slug + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + v.slug + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>

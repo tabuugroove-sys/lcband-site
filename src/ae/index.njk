@@ -4,16 +4,17 @@ title: Luxury Cover Band — international cover band · 500+ songs in 12 langua
 description: "Luxury Cover Band (LC Band) is a top international cover band. 500+ songs in 12 languages, stadium and TV experience. Weddings, corporate events, TV projects, tours. Lineup from 2 to 20 musicians, 20+ stage looks."
 keywords: "cover band Dubai, wedding band Dubai, corporate event band UAE, live music Dubai, Luxury Cover Band, LC Band"
 preloadImage: assets/hero/hero-red.jpg
+preloadHeroMobileWebp: true
 permalink: /ae/
 ---
 
 <!-- =============== HERO (EN) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — red look on LED wall" loading="eager" fetchpriority="high" data-hero-img="red">
-		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — black and white look"  loading="eager" data-hero-img="bw">
-		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — gold look on stage"  loading="eager" data-hero-img="gold">
-		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — white look on starry backdrop"  loading="eager" data-hero-img="white">
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — red look on LED wall" loading="eager" fetchpriority="high" data-hero-img="red"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — black and white look"  loading="lazy" data-hero-img="bw"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — gold look on stage"  loading="lazy" data-hero-img="gold"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — white look on starry backdrop"  loading="lazy" data-hero-img="white"></picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>

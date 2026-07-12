@@ -4,16 +4,17 @@ title: Luxury Cover Band — cover band internacional · 500+ músicas em 12 idi
 description: "Luxury Cover Band (LC Band) — cover band internacional de primeira linha. 500+ músicas em 12 idiomas, experiência em estádios e TV. Casamentos, eventos corporativos, projetos de TV, turnês. Formação de 2 a 20 pessoas, 20+ figurinos cênicos."
 keywords: "cover band, banda para casamento, banda para evento corporativo, música ao vivo, Luxury Cover Band, LC Band, cover band internacional"
 preloadImage: assets/hero/hero-red.jpg
+preloadHeroMobileWebp: true
 permalink: /br/
 ---
 
 <!-- =============== HERO (PT-BR) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — figurino vermelho em LED wall" loading="eager" fetchpriority="high" data-hero-img="red">
-		<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — figurino preto e branco"  loading="eager" data-hero-img="bw">
-		<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — figurino dourado no palco"  loading="eager" data-hero-img="gold">
-		<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — figurino branco em fundo estrelado"  loading="eager" data-hero-img="white">
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — figurino vermelho em LED wall" loading="eager" fetchpriority="high" data-hero-img="red"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — figurino preto e branco"  loading="lazy" data-hero-img="bw"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — figurino dourado no palco"  loading="lazy" data-hero-img="gold"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — figurino branco em fundo estrelado"  loading="lazy" data-hero-img="white"></picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>
