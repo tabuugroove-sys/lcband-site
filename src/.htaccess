@@ -15,3 +15,12 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 # 3) /index.html → /  (корень и подпапки) — убирает дубль главной и вложенных
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
 RewriteRule ^(([^/]+/)*)index\.html$ /%1 [L,R=301]
+
+# 4) CORS только для видеофайлов — чтобы их можно было fetch'ить с других origin
+#    (нужно для программной перезаливки на видеохостинги; на рендер сайта не влияет)
+<IfModule mod_headers.c>
+	<FilesMatch "\.(mp4|webm|mov|m4v)$">
+		Header set Access-Control-Allow-Origin "*"
+		Header set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+	</FilesMatch>
+</IfModule>
