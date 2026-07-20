@@ -8,6 +8,11 @@ RewriteEngine On
 # 1) старый сырой ассет репертуара → нормальная страница (должно идти ДО правила index.html)
 RewriteRule ^assets/repertoire/index\.html$ /repertoire/ [L,R=301]
 
+# 1a) страница цен: канон живёт в блоге (/blog/skolko-stoit-kaver-gruppa/).
+#     Ожидаемый по плану URL /faq/stoimost-kaver-gruppy/ → 301 на канон,
+#     чтобы не плодить дубль под запрос «сколько стоит кавер-группа».
+RewriteRule ^faq/stoimost-kaver-gruppy/?$ /blog/skolko-stoit-kaver-gruppa/ [L,R=301]
+
 # 2) www → без www (целимся сразу в https — хостинг гарантирует https)
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
