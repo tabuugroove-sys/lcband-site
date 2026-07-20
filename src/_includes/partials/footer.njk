@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="footer__nav">
 			<div class="footer__col">
-				<h4 class="footer__col-title">Тематические программы</h4>
+				<h3 class="footer__col-title">Тематические программы</h3>
 				<ul>
 					{% for p in programs %}
 						<li><a href="{{ ('/programs/' + p.slug + '/') | url }}">{{ p.title }}</a></li>
@@ -10,7 +10,7 @@
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h4 class="footer__col-title">Вокалисты</h4>
+				<h3 class="footer__col-title">Вокалисты</h3>
 				<ul>
 					{% for v in vocalists %}
 						<li><a href="{{ ('/vocalists/' + v.slug + '/') | url }}">{{ v.name }}</a></li>
@@ -18,7 +18,7 @@
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h4 class="footer__col-title">Форматы</h4>
+				<h3 class="footer__col-title">Форматы</h3>
 				<ul>
 					{% for f in formats %}
 						<li><a href="{{ ('/formats/' + f.slug + '/') | url }}">{{ f.title }}</a></li>
@@ -26,7 +26,7 @@
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h4 class="footer__col-title">События</h4>
+				<h3 class="footer__col-title">События</h3>
 				<ul>
 					{% for e in events %}
 						<li><a href="{{ ('/events/' + e.slug + '/') | url }}">{{ e.title }}</a></li>
@@ -34,7 +34,7 @@
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h4 class="footer__col-title">Связаться</h4>
+				<h3 class="footer__col-title">Связаться</h3>
 				<ul>
 					<li><a href="{{ site.telegram }}">Телеграм</a></li>
 					{% if site.youtube %}<li><a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a></li>{% endif %}
