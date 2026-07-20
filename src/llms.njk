@@ -25,6 +25,11 @@ eleventyExcludeFromCollections: true
 - [{{ p.title }}]({{ site.url }}/programs/{{ p.slug }}/)
 {%- endfor %}
 
+## Блог — разборы для клиентов
+{%- for post in collections.posts %}
+- [{{ post.data.h1 or post.data.title }}]({{ site.url }}{{ post.url }}): {{ post.data.lead }}
+{%- endfor %}
+
 ## Контакт
 - Telegram: {{ site.telegram }}
 {%- if site.youtube %}

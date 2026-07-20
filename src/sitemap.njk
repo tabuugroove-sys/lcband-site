@@ -30,4 +30,8 @@ eleventyExcludeFromCollections: true
 	{% for e in events %}
 	<url><loc>{{ site.url }}/events/{{ e.slug }}/</loc><priority>0.7</priority></url>
 	{% endfor %}
+	<url><loc>{{ site.url }}/blog/</loc><priority>0.6</priority></url>
+	{% for post in collections.posts %}
+	<url><loc>{{ site.url }}{{ post.url }}</loc><priority>0.6</priority></url>
+	{% endfor %}
 </urlset>

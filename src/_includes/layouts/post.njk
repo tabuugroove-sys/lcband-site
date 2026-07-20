@@ -1,0 +1,117 @@
+---
+layout: layouts/base.njk
+---
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+		{
+			"@type": "BlogPosting",
+			"@id": "{{ site.url }}{{ page.url }}#article",
+			"headline": {{ (h1 or title) | dump | safe }},
+			"description": {{ description | dump | safe }},
+			"inLanguage": "ru-RU",
+			"datePublished": "{{ page.date | date }}",
+			"dateModified": "{{ page.date | date }}",
+			"author": { "@id": "{{ site.url }}/#musicgroup" },
+			"publisher": { "@id": "{{ site.url }}/#musicgroup" },
+			"mainEntityOfPage": "{{ site.url }}{{ page.url }}"
+			{%- if heroImage %},
+			"image": "{{ site.url }}/assets/photos/{{ heroImage }}"
+			{%- endif %}
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+				{ "@type": "ListItem", "position": 2, "name": "Блог", "item": "{{ site.url }}/blog/" },
+				{ "@type": "ListItem", "position": 3, "name": {{ (h1 or title) | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
+		{%- if faq %},
+		{
+			"@type": "FAQPage",
+			"@id": "{{ site.url }}{{ page.url }}#faq",
+			"mainEntity": [
+				{%- for item in faq %}
+				{
+					"@type": "Question",
+					"name": {{ item.q | dump | safe }},
+					"acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} }
+				}{% if not loop.last %},{% endif %}
+				{%- endfor %}
+			]
+		}
+		{%- endif %}
+	]
+}
+</script>
+{% endblock %}
+
+<article class="post">
+	<header class="page-hero page-hero--list">
+		<div class="container container--narrow">
+			<p class="page-hero__breadcrumb">
+				<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+				<a href="{{ '/blog/' | url }}">Блог</a> <span>·</span>
+				<span>{{ eyebrow or 'Статья' }}</span>
+			</p>
+			<p class="page-hero__eyebrow">{{ eyebrow or 'Блог' }}</p>
+			<h1 class="page-hero__title">{{ h1 or title }}</h1>
+			{% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
+			<p class="post__meta">Обновлено {{ page.date | date }}</p>
+		</div>
+	</header>
+
+	<div class="section section--flush">
+		<div class="container container--narrow reveal">
+			<div class="prose">
+				{{ content | safe }}
+			</div>
+		</div>
+	</div>
+
+	{% if faq %}
+	<section class="section section--light" id="faq">
+		<div class="container container--narrow reveal">
+			<p class="section__eyebrow">Частые вопросы</p>
+			<h2 class="section__title">Коротко<br><span class="muted">по делу.</span></h2>
+			<div class="faq">
+				{% for item in faq %}
+				<details class="faq__item">
+					<summary class="faq__q">{{ item.q }}</summary>
+					<div class="faq__a"><p>{{ item.a | replace("Телеграм", '<a href="' + site.telegram + '">Телеграм</a>') | safe }}</p></div>
+				</details>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% endif %}
+
+	{% if related %}
+	<section class="section section--flush">
+		<div class="container container--narrow reveal">
+			<p class="section__eyebrow">Дальше по теме</p>
+			<ul class="post__related">
+				{% for r in related %}
+				<li><a href="{{ r.href | url }}"><span class="post__related-title">{{ r.title }}</span><span class="post__related-sub">{{ r.sub }}</span></a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+	{% endif %}
+
+	<section class="section section--book">
+		<div class="container container--narrow reveal">
+			<p class="section__eyebrow">Обсудим ваше событие</p>
+			<h2 class="section__title">Напишите — соберём программу и смету.</h2>
+			<p class="section__lead">Расскажите дату, площадку и формат. Пришлём состав, тайминг и цену под ваше событие в течение дня.</p>
+			<div class="book__cta">
+				<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
+				<a class="btn btn--ghost-dark" href="{{ '/events/' | url }}">Все события</a>
+			</div>
+		</div>
+	</section>
+</article>

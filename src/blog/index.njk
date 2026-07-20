@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+eleventyExcludeFromCollections: true
+title: "Блог о живой музыке на праздник — Luxury Cover Band"
+description: "Блог Luxury Cover Band: сколько стоит кавер-группа, живая музыка или диджей, как выбрать формат под праздник. Разборы без воды от действующего бенда."
+keywords: "блог кавер группа, как выбрать кавер группу, живая музыка на праздник, сколько стоит кавер группа"
+permalink: /blog/
+---
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+		{
+			"@type": "Blog",
+			"@id": "{{ site.url }}/blog/#blog",
+			"name": "Блог Luxury Cover Band",
+			"url": "{{ site.url }}/blog/",
+			"inLanguage": "ru-RU",
+			"publisher": { "@id": "{{ site.url }}/#musicgroup" }
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+				{ "@type": "ListItem", "position": 2, "name": "Блог", "item": "{{ site.url }}/blog/" }
+			]
+		}
+	]
+}
+</script>
+{% endblock %}
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Блог</span>
+		</p>
+		<p class="page-hero__eyebrow">Блог</p>
+		<h1 class="page-hero__title">О живой музыке<br><span class="muted">без воды.</span></h1>
+		<p class="page-hero__lead">Разборы от действующего бенда: сколько стоит живая музыка, как выбрать формат и на что смотреть при подборе группы на праздник.</p>
+	</div>
+</section>
+
+<section class="section section--flush">
+	<div class="container container--narrow reveal">
+		<ul class="blog-list">
+			{% for post in collections.posts | reverse %}
+			<li class="blog-card">
+				<a class="blog-card__link" href="{{ post.url | url }}">
+					{% if post.data.heroImage %}
+					<div class="blog-card__media">
+						<img src="{{ ('/assets/photos/' + post.data.heroImage) | url }}" alt="{{ post.data.h1 or post.data.title }} — Luxury Cover Band" loading="lazy">
+					</div>
+					{% endif %}
+					<div class="blog-card__body">
+						<span class="blog-card__eyebrow">{{ post.data.eyebrow or 'Статья' }}</span>
+						<span class="blog-card__title">{{ post.data.h1 or post.data.title }}</span>
+						<span class="blog-card__lead">{{ post.data.lead }}</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Готовы обсуждать?</p>
+		<h2 class="section__title">Напишите — соберём программу под ваше событие.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
+			<a class="btn btn--ghost-dark" href="{{ '/events/' | url }}">Все события</a>
+		</div>
+	</div>
+</section>
