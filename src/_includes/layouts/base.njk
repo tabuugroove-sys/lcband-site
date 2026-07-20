@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ htmlLang or 'ru' }}">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,7 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<meta property="og:type" content="website">
-	<meta property="og:locale" content="ru_RU">
+	<meta property="og:locale" content="{{ ogLocale or 'ru_RU' }}">
 	<meta property="og:title" content="{{ title or site.name }}">
 	<meta property="og:description" content="{{ description or site.tagline }}">
 	<meta property="og:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
@@ -23,6 +23,14 @@
 	<meta name="twitter:description" content="{{ description or site.tagline }}">
 	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 
+	{# hreflang: три языковые версии главной (RU — основная, /ae/ EN, /br/ PT).
+	   Только на этих трёх URL, чтобы RU/EN/PT не конфликтовали в выдаче #}
+	{% if page.url == '/' or page.url == '/ae/' or page.url == '/br/' %}
+	<link rel="alternate" hreflang="ru" href="{{ site.url }}/">
+	<link rel="alternate" hreflang="en" href="{{ site.url }}/ae/">
+	<link rel="alternate" hreflang="pt-BR" href="{{ site.url }}/br/">
+	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
+	{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,

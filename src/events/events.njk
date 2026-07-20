@@ -6,7 +6,7 @@ pagination:
 permalink: "/events/{{ event.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ event.title }} — кавер-группа в Москве · {{ site.shortName }}"
+  title: "{% if event.seoTitle %}{{ event.seoTitle }}{% else %}{{ event.title }} — кавер-группа в Москве · {{ site.shortName }}{% endif %}"
   description: "{{ event.lead }}"
   keywords: "{{ event.keywords }}"
 ---
