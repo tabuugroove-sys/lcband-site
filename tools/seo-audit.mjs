@@ -86,13 +86,20 @@ const pages = [];
 
 for (const file of htmlFiles) {
 	const rel = "/" + path.relative(SITE_DIR, file).replace(/\\/g, "/").replace(/index\.html$/, "");
+	// Search-engine verification files are service artifacts, not pages:
+	// they legitimately have no h1/canonical/meta and must not be audited.
+	if (/^\/(google[0-9a-f]+|yandex_[0-9a-f]+)\.html$/.test(rel)) continue;
 	if (rel.startsWith("/assets/repertoire/")) continue;
 	const html = fs.readFileSync(file, "utf8");
 	const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() || "";
 	const desc = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i)?.[1] || "";
 	const canonical = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']*)["']/i)?.[1] || "";
 	const h1s = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)].map(m => stripTags(m[1]));
-	const images = [...html.matchAll(/<img\b[^>]*>/gi)].map(m => ({ src: attr(m[0], "src"), alt: attr(m[0], "alt") }));
+	const images = [...html.matchAll(/<img\b[^>]*>/gi)].map(m => ({
+		src: attr(m[0], "src"),
+		alt: attr(m[0], "alt"),
+		hasAlt: /\salt\s*=/i.test(m[0]),
+	}));
 	const links = [...html.matchAll(/<a\b[^>]*>/gi)].map(m => attr(m[0], "href")).filter(Boolean);
 	const videos = [...html.matchAll(/data-video=["']([^"']+)["']/gi)].map(m => m[1]);
 	const jsonLd = parseJsonLd(html);
@@ -106,16 +113,27 @@ for (const file of htmlFiles) {
 	if (!jsonLd.count) issues.push({ level: "warn", page: rel, issue: "missing JSON-LD" });
 	for (const err of jsonLd.errors) issues.push({ level: "error", page: rel, issue: `invalid JSON-LD: ${err}` });
 	for (const img of images) {
-		if (!img.alt || img.alt.length < 8) issues.push({ level: "warn", page: rel, issue: `weak img alt: ${img.src}` });
+		// alt="" is valid HTML for decorative/tracking images (e.g. the Metrika
+		// pixel); only a MISSING attribute or a short non-empty value is a defect.
+		if (!img.hasAlt) issues.push({ level: "warn", page: rel, issue: `missing img alt: ${img.src}` });
+		else if (img.alt && img.alt.length < 8) issues.push({ level: "warn", page: rel, issue: `weak img alt: ${img.src}` });
 		if (!existsUrlTarget(img.src, file)) issues.push({ level: "error", page: rel, issue: `missing image: ${img.src}` });
 	}
 	for (const href of links) {
 		if (!existsUrlTarget(href, file)) issues.push({ level: "error", page: rel, issue: `broken internal link: ${href}` });
 	}
 	for (const slug of videos) {
+		// 720 is the baseline every player slug must have; higher qualities are
+		// optional — the player degrades gracefully and hides unavailable ones.
 		for (const q of ["720", "1080"]) {
 			const mp4 = `/assets/video/mp4/${slug}-${q}.mp4`;
-			if (!existsUrlTarget(mp4, file)) issues.push({ level: "error", page: rel, issue: `missing video file: ${mp4}` });
+			if (!existsUrlTarget(mp4, file)) {
+				issues.push({
+					level: q === "720" ? "error" : "warn",
+					page: rel,
+					issue: `missing video file: ${mp4}`,
+				});
+			}
 		}
 	}
 	pages.push({ page: rel, title, descriptionLength: desc.length, h1: h1s[0] || "", jsonLd: jsonLd.count, images: images.length, videos: [...new Set(videos)].length, words: quality.words, seoTerms: quality.terms });
