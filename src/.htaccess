@@ -7,25 +7,31 @@
 
 RewriteEngine On
 
-# 0) http → https. Должно идти первым: остальные правила уже целятся в https.
+# ВАЖНО про цели редиректов: за прокси Apache считает схему http, поэтому
+# ОТНОСИТЕЛЬНАЯ цель (/path) превращается в http://… и роняет посетителя на
+# незащищённый протокол — проверено 25.07.2026 на /index.html. Во всех правилах
+# ниже цель абсолютная и всегда https://.
+
+# 0) www → без www, сразу на https. Идёт раньше правила 1, чтобы http://www
+#    уходил на канонический адрес одним переходом, а не двумя.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
+
+# 1) http → https для канонического хоста.
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
-# 1) старый сырой ассет репертуара → нормальная страница (должно идти ДО правила index.html)
-RewriteRule ^assets/repertoire/index\.html$ /repertoire/ [L,R=301]
+# 2) старый сырой ассет репертуара → нормальная страница (должно идти ДО правила index.html)
+RewriteRule ^assets/repertoire/index\.html$ https://luxuryband.ru/repertoire/ [L,R=301,NE]
 
-# 1a) страница цен: канон живёт в блоге (/blog/skolko-stoit-kaver-gruppa/).
+# 2a) страница цен: канон живёт в блоге (/blog/skolko-stoit-kaver-gruppa/).
 #     Ожидаемый по плану URL /faq/stoimost-kaver-gruppy/ → 301 на канон,
 #     чтобы не плодить дубль под запрос «сколько стоит кавер-группа».
 RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoit-kaver-gruppa/ [L,R=301]
 
-# 2) www → без www (целимся сразу в https — хостинг гарантирует https)
-RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
-
 # 3) /index.html → /  (корень и подпапки) — убирает дубль главной и вложенных
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
-RewriteRule ^(([^/]+/)*)index\.html$ /%1 [L,R=301]
+RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]
 
 # 4) CORS только для видеофайлов — чтобы их можно было fetch'ить с других origin
 #    (нужно для программной перезаливки на видеохостинги; на рендер сайта не влияет)
