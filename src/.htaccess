@@ -1,9 +1,15 @@
 # luxuryband.ru — канонизация хоста и устранение дублей (SEO)
 # Управляется из git (src/.htaccess → passthrough → public_html). Не править на сервере вручную.
-# ВАЖНО: http→https НЕ трогаем — это делает сам хостинг. Своё правило https зациклило сайт
-# (на этом хостинге %{HTTPS} != on за прокси). Поэтому ниже только www, index.html и старый ассет.
+# http→https: хостинг этого НЕ делает (проверено 25.07.2026 — http отдавал 200 без редиректа).
+# Прошлая попытка зациклила сайт, потому что проверялся %{HTTPS}: за прокси Спринтхоста он
+# не отражает реальную схему запроса. Поддержка Спринтхоста подтвердила рабочий признак —
+# заголовок X-Forwarded-Proto (правило ниже взято из их документации, help.sprinthost.ru).
 
 RewriteEngine On
+
+# 0) http → https. Должно идти первым: остальные правила уже целятся в https.
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
 # 1) старый сырой ассет репертуара → нормальная страница (должно идти ДО правила index.html)
 RewriteRule ^assets/repertoire/index\.html$ /repertoire/ [L,R=301]
