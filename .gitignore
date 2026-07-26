@@ -21,3 +21,4 @@ output/
 # Multi-agent coordination lock (local only, never commit)
 .agent-lock
 .local-backups/
+.indexnow-key

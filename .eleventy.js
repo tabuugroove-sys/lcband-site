@@ -4,6 +4,7 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/styles.css");
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
+	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root
 	eleventyConfig.addPassthroughCopy("src/.htaccess");
 	eleventyConfig.addPassthroughCopy({ "src/assets/repertoire": "assets/repertoire" });
 
