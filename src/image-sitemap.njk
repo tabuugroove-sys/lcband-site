@@ -6,7 +6,7 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 	<url>
 		<loc>{{ site.url }}/</loc>
-		{% for image in ["assets/hero/hero-red.jpg", "assets/hero/hero-bw.jpg", "assets/hero/hero-gold.jpg", "assets/hero/hero-white.jpg", "assets/photos/vocalists.jpg", "assets/photos/themes.jpg", "assets/photos/author-music-stage.jpg"] %}
+		{% for image in ["assets/hero/hero-red.jpg", "assets/hero/hero-bw.jpg", "assets/hero/hero-gold.jpg", "assets/hero/hero-white.jpg", "assets/photos/vocalists.jpg", "assets/photos/themes.jpg", "assets/photos/author-music-stage.jpg", "assets/photos/wedding.jpg", "assets/photos/birthday.jpg", "assets/photos/clients.jpg"] %}
 		<image:image>
 			<image:loc>{{ site.url }}/{{ image }}</image:loc>
 			<image:title>{{ site.name }} — live cover band</image:title>
@@ -33,6 +33,12 @@ eleventyExcludeFromCollections: true
 		</image:image>
 		{% endif %}
 		{% endfor %}
+		{% if event.slug == "corporate" %}
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/concert-teddi.jpg</image:loc>
+			<image:title>Вокалист Teddy на корпоративе — {{ site.name }}</image:title>
+		</image:image>
+		{% endif %}
 	</url>
 	{% endfor %}
 	{% for program in programs %}
@@ -48,8 +54,34 @@ eleventyExcludeFromCollections: true
 			<image:title>{{ video.title }} — {{ program.title }}</image:title>
 		</image:image>
 		{% endfor %}
+		{% if program.slug == "spanish" %}
+		{% for image in ["spanish-hero/latin-duo.jpg", "spanish-hero/teddy-latina.jpg", "spanish-hero/teddy-white.jpg"] %}
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/{{ image }}</image:loc>
+			<image:title>Латинская программа — {{ site.name }}</image:title>
+		</image:image>
+		{% endfor %}
+		{% endif %}
 	</url>
 	{% endfor %}
+	<url>
+		<loc>{{ site.url }}/sax/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/sax-day.jpg</image:loc>
+			<image:title>Саксофонист {{ site.name }} — дневная съёмка</image:title>
+		</image:image>
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/sax-band-show-dj-knobs-original-faces.jpg</image:loc>
+			<image:title>Саксофон, диджей и бенд — шоу {{ site.name }}</image:title>
+		</image:image>
+	</url>
+	<url>
+		<loc>{{ site.url }}/ae/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/assets/photos/corporate.jpg</image:loc>
+			<image:title>Luxury Cover Band — international cover band, corporate stage</image:title>
+		</image:image>
+	</url>
 	{% for vocalist in vocalists %}
 	<url>
 		<loc>{{ site.url }}/vocalists/{{ vocalist.slug }}/</loc>
