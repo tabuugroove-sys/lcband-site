@@ -31,6 +31,8 @@
 	<link rel="alternate" hreflang="pt-BR" href="{{ site.url }}/br/">
 	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
 	{% endif %}
+	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}
+	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
