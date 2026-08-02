@@ -2,70 +2,29 @@
 layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
-title: Hire Entertainment in the UAE | Live Music for Events
-description: "Hire entertainment in the UAE for weddings, corporate events and private parties. Luxury Cover Band provides live music, singers and flexible show lineups in Dubai."
-keywords: "hire entertainment UAE, entertainment UAE, hire musicians Dubai, live musicians Dubai, musicians for events Dubai, live band Dubai"
+title: Luxury Cover Band — international cover band · 500+ songs in 12 languages
+description: "Luxury Cover Band — international cover band: 500+ songs in 12 languages, stadium and TV experience. Weddings, corporate events, tours. Lineup of 2–20 musicians."
+keywords: "cover band Dubai, wedding band Dubai, corporate event band UAE, live music Dubai, Luxury Cover Band, LC Band"
 preloadImage: assets/hero/hero-red.jpg
 preloadHeroMobileWebp: true
 permalink: /ae/
 ---
 
-{% block schema %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "MusicGroup",
-      "@id": "{{ site.url }}/ae/#musicgroup",
-      "name": "{{ site.name }}",
-      "description": "Live entertainment for weddings, corporate events and private parties in Dubai and the UAE.",
-      "url": "{{ site.url }}/ae/",
-      "image": "{{ site.url }}/{{ site.defaultOgImage }}",
-      "areaServed": ["Dubai", "United Arab Emirates"],
-      "sameAs": ["{{ site.telegram }}"]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I hire entertainment in the UAE?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Send the date, venue, guest count and preferred music format. We confirm the available lineup, technical rider and quote for your Dubai event."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What live music formats are available for Dubai events?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Choose a compact live set, vocalists with musicians, or a full cover band. The lineup is adapted to the event format, venue and programme."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-{% endblock %}
-
 <!-- =============== HERO (EN) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="Live musicians performing on a red LED stage for entertainment in the UAE" loading="eager" fetchpriority="high" data-hero-img="red"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="Live cover band musicians in black-and-white stage styling"  loading="lazy" data-hero-img="bw"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="Live band in gold stage styling for a Dubai gala or private event"  loading="lazy" data-hero-img="gold"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="Wedding musicians in white stage styling"  loading="lazy" data-hero-img="white"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — red look on LED wall" loading="eager" fetchpriority="high" data-hero-img="red"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — black and white look"  loading="lazy" data-hero-img="bw"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — gold look on stage"  loading="lazy" data-hero-img="gold"></picture>
+		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — white look on starry backdrop"  loading="lazy" data-hero-img="white"></picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>
 	<button class="hero__play" data-hero-play type="button" aria-label="Watch video in these costumes"></button>
 	<button class="hero__close" data-hero-close type="button" aria-label="Close video" hidden></button>
 	<div class="hero__content">
-		<p class="hero__eyebrow">Live entertainment · Dubai · UAE</p>
-		<h1 class="hero__title">Hire Entertainment in the UAE</h1>
+		<p class="hero__eyebrow">International Cover Band</p>
+		<h1 class="hero__title">{{ site.name }}</h1>
 		<p class="hero__tagline" data-hero-tagline>
 			<span data-tagline="red"   class="is-active">Red stage. Full lineup. Epic.</span>
 			<span data-tagline="bw"   >Black-and-white classics. Crisp lighting.</span>
@@ -89,7 +48,7 @@ permalink: /ae/
 <section class="section section--elev" id="about">
 	<div class="container about-split reveal">
 		<div class="about-split__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Live musicians for a Dubai corporate event performing on stage" loading="lazy">
+			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on stage — stadium experience" loading="lazy">
 		</div>
 		<div class="about-split__body">
 			<p class="section__eyebrow">About the band</p>
@@ -114,7 +73,7 @@ permalink: /ae/
 <!-- =============== VOCALISTS =============== -->
 <section class="section section--light section--flush" id="vocalists">
 	<div class="hero-banner hero-banner--bleed reveal">
-		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Four vocalists available with live musicians for Dubai events" loading="lazy">
+		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — four vocalists, studio shoot" loading="lazy">
 		<div class="hero-banner__overlay">
 			<p class="section__eyebrow">Vocalists</p>
 			<h2 class="section__title">Four voices.<br><span class="muted">Four characters.</span></h2>
@@ -255,30 +214,6 @@ permalink: /ae/
 			</li>
 			{% endfor %}
 		</ul>
-	</div>
-</section>
-
-<!-- =============== DUBAI SEARCH INTENT / FAQ =============== -->
-<section class="section section--light" id="dubai-musicians">
-	<div class="container container--narrow reveal">
-		<p class="section__eyebrow">Dubai & UAE bookings</p>
-		<h2 class="section__title">Hire entertainment in the UAE<br><span class="muted">for an event that feels live.</span></h2>
-		<p class="section__lead">Luxury Cover Band brings live musicians, vocalists and a flexible concert format to weddings, corporate events, gala dinners and private parties across the UAE.</p>
-		<p>Choose a compact live set for a dinner, vocalists with musicians for a reception, or a full cover band for the main show. For Dubai and UAE dates, we confirm the lineup, venue requirements, technical rider and quote before booking.</p>
-		<div class="cta-row cta-row--left">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Check availability</a>
-			<a class="btn btn--blue-ghost" href="#videos">Watch live videos</a>
-		</div>
-		<div class="faq" aria-label="UAE entertainment booking FAQs">
-			<details class="faq__item">
-				<summary class="faq__q">How do I hire entertainment in the UAE?</summary>
-				<div class="faq__a"><p>Send the date, venue, guest count and preferred music format. We confirm the available lineup, technical rider and quote for your Dubai event.</p></div>
-			</details>
-			<details class="faq__item">
-				<summary class="faq__q">What live music formats are available for Dubai events?</summary>
-				<div class="faq__a"><p>Choose a compact live set, vocalists with musicians, or a full cover band. The lineup is adapted to the event format, venue and programme.</p></div>
-			</details>
-		</div>
 	</div>
 </section>
 
