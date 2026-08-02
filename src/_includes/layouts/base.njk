@@ -57,7 +57,7 @@
 				"@type": "MusicGroup",
 				"@id": "{{ site.url }}/#musicgroup",
 				"name": "{{ site.name }}",
-				"alternateName": "{{ site.shortName }}",
+				"alternateName": ["{{ site.shortName }}", "Лакшери Кавер Бэнд", "кавер-группа Luxury Cover Band"],
 				"description": "{{ site.description }}",
 				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
@@ -67,6 +67,9 @@
 					{% if site.youtube %}, "{{ site.youtube }}"{% endif %}
 					{% if site.vk %}, "{{ site.vk }}"{% endif %}
 					{% if site.instagram %}, "{{ site.instagram }}"{% endif %}
+					, "https://uslugi.yandex.ru/profile/LuxuryCoverBand-2278177"
+					, "https://profi.ru/profile/treda_2177/"
+					, "https://moskva.artist.ru/Luxury_Cover_Band/"
 				],
 				"areaServed": ["Москва", "Россия", "Международные туры"]
 			},
