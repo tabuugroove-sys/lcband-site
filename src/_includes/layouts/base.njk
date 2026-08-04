@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ htmlLang or 'ru' }}">
+<html lang="{{ htmlLang or 'ru' }}"{% if htmlDir %} dir="{{ htmlDir }}"{% endif %}>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -23,11 +23,11 @@
 	<meta name="twitter:description" content="{{ description or site.tagline }}">
 	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 
-	{# hreflang: три языковые версии главной (RU — основная, /ae/ EN, /br/ PT).
-	   Только на этих трёх URL, чтобы RU/EN/PT не конфликтовали в выдаче #}
+	{# hreflang: три языковые версии главной (RU — основная, /ae/ AR, /br/ PT).
+	   Только на этих трёх URL, чтобы RU/AR/PT не конфликтовали в выдаче #}
 	{% if page.url == '/' or page.url == '/ae/' or page.url == '/br/' %}
 	<link rel="alternate" hreflang="ru" href="{{ site.url }}/">
-	<link rel="alternate" hreflang="en" href="{{ site.url }}/ae/">
+	<link rel="alternate" hreflang="ar" href="{{ site.url }}/ae/">
 	<link rel="alternate" hreflang="pt-BR" href="{{ site.url }}/br/">
 	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
 	{% endif %}
@@ -44,7 +44,7 @@
 	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=35' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=36' | url }}">
 
 	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
 

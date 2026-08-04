@@ -4602,3 +4602,16 @@ a.stat--link:hover { opacity: 0.7; }
 		display: none;
 	}
 }
+
+/* =============== RTL (Arabic /ae/) =============== */
+/* Arabic script must not be letter-spaced (matches Apple's Arabic pages) */
+html[dir="rtl"] body,
+html[dir="rtl"] body * {
+	letter-spacing: 0;
+}
+/* components with hardcoded LTR alignment */
+html[dir="rtl"] .hero-rec { text-align: right; }
+html[dir="rtl"] .cta-row--left { justify-content: flex-start; }
+/* keep timecodes and quality labels LTR (0:00 / 0:00, 1080p) */
+html[dir="rtl"] .hero__time,
+html[dir="rtl"] .hero__quality { direction: ltr; }
