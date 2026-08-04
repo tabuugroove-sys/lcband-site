@@ -1,3 +1,49 @@
+{% if htmlLang == 'ar' %}
+{#- Арабская версия (/ae/): плоское RTL-меню без дропдаунов — подразделы
+    ведут на русские страницы, их заголовки из data-коллекций не переведены -#}
+<header class="nav" id="nav">
+	<div class="nav__inner">
+		<a class="nav__logo" href="{{ '/ae/' | url }}" aria-label="{{ site.name }} — الصفحة الرئيسية">
+			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
+		</a>
+		<nav class="nav__links" aria-label="التنقل الرئيسي">
+			<div class="nav__item" data-nav-path="/ae/">
+				<a class="nav__link" href="{{ '/ae/' | url }}">الرئيسية</a>
+			</div>
+			<div class="nav__item" data-nav-path="/vocalists/">
+				<a class="nav__link" href="{{ '/vocalists/' | url }}">المطربون</a>
+			</div>
+			<div class="nav__item" data-nav-path="/programs/">
+				<a class="nav__link" href="{{ '/programs/' | url }}">البرامج الموضوعية</a>
+			</div>
+			<div class="nav__item" data-nav-path="/costumes/">
+				<a class="nav__link" href="{{ '/costumes/' | url }}">الأزياء</a>
+			</div>
+			<div class="nav__item" data-nav-path="/formats/">
+				<a class="nav__link" href="{{ '/formats/' | url }}">الصيغ</a>
+			</div>
+			<div class="nav__item" data-nav-path="/sax/">
+				<a class="nav__link" href="{{ '/sax/' | url }}">ساكسفون</a>
+			</div>
+			<div class="nav__item" data-nav-path="/events/">
+				<a class="nav__link" href="{{ '/events/' | url }}">المناسبات</a>
+			</div>
+			<div class="nav__item" data-nav-path="/riders/">
+				<a class="nav__link" href="{{ '/riders/' | url }}">الرايدر</a>
+			</div>
+			<div class="nav__item" data-nav-path="/blog/">
+				<a class="nav__link" href="{{ '/blog/' | url }}">المدونة</a>
+			</div>
+			<div class="nav__item" data-nav-path="{{ site.telegram }}">
+				<a class="nav__link nav__cta" href="{{ site.telegram }}">راسلنا على تيليجرام</a>
+			</div>
+		</nav>
+		<button class="nav__burger" aria-label="القائمة" aria-expanded="false">
+			<span></span><span></span><span></span>
+		</button>
+	</div>
+</header>
+{% else %}
 <header class="nav" id="nav">
 	<div class="nav__inner">
 		<a class="nav__logo" href="{{ '/' | url }}" aria-label="{{ site.name }} — на главную">
@@ -64,3 +110,4 @@
 		</button>
 	</div>
 </header>
+{% endif %}
