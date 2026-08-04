@@ -450,9 +450,12 @@
 		const heroRecommendations = hero.querySelector('[data-hero-recommendations]');
 		const heroRecommendationButtons = hero.querySelectorAll('[data-hero-recommendation]');
 		const desktopHeroRecommendations = window.matchMedia('(min-width: 735px)');
-		let heroQuality = '1080';
+		const reducedHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		const coarseHeroPointer = window.matchMedia('(pointer: coarse)');
+		let heroQuality = (coarseHeroPointer.matches || window.matchMedia('(max-width: 734px)').matches) ? '720' : '1080';
 		let heroQualityKey = '';
 		let currentHeroVideoKey = '';
+		let heroSourceAttemptId = 0;
 
 		function fmtTime(sec) {
 			if (!isFinite(sec)) return '0:00';
@@ -529,7 +532,7 @@
 		const watchedHeroClips = new Set();
 		let current = 'red';
 		let autoTimer = null;
-		let userInteracted = false;
+		let autoResumeTimer = null;
 
 		function setActive(key) {
 			current = key;
@@ -548,13 +551,57 @@
 		}
 
 		function startAuto() {
-			if (userInteracted) return;
+			if (reducedHeroMotion.matches || hero.classList.contains('is-playing')) return;
 			if (autoTimer) clearInterval(autoTimer);
 			autoTimer = setInterval(() => setActive(nextKey()), 5500);
 		}
 
 		function stopAuto() {
 			if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+		}
+
+		function scheduleAutoResume() {
+			if (autoResumeTimer) clearTimeout(autoResumeTimer);
+			if (reducedHeroMotion.matches) return;
+			autoResumeTimer = setTimeout(startAuto, 7000);
+		}
+
+		function setHeroLoading(loading) {
+			hero.classList.toggle('is-video-loading', loading);
+			hero.setAttribute('aria-busy', loading ? 'true' : 'false');
+		}
+
+		function requestHeroPlayback(attempt) {
+			const playPromise = heroVideo?.play();
+			if (!playPromise || typeof playPromise.catch !== 'function') return;
+			playPromise.catch(() => {
+				if (attempt !== heroSourceAttemptId || !heroVideo) return;
+				heroVideo.muted = true;
+				heroVideo.play().then(() => {
+					showToast('Видео запущено без звука — коснитесь видео, чтобы включить звук');
+				}).catch(() => {
+					setHeroLoading(false);
+					showToast('Не удалось запустить видео. Нажмите ещё раз.');
+				});
+			});
+		}
+
+		function loadHeroSource(key, quality, restoreTime = 0, autoplay = true) {
+			if (!heroVideo) return;
+			const attempt = ++heroSourceAttemptId;
+			setHeroLoading(true);
+			heroVideo.pause();
+			heroVideo.removeAttribute('src');
+			heroVideo.load();
+			if (restoreTime > 0) {
+				heroVideo.addEventListener('loadedmetadata', () => {
+					if (attempt !== heroSourceAttemptId || !Number.isFinite(heroVideo.duration)) return;
+					heroVideo.currentTime = Math.min(restoreTime, Math.max(heroVideo.duration - 0.2, 0));
+				}, { once: true });
+			}
+			heroVideo.src = videoUrl(key, quality);
+			heroVideo.load();
+			if (autoplay) requestHeroPlayback(attempt);
 		}
 
 		function hideHeroRecommendations() {
@@ -626,19 +673,13 @@
 			if (slow && heroQuality === '1080') heroQuality = '720';
 			syncQualityButtons();
 			updateHeroQualityAvailability(key);
-			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
-			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
 			stopAuto();
-			userInteracted = true;
+			if (autoResumeTimer) clearTimeout(autoResumeTimer);
 			hideHeroRecommendations();
 			hero.classList.add('is-playing');
-			const p = heroVideo.play();
-			if (p && typeof p.catch === 'function') {
-				p.catch(() => {
-					heroVideo.muted = true;
-					heroVideo.play().catch(() => {});
-				});
-			}
+			document.body.classList.add('hero-video-open');
+			heroVideo.muted = false;
+			loadHeroSource(key, heroQuality, 0, true);
 		}
 
 		function playHeroVideo() {
@@ -666,18 +707,16 @@
 			syncQualityButtons();
 			if (!heroVideo || !hero.classList.contains('is-playing')) return;
 			const key = currentHeroVideoKey || heroVideoMap[current] || 'promo-main-reel';
-			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
 			const wasPlaying = !heroVideo.paused;
 			const currentTime = heroVideo.currentTime;
-			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
-			heroVideo.currentTime = currentTime;
-			if (wasPlaying) heroVideo.play().catch(() => {});
+			loadHeroSource(key, heroQuality, currentTime, wasPlaying);
 		}
 
 		function stopHeroVideo() {
 			if (!heroVideo) return;
 			hideHeroRecommendations();
 			heroVideo.pause();
+			heroSourceAttemptId += 1;
 			heroVideo.removeAttribute('src');
 			heroVideo.load();
 			heroVideo.muted = false;
@@ -685,21 +724,27 @@
 			heroQualityKey = '';
 			if (heroProgressFilled) heroProgressFilled.style.width = '0%';
 			if (heroTime) heroTime.textContent = '0:00 / 0:00';
-			hero.classList.remove('is-playing');
+			setHeroLoading(false);
+			hero.classList.remove('is-playing', 'is-ended');
+			document.body.classList.remove('hero-video-open');
+			scheduleAutoResume();
 		}
 
 		function togglePlayPause() {
 			if (!heroVideo) return;
-			if (heroVideo.paused) heroVideo.play().catch(() => {});
+			if (heroVideo.paused) {
+				heroVideo.muted = false;
+				heroVideo.play().catch(() => {});
+			}
 			else heroVideo.pause();
 		}
 
 		dots.forEach(d => {
 			d.addEventListener('click', () => {
-				userInteracted = true;
 				stopAuto();
 				if (hero.classList.contains('is-playing')) stopHeroVideo();
 				setActive(d.dataset.heroDot);
+				scheduleAutoResume();
 			});
 		});
 
@@ -715,13 +760,17 @@
 			const dx = e.clientX - swipeStartX;
 			const dy = e.clientY - swipeStartY;
 			if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy) * 1.25) return;
-			userInteracted = true;
 			stopAuto();
 			const idx = order.indexOf(current);
 			const next = dx < 0
 				? order[(idx + 1) % order.length]
 				: order[(idx - 1 + order.length) % order.length];
 			setActive(next);
+			scheduleAutoResume();
+		});
+		heroStage?.addEventListener('pointercancel', () => {
+			swipeStartX = 0;
+			swipeStartY = 0;
 		});
 		heroStage?.addEventListener('dragstart', (e) => e.preventDefault());
 
@@ -744,8 +793,38 @@
 		});
 
 		heroToggle?.addEventListener('click', togglePlayPause);
-		heroVideo?.addEventListener('play',  () => heroToggle?.classList.remove('is-paused'));
-		heroVideo?.addEventListener('pause', () => heroToggle?.classList.add('is-paused'));
+		heroVideo?.addEventListener('click', () => {
+			if (heroVideo.muted) {
+				heroVideo.muted = false;
+				return;
+			}
+			togglePlayPause();
+		});
+		heroVideo?.addEventListener('loadstart', () => setHeroLoading(true));
+		['loadeddata', 'canplay', 'playing'].forEach(eventName => {
+			heroVideo?.addEventListener(eventName, () => setHeroLoading(false));
+		});
+		heroVideo?.addEventListener('error', () => {
+			if (!hero.classList.contains('is-playing') || !currentHeroVideoKey) return;
+			if (heroQuality === '2160') {
+				showToast('4K недоступно, переключаем на 1080p');
+				changeQuality('1080');
+			} else if (heroQuality === '1080') {
+				showToast('1080p недоступно, переключаем на 720p');
+				changeQuality('720');
+			} else {
+				setHeroLoading(false);
+				showToast('Видео временно недоступно');
+			}
+		});
+		heroVideo?.addEventListener('play',  () => {
+			heroToggle?.classList.remove('is-paused');
+			heroToggle?.setAttribute('aria-label', 'Пауза');
+		});
+		heroVideo?.addEventListener('pause', () => {
+			heroToggle?.classList.add('is-paused');
+			heroToggle?.setAttribute('aria-label', 'Продолжить');
+		});
 		heroVideo?.addEventListener('timeupdate', () => {
 			if (!heroVideo.duration) return;
 			const pct = (heroVideo.currentTime / heroVideo.duration) * 100;
@@ -762,7 +841,7 @@
 			if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopHeroVideo();
 		});
 
-		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		if (!reducedHeroMotion.matches) {
 			startAuto();
 		}
 	}

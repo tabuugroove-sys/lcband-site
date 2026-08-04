@@ -21,7 +21,37 @@ permalink: /br/
 	</div>
 	<div class="hero__scrim"></div>
 	<button class="hero__play" data-hero-play type="button" aria-label="Ver vídeo nestes figurinos"></button>
-	<button class="hero__close" data-hero-close type="button" aria-label="Fechar vídeo" hidden></button>
+	<button class="hero__close" data-hero-close type="button" aria-label="Fechar vídeo"></button>
+	<div class="hero__controls" data-hero-controls>
+		<button class="hero__toggle" data-hero-toggle type="button" aria-label="Pausar"></button>
+		<div class="hero__progress" data-hero-progress>
+			<div class="hero__progress-filled" data-hero-progress-filled></div>
+		</div>
+		<span class="hero__time" data-hero-time>0:00 / 0:00</span>
+	</div>
+	<div class="hero__quality" data-hero-quality role="group" aria-label="Qualidade do vídeo">
+		<button type="button" data-hero-q="720">720p</button>
+		<button type="button" data-hero-q="1080" class="is-active">1080p</button>
+		<button type="button" data-hero-q="2160" hidden>4K</button>
+	</div>
+	<div class="hero__recommendations" data-hero-recommendations aria-hidden="true" aria-label="Assistir a seguir">
+		<button class="hero-rec" type="button" data-hero-recommendation="0">
+			<img class="hero-rec__poster" data-hero-rec-poster alt="" loading="eager">
+			<span class="hero-rec__copy">
+				<span class="hero-rec__costume" data-hero-rec-costume></span>
+				<strong class="hero-rec__title" data-hero-rec-title></strong>
+			</span>
+			<span class="hero-rec__play" aria-hidden="true"></span>
+		</button>
+		<button class="hero-rec" type="button" data-hero-recommendation="1">
+			<img class="hero-rec__poster" data-hero-rec-poster alt="" loading="eager">
+			<span class="hero-rec__copy">
+				<span class="hero-rec__costume" data-hero-rec-costume></span>
+				<strong class="hero-rec__title" data-hero-rec-title></strong>
+			</span>
+			<span class="hero-rec__play" aria-hidden="true"></span>
+		</button>
+	</div>
 	<div class="hero__content">
 		<p class="hero__eyebrow">International Cover Band</p>
 		<h1 class="hero__title">{{ site.name }}</h1>
