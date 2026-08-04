@@ -4040,6 +4040,16 @@ a.stat--link:hover { opacity: 0.7; }
 		min-height: 2.5em;
 		margin-bottom: 14px;
 	}
+	.hero__tagline > span {
+		opacity: 0;
+		visibility: hidden;
+		transform: none;
+		transition: none;
+	}
+	.hero__tagline > span.is-active {
+		opacity: 1;
+		visibility: visible;
+	}
 	.hero__cta .btn {
 		min-height: 44px;
 		padding-block: 10px;
