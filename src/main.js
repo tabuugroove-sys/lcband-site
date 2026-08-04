@@ -35,17 +35,41 @@
 	// ---------- Mobile burger ----------
 	const burger = document.querySelector('.nav__burger');
 	if (burger) {
+		const submenuToggles = nav.querySelectorAll('.nav__submenu-toggle');
+		const closeSubmenus = () => {
+			submenuToggles.forEach(toggle => {
+				toggle.setAttribute('aria-expanded', 'false');
+				toggle.closest('.nav__item--has-dropdown')?.classList.remove('is-submenu-open');
+			});
+		};
+		const closeMobileNav = () => {
+			nav.classList.remove('is-open');
+			burger.setAttribute('aria-expanded', 'false');
+			document.body.style.overflow = '';
+			closeSubmenus();
+		};
 		burger.addEventListener('click', () => {
 			const isOpen = nav.classList.toggle('is-open');
 			burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 			document.body.style.overflow = isOpen ? 'hidden' : '';
+			if (!isOpen) closeSubmenus();
+		});
+		submenuToggles.forEach(toggle => {
+			toggle.addEventListener('click', () => {
+				const item = toggle.closest('.nav__item--has-dropdown');
+				const willOpen = !item?.classList.contains('is-submenu-open');
+				closeSubmenus();
+				if (willOpen && item) {
+					item.classList.add('is-submenu-open');
+					toggle.setAttribute('aria-expanded', 'true');
+				}
+			});
 		});
 		nav.querySelectorAll('.nav__links a').forEach(a => {
-			a.addEventListener('click', () => {
-				nav.classList.remove('is-open');
-				burger.setAttribute('aria-expanded', 'false');
-				document.body.style.overflow = '';
-			});
+			a.addEventListener('click', closeMobileNav);
+		});
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && nav.classList.contains('is-open')) closeMobileNav();
 		});
 	}
 
@@ -413,6 +437,8 @@
 	if (hero) {
 		const dots = hero.querySelectorAll('[data-hero-dot]');
 		const imgs = hero.querySelectorAll('[data-hero-img]');
+		const taglines = hero.querySelectorAll('[data-tagline]');
+		const heroStage = hero.querySelector('.hero__stage');
 		const heroPlay = hero.querySelector('[data-hero-play]');
 		const heroClose = hero.querySelector('[data-hero-close]');
 		const heroVideo = hero.querySelector('[data-hero-video]');
@@ -454,6 +480,7 @@
 				d.setAttribute('aria-selected', on ? 'true' : 'false');
 			});
 			imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
+			taglines.forEach(line => line.classList.toggle('is-active', line.dataset.tagline === key));
 		}
 
 		function nextKey() {
@@ -546,6 +573,28 @@
 			});
 		});
 
+		let swipeStartX = 0;
+		let swipeStartY = 0;
+		heroStage?.addEventListener('pointerdown', (e) => {
+			swipeStartX = e.clientX;
+			swipeStartY = e.clientY;
+			heroStage.setPointerCapture?.(e.pointerId);
+		});
+		heroStage?.addEventListener('pointerup', (e) => {
+			if (hero.classList.contains('is-playing')) return;
+			const dx = e.clientX - swipeStartX;
+			const dy = e.clientY - swipeStartY;
+			if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy) * 1.25) return;
+			userInteracted = true;
+			stopAuto();
+			const idx = order.indexOf(current);
+			const next = dx < 0
+				? order[(idx + 1) % order.length]
+				: order[(idx - 1 + order.length) % order.length];
+			setActive(next);
+		});
+		heroStage?.addEventListener('dragstart', (e) => e.preventDefault());
+
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
 		heroVideo?.addEventListener('ended', stopHeroVideo);
@@ -603,15 +652,9 @@
 		const copies = 3;
 		const setWidth = () => track.scrollWidth / copies;
 
-		const isSmallRail = !!track.closest('.video-rail--small');
-
 		const alignOn = (idx) => {
 			const el = track.children[idx];
 			if (!el) return;
-			if (isSmallRail) {
-				track.scrollLeft = el.offsetLeft;
-				return;
-			}
 			track.scrollLeft = el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2;
 		};
 

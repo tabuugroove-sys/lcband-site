@@ -91,6 +91,7 @@ permalink: /ae/
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed">
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Open: Corporate events"></a>
 				<img class="tile__img" src="{{ '/assets/photos/corporate.jpg' | url }}" alt="Corporate events — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Corporate events</h3>
@@ -102,6 +103,7 @@ permalink: /ae/
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/wedding/' | url }}" aria-label="Open: Weddings"></a>
 				<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Weddings — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Weddings</h3>
@@ -113,6 +115,7 @@ permalink: /ae/
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/birthday/' | url }}" aria-label="Open: Birthdays"></a>
 				<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Birthdays — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Birthdays</h3>
@@ -124,6 +127,7 @@ permalink: /ae/
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Open: Client events"></a>
 				<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Client events — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Client events</h3>
@@ -135,6 +139,7 @@ permalink: /ae/
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/programs/' | url }}" aria-label="Open: Themed programs"></a>
 				<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Themed programs — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Themed programs</h3>
@@ -145,7 +150,8 @@ permalink: /ae/
 					</div>
 				</div>
 			</li>
-			<li class="tile">
+			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/artists/' | url }}" aria-label="Open: Original music"></a>
 				<img class="tile__img" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Original music — Luxury Cover Band" loading="lazy">
 				<div class="tile__content">
 					<h3 class="tile__title">Original music</h3>
@@ -184,6 +190,7 @@ permalink: /ae/
 	</div>
 
 	<div class="video-rail video-rail--big reveal" role="region" aria-label="Promo videos">
+		<div class="video-rail__heading"><h3 class="video-rail__title">Studio promo videos</h3></div>
 		<ul class="video-rail__track">
 			{% for v in promos %}
 			<li class="vtile vtile--big">
@@ -200,6 +207,7 @@ permalink: /ae/
 		</ul>
 	</div>
 	<div class="video-rail video-rail--small reveal" role="region" aria-label="Live videos">
+		<div class="video-rail__heading"><h3 class="video-rail__title">Live concert videos</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives %}
 			<li class="vtile vtile--small">

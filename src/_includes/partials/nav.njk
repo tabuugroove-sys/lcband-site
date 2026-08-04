@@ -13,9 +13,14 @@
 				{% if item.href == '/vocalists/' %}{% set kids = vocalists %}{% set labelField = 'name' %}{% endif %}
 
 				{% if kids | length %}
-				<div class="nav__item nav__item--has-dropdown">
-					<a class="nav__link" href="{{ item.href | url }}" aria-haspopup="true">{{ item.label }}</a>
-					<div class="nav__dropdown" role="menu" aria-label="{{ item.label }} — подразделы">
+				<div class="nav__item nav__item--has-dropdown" data-nav-path="{{ item.href }}">
+					<div class="nav__primary-row">
+						<a class="nav__link" href="{{ item.href | url }}" aria-haspopup="true">{{ item.label }}</a>
+						<button class="nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="nav-submenu-{{ loop.index }}" aria-label="Открыть подразделы: {{ item.label }}">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — подразделы">
 						<div class="nav__dropdown-inner">
 							<div class="nav__dropdown-cols">
 								<div class="nav__dropdown-col nav__dropdown-col--main">
@@ -48,7 +53,7 @@
 					</div>
 				</div>
 				{% else %}
-				<div class="nav__item">
+				<div class="nav__item" data-nav-path="{{ item.href }}">
 					<a class="nav__link{% if item.cta %} nav__cta{% endif %}" href="{{ item.href | url }}">{{ item.label }}</a>
 				</div>
 				{% endif %}

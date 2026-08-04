@@ -112,6 +112,7 @@
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed{% if tilesVariant == 'v4' %} tile-grid--v4{% endif %}">
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Открыть: Корпоративы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/corporate-768.webp' | url }} 768w, {{ '/assets/photos/corporate-1152.webp' | url }} 1152w">
@@ -127,6 +128,7 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--{{ weddingVariant | default('center') }}">
+				<a class="tile__tap-target" href="{{ '/events/wedding/' | url }}" aria-label="Открыть: Свадьбы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/wedding-768.webp' | url }} 768w, {{ '/assets/photos/wedding-1152.webp' | url }} 1152w">
@@ -142,6 +144,7 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/birthday/' | url }}" aria-label="Открыть: Дни рождения"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/birthday-768.webp' | url }} 768w, {{ '/assets/photos/birthday-1152.webp' | url }} 1152w">
@@ -157,6 +160,7 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Открыть: Клиентские мероприятия"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/clients-768.webp' | url }} 768w, {{ '/assets/photos/clients-1152.webp' | url }} 1152w">
@@ -172,6 +176,7 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--smoky">
+				<a class="tile__tap-target" href="{{ '/programs/' | url }}" aria-label="Открыть: Тематические программы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/themes-768.webp' | url }} 768w, {{ '/assets/photos/themes-1152.webp' | url }} 1152w">
@@ -192,6 +197,7 @@
 				</div>
 			</li>
 			<li class="tile tile--has-photo">
+				<a class="tile__tap-target" href="{{ '/artists/' | url }}" aria-label="Открыть: Авторская музыка"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/author-music-stage-768.webp' | url }} 768w, {{ '/assets/photos/author-music-stage-1152.webp' | url }} 1152w">
@@ -248,7 +254,8 @@
 		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
 	</div>
 
-	<div class="video-rail video-rail--big reveal" role="region" aria-label="Промо-видео">
+	<div class="video-rail video-rail--big reveal" role="region" aria-label="Студийные проморолики">
+		<div class="video-rail__heading"><h3 class="video-rail__title">Студийные проморолики</h3></div>
 		<ul class="video-rail__track">
 			{% for v in promos %}
 			<li class="vtile vtile--big">
@@ -268,7 +275,8 @@
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="video-rail video-rail--small reveal" role="region" aria-label="Лайв-видео">
+	<div class="video-rail video-rail--small reveal" role="region" aria-label="Живые видео с концертов">
+		<div class="video-rail__heading"><h3 class="video-rail__title">Живые видео с концертов</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives %}
 			<li class="vtile vtile--small">

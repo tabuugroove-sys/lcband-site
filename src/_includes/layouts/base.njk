@@ -44,7 +44,7 @@
 	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=31' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=32' | url }}">
 
 	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
 
@@ -133,6 +133,6 @@
 	{% include "partials/footer.njk" %}
 	{% include "partials/lightbox.njk" %}
 
-	<script src="{{ '/main.js?v=10' | url }}" defer></script>
+	<script src="{{ '/main.js?v=11' | url }}" defer></script>
 </body>
 </html>
