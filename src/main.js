@@ -534,6 +534,16 @@
 		let autoTimer = null;
 		let autoResumeTimer = null;
 
+		function preloadHeroClip(key = heroVideoMap[current]) {
+			if (!heroVideo || !key || hero.classList.contains('is-playing')) return;
+			if (navigator.connection?.saveData) return;
+			const source = videoUrl(key, heroQuality);
+			if (heroVideo.getAttribute('src') === source) return;
+			heroVideo.preload = 'metadata';
+			heroVideo.src = source;
+			heroVideo.load();
+		}
+
 		function setActive(key) {
 			current = key;
 			dots.forEach(d => {
@@ -543,6 +553,7 @@
 			});
 			imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
 			taglines.forEach(line => line.classList.toggle('is-active', line.dataset.tagline === key));
+			preloadHeroClip(heroVideoMap[key]);
 		}
 
 		function nextKey() {
@@ -589,18 +600,27 @@
 		function loadHeroSource(key, quality, restoreTime = 0, autoplay = true) {
 			if (!heroVideo) return;
 			const attempt = ++heroSourceAttemptId;
+			const source = videoUrl(key, quality);
+			const sourceIsReady = heroVideo.getAttribute('src') === source;
 			setHeroLoading(true);
 			heroVideo.pause();
-			heroVideo.removeAttribute('src');
-			heroVideo.load();
+			heroVideo.preload = 'auto';
 			if (restoreTime > 0) {
-				heroVideo.addEventListener('loadedmetadata', () => {
+				const restorePlaybackTime = () => {
 					if (attempt !== heroSourceAttemptId || !Number.isFinite(heroVideo.duration)) return;
 					heroVideo.currentTime = Math.min(restoreTime, Math.max(heroVideo.duration - 0.2, 0));
-				}, { once: true });
+				};
+				if (heroVideo.readyState >= 1) restorePlaybackTime();
+				else heroVideo.addEventListener('loadedmetadata', restorePlaybackTime, { once: true });
 			}
-			heroVideo.src = videoUrl(key, quality);
-			heroVideo.load();
+			if (!sourceIsReady) {
+				if (heroVideo.getAttribute('src')) {
+					heroVideo.removeAttribute('src');
+					heroVideo.load();
+				}
+				heroVideo.src = source;
+				heroVideo.load();
+			}
 			if (autoplay) requestHeroPlayback(attempt);
 		}
 
@@ -715,6 +735,8 @@
 		function stopHeroVideo() {
 			if (!heroVideo) return;
 			hideHeroRecommendations();
+			hero.classList.remove('is-playing', 'is-ended');
+			document.body.classList.remove('hero-video-open');
 			heroVideo.pause();
 			heroSourceAttemptId += 1;
 			heroVideo.removeAttribute('src');
@@ -725,8 +747,7 @@
 			if (heroProgressFilled) heroProgressFilled.style.width = '0%';
 			if (heroTime) heroTime.textContent = '0:00 / 0:00';
 			setHeroLoading(false);
-			hero.classList.remove('is-playing', 'is-ended');
-			document.body.classList.remove('hero-video-open');
+			preloadHeroClip(heroVideoMap[current]);
 			scheduleAutoResume();
 		}
 
@@ -750,16 +771,22 @@
 
 		let swipeStartX = 0;
 		let swipeStartY = 0;
-		heroStage?.addEventListener('pointerdown', (e) => {
+		let swipePointerId = null;
+		let lastHeroSwipeAt = 0;
+		hero.addEventListener('pointerdown', (e) => {
+			if (hero.classList.contains('is-playing')) return;
 			swipeStartX = e.clientX;
 			swipeStartY = e.clientY;
-			heroStage.setPointerCapture?.(e.pointerId);
+			swipePointerId = e.pointerId;
 		});
-		heroStage?.addEventListener('pointerup', (e) => {
-			if (hero.classList.contains('is-playing')) return;
+		hero.addEventListener('pointerup', (e) => {
+			if (hero.classList.contains('is-playing') || e.pointerId !== swipePointerId) return;
 			const dx = e.clientX - swipeStartX;
 			const dy = e.clientY - swipeStartY;
+			swipePointerId = null;
 			if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy) * 1.25) return;
+			e.preventDefault();
+			lastHeroSwipeAt = performance.now();
 			stopAuto();
 			const idx = order.indexOf(current);
 			const next = dx < 0
@@ -768,10 +795,16 @@
 			setActive(next);
 			scheduleAutoResume();
 		});
-		heroStage?.addEventListener('pointercancel', () => {
+		hero.addEventListener('pointercancel', () => {
 			swipeStartX = 0;
 			swipeStartY = 0;
+			swipePointerId = null;
 		});
+		hero.addEventListener('click', (e) => {
+			if (performance.now() - lastHeroSwipeAt > 500) return;
+			e.preventDefault();
+			e.stopPropagation();
+		}, true);
 		heroStage?.addEventListener('dragstart', (e) => e.preventDefault());
 
 		heroPlay?.addEventListener('click', playHeroVideo);
@@ -800,7 +833,9 @@
 			}
 			togglePlayPause();
 		});
-		heroVideo?.addEventListener('loadstart', () => setHeroLoading(true));
+		heroVideo?.addEventListener('loadstart', () => {
+			if (hero.classList.contains('is-playing')) setHeroLoading(true);
+		});
 		['loadeddata', 'canplay', 'playing'].forEach(eventName => {
 			heroVideo?.addEventListener(eventName, () => setHeroLoading(false));
 		});
@@ -844,6 +879,7 @@
 		if (!reducedHeroMotion.matches) {
 			startAuto();
 		}
+		preloadHeroClip();
 	}
 
 	// ---------- Smooth anchor scroll ----------
