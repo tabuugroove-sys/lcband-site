@@ -129,7 +129,7 @@
 <section class="section section--flush" id="directions">
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed{% if tilesVariant == 'v4' %} tile-grid--v4{% endif %}">
-			<li class="tile tile--has-photo">
+			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--corporate">
 				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Открыть: Корпоративы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -145,7 +145,7 @@
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--{{ weddingVariant | default('center') }}">
+			<li class="tile tile--has-photo tile--{{ weddingVariant | default('center') }} tile--copy-split tile--wedding">
 				<a class="tile__tap-target" href="{{ '/events/wedding/' | url }}" aria-label="Открыть: Свадьбы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -154,14 +154,14 @@
 				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Свадьбы</h3>
-					<p class="tile__sub">Шоу под первый танец и банкет.</p>
+					<p class="tile__sub">Шоу · Первый танец · Банкет</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/wedding/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo">
+			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--birthday">
 				<a class="tile__tap-target" href="{{ '/events/birthday/' | url }}" aria-label="Открыть: Дни рождения"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -169,15 +169,15 @@
 					<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Дни рождения — Luxury Cover Band" loading="lazy">
 				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Дни рождения</h3>
-					<p class="tile__sub">Концерт, который помнят годами.</p>
+					<h3 class="tile__title">День рождения</h3>
+					<p class="tile__sub">Концерты, которые помнят годами.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo">
+			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--clients">
 				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Открыть: Клиентские мероприятия"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -185,15 +185,15 @@
 					<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Клиентские мероприятия — Luxury Cover Band" loading="lazy">
 				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Клиентские мероприятия</h3>
-					<p class="tile__sub">Выставки, конкурсы, ужины.</p>
+					<h3 class="tile__title">Клиентские<span class="tile__line"> мероприятия</span></h3>
+					<p class="tile__sub"><span class="tile__line">Выставки</span> <span class="tile__line">Конкурсы</span> <span class="tile__line">Ужин</span></p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--smoky">
+			<li class="tile tile--has-photo tile--smoky tile--copy-stack tile--copy-dark tile--themes tile--themes-split">
 				<a class="tile__tap-target" href="{{ '/programs/' | url }}" aria-label="Открыть: Тематические программы"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -206,7 +206,7 @@
 					<span style="--x: 59.3%; --y: 89.4%; --dx: 11px; --d: 2.0s; --dur: 4.4s;"></span>
 				</div>
 				<div class="tile__content">
-					<h3 class="tile__title">Тематические программы</h3>
+					<h3 class="tile__title">Тематические<span class="tile__line"> программы</span></h3>
 					<p class="tile__sub">6 тематических программ — под аудиторию и формат.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Узнать больше</a>
@@ -214,7 +214,7 @@
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo">
+			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--author-music">
 				<a class="tile__tap-target" href="{{ '/artists/' | url }}" aria-label="Открыть: Авторская музыка"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
@@ -222,8 +222,8 @@
 					<img class="tile__img" src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Авторская музыка Luxury Cover Band — живое выступление на сцене, собственные треки в Apple Music и Spotify" loading="lazy" width="1920" height="1280" style="object-position: left center;">
 				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Авторская музыка</h3>
-					<p class="tile__sub">Свои треки со звёздами и для бренда.</p>
+					<h3 class="tile__title">Авторская<span class="tile__line" lang="en"> music</span></h3>
+					<p class="tile__sub"><span class="tile__line">Свои треки</span> <span class="tile__line">со звёздами</span> <span class="tile__line">и Luxury AI Radio</span></p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/artists/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>

@@ -4362,7 +4362,7 @@ a.stat--link:hover { opacity: 0.7; }
 	}
 
 	/* Event directions: one horizontal, finger-driven photo shelf. The whole
-	   photograph is the link; titles remain as a restrained bottom overlay. */
+	   photograph is the link; copy uses the intentional empty space in each shot. */
 	#directions { overflow: hidden; background: #F5F5F7; }
 	.tile-grid--bleed {
 		display: flex;
@@ -4407,24 +4407,26 @@ a.stat--link:hover { opacity: 0.7; }
 	.tile-grid--bleed .tile::after {
 		content: "";
 		position: absolute;
-		inset: 38% 0 0;
+		inset: 0;
 		z-index: 1;
-		background: linear-gradient(180deg, transparent, rgba(0,0,0,0.78));
+		background: none;
 		pointer-events: none;
 	}
 	.tile-grid--bleed .tile__content,
 	.tile-grid--bleed .tile--center .tile__content,
 	.tile-grid--bleed .tile--v3 .tile__content {
 		position: absolute;
-		left: 0;
-		right: 0;
-		top: auto;
-		bottom: 0;
+		inset: 0;
 		z-index: 2;
-		align-items: flex-start;
-		text-align: left;
-		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		text-align: center;
+		max-width: none;
+		padding: 26px 24px;
 		transform: none;
+		pointer-events: none;
 	}
 	.tile-grid--bleed .tile__title,
 	.tile-grid--bleed .tile__sub,
@@ -4436,12 +4438,111 @@ a.stat--link:hover { opacity: 0.7; }
 	.tile-grid--bleed .tile__title {
 		font-size: 26px;
 		line-height: 1.08;
+		letter-spacing: -0.02em;
 		margin-bottom: 7px;
+		text-wrap: balance;
 	}
 	.tile-grid--bleed .tile__sub {
 		font-size: 16px;
 		line-height: 1.3;
 		margin: 0;
+		text-wrap: balance;
+	}
+	.tile-grid--bleed .tile__line { display: block; }
+
+	/* Light studio cards: black editorial type in the white upper field. */
+	.tile-grid--bleed .tile--copy-dark .tile__title,
+	.tile-grid--bleed .tile--copy-dark .tile__sub {
+		color: #171719;
+		text-shadow: none;
+	}
+	.tile-grid--bleed .tile--copy-top .tile__sub {
+		max-width: 270px;
+	}
+
+	/* Wedding keeps the blue title above the band and the three-part promise
+	   at the bottom, where a narrow scrim protects it from the stage detail. */
+	.tile-grid--bleed .tile--wedding::after {
+		background:
+			linear-gradient(180deg, rgba(4,12,38,0.42) 0, transparent 24%),
+			linear-gradient(0deg, rgba(2,8,22,0.72) 0, transparent 24%);
+	}
+	.tile-grid--bleed .tile--wedding .tile__content {
+		padding: 24px 18px 22px;
+	}
+	.tile-grid--bleed .tile--wedding .tile__sub {
+		margin-top: auto;
+		font-size: 15px;
+		font-weight: 600;
+		letter-spacing: 0.005em;
+		max-width: 100%;
+	}
+
+	/* Client-event wording is deliberately stacked inside the large white field. */
+	.tile-grid--bleed .tile--clients .tile__content {
+		padding-top: 9%;
+	}
+	.tile-grid--bleed .tile--clients .tile__title {
+		font-size: 28px;
+		margin-bottom: 10px;
+	}
+	.tile-grid--bleed .tile--clients .tile__sub {
+		font-size: 17px;
+		line-height: 1.34;
+	}
+
+	/* On the wide Mr & Miss Need source, the performers live at opposite ends.
+	   Two lossless CSS crops remove only the empty middle on mobile, preserving
+	   faces and proportions while keeping both figures against the card edges. */
+	.tile-grid--bleed .tile--themes-split .tile__img { opacity: 0; }
+	.tile-grid--bleed .tile--themes-split .tile__pic::before,
+	.tile-grid--bleed .tile--themes-split .tile__pic::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 52%;
+		z-index: 1;
+		background-image: url("/assets/photos/themes-1152.webp");
+		background-repeat: no-repeat;
+		background-size: auto 100%;
+	}
+	.tile-grid--bleed .tile--themes-split .tile__pic::before {
+		left: 0;
+		background-position: left center;
+	}
+	.tile-grid--bleed .tile--themes-split .tile__pic::after {
+		right: 0;
+		background-position: right center;
+	}
+	.tile-grid--bleed .tile--themes-split .tile__smoke { display: none; }
+	.tile-grid--bleed .tile--themes .tile__content {
+		padding: 16px 20px;
+	}
+	.tile-grid--bleed .tile--themes .tile__title {
+		font-size: 23px;
+		line-height: 1.04;
+	}
+	.tile-grid--bleed .tile--themes .tile__sub {
+		max-width: 150px;
+		font-size: 14px;
+		line-height: 1.24;
+	}
+
+	/* The author card uses the amber light as its text field. */
+	.tile-grid--bleed .tile--author-music .tile__img {
+		object-position: left center !important;
+	}
+	.tile-grid--bleed .tile--author-music .tile__content {
+		right: 18%;
+		padding: 25px 4px 25px 18px;
+	}
+	.tile-grid--bleed .tile--author-music .tile__title {
+		font-size: 30px;
+	}
+	.tile-grid--bleed .tile--author-music .tile__sub {
+		font-size: 17px;
+		line-height: 1.32;
 	}
 	.tile__tap-target {
 		display: block;
