@@ -447,8 +447,12 @@
 		const heroProgress = hero.querySelector('[data-hero-progress]');
 		const heroProgressFilled = hero.querySelector('[data-hero-progress-filled]');
 		const heroTime = hero.querySelector('[data-hero-time]');
+		const heroRecommendations = hero.querySelector('[data-hero-recommendations]');
+		const heroRecommendationButtons = hero.querySelectorAll('[data-hero-recommendation]');
+		const desktopHeroRecommendations = window.matchMedia('(min-width: 735px)');
 		let heroQuality = '1080';
 		let heroQualityKey = '';
+		let currentHeroVideoKey = '';
 
 		function fmtTime(sec) {
 			if (!isFinite(sec)) return '0:00';
@@ -468,6 +472,61 @@
 			gold:  'thematic-retro-heart',
 			white: 'promo-letet'
 		};
+		const heroClips = {
+			'promo-egoistka': {
+				title: 'Эгоистка', costume: 'red', costumeLabel: 'Красный образ',
+				poster: 'promo-egoistka-2026-red-stage.jpg?v=20260620i'
+			},
+			'promo-lets-get-it-started': {
+				title: "Let's Get It Started", costume: 'red', costumeLabel: 'Красный образ',
+				poster: 'promo-lets-get-it-started.jpg?v=20260620i'
+			},
+			'thematic-retro-heart': {
+				title: "You're My Heart", costume: 'gold', costumeLabel: 'Золотой образ',
+				poster: 'thematic-retro-heart-2026.jpg?v=20260620i'
+			},
+			'promo-cold-heart': {
+				title: 'Cold Heart', costume: 'gold', costumeLabel: 'Золотой образ',
+				poster: 'promo-cold-heart.jpg?v=20260620i'
+			},
+			'promo-amore-no': {
+				title: 'Amore No', costume: 'gold', costumeLabel: 'Золотой образ',
+				poster: 'promo-amore-no.jpg?v=20260620i'
+			},
+			'promo-letet': {
+				title: 'Лететь', costume: 'white', costumeLabel: 'Белый образ',
+				poster: 'promo-letet.jpg?v=20260620i'
+			},
+			'thematic-italian': {
+				title: 'Cosa sei', costume: 'white', costumeLabel: 'Белый образ',
+				poster: 'thematic-italian.jpg?v=20260620i'
+			},
+			'interact-wedding-shallow': {
+				title: 'Shallow', costume: 'white', costumeLabel: 'Белый образ',
+				poster: 'interact-wedding-shallow.jpg?v=20260620i'
+			},
+			'promo-loca-loca': {
+				title: 'Loca Loca', costume: 'bw', costumeLabel: 'Чёрно-белый образ',
+				poster: 'promo-loca-loca.jpg?v=20260620i'
+			},
+			'promo-danza-cuduro': {
+				title: 'Danza Cuduro', costume: 'bw', costumeLabel: 'Чёрно-белый образ',
+				poster: 'promo-danza-cuduro-2026.jpg?v=20260620i'
+			}
+		};
+		const heroCostumeClips = {
+			red: ['promo-egoistka', 'promo-lets-get-it-started'],
+			gold: ['thematic-retro-heart', 'promo-cold-heart', 'promo-amore-no'],
+			white: ['promo-letet', 'thematic-italian', 'interact-wedding-shallow'],
+			bw: ['promo-loca-loca', 'promo-danza-cuduro']
+		};
+		const heroNextCostumes = {
+			red: ['gold', 'white'],
+			gold: ['white', 'bw'],
+			white: ['bw', 'red'],
+			bw: ['red', 'gold']
+		};
+		const watchedHeroClips = new Set();
 		let current = 'red';
 		let autoTimer = null;
 		let userInteracted = false;
@@ -498,9 +557,70 @@
 			if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
 		}
 
-		function playHeroVideo() {
+		function hideHeroRecommendations() {
+			hero.classList.remove('is-ended');
+			heroRecommendations?.setAttribute('aria-hidden', 'true');
+		}
+
+		function nextUnwatchedClip(costume, afterKey = '') {
+			const clips = heroCostumeClips[costume] || [];
+			if (!clips.length) return '';
+			const start = Math.max(clips.indexOf(afterKey), 0);
+			const rotated = clips.slice(start + 1).concat(clips.slice(0, start + 1));
+			return rotated.find(key => key !== afterKey && !watchedHeroClips.has(key)) || '';
+		}
+
+		function firstClipForCostume(costume) {
+			const clips = heroCostumeClips[costume] || [];
+			return clips.find(key => !watchedHeroClips.has(key)) || clips[0] || '';
+		}
+
+		function getHeroRecommendations(key) {
+			const clip = heroClips[key];
+			if (!clip) return [];
+			const group = heroCostumeClips[clip.costume] || [];
+			const groupComplete = group.every(groupKey => watchedHeroClips.has(groupKey));
+			const nextCostumes = heroNextCostumes[clip.costume] || [];
+			const choices = [];
+			if (!groupComplete) choices.push(nextUnwatchedClip(clip.costume, key));
+			nextCostumes.forEach(costume => choices.push(firstClipForCostume(costume)));
+			const fallback = Object.keys(heroClips).filter(candidate => !watchedHeroClips.has(candidate));
+			return [...choices, ...fallback]
+				.filter((candidate, index, list) => candidate && candidate !== key && list.indexOf(candidate) === index)
+				.slice(0, 2);
+		}
+
+		function showHeroRecommendations() {
+			if (!heroRecommendations || !desktopHeroRecommendations.matches || !currentHeroVideoKey) {
+				stopHeroVideo();
+				return;
+			}
+			watchedHeroClips.add(currentHeroVideoKey);
+			const recommendations = getHeroRecommendations(currentHeroVideoKey);
+			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
+			heroRecommendationButtons.forEach((button, index) => {
+				const key = recommendations[index];
+				const clip = heroClips[key];
+				button.hidden = !clip;
+				if (!clip) return;
+				button.dataset.heroVideoKey = key;
+				button.setAttribute('aria-label', `Смотреть ${clip.title}. ${clip.costumeLabel}`);
+				const poster = button.querySelector('[data-hero-rec-poster]');
+				const costume = button.querySelector('[data-hero-rec-costume]');
+				const title = button.querySelector('[data-hero-rec-title]');
+				if (poster) poster.src = `${base}assets/video/posters/${clip.poster}`;
+				if (costume) costume.textContent = clip.costumeLabel;
+				if (title) title.textContent = clip.title;
+			});
+			heroRecommendations.setAttribute('aria-hidden', 'false');
+			hero.classList.add('is-ended');
+		}
+
+		function playHeroClip(key) {
 			if (!heroVideo) return;
-			const key = heroVideoMap[current] || 'promo-main-reel';
+			const clip = heroClips[key];
+			if (clip) setActive(clip.costume);
+			currentHeroVideoKey = key;
 			heroQualityKey = key;
 			const slow = navigator.connection && (navigator.connection.saveData || /2g|3g/.test(navigator.connection.effectiveType || ''));
 			if (slow && heroQuality === '1080') heroQuality = '720';
@@ -510,6 +630,7 @@
 			heroVideo.src = `${base}assets/video/mp4/${key}-${heroQuality}.mp4`;
 			stopAuto();
 			userInteracted = true;
+			hideHeroRecommendations();
 			hero.classList.add('is-playing');
 			const p = heroVideo.play();
 			if (p && typeof p.catch === 'function') {
@@ -518,6 +639,10 @@
 					heroVideo.play().catch(() => {});
 				});
 			}
+		}
+
+		function playHeroVideo() {
+			playHeroClip(heroVideoMap[current] || 'promo-main-reel');
 		}
 
 		function syncQualityButtons() {
@@ -540,7 +665,7 @@
 			heroQuality = q;
 			syncQualityButtons();
 			if (!heroVideo || !hero.classList.contains('is-playing')) return;
-			const key = heroVideoMap[current] || 'promo-main-reel';
+			const key = currentHeroVideoKey || heroVideoMap[current] || 'promo-main-reel';
 			const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
 			const wasPlaying = !heroVideo.paused;
 			const currentTime = heroVideo.currentTime;
@@ -551,10 +676,15 @@
 
 		function stopHeroVideo() {
 			if (!heroVideo) return;
+			hideHeroRecommendations();
 			heroVideo.pause();
 			heroVideo.removeAttribute('src');
 			heroVideo.load();
 			heroVideo.muted = false;
+			currentHeroVideoKey = '';
+			heroQualityKey = '';
+			if (heroProgressFilled) heroProgressFilled.style.width = '0%';
+			if (heroTime) heroTime.textContent = '0:00 / 0:00';
 			hero.classList.remove('is-playing');
 		}
 
@@ -597,7 +727,18 @@
 
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
-		heroVideo?.addEventListener('ended', stopHeroVideo);
+		heroVideo?.addEventListener('ended', showHeroRecommendations);
+		heroRecommendationButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				const key = button.dataset.heroVideoKey;
+				if (key) playHeroClip(key);
+			});
+		});
+		const syncHeroRecommendationsViewport = () => {
+			if (!desktopHeroRecommendations.matches && hero.classList.contains('is-ended')) stopHeroVideo();
+		};
+		if (desktopHeroRecommendations.addEventListener) desktopHeroRecommendations.addEventListener('change', syncHeroRecommendationsViewport);
+		else desktopHeroRecommendations.addListener(syncHeroRecommendationsViewport);
 		heroQualityBtns.forEach(b => {
 			b.addEventListener('click', () => changeQuality(b.dataset.heroQ));
 		});

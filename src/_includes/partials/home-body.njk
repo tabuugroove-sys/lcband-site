@@ -40,6 +40,24 @@
 		<button type="button" data-hero-q="1080" class="is-active">1080p</button>
 		<button type="button" data-hero-q="2160" hidden>4K</button>
 	</div>
+	<div class="hero__recommendations" data-hero-recommendations aria-hidden="true" aria-label="Смотреть дальше">
+		<button class="hero-rec" type="button" data-hero-recommendation="0">
+			<img class="hero-rec__poster" data-hero-rec-poster alt="" loading="eager">
+			<span class="hero-rec__copy">
+				<span class="hero-rec__costume" data-hero-rec-costume></span>
+				<strong class="hero-rec__title" data-hero-rec-title></strong>
+			</span>
+			<span class="hero-rec__play" aria-hidden="true"></span>
+		</button>
+		<button class="hero-rec" type="button" data-hero-recommendation="1">
+			<img class="hero-rec__poster" data-hero-rec-poster alt="" loading="eager">
+			<span class="hero-rec__copy">
+				<span class="hero-rec__costume" data-hero-rec-costume></span>
+				<strong class="hero-rec__title" data-hero-rec-title></strong>
+			</span>
+			<span class="hero-rec__play" aria-hidden="true"></span>
+		</button>
+	</div>
 	<div class="hero__content">
 		<p class="hero__eyebrow">International Cover Band</p>
 		<h1 class="hero__title">{{ site.name }}</h1>
