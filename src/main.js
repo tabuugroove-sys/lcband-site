@@ -475,6 +475,9 @@
 			gold:  'thematic-retro-heart',
 			white: 'promo-letet'
 		};
+		const heroPromoPlaylist = [...document.querySelectorAll('.video-rail--big .vtile__link[data-video]')]
+			.map(link => link.dataset.video)
+			.filter((key, index, list) => key && list.indexOf(key) === index);
 		const heroClips = {
 			'promo-egoistka': {
 				title: 'Эгоистка', costume: 'red', costumeLabel: 'Красный образ',
@@ -533,6 +536,59 @@
 		let current = 'red';
 		let autoTimer = null;
 		let autoResumeTimer = null;
+		let heroOrientationTimer = null;
+
+		function isMobileHeroViewport() {
+			return coarseHeroPointer.matches || Math.min(window.innerWidth, window.innerHeight) <= 734;
+		}
+
+		function heroFullscreenElement() {
+			return document.fullscreenElement || document.webkitFullscreenElement || null;
+		}
+
+		function requestHeroFullscreen() {
+			if (!heroVideo || !hero.classList.contains('is-playing') || !isMobileHeroViewport()) return;
+			if (heroFullscreenElement() || heroVideo.webkitDisplayingFullscreen) return;
+			const fallbackToNativeVideo = () => {
+				if (typeof heroVideo.webkitEnterFullscreen !== 'function') return;
+				try { heroVideo.webkitEnterFullscreen(); } catch (_) {}
+			};
+			try {
+				if (typeof hero.requestFullscreen === 'function') {
+					const promise = hero.requestFullscreen({ navigationUI: 'hide' });
+					if (promise?.catch) promise.catch(fallbackToNativeVideo);
+					return;
+				}
+				if (typeof hero.webkitRequestFullscreen === 'function') {
+					hero.webkitRequestFullscreen();
+					return;
+				}
+			} catch (_) {}
+			fallbackToNativeVideo();
+		}
+
+		function exitHeroFullscreen() {
+			const fullscreenElement = heroFullscreenElement();
+			if (fullscreenElement && (fullscreenElement === hero || hero.contains(fullscreenElement))) {
+				const exit = document.exitFullscreen || document.webkitExitFullscreen;
+				if (typeof exit === 'function') {
+					try {
+						const promise = exit.call(document);
+						if (promise?.catch) promise.catch(() => {});
+					} catch (_) {}
+				}
+			} else if (heroVideo?.webkitDisplayingFullscreen && typeof heroVideo.webkitExitFullscreen === 'function') {
+				try { heroVideo.webkitExitFullscreen(); } catch (_) {}
+			}
+		}
+
+		function syncHeroFullscreenAfterRotate() {
+			if (heroOrientationTimer) clearTimeout(heroOrientationTimer);
+			heroOrientationTimer = setTimeout(() => {
+				if (!hero.classList.contains('is-playing')) return;
+				if (window.matchMedia('(orientation: landscape)').matches) requestHeroFullscreen();
+			}, 180);
+		}
 
 		function preloadHeroClip(key = heroVideoMap[current]) {
 			if (!heroVideo || !key || hero.classList.contains('is-playing')) return;
@@ -683,6 +739,19 @@
 			hero.classList.add('is-ended');
 		}
 
+		function playNextHeroPromo() {
+			if (!currentHeroVideoKey || !hero.classList.contains('is-playing')) return;
+			watchedHeroClips.add(currentHeroVideoKey);
+			const playlist = heroPromoPlaylist.length ? heroPromoPlaylist : Object.keys(heroClips);
+			if (!playlist.length) {
+				stopHeroVideo();
+				return;
+			}
+			const currentIndex = playlist.indexOf(currentHeroVideoKey);
+			const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % playlist.length;
+			playHeroClip(playlist[nextIndex]);
+		}
+
 		function playHeroClip(key) {
 			if (!heroVideo) return;
 			const clip = heroClips[key];
@@ -700,6 +769,7 @@
 			document.body.classList.add('hero-video-open');
 			heroVideo.muted = false;
 			loadHeroSource(key, heroQuality, 0, true);
+			requestHeroFullscreen();
 		}
 
 		function playHeroVideo() {
@@ -735,6 +805,7 @@
 		function stopHeroVideo() {
 			if (!heroVideo) return;
 			hideHeroRecommendations();
+			exitHeroFullscreen();
 			hero.classList.remove('is-playing', 'is-ended');
 			document.body.classList.remove('hero-video-open');
 			heroVideo.pause();
@@ -809,7 +880,7 @@
 
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
-		heroVideo?.addEventListener('ended', showHeroRecommendations);
+		heroVideo?.addEventListener('ended', playNextHeroPromo);
 		heroRecommendationButtons.forEach(button => {
 			button.addEventListener('click', () => {
 				const key = button.dataset.heroVideoKey;
@@ -821,6 +892,9 @@
 		};
 		if (desktopHeroRecommendations.addEventListener) desktopHeroRecommendations.addEventListener('change', syncHeroRecommendationsViewport);
 		else desktopHeroRecommendations.addListener(syncHeroRecommendationsViewport);
+		window.addEventListener('orientationchange', syncHeroFullscreenAfterRotate);
+		window.addEventListener('resize', syncHeroFullscreenAfterRotate);
+		if (screen.orientation?.addEventListener) screen.orientation.addEventListener('change', syncHeroFullscreenAfterRotate);
 		heroQualityBtns.forEach(b => {
 			b.addEventListener('click', () => changeQuality(b.dataset.heroQ));
 		});

@@ -594,6 +594,16 @@ h1, h2, h3, p { margin: 0; }
 	background: #000;
 }
 
+.hero:fullscreen,
+.hero:-webkit-full-screen {
+	width: 100vw;
+	height: 100vh;
+	height: 100dvh;
+	min-height: 0;
+	max-height: none;
+	background: #000;
+}
+
 .hero.is-playing .hero__stage {
 	position: absolute;
 	inset: 0;
