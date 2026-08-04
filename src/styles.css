@@ -4006,6 +4006,10 @@ a.stat--link:hover { opacity: 0.7; }
 	display: none;
 }
 
+.tile-grid--bleed > [data-loop-clone="1"] {
+	display: none;
+}
+
 .video-rail__heading {
 	display: none;
 	max-width: var(--container-wide);
@@ -4282,6 +4286,7 @@ a.stat--link:hover { opacity: 0.7; }
 		scroll-snap-stop: always;
 		background: #111;
 	}
+	.tile-grid--bleed > [data-loop-clone="1"] { display: block; }
 	.tile-grid--bleed .tile__pic,
 	.tile-grid--bleed .tile--has-photo .tile__pic {
 		position: absolute;

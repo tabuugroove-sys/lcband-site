@@ -780,15 +780,24 @@
 		});
 	});
 
-	// ---------- Video rails: infinite loop scroll ----------
-	document.querySelectorAll('.video-rail__track').forEach(track => {
+	// ---------- Horizontal rails: infinite loop scroll ----------
+	function initInfiniteRail(track) {
 		if (track.dataset.loopReady === '1') return;
-		track.dataset.loopReady = '1';
 		const originals = Array.from(track.children);
 		if (originals.length < 2) return;
+		track.dataset.loopReady = '1';
 		const n = originals.length;
-		[...originals].reverse().forEach(item => track.insertBefore(item.cloneNode(true), track.firstChild));
-		originals.forEach(item => track.appendChild(item.cloneNode(true)));
+		const clones = [];
+		const cloneItem = (item) => {
+			const clone = item.cloneNode(true);
+			clone.dataset.loopClone = '1';
+			clone.setAttribute('aria-hidden', 'true');
+			clone.querySelectorAll('a, button').forEach(control => control.setAttribute('tabindex', '-1'));
+			clones.push(clone);
+			return clone;
+		};
+		[...originals].reverse().forEach(item => track.insertBefore(cloneItem(item), track.firstChild));
+		originals.forEach(item => track.appendChild(cloneItem(item)));
 
 		const copies = 3;
 		const setWidth = () => track.scrollWidth / copies;
@@ -805,7 +814,7 @@
 
 		let rafId = null;
 		let jumping = false;
-		track.addEventListener('scroll', () => {
+		const onScroll = () => {
 			if (jumping || rafId) return;
 			rafId = requestAnimationFrame(() => {
 				rafId = null;
@@ -821,11 +830,37 @@
 					requestAnimationFrame(() => { jumping = false; });
 				}
 			});
-		}, { passive: true });
+		};
+		track.addEventListener('scroll', onScroll, { passive: true });
 
-		window.addEventListener('resize', () => requestAnimationFrame(() => {
+		const onResize = () => requestAnimationFrame(() => {
 			alignOn(n);
-		}), { passive: true });
-	});
+		});
+		window.addEventListener('resize', onResize, { passive: true });
+
+		return () => {
+			track.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', onResize);
+			if (rafId) cancelAnimationFrame(rafId);
+			clones.forEach(clone => clone.remove());
+			delete track.dataset.loopReady;
+			track.scrollLeft = 0;
+		};
+	}
+
+	document.querySelectorAll('.video-rail__track').forEach(track => initInfiniteRail(track));
+
+	// The event shelf is a carousel only on mobile. Starting on the middle copy
+	// keeps Corporate centred while a slice of Original music remains at left.
+	const directionTrack = document.querySelector('#directions .tile-grid--bleed');
+	if (directionTrack) {
+		const mobileDirections = window.matchMedia('(max-width: 734px)');
+		const syncDirectionLoop = () => {
+			if (mobileDirections.matches) initInfiniteRail(directionTrack);
+		};
+		syncDirectionLoop();
+		if (mobileDirections.addEventListener) mobileDirections.addEventListener('change', syncDirectionLoop);
+		else mobileDirections.addListener(syncDirectionLoop);
+	}
 
 })();
