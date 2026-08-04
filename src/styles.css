@@ -542,6 +542,24 @@ h1, h2, h3, p { margin: 0; }
 		color: #fff !important;
 		background: transparent !important;
 	}
+	.nav__links .nav__cta {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 48px;
+		margin-top: 12px;
+		padding: 0 18px;
+		border: 0;
+		border-radius: 999px;
+		background: #0071e3;
+		color: #fff !important;
+		font-weight: 600;
+	}
+	.nav__links .nav__cta:hover,
+	.nav__links .nav__cta:focus-visible {
+		background: #147ce5;
+		color: #fff !important;
+	}
 }
 
 /* ========================================================================
@@ -4178,8 +4196,7 @@ a.stat--link:hover { opacity: 0.7; }
 	/* Keep the mobile menu focused on the requested sales paths. */
 	.nav__item[data-nav-path="/formats/"],
 	.nav__item[data-nav-path="/riders/"],
-	.nav__item[data-nav-path="/blog/"],
-	.nav__item[data-nav-path^="https://t.me/"] {
+	.nav__item[data-nav-path="/blog/"] {
 		display: none;
 	}
 	.nav__links {

@@ -10,7 +10,7 @@
 			"Классика 60–80-х (Celentano, Lucio Dalla, Mina)",
 			"Современная эстрада (Eros Ramazzotti, Tiziano Ferro)",
 			"Фильмовая Италия (Amore no, Felicità, Cuando Calienta El Sol)",
-			"Под италонские свадьбы и тематические ивенты"
+			"Под итальянские свадьбы и тематические ивенты"
 		],
 		"poster": "assets/video/posters/thematic-italian.jpg",
 		"video": "thematic-italian",
@@ -168,7 +168,7 @@
 	},
 	{
 		"slug": "jazz",
-		"title": "Джазовая программа — Luxury Cover Band",
+		"title": "Джазовая программа",
 		"label": "Jazz Vocal/Инструментальный",
 		"eyebrow": "Jazz Vocal/Инструментальный",
 		"headline": "Swing. Soul. Standards.",
