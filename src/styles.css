@@ -1657,6 +1657,10 @@ h1, h2, h3, p { margin: 0; }
 	scrollbar-width: none;
 }
 .video-rail__track::-webkit-scrollbar { display: none; }
+@media (pointer: fine) {
+	.video-rail__track { cursor: grab; }
+	.video-rail__track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+}
 /* Center-align snap + side padding = peek-a-boo (half of neighbors visible) */
 .video-rail--big  .video-rail__track { padding-inline: calc((100vw - 70vw) / 2); }
 .video-rail--small .video-rail__track { padding-inline: calc((100vw - 28vw) / 2); }

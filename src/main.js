@@ -1039,6 +1039,54 @@
 
 	document.querySelectorAll('.video-rail__track').forEach(track => initInfiniteRail(track));
 
+	// ---------- Desktop mouse: wheel + drag-to-scroll on video rails ----------
+	// Without this, a mouse-only desktop user hovering the rail and spinning
+	// the wheel just scrolls the PAGE past it — the rail has no scrollbar,
+	// no arrows and no drag handler, so it looks frozen/broken.
+	const finePointer = window.matchMedia('(pointer: fine)');
+	document.querySelectorAll('.video-rail__track').forEach(track => {
+		track.addEventListener('wheel', (e) => {
+			if (!finePointer.matches) return;
+			if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return; // horizontal trackpad gesture — let native scroll handle it
+			e.preventDefault();
+			track.scrollLeft += e.deltaY;
+		}, { passive: false });
+
+		track.addEventListener('dragstart', (e) => e.preventDefault());
+
+		let dragging = false;
+		let dragMoved = false;
+		let startX = 0;
+		let startScroll = 0;
+		track.addEventListener('pointerdown', (e) => {
+			if (e.pointerType !== 'mouse') return;
+			dragging = true;
+			dragMoved = false;
+			startX = e.clientX;
+			startScroll = track.scrollLeft;
+			track.classList.add('is-dragging');
+		});
+		window.addEventListener('pointermove', (e) => {
+			if (!dragging) return;
+			const dx = e.clientX - startX;
+			if (Math.abs(dx) > 4) dragMoved = true;
+			track.scrollLeft = startScroll - dx;
+		});
+		const endDrag = () => {
+			if (!dragging) return;
+			dragging = false;
+			track.classList.remove('is-dragging');
+			if (dragMoved) {
+				track.addEventListener('click', (ev) => {
+					ev.stopPropagation();
+					ev.preventDefault();
+				}, { capture: true, once: true });
+			}
+		};
+		window.addEventListener('pointerup', endDrag);
+		window.addEventListener('pointercancel', endDrag);
+	});
+
 	// The event shelf is a carousel only on mobile. Starting on the middle copy
 	// keeps Corporate centred while a slice of Original music remains at left.
 	const directionTrack = document.querySelector('#directions .tile-grid--bleed');
