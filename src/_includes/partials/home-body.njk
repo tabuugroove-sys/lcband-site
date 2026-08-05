@@ -91,12 +91,27 @@
 		</div>
 	</div>
 	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">выступлений</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">стран</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">лет на сцене</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
-		</div>
+		{% set homeStats = [
+			{num: site.stats.shows, label: 'выступлений'},
+			{num: site.stats.countries, label: 'стран'},
+			{num: site.stats.years, label: 'лет на сцене'},
+			{num: site.stats.songs, label: 'песен в репертуаре', href: '/repertoire/'}
+		] %}
+		<ul class="highlight-stats">
+			{% for s in homeStats %}
+			<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
+				{% if s.href %}
+				<a class="highlight-stat__link" href="{{ s.href | url }}">
+					<div class="highlight-stat__num">{{ s.num }}</div>
+					<div class="highlight-stat__label">{{ s.label }}</div>
+				</a>
+				{% else %}
+				<div class="highlight-stat__num">{{ s.num }}</div>
+				<div class="highlight-stat__label">{{ s.label }}</div>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
 </section>
 

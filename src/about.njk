@@ -37,16 +37,31 @@ permalink: /about/
 
 <section class="section section--flush">
 	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">выступлений</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">стран</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">лет на сцене</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.tvShows }}</div><div class="stat__label">ТВ-проектов</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">песен в репертуаре</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">языков</div></div>
-			<a class="stat stat--link" href="{{ '/costumes/' | url }}"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">сценических образов</div></a>
-			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">музыкантов на сцене</div></div>
-		</div>
+		{% set aboutStats = [
+			{num: site.stats.shows, label: 'выступлений'},
+			{num: site.stats.countries, label: 'стран'},
+			{num: site.stats.years, label: 'лет на сцене'},
+			{num: site.stats.tvShows, label: 'ТВ-проектов'},
+			{num: site.stats.songs, label: 'песен в репертуаре'},
+			{num: site.stats.languages, label: 'языков'},
+			{num: site.stats.looks, label: 'сценических образов', href: '/costumes/'},
+			{num: site.stats.lineup, label: 'музыкантов на сцене'}
+		] %}
+		<ul class="highlight-stats">
+			{% for s in aboutStats %}
+			<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
+				{% if s.href %}
+				<a class="highlight-stat__link" href="{{ s.href | url }}">
+					<div class="highlight-stat__num">{{ s.num }}</div>
+					<div class="highlight-stat__label">{{ s.label }}</div>
+				</a>
+				{% else %}
+				<div class="highlight-stat__num">{{ s.num }}</div>
+				<div class="highlight-stat__label">{{ s.label }}</div>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
 </section>
 
