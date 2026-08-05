@@ -4882,29 +4882,15 @@ a.stat--link:hover { opacity: 0.7; }
 	gap: 8px;
 	width: max-content;
 	will-change: transform;
-	animation-name: photo-wall-scroll;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
+	/* автономной анимации нет: ряды статичны, сдвиг привязан к скроллу
+	   (main.js, scroll-linked parallax, равная скорость у всех рядов) */
 }
-
-.photo-wall__row--a { animation-duration: 62s; }
-.photo-wall__row--b { animation-duration: 78s; animation-direction: reverse; }
-.photo-wall__row--c { animation-duration: 54s; }
 
 .photo-wall__row img {
 	width: 260px;
 	height: 168px;
 	object-fit: cover;
 	flex: 0 0 auto;
-}
-
-@keyframes photo-wall-scroll {
-	from { transform: translateX(0); }
-	to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.photo-wall__row { animation: none; }
 }
 
 @media (max-width: 734px) {

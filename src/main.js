@@ -118,7 +118,6 @@
 		const rooms = Array.from(storyRooms.querySelectorAll('[data-room]'));
 		const layers = Array.from(storyRooms.querySelectorAll('[data-story-layer]'));
 		const videos = layers.map(l => l.querySelector('video'));
-		const frame = storyRooms.querySelector('.story-rooms__frame');
 		let roomTops = [];
 		let vh = window.innerHeight;
 		let ticking = false;
@@ -135,8 +134,9 @@
 			const y = window.scrollY;
 			// wipe привязан к геометрии экрана: старт — верх полосы достиг НИЖНЕЙ
 			// границы плеера, финиш — верх полосы дошёл до ВЕРХНЕЙ границы.
-			// Край шторки внутри экрана совпадает с краем полосы снаружи.
-			const frameRect = frame.getBoundingClientRect();
+			// Меряем ВНУТРЕННЕЕ поле видео (слой, без безеля) — тогда край
+			// шторки внутри экрана стоит ровно в уровень с краем полосы снаружи.
+			const frameRect = layers[0].getBoundingClientRect();
 			let current = 0;
 			layers.forEach((layer, i) => {
 				if (i === 0 || !roomTops[i]) return;
@@ -169,6 +169,57 @@
 		window.addEventListener('resize', onResize, { passive: true });
 		// после догрузки шрифтов/картинок выше по странице — перемерить
 		window.addEventListener('load', onResize);
+	}
+
+	// ---------- Photo wall: scroll-linked rows (/about/) ----------
+	// Ряды статичны сами по себе и двигаются ТОЛЬКО от скролла: прогресс
+	// прохождения стены через вьюпорт (0..1) → небольшой translateX.
+	// Скорость по модулю равная у всех рядов, средний ряд — в противофазе.
+	const photoWall = document.querySelector('.photo-wall');
+	if (photoWall && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const wallRows = [
+			photoWall.querySelector('.photo-wall__row--a'),
+			photoWall.querySelector('.photo-wall__row--b'),
+			photoWall.querySelector('.photo-wall__row--c')
+		].filter(Boolean);
+		let wallTop = 0;
+		let wallH = 0;
+		let wallShift = 0;
+		let wallVh = window.innerHeight;
+		let wallTicking = false;
+
+		const measureWall = () => {
+			wallVh = window.innerHeight;
+			const r = photoWall.getBoundingClientRect();
+			wallTop = r.top + window.scrollY;
+			wallH = r.height;
+			// небольшое смещение: ≤40% ширины вьюпорта, с запасом по длине ряда
+			const maxRow = Math.max.apply(null, wallRows.map(row => row.scrollWidth));
+			wallShift = Math.min(window.innerWidth * 0.4, maxRow / 4);
+		};
+
+		const renderWall = () => {
+			wallTicking = false;
+			const p = Math.min(1, Math.max(0,
+				(wallVh - (wallTop - window.scrollY)) / (wallVh + wallH)));
+			wallRows.forEach((row, i) => {
+				const mid = i === 1;
+				const dir = mid ? 1 : -1;
+				const base = mid ? -wallShift : 0;
+				row.style.transform = 'translateX(' + (base + dir * p * wallShift) + 'px)';
+			});
+		};
+
+		const onWallScroll = () => {
+			if (!wallTicking) { wallTicking = true; requestAnimationFrame(renderWall); }
+		};
+		const onWallResize = () => { measureWall(); renderWall(); };
+
+		measureWall();
+		renderWall();
+		window.addEventListener('scroll', onWallScroll, { passive: true });
+		window.addEventListener('resize', onWallResize, { passive: true });
+		window.addEventListener('load', onWallResize);
 	}
 
 	// ---------- Toast ----------
