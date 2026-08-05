@@ -4914,81 +4914,110 @@ a.stat--link:hover { opacity: 0.7; }
 }
 
 /* ========================================================================
-   About — 4-story sticky scroll (visual pinned, content crossfades)
+   About — Story rooms (Apple TV 4K style). Цветные полосы (реальные блоки
+   min-height:100vh) едут вверх под закреплённым справа экраном; контент
+   экрана сменяется wipe-шторкой снизу вверх, scrub-синхронно со скроллом.
+   База (no-JS / prefers-reduced-motion): статичный постер + текст в каждой
+   полосе. JS добавляет .is-enhanced → pinned screen + слои-wipe.
+   Новая полоса = одна запись в массиве storyRooms (about.njk).
    ======================================================================== */
 
-.story-scroll {
-	position: relative;
-	background-color: #0c0c0e;
-	transition: background-color .7s ease;
+.story-rooms { position: relative; }
+
+/* --- Закреплённый экран (только enhanced) --- */
+.story-rooms__gallery { display: none; }
+
+.story-rooms.is-enhanced .story-rooms__gallery {
+	display: block;
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none;
 }
 
-.story-scroll__inner {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 24px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 64px;
-}
-
-.story-scroll__visual {
+.story-rooms__device {
 	position: sticky;
-	top: calc(var(--nav-h) + 40px);
-	height: calc(100vh - var(--nav-h) - 80px);
-	max-height: 720px;
-	align-self: start;
-	padding: 40px 0;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 4vw;
 }
 
-.story-scroll__frame {
+.story-rooms__frame {
 	position: relative;
-	width: 100%;
-	height: 100%;
+	width: min(46vw, 906px);
+	aspect-ratio: 16 / 9;
 	overflow: hidden;
 	border-radius: 18px;
 	background: #000;
 	box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
 }
 
-.story-scroll__media {
+.story-rooms__layer {
 	position: absolute;
 	inset: 0;
+	overflow: hidden;
+	will-change: transform;
+}
+
+.story-rooms__layer video {
+	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	opacity: 0;
-	transition: opacity .7s ease;
 }
 
-.story-scroll__media.is-active { opacity: 1; }
+.story-rooms.is-enhanced .story-rooms__layer:not(:first-child) {
+	transform: translateY(100%);
+}
 
-.story-scroll__track { padding: 40px 0; }
+/* --- Полосы --- */
+.story-rooms__rooms { position: relative; z-index: 1; }
 
-.story-scroll__item {
-	min-height: 80vh;
+.story-room {
+	background-color: var(--room-bg, #0c0c0e);
+	background-image: radial-gradient(at top right, rgba(255,255,255,.13), transparent 62%);
+	padding: 96px 24px;
+}
+
+.story-rooms.is-enhanced .story-room {
+	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	opacity: .32;
-	transition: opacity .5s ease;
+	align-items: center;
 }
 
-.story-scroll__item.is-active { opacity: 1; }
+.story-room__copy {
+	max-width: 1200px;
+	margin: 0 auto;
+}
 
-.story-scroll__item:last-child { min-height: 60vh; }
+/* текст не заходит под экран (правая половина) */
+.story-rooms.is-enhanced .story-room__copy { padding-right: 52%; }
 
-.story-scroll__eyebrow {
+.story-room__static {
+	display: block;
+	width: 100%;
+	max-width: 640px;
+	height: auto;
+	border-radius: 18px;
+	margin: 0 0 32px;
+}
+
+.story-rooms.is-enhanced .story-room__static { display: none; }
+
+.story-room__eyebrow {
 	font-family: var(--ff-display);
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	color: rgba(255,255,255,.5);
+	color: rgba(255,255,255,.55);
 	margin: 0 0 16px;
 }
 
-.story-scroll__title {
+.story-room__title {
 	font-family: var(--ff-display);
 	font-size: clamp(28px, 3.6vw, 44px);
 	font-weight: 600;
@@ -4998,31 +5027,28 @@ a.stat--link:hover { opacity: 0.7; }
 	margin: 0 0 18px;
 }
 
-.story-scroll__text {
+.story-room__text {
 	font-family: var(--ff-text);
 	font-size: clamp(16px, 1.4vw, 18px);
 	line-height: 1.5;
-	color: rgba(255,255,255,.68);
+	color: rgba(255,255,255,.72);
 	max-width: 46ch;
 	margin: 0;
 }
 
 @media (max-width: 900px) {
-	.story-scroll__inner { grid-template-columns: 1fr; gap: 24px; }
-	.story-scroll__visual {
-		position: sticky;
+	.story-rooms__device {
 		top: var(--nav-h);
-		height: 46vh;
-		max-height: none;
-		padding: 24px 0 0;
+		height: auto;
+		padding: 16px 24px 0;
+		justify-content: center;
 	}
-	.story-scroll__track { padding: 0 0 24px; }
-	.story-scroll__item { min-height: 50vh; opacity: 1; }
-	.story-scroll__item:last-child { min-height: 40vh; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.story-scroll__media, .story-scroll__item { transition: none; }
+	.story-rooms__frame { width: 100%; max-width: 560px; }
+	.story-rooms.is-enhanced .story-room {
+		align-items: flex-end;
+		padding-bottom: 12vh;
+	}
+	.story-rooms.is-enhanced .story-room__copy { padding-right: 0; }
 }
 
 /* =============== RTL (Arabic /ae/) =============== */

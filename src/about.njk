@@ -55,38 +55,43 @@ permalink: /about/
 	</ul>
 </section>
 
-<section class="story-scroll" data-story-scroll>
-	<div class="story-scroll__inner">
-		<div class="story-scroll__visual">
-			<div class="story-scroll__frame">
-				<video class="story-scroll__media is-active" data-story-media="0" muted loop playsinline autoplay><source src="{{ '/assets/video/mp4/interact-laz-coco-jambo-1080.mp4' | url }}" type="video/mp4"></video>
-				<video class="story-scroll__media" data-story-media="1" muted loop playsinline><source src="{{ '/assets/video/mp4/live-big-lineup-1080.mp4' | url }}" type="video/mp4"></video>
-				<video class="story-scroll__media" data-story-media="2" muted loop playsinline><source src="{{ '/assets/video/mp4/interact-chainsmokers-1080.mp4' | url }}" type="video/mp4"></video>
-				<video class="story-scroll__media" data-story-media="3" muted loop playsinline><source src="{{ '/assets/video/mp4/live-icon-1080.mp4' | url }}" type="video/mp4"></video>
+<!-- =============== STORY ROOMS (Apple TV 4K style: bands + pinned screen) =============== -->
+{#- Полосы и слои экрана строятся из ОДНОГО массива: новая полоса = одна
+    запись {eyebrow, title, text, bg, video}. Порядок записей = порядок
+    полос и z-порядок слоёв. Видео и постер берутся по slug'у video:
+    /assets/video/mp4/<video>-1080.mp4 + /assets/video/posters/<video>.jpg -#}
+{% set storyRooms = [
+	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Поём на 12 языках — с правильной фонетикой, не транслитом. Итальянский, испанский, французский, английский и другие — под программу и аудиторию.', bg:'#16233f', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Репертуар', title:'500+ песен.<br>Любая эпоха и жанр.', text:'От ретро и джаза до современных хитов. Собираем сет-лист под вашу аудиторию и повод — не играем один и тот же концерт всем.', bg:'#3f3116', video:'live-big-lineup'},
+	{eyebrow:'Интерактив', title:'Не просто концерт.<br>Шоу с залом.', text:'Дуэты с гостями, конкурсы, интерактивные номера. Не просто играем для публики — работаем с ней весь вечер.', bg:'#3f1638', video:'interact-chainsmokers'},
+	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'От классики до тематического шоу — каждый сценический образ группы продуман как законченная визуальная история.', bg:'#3f1620', video:'live-icon'}
+] %}
+<section class="story-rooms" data-story-rooms>
+	<div class="story-rooms__gallery" aria-hidden="true">
+		<div class="story-rooms__device">
+			<div class="story-rooms__frame">
+				{% for r in storyRooms %}
+				<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
+					<video muted loop playsinline preload="metadata"
+						poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}">
+						<source src="{{ ('/assets/video/mp4/' + r.video + '-1080.mp4') | url }}" type="video/mp4">
+					</video>
+				</div>
+				{% endfor %}
 			</div>
 		</div>
-		<div class="story-scroll__track">
-			<div class="story-scroll__item is-active" data-story-item="0" data-story-bg="#16233f">
-				<p class="story-scroll__eyebrow">Репертуар</p>
-				<h3 class="story-scroll__title">12 языков.<br>Один репертуар.</h3>
-				<p class="story-scroll__text">Поём на 12 языках — с правильной фонетикой, не транслитом. Итальянский, испанский, французский, английский и другие — под программу и аудиторию.</p>
-			</div>
-			<div class="story-scroll__item" data-story-item="1" data-story-bg="#3f3116">
-				<p class="story-scroll__eyebrow">Репертуар</p>
-				<h3 class="story-scroll__title">500+ песен.<br>Любая эпоха и жанр.</h3>
-				<p class="story-scroll__text">От ретро и джаза до современных хитов. Собираем сет-лист под вашу аудиторию и повод — не играем один и тот же концерт всем.</p>
-			</div>
-			<div class="story-scroll__item" data-story-item="2" data-story-bg="#3f1638">
-				<p class="story-scroll__eyebrow">Интерактив</p>
-				<h3 class="story-scroll__title">Не просто концерт.<br>Шоу с залом.</h3>
-				<p class="story-scroll__text">Дуэты с гостями, конкурсы, интерактивные номера. Не просто играем для публики — работаем с ней весь вечер.</p>
-			</div>
-			<div class="story-scroll__item" data-story-item="3" data-story-bg="#3f1620">
-				<p class="story-scroll__eyebrow">Образы</p>
-				<h3 class="story-scroll__title">20+ образов.<br>Свой стиль на каждый повод.</h3>
-				<p class="story-scroll__text">От классики до тематического шоу — каждый сценический образ группы продуман как законченная визуальная история.</p>
+	</div>
+	<div class="story-rooms__rooms">
+		{% for r in storyRooms %}
+		<div class="story-room" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};">
+			<div class="story-room__copy">
+				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
+				<p class="story-room__eyebrow">{{ r.eyebrow }}</p>
+				<h3 class="story-room__title">{{ r.title | safe }}</h3>
+				<p class="story-room__text">{{ r.text }}</p>
 			</div>
 		</div>
+		{% endfor %}
 	</div>
 </section>
 

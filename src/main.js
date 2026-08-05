@@ -107,29 +107,65 @@
 		sections.forEach(el => spy.observe(el));
 	}
 
-	// ---------- Story-scroll crossfade (/about/) ----------
-	const storyScroll = document.querySelector('[data-story-scroll]');
-	if (storyScroll && 'IntersectionObserver' in window) {
-		const storyItems = storyScroll.querySelectorAll('[data-story-item]');
-		const storyMedia = storyScroll.querySelectorAll('[data-story-media]');
-		const mediaByIndex = new Map();
-		storyMedia.forEach(m => mediaByIndex.set(m.dataset.storyMedia, m));
-		const activateStory = (item) => {
-			const index = item.dataset.storyItem;
-			storyItems.forEach(i => i.classList.toggle('is-active', i === item));
-			storyMedia.forEach(m => {
-				const active = m.dataset.storyMedia === index;
-				m.classList.toggle('is-active', active);
-				if (active) { m.play?.().catch(() => {}); } else { m.pause?.(); }
-			});
-			if (item.dataset.storyBg) storyScroll.style.backgroundColor = item.dataset.storyBg;
+	// ---------- Story rooms: pinned screen + scroll-scrubbed wipes (/about/) ----------
+	// Механика как section-rooms на apple.com/apple-tv-4k/: слои экрана —
+	// translateY-шторка снизу вверх, прогресс = f(позиция скролла), без
+	// таймеров; реверс скролла = реверс шторки. Без JS / reduced-motion
+	// секция остаётся статичной (постер + текст в каждой полосе).
+	const storyRooms = document.querySelector('[data-story-rooms]');
+	if (storyRooms && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		storyRooms.classList.add('is-enhanced');
+		const rooms = Array.from(storyRooms.querySelectorAll('[data-room]'));
+		const layers = Array.from(storyRooms.querySelectorAll('[data-story-layer]'));
+		const videos = layers.map(l => l.querySelector('video'));
+		let roomTops = [];
+		let vh = window.innerHeight;
+		let ticking = false;
+		let activeIndex = -1;
+
+		const measure = () => {
+			vh = window.innerHeight;
+			const y = window.scrollY;
+			roomTops = rooms.map(r => r.getBoundingClientRect().top + y);
 		};
-		const storySpy = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) activateStory(entry.target);
+
+		const render = () => {
+			ticking = false;
+			const y = window.scrollY;
+			let current = 0;
+			layers.forEach((layer, i) => {
+				if (i === 0 || !roomTops[i]) return;
+				// wipe полосы i: 0 — верх полосы внизу вьюпорта, 1 — полоса
+				// закрыла весь вьюпорт (как --wipe-start/end-timing у Apple)
+				const p = Math.min(1, Math.max(0, (vh - (roomTops[i] - y)) / vh));
+				layer.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
+				if (p >= 0.5) current = i;
 			});
-		}, { rootMargin: '-45% 0px -50% 0px' });
-		storyItems.forEach(el => storySpy.observe(el));
+			// видео играет только у активного слоя и только внутри секции
+			const firstTop = roomTops[0] - y;
+			const lastBottom = roomTops[rooms.length - 1] - y + rooms[rooms.length - 1].offsetHeight;
+			if (firstTop >= vh || lastBottom <= 0) current = -1;
+			if (current !== activeIndex) {
+				activeIndex = current;
+				videos.forEach((v, i) => {
+					if (!v) return;
+					if (i === current) { v.play && v.play().catch(() => {}); }
+					else if (v.pause) { v.pause(); }
+				});
+			}
+		};
+
+		const onScroll = () => {
+			if (!ticking) { ticking = true; requestAnimationFrame(render); }
+		};
+		const onResize = () => { measure(); render(); };
+
+		measure();
+		render();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onResize, { passive: true });
+		// после догрузки шрифтов/картинок выше по странице — перемерить
+		window.addEventListener('load', onResize);
 	}
 
 	// ---------- Toast ----------
