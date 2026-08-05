@@ -107,6 +107,31 @@
 		sections.forEach(el => spy.observe(el));
 	}
 
+	// ---------- Story-scroll crossfade (/about/) ----------
+	const storyScroll = document.querySelector('[data-story-scroll]');
+	if (storyScroll && 'IntersectionObserver' in window) {
+		const storyItems = storyScroll.querySelectorAll('[data-story-item]');
+		const storyMedia = storyScroll.querySelectorAll('[data-story-media]');
+		const mediaByIndex = new Map();
+		storyMedia.forEach(m => mediaByIndex.set(m.dataset.storyMedia, m));
+		const activateStory = (item) => {
+			const index = item.dataset.storyItem;
+			storyItems.forEach(i => i.classList.toggle('is-active', i === item));
+			storyMedia.forEach(m => {
+				const active = m.dataset.storyMedia === index;
+				m.classList.toggle('is-active', active);
+				if (active) { m.play?.().catch(() => {}); } else { m.pause?.(); }
+			});
+			if (item.dataset.storyBg) storyScroll.style.backgroundColor = item.dataset.storyBg;
+		};
+		const storySpy = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) activateStory(entry.target);
+			});
+		}, { rootMargin: '-45% 0px -50% 0px' });
+		storyItems.forEach(el => storySpy.observe(el));
+	}
+
 	// ---------- Toast ----------
 	let toastEl = null;
 	let toastTimer = null;
