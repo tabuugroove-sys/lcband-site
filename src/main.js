@@ -118,6 +118,7 @@
 		const rooms = Array.from(storyRooms.querySelectorAll('[data-room]'));
 		const layers = Array.from(storyRooms.querySelectorAll('[data-story-layer]'));
 		const videos = layers.map(l => l.querySelector('video'));
+		const frame = storyRooms.querySelector('.story-rooms__frame');
 		let roomTops = [];
 		let vh = window.innerHeight;
 		let ticking = false;
@@ -132,12 +133,14 @@
 		const render = () => {
 			ticking = false;
 			const y = window.scrollY;
+			// wipe привязан к геометрии экрана: старт — верх полосы достиг НИЖНЕЙ
+			// границы плеера, финиш — верх полосы дошёл до ВЕРХНЕЙ границы.
+			// Край шторки внутри экрана совпадает с краем полосы снаружи.
+			const frameRect = frame.getBoundingClientRect();
 			let current = 0;
 			layers.forEach((layer, i) => {
 				if (i === 0 || !roomTops[i]) return;
-				// wipe полосы i: 0 — верх полосы внизу вьюпорта, 1 — полоса
-				// закрыла весь вьюпорт (как --wipe-start/end-timing у Apple)
-				const p = Math.min(1, Math.max(0, (vh - (roomTops[i] - y)) / vh));
+				const p = Math.min(1, Math.max(0, (frameRect.bottom - (roomTops[i] - y)) / frameRect.height));
 				layer.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
 				if (p >= 0.5) current = i;
 			});
