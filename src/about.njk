@@ -57,14 +57,16 @@ permalink: /about/
 
 <!-- =============== STORY ROOMS (Apple TV 4K style: bands + pinned screen) =============== -->
 {#- Полосы и слои экрана строятся из ОДНОГО массива: новая полоса = одна
-    запись {eyebrow, title, text, bg, video}. Порядок записей = порядок
-    полос и z-порядок слоёв. Видео и постер берутся по slug'у video:
-    /assets/video/mp4/<video>-1080.mp4 + /assets/video/posters/<video>.jpg -#}
+    запись {eyebrow, title, text, bg, tint?, light?, video}. Порядок записей =
+    порядок полос и z-порядок слоёв. Видео и постер берутся по slug'у video:
+    /assets/video/mp4/<video>-1080.mp4 + /assets/video/posters/<video>.jpg
+    bg — любое CSS-background; палитра ниже = точные цвета полос section-rooms
+    с apple.com/apple-tv-4k (Music / Fitness+ / Arcade / Photos). -#}
 {% set storyRooms = [
-	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Поём на 12 языках — с правильной фонетикой, не транслитом. Итальянский, испанский, французский, английский и другие — под программу и аудиторию.', bg:'#16233f', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Репертуар', title:'500+ песен.<br>Любая эпоха и жанр.', text:'От ретро и джаза до современных хитов. Собираем сет-лист под вашу аудиторию и повод — не играем один и тот же концерт всем.', bg:'#3f3116', video:'live-big-lineup'},
-	{eyebrow:'Интерактив', title:'Не просто концерт.<br>Шоу с залом.', text:'Дуэты с гостями, конкурсы, интерактивные номера. Не просто играем для публики — работаем с ней весь вечер.', bg:'#3f1638', video:'interact-chainsmokers'},
-	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'От классики до тематического шоу — каждый сценический образ группы продуман как законченная визуальная история.', bg:'#3f1620', video:'live-icon'}
+	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Поём на 12 языках — с правильной фонетикой, не транслитом. Итальянский, испанский, французский, английский и другие — под программу и аудиторию.', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Репертуар', title:'500+ песен.<br>Любая эпоха и жанр.', text:'От ретро и джаза до современных хитов. Собираем сет-лист под вашу аудиторию и повод — не играем один и тот же концерт всем.', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
+	{eyebrow:'Интерактив', title:'Не просто концерт.<br>Шоу с залом.', text:'Дуэты с гостями, конкурсы, интерактивные номера. Не просто играем для публики — работаем с ней весь вечер.', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-chainsmokers'},
+	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'От классики до тематического шоу — каждый сценический образ группы продуман как законченная визуальная история.', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
 	<div class="story-rooms__gallery" aria-hidden="true">
@@ -83,7 +85,7 @@ permalink: /about/
 	</div>
 	<div class="story-rooms__rooms">
 		{% for r in storyRooms %}
-		<div class="story-room" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};">
+		<div class="story-room{% if r.light %} story-room--light{% endif %}" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};{% if r.tint %} --room-tint: {{ r.tint }};{% endif %}">
 			<div class="story-room__copy">
 				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
 				<p class="story-room__eyebrow">{{ r.eyebrow }}</p>
