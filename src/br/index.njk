@@ -10,17 +10,33 @@ preloadHeroMobileWebp: true
 permalink: /br/
 ---
 
-<!-- =============== HERO (PT-BR) =============== -->
+<!-- =============== HERO (PT-BR · 4-COLOR SWITCHABLE LINEUP + INLINE VIDEO) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — figurino vermelho em LED wall" loading="eager" fetchpriority="high" data-hero-img="red"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — figurino preto e branco"  loading="lazy" data-hero-img="bw"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — figurino dourado no palco"  loading="lazy" data-hero-img="gold"></picture>
-		<picture><source media="(max-width: 734px)" type="image/webp" sizes="100vw" srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w"><img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — figurino branco em fundo estrelado"  loading="lazy" data-hero-img="white"></picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — figurino vermelho em painel de LED" loading="eager" fetchpriority="high" data-hero-img="red">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — figurino preto e branco"  loading="lazy" data-hero-img="bw">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — figurino dourado no palco"       loading="lazy" data-hero-img="gold">
+		</picture>
+		<picture>
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — figurino branco em fundo estrelado"  loading="lazy" data-hero-img="white">
+		</picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>
 	<div class="hero__scrim"></div>
-	<button class="hero__play" data-hero-play type="button" aria-label="Ver vídeo nestes figurinos"></button>
+	<button class="hero__play" data-hero-play type="button" aria-label="Ver vídeo com estes figurinos"></button>
 	<button class="hero__close" data-hero-close type="button" aria-label="Fechar vídeo"></button>
 	<div class="hero__controls" data-hero-controls>
 		<button class="hero__toggle" data-hero-toggle type="button" aria-label="Pausar"></button>
@@ -53,16 +69,10 @@ permalink: /br/
 		</button>
 	</div>
 	<div class="hero__content">
-		<p class="hero__eyebrow">International Cover Band</p>
+		<p class="hero__eyebrow">Banda de Cover Internacional</p>
 		<h1 class="hero__title">{{ site.name }}</h1>
-		<p class="hero__tagline" data-hero-tagline>
-			<span data-tagline="red"   class="is-active">Palco vermelho. Formação completa. Épico.</span>
-			<span data-tagline="bw"   >Clássico preto e branco. Luz sóbria.</span>
-			<span data-tagline="gold" >Dourado. Grande evento. Glam.</span>
-			<span data-tagline="white">Branco nas estrelas. Formato de casamento.</span>
-		</p>
 		<div class="hero__cta">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
+			<a class="btn btn--primary" href="{{ site.telegram }}">Falar no Telegram</a>
 		</div>
 		<div class="hero__picker" role="tablist" aria-label="Escolha do figurino">
 			<button class="hero__dot hero__dot--red is-active"  data-hero-dot="red"   role="tab" aria-label="Figurino vermelho"       aria-selected="true"></button>
@@ -83,19 +93,19 @@ permalink: /br/
 		<div class="about-split__body">
 			<p class="section__eyebrow">Sobre a banda</p>
 			<h2 class="section__title">Palco de nível mundial.</h2>
-			<p class="section__lead">Experiência de estádios. Aparições na TV. Faixas próprias com artistas convidados.</p>
+			<p class="section__lead">Mais de 2000 shows em 40 países. Estádios, TV, grandes estrelas — agora no seu evento.</p>
 			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="#videos">Saiba mais</a>
-				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+				<a class="btn btn--blue" href="{{ '/about/' | url }}">Saiba mais</a>
+				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 			</div>
 		</div>
 	</div>
 	<div class="container reveal">
 		<div class="stats">
+			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">shows</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">países</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">anos de palco</div></div>
 			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">músicas no repertório</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.languages }}</div><div class="stat__label">idiomas</div></div>
-			<a class="stat stat--link" href="{{ '/costumes/' | url }}"><div class="stat__num">{{ site.stats.looks }}</div><div class="stat__label">figurinos cênicos</div></a>
-			<div class="stat"><div class="stat__num">{{ site.stats.lineup }}</div><div class="stat__label">músicos no palco</div></div>
 		</div>
 	</div>
 </section>
@@ -103,92 +113,128 @@ permalink: /br/
 <!-- =============== VOCALISTAS =============== -->
 <section class="section section--light section--flush" id="vocalists">
 	<div class="hero-banner hero-banner--bleed reveal">
-		<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — quatro vocalistas, ensaio em estúdio" loading="lazy">
+		<picture class="hero-banner__pic">
+			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/photos/vocalists-mobile-640.webp' | url }} 640w, {{ '/assets/photos/vocalists-mobile-960.webp' | url }} 960w">
+			<source media="(max-width: 734px)" srcset="{{ '/assets/photos/vocalists-mobile.jpg' | url }}">
+			<source type="image/webp" sizes="100vw"
+				srcset="{{ '/assets/photos/vocalists-1280.webp' | url }} 1280w, {{ '/assets/photos/vocalists-1920.webp' | url }} 1920w, {{ '/assets/photos/vocalists-2600.webp' | url }} 2600w">
+			<img class="hero-banner__img" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="Luxury Cover Band — quatro vocalistas, ensaio fotográfico em estúdio" loading="lazy">
+		</picture>
 		<div class="hero-banner__overlay">
 			<p class="section__eyebrow">Vocalistas</p>
 			<h2 class="section__title">Quatro vozes.<br><span class="muted">Quatro personalidades.</span></h2>
-			<p class="section__lead">Cada um conduz sua parte do show. Combinamos em duos, trios e quartetos sob medida para o evento.</p>
+			<p class="section__lead">Cada um conduz sua parte do show. Combinamos em duos, trios e quartetos sob medida para o seu evento.</p>
 			<div class="cta-row">
 				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Saiba mais</a>
-				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- =============== DIREÇÕES (6 tiles) =============== -->
+<!-- =============== DIREÇÕES (6 tiles, 2-up estilo Apple) =============== -->
 <section class="section section--flush" id="directions">
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed">
-			<li class="tile tile--has-photo tile--copy-top tile--copy-dark">
+			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--corporate">
 				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Abrir: Eventos corporativos"></a>
-				<img class="tile__img" src="{{ '/assets/photos/corporate.jpg' | url }}" alt="Eventos corporativos — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/corporate-768.webp' | url }} 768w, {{ '/assets/photos/corporate-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/corporate.jpg?v=6' | url }}" alt="Eventos corporativos — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Eventos corporativos</h3>
-					<p class="tile__sub">Marca viva em grande palco.</p>
+					<p class="tile__sub">Sua marca viva em grande palco.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--copy-split tile--wedding">
+			<li class="tile tile--has-photo tile--center tile--copy-split tile--wedding">
 				<a class="tile__tap-target" href="{{ '/events/wedding/' | url }}" aria-label="Abrir: Casamentos"></a>
-				<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Casamentos — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/wedding-768.webp' | url }} 768w, {{ '/assets/photos/wedding-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/wedding.jpg' | url }}" alt="Casamentos — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Casamentos</h3>
-					<p class="tile__sub">Show para a primeira dança e o jantar.</p>
+					<p class="tile__sub">Show · Primeira dança · Jantar</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/wedding/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--copy-top tile--copy-dark">
+			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--birthday">
 				<a class="tile__tap-target" href="{{ '/events/birthday/' | url }}" aria-label="Abrir: Aniversários"></a>
-				<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Aniversários — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/birthday-768.webp' | url }} 768w, {{ '/assets/photos/birthday-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/birthday.jpg' | url }}" alt="Aniversários — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Aniversários</h3>
-					<p class="tile__sub">Um show que marca para sempre.</p>
+					<h3 class="tile__title">Aniversário</h3>
+					<p class="tile__sub">Shows que ficam na memória por anos.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark">
+			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--clients">
 				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Abrir: Eventos para clientes"></a>
-				<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Eventos para clientes — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/clients-768.webp' | url }} 768w, {{ '/assets/photos/clients-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/clients.jpg' | url }}" alt="Eventos para clientes — Luxury Cover Band" loading="lazy">
+				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Eventos para clientes</h3>
-					<p class="tile__sub">Inaugurações, lançamentos, jantares.</p>
+					<h3 class="tile__title">Eventos<span class="tile__line"> para clientes</span></h3>
+					<p class="tile__sub"><span class="tile__line">Feiras</span> <span class="tile__line">Premiações</span> <span class="tile__line">Jantar</span></p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark">
+			<li class="tile tile--has-photo tile--smoky tile--copy-stack tile--copy-dark tile--themes tile--themes-split">
 				<a class="tile__tap-target" href="{{ '/programs/' | url }}" aria-label="Abrir: Programas temáticos"></a>
-				<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Programas temáticos — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/themes-768.webp' | url }} 768w, {{ '/assets/photos/themes-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/themes.jpg' | url }}" alt="Programas temáticos — Luxury Cover Band" loading="lazy">
+				</picture>
+				<div class="tile__smoke" aria-hidden="true">
+					<span style="--x: 45.9%; --y: 85.1%; --dx: 8px; --d: 0s; --dur: 3.2s;"></span>
+					<span style="--x: 48.8%; --y: 81.7%; --dx: -6px; --d: 1.1s; --dur: 3.8s;"></span>
+					<span style="--x: 59.3%; --y: 89.4%; --dx: 11px; --d: 2.0s; --dur: 4.4s;"></span>
+				</div>
 				<div class="tile__content">
-					<h3 class="tile__title">Programas temáticos</h3>
-					<p class="tile__sub">6 programas temáticos — sob medida para o público e o formato.</p>
+					<h3 class="tile__title">Programas<span class="tile__line"> temáticos</span></h3>
+					<p class="tile__sub">6 programas temáticos — para o público e o formato do evento.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
-			<li class="tile tile--has-photo tile--copy-top tile--copy-dark">
+			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--author-music">
 				<a class="tile__tap-target" href="{{ '/artists/' | url }}" aria-label="Abrir: Música autoral"></a>
-				<img class="tile__img" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="Música autoral — Luxury Cover Band" loading="lazy">
+				<picture class="tile__pic">
+					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
+						srcset="{{ '/assets/photos/author-music-stage-768.webp' | url }} 768w, {{ '/assets/photos/author-music-stage-1152.webp' | url }} 1152w">
+					<img class="tile__img" src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Música autoral da Luxury Cover Band — apresentação ao vivo no palco, faixas próprias no Apple Music e Spotify" loading="lazy" width="1920" height="1280" style="object-position: left center;">
+				</picture>
 				<div class="tile__content">
-					<h3 class="tile__title">Música autoral</h3>
-					<p class="tile__sub">Faixas próprias com artistas e para marcas.</p>
+					<h3 class="tile__title">Música<span class="tile__line" lang="en"> autoral</span></h3>
+					<p class="tile__sub"><span class="tile__line">Faixas próprias</span> <span class="tile__line">com estrelas</span> <span class="tile__line">e Luxury AI Radio</span></p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/artists/' | url }}">Saiba mais</a>
-						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
+						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Falar no Telegram</a>
 					</div>
 				</div>
 			</li>
@@ -196,36 +242,50 @@ permalink: /br/
 	</div>
 </section>
 
-<!-- =============== VÍDEO =============== -->
+<!-- =============== VÍDEOS (2 fileiras estilo Apple · sem faixas com título em cirílico) =============== -->
 <section class="section" id="videos">
 	{% set promos = [
-		{slug:'promo-egoistka', title:'Egoísta · 2020–2025', eyebrow:'Clipe'},
-		{slug:'promo-main-reel', title:'Main Reel', eyebrow:'Promo'},
+		{slug:'promo-danza-cuduro', poster:'promo-danza-cuduro-2026', title:'Danza Cuduro · Ao Vivo', eyebrow:'Ao Vivo'},
+		{slug:'thematic-retro-heart', poster:'thematic-retro-heart-2026', title:'You\'re My Heart · Retrô', eyebrow:'Temático'},
+		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Promo'},
+		{slug:'promo-cold-heart', title:'Cold Heart', eyebrow:'Promo'},
 		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Promo'},
-		{slug:'promo-letet', title:'Voar', eyebrow:'Promo'},
-		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Promo'}
+		{slug:'promo-amore-no', title:'Amore No · Italiana', eyebrow:'Temático'},
+		{slug:'thematic-italian', title:'Cosa sei · Italiana', eyebrow:'Temático'},
+		{slug:'interact-wedding-shallow', title:'Shallow · casamento', eyebrow:'Interativo'}
 	] %}
 	{% set lives = [
-		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'Ao vivo'},
-		{slug:'live-perfect', title:'Perfect', eyebrow:'Ao vivo'},
-		{slug:'live-soho', title:'Soho Rooms', eyebrow:'Ao vivo'},
-		{slug:'live-berezy', title:'Beryozy', eyebrow:'Ao vivo'},
-		{slug:'live-icon', title:'Icon', eyebrow:'Ao vivo'},
-		{slug:'interact-wedding-shallow', title:'Shallow · casamento', eyebrow:'Interação'},
-		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Interação'}
+		{slug:'live-icon', title:'Ao Vivo Épico · Icon', eyebrow:'Ao Vivo'},
+		{slug:'teddy-macarena', title:'Teddy · Macarena', eyebrow:'Interativo'},
+		{slug:'teddy-latina-promo', title:'Teddy · Latina', eyebrow:'Latino'},
+		{slug:'luxury-latin-dance-master-class', title:'Teddy · Masterclass de Dança', eyebrow:'Interativo'},
+		{slug:'interact-laz-coco-jambo', title:'LAZ · Coco Jambo', eyebrow:'Interativo'},
+		{slug:'live-lets-get-loud', title:'Let\'s Get Loud', eyebrow:'Ao Vivo'},
+		{slug:'live-jazz-vintage', title:'Jazz · Vintage', eyebrow:'Temático'},
+		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'Ao Vivo'},
+		{slug:'live-perfect', title:'Perfect', eyebrow:'Ao Vivo'},
+		{slug:'live-soho', title:'Soho Rooms', eyebrow:'Ao Vivo'},
+		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'Interativo'},
+		{slug:'live-dance-monkey', title:'Dance Monkey', eyebrow:'Ao Vivo'},
+		{slug:'live-simple-the-best', title:'Simply the Best · Jazz', eyebrow:'Ao Vivo'},
+		{slug:'live-adele-hello', title:'Adele · Hello', eyebrow:'Ao Vivo'}
 	] %}
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Veja como<br><span class="muted">funciona no palco.</span></h2>
-		<p class="section__lead">Promos em estúdio, gravações de shows, interações e programas temáticos.</p>
+		<p class="section__lead">Promos de estúdio, gravações de shows, momentos interativos e programas temáticos.</p>
 	</div>
 
-	<div class="video-rail video-rail--big reveal" role="region" aria-label="Vídeos promocionais">
+	<div class="video-rail video-rail--big reveal" role="region" aria-label="Vídeos promocionais de estúdio">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Vídeos promocionais de estúdio</h3></div>
 		<ul class="video-rail__track">
 			{% for v in promos %}
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<picture class="vtile__pic">
+						<source media="(max-width: 734px)" type="image/webp" sizes="84vw"
+							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
@@ -236,13 +296,17 @@ permalink: /br/
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="video-rail video-rail--small reveal" role="region" aria-label="Vídeos ao vivo">
+	<div class="video-rail video-rail--small reveal" role="region" aria-label="Vídeos ao vivo de shows">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Vídeos ao vivo de shows</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives %}
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
-					<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					<picture class="vtile__pic">
+						<source media="(max-width: 734px)" type="image/webp" sizes="72vw"
+							srcset="{{ ('/assets/video/posters/' + v.slug + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + v.slug + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
 						<span class="vtile__eyebrow">{{ v.eyebrow }}</span>
@@ -262,8 +326,8 @@ permalink: /br/
 		<h2 class="section__title">Escreva para nós —<br><span class="muted">montamos um show sob medida para o seu evento.</span></h2>
 		<p class="section__lead">Conte a data, o local e o formato. Enviamos a formação, o cronograma e o orçamento no mesmo dia.</p>
 		<div class="book__cta">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
-			<a class="btn btn--ghost-dark" href="#top">Topo</a>
+			<a class="btn btn--primary" href="{{ site.telegram }}">Falar no Telegram</a>
+			<a class="btn btn--ghost-dark" href="#top">Voltar ao topo</a>
 		</div>
 	</div>
 </section>

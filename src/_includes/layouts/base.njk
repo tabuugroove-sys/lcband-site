@@ -23,12 +23,13 @@
 	<meta name="twitter:description" content="{{ description or site.tagline }}">
 	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 
-	{# hreflang: три языковые версии главной (RU — основная, /ae/ AR, /br/ PT).
-	   Только на этих трёх URL, чтобы RU/AR/PT не конфликтовали в выдаче #}
-	{% if page.url == '/' or page.url == '/ae/' or page.url == '/br/' %}
+	{# hreflang: четыре языковые версии главной (RU — основная, /ae/ AR, /br/ PT, /en/ EN).
+	   Только на этих четырёх URL, чтобы RU/AR/PT/EN не конфликтовали в выдаче #}
+	{% if page.url == '/' or page.url == '/ae/' or page.url == '/br/' or page.url == '/en/' %}
 	<link rel="alternate" hreflang="ru" href="{{ site.url }}/">
 	<link rel="alternate" hreflang="ar" href="{{ site.url }}/ae/">
 	<link rel="alternate" hreflang="pt-BR" href="{{ site.url }}/br/">
+	<link rel="alternate" hreflang="en" href="{{ site.url }}/en/">
 	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
 	{% endif %}
 	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}

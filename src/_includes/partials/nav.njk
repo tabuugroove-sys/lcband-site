@@ -43,6 +43,96 @@
 		</button>
 	</div>
 </header>
+{% elif htmlLang == 'pt-BR' %}
+{#- Versão em português (/br/): menu plano sem dropdowns — as subpáginas
+    levam às páginas em russo, seus títulos vindos das coleções de dados não são traduzidos -#}
+<header class="nav" id="nav">
+	<div class="nav__inner">
+		<a class="nav__logo" href="{{ '/br/' | url }}" aria-label="{{ site.name }} — página inicial">
+			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
+		</a>
+		<nav class="nav__links" aria-label="Navegação principal">
+			<div class="nav__item" data-nav-path="/br/">
+				<a class="nav__link" href="{{ '/br/' | url }}">Início</a>
+			</div>
+			<div class="nav__item" data-nav-path="/vocalists/">
+				<a class="nav__link" href="{{ '/vocalists/' | url }}">Vocalistas</a>
+			</div>
+			<div class="nav__item" data-nav-path="/programs/">
+				<a class="nav__link" href="{{ '/programs/' | url }}">Programas Temáticos</a>
+			</div>
+			<div class="nav__item" data-nav-path="/costumes/">
+				<a class="nav__link" href="{{ '/costumes/' | url }}">Figurinos</a>
+			</div>
+			<div class="nav__item" data-nav-path="/formats/">
+				<a class="nav__link" href="{{ '/formats/' | url }}">Formatos</a>
+			</div>
+			<div class="nav__item" data-nav-path="/sax/">
+				<a class="nav__link" href="{{ '/sax/' | url }}">Saxofone</a>
+			</div>
+			<div class="nav__item" data-nav-path="/events/">
+				<a class="nav__link" href="{{ '/events/' | url }}">Eventos</a>
+			</div>
+			<div class="nav__item" data-nav-path="/riders/">
+				<a class="nav__link" href="{{ '/riders/' | url }}">Riders</a>
+			</div>
+			<div class="nav__item" data-nav-path="/blog/">
+				<a class="nav__link" href="{{ '/blog/' | url }}">Blog</a>
+			</div>
+			<div class="nav__item" data-nav-path="{{ site.telegram }}">
+				<a class="nav__link nav__cta" href="{{ site.telegram }}">Falar no Telegram</a>
+			</div>
+		</nav>
+		<button class="nav__burger" aria-label="Menu" aria-expanded="false">
+			<span></span><span></span><span></span>
+		</button>
+	</div>
+</header>
+{% elif htmlLang == 'en' %}
+{#- English version (/en/): flat menu, no dropdowns — subpages link to the
+    Russian pages, their titles from the data collections are not translated -#}
+<header class="nav" id="nav">
+	<div class="nav__inner">
+		<a class="nav__logo" href="{{ '/en/' | url }}" aria-label="{{ site.name }} — home">
+			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
+		</a>
+		<nav class="nav__links" aria-label="Main navigation">
+			<div class="nav__item" data-nav-path="/en/">
+				<a class="nav__link" href="{{ '/en/' | url }}">Home</a>
+			</div>
+			<div class="nav__item" data-nav-path="/vocalists/">
+				<a class="nav__link" href="{{ '/vocalists/' | url }}">Vocalists</a>
+			</div>
+			<div class="nav__item" data-nav-path="/programs/">
+				<a class="nav__link" href="{{ '/programs/' | url }}">Themed Programs</a>
+			</div>
+			<div class="nav__item" data-nav-path="/costumes/">
+				<a class="nav__link" href="{{ '/costumes/' | url }}">Costumes</a>
+			</div>
+			<div class="nav__item" data-nav-path="/formats/">
+				<a class="nav__link" href="{{ '/formats/' | url }}">Formats</a>
+			</div>
+			<div class="nav__item" data-nav-path="/sax/">
+				<a class="nav__link" href="{{ '/sax/' | url }}">Sax</a>
+			</div>
+			<div class="nav__item" data-nav-path="/events/">
+				<a class="nav__link" href="{{ '/events/' | url }}">Events</a>
+			</div>
+			<div class="nav__item" data-nav-path="/riders/">
+				<a class="nav__link" href="{{ '/riders/' | url }}">Riders</a>
+			</div>
+			<div class="nav__item" data-nav-path="/blog/">
+				<a class="nav__link" href="{{ '/blog/' | url }}">Blog</a>
+			</div>
+			<div class="nav__item" data-nav-path="{{ site.telegram }}">
+				<a class="nav__link nav__cta" href="{{ site.telegram }}">Message on Telegram</a>
+			</div>
+		</nav>
+		<button class="nav__burger" aria-label="Menu" aria-expanded="false">
+			<span></span><span></span><span></span>
+		</button>
+	</div>
+</header>
 {% else %}
 <header class="nav" id="nav">
 	<div class="nav__inner">

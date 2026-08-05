@@ -6,10 +6,16 @@ import { test, expect } from '@playwright/test';
  *
  * Bug found 2026-08-04: on desktop, hovering a rail and spinning a normal
  * mouse wheel scrolled the PAGE instead of the rail — the track has no
- * scrollbar, no arrows and no drag handler, so it looked frozen. Fixed in
- * main.js by translating vertical wheel deltas into horizontal scroll and
- * adding click-and-drag support (pointer:fine only; trackpads/touch already
- * scroll horizontally natively and are left alone).
+ * scrollbar or arrows, so it looked frozen. First fixed by translating
+ * vertical wheel deltas into horizontal rail scroll (pointer:fine only).
+ *
+ * Regression found 2026-08-05: that fix couldn't distinguish a real mouse
+ * wheel from a trackpad's normal vertical two-finger scroll (both fire the
+ * same `wheel` event and both match `pointer: fine`), so it also hijacked
+ * ordinary page scrolling for trackpad users whenever the cursor happened to
+ * be over a rail — trapping the page instead of letting it scroll past.
+ * main.js now leaves wheel/trackpad scroll alone entirely; click-and-drag
+ * (with a grab-cursor affordance) is the desktop-mouse interaction instead.
  */
 
 /** Returns an ElementHandle for a tile that is fully inside the viewport. */
@@ -29,7 +35,7 @@ async function findVisibleTile(page, railSelector) {
 }
 
 test.describe('video rails — infinite loop setup', () => {
-	for (const path of ['/', '/ae/']) {
+	for (const path of ['/', '/ae/', '/br/', '/en/']) {
 		test(`${path} — both rails init with tripled (original + 2 clone) copies`, async ({ page }) => {
 			await page.goto(path);
 			await page.waitForFunction(
@@ -86,7 +92,7 @@ test.describe('video rails — open + play', () => {
 test.describe('video rails — desktop mouse (pointer: fine)', () => {
 	test.skip(({ isMobile }) => isMobile, 'desktop-only input methods');
 
-	test('vertical mouse wheel over a rail scrolls it horizontally, not the page', async ({ page }) => {
+	test('vertical wheel scroll over a rail scrolls the page, not the rail (does not trap it)', async ({ page }) => {
 		await page.goto('/');
 		await page.locator('#videos').scrollIntoViewIfNeeded();
 		await page.waitForTimeout(400);
@@ -106,8 +112,8 @@ test.describe('video rails — desktop mouse (pointer: fine)', () => {
 			trackSel
 		);
 
-		expect(after.scrollLeft, 'rail should have scrolled horizontally').not.toBe(before.scrollLeft);
-		expect(after.pageY, 'page should NOT have scrolled').toBe(before.pageY);
+		expect(after.scrollLeft, 'rail should NOT have hijacked the scroll').toBe(before.scrollLeft);
+		expect(after.pageY, 'page should have scrolled normally').not.toBe(before.pageY);
 	});
 
 	test('click-and-drag scrolls the rail without opening the lightbox', async ({ page }) => {

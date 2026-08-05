@@ -11,12 +11,12 @@
 		const path = window.location.pathname;
 		const base = (document.querySelector('base')?.getAttribute('href') || '/').replace(/\/+$/, '/');
 		const rel = path.startsWith(base) ? path.slice(base.length - 1) : path;
-		const match = rel.match(/^\/(br|ae)(\/|$)/);
+		const match = rel.match(/^\/(br|ae|en)(\/|$)/);
 		if (match) {
 			localStorage.setItem('lcb_locale', match[1]);
 		} else if (rel === '/' || rel === '') {
 			const saved = localStorage.getItem('lcb_locale');
-			if (saved === 'br' || saved === 'ae') {
+			if (saved === 'br' || saved === 'ae' || saved === 'en') {
 				window.location.replace(base + saved + '/');
 				return;
 			}
@@ -1039,19 +1039,16 @@
 
 	document.querySelectorAll('.video-rail__track').forEach(track => initInfiniteRail(track));
 
-	// ---------- Desktop mouse: wheel + drag-to-scroll on video rails ----------
-	// Without this, a mouse-only desktop user hovering the rail and spinning
-	// the wheel just scrolls the PAGE past it — the rail has no scrollbar,
-	// no arrows and no drag handler, so it looks frozen/broken.
-	const finePointer = window.matchMedia('(pointer: fine)');
+	// ---------- Desktop mouse: drag-to-scroll on video rails ----------
+	// A mouse-only desktop user hovering the rail has no scrollbar/arrows to
+	// move it, so click-and-drag (with a grab cursor affordance, see
+	// styles.css) is the interaction. We deliberately do NOT hijack the wheel:
+	// `wheel` deltaY can't be reliably told apart from a trackpad's normal
+	// vertical two-finger scroll (both report the same event, both match
+	// `pointer: fine`), so converting it to horizontal rail movement traps
+	// anyone trying to scroll the page past the rail — a worse bug than the
+	// "rail looks frozen" one it was meant to fix (regression found 2026-08-05).
 	document.querySelectorAll('.video-rail__track').forEach(track => {
-		track.addEventListener('wheel', (e) => {
-			if (!finePointer.matches) return;
-			if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return; // horizontal trackpad gesture — let native scroll handle it
-			e.preventDefault();
-			track.scrollLeft += e.deltaY;
-		}, { passive: false });
-
 		track.addEventListener('dragstart', (e) => e.preventDefault());
 
 		let dragging = false;
