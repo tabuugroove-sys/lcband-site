@@ -143,9 +143,7 @@
 			{% for item in site.nav %}
 				{% set kids = [] %}
 				{% set labelField = 'title' %}
-				{% if item.href == '/events/' %}{% set kids = events %}{% set labelField = 'eyebrow' %}{% endif %}
 				{% if item.href == '/programs/' %}{% set kids = programs %}{% set labelField = 'label' %}{% endif %}
-				{% if item.href == '/formats/' %}{% set kids = formats %}{% endif %}
 				{% if item.href == '/vocalists/' %}{% set kids = vocalists %}{% set labelField = 'name' %}{% endif %}
 
 				{% if kids | length %}
@@ -167,6 +165,26 @@
 										{% endfor %}
 									</ul>
 								</div>
+								{% if item.href == '/programs/' %}
+								<div class="nav__dropdown-col nav__dropdown-col--related">
+									<p class="nav__dropdown-label">Форматы</p>
+									<ul class="nav__dropdown-related">
+										{% for f in formats %}
+										<li role="none"><a role="menuitem" href="{{ ('/formats/' + f.slug + '/') | url }}">{{ f.title }}</a></li>
+										{% endfor %}
+										<li><a href="{{ '/formats/' | url }}">Все форматы ›</a></li>
+									</ul>
+								</div>
+								<div class="nav__dropdown-col nav__dropdown-col--cta">
+									<p class="nav__dropdown-label">События</p>
+									<ul class="nav__dropdown-related">
+										{% for e in events %}
+										<li role="none"><a role="menuitem" href="{{ ('/events/' + e.slug + '/') | url }}">{{ e.eyebrow }}</a></li>
+										{% endfor %}
+										<li><a href="{{ '/events/' | url }}">Все события ›</a></li>
+									</ul>
+								</div>
+								{% else %}
 								<div class="nav__dropdown-col nav__dropdown-col--related">
 									<p class="nav__dropdown-label">Ещё на сайте</p>
 									<ul class="nav__dropdown-related">
@@ -184,6 +202,7 @@
 										<li><a href="{{ '/#videos' | url }}">Смотреть видео</a></li>
 									</ul>
 								</div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
