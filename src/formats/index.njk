@@ -20,14 +20,17 @@ permalink: /formats/
 
 <section class="section section--light">
 	<div class="container reveal">
-		<ul class="formats formats--list">
+		<ul class="formats">
 			{% for f in formats %}
-			<li class="format format--light">
+			<li class="format">
 				<a class="format__link" href="{{ ('/formats/' + f.slug + '/') | url }}">
-					<div class="format__mark">0{{ loop.index }}</div>
-					<h3 class="format__title">{{ f.title }}</h3>
-					<p class="format__text">{{ f.lead }}</p>
-					<span class="format__more">Подробнее ›</span>
+					<div class="format__photo"><img src="{{ ('/' + f.poster) | url }}" alt="{{ f.title }} — формат LC Band" loading="lazy"></div>
+					<div class="format__body">
+						<span class="format__label">{{ f.eyebrow }}</span>
+						<h3 class="format__title">{{ f.title }}</h3>
+						<p class="format__text">{{ f.lead }}</p>
+						<span class="format__more">Подробнее ›</span>
+					</div>
 				</a>
 			</li>
 			{% endfor %}
