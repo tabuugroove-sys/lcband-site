@@ -89,6 +89,24 @@
 		reveals.forEach(el => el.classList.add('is-visible'));
 	}
 
+	// ---------- Program tabs scrollspy (/programs/) ----------
+	const programTabs = document.querySelectorAll('.program-tabs__link');
+	if (programTabs.length && 'IntersectionObserver' in window) {
+		const tabsBySlug = new Map();
+		programTabs.forEach(tab => tabsBySlug.set(tab.dataset.programTab, tab));
+		const sections = [...tabsBySlug.keys()]
+			.map(slug => document.getElementById('program-' + slug))
+			.filter(Boolean);
+		const spy = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (!entry.isIntersecting) return;
+				const slug = entry.target.id.replace(/^program-/, '');
+				programTabs.forEach(tab => tab.classList.toggle('is-active', tab.dataset.programTab === slug));
+			});
+		}, { rootMargin: '-45% 0px -50% 0px' });
+		sections.forEach(el => spy.observe(el));
+	}
+
 	// ---------- Toast ----------
 	let toastEl = null;
 	let toastTimer = null;

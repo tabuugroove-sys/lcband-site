@@ -18,6 +18,16 @@ permalink: /programs/
 	</div>
 </section>
 
+<nav class="program-tabs" aria-label="Быстрый переход к программе">
+	<div class="container container--narrow program-tabs__inner">
+		{% for p in programs %}
+			{% if p.videos %}
+			<a class="program-tabs__link" data-program-tab="{{ p.slug }}" href="#program-{{ p.slug }}">{{ p.label }}</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+</nav>
+
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Видео</p>
@@ -26,7 +36,7 @@ permalink: /programs/
 	</div>
 	{% for p in programs %}
 		{% if p.videos %}
-		<div class="program-video-carousel program-video-carousel--index">
+		<div class="program-video-carousel program-video-carousel--index" id="program-{{ p.slug }}">
 			<div class="container container--narrow reveal">
 				<h3 class="section__title section__title--compact">{{ p.title }}</h3>
 				<p class="section__lead">{{ p.lead }}</p>
