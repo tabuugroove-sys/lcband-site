@@ -137,12 +137,21 @@
 			// Меряем ВНУТРЕННЕЕ поле видео (слой, без безеля) — тогда край
 			// шторки внутри экрана стоит ровно в уровень с краем полосы снаружи.
 			const frameRect = layers[0].getBoundingClientRect();
+			// прогресс каждого перехода: старт — верх полосы достиг НИЖНЕЙ границы
+			// плеера, финиш — верх полосы дошёл до ВЕРХНЕЙ (меряем ВНУТРЕННЕЕ поле
+			// видео, без безеля — шов в экране ровно в уровень с краем полосы)
+			const progress = layers.map((layer, i) =>
+				i === 0 || !roomTops[i]
+					? 0
+					: Math.min(1, Math.max(0, (frameRect.bottom - (roomTops[i] - y)) / frameRect.height)));
+			// оба видео двигаются СРАЗУ, как единая лента: входящее снизу вверх,
+			// уходящее — вверх с той же скоростью (push, а не наезд на статику)
 			let current = 0;
 			layers.forEach((layer, i) => {
-				if (i === 0 || !roomTops[i]) return;
-				const p = Math.min(1, Math.max(0, (frameRect.bottom - (roomTops[i] - y)) / frameRect.height));
-				layer.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
-				if (p >= 0.5) current = i;
+				const incoming = i === 0 ? 0 : (1 - progress[i]) * 100;
+				const outgoing = i < layers.length - 1 ? progress[i + 1] * 100 : 0;
+				layer.style.transform = 'translateY(' + (incoming - outgoing) + '%)';
+				if (progress[i] >= 0.5) current = i;
 			});
 			// видео играет только у активного слоя и только внутри секции
 			const firstTop = roomTops[0] - y;
