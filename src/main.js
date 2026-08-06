@@ -144,24 +144,32 @@
 				i === 0 || !roomTops[i]
 					? 0
 					: Math.min(1, Math.max(0, (frameRect.bottom - (roomTops[i] - y)) / frameRect.height)));
-			// оба видео двигаются СРАЗУ, как единая лента: входящее снизу вверх,
-			// уходящее — вверх с той же скоростью (push, а не наезд на статику)
-			let current = 0;
+			// наезд: входящий слой выезжает снизу поверх неподвижного предыдущего;
+			// шов в экране ровно в уровень с краем полосы снаружи
 			layers.forEach((layer, i) => {
-				const incoming = i === 0 ? 0 : (1 - progress[i]) * 100;
-				const outgoing = i < layers.length - 1 ? progress[i + 1] * 100 : 0;
-				layer.style.transform = 'translateY(' + (incoming - outgoing) + '%)';
-				if (progress[i] >= 0.5) current = i;
+				if (i === 0) return;
+				layer.style.transform = 'translateY(' + ((1 - progress[i]) * 100) + '%)';
 			});
-			// видео играет только у активного слоя и только внутри секции
+			// видео играет СРАЗУ, как только слой начал появляться (progress > 0),
+			// и ставится на паузу, когда его полностью перекрыл следующий слой.
+			// Вне секции на паузе всё.
 			const firstTop = roomTops[0] - y;
 			const lastBottom = roomTops[rooms.length - 1] - y + rooms[rooms.length - 1].offsetHeight;
-			if (firstTop >= vh || lastBottom <= 0) current = -1;
-			if (current !== activeIndex) {
-				activeIndex = current;
+			const inSection = firstTop < vh && lastBottom > 0;
+			const playing = [];
+			if (inSection) {
+				layers.forEach((layer, i) => {
+					const shown = i === 0 || progress[i] > 0;
+					const covered = i < layers.length - 1 && progress[i + 1] >= 1;
+					if (shown && !covered) playing.push(i);
+				});
+			}
+			const playKey = playing.join(',');
+			if (playKey !== activeIndex) {
+				activeIndex = playKey;
 				videos.forEach((v, i) => {
 					if (!v) return;
-					if (i === current) { v.play && v.play().catch(() => {}); }
+					if (playing.indexOf(i) !== -1) { v.play && v.play().catch(() => {}); }
 					else if (v.pause) { v.pause(); }
 				});
 			}
