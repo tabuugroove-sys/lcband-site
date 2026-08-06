@@ -138,21 +138,25 @@
 			// шторки внутри экрана стоит ровно в уровень с краем полосы снаружи.
 			const frameRect = layers[0].getBoundingClientRect();
 			let current = 0;
+			let appearing = -1;
 			layers.forEach((layer, i) => {
 				if (i === 0 || !roomTops[i]) return;
 				const p = Math.min(1, Math.max(0, (frameRect.bottom - (roomTops[i] - y)) / frameRect.height));
 				layer.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
 				if (p >= 0.5) current = i;
+				else if (p > 0) appearing = i; // нижнее видео начало появляться
 			});
-			// видео играет только у активного слоя и только внутри секции
+			// активное видео + входящее снизу играет СРАЗУ, как только появилось;
+			// вне секции на паузе всё
 			const firstTop = roomTops[0] - y;
 			const lastBottom = roomTops[rooms.length - 1] - y + rooms[rooms.length - 1].offsetHeight;
-			if (firstTop >= vh || lastBottom <= 0) current = -1;
-			if (current !== activeIndex) {
-				activeIndex = current;
+			if (firstTop >= vh || lastBottom <= 0) { current = -1; appearing = -1; }
+			const playKey = current + ':' + appearing;
+			if (playKey !== activeIndex) {
+				activeIndex = playKey;
 				videos.forEach((v, i) => {
 					if (!v) return;
-					if (i === current) { v.play && v.play().catch(() => {}); }
+					if (i === current || i === appearing) { v.play && v.play().catch(() => {}); }
 					else if (v.pause) { v.pause(); }
 				});
 			}
