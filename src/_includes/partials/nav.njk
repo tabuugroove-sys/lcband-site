@@ -89,8 +89,7 @@
 	</div>
 </header>
 {% elif htmlLang == 'en' %}
-{#- English version (/en/): flat menu, no dropdowns — subpages link to the
-    Russian pages, their titles from the data collections are not translated -#}
+{#- English version (/en/): flat menu with translated landing pages. -#}
 <header class="nav" id="nav">
 	<div class="nav__inner">
 		<a class="nav__logo" href="{{ '/en/' | url }}" aria-label="{{ site.name }} — home">
@@ -100,29 +99,29 @@
 			<div class="nav__item" data-nav-path="/en/">
 				<a class="nav__link" href="{{ '/en/' | url }}">Home</a>
 			</div>
-			<div class="nav__item" data-nav-path="/vocalists/">
-				<a class="nav__link" href="{{ '/vocalists/' | url }}">Vocalists</a>
+			<div class="nav__item" data-nav-path="/en/vocalists/">
+				<a class="nav__link" href="{{ '/en/vocalists/' | url }}">Vocalists</a>
 			</div>
-			<div class="nav__item" data-nav-path="/programs/">
-				<a class="nav__link" href="{{ '/programs/' | url }}">Themed Programs</a>
+			<div class="nav__item" data-nav-path="/en/programs/">
+				<a class="nav__link" href="{{ '/en/programs/' | url }}">Themed Programs</a>
 			</div>
-			<div class="nav__item" data-nav-path="/costumes/">
-				<a class="nav__link" href="{{ '/costumes/' | url }}">Costumes</a>
+			<div class="nav__item" data-nav-path="/en/costumes/">
+				<a class="nav__link" href="{{ '/en/costumes/' | url }}">Costumes</a>
 			</div>
-			<div class="nav__item" data-nav-path="/formats/">
-				<a class="nav__link" href="{{ '/formats/' | url }}">Formats</a>
+			<div class="nav__item" data-nav-path="/en/formats/">
+				<a class="nav__link" href="{{ '/en/formats/' | url }}">Formats</a>
 			</div>
-			<div class="nav__item" data-nav-path="/sax/">
-				<a class="nav__link" href="{{ '/sax/' | url }}">Sax</a>
+			<div class="nav__item" data-nav-path="/en/sax/">
+				<a class="nav__link" href="{{ '/en/sax/' | url }}">Sax</a>
 			</div>
-			<div class="nav__item" data-nav-path="/events/">
-				<a class="nav__link" href="{{ '/events/' | url }}">Events</a>
+			<div class="nav__item" data-nav-path="/en/events/">
+				<a class="nav__link" href="{{ '/en/events/' | url }}">Events</a>
 			</div>
-			<div class="nav__item" data-nav-path="/riders/">
-				<a class="nav__link" href="{{ '/riders/' | url }}">Riders</a>
+			<div class="nav__item" data-nav-path="/en/riders/">
+				<a class="nav__link" href="{{ '/en/riders/' | url }}">Riders</a>
 			</div>
-			<div class="nav__item" data-nav-path="/blog/">
-				<a class="nav__link" href="{{ '/blog/' | url }}">Blog</a>
+			<div class="nav__item" data-nav-path="/en/blog/">
+				<a class="nav__link" href="{{ '/en/blog/' | url }}">Blog</a>
 			</div>
 			<div class="nav__item" data-nav-path="{{ site.telegram }}">
 				<a class="nav__link nav__cta" href="{{ site.telegram }}">Message on Telegram</a>

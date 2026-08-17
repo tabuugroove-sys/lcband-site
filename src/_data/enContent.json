@@ -1,0 +1,143 @@
+{
+	"programs": [
+		{
+			"slug": "italian",
+			"title": "Italian Program",
+			"label": "Italia",
+			"eyebrow": "Italia",
+			"headline": "Classic and modern Italy.",
+			"lead": "Adriano Celentano, Pino Daniele, Eros Ramazzotti, Laura Pausini and modern Italian hits performed live with careful pronunciation and a warm Mediterranean sound.",
+			"bullets": ["Italian classics from the 60s-80s", "Modern Italian pop and ballads", "Film-inspired songs and wedding favourites", "A polished set for Italian weddings, dinners and themed events"],
+			"poster": "assets/video/posters/thematic-italian.jpg",
+			"video": "thematic-italian",
+			"videos": [
+				{"slug": "thematic-italian", "title": "Italian Show", "label": "Italia", "poster": "assets/video/posters/thematic-italian.jpg"},
+				{"slug": "promo-amore-no", "title": "Amore No", "label": "Italian pop", "poster": "assets/video/posters/promo-amore-no.jpg"},
+				{"slug": "live-lets-get-loud", "title": "Let's Get Loud", "label": "Latin energy", "poster": "assets/video/posters/live-lets-get-loud.jpg"}
+			]
+		},
+		{
+			"slug": "french",
+			"title": "French Program",
+			"label": "France",
+			"eyebrow": "France",
+			"headline": "Chanson francaise and elegant pop.",
+			"lead": "A French-inspired live set from Edith Piaf and Charles Aznavour to ZAZ, Indila and Stromae. Ideal for receptions, wine dinners and refined corporate events.",
+			"bullets": ["Classic chanson and romantic standards", "Modern French pop", "Jazz and lounge transitions", "Original-language delivery for a natural French mood"],
+			"poster": "assets/video/posters/thematic-french.jpg",
+			"video": "thematic-french",
+			"videos": [
+				{"slug": "thematic-french", "title": "French Chanson", "label": "France", "poster": "assets/video/posters/thematic-french.jpg"},
+				{"slug": "live-jazz-vintage", "title": "Vintage Live", "label": "Jazz / chanson", "poster": "assets/video/posters/live-jazz-vintage.jpg"},
+				{"slug": "live-soho", "title": "SOHO Rooms", "label": "Club live", "poster": "assets/video/posters/live-soho.jpg"}
+			]
+		},
+		{
+			"slug": "spanish",
+			"title": "Spanish / Latin Program",
+			"label": "Espana",
+			"eyebrow": "Espana",
+			"headline": "Latino. Salsa. Reggaeton.",
+			"lead": "A high-energy Latin program built to move the room: Spanish-language hits, dance interaction, Macarena moments and a vibrant Cuban-Latin stage feel.",
+			"bullets": ["Classic Latin hits", "Modern reggaeton and pop-Latino energy", "Macarena, Bailando and Despacito moments", "Optional dance masterclass with Teddy"],
+			"poster": "assets/video/posters/thematic-spanish-macarena.jpg",
+			"video": "teddy-macarena",
+			"videos": [
+				{"slug": "latin-modern-program", "title": "Modern Latin Program", "label": "Latino", "poster": "assets/video/posters/latin-modern-program.jpg"},
+				{"slug": "teddy-macarena", "title": "Teddy · Macarena", "label": "Interactive", "poster": "assets/video/posters/teddy-macarena.jpg"},
+				{"slug": "latin-music-luxury-cover-band", "title": "Latin Music", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band.jpg"},
+				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class.jpg"}
+			]
+		},
+		{
+			"slug": "retro",
+			"title": "Retro Program",
+			"label": "Retro",
+			"eyebrow": "Retro",
+			"headline": "Stylish decades, disco and classics.",
+			"lead": "A flexible retro program with 60s, 70s, 80s and 90s blocks, international dance classics and signature costumes matched to the era.",
+			"bullets": ["60s and 70s classics", "International retro hits", "90s dance block", "Costumes and visual styling for the decade"],
+			"poster": "assets/video/posters/thematic-retro-stilyagi.jpg",
+			"video": "thematic-retro-stilyagi",
+			"videos": [
+				{"slug": "thematic-retro-stilyagi", "title": "Retro 60s", "label": "Retro", "poster": "assets/video/posters/thematic-retro-stilyagi.jpg"},
+				{"slug": "thematic-retro-90s", "title": "90s Dance Block", "label": "Dance", "poster": "assets/video/posters/thematic-retro-90s.jpg"},
+				{"slug": "thematic-retro-heart", "title": "You're My Heart", "label": "Classic", "poster": "assets/video/posters/thematic-retro-heart.jpg"}
+			]
+		},
+		{
+			"slug": "jazz",
+			"title": "Jazz Program",
+			"label": "Jazz",
+			"eyebrow": "Jazz",
+			"headline": "Swing. Soul. Standards.",
+			"lead": "Live jazz for receptions, galleries, restaurants and elegant dinners: standards, swing, soul, bossa nova and lounge versions of modern songs.",
+			"bullets": ["Jazz standards and swing", "Soul vocals and warm acoustic textures", "Bossa nova and Latin-jazz transitions", "Compact or full-band formats"],
+			"poster": "assets/video/posters/live-berezy.jpg",
+			"video": "live-berezy",
+			"videos": [
+				{"slug": "live-berezy", "title": "Live Jazz", "label": "Live", "poster": "assets/video/posters/live-berezy.jpg"},
+				{"slug": "live-jazz-vintage", "title": "Vintage Jazz", "label": "Jazz", "poster": "assets/video/posters/live-jazz-vintage.jpg"},
+				{"slug": "live-soho", "title": "SOHO Rooms", "label": "Lounge", "poster": "assets/video/posters/live-soho.jpg"}
+			]
+		},
+		{
+			"slug": "rock",
+			"title": "Rock Program",
+			"label": "Rock",
+			"eyebrow": "Rock",
+			"headline": "Classic rock and stadium energy.",
+			"lead": "A powerful rock block from Queen and AC/DC to Muse and Foo Fighters, arranged for a live event with strong vocals and a big-band drive.",
+			"bullets": ["Classic rock anthems", "Hard-rock energy for the peak of the night", "Modern rock hits", "A bigger lineup for large stages"],
+			"poster": "assets/video/posters/live-icon.jpg",
+			"video": "live-icon",
+			"videos": [
+				{"slug": "live-icon", "title": "Epic Live", "label": "Rock", "poster": "assets/video/posters/live-icon.jpg"},
+				{"slug": "live-big-lineup", "title": "Big Lineup", "label": "Live", "poster": "assets/video/posters/live-big-lineup.jpg"},
+				{"slug": "promo-lets-get-it-started", "title": "Let's Get It Started", "label": "Promo", "poster": "assets/video/posters/promo-lets-get-it-started.jpg"}
+			]
+		}
+	],
+	"formats": [
+		{"slug": "choir-collab", "title": "Choir Collaboration", "eyebrow": "Choir · Lab-style", "headline": "Luxury Cover Band with your choir.", "lead": "We arrange and perform a live set with your choir: harmony, rhythm section and a stage-ready sound for corporate or gala events.", "bullets": ["Arrangements for your choir size", "Rehearsal plan before the event", "Live rhythm section support", "On-stage monitoring and timing"], "cta": "Request a choir briefing", "poster": "assets/photos/concert-teddi.jpg"},
+		{"slug": "home-band", "title": "Corporate Home Band", "eyebrow": "House band", "headline": "Your team on stage with LC Band.", "lead": "Employees or guests sing with a professional live band behind them. We adapt key, tempo and structure so the number feels confident.", "bullets": ["Live accompaniment for selected songs", "Key and tempo adaptation", "Short pre-event preparation", "Vocal support from LCB singers"], "cta": "Book a home-band format", "poster": "assets/photos/concert-event.jpg"},
+		{"slug": "karaoke", "title": "Live Karaoke with Band", "eyebrow": "Live Karaoke", "headline": "A real band instead of backing tracks.", "lead": "Guests choose a song and perform it with live musicians. It works especially well for weddings, birthdays and private events.", "bullets": ["500+ songs in the catalogue", "Live band and backing vocals", "Host integration if needed", "1-hour, 2-hour or full-evening options"], "cta": "Request live karaoke", "poster": "assets/photos/concert-light.jpg"},
+		{"slug": "welcome", "title": "Welcome Program", "eyebrow": "Welcome set", "headline": "Arrival music, lounge and a smooth transition.", "lead": "A compact acoustic set for guest arrival, registration and reception: saxophone, piano, violin or guitar with jazz and pop-lounge repertoire.", "bullets": ["Sax, piano, violin or guitar options", "Jazz, chillout and film-score mood", "30-60 minutes before the main show", "Soft volume that does not disturb conversation"], "cta": "Request a welcome set", "poster": "assets/photos/sax.jpg"}
+	],
+	"events": [
+		{"slug": "wedding", "title": "Weddings", "eyebrow": "Wedding", "headline": "A live band for the whole wedding day.", "lead": "One live team for the ceremony, welcome, first dance, dinner and dancefloor.", "image": "wedding-ceremony-saxophone-live-music.jpg", "trustLine": "A big-stage band adapted to a private wedding format.", "cta": "Request a wedding package", "blocks": [{"title": "Ceremony", "text": "Acoustic music for the aisle, vows and signing ceremony.", "image": "wedding-ceremony-saxophone-live-music.jpg", "video": "live-sax-wedding-welcome"}, {"title": "First Dance", "text": "A live version of your chosen song, arranged for the couple.", "image": "first-wedding-dance-live-cover-band.jpg", "video": "live-perfect"}, {"title": "Reception and Dinner", "text": "A stylish welcome set and dinner music before the main show.", "image": "wedding-banquet-live-cover-band.jpg"}, {"title": "Dancefloor", "text": "A high-energy live block with interaction and final hits.", "image": "wedding-night-dance-floor-live-band.jpg"}], "featuredVideo": "live-perfect"},
+		{"slug": "corporate", "title": "Corporate Events", "eyebrow": "Corporate", "headline": "Live music for corporate events.", "lead": "From business receptions to a full dancefloor show, adapted to your audience, venue and brand.", "image": "corporate-employee-interactive-live-band.jpg", "trustLine": "Stadium, TV and high-level reception experience adapted to your event.", "cta": "Request a corporate package", "blocks": [{"title": "Employee Interaction", "text": "Home-band format for team performances and awards.", "image": "corporate-employee-interactive-live-band.jpg"}, {"title": "Welcome Set", "text": "Soft acoustic music for networking and reception.", "image": "sax.jpg"}, {"title": "Main Show", "text": "Two or three live blocks integrated into the event schedule.", "image": "concert-big.jpg"}, {"title": "Dancefloor", "text": "Pop, rock, Latin and modern hits for the final part of the night.", "image": "corporate-dancefloor-live-cover-band.jpg"}], "featuredVideo": "live-icon"},
+		{"slug": "new-year", "title": "New Year Events", "eyebrow": "New Year", "headline": "A cover band for New Year events.", "lead": "Live music for New Year corporate parties, gala dinners and private celebrations.", "image": "corporate-dancefloor-live-cover-band.jpg", "trustLine": "December dates are booked early; the lineup and program are reserved in advance.", "cta": "Book a December date", "blocks": [{"title": "New Year Corporate Party", "text": "Welcome, awards, main show and dancefloor in one evening.", "image": "corporate-dancefloor-live-cover-band.jpg", "video": "live-icon"}, {"title": "Private New Year Party", "text": "A compact or full lineup for restaurants, lofts and country houses.", "image": "concert-light.jpg", "video": "live-dance-monkey"}, {"title": "Gala Dinner", "text": "Jazz, lounge and elegant live versions for a formal dinner.", "image": "sax-night.jpg", "video": "live-jazz-vintage"}], "featuredVideo": "live-icon"},
+		{"slug": "birthday", "title": "Birthdays / Anniversaries", "eyebrow": "Birthday", "headline": "A live concert for a personal celebration.", "lead": "A program built around the guest of honour: favourite artists, eras and songs.", "image": "birthday-surprise-live-band.jpg", "trustLine": "From a family dinner to a large stage, the program is built around the person.", "cta": "Request a birthday program", "blocks": [{"title": "Surprise Set", "text": "A short live concert based on the person's favourite songs.", "image": "birthday-surprise-live-band.jpg"}, {"title": "Guests on Stage", "text": "Friends and family can sing with the live band.", "image": "birthday-guests-on-stage-live-band.jpg"}, {"title": "Retro Block", "text": "A decade-based block for the right generation and mood.", "image": "birthday-retro-block-live-band.jpg"}], "featuredVideo": "live-soho"},
+		{"slug": "private-party", "title": "Private Parties", "eyebrow": "Private party", "headline": "Live music for private events.", "lead": "A cover band for private parties, dinners, restaurants, yachts and country houses.", "image": "wedding-banquet-live-cover-band.jpg", "trustLine": "A large-stage sound scaled to a private room.", "cta": "Build a program for your evening", "blocks": [{"title": "Dinner and Banquet", "text": "Welcome, dinner and the main live set.", "image": "wedding-banquet-live-cover-band.jpg", "video": "live-soho"}, {"title": "Closed Party", "text": "A flexible lineup for lofts, terraces and private venues.", "image": "concert-event.jpg", "video": "interact-chainsmokers"}, {"title": "Live Karaoke", "text": "Guests perform with the band and backing vocals.", "image": "birthday-guests-on-stage-live-band.jpg", "video": "teddy-macarena"}], "featuredVideo": "live-soho"},
+		{"slug": "tv", "title": "TV & Film Shoots", "eyebrow": "TV · Film", "headline": "TV projects, shoots and live broadcast.", "lead": "A band that works naturally on camera, with live timing and stage discipline.", "image": "hero-studio.jpg", "trustLine": "Original clips and live-broadcast experience make camera work predictable.", "cta": "Request a TV recording lineup", "blocks": [{"title": "Clip Format", "text": "We know how to perform for camera without losing the live feel.", "image": "hero-studio.jpg"}, {"title": "Live Broadcast", "text": "Experience with live TV and broadcast timing.", "image": "concert-2021.jpg"}, {"title": "Themed Shows", "text": "Retro, Latin, Italian, French and rock programs for TV concepts.", "image": "themes.jpg"}], "featuredVideo": "thematic-pop-dance-monkey"},
+		{"slug": "abroad", "title": "International Tours", "eyebrow": "Abroad / Tour", "headline": "International tours, Dubai and Europe.", "lead": "English riders, travel-ready lineups and experience with international contracts.", "image": "concert-10k.jpg", "trustLine": "A tour-ready cover band with English technical materials.", "cta": "Discuss an international contract", "blocks": [{"title": "Residency Contracts", "text": "From short runs to longer seasonal residencies.", "image": "concert-10k.jpg"}, {"title": "Tour Contracts", "text": "Multi-city routing with an English rider and predictable logistics.", "image": "concert-10k.jpg"}, {"title": "Private Jet / Yacht", "text": "Compact 2-4 person lineups for private international events.", "image": "concert-event.jpg"}], "featuredVideo": "live-big-lineup"}
+	],
+	"vocalists": [
+		{"slug": "irina", "name": "Irina", "role": "Lead Vocal", "tagline": "Powerful delivery, major pop programs and a world-class stage presence.", "bio": "Irina leads pop, retro and modern mainstream blocks with strong vocals, confident movement and long experience on large stages.", "photo": "assets/vocalists/irina.jpg", "specialty": ["Pop", "Mainstream", "Retro", "Italian Program"]},
+		{"slug": "stas", "name": "Stas", "role": "Vocal · Showman", "tagline": "Stage energy, audience contact and dynamics from the first song to the finale.", "bio": "Stas works as a vocalist and showman, leads interactive moments and is strong in retro, rock and pop-rock programs.", "photo": "assets/vocalists/stas.jpg", "specialty": ["Retro", "Rock", "Duets", "Showman"]},
+		{"slug": "teddy", "name": "Teddy", "role": "Vocal · Latina · Showman", "tagline": "Latin energy, flashmobs and a room-lifting performance style.", "bio": "Teddy leads Latin blocks, Macarena moments and guest interaction. He keeps the dancefloor moving and integrates guests naturally.", "photo": "assets/vocalists/teddy.jpg", "specialty": ["Latina", "Spanish Program", "Flashmobs", "Interactive"]},
+		{"slug": "laz", "name": "LAZ", "role": "Vocal · Original Releases", "tagline": "International experience, Dubai videos, original tracks and English-language blocks.", "bio": "LAZ brings international stage experience, English-language repertoire, soul numbers and stadium-style delivery.", "photo": "assets/vocalists/laz.jpg", "specialty": ["English", "Soul / R&B", "Stadium Delivery", "Original Tracks"]}
+	],
+	"costumes": [
+		{"slug": "vocalists-red-feature", "title": "Red Stage Look", "priority": true},
+		{"slug": "black-sequin-stage-costumes-cover-band-vocalists", "title": "Black Glitter"},
+		{"slug": "gold", "title": "Gold"},
+		{"slug": "white", "title": "White"},
+		{"slug": "red", "title": "Red"},
+		{"slug": "red-group", "title": "Red · Full Lineup"},
+		{"slug": "all-black", "title": "All Black"},
+		{"slug": "black-white", "title": "Black & White"},
+		{"slug": "black-silver", "title": "Black & Silver"},
+		{"slug": "black-red", "title": "Black & Red"},
+		{"slug": "black-couple", "title": "Black · Duo"},
+		{"slug": "pink", "title": "Pink"},
+		{"slug": "blue", "title": "Blue"},
+		{"slug": "dark-green", "title": "Dark Green"},
+		{"slug": "dark-green-group", "title": "Dark Green · Full Lineup"},
+		{"slug": "gold-studio", "title": "Gold Studio"},
+		{"slug": "beige-glitter", "title": "Beige Glitter"},
+		{"slug": "shimmer", "title": "Shimmer"},
+		{"slug": "flowers", "title": "Flowers"}
+	]
+}

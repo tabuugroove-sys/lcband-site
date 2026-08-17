@@ -38,6 +38,8 @@ permalink: /en/
 	<div class="hero__scrim"></div>
 	<button class="hero__play" data-hero-play type="button" aria-label="Watch video in these looks"></button>
 	<button class="hero__close" data-hero-close type="button" aria-label="Close video"></button>
+	<button class="hero__arrow hero__arrow--prev" data-hero-prev type="button" aria-label="Previous video"></button>
+	<button class="hero__arrow hero__arrow--next" data-hero-next type="button" aria-label="Next video"></button>
 	<div class="hero__controls" data-hero-controls>
 		<button class="hero__toggle" data-hero-toggle type="button" aria-label="Pause"></button>
 		<div class="hero__progress" data-hero-progress>
@@ -95,7 +97,7 @@ permalink: /en/
 			<h2 class="section__title">World-class stage.</h2>
 			<p class="section__lead">2000+ shows in 40 countries. Stadiums, TV, top stars — now at your event.</p>
 			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="{{ '/about/' | url }}">Learn more</a>
+				<a class="btn btn--blue" href="{{ '/en/about/' | url }}">Learn more</a>
 				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 			</div>
 		</div>
@@ -126,7 +128,7 @@ permalink: /en/
 			<h2 class="section__title">Four voices.<br><span class="muted">Four personalities.</span></h2>
 			<p class="section__lead">Each one leads their part of the program. We combine them into duos, trios, and quartets to fit your event.</p>
 			<div class="cta-row">
-				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Learn more</a>
+				<a class="btn btn--blue" href="{{ '/en/vocalists/' | url }}">Learn more</a>
 				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 			</div>
 		</div>
@@ -138,7 +140,7 @@ permalink: /en/
 	<div class="reveal">
 		<ul class="tile-grid tile-grid--bleed">
 			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--corporate">
-				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Open: Corporate Events"></a>
+				<a class="tile__tap-target" href="{{ '/en/events/corporate/' | url }}" aria-label="Open: Corporate Events"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/corporate-768.webp' | url }} 768w, {{ '/assets/photos/corporate-1152.webp' | url }} 1152w">
@@ -148,13 +150,13 @@ permalink: /en/
 					<h3 class="tile__title">Corporate Events</h3>
 					<p class="tile__sub">Your brand, live on a big stage.</p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/events/corporate/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--center tile--copy-split tile--wedding">
-				<a class="tile__tap-target" href="{{ '/events/wedding/' | url }}" aria-label="Open: Weddings"></a>
+				<a class="tile__tap-target" href="{{ '/en/events/wedding/' | url }}" aria-label="Open: Weddings"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/wedding-768.webp' | url }} 768w, {{ '/assets/photos/wedding-1152.webp' | url }} 1152w">
@@ -164,13 +166,13 @@ permalink: /en/
 					<h3 class="tile__title">Weddings</h3>
 					<p class="tile__sub">Show · First Dance · Reception</p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/events/wedding/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/events/wedding/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--birthday">
-				<a class="tile__tap-target" href="{{ '/events/birthday/' | url }}" aria-label="Open: Birthdays"></a>
+				<a class="tile__tap-target" href="{{ '/en/events/birthday/' | url }}" aria-label="Open: Birthdays"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/birthday-768.webp' | url }} 768w, {{ '/assets/photos/birthday-1152.webp' | url }} 1152w">
@@ -180,13 +182,13 @@ permalink: /en/
 					<h3 class="tile__title">Birthday</h3>
 					<p class="tile__sub">Concerts guests remember for years.</p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/events/birthday/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--clients">
-				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Open: Client Events"></a>
+				<a class="tile__tap-target" href="{{ '/en/events/corporate/' | url }}" aria-label="Open: Client Events"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/clients-768.webp' | url }} 768w, {{ '/assets/photos/clients-1152.webp' | url }} 1152w">
@@ -196,13 +198,13 @@ permalink: /en/
 					<h3 class="tile__title">Client<span class="tile__line"> Events</span></h3>
 					<p class="tile__sub"><span class="tile__line">Exhibitions</span> <span class="tile__line">Award Shows</span> <span class="tile__line">Dinners</span></p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/events/corporate/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--smoky tile--copy-stack tile--copy-dark tile--themes tile--themes-split">
-				<a class="tile__tap-target" href="{{ '/programs/' | url }}" aria-label="Open: Themed Programs"></a>
+				<a class="tile__tap-target" href="{{ '/en/programs/' | url }}" aria-label="Open: Themed Programs"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/themes-768.webp' | url }} 768w, {{ '/assets/photos/themes-1152.webp' | url }} 1152w">
@@ -217,13 +219,13 @@ permalink: /en/
 					<h3 class="tile__title">Themed<span class="tile__line"> Programs</span></h3>
 					<p class="tile__sub">6 themed programs — matched to your audience and format.</p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/programs/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
 			</li>
 			<li class="tile tile--has-photo tile--copy-stack tile--copy-dark tile--author-music">
-				<a class="tile__tap-target" href="{{ '/artists/' | url }}" aria-label="Open: Original Music"></a>
+				<a class="tile__tap-target" href="{{ '/en/artists/' | url }}" aria-label="Open: Original Music"></a>
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/author-music-stage-768.webp' | url }} 768w, {{ '/assets/photos/author-music-stage-1152.webp' | url }} 1152w">
@@ -233,7 +235,7 @@ permalink: /en/
 					<h3 class="tile__title">Original<span class="tile__line"> Music</span></h3>
 					<p class="tile__sub"><span class="tile__line">Original tracks</span> <span class="tile__line">with stars</span> <span class="tile__line">and Luxury AI Radio</span></p>
 					<div class="cta-row">
-						<a class="btn btn--blue" href="{{ '/artists/' | url }}">Learn more</a>
+						<a class="btn btn--blue" href="{{ '/en/artists/' | url }}">Learn more</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Message on Telegram</a>
 					</div>
 				</div>
@@ -245,14 +247,14 @@ permalink: /en/
 <!-- =============== VIDEO RAILS (Apple-style 2 rows · no Cyrillic-titled songs) =============== -->
 <section class="section" id="videos">
 	{% set promos = [
+		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Promo'},
 		{slug:'promo-danza-cuduro', poster:'promo-danza-cuduro-2026', title:'Danza Cuduro · Live', eyebrow:'Live'},
 		{slug:'thematic-retro-heart', poster:'thematic-retro-heart-2026', title:'You\'re My Heart · Retro', eyebrow:'Themed'},
-		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Promo'},
+		{slug:'interact-wedding-shallow', title:'Shallow · Wedding', eyebrow:'Interactive'},
 		{slug:'promo-cold-heart', title:'Cold Heart', eyebrow:'Promo'},
 		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Promo'},
 		{slug:'promo-amore-no', title:'Amore No · Italian', eyebrow:'Themed'},
-		{slug:'thematic-italian', title:'Cosa sei · Italian', eyebrow:'Themed'},
-		{slug:'interact-wedding-shallow', title:'Shallow · Wedding', eyebrow:'Interactive'}
+		{slug:'thematic-italian', title:'Cosa sei · Italian', eyebrow:'Themed'}
 	] %}
 	{% set lives = [
 		{slug:'live-icon', title:'Epic Live · Icon', eyebrow:'Live'},

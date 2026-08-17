@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Events — Luxury Cover Band
+description: "Luxury Cover Band for weddings, corporate events, birthdays, private parties, TV shoots and international tours."
+keywords: "wedding live band, corporate event band, birthday live band, private party band, TV live band"
+permalink: /en/events/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Events</span>
+		</p>
+		<p class="page-hero__eyebrow">What kind of event?</p>
+		<h1 class="page-hero__title">Events.</h1>
+		<p class="page-hero__lead">From private weddings to TV shoots and international contracts, we adapt the lineup, rider and program to the format.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="events-grid events-grid--list">
+			{% for e in enContent.events %}
+			<li class="event-tile">
+				<a href="{{ ('/en/events/' + e.slug + '/') | url }}">
+					<div class="event-tile__photo"><img src="{{ ('/assets/photos/' + e.image) | url }}" alt="{{ e.title }} — Luxury Cover Band" loading="lazy"></div>
+					<div class="event-tile__body">
+						<div class="event-tile__eyebrow">{{ e.eyebrow }}</div>
+						<h3 class="event-tile__title">{{ e.title }}</h3>
+						<p class="event-tile__text">{{ e.lead }}</p>
+						<span class="event-tile__more">Learn more ›</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

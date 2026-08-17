@@ -1,0 +1,83 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: About the Band — Luxury Cover Band
+description: "Luxury Cover Band: 2000+ shows in 40 countries, stadium and TV experience, international cover-band repertoire and stage production."
+keywords: "about Luxury Cover Band, international cover band, stadium experience, TV live band"
+permalink: /en/about/
+---
+
+<section class="about-hero">
+	<video class="about-hero__video" autoplay muted loop playsinline
+		poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
+		<source src="{{ '/assets/video/mp4/promo-danza-cuduro-1080.mp4' | url }}" type="video/mp4">
+	</video>
+	<div class="about-hero__scrim"></div>
+	<div class="about-hero__content">
+		<p class="about-hero__eyebrow">About the Band</p>
+		<h1 class="about-hero__title">A world-class cover band.<br>The world as a stage.</h1>
+	</div>
+</section>
+
+<section class="section section--flush">
+	<div class="container reveal">
+		<ul class="highlight-stats">
+			{% set aboutStats = [
+				{num: site.stats.shows, label: 'shows'},
+				{num: site.stats.countries, label: 'countries'},
+				{num: site.stats.years, label: 'years on stage'},
+				{num: site.stats.tvShows, label: 'TV projects'},
+				{num: site.stats.songs, label: 'songs'},
+				{num: site.stats.languages, label: 'languages'},
+				{num: site.stats.looks, label: 'stage looks', href: '/en/costumes/'},
+				{num: site.stats.lineup, label: 'musicians on stage'}
+			] %}
+			{% for s in aboutStats %}
+			<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
+				{% if s.href %}
+				<a class="highlight-stat__link" href="{{ s.href | url }}"><div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div></a>
+				{% else %}
+				<div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="feature-block feature-block--light">
+	<div class="feature-block__inner reveal">
+		<div class="feature-block__media">
+			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on a large stage" loading="lazy">
+		</div>
+		<div class="feature-block__body">
+			<p class="section__eyebrow">Experience</p>
+			<h2 class="feature-block__title">Big stages<br><span class="muted">and high-level events.</span></h2>
+			<p class="feature-block__text">The musicians have 15-20 years of stage experience: stadiums, 2,000-5,000 capacity halls, federal TV shows and performances with major artists.</p>
+		</div>
+	</div>
+</section>
+
+<section class="feature-block feature-block--elev feature-block--reverse">
+	<div class="feature-block__inner reveal">
+		<div class="feature-block__media">
+			<img src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Luxury Cover Band vocalists performing original music" loading="lazy">
+		</div>
+		<div class="feature-block__body">
+			<p class="section__eyebrow">Vocalists</p>
+			<h2 class="feature-block__title">Own tracks<br><span class="muted">and artist collaborations.</span></h2>
+			<p class="feature-block__text">The vocalists release original tracks, work with labels and bring artist-level stage presence into the event show.</p>
+		</div>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">We will build a program for your event.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/en/events/' | url }}">All events</a>
+		</div>
+	</div>
+</section>

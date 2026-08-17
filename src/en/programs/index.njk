@@ -1,0 +1,77 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Themed Programs — Luxury Cover Band
+description: "Themed live programs by Luxury Cover Band: Italian, French, Spanish/Latin, Retro, Jazz and Rock."
+keywords: "themed cover band programs, Italian live band, French chanson, Latin cover band, jazz program, rock cover band"
+permalink: /en/programs/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Themed Programs</span>
+		</p>
+		<p class="page-hero__eyebrow">6 themed programs</p>
+		<h1 class="page-hero__title">Themed programs<br><span class="muted">for every event format.</span></h1>
+		<p class="page-hero__lead">Italian, French, Spanish/Latin, Retro, Jazz and Rock programs with dedicated repertoire, costumes and stage energy.</p>
+	</div>
+</section>
+
+<nav class="program-tabs" aria-label="Jump to a program">
+	<div class="container container--narrow program-tabs__inner">
+		{% for p in enContent.programs %}
+			<a class="program-tabs__link" data-program-tab="{{ p.slug }}" href="#program-{{ p.slug }}">{{ p.label }}</a>
+		{% endfor %}
+	</div>
+</nav>
+
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Video</p>
+		<h2 class="section__title">Program videos<br><span class="muted">by mood.</span></h2>
+		<p class="section__lead">Live fragments and promo clips grouped by the type of program.</p>
+	</div>
+	{% for p in enContent.programs %}
+	<div class="program-video-carousel program-video-carousel--index" id="program-{{ p.slug }}">
+		<div class="container container--narrow reveal">
+			<h3 class="section__title section__title--compact">{{ p.title }}</h3>
+			<p class="section__lead">{{ p.lead }}</p>
+			<div class="program-video-carousel__controls" aria-label="Video navigation for {{ p.title }}">
+				<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Previous video">‹</button>
+				<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Next video">›</button>
+			</div>
+		</div>
+		<div class="video-shelf video-shelf--program reveal" data-video-carousel>
+			{% for item in p.videos %}
+			<a class="video-card" href="#" data-video="{{ item.slug }}">
+				<img src="{{ ('/' + item.poster) | url }}" alt="{{ item.title }} — {{ p.title }}" loading="lazy">
+				<span class="video-card__play" aria-hidden="true"></span>
+				<span class="video-card__meta">
+					<span class="video-card__label">{{ item.label }}</span>
+					<span class="video-card__name">{{ item.title }}</span>
+				</span>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="caps">
+			{% for p in enContent.programs %}
+			<li class="cap">
+				<a class="cap__link" href="{{ ('/en/programs/' + p.slug + '/') | url }}">
+					<h3 class="cap__title">{{ p.title }}</h3>
+					<p class="cap__text">{{ p.lead }}</p>
+					<span class="cap__more">Open program ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

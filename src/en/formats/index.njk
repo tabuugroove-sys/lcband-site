@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Formats — Luxury Cover Band
+description: "Live formats by Luxury Cover Band: choir collaboration, corporate home band, live karaoke and welcome program."
+permalink: /en/formats/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Formats</span></p>
+		<p class="page-hero__eyebrow">Four roles</p>
+		<h1 class="page-hero__title">Live formats<br><span class="muted">for your event.</span></h1>
+		<p class="page-hero__lead">We can be the main show, a welcome set, a live karaoke band or a partner for a choir collaboration.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="formats">
+			{% for f in enContent.formats %}
+			<li class="format">
+				<a class="format__link" href="{{ ('/en/formats/' + f.slug + '/') | url }}">
+					<div class="format__photo"><img src="{{ ('/' + f.poster) | url }}" alt="{{ f.title }} — LC Band format" loading="lazy"></div>
+					<div class="format__body">
+						<span class="format__label">{{ f.eyebrow }}</span>
+						<h3 class="format__title">{{ f.title }}</h3>
+						<p class="format__text">{{ f.lead }}</p>
+						<span class="format__more">Learn more ›</span>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>

@@ -1,0 +1,107 @@
+---
+pagination:
+  data: enContent.programs
+  size: 1
+  alias: program
+permalink: "/en/programs/{{ program.slug }}/"
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+eleventyComputed:
+  title: "{{ program.title }} — {{ site.shortName }}"
+  description: "{{ program.lead }}"
+  ogImage: "{{ program.poster }}"
+---
+
+<section class="page-hero{% if program.slug == 'spanish' %} page-hero--spanish-promo{% endif %}">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/en/programs/' | url }}">Themed Programs</a> <span>·</span>
+			<span>{{ program.label }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
+		<h1 class="page-hero__title">{{ program.headline }}</h1>
+		<p class="page-hero__lead">{{ program.lead }}</p>
+	</div>
+	{% if program.poster %}
+	<div class="page-hero__media">
+		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
+		{% if program.video %}
+		<a class="page-hero__play" href="#" data-video="{{ program.video }}" aria-label="Watch video"><span></span></a>
+		{% endif %}
+	</div>
+	{% endif %}
+</section>
+
+<section class="section section--light program-video-carousel">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Video</p>
+		<h2 class="section__title">{{ program.title }}<br><span class="muted">in live format.</span></h2>
+		<p class="section__lead">A few short videos to show the feel, repertoire and stage language of this program.</p>
+	</div>
+	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="{{ program.title }} videos">
+		<ul class="video-rail__track">
+		{% for item in program.videos %}
+		<li class="vtile vtile--big">
+			<a class="vtile__link" href="#" data-video="{{ item.slug }}">
+				<img class="vtile__poster" src="{{ ('/' + item.poster) | url }}?v=20260817a" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
+				<span class="vtile__play" aria-hidden="true"></span>
+				<div class="vtile__caption">
+					<span class="vtile__eyebrow">{{ item.label }}</span>
+					<span class="vtile__title">{{ item.title }}</span>
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">What is included<br><span class="muted">in the program.</span></h2>
+		<ul class="bullets">
+			{% for b in program.bullets %}
+			<li class="bullet">
+				<span class="bullet__check">✓</span>
+				<span class="bullet__text">{{ b }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">More options</p>
+		<h2 class="section__title">Other themed programs.</h2>
+		<p class="section__lead">{{ site.stats.songs }} songs in {{ site.stats.languages }} languages — we can combine several blocks in one evening.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="caps">
+			{% for p in enContent.programs %}
+				{% if p.slug != program.slug %}
+				<li class="cap cap--cover">
+					<a class="cap__link" href="{{ ('/en/programs/' + p.slug + '/') | url }}">
+						<div class="cap__photo"><img src="{{ ('/' + p.poster) | url }}" alt="{{ p.title }} — LC Band" loading="lazy"></div>
+						<div class="cap__overlay"><h3 class="cap__title">{{ p.title }}</h3></div>
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Booking</p>
+		<h2 class="section__title section__title--light">Interested in<br><span class="muted-light">{{ program.title }}?</span></h2>
+		<p class="section__lead section__lead--light">Send us the date, venue and format — we will suggest the lineup and timing.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/en/programs/' | url }}">All themed programs</a>
+		</div>
+	</div>
+</section>

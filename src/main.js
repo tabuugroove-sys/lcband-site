@@ -374,6 +374,8 @@
 		return `${base}assets/video/mp4/${key}-${quality}.mp4`;
 	}
 
+	const known4kVideoKeys = new Set(['promo-danza-cuduro', 'latin-music-luxury-cover-band']);
+
 	function setPickerQuality(quality) {
 		if (!lightboxPicker) return;
 		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === quality));
@@ -382,6 +384,11 @@
 	function videoQualityExists(key, quality) {
 		const cacheKey = `${key}-${quality}`;
 		if (qualityAvailability.has(cacheKey)) return qualityAvailability.get(cacheKey);
+		if (quality === '2160' && !known4kVideoKeys.has(key)) {
+			const missing = Promise.resolve(false);
+			qualityAvailability.set(cacheKey, missing);
+			return missing;
+		}
 		const request = fetch(videoUrl(key, quality), { method: 'HEAD', cache: 'force-cache' })
 			.then(res => res.ok)
 			.catch(() => false);
@@ -586,9 +593,43 @@
 		const heroTime = hero.querySelector('[data-hero-time]');
 		const heroRecommendations = hero.querySelector('[data-hero-recommendations]');
 		const heroRecommendationButtons = hero.querySelectorAll('[data-hero-recommendation]');
+		const heroPrev = hero.querySelector('[data-hero-prev]');
+		const heroNext = hero.querySelector('[data-hero-next]');
 		const desktopHeroRecommendations = window.matchMedia('(min-width: 735px)');
 		const reducedHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const coarseHeroPointer = window.matchMedia('(pointer: coarse)');
+		const heroLang = (document.documentElement.lang || 'ru').toLowerCase();
+		const heroCopy = heroLang.startsWith('en') ? {
+			pause: 'Pause',
+			resume: 'Resume',
+			watch: 'Watch',
+			loadingMuted: 'Video started muted — tap the video to turn sound on',
+			playFailed: 'Could not start the video. Press play again.',
+			qualityFallback1080: '4K is unavailable, switching to 1080p',
+			qualityFallback720: '1080p is unavailable, switching to 720p',
+			videoUnavailable: 'Video is temporarily unavailable',
+			costumes: {
+				red: 'Red look',
+				bw: 'Black-and-white look',
+				gold: 'Gold look',
+				white: 'White look'
+			}
+		} : {
+			pause: 'Пауза',
+			resume: 'Продолжить',
+			watch: 'Смотреть',
+			loadingMuted: 'Видео запущено без звука — коснитесь видео, чтобы включить звук',
+			playFailed: 'Не удалось запустить видео. Нажмите ещё раз.',
+			qualityFallback1080: '4K недоступно, переключаем на 1080p',
+			qualityFallback720: '1080p недоступно, переключаем на 720p',
+			videoUnavailable: 'Видео временно недоступно',
+			costumes: {
+				red: 'Красный образ',
+				bw: 'Чёрно-белый образ',
+				gold: 'Золотой образ',
+				white: 'Белый образ'
+			}
+		};
 		let heroQuality = (coarseHeroPointer.matches || window.matchMedia('(max-width: 734px)').matches) ? '720' : '1080';
 		let heroQualityKey = '';
 		let currentHeroVideoKey = '';
@@ -602,65 +643,65 @@
 		}
 		const order = ['red', 'bw', 'gold', 'white'];
 		// Costume → matching clip (sourced from LCB promo 2025 reels):
-		//   red   = Эгоистка (red suits, red LED)
+		//   red   = Let's Get It Started (red suits, first hero clip)
 		//   bw    = LAZ Loca Loca (black-white styling)
 		//   gold  = РЕТРО "You're my heart" (gold, glam)
-		//   white = Лететь по белому свету (white suits, starfield)
+		//   white = Shallow (white suits, fourth hero clip)
 		const heroVideoMap = {
-			red:   'promo-egoistka',
+			red:   'promo-lets-get-it-started',
 			bw:    'promo-loca-loca',
 			gold:  'thematic-retro-heart',
-			white: 'promo-letet'
+			white: 'interact-wedding-shallow'
 		};
 		const heroPromoPlaylist = [...document.querySelectorAll('.video-rail--big .vtile__link[data-video]')]
 			.map(link => link.dataset.video)
 			.filter((key, index, list) => key && list.indexOf(key) === index);
 		const heroClips = {
 			'promo-egoistka': {
-				title: 'Эгоистка', costume: 'red', costumeLabel: 'Красный образ',
+				title: 'Эгоистка', costume: 'red', costumeLabel: heroCopy.costumes.red,
 				poster: 'promo-egoistka-2026-red-stage.jpg?v=20260620i'
 			},
 			'promo-lets-get-it-started': {
-				title: "Let's Get It Started", costume: 'red', costumeLabel: 'Красный образ',
+				title: "Let's Get It Started", costume: 'red', costumeLabel: heroCopy.costumes.red,
 				poster: 'promo-lets-get-it-started.jpg?v=20260620i'
 			},
 			'thematic-retro-heart': {
-				title: "You're My Heart", costume: 'gold', costumeLabel: 'Золотой образ',
+				title: "You're My Heart", costume: 'gold', costumeLabel: heroCopy.costumes.gold,
 				poster: 'thematic-retro-heart-2026.jpg?v=20260620i'
 			},
 			'promo-cold-heart': {
-				title: 'Cold Heart', costume: 'gold', costumeLabel: 'Золотой образ',
+				title: 'Cold Heart', costume: 'gold', costumeLabel: heroCopy.costumes.gold,
 				poster: 'promo-cold-heart.jpg?v=20260620i'
 			},
 			'promo-amore-no': {
-				title: 'Amore No', costume: 'gold', costumeLabel: 'Золотой образ',
+				title: 'Amore No', costume: 'gold', costumeLabel: heroCopy.costumes.gold,
 				poster: 'promo-amore-no.jpg?v=20260620i'
 			},
 			'promo-letet': {
-				title: 'Лететь', costume: 'white', costumeLabel: 'Белый образ',
+				title: 'Лететь', costume: 'white', costumeLabel: heroCopy.costumes.white,
 				poster: 'promo-letet.jpg?v=20260620i'
 			},
 			'thematic-italian': {
-				title: 'Cosa sei', costume: 'white', costumeLabel: 'Белый образ',
+				title: 'Cosa sei', costume: 'white', costumeLabel: heroCopy.costumes.white,
 				poster: 'thematic-italian.jpg?v=20260620i'
 			},
 			'interact-wedding-shallow': {
-				title: 'Shallow', costume: 'white', costumeLabel: 'Белый образ',
+				title: 'Shallow', costume: 'white', costumeLabel: heroCopy.costumes.white,
 				poster: 'interact-wedding-shallow.jpg?v=20260620i'
 			},
 			'promo-loca-loca': {
-				title: 'Loca Loca', costume: 'bw', costumeLabel: 'Чёрно-белый образ',
+				title: 'Loca Loca', costume: 'bw', costumeLabel: heroCopy.costumes.bw,
 				poster: 'promo-loca-loca.jpg?v=20260620i'
 			},
 			'promo-danza-cuduro': {
-				title: 'Danza Cuduro', costume: 'bw', costumeLabel: 'Чёрно-белый образ',
+				title: 'Danza Cuduro', costume: 'bw', costumeLabel: heroCopy.costumes.bw,
 				poster: 'promo-danza-cuduro-2026.jpg?v=20260620i'
 			}
 		};
 		const heroCostumeClips = {
-			red: ['promo-egoistka', 'promo-lets-get-it-started'],
+			red: ['promo-lets-get-it-started', 'promo-egoistka'],
 			gold: ['thematic-retro-heart', 'promo-cold-heart', 'promo-amore-no'],
-			white: ['promo-letet', 'thematic-italian', 'interact-wedding-shallow'],
+			white: ['interact-wedding-shallow', 'thematic-italian', 'promo-letet'],
 			bw: ['promo-loca-loca', 'promo-danza-cuduro']
 		};
 		const heroNextCostumes = {
@@ -782,10 +823,10 @@
 				if (attempt !== heroSourceAttemptId || !heroVideo) return;
 				heroVideo.muted = true;
 				heroVideo.play().then(() => {
-					showToast('Видео запущено без звука — коснитесь видео, чтобы включить звук');
+					showToast(heroCopy.loadingMuted);
 				}).catch(() => {
 					setHeroLoading(false);
-					showToast('Не удалось запустить видео. Нажмите ещё раз.');
+					showToast(heroCopy.playFailed);
 				});
 			});
 		}
@@ -864,7 +905,7 @@
 				button.hidden = !clip;
 				if (!clip) return;
 				button.dataset.heroVideoKey = key;
-				button.setAttribute('aria-label', `Смотреть ${clip.title}. ${clip.costumeLabel}`);
+				button.setAttribute('aria-label', `${heroCopy.watch} ${clip.title}. ${clip.costumeLabel}`);
 				const poster = button.querySelector('[data-hero-rec-poster]');
 				const costume = button.querySelector('[data-hero-rec-costume]');
 				const title = button.querySelector('[data-hero-rec-title]');
@@ -886,6 +927,19 @@
 			}
 			const currentIndex = playlist.indexOf(currentHeroVideoKey);
 			const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % playlist.length;
+			playHeroClip(playlist[nextIndex]);
+		}
+
+		function playAdjacentHeroPromo(delta) {
+			if (!hero.classList.contains('is-playing')) return;
+			const playlist = heroPromoPlaylist.length ? heroPromoPlaylist : Object.keys(heroClips);
+			if (!playlist.length) return;
+			const key = currentHeroVideoKey || heroVideoMap[current] || playlist[0];
+			watchedHeroClips.add(key);
+			const currentIndex = playlist.indexOf(key);
+			const nextIndex = currentIndex < 0
+				? 0
+				: (currentIndex + delta + playlist.length) % playlist.length;
 			playHeroClip(playlist[nextIndex]);
 		}
 
@@ -1017,6 +1071,8 @@
 
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
+		heroPrev?.addEventListener('click', () => playAdjacentHeroPromo(-1));
+		heroNext?.addEventListener('click', () => playAdjacentHeroPromo(1));
 		heroVideo?.addEventListener('ended', playNextHeroPromo);
 		heroRecommendationButtons.forEach(button => {
 			button.addEventListener('click', () => {
@@ -1053,23 +1109,23 @@
 		heroVideo?.addEventListener('error', () => {
 			if (!hero.classList.contains('is-playing') || !currentHeroVideoKey) return;
 			if (heroQuality === '2160') {
-				showToast('4K недоступно, переключаем на 1080p');
+				showToast(heroCopy.qualityFallback1080);
 				changeQuality('1080');
 			} else if (heroQuality === '1080') {
-				showToast('1080p недоступно, переключаем на 720p');
+				showToast(heroCopy.qualityFallback720);
 				changeQuality('720');
 			} else {
 				setHeroLoading(false);
-				showToast('Видео временно недоступно');
+				showToast(heroCopy.videoUnavailable);
 			}
 		});
 		heroVideo?.addEventListener('play',  () => {
 			heroToggle?.classList.remove('is-paused');
-			heroToggle?.setAttribute('aria-label', 'Пауза');
+			heroToggle?.setAttribute('aria-label', heroCopy.pause);
 		});
 		heroVideo?.addEventListener('pause', () => {
 			heroToggle?.classList.add('is-paused');
-			heroToggle?.setAttribute('aria-label', 'Продолжить');
+			heroToggle?.setAttribute('aria-label', heroCopy.resume);
 		});
 		heroVideo?.addEventListener('timeupdate', () => {
 			if (!heroVideo.duration) return;
@@ -1085,6 +1141,8 @@
 		});
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Escape' && hero.classList.contains('is-playing')) stopHeroVideo();
+			if (e.key === 'ArrowLeft' && hero.classList.contains('is-playing')) playAdjacentHeroPromo(-1);
+			if (e.key === 'ArrowRight' && hero.classList.contains('is-playing')) playAdjacentHeroPromo(1);
 		});
 
 		if (!reducedHeroMotion.matches) {

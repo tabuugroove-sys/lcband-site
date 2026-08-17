@@ -1,12 +1,13 @@
 <footer class="footer">
 	<div class="container">
 		{% set footerEn = footerI18n.en if htmlLang == 'en' else null %}
+		{% set footerBase = '/en' if footerEn else '' %}
 		<div class="footer__nav">
 			<div class="footer__col">
 				<h3 class="footer__col-title">{{ footerEn.headings.programs if footerEn else 'Тематические программы' }}</h3>
 				<ul>
 					{% for p in programs %}
-						<li><a href="{{ ('/programs/' + p.slug + '/') | url }}">{{ footerEn.programs[p.slug] if footerEn and footerEn.programs[p.slug] else p.title }}</a></li>
+						<li><a href="{{ (footerBase + '/programs/' + p.slug + '/') | url }}">{{ footerEn.programs[p.slug] if footerEn and footerEn.programs[p.slug] else p.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -14,7 +15,7 @@
 				<h3 class="footer__col-title">{{ footerEn.headings.vocalists if footerEn else 'Вокалисты' }}</h3>
 				<ul>
 					{% for v in vocalists %}
-						<li><a href="{{ ('/vocalists/' + v.slug + '/') | url }}">{{ v.nameLatin if footerEn and v.nameLatin else v.name }}</a></li>
+						<li><a href="{{ (footerBase + '/vocalists/' + v.slug + '/') | url }}">{{ v.nameLatin if footerEn and v.nameLatin else v.name }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -22,7 +23,7 @@
 				<h3 class="footer__col-title">{{ footerEn.headings.formats if footerEn else 'Форматы' }}</h3>
 				<ul>
 					{% for f in formats %}
-						<li><a href="{{ ('/formats/' + f.slug + '/') | url }}">{{ footerEn.formats[f.slug] if footerEn and footerEn.formats[f.slug] else f.title }}</a></li>
+						<li><a href="{{ (footerBase + '/formats/' + f.slug + '/') | url }}">{{ footerEn.formats[f.slug] if footerEn and footerEn.formats[f.slug] else f.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -30,7 +31,7 @@
 				<h3 class="footer__col-title">{{ footerEn.headings.events if footerEn else 'События' }}</h3>
 				<ul>
 					{% for e in events %}
-						<li><a href="{{ ('/events/' + e.slug + '/') | url }}">{{ footerEn.events[e.slug] if footerEn and footerEn.events[e.slug] else e.title }}</a></li>
+						<li><a href="{{ (footerBase + '/events/' + e.slug + '/') | url }}">{{ footerEn.events[e.slug] if footerEn and footerEn.events[e.slug] else e.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -41,10 +42,10 @@
 					{% if site.youtube %}<li><a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a></li>{% endif %}
 					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">{{ footerEn.links.vk if footerEn else 'ВКонтакте' }}</a></li>{% endif %}
 					{% if site.instagram %}<li><a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
-					<li><a href="{{ '/about/' | url }}">{{ footerEn.links.about if footerEn else 'О группе' }}</a></li>
-					<li><a href="{{ '/blog/' | url }}">{{ footerEn.links.blog if footerEn else 'Блог' }}</a></li>
-					<li><a href="{{ '/repertoire/' | url }}">{{ footerEn.links.repertoire if footerEn else 'Репертуар' }}</a></li>
-					<li><a href="{{ '/riders/' | url }}">{{ footerEn.links.riders if footerEn else 'Райдеры' }}</a></li>
+					<li><a href="{{ (footerBase + '/about/') | url }}">{{ footerEn.links.about if footerEn else 'О группе' }}</a></li>
+					<li><a href="{{ (footerBase + '/blog/') | url }}">{{ footerEn.links.blog if footerEn else 'Блог' }}</a></li>
+					<li><a href="{{ (footerBase + '/repertoire/') | url }}">{{ footerEn.links.repertoire if footerEn else 'Репертуар' }}</a></li>
+					<li><a href="{{ (footerBase + '/riders/') | url }}">{{ footerEn.links.riders if footerEn else 'Райдеры' }}</a></li>
 				</ul>
 			</div>
 		</div>

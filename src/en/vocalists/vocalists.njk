@@ -1,0 +1,70 @@
+---
+pagination:
+  data: enContent.vocalists
+  size: 1
+  alias: vocalist
+permalink: "/en/vocalists/{{ vocalist.slug }}/"
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+eleventyComputed:
+  title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
+  description: "{{ vocalist.tagline }}"
+  ogImage: "{{ vocalist.photo }}"
+---
+
+<section class="page-hero page-hero--split">
+	<div class="page-hero__text container">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/en/vocalists/' | url }}">Vocalists</a> <span>·</span>
+			<span>{{ vocalist.name }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ vocalist.role }}</p>
+		<h1 class="page-hero__title">{{ vocalist.name }}</h1>
+		<p class="page-hero__lead">{{ vocalist.tagline }}</p>
+		<p class="page-hero__body">{{ vocalist.bio }}</p>
+		<div class="page-hero__tags">
+			{% for s in vocalist.specialty %}<span class="tag">{{ s }}</span>{% endfor %}
+		</div>
+	</div>
+	<div class="page-hero__photo">
+		<img src="{{ ('/' + vocalist.photo) | url }}" alt="{{ vocalist.name }} — Luxury Cover Band vocalist" loading="eager">
+	</div>
+</section>
+
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Other vocalists</p>
+		<h2 class="section__title">All four voices.</h2>
+		<p class="section__lead">We combine soloists, duets, trios and quartet blocks depending on the event.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="vocalists">
+			{% for v in enContent.vocalists %}
+				{% if v.slug != vocalist.slug %}
+				<li class="voc">
+					<a class="voc__link" href="{{ ('/en/vocalists/' + v.slug + '/') | url }}">
+						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — Luxury Cover Band vocalist" loading="lazy"></div>
+						<h3 class="voc__name">{{ v.name }}</h3>
+						<p class="voc__role">{{ v.role }}</p>
+						<p class="voc__bio">{{ v.tagline }}</p>
+						<span class="voc__more">Learn more ›</span>
+					</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title section__title--light">Ask about {{ vocalist.name }}.</h2>
+		<p class="section__lead section__lead--light">Send the date and event format — we will suggest the right lineup.</p>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--ghost-light" href="{{ '/en/vocalists/' | url }}">All vocalists</a>
+		</div>
+	</div>
+</section>

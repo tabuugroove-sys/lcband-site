@@ -1,0 +1,108 @@
+---
+pagination:
+  data: enContent.events
+  size: 1
+  alias: event
+permalink: "/en/events/{{ event.slug }}/"
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+eleventyComputed:
+  title: "{{ event.title }} — Luxury Cover Band"
+  description: "{{ event.lead }}"
+---
+
+<section class="page-hero">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<a href="{{ '/en/events/' | url }}">Events</a> <span>·</span>
+			<span>{{ event.title }}</span>
+		</p>
+		<p class="page-hero__eyebrow">{{ event.eyebrow }}</p>
+		<h1 class="page-hero__title">{{ event.headline }}</h1>
+		<p class="page-hero__lead">{{ event.lead }}</p>
+	</div>
+</section>
+
+<section class="section section--flush">
+	<div class="container reveal">
+		<div class="stats">
+			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">shows</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">countries</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">years on stage</div></div>
+			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">songs in the repertoire</div></div>
+		</div>
+		{% if event.trustLine %}<p class="trust-line">{{ event.trustLine }}</p>{% endif %}
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Flow</p>
+		<h2 class="section__title">Program<br><span class="muted">structure.</span></h2>
+	</div>
+</section>
+
+{% for b in event.blocks %}
+<section class="feature-block feature-block--{% if loop.index0 % 2 == 0 %}light{% else %}elev{% endif %}{% if loop.index0 % 2 == 1 %} feature-block--reverse{% endif %}">
+	<div class="feature-block__inner reveal">
+		{% if b.image %}
+			{% if b.video %}
+			<a class="feature-block__media feature-block__media--video video-card" href="#" data-video="{{ b.video }}" aria-label="Watch video: {{ b.title }}">
+				<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.title }} — {{ event.title }}" loading="lazy">
+				<span class="video-card__play" aria-hidden="true"></span>
+			</a>
+			{% else %}
+			<div class="feature-block__media">
+				<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.title }} — {{ event.title }}" loading="lazy">
+			</div>
+			{% endif %}
+		{% endif %}
+		<div class="feature-block__body">
+			<h3 class="feature-block__title">{{ b.title }}</h3>
+			<p class="feature-block__text">{{ b.text }}</p>
+		</div>
+	</div>
+</section>
+{% endfor %}
+
+{% if event.featuredVideo %}
+<section class="section section--elev">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Video</p>
+		<h2 class="section__title">How it<br><span class="muted">looks live.</span></h2>
+	</div>
+	<div class="container reveal">
+		<div class="featured-video">
+			<a class="video-card video-card--wide" href="#" data-video="{{ event.featuredVideo }}">
+				<img src="{{ ('/assets/video/posters/' + event.featuredVideo + '.jpg') | url }}" alt="{{ event.title }} — video" loading="lazy">
+				<span class="video-card__play" aria-hidden="true"></span>
+			</a>
+		</div>
+	</div>
+</section>
+{% endif %}
+
+<section class="section section--flush">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">More</p>
+		<ul class="related-links">
+			<li><a href="{{ '/en/programs/' | url }}">Themed Programs</a></li>
+			<li><a href="{{ '/en/repertoire/' | url }}">Repertoire — 500+ songs</a></li>
+			<li><a href="{{ '/en/vocalists/' | url }}">Vocalists</a></li>
+			<li><a href="{{ '/en/formats/' | url }}">Formats</a></li>
+			<li><a href="{{ '/en/sax/' | url }}">Saxophone</a></li>
+		</ul>
+	</div>
+</section>
+
+<section class="section section--book">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">{{ event.cta }}.</h2>
+		<div class="book__cta">
+			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--ghost-dark" href="{{ '/en/events/' | url }}">All events</a>
+		</div>
+	</div>
+</section>

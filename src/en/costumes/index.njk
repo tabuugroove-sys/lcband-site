@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Costumes — Luxury Cover Band
+description: "20+ stage looks by Luxury Cover Band: red, black glitter, gold, white and themed stage costumes for weddings, corporate events and TV shoots."
+keywords: "stage costumes cover band, Luxury Cover Band looks, red stage costumes, white stage costumes"
+permalink: /en/costumes/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Costumes</span></p>
+		<p class="page-hero__eyebrow">Stage looks</p>
+		<h1 class="page-hero__title">One band.<br><span class="muted">Many visual moods.</span></h1>
+		<p class="page-hero__lead">Every costume set is a complete visual story for weddings, corporate events, private parties, TV shoots and themed shows.</p>
+	</div>
+</section>
+
+<section class="section section--flush">
+	<ul class="ig-grid">
+		{% for c in enContent.costumes %}
+		<li class="ig-tile">
+			<a class="ig-tile__link" href="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" data-lightbox>
+				<img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.title }} — Luxury Cover Band stage look" title="{{ c.title }} — Luxury Cover Band stage look" loading="{{ 'eager' if c.priority else 'lazy' }}"{% if c.priority %} fetchpriority="high"{% endif %}>
+				<span class="ig-tile__caption">{{ c.title }}</span>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</section>

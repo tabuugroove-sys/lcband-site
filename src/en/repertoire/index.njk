@@ -1,0 +1,38 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Repertoire — Luxury Cover Band
+description: "500+ songs in 12 languages: pop, rock, jazz, soul, funk, retro, Italian, French, Spanish and English."
+keywords: "cover band repertoire, song list, Luxury Cover Band repertoire, PDF repertoire"
+permalink: /en/repertoire/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Repertoire</span></p>
+		<p class="page-hero__eyebrow">Repertoire</p>
+		<h1 class="page-hero__title">500+ songs.<br><span class="muted">12 languages.</span></h1>
+		<p class="page-hero__lead">Pop, rock, jazz, soul, funk, retro, Italian, French, Spanish, English and custom mashup versions.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<div class="repertoire">
+			<div class="repertoire__text">
+				<p class="section__lead">The full song list is available as an interactive page, PDF or DOCX.</p>
+				<div class="repertoire__cta">
+					<a class="btn btn--dark" href="{{ '/assets/repertoire/index.html' | url }}" target="_blank" rel="noopener">Open repertoire</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire.pdf' | url }}" download>Download PDF</a>
+					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire-2024.docx' | url }}" download>Download DOCX</a>
+				</div>
+			</div>
+			<div class="repertoire__badges">
+				{% for tag in ['Pop','Rock','Jazz','Soul','Funk','Retro','Italiano','Francais','Espanol','English','Russian','Chanson','Caucasus','Instrumental','Mashup','Remix'] %}
+				<span class="tag">{{ tag }}</span>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>

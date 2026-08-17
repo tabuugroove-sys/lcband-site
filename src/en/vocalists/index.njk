@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+htmlLang: en
+ogLocale: en_US
+title: Vocalists — Luxury Cover Band
+description: "Four Luxury Cover Band vocalists: Irina, Stas, Teddy and LAZ."
+permalink: /en/vocalists/
+---
+
+<section class="page-hero page-hero--list">
+	<div class="container container--narrow">
+		<p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Vocalists</span></p>
+		<p class="page-hero__eyebrow">Four voices</p>
+		<h1 class="page-hero__title">Vocalists<br><span class="muted">of Luxury Cover Band.</span></h1>
+		<p class="page-hero__lead">Irina, Stas, Teddy and LAZ: four different stage characters for pop, retro, Latin, rock and English-language blocks.</p>
+	</div>
+</section>
+
+<section class="section section--light">
+	<div class="container reveal">
+		<ul class="vocalists">
+			{% for v in enContent.vocalists %}
+			<li class="voc">
+				<a class="voc__link" href="{{ ('/en/vocalists/' + v.slug + '/') | url }}">
+					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — {{ v.role }}" loading="lazy"></div>
+					<h3 class="voc__name">{{ v.name }}</h3>
+					<p class="voc__role">{{ v.role }}</p>
+					<p class="voc__bio">{{ v.tagline }}</p>
+					<span class="voc__more">Learn more ›</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
