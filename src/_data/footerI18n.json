@@ -1,0 +1,43 @@
+{
+	"en": {
+		"headings": {
+			"programs": "Themed Programs",
+			"vocalists": "Vocalists",
+			"formats": "Formats",
+			"events": "Events",
+			"contact": "Contact"
+		},
+		"programs": {
+			"italian": "Italian Program",
+			"french": "French Program",
+			"spanish": "Spanish Program",
+			"retro": "Retro Program",
+			"jazz": "Jazz Program",
+			"rock": "Rock Program"
+		},
+		"formats": {
+			"choir-collab": "Choir Collaboration",
+			"home-band": "Corporate Home Band",
+			"karaoke": "Live Karaoke with Band",
+			"welcome": "Welcome Program"
+		},
+		"events": {
+			"wedding": "Weddings",
+			"corporate": "Corporate Events",
+			"new-year": "New Year Events",
+			"birthday": "Birthdays / Anniversaries",
+			"private-party": "Private Parties",
+			"tv": "TV & Film Shoots",
+			"abroad": "International Tours"
+		},
+		"links": {
+			"telegram": "Telegram",
+			"vk": "VK",
+			"about": "About the Band",
+			"blog": "Blog",
+			"repertoire": "Repertoire",
+			"riders": "Riders",
+			"tours": "International Tours"
+		}
+	}
+}

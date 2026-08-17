@@ -1,55 +1,56 @@
 <footer class="footer">
 	<div class="container">
+		{% set footerEn = footerI18n.en if htmlLang == 'en' else null %}
 		<div class="footer__nav">
 			<div class="footer__col">
-				<h3 class="footer__col-title">Тематические программы</h3>
+				<h3 class="footer__col-title">{{ footerEn.headings.programs if footerEn else 'Тематические программы' }}</h3>
 				<ul>
 					{% for p in programs %}
-						<li><a href="{{ ('/programs/' + p.slug + '/') | url }}">{{ p.title }}</a></li>
+						<li><a href="{{ ('/programs/' + p.slug + '/') | url }}">{{ footerEn.programs[p.slug] if footerEn and footerEn.programs[p.slug] else p.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h3 class="footer__col-title">Вокалисты</h3>
+				<h3 class="footer__col-title">{{ footerEn.headings.vocalists if footerEn else 'Вокалисты' }}</h3>
 				<ul>
 					{% for v in vocalists %}
-						<li><a href="{{ ('/vocalists/' + v.slug + '/') | url }}">{{ v.name }}</a></li>
+						<li><a href="{{ ('/vocalists/' + v.slug + '/') | url }}">{{ v.nameLatin if footerEn and v.nameLatin else v.name }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h3 class="footer__col-title">Форматы</h3>
+				<h3 class="footer__col-title">{{ footerEn.headings.formats if footerEn else 'Форматы' }}</h3>
 				<ul>
 					{% for f in formats %}
-						<li><a href="{{ ('/formats/' + f.slug + '/') | url }}">{{ f.title }}</a></li>
+						<li><a href="{{ ('/formats/' + f.slug + '/') | url }}">{{ footerEn.formats[f.slug] if footerEn and footerEn.formats[f.slug] else f.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h3 class="footer__col-title">События</h3>
+				<h3 class="footer__col-title">{{ footerEn.headings.events if footerEn else 'События' }}</h3>
 				<ul>
 					{% for e in events %}
-						<li><a href="{{ ('/events/' + e.slug + '/') | url }}">{{ e.title }}</a></li>
+						<li><a href="{{ ('/events/' + e.slug + '/') | url }}">{{ footerEn.events[e.slug] if footerEn and footerEn.events[e.slug] else e.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</div>
 			<div class="footer__col">
-				<h3 class="footer__col-title">Связаться</h3>
+				<h3 class="footer__col-title">{{ footerEn.headings.contact if footerEn else 'Связаться' }}</h3>
 				<ul>
-					<li><a href="{{ site.telegram }}">Телеграм</a></li>
+					<li><a href="{{ site.telegram }}">{{ footerEn.links.telegram if footerEn else 'Телеграм' }}</a></li>
 					{% if site.youtube %}<li><a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a></li>{% endif %}
-					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">ВКонтакте</a></li>{% endif %}
+					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">{{ footerEn.links.vk if footerEn else 'ВКонтакте' }}</a></li>{% endif %}
 					{% if site.instagram %}<li><a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
-					<li><a href="{{ '/about/' | url }}">О группе</a></li>
-					<li><a href="{{ '/blog/' | url }}">Блог</a></li>
-					<li><a href="{{ '/repertoire/' | url }}">Репертуар</a></li>
-					<li><a href="{{ '/riders/' | url }}">Райдеры</a></li>
+					<li><a href="{{ '/about/' | url }}">{{ footerEn.links.about if footerEn else 'О группе' }}</a></li>
+					<li><a href="{{ '/blog/' | url }}">{{ footerEn.links.blog if footerEn else 'Блог' }}</a></li>
+					<li><a href="{{ '/repertoire/' | url }}">{{ footerEn.links.repertoire if footerEn else 'Репертуар' }}</a></li>
+					<li><a href="{{ '/riders/' | url }}">{{ footerEn.links.riders if footerEn else 'Райдеры' }}</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="footer__bottom">
 			<span class="footer__brand">{{ site.name }} · {{ site.shortName }}</span>
-			<span class="footer__meta">{{ site.city }} · Международные туры · © 2026</span>
+			<span class="footer__meta">{{ 'Moscow' if footerEn else site.city }} · {{ footerEn.links.tours if footerEn else 'Международные туры' }} · © 2026</span>
 		</div>
 	</div>
 </footer>
