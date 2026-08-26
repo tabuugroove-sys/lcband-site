@@ -33,7 +33,16 @@ RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoi
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
 RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]
 
-# 4) CORS только для видеофайлов — чтобы их можно было fetch'ить с других origin
+# 4) HTML всегда перепроверяем на сервере. Иначе Chrome может держать старый
+#    index.html с прежним main.js и продолжать редиректить / на сохранённую локаль
+#    даже после публикации исправления. Версионированные CSS/JS/медиа это не затрагивает.
+<IfModule mod_headers.c>
+	<FilesMatch "\.html?$">
+		Header set Cache-Control "no-cache, must-revalidate"
+	</FilesMatch>
+</IfModule>
+
+# 5) CORS только для видеофайлов — чтобы их можно было fetch'ить с других origin
 #    (нужно для программной перезаливки на видеохостинги; на рендер сайта не влияет)
 <IfModule mod_headers.c>
 	<FilesMatch "\.(mp4|webm|mov|m4v)$">
