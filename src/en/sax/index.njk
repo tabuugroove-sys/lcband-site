@@ -2,49 +2,332 @@
 layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
-title: Saxophone — Luxury Cover Band
-description: "Saxophone welcome set, ceremony music, lounge and DJ-band formats by Luxury Cover Band."
-keywords: "saxophone for event, welcome sax, wedding saxophone, live sax DJ"
+title: Saxophonist for Events in Moscow — Luxury Cover Band
+description: "Saxophonist for welcome receptions, ceremonies, dinner, the dancefloor or as part of Luxury Cover Band. Live saxophone for weddings, corporate events and private parties in Moscow."
+keywords: "saxophonist for event, wedding saxophonist, live saxophone Moscow, sax DJ, saxophone repertoire, welcome saxophonist"
+preloadImage: /assets/photos/sax-night.jpg
+ogImage: assets/photos/sax-night.jpg
 permalink: /en/sax/
 ---
+{% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap"></noscript>
+{% endblock %}
 
-<section class="sax-hero">
-	<div class="sax-hero__inner">
-		<div class="sax-hero__text">
-			<p class="sx-eyebrow">Saxophone</p>
-			<h1 class="sx-h1">Welcome, ceremony and dancefloor sax.</h1>
-			<p class="sx-lead">A compact, elegant format for arrivals, ceremonies, lounge sets and smooth transitions into the main show.</p>
-			<div class="sax-hero__cta">
+{% set repertoire = [
+	{ title: "Jazz, bossa nova and light background music", count: "17 TRACKS", songs: [
+		["Bésame Mucho","Consuelo Velázquez"],["Let's Stay Together","Al Green"],["Georgia On My Mind","Ray Charles"],
+		["Autumn Leaves","Joseph Kosma"],["Wave","Antônio Carlos Jobim"],["Somewhere Over The Rainbow","Harold Arlen"],
+		["My Way","Frank Sinatra"],["Don't Know Why","Norah Jones"],["The Girl From Ipanema","Jobim & Astrud Gilberto"],
+		["Sunny","Bobby Hebb"],["Isn't She Lovely","Stevie Wonder"],["Misty","Erroll Garner"],
+		["Fly Me To The Moon","Frank Sinatra"],["The Look Of Love","Bacharach & Dusty Springfield"],["Blue Bossa","Kenny Dorham"],
+		["Água de Beber","Antônio Carlos Jobim"],["Mas Que Nada","Jorge Ben Jor"]
+	] },
+	{ title: "Pop and soul", count: "7 TRACKS", songs: [
+		["Cold Heart","Elton John & Dua Lipa"],["September","Earth, Wind & Fire"],["Love Nwantiti","CKay"],
+		["Dilemma","Nelly & Kelly Rowland"],["Havana","Camila Cabello"],["If I Ain't Got You","Alicia Keys"],
+		["Señorita","Shawn Mendes & Camila Cabello"]
+	] },
+	{ title: "Italian and Latin", count: "3 TRACKS", songs: [
+		["Susanna","Adriano Celentano"],["Sarà Perché Ti Amo","Ricchi e Poveri"],["Abbracciame","Andrea Sannino"]
+	] }
+] %}
+
+{% set saxFaq = [
+	{ q: "Saxophonist solo or with the band?", a: "Both. The saxophonist performs solo — for the welcome reception, ceremony, dinner or a DJ set — or as part of Luxury Cover Band." },
+	{ q: "Where does live saxophone work best?", a: "Guest arrival and seating, an outdoor ceremony, dinner, the first dance or the dancefloor with a DJ. Jazz, bossa nova, pop, soul and Latin." },
+	{ q: "Can you perform with a DJ?", a: "Yes. In the sax + DJ format, live saxophone is played over the DJ set on the dancefloor." },
+	{ q: "What does the saxophonist play?", a: "Jazz and bossa nova, pop and soul, Italian and Latin — from Bésame Mucho and Fly Me To The Moon to Cold Heart and Havana." },
+	{ q: "How do I book the saxophonist?", a: "Message us on Telegram with the date, venue and format — we will tailor the program and send the details." }
+] %}
+
+<div class="sx">
+
+	<section class="sx-hero">
+		<video class="sx-hero__media" src="{{ '/assets/video/mp4/sax-hero.mp4?v=3' | url }}" muted loop playsinline preload="auto" poster="{{ '/assets/photos/sax-night.jpg' | url }}"></video>
+		<div class="sx-hero__scrim"></div>
+		<div class="sx-hero__content">
+			<div class="sx-eyebrow sx-eyebrow--accent">Live saxophone</div>
+			<h1 class="sx-hero__title">Saxophonist<br>for your event</h1>
+			<p class="sx-hero__lead">For welcome receptions, ceremonies, dinner, the first dance or a party with a DJ. Solo or together with Luxury Cover Band.</p>
+			<div class="sx-hero__cta">
 				<a class="sx-btn sx-btn--accent" href="{{ site.telegram }}">Message on Telegram</a>
-				<a class="sx-btn sx-btn--ghost" href="#video">Watch video</a>
+				<a class="sx-btn sx-btn--glass" href="#sx-repertoire">View repertoire</a>
 			</div>
 		</div>
-		<div class="sax-hero__media">
-			<img src="{{ '/assets/photos/sax.jpg' | url }}" alt="Luxury Cover Band saxophone welcome set" loading="eager">
-		</div>
-	</div>
-</section>
+	</section>
 
-<section class="section section--light" id="video">
-	<div class="container reveal">
-		<div class="featured-video">
-			<a class="video-card video-card--wide" href="#" data-video="sax-welcome">
-				<img src="{{ '/assets/video/posters/sax-welcome.jpg' | url }}" alt="Saxophone welcome video" loading="lazy">
-				<span class="video-card__play" aria-hidden="true"></span>
-			</a>
+	<section class="sx-intro">
+		<p class="sx-intro__statement">Saxophone shapes the atmosphere of the evening: welcoming guests with live music, highlighting an important moment and flowing naturally into the dancing.</p>
+		<div class="sx-genres">
+			<span>Jazz</span><span>Bossa nova</span><span>Soul</span><span>Pop</span><span>Latin</span>
 		</div>
-	</div>
-</section>
+	</section>
 
-<section class="section section--elev">
-	<div class="container container--narrow reveal">
-		<p class="section__eyebrow">Formats</p>
-		<h2 class="section__title">From soft lounge<br><span class="muted">to live dance energy.</span></h2>
-		<ul class="bullets">
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">Welcome set for guest arrival and reception.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">Ceremony music for wedding aisle and signing moments.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">Sax with DJ for a modern dancefloor format.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">Can be combined with piano, vocals or full band.</span></li>
-		</ul>
-	</div>
-</section>
+	<section class="sx-moments">
+		<div class="sx-wrap">
+			<div class="sx-eyebrow sx-eyebrow--accent">The occasion</div>
+			<h2 class="sx-h2">Where saxophone fits perfectly.</h2>
+			<div class="sx-moment-grid">
+				<article class="sx-moment">
+					<h3>Welcome</h3>
+					<p>Guests arrive, take photos and raise a glass while live music fills the room instead of an empty pause before the event begins.</p>
+				</article>
+				<article class="sx-moment">
+					<h3>Ceremony and first dance</h3>
+					<p>Saxophone highlights the moment: the couple’s entrance, vows, congratulations, the first dance or a musical birthday gift.</p>
+				</article>
+				<article class="sx-moment">
+					<h3>Dinner</h3>
+					<p>Soft jazz, soul, bossa nova and familiar melodies create a backdrop without competing with speeches and conversation.</p>
+				</article>
+				<article class="sx-moment">
+					<h3>Party</h3>
+					<p>Sax &amp; DJ or a saxophone feature with the band adds a live concert accent to the dance set.</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="sx-band">
+		<div class="sx-band__inner">
+			<div class="sx-band__copy">
+				<div class="sx-eyebrow sx-eyebrow--accent">With the band</div>
+				<h2 class="sx-h2">One artist — two moods for your evening.</h2>
+			</div>
+			<figure class="sx-band__photo">
+				<img src="{{ '/assets/photos/sax-band-show-dj-knobs-original-faces.jpg' | url }}" alt="Luxury Cover Band saxophonist performing on stage with the band’s vocalists" width="1920" height="1280" loading="lazy">
+			</figure>
+			<div class="sx-band__body">
+				<p>While guests arrive, the saxophone plays during the welcome reception: first drinks, photographs, light jazz and the feeling that the celebration has already begun. When you book Luxury Cover Band, this set of up to 30 minutes can be included as a bonus.</p>
+				<p>When the show begins, the same musician joins the band: trading solos with the vocalists, energizing the dancefloor and adding live concert drive to the program.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="sx-rep" id="sx-repertoire">
+		<div class="sx-wrap">
+			<div class="sx-eyebrow sx-eyebrow--accent">Repertoire</div>
+			<h2 class="sx-h2">A repertoire for the mood of your event.</h2>
+			{% for g in repertoire %}
+			<div class="sx-group">
+				<div class="sx-group__head">
+					<h3 class="sx-group__title">{{ g.title }}</h3>
+					<span class="sx-group__count">{{ g.count }}</span>
+				</div>
+				<ul class="sx-songs">
+					{% for s in g.songs %}
+					<li class="sx-song"><span class="sx-song__title">{{ s[0] }}</span><span class="sx-song__artist">{{ s[1] }}</span></li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="sx-live" id="sx-live">
+		<div class="sx-wrap">
+			<div class="sx-eyebrow sx-eyebrow--accent">Formats</div>
+			<h2 class="sx-h2">Book separately or add saxophone to the band.</h2>
+			<div class="sx-format-grid">
+				<article class="sx-format">
+					<h3>Solo saxophone</h3>
+					<p>For a welcome reception, ceremony, dinner, proposal, intimate evening or a dedicated musical greeting.</p>
+				</article>
+				<article class="sx-format">
+					<h3>Sax &amp; DJ</h3>
+					<p>For the dancefloor, afterparty and a club atmosphere when you want a live instrument over the DJ set.</p>
+				</article>
+				<article class="sx-format">
+					<h3>Saxophone + cover band</h3>
+					<p>A complete concert program with vocals, rhythm section and saxophone as part of the live show.</p>
+				</article>
+			</div>
+			<div class="sx-gallery">
+				<figure class="sx-figure">
+					<img src="{{ '/assets/photos/sax-day.jpg' | url }}" alt="Luxury Cover Band saxophonist at a waterside wedding ceremony in Moscow" width="954" height="1649" loading="lazy">
+					<figcaption>Day · by the water</figcaption>
+				</figure>
+				<figure class="sx-figure">
+					<img src="{{ '/assets/photos/sax-night.jpg' | url }}" alt="Luxury Cover Band saxophonist at an evening black-tie event" width="1040" height="1752" loading="lazy">
+					<figcaption>Evening · Black Tie</figcaption>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--light" id="faq">
+		<div class="container container--narrow">
+			<p class="section__eyebrow">Questions</p>
+			<h2 class="section__title">Frequently asked<br><span class="muted">questions.</span></h2>
+			<div class="faq">
+				{% for item in saxFaq %}
+				<details class="faq__item">
+					<summary class="faq__q">{{ item.q }}</summary>
+					<div class="faq__a"><p>{{ item.a | replace("Telegram", '<a href="' + site.telegram + '">Telegram</a>') | safe }}</p></div>
+				</details>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/en/" },
+					{ "@type": "ListItem", "position": 2, "name": "Saxophonist", "item": "{{ site.url }}{{ page.url }}" }
+				]
+			},
+			{
+				"@type": "FAQPage",
+				"@id": "{{ site.url }}{{ page.url }}#faq",
+				"mainEntity": [
+					{%- for item in saxFaq %}
+					{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{% if not loop.last %},{% endif %}
+					{%- endfor %}
+				]
+			}
+		]
+	}
+	</script>
+
+	<section class="sx-book" id="sx-book">
+		<div class="sx-book__inner">
+			<div class="sx-eyebrow sx-eyebrow--accent">Booking</div>
+			<h2 class="sx-h2 sx-h2--book">Saxophone for your evening.</h2>
+			<p class="sx-book__sub">Send us the date, venue and format: welcome reception, ceremony, dinner, dancefloor or a performance with the band.</p>
+			<div class="sx-hero__cta sx-book__cta">
+				<a class="sx-btn sx-btn--accent" href="{{ site.telegram }}">Message on Telegram</a>
+			</div>
+			<div class="sx-book__contact">
+				<span>Moscow and the Moscow Region</span>
+			</div>
+		</div>
+	</section>
+
+</div>
+
+<style>
+.sx { background:#000; }
+.sx-wrap { max-width:1024px; margin:0 auto; }
+.sx-eyebrow { font-size:13px; font-weight:600; letter-spacing:0.4em; text-transform:uppercase; }
+.sx-eyebrow--accent { color:#c69a4e; }
+.sx-h2 { font-size:clamp(34px,5.2vw,68px); font-weight:600; letter-spacing:-0.025em; line-height:1.02; margin:18px 0 0; max-width:840px; color:#1d1d1f; }
+.sx-h2--light { color:#f5f5f7; }
+
+/* buttons */
+.sx-btn { display:inline-block; text-decoration:none; font-size:16px; font-weight:600; padding:14px 30px; border-radius:980px; transition:transform .2s ease, opacity .2s ease; }
+.sx-btn:hover { transform:translateY(-1px); }
+.sx-btn--accent { color:#0a0a0a; background:#c69a4e; }
+.sx-btn--glass { color:#fafafa; font-weight:500; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+.sx-btn--dark { color:#1d1d1f; font-weight:500; background:rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.16); }
+
+/* hero */
+@keyframes sxHeroUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
+.sx-hero { position:relative; min-height:100vh; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; background:#000; }
+.sx-hero__media { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; }
+.sx-hero__scrim { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.12) 30%,rgba(0,0,0,0.18) 55%,rgba(0,0,0,0.95) 100%); }
+.sx-hero__content { position:relative; z-index:2; text-align:center; padding:0 24px 11vh; max-width:1040px; animation:sxHeroUp 1s cubic-bezier(0.22,0.61,0.36,1) both; }
+.sx-hero__content .sx-eyebrow { letter-spacing:0.42em; margin-bottom:26px; }
+.sx-hero__title { font-size:clamp(46px,8.4vw,116px); font-weight:600; letter-spacing:-0.025em; line-height:0.96; margin:0; color:#fafafa; }
+.sx-hero__lead { font-family:'Cormorant Garamond',Georgia,serif; font-style:italic; font-size:clamp(22px,3vw,34px); font-weight:500; color:rgba(245,245,247,0.86); margin:26px auto 0; max-width:680px; }
+.sx-hero__cta { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:40px; }
+
+/* intro */
+.sx-intro { background:#f5f5f7; color:#1d1d1f; padding:clamp(90px,12vh,150px) 24px; text-align:center; }
+.sx-intro__statement { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(28px,4.4vw,52px); font-weight:500; line-height:1.22; max-width:980px; margin:0 auto; color:#1d1d1f; }
+.sx-genres { display:flex; gap:0; justify-content:center; flex-wrap:wrap; margin-top:54px; font-size:12.5px; letter-spacing:0.34em; text-transform:uppercase; color:#86868b; }
+.sx-genres span { padding:0 22px; }
+.sx-genres span + span { border-left:1px solid rgba(0,0,0,0.14); }
+
+/* scenario */
+.sx-moments { background:#fff; color:#1d1d1f; padding:clamp(96px,13vh,160px) 24px; }
+.sx-moment-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:54px; background:rgba(0,0,0,0.12); }
+.sx-moment { background:#fff; padding:30px 26px 32px; min-height:230px; }
+.sx-moment h3,
+.sx-format h3 { font-size:20px; line-height:1.12; letter-spacing:-0.01em; margin:0; }
+.sx-moment p,
+.sx-format p { font-size:16px; line-height:1.52; color:#5f6065; margin:18px 0 0; }
+
+/* band bonus */
+.sx-band { background:#f5f5f7; color:#1d1d1f; padding:clamp(96px,13vh,160px) 24px; }
+.sx-band__inner { max-width:1180px; margin:0 auto; }
+.sx-band__copy { max-width:940px; margin:0 auto; text-align:center; }
+.sx-band__copy .sx-h2 { margin-left:auto; margin-right:auto; }
+.sx-band__body { display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,56px); margin:34px auto 0; max-width:980px; text-align:left; }
+.sx-band p { font-size:clamp(18px,1.65vw,23px); line-height:1.42; color:#5f6065; margin:0; }
+.sx-band__photo { margin:clamp(34px,4.5vw,52px) 0 0; }
+.sx-band__photo img { display:block; width:100%; height:clamp(320px,34vw,460px); object-fit:cover; object-position:center 52%; }
+
+/* repertoire */
+.sx-rep { background:#fff; color:#1d1d1f; padding:clamp(96px,13vh,160px) 24px; }
+.sx-group { margin-top:88px; }
+.sx-group__head { display:flex; align-items:baseline; justify-content:space-between; gap:20px; border-bottom:1px solid rgba(0,0,0,0.14); padding-bottom:18px; }
+.sx-group__title { font-size:clamp(21px,2.6vw,32px); font-weight:600; letter-spacing:-0.015em; margin:0; }
+.sx-group__count { font-size:12.5px; font-weight:600; letter-spacing:0.16em; color:#c69a4e; white-space:nowrap; }
+.sx-songs { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:0 64px; }
+.sx-song { display:flex; justify-content:space-between; gap:18px; align-items:baseline; padding:15px 0; border-bottom:1px solid rgba(0,0,0,0.07); }
+.sx-song__title { font-size:17px; font-weight:600; }
+.sx-song__artist { font-size:14px; color:#86868b; text-align:right; }
+
+/* live gallery */
+.sx-live { background:#f5f5f7; color:#1d1d1f; padding:clamp(96px,13vh,160px) 24px; }
+.sx-live__sub { font-size:18px; color:#86868b; max-width:600px; margin:12px 0 0; }
+.sx-format-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:52px; background:rgba(0,0,0,0.1); }
+.sx-format { background:#f5f5f7; padding:30px 28px 34px; min-height:190px; }
+.sx-format p { color:#5f6065; }
+.sx-gallery { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:52px; }
+.sx-figure { margin:0; position:relative; overflow:hidden; }
+.sx-figure img { display:block; width:100%; height:clamp(440px,62vh,780px); object-fit:cover; object-position:center 18%; }
+.sx-figure figcaption { position:absolute; left:24px; bottom:22px; font-size:13px; letter-spacing:0.28em; text-transform:uppercase; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
+
+/* booking */
+.sx-book { background:#fff; color:#1d1d1f; padding:clamp(110px,16vh,180px) 24px; text-align:center; }
+.sx-book__inner { max-width:820px; margin:0 auto; }
+.sx-h2--book { font-size:clamp(36px,6vw,80px); letter-spacing:-0.03em; line-height:1.0; margin:22px auto 0; }
+.sx-book__sub { font-size:19px; color:#86868b; margin:24px auto 0; max-width:560px; }
+.sx-book__cta { margin-top:40px; }
+.sx-book__contact { display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:46px; color:#86868b; font-size:15px; }
+
+@media (max-width:720px) {
+	.sx-band__body { grid-template-columns:1fr; text-align:center; }
+	.sx-band__photo img { height:auto; aspect-ratio:16 / 10; }
+	.sx-gallery { grid-template-columns:1fr; }
+	.sx-moment-grid,
+	.sx-format-grid { grid-template-columns:1fr; }
+	.sx-moment,
+	.sx-format { min-height:0; }
+	.sx-songs { grid-template-columns:1fr; }
+}
+</style>
+
+<script>
+(function () {
+	var v = document.querySelector('.sx-hero__media');
+	if (!v || !('IntersectionObserver' in window)) return;
+	var scrolledAway = false;   // the hero has left the viewport
+	var started = false;        // the video has already been started
+	var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+	// Keep the poster still on initial load. Start only after the user scrolls
+	// past the hero and returns to it.
+	var io = new IntersectionObserver(function (entries) {
+		entries.forEach(function (e) {
+			if (!e.isIntersecting) {
+				scrolledAway = true;
+			} else if (scrolledAway) {
+				started = true;
+				play();
+			} else if (started) {
+				play();
+			}
+		});
+	}, { threshold: 0.35 });
+	io.observe(v);
+})();
+</script>

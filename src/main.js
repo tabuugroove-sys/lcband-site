@@ -6,7 +6,7 @@
 (() => {
 	'use strict';
 
-	// ---------- Locale memory + redirect ----------
+	// ---------- Locale memory ----------
 	try {
 		const path = window.location.pathname;
 		const base = (document.querySelector('base')?.getAttribute('href') || '/').replace(/\/+$/, '/');
@@ -15,11 +15,9 @@
 		if (match) {
 			localStorage.setItem('lcb_locale', match[1]);
 		} else if (rel === '/' || rel === '') {
-			const saved = localStorage.getItem('lcb_locale');
-			if (saved === 'br' || saved === 'ae' || saved === 'en') {
-				window.location.replace(base + saved + '/');
-				return;
-			}
+			// Russian lives at the root URL and is always the default. Visiting an
+			// explicit locale must never make a later visit to `/` jump away from RU.
+			localStorage.setItem('lcb_locale', 'ru');
 		}
 	} catch (e) { /* storage blocked — ignore */ }
 

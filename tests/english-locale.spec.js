@@ -89,3 +89,47 @@ test('mobile menu keeps navigation in the English locale', async ({ page, isMobi
 	await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 	await expect(page.locator('body')).not.toContainText(/[А-Яа-яЁё]/);
 });
+
+test('the root URL stays Russian even after visiting an explicit locale', async ({ page }) => {
+	await page.goto('/en/');
+	await page.evaluate(() => localStorage.setItem('lcb_locale', 'en'));
+
+	await page.goto('/');
+
+	expect(new URL(page.url()).pathname).toBe('/');
+	await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
+	expect(await page.evaluate(() => localStorage.getItem('lcb_locale'))).toBe('ru');
+});
+
+test('English sax page is a translated structural twin of the Russian page', async ({ page }) => {
+	const sectionSignature = async () => page.locator('.sx > section').evaluateAll((sections) =>
+		sections.map((section) => ({
+			className: section.className,
+			id: section.id,
+			headingCount: section.querySelectorAll('h1, h2, h3').length,
+			imageCount: section.querySelectorAll('img, video').length,
+		}))
+	);
+
+	await page.goto('/sax/');
+	const russianStructure = await sectionSignature();
+
+	await page.goto('/en/sax/');
+	const englishStructure = await sectionSignature();
+
+	expect(englishStructure).toEqual(russianStructure);
+	await expect(page.locator('.sx-hero__media')).toHaveAttribute('poster', /sax-night\.jpg$/);
+	await expect(page.locator('.sx-gallery img')).toHaveCount(2);
+	await expect(page.locator('.sx-group')).toHaveCount(3);
+	await expect(page.locator('.faq__item')).toHaveCount(5);
+	await expect(page.locator('link[rel="alternate"][hreflang="ru"]')).toHaveAttribute('href', /\/sax\/$/);
+	await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute('href', /\/en\/sax\/$/);
+
+	const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+		scripts.map((script) => JSON.parse(script.textContent || '{}'))
+	);
+	const serializedSchemas = JSON.stringify(schemas);
+	expect(serializedSchemas).not.toMatch(/[А-Яа-яЁё]/);
+	expect(serializedSchemas).toContain('"inLanguage":"en-US"');
+	expect(serializedSchemas).toContain('https://luxuryband.ru/en/');
+});

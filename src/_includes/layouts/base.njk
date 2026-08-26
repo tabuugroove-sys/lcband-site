@@ -32,6 +32,11 @@
 	<link rel="alternate" hreflang="en" href="{{ site.url }}/en/">
 	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
 	{% endif %}
+	{% if page.url == '/sax/' or page.url == '/en/sax/' %}
+	<link rel="alternate" hreflang="ru" href="{{ site.url }}/sax/">
+	<link rel="alternate" hreflang="en" href="{{ site.url }}/en/sax/">
+	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/sax/">
+	{% endif %}
 	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}
 	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
@@ -58,8 +63,8 @@
 				"@type": "MusicGroup",
 				"@id": "{{ site.url }}/#musicgroup",
 				"name": "{{ site.name }}",
-				"alternateName": ["{{ site.shortName }}", "Лакшери Кавер Бэнд", "кавер-группа Luxury Cover Band"],
-				"description": "{{ site.description }}",
+				"alternateName": [{% if htmlLang == 'en' %}"{{ site.shortName }}", "Luxury Cover Band"{% else %}"{{ site.shortName }}", "Лакшери Кавер Бэнд", "кавер-группа Luxury Cover Band"{% endif %}],
+				"description": "{{ description or site.description }}",
 				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"url": "{{ site.url }}",
@@ -72,21 +77,21 @@
 					, "https://profi.ru/profile/treda_2177/"
 					, "https://moskva.artist.ru/Luxury_Cover_Band/"
 				],
-				"areaServed": ["Москва", "Россия", "Международные туры"]
+				"areaServed": [{% if htmlLang == 'en' %}"Moscow", "Russia", "International tours"{% else %}"Москва", "Россия", "Международные туры"{% endif %}]
 			},
 			{
 				"@type": "LocalBusiness",
 				"@id": "{{ site.url }}/#business",
 				"name": "{{ site.name }}",
-				"description": "{{ site.description }}",
+				"description": "{{ description or site.description }}",
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"url": "{{ site.url }}",
 				"address": {
 					"@type": "PostalAddress",
-					"addressLocality": "{{ site.city }}",
+					"addressLocality": "{% if htmlLang == 'en' %}Moscow{% else %}{{ site.city }}{% endif %}",
 					"addressCountry": "RU"
 				},
-				"areaServed": ["Москва", "Московская область", "Россия", "Международные туры"],
+				"areaServed": [{% if htmlLang == 'en' %}"Moscow", "Moscow Region", "Russia", "International tours"{% else %}"Москва", "Московская область", "Россия", "Международные туры"{% endif %}],
 				"priceRange": "$$",
 				"sameAs": [
 					"{{ site.telegram }}"
@@ -100,7 +105,7 @@
 				"@id": "{{ site.url }}/#website",
 				"name": "{{ site.name }}",
 				"url": "{{ site.url }}",
-				"inLanguage": "ru-RU",
+				"inLanguage": "{% if htmlLang == 'en' %}en-US{% else %}ru-RU{% endif %}",
 				"publisher": { "@id": "{{ site.url }}/#musicgroup" }
 			}
 		]
@@ -136,6 +141,6 @@
 	{% include "partials/footer.njk" %}
 	{% include "partials/lightbox.njk" %}
 
-	<script src="{{ '/main.js?v=15' | url }}" defer></script>
+	<script src="{{ '/main.js?v=16' | url }}" defer></script>
 </body>
 </html>
