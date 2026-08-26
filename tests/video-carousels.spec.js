@@ -82,6 +82,7 @@ test.describe('video rails — open + play', () => {
 		await expect
 			.poll(() => video.evaluate((el) => el.readyState), { timeout: 8000, message: 'video never buffered real data' })
 			.toBeGreaterThanOrEqual(2);
+		await expect(lightbox.locator('[data-q="2160"]')).toBeVisible();
 
 		const otherErrors = consoleErrors.filter((t) => !/Failed to load resource.*404/.test(t));
 		expect(otherErrors, 'no unexpected console errors').toEqual([]);

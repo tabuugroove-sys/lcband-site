@@ -116,7 +116,7 @@ test('Russian and English homepages keep their own opening videos in the first b
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
 	expect(await heroVideoSource()).toContain('/promo-egoistka-');
-	expect(await heroVideoSource()).toContain('?v=20260826trim2');
+	expect(await heroVideoSource()).toContain('?v=20260826trim3');
 	await finishHeroVideo();
 	expect(await heroVideoSource()).toContain('/thematic-retro-heart-');
 	expect(await heroVideoSource()).toContain('?v=20260826trim2');

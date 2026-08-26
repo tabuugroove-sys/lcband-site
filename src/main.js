@@ -368,7 +368,7 @@
 	}
 
 	const videoAssetVersions = {
-		'promo-egoistka': '20260826trim2',
+		'promo-egoistka': '20260826trim3',
 		'thematic-retro-heart': '20260826trim2'
 	};
 
@@ -378,7 +378,7 @@
 		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
 
-	const known4kVideoKeys = new Set(['promo-danza-cuduro', 'latin-music-luxury-cover-band']);
+	const known4kVideoKeys = new Set(['promo-egoistka', 'promo-danza-cuduro', 'latin-music-luxury-cover-band']);
 
 	function setPickerQuality(quality) {
 		if (!lightboxPicker) return;
