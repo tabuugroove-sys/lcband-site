@@ -45,7 +45,7 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 });
 
 test.describe('Leo Sax — hero and responsive player', () => {
-	test('places the LEO SAX lockup above a right-side heraldic shield', async ({ page }) => {
+	test('places the LEO SAX lockup above a left-side heraldic shield', async ({ page }) => {
 		await page.goto(path);
 		const geometry = await page.evaluate(() => {
 			const crest = document.querySelector('.leo-crest').getBoundingClientRect();
@@ -53,13 +53,13 @@ test.describe('Leo Sax — hero and responsive player', () => {
 			const shield = document.querySelector('.leo-crest__mark').getBoundingClientRect();
 			return { crest, wordmark, shield, viewportWidth: innerWidth };
 		});
-		expect(geometry.crest.left).toBeGreaterThan(geometry.viewportWidth * 0.7);
+		expect(geometry.crest.right).toBeLessThan(geometry.viewportWidth * 0.3);
 		expect(geometry.wordmark.bottom).toBeLessThanOrEqual(geometry.shield.top + 1);
 
 		await page.setViewportSize({ width: 320, height: 720 });
 		await page.goto(path);
 		const narrowCrest = await page.locator('.leo-crest').evaluate((node) => node.getBoundingClientRect().toJSON());
-		expect(narrowCrest.left).toBeGreaterThan(236);
+		expect(narrowCrest.left).toBeLessThanOrEqual(4);
 		expect(narrowCrest.width).toBeLessThanOrEqual(74);
 	});
 
