@@ -1,0 +1,231 @@
+// @ts-check
+import { test, expect } from '@playwright/test';
+
+const path = '/sax/leo-sax/';
+
+test.describe('Leo Sax — structure and vendor-only scope', () => {
+	test('renders exactly four sections with no navigation, footer, contacts, or forms', async ({ page }) => {
+		const response = await page.goto(path);
+		expect(response?.ok()).toBe(true);
+
+		await expect(page.locator('.leo > section')).toHaveCount(4);
+		await expect(page.locator('.leo > section').nth(0)).toHaveClass(/leo-hero/);
+		await expect(page.locator('.leo > section').nth(1)).toHaveClass(/leo-gallery/);
+		await expect(page.locator('.leo > section').nth(2)).toHaveClass(/leo-moments/);
+		await expect(page.locator('.leo > section').nth(3)).toHaveClass(/leo-repertoire/);
+		await expect(page.locator('body > header, body > footer, nav, form')).toHaveCount(0);
+		await expect(page.locator('a[href*="telegram" i], a[href*="t.me" i], a[href*="whatsapp" i], a[href*="wa.me" i], a[href^="mailto:"], a[href^="tel:"]')).toHaveCount(0);
+		await expect(page.locator('h1')).toHaveText(/LEO\s+SAX/i);
+		await expect(page.locator('.leo-repertoire__group')).toHaveCount(3);
+		await expect(page.locator('.leo-repertoire__group li')).toHaveCount(27);
+	});
+
+	test('ships canonical metadata and valid Leo-specific structured data', async ({ page }) => {
+		await page.goto(path);
+		await expect(page).toHaveTitle(/Leo Sax.*саксофонист/i);
+		await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://luxuryband.ru/sax/leo-sax/');
+		await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /саксофон.*welcome.*церемонии.*ужина.*вечеринки/i);
+
+		const graph = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+			const data = JSON.parse(script.textContent || '{}');
+			return data['@graph'];
+		});
+		expect(graph.map((entry) => entry['@type'])).toEqual(['WebPage', 'Person', 'VideoObject', 'BreadcrumbList']);
+		expect(graph.find((entry) => entry['@type'] === 'VideoObject')?.duration).toBe('PT2M35S');
+
+		await page.goto('/sax/');
+		await expect(page.locator('a[href="/sax/leo-sax/"]')).toHaveText(/Leo Sax.*промо/i);
+	});
+});
+
+test.describe('Leo Sax — hero and responsive player', () => {
+	test('does not request the 155-second video until Play is pressed', async ({ page }) => {
+		const requests = [];
+		page.on('request', (request) => {
+			if (/leo-sax-promo-\d+\.mp4/.test(request.url())) requests.push(request.url());
+		});
+
+		await page.goto(path);
+		await page.waitForTimeout(350);
+		expect(requests).toEqual([]);
+		await expect(page.locator('[data-leo-video]')).not.toHaveAttribute('src');
+		await expect(page.locator('[data-leo-video] source')).toHaveCount(0);
+	});
+
+	test('Play stays outside the face safe zone and opens the appropriate profile', async ({ page, isMobile }) => {
+		await page.addInitScript(() => {
+			const addMediaListener = HTMLMediaElement.prototype.addEventListener;
+			HTMLMediaElement.prototype.addEventListener = function addEventListener(type, listener, options) {
+				if (type === 'error' || type === 'waiting') return;
+				return addMediaListener.call(this, type, listener, options);
+			};
+			HTMLMediaElement.prototype.load = function load() {};
+			HTMLMediaElement.prototype.play = function play() { return Promise.resolve(); };
+		});
+		await page.route('**/assets/video/mp4/leo-sax-promo-*.mp4', (route) => route.fulfill({ status: 200, contentType: 'video/mp4', body: '' }));
+		await page.goto(path);
+		await expect(page.locator('[data-player-ui]')).toHaveAttribute('inert', '');
+
+		const geometry = await page.evaluate(() => {
+			const button = document.querySelector('[data-leo-play]').getBoundingClientRect();
+			return {
+				button: { left: button.left, right: button.right, top: button.top, bottom: button.bottom },
+				viewport: { width: innerWidth, height: innerHeight },
+			};
+		});
+		const face = {
+			left: geometry.viewport.width * 0.43,
+			right: geometry.viewport.width * 0.57,
+			top: geometry.viewport.height * 0.12,
+			bottom: geometry.viewport.height * 0.42,
+		};
+		const overlapsFace = !(
+			geometry.button.right < face.left || geometry.button.left > face.right ||
+			geometry.button.bottom < face.top || geometry.button.top > face.bottom
+		);
+		expect(overlapsFace).toBe(false);
+
+		await page.locator('[data-leo-play]').click();
+		await expect(page.locator('[data-leo-hero]')).toHaveClass(/is-playing/);
+		await expect(page.locator('[data-player-ui]')).toHaveAttribute('aria-hidden', 'false');
+		await expect(page.locator('[data-player-ui]')).not.toHaveAttribute('inert', '');
+		await expect(page.locator('[data-leo-video]')).toHaveAttribute('src', new RegExp(`leo-sax-promo-${isMobile ? '720' : '1080'}\\.mp4$`));
+
+		await page.locator('[data-video-close]').click();
+		await expect(page.locator('[data-leo-hero]')).not.toHaveClass(/is-playing/);
+		await expect(page.locator('[data-leo-video]')).not.toHaveAttribute('src');
+		await expect(page.locator('[data-player-ui]')).toHaveAttribute('inert', '');
+	});
+
+	test('Save-Data starts with the smallest 480p profile', async ({ page }) => {
+		await page.addInitScript(() => {
+			Object.defineProperty(navigator, 'connection', {
+				configurable: true,
+				value: { saveData: true, effectiveType: '2g' },
+			});
+			const addMediaListener = HTMLMediaElement.prototype.addEventListener;
+			HTMLMediaElement.prototype.addEventListener = function addEventListener(type, listener, options) {
+				if (type === 'error' || type === 'waiting') return;
+				return addMediaListener.call(this, type, listener, options);
+			};
+			HTMLMediaElement.prototype.load = function load() {};
+			HTMLMediaElement.prototype.play = function play() { return Promise.resolve(); };
+		});
+		await page.route('**/assets/video/mp4/leo-sax-promo-*.mp4', (route) => route.fulfill({ status: 200, contentType: 'video/mp4', body: '' }));
+		await page.goto(path);
+		await page.locator('[data-leo-play]').click();
+		await expect(page.locator('[data-leo-video]')).toHaveAttribute('src', /leo-sax-promo-480\.mp4$/);
+		await expect(page.locator('[data-video-quality="480"]')).toHaveClass(/is-active/);
+	});
+
+	test('one sustained stall automatically steps down to a lighter profile', async ({ page, isMobile }) => {
+		await page.addInitScript(() => {
+			const nativeSetTimeout = window.setTimeout.bind(window);
+			window.setTimeout = ((callback, delay, ...args) => {
+				const acceleratedDelay = delay === 5500 || delay === 8000 ? 40 : delay;
+				return nativeSetTimeout(callback, acceleratedDelay, ...args);
+			});
+			const addMediaListener = HTMLMediaElement.prototype.addEventListener;
+			HTMLMediaElement.prototype.addEventListener = function addEventListener(type, listener, options) {
+				if (type === 'error') return;
+				return addMediaListener.call(this, type, listener, options);
+			};
+			HTMLMediaElement.prototype.load = function load() {};
+			HTMLMediaElement.prototype.play = function play() { return Promise.resolve(); };
+		});
+		await page.route('**/assets/video/mp4/leo-sax-promo-*.mp4', (route) => route.fulfill({ status: 200, contentType: 'video/mp4', body: '' }));
+		await page.goto(path);
+		await page.locator('[data-leo-play]').click();
+
+		const initial = isMobile ? '720' : '1080';
+		const fallback = isMobile ? '480' : '720';
+		await expect(page.locator('[data-leo-video]')).toHaveAttribute('src', new RegExp(`leo-sax-promo-${initial}\\.mp4$`));
+		await page.locator('[data-leo-video]').dispatchEvent('waiting');
+		await expect(page.locator('[data-leo-video]')).toHaveAttribute('src', new RegExp(`leo-sax-promo-${fallback}\\.mp4$`), { timeout: 2000 });
+	});
+
+	test('uses the iPhone video fullscreen fallback and exits it on close', async ({ page }) => {
+		await page.addInitScript(() => {
+			Object.defineProperty(Element.prototype, 'requestFullscreen', { configurable: true, value: undefined });
+			Object.defineProperty(Element.prototype, 'webkitRequestFullscreen', { configurable: true, value: undefined });
+			Object.defineProperty(HTMLVideoElement.prototype, 'webkitDisplayingFullscreen', {
+				configurable: true,
+				get() { return Boolean(window.__leoWebkitDisplaying); },
+			});
+			Object.defineProperty(HTMLVideoElement.prototype, 'webkitEnterFullscreen', {
+				configurable: true,
+				value() {
+					window.__leoWebkitDisplaying = true;
+					window.__leoWebkitEntered = true;
+				},
+			});
+			Object.defineProperty(HTMLVideoElement.prototype, 'webkitExitFullscreen', {
+				configurable: true,
+				value() {
+					window.__leoWebkitDisplaying = false;
+					window.__leoWebkitExited = true;
+				},
+			});
+			const addMediaListener = HTMLMediaElement.prototype.addEventListener;
+			HTMLMediaElement.prototype.addEventListener = function addEventListener(type, listener, options) {
+				if (type === 'error' || type === 'waiting') return;
+				return addMediaListener.call(this, type, listener, options);
+			};
+			HTMLMediaElement.prototype.load = function load() {};
+			HTMLMediaElement.prototype.play = function play() { return Promise.resolve(); };
+		});
+		await page.route('**/assets/video/mp4/leo-sax-promo-*.mp4', (route) => route.fulfill({ status: 200, contentType: 'video/mp4', body: '' }));
+		await page.goto(path);
+		await page.locator('[data-leo-play]').click();
+		await page.locator('[data-video-fullscreen]').click();
+		expect(await page.evaluate(() => window.__leoWebkitEntered)).toBe(true);
+		await page.locator('[data-video-close]').click();
+		expect(await page.evaluate(() => window.__leoWebkitExited)).toBe(true);
+	});
+});
+
+test.describe('Leo Sax — swipe carousel', () => {
+	test('starts centered with visible adjacent photos on both sides', async ({ page, isMobile }) => {
+		await page.goto(path);
+		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();
+		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(9);
+
+		const peeks = await page.evaluate(() => {
+			const slides = [...document.querySelectorAll('[data-carousel-track] > [data-carousel-slide]')];
+			const before = slides[0].getBoundingClientRect();
+			const first = slides[1].getBoundingClientRect();
+			const next = slides[2].getBoundingClientRect();
+			return {
+				before: { left: before.left, right: before.right },
+				first: { left: first.left, right: first.right },
+				next: { left: next.left, right: next.right },
+				width: innerWidth,
+			};
+		});
+		expect(peeks.first.left).toBeGreaterThan(0);
+		expect(peeks.first.right).toBeLessThan(peeks.width);
+		expect(peeks.before.right).toBeGreaterThan(0);
+		expect(peeks.next.left).toBeLessThan(peeks.width);
+		if (isMobile) {
+			expect(peeks.before.left).toBeLessThan(0);
+			expect(peeks.next.right).toBeGreaterThan(peeks.width);
+		} else {
+			expect(peeks.before.right).toBeLessThan(peeks.first.left);
+			expect(peeks.next.left).toBeGreaterThan(peeks.first.right);
+		}
+	});
+
+	test('native horizontal movement advances the active photo', async ({ page }) => {
+		await page.goto(path);
+		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();
+		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(9);
+
+		await page.evaluate(() => {
+			const viewport = document.querySelector('[data-carousel-viewport]');
+			const second = document.querySelectorAll('[data-carousel-track] > [data-carousel-slide]')[2];
+			const left = second.offsetLeft - (viewport.clientWidth - second.clientWidth) / 2;
+			viewport.scrollTo({ left, behavior: 'auto' });
+		});
+		await expect(page.locator('[data-carousel-dot="1"]')).toHaveClass(/is-active/, { timeout: 2000 });
+	});
+});

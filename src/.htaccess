@@ -49,4 +49,7 @@ RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]
 		Header set Access-Control-Allow-Origin "*"
 		Header set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
 	</FilesMatch>
+	<FilesMatch "\.(avif|webp|mp4|webm)$">
+		Header set Cache-Control "public, max-age=604800"
+	</FilesMatch>
 </IfModule>

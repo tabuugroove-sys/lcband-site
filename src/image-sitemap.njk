@@ -76,6 +76,19 @@ eleventyExcludeFromCollections: true
 		</image:image>
 	</url>
 	<url>
+		<loc>{{ site.url }}/sax/leo-sax/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp</image:loc>
+			<image:title>Leo Sax — саксофонист Лео на сцене</image:title>
+		</image:image>
+		{% for image in ["playing-burgundy", "city-black-tie", "white-jacket", "library-full", "welcome-light", "burgundy-portrait", "library-portrait"] %}
+		<image:image>
+			<image:loc>{{ site.url }}/assets/leo-sax/gallery/{{ image }}-960.webp</image:loc>
+			<image:title>Leo Sax — образ саксофониста для мероприятия</image:title>
+		</image:image>
+		{% endfor %}
+	</url>
+	<url>
 		<loc>{{ site.url }}/ae/</loc>
 		<image:image>
 			<image:loc>{{ site.url }}/assets/photos/corporate.jpg</image:loc>

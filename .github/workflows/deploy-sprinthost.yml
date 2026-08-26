@@ -62,6 +62,9 @@ jobs:
           test -n "$SPRINTHOST_USER"
           cd _site
           tar czf /tmp/lcband-videos.tgz \
+            assets/video/mp4/leo-sax-promo-480.mp4 \
+            assets/video/mp4/leo-sax-promo-720.mp4 \
+            assets/video/mp4/leo-sax-promo-1080.mp4 \
             assets/video/mp4/live-big-lineup-720.mp4 \
             assets/video/mp4/live-big-lineup-1080.mp4 \
             assets/video/mp4/live-berezy-720.mp4 \

@@ -4,6 +4,18 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	<url>
+		<loc>{{ site.url }}/sax/leo-sax/</loc>
+		<video:video>
+			<video:thumbnail_loc>{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp</video:thumbnail_loc>
+			<video:title>Leo Sax — промо саксофониста</video:title>
+			<video:description>Полное промо саксофониста Leo Sax: живой звук, сценические образы и атмосфера события.</video:description>
+			<video:content_loc>{{ site.url }}/assets/video/mp4/leo-sax-promo-720.mp4</video:content_loc>
+			<video:duration>155</video:duration>
+			<video:family_friendly>yes</video:family_friendly>
+			<video:requires_subscription>no</video:requires_subscription>
+		</video:video>
+	</url>
 	{% for program in programs %}
 	{% for video in program.videos %}
 	<url>

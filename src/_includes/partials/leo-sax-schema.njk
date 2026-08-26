@@ -1,0 +1,45 @@
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebPage",
+			"@id": "{{ site.url }}{{ page.url }}#webpage",
+			"url": "{{ site.url }}{{ page.url }}",
+			"name": "{{ title }}",
+			"description": "{{ description }}",
+			"inLanguage": "ru-RU",
+			"primaryImageOfPage": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
+			"mainEntity": { "@id": "{{ site.url }}{{ page.url }}#leo" }
+		},
+		{
+			"@type": "Person",
+			"@id": "{{ site.url }}{{ page.url }}#leo",
+			"name": "Лео",
+			"alternateName": ["Leo Sax", "Леонид Суслов"],
+			"jobTitle": "Саксофонист",
+			"image": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
+			"url": "{{ site.url }}{{ page.url }}"
+		},
+		{
+			"@type": "VideoObject",
+			"@id": "{{ site.url }}{{ page.url }}#promo",
+			"name": "Leo Sax — промо саксофониста",
+			"description": "Полное промо саксофониста Leo Sax: живой звук, сценические образы и атмосфера события.",
+			"thumbnailUrl": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
+			"contentUrl": "{{ site.url }}/assets/video/mp4/leo-sax-promo-720.mp4",
+			"embedUrl": "{{ site.url }}{{ page.url }}",
+			"uploadDate": "2026-08-26",
+			"duration": "PT2M35S"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
+				{ "@type": "ListItem", "position": 2, "name": "Саксофонист", "item": "{{ site.url }}/sax/" },
+				{ "@type": "ListItem", "position": 3, "name": "Leo Sax", "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
+	]
+}
+</script>

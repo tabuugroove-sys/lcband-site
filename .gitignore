@@ -22,6 +22,7 @@ output/
 .agent-lock
 .local-backups/
 .indexnow-key
+.clone-ui/
 
 # Playwright test artifacts (local only)
 playwright-report/
