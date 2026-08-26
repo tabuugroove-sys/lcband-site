@@ -277,6 +277,13 @@
 	let currentSlide = 0;
 	let scrollTimer = 0;
 	let loopGuard = false;
+	let beforeClone = null;
+	let afterClone = null;
+	let autoplayTimer = 0;
+	let carouselInView = false;
+	let carouselPaused = false;
+	const autoplayDelay = 4300;
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 	function centerSlide(slide, behavior = 'smooth') {
 		if (!viewport || !slide) return;
@@ -319,11 +326,34 @@
 			centerSlide(realSlides[0], 'auto');
 			requestAnimationFrame(() => { loopGuard = false; });
 		}
+		scheduleAutoplay();
+	}
+
+	function clearAutoplay() {
+		window.clearTimeout(autoplayTimer);
+		autoplayTimer = 0;
+	}
+
+	function adjacentSlide(direction) {
+		if (!realSlides.length) return null;
+		if (direction > 0 && currentSlide === realSlides.length - 1) return afterClone;
+		if (direction < 0 && currentSlide === 0) return beforeClone;
+		return realSlides[currentSlide + direction];
+	}
+
+	function moveCarousel(direction) {
+		centerSlide(adjacentSlide(direction));
+	}
+
+	function scheduleAutoplay() {
+		clearAutoplay();
+		if (!carouselInView || carouselPaused || document.hidden || reducedMotion.matches || realSlides.length < 2) return;
+		autoplayTimer = window.setTimeout(() => moveCarousel(1), autoplayDelay);
 	}
 
 	if (viewport && track && realSlides.length > 1) {
-		const beforeClone = realSlides[realSlides.length - 1].cloneNode(true);
-		const afterClone = realSlides[0].cloneNode(true);
+		beforeClone = realSlides[realSlides.length - 1].cloneNode(true);
+		afterClone = realSlides[0].cloneNode(true);
 		beforeClone.dataset.clone = 'before';
 		afterClone.dataset.clone = 'after';
 		beforeClone.setAttribute('aria-hidden', 'true');
@@ -347,6 +377,8 @@
 		let dragStartScroll = 0;
 		let dragging = false;
 		viewport.addEventListener('pointerdown', (event) => {
+			carouselPaused = true;
+			clearAutoplay();
 			if (event.pointerType !== 'mouse') return;
 			dragging = true;
 			dragStartX = event.clientX;
@@ -359,24 +391,40 @@
 			viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
 		});
 		const endDrag = () => {
-			if (!dragging) return;
-			dragging = false;
-			viewport.classList.remove('is-dragging');
-			centerSlide(nearestTrackSlide());
+			if (dragging) {
+				dragging = false;
+				viewport.classList.remove('is-dragging');
+				centerSlide(nearestTrackSlide());
+			}
+			carouselPaused = false;
+			scheduleAutoplay();
 		};
 		viewport.addEventListener('pointerup', endDrag);
 		viewport.addEventListener('pointercancel', endDrag);
+		carousel.addEventListener('mouseenter', () => { carouselPaused = true; clearAutoplay(); });
+		carousel.addEventListener('mouseleave', () => { carouselPaused = false; scheduleAutoplay(); });
+		carousel.addEventListener('focusin', () => { carouselPaused = true; clearAutoplay(); });
+		carousel.addEventListener('focusout', () => { carouselPaused = false; scheduleAutoplay(); });
+		new IntersectionObserver((entries) => {
+			carouselInView = entries[0]?.isIntersecting || false;
+			scheduleAutoplay();
+		}, { threshold: 0.35 }).observe(carousel);
+		document.addEventListener('visibilitychange', scheduleAutoplay);
+		reducedMotion.addEventListener?.('change', scheduleAutoplay);
 	}
 
 	previous?.addEventListener('click', () => {
 		if (!realSlides.length) return;
-		centerSlide(realSlides[(currentSlide - 1 + realSlides.length) % realSlides.length]);
+		moveCarousel(-1);
 	});
 	next?.addEventListener('click', () => {
 		if (!realSlides.length) return;
-		centerSlide(realSlides[(currentSlide + 1) % realSlides.length]);
+		moveCarousel(1);
 	});
-	dots.forEach((dot) => dot.addEventListener('click', () => centerSlide(realSlides[Number(dot.dataset.carouselDot)])));
+	dots.forEach((dot) => dot.addEventListener('click', () => {
+		centerSlide(realSlides[Number(dot.dataset.carouselDot)]);
+		scheduleAutoplay();
+	}));
 
 	document.querySelectorAll('.leo-repertoire__group').forEach((group) => {
 		group.addEventListener('toggle', () => {

@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test';
 const path = '/sax/leo-sax/';
 
 test.describe('Leo Sax — structure and vendor-only scope', () => {
-	test('renders exactly four sections with no navigation, footer, contacts, or forms', async ({ page }) => {
+	test('renders exactly four sections with the main navigation but no footer or forms', async ({ page }) => {
 		const response = await page.goto(path);
 		expect(response?.ok()).toBe(true);
 
@@ -13,11 +13,16 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 		await expect(page.locator('.leo > section').nth(1)).toHaveClass(/leo-gallery/);
 		await expect(page.locator('.leo > section').nth(2)).toHaveClass(/leo-moments/);
 		await expect(page.locator('.leo > section').nth(3)).toHaveClass(/leo-repertoire/);
-		await expect(page.locator('body > header, body > footer, nav, form')).toHaveCount(0);
-		await expect(page.locator('a[href*="telegram" i], a[href*="t.me" i], a[href*="whatsapp" i], a[href*="wa.me" i], a[href^="mailto:"], a[href^="tel:"]')).toHaveCount(0);
+		await expect(page.locator('body > header.nav, body > header.nav nav')).toHaveCount(2);
+		await expect(page.locator('body > footer, form')).toHaveCount(0);
+		await expect(page.locator('a[href*="whatsapp" i], a[href*="wa.me" i], a[href^="mailto:"], a[href^="tel:"]')).toHaveCount(0);
 		await expect(page.locator('h1')).toHaveText(/LEO\s+SAX/i);
-		await expect(page.locator('.leo-repertoire__group')).toHaveCount(3);
-		await expect(page.locator('.leo-repertoire__group li')).toHaveCount(27);
+		await expect(page.locator('.leo-repertoire__group')).toHaveCount(2);
+		await expect(page.locator('.leo-repertoire__group li')).toHaveCount(70);
+		await expect(page.locator('.leo-repertoire__group').nth(0)).toContainText('45 треков');
+		await expect(page.locator('.leo-repertoire__group').nth(1)).toContainText('25 треков');
+		await expect(page.locator('.leo-emblem')).toHaveAttribute('src', /leo-lion-sax-emblem\.webp$/);
+		await expect(page.locator('.leo-gallery h1, .leo-gallery h2, .leo-gallery p')).toHaveCount(0);
 	});
 
 	test('ships canonical metadata and valid Leo-specific structured data', async ({ page }) => {
@@ -185,6 +190,17 @@ test.describe('Leo Sax — hero and responsive player', () => {
 });
 
 test.describe('Leo Sax — swipe carousel', () => {
+	test('uses a white, text-free gallery and advances automatically', async ({ page }) => {
+		await page.addInitScript(() => {
+			const nativeSetTimeout = window.setTimeout.bind(window);
+			window.setTimeout = ((callback, delay, ...args) => nativeSetTimeout(callback, delay === 4300 ? 80 : delay, ...args));
+		});
+		await page.goto(path);
+		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();
+		await expect(page.locator('.leo-gallery')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+		await expect(page.locator('[data-carousel-dot="1"]')).toHaveClass(/is-active/, { timeout: 2000 });
+	});
+
 	test('starts centered with visible adjacent photos on both sides', async ({ page, isMobile }) => {
 		await page.goto(path);
 		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();

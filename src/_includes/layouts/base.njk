@@ -50,16 +50,19 @@
 	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
+	{% if showMainNav %}
+	<link rel="stylesheet" href="{{ '/styles.css?v=38' | url }}">
+	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
-	{% else %}
+	{% elif not showMainNav %}
 	<link rel="stylesheet" href="{{ '/styles.css?v=38' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ '/sax/' | url }}">
-	<link rel="preload" as="image" href="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.avif' | url }}" type="image/avif" media="(max-width: 700px)" fetchpriority="high">
+	<link rel="preload" as="image" href="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.avif?v=2' | url }}" type="image/avif" media="(max-width: 700px)" fetchpriority="high">
 	<link rel="preload" as="image" type="image/avif" media="(min-width: 701px)" fetchpriority="high"
-		imagesrcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif' | url }} 1672w" imagesizes="100vw">
+		imagesrcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif?v=2' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif?v=2' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif?v=2' | url }} 1672w" imagesizes="100vw">
 	<meta name="color-scheme" content="dark light">
 	{% endif %}
 
@@ -147,7 +150,7 @@
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
 
-	{% if not barePage %}
+	{% if not barePage or showMainNav %}
 	{% include "partials/nav.njk" %}
 	{% endif %}
 
@@ -160,9 +163,12 @@
 	{% include "partials/lightbox.njk" %}
 	{% endif %}
 
+	{% if showMainNav %}
+	<script src="{{ '/main.js?v=19' | url }}" defer></script>
+	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
-	{% elif not barePage %}
+	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/main.js?v=19' | url }}" defer></script>
 	{% endif %}
 </body>

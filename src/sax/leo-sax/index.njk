@@ -6,9 +6,10 @@ keywords: "Leo Sax, Лео саксофонист, саксофонист на �
 ogImage: assets/leo-sax/hero/leo-sax-hero-1672.webp
 permalink: /sax/leo-sax/
 barePage: true
+showMainNav: true
 bodyClass: leo-sax-page
-pageStylesheet: /assets/leo-sax/leo-sax.css?v=1
-pageScript: /assets/leo-sax/leo-sax.js?v=1
+pageStylesheet: /assets/leo-sax/leo-sax.css?v=2
+pageScript: /assets/leo-sax/leo-sax.js?v=2
 leoSaxPage: true
 ---
 {% set gallery = [
@@ -22,21 +23,33 @@ leoSaxPage: true
 ] %}
 
 {% set repertoire = [
-	{ title: "Джаз, босса-нова и лёгкая фоновая музыка", count: "17 треков", songs: [
-		["Bésame Mucho","Consuelo Velázquez"],["Let's Stay Together","Al Green"],["Georgia On My Mind","Ray Charles"],
-		["Autumn Leaves","Joseph Kosma"],["Wave","Antônio Carlos Jobim"],["Somewhere Over The Rainbow","Harold Arlen"],
-		["My Way","Frank Sinatra"],["Don't Know Why","Norah Jones"],["The Girl From Ipanema","Jobim & Astrud Gilberto"],
-		["Sunny","Bobby Hebb"],["Isn't She Lovely","Stevie Wonder"],["Misty","Erroll Garner"],
-		["Fly Me To The Moon","Frank Sinatra"],["The Look Of Love","Bacharach & Dusty Springfield"],["Blue Bossa","Kenny Dorham"],
-		["Água de Beber","Antônio Carlos Jobim"],["Mas Que Nada","Jorge Ben Jor"]
+	{ title: "Зарубежные", count: "45 треков", songs: [
+		["Più che puoi","Eros Ramazzotti"],["Sway","Dean Martin"],["The Shadow of Your Smile","Johnny Mandel"],
+		["Just the Two of Us","Grover Washington"],["Careless Whisper","George Michael"],["Black Orpheus","Jazz standard"],
+		["Despacito","Luis Fonsi ft. Daddy Yankee"],["Lady","Modjo"],["Hallelujah","Alexandra Burke"],
+		["My All","Mariah Carey"],["If I Ain’t Got You","Alicia Keys"],["Stand by Me","Ben E. King"],
+		["It’s My Life (Latin Version)","Bon Jovi"],["You’ve Got a Friend","Carole King"],["Get Lucky","Daft Punk feat. Pharrell Williams"],
+		["What a Wonderful World","Louis Armstrong"],["Can’t Take My Eyes Off You","Frankie Valli"],["Loving You","Kenny G"],
+		["Die with a Smile","Bruno Mars, Lady Gaga"],["Flowers","Miley Cyrus"],["I’m Not the Only One","Sam Smith"],
+		["Isn’t She Lovely","Jazz standard"],["Bésame Mucho",""] ,["The Moment","Kenny G"],
+		["Paradise","Kenny G"],["Sunny","Boney M."],["Englishman in New York","Sting"],
+		["Fly Me to the Moon","Julie London"],["The Chicken","Brian Bromberg"],["L-O-V-E","Nat King Cole"],
+		["The Girl from Ipanema","Stan Getz"],["Heal the World","Michael Jackson"],["Just the Way You Are","Billy Joel"],
+		["Don’t Know Why","Norah Jones"],["Easy","Lionel Richie"],["When I Need You","Celine Dion"],
+		["Feelings","Morris Albert"],["The Door","Teddy Swims"],["Mirrors","Justin Timberlake"],
+		["I Believe","Dave Koz"],["Easy on Me","Adele"],["I Will Survive","Gloria Gaynor"],
+		["Shape of You (Club Version)","Ed Sheeran"],["Dance Monkey","Tones and I"],["Magic Moments","Perry Como"]
 	] },
-	{ title: "Поп и соул", count: "7 треков", songs: [
-		["Cold Heart","Elton John & Dua Lipa"],["September","Earth, Wind & Fire"],["Love Nwantiti","CKay"],
-		["Dilemma","Nelly & Kelly Rowland"],["Havana","Camila Cabello"],["If I Ain't Got You","Alicia Keys"],
-		["Señorita","Shawn Mendes & Camila Cabello"]
-	] },
-	{ title: "Итальянское и латина", count: "3 трека", songs: [
-		["Susanna","Adriano Celentano"],["Sarà Perché Ti Amo","Ricchi e Poveri"],["Abbracciame","Andrea Sannino"]
+	{ title: "Отечественные", count: "25 треков", songs: [
+		["Счастье","Алексей Чумаков"],["Я не могу без тебя","Алексей Чумаков"],["Сказка под дождём","Игорь Бутман"],
+		["Я буду всегда с тобой","Леонид Агутин"],["Летний дождь","Леонид Агутин"],["With You","Егор Сесарев"],
+		["Девочка, танцуй","Artik & Asti"],["Life","Zivert"],["С Днём рождения","Ирина Аллегрова"],
+		["Ночь","Chebanov"],["Всё в твоих руках","Анжелика Варум, Леонид Агутин"],["Нарисовать мечту","Анастасия Иванова"],
+		["Тут и там","Алексей Чумаков"],["Половина сердца","Маша Шейх, Ева Власова"],["Я — это ты","Мурат Насыров"],
+		["Луч солнца золотого","Муслим Магомаев"],["Эта история","Шер Остон"],["Ветер перемен","Александр Панайотов"],
+		["Я люблю тебя до слёз","Александр Серов"],["Есть только миг","Хор Турецкого"],["Моя","Ара Мартиросян"],
+		["Куда уходит детство","ВИА «Сливки»"],["Полетели","Филипп Киркоров"],["Комета","Jony"],
+		["А снег идёт","Кватро"]
 	] }
 ] %}
 
@@ -44,11 +57,11 @@ leoSaxPage: true
 	<section class="leo-hero" data-leo-hero aria-labelledby="leo-title">
 		<div class="leo-hero__stage">
 			<picture class="leo-hero__picture">
-				<source media="(max-width: 700px)" type="image/avif" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.avif' | url }} 640w" sizes="100vw">
-				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.webp' | url }} 640w" sizes="100vw">
-				<source type="image/avif" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif' | url }} 1672w" sizes="100vw">
-				<source type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.webp' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.webp' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp' | url }} 1672w" sizes="100vw">
-				<img class="leo-hero__image" src="{{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp' | url }}" alt="Leo Sax — саксофонист Лео на сцене с саксофоном" width="1672" height="941" fetchpriority="high" decoding="async">
+				<source media="(max-width: 700px)" type="image/avif" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.avif?v=2' | url }} 640w" sizes="100vw">
+				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.webp?v=2' | url }} 640w" sizes="100vw">
+				<source type="image/avif" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif?v=2' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif?v=2' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif?v=2' | url }} 1672w" sizes="100vw">
+				<source type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.webp?v=2' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.webp?v=2' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=2' | url }} 1672w" sizes="100vw">
+				<img class="leo-hero__image" src="{{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=2' | url }}" alt="Leo Sax — саксофонист Лео на сцене с саксофоном" width="1672" height="941" fetchpriority="high" decoding="async">
 			</picture>
 			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="Промо-видео Leo Sax"></video>
 		</div>
@@ -58,15 +71,7 @@ leoSaxPage: true
 			<h1 id="leo-title">LEO <span>SAX</span></h1>
 		</header>
 
-		<svg class="leo-emblem" viewBox="0 0 180 220" aria-hidden="true">
-			<path class="leo-emblem__shield" d="M90 8 159 31v69c0 48-24 82-69 110-45-28-69-62-69-110V31Z"/>
-			<path d="M66 62c-14 6-23 20-20 36 2 10 9 18 18 23-9 12-8 28 1 40 9-6 17-14 22-24 3 15 12 27 25 34 1-14-2-27-9-39 15-4 26-15 29-30-8 4-16 5-24 4 10-10 14-23 11-37-9 7-16 16-20 27-2-16-12-30-27-37Z"/>
-			<path d="M70 80c10-8 24-8 34 0 6 5 9 12 9 20-7 5-13 12-16 21-13-1-24-8-29-19-3-8-2-16 2-22Z"/>
-			<circle cx="91" cy="91" r="2.8" class="leo-emblem__eye"/>
-			<path class="leo-emblem__sax" d="M105 103c20 2 32 13 31 28-1 14-10 24-25 28-11 3-21-1-24-10-3-8 2-16 11-18 8-2 14 2 15 9"/>
-			<path class="leo-emblem__sax" d="m106 103-9-7m37 37 14 5m-39-10 8-4m-16 14 8-3"/>
-			<path class="leo-emblem__bell" d="m147 132 17 8-20 9Z"/>
-		</svg>
+		<img class="leo-emblem" src="{{ '/assets/leo-sax/leo-lion-sax-emblem.webp' | url }}" alt="" width="466" height="780" decoding="async" aria-hidden="true">
 
 		<button class="leo-play" type="button" data-leo-play aria-label="Смотреть полное промо Leo Sax">
 			<span aria-hidden="true"></span>
@@ -89,11 +94,7 @@ leoSaxPage: true
 		<p class="leo-player-status" data-player-status aria-live="polite"></p>
 	</section>
 
-	<section class="leo-gallery" aria-labelledby="leo-gallery-title">
-		<div class="leo-section-head leo-section-head--dark">
-			<p class="leo-kicker">Образы</p>
-			<h2 id="leo-gallery-title">Один музыкант.<br><em>Семь состояний.</em></h2>
-		</div>
+	<section class="leo-gallery" aria-label="Фотографии Leo Sax">
 		<div class="leo-carousel" data-carousel>
 			<button class="leo-carousel__arrow leo-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Предыдущее фото"></button>
 			<div class="leo-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="Фотографии Leo Sax">
@@ -143,7 +144,7 @@ leoSaxPage: true
 				<details class="leo-repertoire__group">
 					<summary><span>{{ group.title }}</span><small>{{ group.count }}</small><i aria-hidden="true"></i></summary>
 					<ul>
-						{% for song in group.songs %}<li><strong>{{ song[0] }}</strong><span>{{ song[1] }}</span></li>{% endfor %}
+						{% for song in group.songs %}<li><strong>{{ song[0] }}</strong>{% if song[1] %}<span>{{ song[1] }}</span>{% endif %}</li>{% endfor %}
 					</ul>
 				</details>
 				{% endfor %}
