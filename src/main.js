@@ -962,7 +962,7 @@
 		}
 
 		function playHeroVideo() {
-			playHeroClip(heroVideoMap[current] || 'promo-main-reel');
+			playHeroClip(heroPromoPlaylist[0] || heroVideoMap[current] || 'promo-main-reel');
 		}
 
 		function syncQualityButtons() {

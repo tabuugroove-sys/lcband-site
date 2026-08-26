@@ -101,16 +101,31 @@ test('the root URL stays Russian even after visiting an explicit locale', async 
 	expect(await page.evaluate(() => localStorage.getItem('lcb_locale'))).toBe('ru');
 });
 
-test('Russian and English homepages keep their own opening promo videos', async ({ page }) => {
+test('Russian and English homepages keep their own opening videos in the first block', async ({ page }) => {
+	await page.route('**/*.mp4', (route) => route.abort());
 	const openingPromos = async () => page
 		.locator('.video-rail--big .vtile__link[data-video]')
 		.evaluateAll((links) => links.slice(0, 2).map((link) => link.dataset.video));
+	const heroVideoSource = async () => page.locator('[data-hero-video]').getAttribute('src');
+	const finishHeroVideo = async () => page
+		.locator('[data-hero-video]')
+		.evaluate((video) => video.dispatchEvent(new Event('ended')));
 
 	await page.goto('/');
 	expect(await openingPromos()).toEqual(['promo-egoistka', 'thematic-retro-heart']);
+	await page.waitForTimeout(600);
+	await page.locator('[data-hero-play]').click();
+	expect(await heroVideoSource()).toContain('/promo-egoistka-');
+	await finishHeroVideo();
+	expect(await heroVideoSource()).toContain('/thematic-retro-heart-');
 
 	await page.goto('/en/');
 	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);
+	await page.waitForTimeout(600);
+	await page.locator('[data-hero-play]').click();
+	expect(await heroVideoSource()).toContain('/promo-lets-get-it-started-');
+	await finishHeroVideo();
+	expect(await heroVideoSource()).toContain('/promo-danza-cuduro-');
 });
 
 test('English sax page is a translated structural twin of the Russian page', async ({ page }) => {
