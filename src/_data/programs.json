@@ -86,14 +86,14 @@
 			"Флешмоб-блок (Macarena, Bailando, Despacito)",
 			"Мастер-класс по танцам"
 		],
-		"poster": "assets/video/posters/thematic-spanish-macarena.jpg",
+		"poster": "assets/video/posters/teddy-macarena-ru-4x3.jpg",
 		"video": "teddy-macarena",
 		"videos": [
 			{
 				"slug": "latin-modern-program",
 				"title": "Латинская программа современная",
 				"label": "Latino",
-				"poster": "assets/video/posters/latin-modern-program.jpg"
+				"poster": "assets/video/posters/latin-modern-program-ru-4x3.jpg"
 			},
 			{
 				"slug": "live-baskov-revva",
@@ -105,19 +105,19 @@
 				"slug": "latin-music-luxury-cover-band",
 				"title": "Latin music Luxury Cover Band",
 				"label": "Latino",
-				"poster": "assets/video/posters/latin-music-luxury-cover-band.jpg"
+				"poster": "assets/video/posters/latin-music-luxury-cover-band-ru-4x3.jpg"
 			},
 			{
 				"slug": "luxury-latin-dance-master-class",
 				"title": "Teddy · Танцевальный мастер-класс",
 				"label": "Latino",
-				"poster": "assets/video/posters/luxury-latin-dance-master-class.jpg"
+				"poster": "assets/video/posters/luxury-latin-dance-master-class-ru-4x3.jpg"
 			},
 			{
 				"slug": "teddy-latina-promo",
 				"title": "Видео Тедди · ЛАТИНА",
 				"label": "Latino",
-				"poster": "assets/video/posters/teddy-latina-authentic-program.jpg"
+				"poster": "assets/video/posters/teddy-latina-promo-ru-4x3.jpg"
 			}
 		],
 		"keywords": "испанская кавер группа, латино кавер бенд москва, macarena группа на ивент"

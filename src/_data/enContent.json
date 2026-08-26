@@ -40,13 +40,13 @@
 			"headline": "Latino. Salsa. Reggaeton.",
 			"lead": "A high-energy Latin program built to move the room: Spanish-language hits, dance interaction, Macarena moments and a vibrant Cuban-Latin stage feel.",
 			"bullets": ["Classic Latin hits", "Modern reggaeton and pop-Latino energy", "Macarena, Bailando and Despacito moments", "Optional dance masterclass with Teddy"],
-			"poster": "assets/video/posters/thematic-spanish-macarena.jpg",
+			"poster": "assets/video/posters/teddy-macarena-en-4x3.jpg",
 			"video": "teddy-macarena",
 			"videos": [
-				{"slug": "latin-modern-program", "title": "Modern Latin Program", "label": "Latino", "poster": "assets/video/posters/latin-modern-program.jpg"},
-				{"slug": "teddy-macarena", "title": "Teddy · Macarena", "label": "Interactive", "poster": "assets/video/posters/teddy-macarena.jpg"},
-				{"slug": "latin-music-luxury-cover-band", "title": "Latin Music", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band.jpg"},
-				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class.jpg"}
+				{"slug": "latin-modern-program", "title": "Modern Latin Program", "label": "Latino", "poster": "assets/video/posters/latin-modern-program-en-4x3.jpg"},
+				{"slug": "teddy-macarena", "title": "Teddy · Macarena", "label": "Interactive", "poster": "assets/video/posters/teddy-macarena-en-4x3.jpg"},
+				{"slug": "latin-music-luxury-cover-band", "title": "Latin Music", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band-en-4x3.jpg"},
+				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class-en-4x3.jpg"}
 			]
 		},
 		{

@@ -258,9 +258,9 @@ permalink: /en/
 	] %}
 	{% set lives = [
 		{slug:'live-icon', title:'Epic Live · Icon', eyebrow:'Live'},
-		{slug:'teddy-macarena', title:'Teddy · Macarena', eyebrow:'Interactive'},
-		{slug:'teddy-latina-promo', title:'Teddy · Latin', eyebrow:'Latino'},
-		{slug:'luxury-latin-dance-master-class', title:'Teddy · Dance Masterclass', eyebrow:'Interactive'},
+		{slug:'teddy-macarena', poster:'teddy-macarena-en-4x3', title:'Teddy · Macarena', eyebrow:'Interactive'},
+		{slug:'teddy-latina-promo', poster:'teddy-latina-promo-en-4x3', title:'Teddy · Latin', eyebrow:'Latino'},
+		{slug:'luxury-latin-dance-master-class', poster:'luxury-latin-dance-master-class-en-4x3', title:'Teddy · Dance Masterclass', eyebrow:'Interactive'},
 		{slug:'interact-laz-coco-jambo', title:'LAZ · Coco Jambo', eyebrow:'Interactive'},
 		{slug:'live-lets-get-loud', title:'Let\'s Get Loud', eyebrow:'Live'},
 		{slug:'live-jazz-vintage', title:'Jazz · Vintage', eyebrow:'Themed'},
@@ -306,8 +306,8 @@ permalink: /en/
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
 						<source media="(max-width: 734px)" type="image/webp" sizes="72vw"
-							srcset="{{ ('/assets/video/posters/' + v.slug + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + v.slug + '-1080.webp') | url }} 1080w">
-						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260826a" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
