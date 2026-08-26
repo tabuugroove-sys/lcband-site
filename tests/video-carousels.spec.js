@@ -88,6 +88,35 @@ test.describe('video rails — open + play', () => {
 		expect(otherErrors, 'no unexpected console errors').toEqual([]);
 		expect(unexpected404s, 'no unexpected 404s besides the 4K availability probe').toEqual([]);
 	});
+
+	test('every video with an original 4K master exposes the 4K selector', async ({ page }) => {
+		const original4kVideos = [
+			{ key: 'promo-egoistka', path: '/' },
+			{ key: 'promo-letet', path: '/' },
+			{ key: 'promo-loca-loca', path: '/' },
+			{ key: 'thematic-retro-heart', path: '/' },
+			{ key: 'promo-danza-cuduro', path: '/' },
+			{ key: 'latin-music-luxury-cover-band', path: '/programs/spanish/' }
+		];
+
+		let currentPath = '';
+		for (const { key, path } of original4kVideos) {
+			if (path !== currentPath) {
+				await page.goto(path);
+				currentPath = path;
+			}
+			const tile = page.locator(`[data-video="${key}"]`).first();
+			await expect(tile, `${key} should be present on the homepage`).toHaveCount(1);
+			await tile.evaluate((el) => el.click());
+
+			const lightbox = page.locator('#lightbox');
+			await expect(lightbox).toHaveClass(/is-open/);
+			await expect(lightbox.locator('[data-q="2160"]'), `${key} should offer 4K`).toBeVisible();
+
+			await page.keyboard.press('Escape');
+			await expect(lightbox).not.toHaveClass(/is-open/);
+		}
+	});
 });
 
 test.describe('video rails — desktop mouse (pointer: fine)', () => {

@@ -378,7 +378,14 @@
 		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
 
-	const known4kVideoKeys = new Set(['promo-egoistka', 'promo-danza-cuduro', 'latin-music-luxury-cover-band']);
+	const known4kVideoKeys = new Set([
+		'promo-egoistka',
+		'promo-letet',
+		'promo-loca-loca',
+		'thematic-retro-heart',
+		'promo-danza-cuduro',
+		'latin-music-luxury-cover-band'
+	]);
 
 	function setPickerQuality(quality) {
 		if (!lightboxPicker) return;
