@@ -8,7 +8,7 @@ permalink: /sax/leo-sax/
 barePage: true
 showMainNav: true
 bodyClass: leo-sax-page
-pageStylesheet: /assets/leo-sax/leo-sax.css?v=2
+pageStylesheet: /assets/leo-sax/leo-sax.css?v=3
 pageScript: /assets/leo-sax/leo-sax.js?v=2
 leoSaxPage: true
 ---
@@ -67,11 +67,17 @@ leoSaxPage: true
 		</div>
 		<div class="leo-hero__shade" aria-hidden="true"></div>
 
-		<header class="leo-wordmark">
-			<h1 id="leo-title">LEO <span>SAX</span></h1>
-		</header>
-
-		<img class="leo-emblem" src="{{ '/assets/leo-sax/leo-lion-sax-emblem.webp' | url }}" alt="" width="466" height="780" decoding="async" aria-hidden="true">
+		<div class="leo-crest">
+			<header class="leo-wordmark">
+				<h1 id="leo-title">LEO <span>SAX</span></h1>
+			</header>
+			<div class="leo-crest__mark" aria-hidden="true">
+				<svg class="leo-crest__shield" viewBox="0 0 300 420" role="presentation" focusable="false">
+					<path d="M150 18 280 66v142c0 88-51 153-130 200C71 361 20 296 20 208V66Z" />
+				</svg>
+				<img class="leo-emblem" src="{{ '/assets/leo-sax/leo-lion-sax-emblem.webp' | url }}" alt="" width="466" height="780" decoding="async">
+			</div>
+		</div>
 
 		<button class="leo-play" type="button" data-leo-play aria-label="Смотреть полное промо Leo Sax">
 			<span aria-hidden="true"></span>

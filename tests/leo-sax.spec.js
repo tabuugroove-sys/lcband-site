@@ -22,6 +22,7 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 		await expect(page.locator('.leo-repertoire__group').nth(0)).toContainText('45 треков');
 		await expect(page.locator('.leo-repertoire__group').nth(1)).toContainText('25 треков');
 		await expect(page.locator('.leo-emblem')).toHaveAttribute('src', /leo-lion-sax-emblem\.webp$/);
+		await expect(page.locator('.leo-crest__shield path')).toHaveCount(1);
 		await expect(page.locator('.leo-gallery h1, .leo-gallery h2, .leo-gallery p')).toHaveCount(0);
 	});
 
@@ -44,6 +45,24 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 });
 
 test.describe('Leo Sax — hero and responsive player', () => {
+	test('places the LEO SAX lockup above a right-side heraldic shield', async ({ page }) => {
+		await page.goto(path);
+		const geometry = await page.evaluate(() => {
+			const crest = document.querySelector('.leo-crest').getBoundingClientRect();
+			const wordmark = document.querySelector('.leo-wordmark').getBoundingClientRect();
+			const shield = document.querySelector('.leo-crest__mark').getBoundingClientRect();
+			return { crest, wordmark, shield, viewportWidth: innerWidth };
+		});
+		expect(geometry.crest.left).toBeGreaterThan(geometry.viewportWidth * 0.7);
+		expect(geometry.wordmark.bottom).toBeLessThanOrEqual(geometry.shield.top + 1);
+
+		await page.setViewportSize({ width: 320, height: 720 });
+		await page.goto(path);
+		const narrowCrest = await page.locator('.leo-crest').evaluate((node) => node.getBoundingClientRect().toJSON());
+		expect(narrowCrest.left).toBeGreaterThan(236);
+		expect(narrowCrest.width).toBeLessThanOrEqual(74);
+	});
+
 	test('does not request the 155-second video until Play is pressed', async ({ page }) => {
 		const requests = [];
 		page.on('request', (request) => {

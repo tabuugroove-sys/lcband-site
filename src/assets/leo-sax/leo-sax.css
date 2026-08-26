@@ -76,21 +76,23 @@ img, video { display: block; max-width: 100%; }
 		linear-gradient(180deg, rgba(0,0,0,0.28) 0%, transparent 34%, transparent 68%, rgba(0,0,0,0.52) 100%);
 	transition: opacity 0.4s ease;
 }
-.leo-wordmark {
+.leo-crest {
 	position: absolute;
-	top: clamp(28px, 5vw, 72px);
-	left: clamp(24px, 5vw, 76px);
+	top: clamp(70px, 9vh, 96px);
+	right: clamp(28px, 5vw, 76px);
 	z-index: 3;
+	width: clamp(160px, 13vw, 210px);
 	transition: opacity 0.35s ease, transform 0.55s var(--leo-ease);
 }
+.leo-wordmark { position: relative; z-index: 2; text-align: center; }
 .leo-wordmark h1 {
 	margin: 0;
 	font-family: var(--leo-display);
-	font-size: clamp(20px, 2.15vw, 34px);
+	font-size: clamp(17px, 1.45vw, 23px);
 	font-weight: 500;
 	line-height: 1;
-	letter-spacing: 0.24em;
-	text-indent: 0.24em;
+	letter-spacing: 0.22em;
+	text-indent: 0.22em;
 	text-shadow: 0 2px 24px rgba(0,0,0,0.45);
 }
 .leo-wordmark span {
@@ -100,17 +102,35 @@ img, video { display: block; max-width: 100%; }
 	font-weight: 500;
 	letter-spacing: 0.12em;
 }
+.leo-crest__mark {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 300 / 420;
+	margin-top: 11px;
+}
+.leo-crest__shield {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	fill: rgba(8,8,8,0.08);
+	stroke: rgba(224,196,140,0.43);
+	stroke-width: 2.1;
+	vector-effect: non-scaling-stroke;
+	filter: drop-shadow(0 8px 28px rgba(0,0,0,0.28));
+}
 .leo-emblem {
 	position: absolute;
-	top: clamp(74px, 10vh, 112px);
-	right: clamp(24px, 5vw, 82px);
-	z-index: 2;
-	width: clamp(112px, 10vw, 164px);
+	top: 14%;
+	left: 50%;
+	z-index: 1;
+	width: 55%;
 	height: auto;
-	opacity: 0.38;
+	opacity: 0.48;
 	mix-blend-mode: screen;
 	filter: saturate(0.82) drop-shadow(0 8px 26px rgba(0,0,0,0.24));
-	transition: opacity 0.35s ease, transform 0.7s var(--leo-ease);
+	transform: translateX(-50%);
 }
 
 .leo-play {
@@ -294,8 +314,7 @@ img, video { display: block; max-width: 100%; }
 .leo-hero.is-playing .leo-player { opacity: 1; pointer-events: auto; }
 .leo-hero.is-playing .leo-hero__picture,
 .leo-hero.is-playing .leo-hero__shade,
-.leo-hero.is-playing .leo-wordmark,
-.leo-hero.is-playing .leo-emblem,
+.leo-hero.is-playing .leo-crest,
 .leo-hero.is-playing .leo-play { opacity: 0; pointer-events: none; }
 .leo-hero.is-playing .leo-hero__picture { transform: scale(1.015); }
 .leo-hero.is-playing .leo-player-ui { opacity: 1; pointer-events: auto; }
@@ -508,9 +527,11 @@ summary:focus-visible,
 	.leo-section-head--dark { width: calc(100% - 40px); }
 	.leo-hero { min-height: 560px; }
 	.leo-hero__image { object-position: center center; transform: scale(1.14); transform-origin: 50% 38%; }
-	.leo-wordmark { top: max(22px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); white-space: nowrap; }
-	.leo-wordmark h1 { font-size: 19px; letter-spacing: 0.2em; text-indent: 0.2em; }
-	.leo-emblem { top: max(58px, calc(env(safe-area-inset-top) + 44px)); right: 10px; width: 78px; opacity: 0.22; }
+	.leo-crest { top: max(56px, calc(env(safe-area-inset-top) + 50px)); right: 10px; width: 92px; }
+	.leo-wordmark h1 { font-size: 12px; letter-spacing: 0.15em; text-indent: 0.15em; white-space: nowrap; }
+	.leo-crest__mark { margin-top: 7px; }
+	.leo-crest__shield { stroke-width: 2.4; }
+	.leo-emblem { width: 56%; opacity: 0.3; }
 	.leo-play { left: 50%; top: 57%; bottom: auto; width: 78px; height: 78px; transform: translate(-50%, -50%); }
 	.leo-play:hover { transform: translate(-50%, -50%) scale(1.04); }
 	.leo-player-ui__close { width: 48px; height: 48px; }
@@ -541,6 +562,11 @@ summary:focus-visible,
 	.leo-repertoire__group summary i { grid-column: 2; grid-row: 1 / span 2; width: 38px; height: 38px; }
 	.leo-repertoire__group ul { grid-template-columns: 1fr; gap: 0; padding-bottom: 34px; }
 	.leo-repertoire__group li { align-items: flex-start; }
+}
+
+@media (max-width: 340px) {
+	.leo-crest { right: 4px; width: 74px; }
+	.leo-wordmark h1 { font-size: 10.5px; }
 }
 
 @media (orientation: landscape) and (max-height: 540px) {
