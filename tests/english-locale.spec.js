@@ -101,6 +101,18 @@ test('the root URL stays Russian even after visiting an explicit locale', async 
 	expect(await page.evaluate(() => localStorage.getItem('lcb_locale'))).toBe('ru');
 });
 
+test('Russian and English homepages keep their own opening promo videos', async ({ page }) => {
+	const openingPromos = async () => page
+		.locator('.video-rail--big .vtile__link[data-video]')
+		.evaluateAll((links) => links.slice(0, 2).map((link) => link.dataset.video));
+
+	await page.goto('/');
+	expect(await openingPromos()).toEqual(['promo-egoistka', 'thematic-retro-heart']);
+
+	await page.goto('/en/');
+	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);
+});
+
 test('English sax page is a translated structural twin of the Russian page', async ({ page }) => {
 	const sectionSignature = async () => page.locator('.sx > section').evaluateAll((sections) =>
 		sections.map((section) => ({
