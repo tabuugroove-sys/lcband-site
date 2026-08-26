@@ -116,8 +116,10 @@ test('Russian and English homepages keep their own opening videos in the first b
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
 	expect(await heroVideoSource()).toContain('/promo-egoistka-');
+	expect(await heroVideoSource()).toContain('?v=20260826trim1');
 	await finishHeroVideo();
 	expect(await heroVideoSource()).toContain('/thematic-retro-heart-');
+	expect(await heroVideoSource()).toContain('?v=20260826trim1');
 
 	await page.goto('/en/');
 	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);

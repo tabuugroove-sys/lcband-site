@@ -367,9 +367,15 @@
 		});
 	}
 
+	const videoAssetVersions = {
+		'promo-egoistka': '20260826trim1',
+		'thematic-retro-heart': '20260826trim1'
+	};
+
 	function videoUrl(key, quality) {
 		const base = (window.SITE_BASE || "/").replace(/\/?$/, "/");
-		return `${base}assets/video/mp4/${key}-${quality}.mp4`;
+		const version = videoAssetVersions[key];
+		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
 
 	const known4kVideoKeys = new Set(['promo-danza-cuduro', 'latin-music-luxury-cover-band']);
