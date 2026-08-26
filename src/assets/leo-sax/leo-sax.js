@@ -279,6 +279,8 @@
 	let loopGuard = false;
 	let beforeClone = null;
 	let afterClone = null;
+	let beforeClones = [];
+	let afterClones = [];
 	let autoplayTimer = 0;
 	let carouselInView = false;
 	let carouselPaused = false;
@@ -317,13 +319,9 @@
 		if (!nearest) return;
 		const index = Number(nearest.dataset.slideIndex);
 		updateDots(index);
-		if (nearest.dataset.clone === 'before') {
+		if (nearest.dataset.clone === 'before' || nearest.dataset.clone === 'after') {
 			loopGuard = true;
-			centerSlide(realSlides[realSlides.length - 1], 'auto');
-			requestAnimationFrame(() => { loopGuard = false; });
-		} else if (nearest.dataset.clone === 'after') {
-			loopGuard = true;
-			centerSlide(realSlides[0], 'auto');
+			centerSlide(realSlides[(index + realSlides.length) % realSlides.length], 'auto');
 			requestAnimationFrame(() => { loopGuard = false; });
 		}
 		scheduleAutoplay();
@@ -352,14 +350,20 @@
 	}
 
 	if (viewport && track && realSlides.length > 1) {
-		beforeClone = realSlides[realSlides.length - 1].cloneNode(true);
-		afterClone = realSlides[0].cloneNode(true);
-		beforeClone.dataset.clone = 'before';
-		afterClone.dataset.clone = 'after';
-		beforeClone.setAttribute('aria-hidden', 'true');
-		afterClone.setAttribute('aria-hidden', 'true');
-		track.prepend(beforeClone);
-		track.append(afterClone);
+		const boundaryCloneCount = Math.min(2, realSlides.length);
+		const makeBoundaryClone = (slide, side) => {
+			const clone = slide.cloneNode(true);
+			clone.dataset.clone = side;
+			clone.setAttribute('aria-hidden', 'true');
+			clone.querySelectorAll('img').forEach((image) => { image.loading = 'eager'; });
+			return clone;
+		};
+		beforeClones = realSlides.slice(-boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'before'));
+		afterClones = realSlides.slice(0, boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'after'));
+		beforeClone = beforeClones[beforeClones.length - 1];
+		afterClone = afterClones[0];
+		track.prepend(...beforeClones);
+		track.append(...afterClones);
 		requestAnimationFrame(() => centerSlide(realSlides[0], 'auto'));
 
 		viewport.addEventListener('scroll', () => {

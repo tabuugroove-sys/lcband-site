@@ -45,22 +45,29 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 });
 
 test.describe('Leo Sax — hero and responsive player', () => {
-	test('places the LEO SAX lockup above a left-side heraldic shield', async ({ page }) => {
+	test('balances a larger left LEO SAX wordmark with a smaller right-side heraldic shield', async ({ page, isMobile }) => {
 		await page.goto(path);
 		const geometry = await page.evaluate(() => {
-			const crest = document.querySelector('.leo-crest').getBoundingClientRect();
 			const wordmark = document.querySelector('.leo-wordmark').getBoundingClientRect();
 			const shield = document.querySelector('.leo-crest__mark').getBoundingClientRect();
-			return { crest, wordmark, shield, viewportWidth: innerWidth };
+			const wordmarkSize = parseFloat(getComputedStyle(document.querySelector('.leo-wordmark h1')).fontSize);
+			return { wordmark, shield, wordmarkSize, viewportWidth: innerWidth };
 		});
-		expect(geometry.crest.right).toBeLessThan(geometry.viewportWidth * 0.3);
-		expect(geometry.wordmark.bottom).toBeLessThanOrEqual(geometry.shield.top + 1);
+		expect(geometry.wordmark.right).toBeLessThan(geometry.viewportWidth * 0.3);
+		expect(geometry.shield.left).toBeGreaterThan(geometry.viewportWidth * 0.7);
+		expect(geometry.wordmarkSize).toBeGreaterThanOrEqual(isMobile ? 15 : 25);
+		expect(geometry.shield.width).toBeLessThanOrEqual(178);
 
 		await page.setViewportSize({ width: 320, height: 720 });
 		await page.goto(path);
-		const narrowCrest = await page.locator('.leo-crest').evaluate((node) => node.getBoundingClientRect().toJSON());
-		expect(narrowCrest.left).toBeLessThanOrEqual(4);
-		expect(narrowCrest.width).toBeLessThanOrEqual(74);
+		const narrow = await page.evaluate(() => ({
+			wordmark: document.querySelector('.leo-wordmark').getBoundingClientRect().toJSON(),
+			shield: document.querySelector('.leo-crest__mark').getBoundingClientRect().toJSON(),
+		}));
+		expect(narrow.wordmark.left).toBeLessThanOrEqual(10);
+		expect(narrow.shield.right).toBeLessThanOrEqual(316);
+		expect(narrow.shield.width).toBeLessThanOrEqual(62);
+		expect(narrow.wordmark.right).toBeLessThan(narrow.shield.left);
 	});
 
 	test('does not request the 155-second video until Play is pressed', async ({ page }) => {
@@ -223,17 +230,22 @@ test.describe('Leo Sax — swipe carousel', () => {
 	test('starts centered with visible adjacent photos on both sides', async ({ page, isMobile }) => {
 		await page.goto(path);
 		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();
-		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(9);
+		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(11);
 
 		const peeks = await page.evaluate(() => {
 			const slides = [...document.querySelectorAll('[data-carousel-track] > [data-carousel-slide]')];
-			const before = slides[0].getBoundingClientRect();
-			const first = slides[1].getBoundingClientRect();
-			const next = slides[2].getBoundingClientRect();
+			const before = slides[1].getBoundingClientRect();
+			const first = slides[2].getBoundingClientRect();
+			const next = slides[3].getBoundingClientRect();
+			const leftPeek = slides
+				.filter((slide) => slide.dataset.clone === 'before')
+				.map((slide) => slide.getBoundingClientRect())
+				.find((rect) => rect.left < 0 && rect.right > 0);
 			return {
 				before: { left: before.left, right: before.right },
 				first: { left: first.left, right: first.right },
 				next: { left: next.left, right: next.right },
+				leftPeek: leftPeek ? { left: leftPeek.left, right: leftPeek.right } : null,
 				width: innerWidth,
 			};
 		});
@@ -241,6 +253,7 @@ test.describe('Leo Sax — swipe carousel', () => {
 		expect(peeks.first.right).toBeLessThan(peeks.width);
 		expect(peeks.before.right).toBeGreaterThan(0);
 		expect(peeks.next.left).toBeLessThan(peeks.width);
+		expect(peeks.leftPeek).not.toBeNull();
 		if (isMobile) {
 			expect(peeks.before.left).toBeLessThan(0);
 			expect(peeks.next.right).toBeGreaterThan(peeks.width);
@@ -253,11 +266,11 @@ test.describe('Leo Sax — swipe carousel', () => {
 	test('native horizontal movement advances the active photo', async ({ page }) => {
 		await page.goto(path);
 		await page.locator('.leo-gallery').scrollIntoViewIfNeeded();
-		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(9);
+		await expect.poll(() => page.locator('[data-carousel-track] > [data-carousel-slide]').count()).toBe(11);
 
 		await page.evaluate(() => {
 			const viewport = document.querySelector('[data-carousel-viewport]');
-			const second = document.querySelectorAll('[data-carousel-track] > [data-carousel-slide]')[2];
+			const second = document.querySelector('[data-carousel-slide][data-slide-index="1"]:not([data-clone])');
 			const left = second.offsetLeft - (viewport.clientWidth - second.clientWidth) / 2;
 			viewport.scrollTo({ left, behavior: 'auto' });
 		});

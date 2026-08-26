@@ -78,17 +78,22 @@ img, video { display: block; max-width: 100%; }
 }
 .leo-crest {
 	position: absolute;
-	top: clamp(70px, 9vh, 96px);
-	left: clamp(28px, 5vw, 76px);
+	inset: 0;
 	z-index: 3;
-	width: clamp(160px, 13vw, 210px);
+	pointer-events: none;
 	transition: opacity 0.35s ease, transform 0.55s var(--leo-ease);
 }
-.leo-wordmark { position: relative; z-index: 2; text-align: center; }
+.leo-wordmark {
+	position: absolute;
+	top: clamp(82px, 11vh, 116px);
+	left: clamp(64px, 7.8vw, 132px);
+	z-index: 2;
+	text-align: left;
+}
 .leo-wordmark h1 {
 	margin: 0;
 	font-family: var(--leo-display);
-	font-size: clamp(17px, 1.45vw, 23px);
+	font-size: clamp(25px, 2vw, 34px);
 	font-weight: 500;
 	line-height: 1;
 	letter-spacing: 0.22em;
@@ -103,10 +108,12 @@ img, video { display: block; max-width: 100%; }
 	letter-spacing: 0.12em;
 }
 .leo-crest__mark {
-	position: relative;
-	width: 100%;
+	position: absolute;
+	top: clamp(82px, 10vh, 108px);
+	right: clamp(48px, 5.8vw, 98px);
+	width: clamp(142px, 10.5vw, 178px);
 	aspect-ratio: 300 / 420;
-	margin-top: 11px;
+	margin: 0;
 }
 .leo-crest__shield {
 	position: absolute;
@@ -527,9 +534,9 @@ summary:focus-visible,
 	.leo-section-head--dark { width: calc(100% - 40px); }
 	.leo-hero { min-height: 560px; }
 	.leo-hero__image { object-position: center center; transform: scale(1.14); transform-origin: 50% 10%; }
-	.leo-crest { top: max(56px, calc(env(safe-area-inset-top) + 50px)); left: 10px; width: 92px; }
-	.leo-wordmark h1 { font-size: 12px; letter-spacing: 0.15em; text-indent: 0.15em; white-space: nowrap; }
-	.leo-crest__mark { margin-top: 7px; }
+	.leo-wordmark { top: max(58px, calc(env(safe-area-inset-top) + 52px)); left: 14px; }
+	.leo-wordmark h1 { font-size: 15px; letter-spacing: 0.15em; text-indent: 0.15em; white-space: nowrap; }
+	.leo-crest__mark { top: max(54px, calc(env(safe-area-inset-top) + 48px)); right: 10px; width: 78px; }
 	.leo-crest__shield { stroke-width: 2.4; }
 	.leo-emblem { width: 56%; opacity: 0.3; }
 	.leo-play { left: 50%; top: 57%; bottom: auto; width: 78px; height: 78px; transform: translate(-50%, -50%); }
@@ -565,8 +572,9 @@ summary:focus-visible,
 }
 
 @media (max-width: 340px) {
-	.leo-crest { left: 4px; width: 74px; }
-	.leo-wordmark h1 { font-size: 10.5px; }
+	.leo-wordmark { left: 10px; }
+	.leo-wordmark h1 { font-size: 13px; }
+	.leo-crest__mark { right: 4px; width: 62px; }
 }
 
 @media (orientation: landscape) and (max-height: 540px) {
