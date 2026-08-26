@@ -368,8 +368,8 @@
 	}
 
 	const videoAssetVersions = {
-		'promo-egoistka': '20260826trim1',
-		'thematic-retro-heart': '20260826trim1'
+		'promo-egoistka': '20260826trim2',
+		'thematic-retro-heart': '20260826trim2'
 	};
 
 	function videoUrl(key, quality) {
