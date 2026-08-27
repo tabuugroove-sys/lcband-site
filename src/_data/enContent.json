@@ -44,9 +44,10 @@
 			"video": "teddy-macarena",
 			"videos": [
 				{"slug": "latin-modern-program", "title": "Modern Latin Program", "label": "Latino", "poster": "assets/video/posters/latin-modern-program-en-4x3.jpg"},
-				{"slug": "teddy-macarena", "title": "Teddy · Macarena", "label": "Interactive", "poster": "assets/video/posters/teddy-macarena-en-4x3.jpg"},
+				{"slug": "live-baskov-revva", "title": "Baskov + Revva + Ukupnik", "label": "Live", "poster": "assets/video/posters/live-baskov-revva.jpg"},
 				{"slug": "latin-music-luxury-cover-band", "title": "Latin Music", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band-en-4x3.jpg"},
-				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class-en-4x3.jpg"}
+				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class-en-4x3.jpg"},
+				{"slug": "teddy-latina-promo", "title": "Teddy · LATIN", "label": "Latino", "poster": "assets/video/posters/teddy-latina-promo-en-4x3.jpg"}
 			]
 		},
 		{
@@ -56,11 +57,12 @@
 			"eyebrow": "Retro",
 			"headline": "Stylish decades, disco and classics.",
 			"lead": "A flexible retro program with 60s, 70s, 80s and 90s blocks, international dance classics and signature costumes matched to the era.",
-			"bullets": ["60s and 70s classics", "International retro hits", "90s dance block", "Costumes and visual styling for the decade"],
+			"bullets": ["1960s Soviet style and dance classics", "1970s–80s pop: Boyarsky, Pugacheva and Magomayev", "International retro hits including Modern Talking", "A 1990s dance block", "Signature costumes for every era"],
 			"poster": "assets/video/posters/thematic-retro-stilyagi.jpg",
 			"video": "thematic-retro-stilyagi",
 			"videos": [
 				{"slug": "thematic-retro-stilyagi", "title": "Retro 60s", "label": "Retro", "poster": "assets/video/posters/thematic-retro-stilyagi.jpg"},
+				{"slug": "thematic-retro-boyar", "title": "Boyarsky", "label": "Soviet pop", "poster": "assets/video/posters/thematic-retro-boyar.jpg"},
 				{"slug": "thematic-retro-90s", "title": "90s Dance Block", "label": "Dance", "poster": "assets/video/posters/thematic-retro-90s.jpg"},
 				{"slug": "thematic-retro-heart", "title": "You're My Heart", "label": "Classic", "poster": "assets/video/posters/thematic-retro-heart.jpg"}
 			]

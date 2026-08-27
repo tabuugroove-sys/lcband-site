@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: enContent.events
+  data: enEvents
   size: 1
   alias: event
 permalink: "/en/events/{{ event.slug }}/"
@@ -8,9 +8,44 @@ layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
 eleventyComputed:
-  title: "{{ event.title }} — Luxury Cover Band"
+  title: "{% if event.seoTitle %}{{ event.seoTitle }}{% else %}{{ event.title }} — Luxury Cover Band{% endif %}"
   description: "{{ event.lead }}"
+  keywords: "{{ event.keywords }}"
 ---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+		{
+			"@type": "Service", "@id": "{{ site.url }}{{ page.url }}#service",
+			"name": "{{ event.title }} — {{ site.name }}", "description": {{ event.lead | dump | safe }},
+			"serviceType": "Live music and cover band for events",
+			"provider": { "@id": "{{ site.url }}/#musicgroup" },
+			"areaServed": ["Moscow", "Russia", "International tours"], "url": "{{ site.url }}{{ page.url }}"
+		},
+		{
+			"@type": "BreadcrumbList", "itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/en/" },
+				{ "@type": "ListItem", "position": 2, "name": "Events", "item": "{{ site.url }}/en/events/" },
+				{ "@type": "ListItem", "position": 3, "name": {{ event.title | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
+		{% set _img0 = event.blocks[0].image %}{% if _img0 %},
+		{ "@type": "ImageObject", "@id": "{{ site.url }}{{ page.url }}#primaryimage", "url": "{{ site.url }}/assets/photos/{{ _img0 }}", "contentUrl": "{{ site.url }}/assets/photos/{{ _img0 }}", "caption": {{ (event.blocks[0].imageAlt or (event.title + " — Luxury Cover Band")) | dump | safe }}, "representativeOfPage": true, "creator": { "@id": "{{ site.url }}/#musicgroup" } }
+		{% endif %}
+		{% if event.faq %},
+		{ "@type": "FAQPage", "@id": "{{ site.url }}{{ page.url }}#faq", "mainEntity": [{%- for item in event.faq %}{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{% if not loop.last %},{% endif %}{%- endfor %}] }
+		{% endif %}
+		{% if event.featuredVideo %},
+		{ "@type": "VideoObject", "@id": "{{ site.url }}{{ page.url }}#video-{{ event.featuredVideo }}", "name": "{{ event.title }} — {{ site.name }} video", "description": {{ event.lead | dump | safe }}, "thumbnailUrl": "{{ site.url }}/assets/video/posters/{{ event.featuredVideo }}.jpg", "contentUrl": "{{ site.url }}/assets/video/mp4/{{ event.featuredVideo }}-720.mp4", "embedUrl": "{{ site.url }}{{ page.url }}", "uploadDate": "2026-06-18", "publisher": { "@id": "{{ site.url }}/#musicgroup" } }
+		{% endif %}
+	]
+}
+</script>
+{% endblock %}
 
 <section class="page-hero">
 	<div class="container container--narrow">
@@ -80,6 +115,52 @@ eleventyComputed:
 				<span class="video-card__play" aria-hidden="true"></span>
 			</a>
 		</div>
+	</div>
+</section>
+{% endif %}
+
+{% if event.slug == 'corporate' %}
+<section class="section section--light" id="formats">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Performance Formats</p>
+		<h2 class="section__title">One team —<br><span class="muted">four roles.</span></h2>
+		<p class="section__lead">We do more than play a concert. We become part of the event — from choir collaboration to live-band karaoke with your guests.</p>
+	</div>
+	<div class="container reveal"><ul class="formats">
+		{% for f in enContent.formats %}
+		<li class="format"><a class="format__link" href="{{ ('/en/formats/' + f.slug + '/') | url }}">
+			<div class="format__photo"><img src="{{ ('/' + f.poster) | url }}" alt="{{ f.title }} — Luxury Cover Band format" loading="lazy"></div>
+			<div class="format__body"><span class="format__label">{{ f.eyebrow }}</span><h3 class="format__title">{{ f.title }}</h3><p class="format__text">{{ f.headline }}</p><span class="format__more">Learn more ›</span></div>
+		</a></li>
+		{% endfor %}
+	</ul></div>
+</section>
+{% endif %}
+
+<section class="section section--elev" id="addons">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Additional Services</p>
+		<h2 class="section__title">We can build<br><span class="muted">the entire evening.</span></h2>
+		<p class="section__lead">Along with the band, we can provide the technical and entertainment elements of your event — as a complete package or separate services.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="addon-grid">
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="20" cy="20" r="2.2" fill="currentColor" stroke="none"/><path d="M14 14a8.4 8.4 0 000 12"/><path d="M26 14a8.4 8.4 0 010 12"/><path d="M9.5 9.5a15 15 0 000 21"/><path d="M30.5 9.5a15 15 0 010 21"/></svg></span><h3 class="addon-card__title">Sound</h3><p class="addon-card__text">Professional sound for venues of any size, from an intimate room to an outdoor site.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h12l3 10H11z"/><path d="M15 18l-4 14M25 18l4 14M20 18v14"/></svg></span><h3 class="addon-card__title">Lighting</h3><p class="addon-card__text">A lighting show and stage design tailored to your event concept and colors.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="18" cy="20" r="11"/><circle cx="18" cy="20" r="2.4" fill="currentColor" stroke="none"/><path d="M27 11l5-3M29 9v5"/></svg></span><h3 class="addon-card__title">DJ</h3><p class="addon-card__text">A DJ for the afterparty, moving smoothly from the live set to a dancefloor that lasts until morning.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="15.5" y="7" width="9" height="15" rx="4.5"/><path d="M11 18a9 9 0 0018 0"/><path d="M20 27v5M15 32h10"/></svg></span><h3 class="addon-card__title">Host</h3><p class="addon-card__text">A host who manages timing, interactive moments and the room's energy throughout the evening.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="20" cy="14" rx="10" ry="4"/><path d="M10 14v10a10 4 0 0020 0V14"/><path d="M13 8l7 8M27 8l-7 8"/></svg></span><h3 class="addon-card__title">Drum Show</h3><p class="addon-card__text">A drum show with LED effects — a striking centerpiece in the middle of the program.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="27" r="4"/><circle cx="27" cy="24" r="4"/><path d="M19 27V9l12-3v18"/></svg></span><h3 class="addon-card__title">Jazz Band</h3><p class="addon-card__text">A compact jazz lineup for the welcome area and cocktail reception.</p></li>
+		</ul>
+		<div class="addon-grid__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Discuss on Telegram</a></div>
+	</div>
+</section>
+
+{% if event.faq %}
+<section class="section section--light" id="faq">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Questions</p><h2 class="section__title">Frequently asked<br><span class="muted">questions.</span></h2>
+		<div class="faq">{% for item in event.faq %}<details class="faq__item"><summary class="faq__q">{{ item.q }}</summary><div class="faq__a"><p>{% set _ans = item.aHtml if item.aHtml else item.a %}{{ _ans | replace("Telegram", '<a href="' + site.telegram + '">Telegram</a>') | safe }}</p></div></details>{% endfor %}</div>
 	</div>
 </section>
 {% endif %}

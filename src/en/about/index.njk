@@ -3,14 +3,30 @@ layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
 title: About the Band — Luxury Cover Band
-description: "Luxury Cover Band: 2000+ shows in 40 countries, stadium and TV experience, international cover-band repertoire and stage production."
-keywords: "about Luxury Cover Band, international cover band, stadium experience, TV live band"
+description: "Luxury Cover Band — 15–20 years on stage, 2,000+ shows in 40 countries: stadiums, national TV, heads of state and major artists. Original releases and artist collaborations."
+keywords: "about Luxury Cover Band, international cover band, stadium experience, TV live band, event band Moscow"
 permalink: /en/about/
 ---
+{% block schema %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{ "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/en/" },
+				{ "@type": "ListItem", "position": 2, "name": "About the Band", "item": "{{ site.url }}{{ page.url }}" }
+			]
+		}
+	]
+}
+</script>
+{% endblock %}
 
 <section class="about-hero">
-	<video class="about-hero__video" autoplay muted loop playsinline
-		poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
+	<video class="about-hero__video" autoplay muted loop playsinline poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
 		<source src="{{ '/assets/video/mp4/promo-danza-cuduro-1080.mp4' | url }}" type="video/mp4">
 	</video>
 	<div class="about-hero__scrim"></div>
@@ -20,64 +36,84 @@ permalink: /en/about/
 	</div>
 </section>
 
+<section class="photo-wall" aria-hidden="true">
+	{% set row0 = ['costumes/dark-green-group.jpg', 'photos/corporate-employee-interactive-live-band.jpg', 'photos/author-music-stage.jpg', 'photos/wedding.jpg', 'costumes/gold-studio.jpg', 'photos/sax-day.jpg', 'costumes/red.jpg', 'costumes/blue.jpg', 'photos/corporate.jpg', 'photos/concert-07.jpg', 'photos/clients.jpg', 'costumes/all-black.jpg', 'costumes/vocalists-red-feature.jpg', 'costumes/flowers.jpg', 'photos/themes.jpg', 'photos/birthday-guests-on-stage-live-band.jpg', 'costumes/red-group.jpg'] %}
+	{% set row1 = ['costumes/black-red.jpg', 'photos/birthday-surprise-live-band.jpg', 'photos/birthday.jpg', 'photos/vocalists-mobile.jpg', 'costumes/shimmer.jpg', 'photos/sax-band-show-dj-knobs-original-faces.jpg', 'photos/concert-moscow.jpg', 'photos/concert-2021.jpg', 'costumes/beige-glitter.jpg', 'costumes/white.jpg', 'photos/wedding-night-dance-floor-live-band.jpg', 'costumes/dark-green.jpg', 'costumes/pink.jpg', 'costumes/black-silver.jpg', 'photos/vocalists.jpg', 'photos/birthday-retro-block-live-band.jpg', 'costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg'] %}
+	{% set row2 = ['costumes/black-white.jpg', 'photos/sax.jpg', 'photos/hero-studio.jpg', 'photos/wedding-custom-song-story-live-band.jpg', 'photos/concert-big.jpg', 'costumes/gold.jpg', 'photos/concert-event.jpg', 'photos/concert-teddi.jpg', 'photos/concert-light.jpg', 'costumes/black-couple.jpg', 'photos/wedding-family-guest-performance-live-band.jpg', 'photos/corporate-dancefloor-live-cover-band.jpg', 'photos/concert-10k.jpg', 'photos/first-wedding-dance-live-cover-band.jpg', 'photos/wedding-ceremony-saxophone-live-music.jpg', 'photos/sax-night.jpg', 'photos/wedding-banquet-live-cover-band.jpg'] %}
+	<ul class="photo-wall__row photo-wall__row--a">
+		{% for p in row0 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+		{% for p in row0 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+	</ul>
+	<ul class="photo-wall__row photo-wall__row--b">
+		{% for p in row1 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+		{% for p in row1 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+	</ul>
+	<ul class="photo-wall__row photo-wall__row--c">
+		{% for p in row2 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+		{% for p in row2 %}{% set w = '/assets/photos/wall/' + (p | replace('/', '--') | replace('.jpg', '')) %}<li><img src="{{ (w + '-520.webp') | url }}" srcset="{{ (w + '-300.webp') | url }} 300w, {{ (w + '-520.webp') | url }} 520w" sizes="(max-width: 734px) 150px, 260px" width="260" height="168" alt="" loading="lazy"></li>{% endfor %}
+	</ul>
+</section>
+
+{% set storyRooms = [
+	{eyebrow:'Repertoire', title:'12 languages.<br>One repertoire.', text:'We sing in 12 languages with authentic pronunciation rather than transliteration. Italian, Spanish, French, English and more — selected for the program and the audience.', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Repertoire', title:'500+ songs.<br>Every era and genre.', text:'From retro and jazz to current hits. We build the set list around your audience and occasion instead of playing the same concert at every event.', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
+	{eyebrow:'Interaction', title:'More than a concert.<br>A show with the room.', text:'Guest duets, contests and interactive numbers. We do more than play for the audience — we work with the room throughout the evening.', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-chainsmokers'},
+	{eyebrow:'Stage Looks', title:'20+ looks.<br>A visual identity for every event.', text:'From classic styling to themed shows, every band look is designed as a complete visual story.', bg:'#f5f5f7', light:true, video:'live-icon'}
+] %}
+<section class="story-rooms" data-story-rooms>
+	<div class="story-rooms__gallery" aria-hidden="true">
+		<div class="story-rooms__device"><div class="story-rooms__frame">
+			{% for r in storyRooms %}
+			<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
+				<video muted loop playsinline preload="metadata" poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}"><source src="{{ ('/assets/video/mp4/' + r.video + '-1080.mp4') | url }}" type="video/mp4"></video>
+			</div>
+			{% endfor %}
+		</div></div>
+	</div>
+	<div class="story-rooms__rooms">
+		{% for r in storyRooms %}
+		<div class="story-room{% if r.light %} story-room--light{% endif %}" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};{% if r.tint %} --room-tint: {{ r.tint }};{% endif %}">
+			<div class="story-room__copy">
+				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
+				<p class="story-room__eyebrow">{{ r.eyebrow }}</p><h3 class="story-room__title">{{ r.title | safe }}</h3><p class="story-room__text">{{ r.text }}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
 <section class="section section--flush">
 	<div class="container reveal">
+		{% set aboutStats = [
+			{num: site.stats.shows, label: 'shows'}, {num: site.stats.countries, label: 'countries'},
+			{num: site.stats.years, label: 'years on stage'}, {num: site.stats.tvShows, label: 'TV projects'},
+			{num: site.stats.songs, label: 'songs in the repertoire'}, {num: site.stats.languages, label: 'languages'},
+			{num: site.stats.looks, label: 'stage looks', href: '/en/costumes/'}, {num: site.stats.lineup, label: 'musicians on stage'}
+		] %}
 		<ul class="highlight-stats">
-			{% set aboutStats = [
-				{num: site.stats.shows, label: 'shows'},
-				{num: site.stats.countries, label: 'countries'},
-				{num: site.stats.years, label: 'years on stage'},
-				{num: site.stats.tvShows, label: 'TV projects'},
-				{num: site.stats.songs, label: 'songs'},
-				{num: site.stats.languages, label: 'languages'},
-				{num: site.stats.looks, label: 'stage looks', href: '/en/costumes/'},
-				{num: site.stats.lineup, label: 'musicians on stage'}
-			] %}
-			{% for s in aboutStats %}
-			<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
-				{% if s.href %}
-				<a class="highlight-stat__link" href="{{ s.href | url }}"><div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div></a>
-				{% else %}
-				<div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div>
-				{% endif %}
-			</li>
-			{% endfor %}
+			{% for s in aboutStats %}<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
+				{% if s.href %}<a class="highlight-stat__link" href="{{ s.href | url }}"><div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div></a>{% else %}<div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div>{% endif %}
+			</li>{% endfor %}
 		</ul>
 	</div>
 </section>
 
-<section class="feature-block feature-block--light">
-	<div class="feature-block__inner reveal">
-		<div class="feature-block__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on a large stage" loading="lazy">
-		</div>
-		<div class="feature-block__body">
-			<p class="section__eyebrow">Experience</p>
-			<h2 class="feature-block__title">Big stages<br><span class="muted">and high-level events.</span></h2>
-			<p class="feature-block__text">The musicians have 15-20 years of stage experience: stadiums, 2,000-5,000 capacity halls, federal TV shows and performances with major artists.</p>
-		</div>
-	</div>
-</section>
+<section class="feature-block feature-block--light"><div class="feature-block__inner reveal">
+	<div class="feature-block__media"><img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on a stadium-scale stage" loading="lazy"></div>
+	<div class="feature-block__body"><p class="section__eyebrow">Experience</p><h2 class="feature-block__title">Big stages<br><span class="muted">and major events.</span></h2><p class="feature-block__text">The musicians have 15–20 years of stage experience: stadium concerts and halls for 2,000–5,000 guests, regular appearances on national television and joint performances with major artists.</p></div>
+</div></section>
 
-<section class="feature-block feature-block--elev feature-block--reverse">
-	<div class="feature-block__inner reveal">
-		<div class="feature-block__media">
-			<img src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Luxury Cover Band vocalists performing original music" loading="lazy">
-		</div>
-		<div class="feature-block__body">
-			<p class="section__eyebrow">Vocalists</p>
-			<h2 class="feature-block__title">Own tracks<br><span class="muted">and artist collaborations.</span></h2>
-			<p class="feature-block__text">The vocalists release original tracks, work with labels and bring artist-level stage presence into the event show.</p>
-		</div>
-	</div>
-</section>
+<section class="feature-block feature-block--elev feature-block--reverse"><div class="feature-block__inner reveal">
+	<div class="feature-block__media"><img src="{{ '/assets/photos/author-music-stage.jpg' | url }}" alt="Luxury Cover Band vocalists performing original music" loading="lazy"></div>
+	<div class="feature-block__body"><p class="section__eyebrow">Vocalists</p><h2 class="feature-block__title">Original releases<br><span class="muted">and major collaborations.</span></h2><p class="feature-block__text">Our vocalists run their own labels, release original music on streaming platforms, have recorded five collaborative tracks with established artists and work with performers from Russia and abroad.</p></div>
+</div></section>
 
-<section class="section section--book">
-	<div class="container container--narrow reveal">
-		<h2 class="section__title section__title--light">We will build a program for your event.</h2>
-		<div class="book__cta">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
-			<a class="btn btn--ghost-light" href="{{ '/en/events/' | url }}">All events</a>
-		</div>
-	</div>
-</section>
+<section class="feature-block feature-block--light"><div class="feature-block__inner reveal">
+	<div class="feature-block__media"><img src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="Luxury Cover Band at a large-scale event" loading="lazy"></div>
+	<div class="feature-block__body"><p class="section__eyebrow">Geography and Events</p><h2 class="feature-block__title">40 countries<br><span class="muted">and stages of every scale.</span></h2><p class="feature-block__text">More than 2,000 performances in 40 countries: three appearances for heads of state, regular high-level receptions including BRICS-format events, and shows for ministers, major corporations such as Yandex, Gazprom and Sberbank, as well as weddings and corporate celebrations.</p></div>
+</div></section>
+
+<section class="section section--book"><div class="container container--narrow reveal">
+	<h2 class="section__title section__title--light">We will build a program for your event.</h2>
+	<div class="book__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a><a class="btn btn--ghost-light" href="{{ '/en/events/' | url }}">All events</a></div>
+</div></section>

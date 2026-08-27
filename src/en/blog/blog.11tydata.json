@@ -1,0 +1,6 @@
+{
+  "layout": "layouts/post.njk",
+  "tags": "enPosts",
+  "htmlLang": "en",
+  "ogLocale": "en_US"
+}

@@ -10,8 +10,24 @@ ogLocale: en_US
 eleventyComputed:
   title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
   description: "{{ vocalist.tagline }}"
+  keywords: "{{ vocalist.keywords }}"
   ogImage: "{{ vocalist.photo }}"
 ---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ vocalist.name }}",
+  "jobTitle": "{{ vocalist.role }}",
+  "description": {{ vocalist.bio | dump | safe }},
+  "image": "{{ site.url }}/{{ vocalist.photo }}",
+  "url": "{{ site.url }}{{ page.url }}",
+  "memberOf": { "@type": "MusicGroup", "name": "{{ site.name }}", "url": "{{ site.url }}" }
+}
+</script>
+{% endblock %}
 
 <section class="page-hero page-hero--split">
 	<div class="page-hero__text container">

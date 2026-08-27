@@ -1,0 +1,165 @@
+[
+  {
+    "slug": "wedding",
+    "title": "Weddings",
+    "eyebrow": "Wedding",
+    "headline": "A cover band for your wedding.",
+    "lead": "One live band for the entire wedding day — from the ceremony and first dance to the evening dancefloor.",
+    "image": "wedding-ceremony-saxophone-live-music.jpg",
+    "trustLine": "Big-stage experience in an intimate wedding format: ceremony, live first dance, an original song for the couple and a saxophone welcome.",
+    "cta": "Request a wedding package",
+    "keywords": "wedding cover band, live wedding music, wedding saxophonist, first dance live band, bespoke wedding song",
+    "blocks": [
+      {"title":"Ceremony","text":"An acoustic lineup for the bride's entrance, vows and signing. The repertoire ranges from Perfect to Pachelbel's Canon.","image":"wedding-ceremony-saxophone-live-music.jpg","imageAlt":"Saxophonist performing live at a waterfront wedding ceremony","video":"live-sax-wedding-welcome"},
+      {"title":"Welcome","text":"Saxophone or piano solo during guest arrival and reception. Jazz, chillout and lounge that never gets in the way of conversation.","image":"sax.jpg"},
+      {"title":"First Dance","text":"A live version of any requested song, prepared especially for your first dance — as in our Shallow and Perfect promo performances.","image":"first-wedding-dance-live-cover-band.jpg","imageAlt":"First wedding dance accompanied by Luxury Cover Band","video":"live-perfect"},
+      {"title":"An Original Song About the Couple","text":"We write a track around your story — how you met, the proposal, names and shared memories — and perform it live at the reception as a surprise gift. Preparation takes 2–3 weeks.","image":"wedding-custom-song-story-live-band.jpg","imageAlt":"Original song about the newlyweds performed live at a wedding"},
+      {"title":"Perform Together with the Couple or Family","text":"A wedding home-band format: the couple, parents or friends can come on stage and sing with a live band. We prepare the song in advance and need one short soundcheck at the venue.","image":"wedding-family-guest-performance-live-band.jpg","imageAlt":"Wedding guests performing on stage with Luxury Cover Band"},
+      {"title":"Reception","text":"The main program: 2×45 or 3×30 minutes with breaks, interactive numbers, flash mobs and guest performances.","image":"wedding-banquet-live-cover-band.jpg","imageAlt":"Wedding reception with Luxury Cover Band"},
+      {"title":"Late-Night Set","text":"A dance set, 80s, 90s and 2000s party blocks, and the biggest closing hits.","image":"wedding-night-dance-floor-live-band.jpg","imageAlt":"Late-night wedding dancefloor with Luxury Cover Band"}
+    ],
+    "faq": [
+      {"q":"How long is the wedding performance?","a":"The main reception program is usually 2×45 or 3×30 minutes with breaks. We adapt the timing to the ceremony, welcome, first dance, dinner and late-night set."},
+      {"q":"Which lineup can we book?","a":"From an acoustic duo for the ceremony and welcome to a full big band. We offer lineups of 2–20 performers depending on the venue, format and budget."},
+      {"q":"Can you play our first-dance song?","a":"Yes. We prepare a live version of any requested song in advance for your first dance."},
+      {"q":"Can we sing together with the band?","a":"Yes. In the home-band format, the couple, parents or friends perform with the live band. We prepare the song in advance and do one short soundcheck at the venue."},
+      {"q":"Do you bring sound equipment?","a":"We bring instruments and part of the equipment. The venue provides the standard technical-rider setup and a sound engineer; we agree the exact list for your venue.","aHtml":"We bring instruments and part of the equipment. The venue provides the setup listed in our <a href=\"/en/riders/\">technical rider</a> and a sound engineer; we agree the exact list for your venue."},
+      {"q":"How do we book and get a quote?","a":"Message us on Telegram with the date, location and format, and we will send a lineup, timing and quote for your event."}
+    ]
+  },
+  {
+    "slug": "corporate",
+    "title": "Corporate Events",
+    "eyebrow": "Corporate",
+    "headline": "Live music for a corporate event.",
+    "lead": "Live music for corporate events — from the business program to the dancefloor, tailored to your audience, venue and budget.",
+    "image": "corporate-employee-interactive-live-band.jpg",
+    "trustLine": "Stadiums and halls for 2,000–5,000 guests, national TV broadcasts, performances with major artists and high-level receptions — that experience works for your event.",
+    "cta": "Request a corporate package",
+    "keywords": "corporate event cover band, live corporate music, corporate home band",
+    "blocks": [
+      {"title":"Employee Interaction","text":"A home-band format: your amateur performers sing with a live band, without lengthy rehearsals.","image":"corporate-employee-interactive-live-band.jpg","imageAlt":"Employee interaction with Luxury Cover Band at a corporate event"},
+      {"title":"Welcome Set","text":"A subtle acoustic background for reception, buffet and networking.","image":"sax.jpg"},
+      {"title":"Main Program","text":"2×45 or 3×30 minutes, built around the brand and occasion. We can integrate a company anthem, jokes and award categories.","image":"concert-big.jpg"},
+      {"title":"Dancefloor","text":"A final set of current pop, rock and Latin hits.","image":"corporate-dancefloor-live-cover-band.jpg","imageAlt":"Corporate dancefloor with Luxury Cover Band"}
+    ],
+    "featuredVideo": "live-icon",
+    "faq": [
+      {"q":"Which formats work for a corporate event?","a":"From a welcome set and main concert to the final dancefloor. We integrate the band into anything from a product launch to a New Year party."},
+      {"q":"Can employees perform with the band?","a":"Yes. In our home-band format, employees perform with a professional live band without lengthy rehearsals."},
+      {"q":"Which languages and styles are in the repertoire?","a":"500+ songs in 12 languages: pop, rock, jazz, soul, funk and Latin. We build the program for your audience."},
+      {"q":"Which lineup should we choose?","a":"From a compact lineup to a full big band — 2–20 performers, selected for the venue and scale."},
+      {"q":"Can you integrate our brand or company anthem?","a":"Yes. We can include a company anthem, award categories and bespoke arrangements in the main program."},
+      {"q":"How do we book and get a quote?","a":"Message us on Telegram with the date, location and format, and we will send a lineup, timing and quote."}
+    ]
+  },
+  {
+    "slug": "new-year",
+    "title": "New Year Events",
+    "seoTitle": "Cover Band for New Year and Corporate Parties — LC Band",
+    "eyebrow": "New Year",
+    "headline": "A cover band for New Year.",
+    "lead": "Live music for New Year corporate parties, private celebrations and gala dinners: worldwide hits, guest interaction and a dancefloor, from a duo to the full band.",
+    "image": "corporate-dancefloor-live-cover-band.jpg",
+    "trustLine": "Stadiums, national broadcasts and events for major brands — our December calendar is built from autumn, and early booking secures your preferred lineup.",
+    "cta": "Book a December date",
+    "keywords": "New Year cover band, corporate Christmas party live band, gala dinner live music",
+    "blocks": [
+      {"title":"New Year Corporate Party","text":"A welcome set, a 2×45 or 3×30-minute show with awards and a company anthem, and a dance finale. We coordinate timing with your host and agency.","image":"corporate-dancefloor-live-cover-band.jpg","imageAlt":"New Year corporate dancefloor with Luxury Cover Band","video":"live-icon"},
+      {"title":"Private New Year Party","text":"A private celebration in a restaurant, loft or country house. We tailor the program to the theme — retro, masquerade or Gatsby — and to the venue's sound limits.","image":"concert-light.jpg","imageAlt":"Luxury Cover Band at a private New Year party","video":"live-dance-monkey"},
+      {"title":"Gala Dinner and Ceremonies","text":"Jazz and lounge for dinner, the formal program and live versions of hits. Choose a compact saxophone lineup or the full band.","image":"sax-night.jpg","imageAlt":"Saxophonist performing at an evening gala dinner","video":"live-jazz-vintage"},
+      {"title":"December Dates","text":"Peak dates from 20–28 December are booked first. Early booking secures the date and lineup; we quote immediately and finalize the program closer to the event.","image":"concert-big.jpg","imageAlt":"Full Luxury Cover Band lineup at a December corporate event"}
+    ],
+    "faq": [
+      {"q":"When should we book for a New Year corporate party?","a":"December Fridays and dates from 20–28 December are booked first. Early booking gives you the widest choice of lineup and timing."},
+      {"q":"Do you perform on 31 December and New Year's Eve?","a":"Yes, by prior arrangement. Send us the date and venue and we will confirm availability."},
+      {"q":"Can you perform a themed New Year program?","a":"Yes. We have six ready-made themed programs and can build a dedicated masquerade, retro or Gatsby set for your evening."},
+      {"q":"How much does a December performance cost?","a":"The price depends on the lineup, duration and date. Send the details on Telegram and we will normally return with a quote within a day."},
+      {"q":"What does the venue need to provide?","a":"The standard technical rider: a stage or performance area, power and basic sound. We bring part of the backline and coordinate the rest with the venue."},
+      {"q":"Can employees participate?","a":"Yes. In the home-band format employees perform with live accompaniment, with or without a rehearsal."}
+    ]
+  },
+  {
+    "slug": "birthday",
+    "title": "Birthdays / Anniversaries",
+    "eyebrow": "Birthday / Anniversary",
+    "headline": "A live concert for a birthday.",
+    "lead": "A birthday concert built around the guest of honor: their favorite era, artists and songs.",
+    "image": "birthday-surprise-live-band.jpg",
+    "trustLine": "From an intimate family celebration to a large stage: a surprise set of favorite songs, guests performing with the band and a program built around the person.",
+    "cta": "Request a birthday program",
+    "keywords": "birthday cover band, anniversary live music, surprise birthday concert",
+    "blocks": [
+      {"title":"Surprise Gift","text":"A surprise band performance based on the guest of honor's playlist — a concert of 3–5 favorite tracks.","image":"birthday-surprise-live-band.jpg","imageAlt":"Luxury Cover Band surprise performance at a birthday"},
+      {"title":"Guests on Stage","text":"A home-band format: friends of the guest of honor can come on stage and sing with the band.","image":"birthday-guests-on-stage-live-band.jpg","imageAlt":"Birthday guests singing with Luxury Cover Band"},
+      {"title":"Retro Set","text":"A program for the guest of honor's era: the 70s, 80s, 90s or 2000s.","image":"birthday-retro-block-live-band.jpg","imageAlt":"Retro birthday set by Luxury Cover Band"}
+    ],
+    "featuredVideo": "live-soho",
+    "faq": [
+      {"q":"What can we arrange for an anniversary?","a":"A surprise set of favorite songs, guests performing with the live band and a retro block from the 70s, 80s, 90s or 2000s."},
+      {"q":"Can you perform a surprise concert?","a":"Yes. We prepare a set of 3–5 favorite songs and perform it as a surprise gift from family or friends."},
+      {"q":"Which lineup and duration?","a":"From 2 to 20 performers. The program is usually 2×45 or 3×30 minutes with breaks and adapts to your evening."},
+      {"q":"Can guests come on stage and sing?","a":"Yes. In the home-band format, friends sing with the live band after preparing the song in advance."},
+      {"q":"How do we book?","a":"Message us on Telegram with the date, location and format, and we will send a lineup, timing and quote."}
+    ]
+  },
+  {
+    "slug": "private-party",
+    "title": "Private Parties",
+    "seoTitle": "Cover Band for Private Parties and Receptions — LC Band",
+    "eyebrow": "Private party",
+    "headline": "Live music for a private event.",
+    "lead": "A cover band for a private party, dinner or restaurant evening, with a program and volume tailored to the venue and lineups from an acoustic duo to the full band.",
+    "image": "wedding-banquet-live-cover-band.jpg",
+    "trustLine": "Residencies at private Moscow venues and events for prominent guests — big-stage quality in an intimate lineup.",
+    "cta": "Build a program for your evening",
+    "keywords": "private party cover band, banquet live music, restaurant live band",
+    "blocks": [
+      {"title":"Dinner and Restaurant Evening","text":"A complete musical evening: welcome during guest arrival, a 2×45 or 3×30-minute main program and a dance finale. We work in rooms of any size.","image":"wedding-banquet-live-cover-band.jpg","imageAlt":"Luxury Cover Band performing at a restaurant dinner","video":"live-soho"},
+      {"title":"Private Party","text":"Loft, terrace, yacht or country house. We choose the lineup and sound for the space: acoustic for an intimate event, full band for a dancefloor.","image":"concert-event.jpg","imageAlt":"Luxury Cover Band at a private party","video":"interact-chainsmokers"},
+      {"title":"Guests on Stage","text":"Live-band karaoke and joint numbers: a guest chooses a song, we play it live and support the vocal. Often the brightest moment of the evening.","image":"birthday-guests-on-stage-live-band.jpg","imageAlt":"Guests performing on stage with Luxury Cover Band","video":"teddy-macarena"},
+      {"title":"Welcome and Lounge","text":"A saxophone or piano set for guest arrival: jazz, lounge and soft versions of pop hits that create atmosphere without interrupting conversation.","image":"sax.jpg","imageAlt":"Saxophonist playing a welcome set at a private event","video":"sax-welcome"}
+    ],
+    "faq": [
+      {"q":"Will a live band work in a small room?","a":"Yes. Compact lineups start with a duo — vocals plus saxophone or keys — and we tune the volume for the room and dinner format."},
+      {"q":"How long is the program?","a":"The standard format is 2×45 or 3×30 minutes plus a welcome set. We can build any duration for a private event."},
+      {"q":"Can we choose the songs?","a":"Yes. We build the set list together from 500+ songs in 12 languages and prepare special requests in advance."},
+      {"q":"Do you travel outside the city or perform on yachts?","a":"Yes. We work at city and country venues, including private houses and yachts, and agree the technical details in advance."},
+      {"q":"How does booking work?","a":"Message us on Telegram with the date, location and format; we normally return within a day with the lineup, timing and quote."}
+    ]
+  },
+  {
+    "slug": "tv",
+    "title": "TV & Film Shoots",
+    "eyebrow": "TV · Film",
+    "headline": "TV projects, shoots and live broadcasts.",
+    "lead": "A cover band for TV and film: comfortable on camera, responsive to floor direction and timing, and ready for live broadcasts.",
+    "image": "hero-studio.jpg",
+    "trustLine": "We produce our own music videos and work in live broadcasts — natural on camera and genuinely live.",
+    "cta": "Request a TV recording lineup",
+    "keywords": "cover band for TV, live broadcast band, band for film shoot",
+    "blocks": [
+      {"title":"Music-Video Format","text":"We produce our own videos — Amore No, Egoistka and Loca Loca — and know how to perform naturally for the camera.","image":"hero-studio.jpg"},
+      {"title":"Live Broadcast","text":"Experience with live television and broadcast timing, including Dance Monkey Broadcast.","image":"concert-2021.jpg"},
+      {"title":"Themed Shows","text":"We prepare programs for the production concept: retro, Latin, 60s style and the 90s.","image":"themes.jpg"}
+    ],
+    "featuredVideo": "thematic-pop-dance-monkey"
+  },
+  {
+    "slug": "abroad",
+    "title": "International Tours",
+    "eyebrow": "Abroad / Tour",
+    "headline": "International tours. Dubai. Europe.",
+    "lead": "A cover band for international tours: English-language riders, seasonal residencies and contract experience in Dubai.",
+    "image": "concert-10k.jpg",
+    "trustLine": "We have performed in 40 countries — venue residencies, private events and tours.",
+    "cta": "Discuss an international contract",
+    "keywords": "international cover band tour, cover band Dubai, touring live band",
+    "blocks": [
+      {"title":"Residency Contracts","text":"From two weeks to six months at one venue in the Gulf or Mediterranean.","image":"concert-10k.jpg","imageAlt":"Luxury Cover Band international residency contract"},
+      {"title":"Tour Contracts","text":"Tours of three or more cities with a tour-ready technical rider.","image":"concert-10k.jpg"},
+      {"title":"Private Jet / Yacht","text":"A compact 2–4-person lineup for intimate international events.","image":"concert-event.jpg","imageAlt":"Luxury Cover Band compact lineup at a private international event"}
+    ],
+    "featuredVideo": "promo-main-reel"
+  }
+]

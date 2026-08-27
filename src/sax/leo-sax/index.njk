@@ -1,10 +1,17 @@
 ---
 layout: layouts/base.njk
-title: Leo Sax — саксофонист на свадьбу и мероприятие в Москве
-description: "Leo Sax — живой саксофон для welcome, церемонии, ужина и вечеринки. Полное промо, образы и репертуар саксофониста Лео в Москве."
-keywords: "Leo Sax, Лео саксофонист, саксофонист на мероприятие Москва, саксофон на welcome, саксофон на свадьбу, sax dj"
+pagination:
+  data: leoSaxLocales
+  size: 1
+  alias: locale
+permalink: "{{ locale.permalink }}"
+eleventyComputed:
+  title: "{{ locale.title }}"
+  description: "{{ locale.description }}"
+  keywords: "{{ locale.keywords }}"
+  htmlLang: "{{ locale.lang }}"
+  ogLocale: "{% if locale.lang == 'en' %}en_US{% else %}ru_RU{% endif %}"
 ogImage: assets/leo-sax/hero/leo-sax-hero-1672.webp
-permalink: /sax/leo-sax/
 barePage: true
 showMainNav: true
 bodyClass: leo-sax-page
@@ -12,14 +19,15 @@ pageStylesheet: /assets/leo-sax/leo-sax.css?v=5
 pageScript: /assets/leo-sax/leo-sax.js?v=3
 leoSaxPage: true
 ---
+{% set isEn = locale.lang == 'en' %}
 {% set gallery = [
-	{ slug: "playing-burgundy", alt: "Leo Sax играет на саксофоне в бордовом сценическом образе" },
-	{ slug: "city-black-tie", alt: "Саксофонист Лео в чёрном костюме на фоне московской архитектуры" },
-	{ slug: "white-jacket", alt: "Leo Sax с саксофоном в белом пиджаке у красной кулисы" },
-	{ slug: "library-full", alt: "Саксофонист Лео в тёмном костюме в библиотечном интерьере" },
-	{ slug: "welcome-light", alt: "Leo Sax на welcome-зоне мероприятия с саксофоном" },
-	{ slug: "burgundy-portrait", alt: "Саксофонист Лео сидит с саксофоном в бордовом пиджаке" },
-	{ slug: "library-portrait", alt: "Портрет Leo Sax в тёмном костюме в библиотеке" }
+	{ slug: "playing-burgundy", alt: "Leo Sax играет на саксофоне в бордовом сценическом образе", altEn: "Leo Sax performing in a burgundy stage look" },
+	{ slug: "city-black-tie", alt: "Саксофонист Лео в чёрном костюме на фоне московской архитектуры", altEn: "Leo Sax in black tie against Moscow architecture" },
+	{ slug: "white-jacket", alt: "Leo Sax с саксофоном в белом пиджаке у красной кулисы", altEn: "Leo Sax in a white jacket beside a red curtain" },
+	{ slug: "library-full", alt: "Саксофонист Лео в тёмном костюме в библиотечном интерьере", altEn: "Leo Sax in a dark suit in a library interior" },
+	{ slug: "welcome-light", alt: "Leo Sax на welcome-зоне мероприятия с саксофоном", altEn: "Leo Sax performing in an event welcome area" },
+	{ slug: "burgundy-portrait", alt: "Саксофонист Лео сидит с саксофоном в бордовом пиджаке", altEn: "Seated portrait of Leo Sax in a burgundy jacket" },
+	{ slug: "library-portrait", alt: "Портрет Leo Sax в тёмном костюме в библиотеке", altEn: "Portrait of Leo Sax in a dark suit in a library" }
 ] %}
 
 {% set repertoire = [
@@ -61,9 +69,9 @@ leoSaxPage: true
 				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.webp?v=3' | url }} 640w" sizes="100vw">
 				<source type="image/avif" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif?v=3' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif?v=3' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif?v=3' | url }} 1672w" sizes="100vw">
 				<source type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.webp?v=3' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.webp?v=3' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=3' | url }} 1672w" sizes="100vw">
-				<img class="leo-hero__image" src="{{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=3' | url }}" alt="Leo Sax — саксофонист Лео на сцене с саксофоном" width="1672" height="941" fetchpriority="high" decoding="async">
+				<img class="leo-hero__image" src="{{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=3' | url }}" alt="{% if isEn %}Leo Sax performing live on stage{% else %}Leo Sax — саксофонист Лео на сцене с саксофоном{% endif %}" width="1672" height="941" fetchpriority="high" decoding="async">
 			</picture>
-			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="Промо-видео Leo Sax"></video>
+			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="{% if isEn %}Leo Sax promotional video{% else %}Промо-видео Leo Sax{% endif %}"></video>
 		</div>
 		<div class="leo-hero__shade" aria-hidden="true"></div>
 
@@ -79,61 +87,61 @@ leoSaxPage: true
 			</div>
 		</div>
 
-		<button class="leo-play" type="button" data-leo-play aria-label="Смотреть полное промо Leo Sax">
+		<button class="leo-play" type="button" data-leo-play aria-label="{% if isEn %}Watch the full Leo Sax promo{% else %}Смотреть полное промо Leo Sax{% endif %}">
 			<span aria-hidden="true"></span>
 		</button>
 
 		<div class="leo-player-ui" data-player-ui aria-hidden="true" inert>
-			<button class="leo-player-ui__close" type="button" data-video-close aria-label="Закрыть видео"></button>
-			<div class="leo-player-ui__quality" role="group" aria-label="Качество видео">
+			<button class="leo-player-ui__close" type="button" data-video-close aria-label="{% if isEn %}Close video{% else %}Закрыть видео{% endif %}"></button>
+			<div class="leo-player-ui__quality" role="group" aria-label="{% if isEn %}Video quality{% else %}Качество видео{% endif %}">
 				<button type="button" data-video-quality="480">480p</button>
 				<button type="button" data-video-quality="720">720p</button>
 				<button type="button" data-video-quality="1080">1080p</button>
 			</div>
 			<div class="leo-player-ui__bar">
-				<button class="leo-player-ui__toggle" type="button" data-video-toggle aria-label="Пауза"></button>
-				<input class="leo-player-ui__progress" data-video-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="Позиция видео">
+				<button class="leo-player-ui__toggle" type="button" data-video-toggle aria-label="{% if isEn %}Pause{% else %}Пауза{% endif %}"></button>
+				<input class="leo-player-ui__progress" data-video-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="{% if isEn %}Video position{% else %}Позиция видео{% endif %}">
 				<span class="leo-player-ui__time" data-video-time>0:00 / 2:35</span>
-				<button class="leo-player-ui__fullscreen" type="button" data-video-fullscreen aria-label="На весь экран"></button>
+				<button class="leo-player-ui__fullscreen" type="button" data-video-fullscreen aria-label="{% if isEn %}Full screen{% else %}На весь экран{% endif %}"></button>
 			</div>
 		</div>
 		<p class="leo-player-status" data-player-status aria-live="polite"></p>
 	</section>
 
-	<section class="leo-gallery" aria-label="Фотографии Leo Sax">
+	<section class="leo-gallery" aria-label="{% if isEn %}Leo Sax photos{% else %}Фотографии Leo Sax{% endif %}">
 		<div class="leo-carousel" data-carousel>
-			<button class="leo-carousel__arrow leo-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Предыдущее фото"></button>
-			<div class="leo-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="Фотографии Leo Sax">
+			<button class="leo-carousel__arrow leo-carousel__arrow--prev" type="button" data-carousel-prev aria-label="{% if isEn %}Previous photo{% else %}Предыдущее фото{% endif %}"></button>
+			<div class="leo-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="{% if isEn %}Leo Sax photos{% else %}Фотографии Leo Sax{% endif %}">
 				<div class="leo-carousel__track" data-carousel-track>
 					{% for photo in gallery %}
 					<figure class="leo-slide" data-carousel-slide data-slide-index="{{ loop.index0 }}">
 						<picture>
 							<source type="image/avif" srcset="{{ ('/assets/leo-sax/gallery/' + photo.slug + '-480.avif') | url }} 480w, {{ ('/assets/leo-sax/gallery/' + photo.slug + '-960.avif') | url }} 960w" sizes="(max-width: 700px) 78vw, 31vw">
 							<source type="image/webp" srcset="{{ ('/assets/leo-sax/gallery/' + photo.slug + '-480.webp') | url }} 480w, {{ ('/assets/leo-sax/gallery/' + photo.slug + '-960.webp') | url }} 960w" sizes="(max-width: 700px) 78vw, 31vw">
-							<img src="{{ ('/assets/leo-sax/gallery/' + photo.slug + '-960.webp') | url }}" alt="{{ photo.alt }}" width="960" height="1440" loading="lazy" decoding="async">
+							<img src="{{ ('/assets/leo-sax/gallery/' + photo.slug + '-960.webp') | url }}" alt="{% if isEn %}{{ photo.altEn }}{% else %}{{ photo.alt }}{% endif %}" width="960" height="1440" loading="lazy" decoding="async">
 						</picture>
 					</figure>
 					{% endfor %}
 				</div>
 			</div>
-			<button class="leo-carousel__arrow leo-carousel__arrow--next" type="button" data-carousel-next aria-label="Следующее фото"></button>
+			<button class="leo-carousel__arrow leo-carousel__arrow--next" type="button" data-carousel-next aria-label="{% if isEn %}Next photo{% else %}Следующее фото{% endif %}"></button>
 		</div>
-		<div class="leo-carousel__dots" data-carousel-dots aria-label="Позиция в фотогалерее">
-			{% for photo in gallery %}<button type="button" data-carousel-dot="{{ loop.index0 }}" aria-label="Фото {{ loop.index }}"{% if loop.first %} class="is-active" aria-current="true"{% endif %}></button>{% endfor %}
+		<div class="leo-carousel__dots" data-carousel-dots aria-label="{% if isEn %}Photo gallery position{% else %}Позиция в фотогалерее{% endif %}">
+			{% for photo in gallery %}<button type="button" data-carousel-dot="{{ loop.index0 }}" aria-label="{% if isEn %}Photo{% else %}Фото{% endif %} {{ loop.index }}"{% if loop.first %} class="is-active" aria-current="true"{% endif %}></button>{% endfor %}
 		</div>
 	</section>
 
 	<section class="leo-moments" aria-labelledby="leo-moments-title">
 		<div class="leo-wrap">
 			<div class="leo-section-head">
-				<p class="leo-kicker">Сценарий</p>
-				<h2 id="leo-moments-title">Где саксофон<br><em>звучит уместно.</em></h2>
+				<p class="leo-kicker">{% if isEn %}Occasions{% else %}Сценарий{% endif %}</p>
+				<h2 id="leo-moments-title">{% if isEn %}Where saxophone<br><em>belongs naturally.</em>{% else %}Где саксофон<br><em>звучит уместно.</em>{% endif %}</h2>
 			</div>
 			<div class="leo-moments__grid">
-				<article><span>01</span><h3>Welcome</h3><p>Первые встречи, звон бокалов — и вечер уже звучит.</p></article>
-				<article><span>02</span><h3>Церемония</h3><p>Мелодия ведёт к главному моменту, не забирая его себе.</p></article>
-				<article><span>03</span><h3>Ужин</h3><p>Тёплый jazz, soul и bossa nova остаются рядом с разговорами.</p></article>
-				<article><span>04</span><h3>Вечеринка</h3><p>Sax &amp; DJ добавляет танцполу ритм и живое дыхание.</p></article>
+				<article><span>01</span><h3>Welcome</h3><p>{% if isEn %}First meetings, clinking glasses — and the evening already has a sound.{% else %}Первые встречи, звон бокалов — и вечер уже звучит.{% endif %}</p></article>
+				<article><span>02</span><h3>{% if isEn %}Ceremony{% else %}Церемония{% endif %}</h3><p>{% if isEn %}The melody carries the key moment without taking it over.{% else %}Мелодия ведёт к главному моменту, не забирая его себе.{% endif %}</p></article>
+				<article><span>03</span><h3>{% if isEn %}Dinner{% else %}Ужин{% endif %}</h3><p>{% if isEn %}Warm jazz, soul and bossa nova stay comfortably alongside conversation.{% else %}Тёплый jazz, soul и bossa nova остаются рядом с разговорами.{% endif %}</p></article>
+				<article><span>04</span><h3>{% if isEn %}Party{% else %}Вечеринка{% endif %}</h3><p>{% if isEn %}Sax &amp; DJ gives the dancefloor rhythm and a live pulse.{% else %}Sax &amp; DJ добавляет танцполу ритм и живое дыхание.{% endif %}</p></article>
 			</div>
 		</div>
 	</section>
@@ -141,14 +149,14 @@ leoSaxPage: true
 	<section class="leo-repertoire" aria-labelledby="leo-repertoire-title">
 		<div class="leo-wrap">
 			<div class="leo-section-head leo-section-head--rep">
-				<p class="leo-kicker">Репертуар</p>
-				<h2 id="leo-repertoire-title">Музыка следует<br><em>ритму события.</em></h2>
-				<p class="leo-repertoire__lead">От дыхания джаза до лёгкого поп-мотива — программа меняет настроение мягко, без лишних слов.</p>
+				<p class="leo-kicker">{% if isEn %}Repertoire{% else %}Репертуар{% endif %}</p>
+				<h2 id="leo-repertoire-title">{% if isEn %}Music follows<br><em>the rhythm of the event.</em>{% else %}Музыка следует<br><em>ритму события.</em>{% endif %}</h2>
+				<p class="leo-repertoire__lead">{% if isEn %}From the breath of jazz to a light pop motif, the program shifts the mood smoothly and without unnecessary words.{% else %}От дыхания джаза до лёгкого поп-мотива — программа меняет настроение мягко, без лишних слов.{% endif %}</p>
 			</div>
 			<div class="leo-repertoire__groups">
 				{% for group in repertoire %}
 				<details class="leo-repertoire__group">
-					<summary><span>{{ group.title }}</span><small>{{ group.count }}</small><i aria-hidden="true"></i></summary>
+					<summary><span>{% if isEn %}{% if loop.first %}International{% else %}Russian-Language{% endif %}{% else %}{{ group.title }}{% endif %}</span><small>{% if isEn %}{{ group.songs | length }} tracks{% else %}{{ group.count }}{% endif %}</small><i aria-hidden="true"></i></summary>
 					<ul>
 						{% for song in group.songs %}<li><strong>{{ song[0] }}</strong>{% if song[1] %}<span>{{ song[1] }}</span>{% endif %}</li>{% endfor %}
 					</ul>

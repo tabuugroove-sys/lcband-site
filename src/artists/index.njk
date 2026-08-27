@@ -1,11 +1,19 @@
 ---
 layout: layouts/base.njk
-title: Luxury Cover Band АРТИСТЫ
-description: "Авторские треки артистов Luxury Cover Band — Lazzy, Bumbata и Zace: собственные релизы вокалистов и участников группы."
-keywords: "Lazzy треки, Bumbata треки, Zace треки, авторская музыка Luxury Cover Band"
-permalink: /artists/
+pagination:
+  data: artistLocales
+  size: 1
+  alias: locale
+permalink: "{{ locale.permalink }}"
+eleventyComputed:
+  title: "{{ locale.title }}"
+  description: "{{ locale.description }}"
+  keywords: "{{ locale.keywords }}"
+  htmlLang: "{{ locale.lang }}"
+  ogLocale: "{% if locale.lang == 'en' %}en_US{% else %}ru_RU{% endif %}"
 ---
 
+{% set isEn = locale.lang == 'en' %}
 {% set waveBars = [18, 26, 34, 22, 42, 30, 50, 28, 44, 36, 58, 32, 46, 40, 54, 24, 38, 48, 30, 56, 34, 44, 26, 52, 36, 46, 28, 40, 58, 34, 50, 24] %}
 
 {% set artists = [
@@ -232,16 +240,16 @@ permalink: /artists/
 
 <section class="artist-catalog">
 	<div class="artist-catalog__hero">
-		<p class="artist-catalog__kicker">Luxury Cover Band АРТИСТЫ</p>
-		<h1>Авторская музыка</h1>
-		<p class="artist-catalog__lead">Авторские треки Lazzy, Bumbata и Zace в одном спокойном плейлисте.</p>
+		<p class="artist-catalog__kicker">Luxury Cover Band {% if isEn %}ARTISTS{% else %}АРТИСТЫ{% endif %}</p>
+		<h1>{% if isEn %}Original Music{% else %}Авторская музыка{% endif %}</h1>
+		<p class="artist-catalog__lead">{% if isEn %}Original tracks by Lazzy, Bumbata and Zace in one clean playlist.{% else %}Авторские треки Lazzy, Bumbata и Zace в одном спокойном плейлисте.{% endif %}</p>
 	</div>
 
-	<div class="artist-catalog__columns" aria-label="Артисты и треки">
+	<div class="artist-catalog__columns" aria-label="{% if isEn %}Artists and tracks{% else %}Артисты и треки{% endif %}">
 		{% for artist in artists %}
 		<article class="artist-column artist-column--{{ artist.accent }}">
 				<header class="artist-column__head">
-					<img class="artist-column__avatar" src="{{ artist.avatar }}" alt="{{ artist.streamName }} — аватарка" loading="lazy">
+					<img class="artist-column__avatar" src="{{ artist.avatar }}" alt="{{ artist.streamName }} — {% if isEn %}artist portrait{% else %}аватарка{% endif %}" loading="lazy">
 					<div>
 						<h2>{{ artist.streamName }}</h2>
 					</div>
@@ -250,17 +258,17 @@ permalink: /artists/
 			<ol class="artist-column__tracks">
 				{% for track in artist.tracks %}
 				<li class="track-row{% if not track.preview %} track-row--disabled{% endif %}">
-					<img class="track-row__cover" src="{{ track.cover }}" alt="{{ track.title }} — обложка трека Luxury Cover Band" loading="lazy">
+					<img class="track-row__cover" src="{{ track.cover }}" alt="{{ track.title }} — {% if isEn %}Luxury Cover Band track artwork{% else %}обложка трека Luxury Cover Band{% endif %}" loading="lazy">
 					<button
 						class="track-row__play"
 						type="button"
 						{% if track.preview %}
 						data-preview="{{ track.preview }}"
-						aria-label="Воспроизвести {{ track.title }}"
+						aria-label="{% if isEn %}Play{% else %}Воспроизвести{% endif %} {{ track.title }}"
 						{% else %}
 						disabled
-						aria-label="Превью для {{ track.title }} недоступно"
-						title="Превью недоступно"
+						aria-label="{% if isEn %}Preview unavailable for{% else %}Превью для{% endif %} {{ track.title }}{% if not isEn %} недоступно{% endif %}"
+						title="{% if isEn %}Preview unavailable{% else %}Превью недоступно{% endif %}"
 						{% endif %}
 					>
 						<span class="track-row__play-icon" aria-hidden="true"></span>
@@ -280,7 +288,7 @@ permalink: /artists/
 				{% endfor %}
 			</ol>
 
-			<a class="artist-column__link" href="{{ artist.url }}" target="_blank" rel="noopener">Профиль артиста</a>
+			<a class="artist-column__link" href="{{ artist.url }}" target="_blank" rel="noopener">{% if isEn %}Artist profile{% else %}Профиль артиста{% endif %}</a>
 		</article>
 		{% endfor %}
 	</div>
@@ -298,7 +306,7 @@ permalink: /artists/
 		if (!row) return;
 		row.classList.remove("is-playing");
 		const button = row.querySelector(".track-row__play");
-		if (button) button.setAttribute("aria-label", "Воспроизвести " + row.querySelector(".track-row__title").textContent.trim());
+		if (button) button.setAttribute("aria-label", "{% if isEn %}Play {% else %}Воспроизвести {% endif %}" + row.querySelector(".track-row__title").textContent.trim());
 		row.querySelectorAll(".track-wave span").forEach((bar) => bar.classList.remove("is-filled"));
 	};
 
@@ -325,7 +333,7 @@ permalink: /artists/
 		audio.src = button.dataset.preview;
 		audio.currentTime = 0;
 		row.classList.add("is-playing");
-		button.setAttribute("aria-label", "Пауза " + row.querySelector(".track-row__title").textContent.trim());
+		button.setAttribute("aria-label", "{% if isEn %}Pause {% else %}Пауза {% endif %}" + row.querySelector(".track-row__title").textContent.trim());
 
 		try {
 			await audio.play();

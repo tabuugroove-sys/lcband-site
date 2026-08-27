@@ -37,8 +37,36 @@ eleventyExcludeFromCollections: true
 	<url><loc>{{ site.url }}/ae/</loc><priority>0.6</priority></url>
 	<url><loc>{{ site.url }}/br/</loc><priority>0.6</priority></url>
 	<url><loc>{{ site.url }}/en/</loc><priority>0.6</priority></url>
+	<url><loc>{{ site.url }}/en/about/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/programs/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/en/vocalists/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/en/artists/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/formats/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/en/events/</loc><priority>0.8</priority></url>
+	<url><loc>{{ site.url }}/en/repertoire/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/sax/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/sax/leo-sax/</loc><priority>0.7</priority></url>
+	{% for p in programs %}
+	<url><loc>{{ site.url }}/en/programs/{{ p.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for v in vocalists %}
+	<url><loc>{{ site.url }}/en/vocalists/{{ v.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for f in formats %}
+	<url><loc>{{ site.url }}/en/formats/{{ f.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	{% for e in events %}
+	<url><loc>{{ site.url }}/en/events/{{ e.slug }}/</loc><priority>0.7</priority></url>
+	{% endfor %}
+	<url><loc>{{ site.url }}/en/live/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/riders/</loc><priority>0.6</priority></url>
+	<url><loc>{{ site.url }}/en/costumes/</loc><priority>0.6</priority></url>
+	<url><loc>{{ site.url }}/en/blog/</loc><priority>0.6</priority></url>
 	<url><loc>{{ site.url }}/blog/</loc><priority>0.6</priority></url>
 	{% for post in collections.posts %}
+	<url><loc>{{ site.url }}{{ post.url }}</loc><priority>0.6</priority></url>
+	{% endfor %}
+	{% for post in collections.enPosts %}
 	<url><loc>{{ site.url }}{{ post.url }}</loc><priority>0.6</priority></url>
 	{% endfor %}
 </urlset>

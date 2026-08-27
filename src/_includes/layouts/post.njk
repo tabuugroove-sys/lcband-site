@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
+{% set isEn = htmlLang == 'en' %}
 {% block schema %}
 <script type="application/ld+json">
 {
@@ -12,7 +13,7 @@ layout: layouts/base.njk
 			"@id": "{{ site.url }}{{ page.url }}#article",
 			"headline": {{ (h1 or title) | dump | safe }},
 			"description": {{ description | dump | safe }},
-			"inLanguage": "ru-RU",
+			"inLanguage": "{% if isEn %}en-US{% else %}ru-RU{% endif %}",
 			"datePublished": "{{ page.date | date }}",
 			"dateModified": "{{ page.date | date }}",
 			"author": { "@id": "{{ site.url }}/#musicgroup" },
@@ -25,8 +26,8 @@ layout: layouts/base.njk
 		{
 			"@type": "BreadcrumbList",
 			"itemListElement": [
-				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
-				{ "@type": "ListItem", "position": 2, "name": "Блог", "item": "{{ site.url }}/blog/" },
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}{% if isEn %}/en/{% else %}/{% endif %}" },
+				{ "@type": "ListItem", "position": 2, "name": "{% if isEn %}Blog{% else %}Блог{% endif %}", "item": "{{ site.url }}{% if isEn %}/en/blog/{% else %}/blog/{% endif %}" },
 				{ "@type": "ListItem", "position": 3, "name": {{ (h1 or title) | dump | safe }}, "item": "{{ site.url }}{{ page.url }}" }
 			]
 		}
@@ -54,14 +55,14 @@ layout: layouts/base.njk
 	<header class="page-hero page-hero--list">
 		<div class="container container--narrow">
 			<p class="page-hero__breadcrumb">
-				<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
-				<a href="{{ '/blog/' | url }}">Блог</a> <span>·</span>
-				<span>{{ eyebrow or 'Статья' }}</span>
+				<a href="{{ ('/en/' if isEn else '/') | url }}">{{ site.shortName }}</a> <span>·</span>
+				<a href="{{ ('/en/blog/' if isEn else '/blog/') | url }}">{% if isEn %}Blog{% else %}Блог{% endif %}</a> <span>·</span>
+				<span>{{ eyebrow or ('Article' if isEn else 'Статья') }}</span>
 			</p>
-			<p class="page-hero__eyebrow">{{ eyebrow or 'Блог' }}</p>
+			<p class="page-hero__eyebrow">{{ eyebrow or ('Blog' if isEn else 'Блог') }}</p>
 			<h1 class="page-hero__title">{{ h1 or title }}</h1>
 			{% if lead %}<p class="page-hero__lead">{{ lead }}</p>{% endif %}
-			<p class="post__meta">Обновлено {{ page.date | date }}</p>
+			<p class="post__meta">{% if isEn %}Updated{% else %}Обновлено{% endif %} {{ page.date | date }}</p>
 		</div>
 	</header>
 
@@ -76,13 +77,13 @@ layout: layouts/base.njk
 	{% if faq %}
 	<section class="section section--light" id="faq">
 		<div class="container container--narrow reveal">
-			<p class="section__eyebrow">Частые вопросы</p>
-			<h2 class="section__title">Коротко<br><span class="muted">по делу.</span></h2>
+			<p class="section__eyebrow">{% if isEn %}Frequently Asked Questions{% else %}Частые вопросы{% endif %}</p>
+			<h2 class="section__title">{% if isEn %}Clear answers,<br><span class="muted">straight to the point.</span>{% else %}Коротко<br><span class="muted">по делу.</span>{% endif %}</h2>
 			<div class="faq">
 				{% for item in faq %}
 				<details class="faq__item">
 					<summary class="faq__q">{{ item.q }}</summary>
-					<div class="faq__a"><p>{{ item.a | replace("Телеграм", '<a href="' + site.telegram + '">Телеграм</a>') | safe }}</p></div>
+					<div class="faq__a"><p>{{ item.a | replace(('Telegram' if isEn else 'Телеграм'), '<a href="' + site.telegram + '">' + ('Telegram' if isEn else 'Телеграм') + '</a>') | safe }}</p></div>
 				</details>
 				{% endfor %}
 			</div>
@@ -93,7 +94,7 @@ layout: layouts/base.njk
 	{% if related %}
 	<section class="section section--flush">
 		<div class="container container--narrow reveal">
-			<p class="section__eyebrow">Дальше по теме</p>
+			<p class="section__eyebrow">{% if isEn %}Related Reading{% else %}Дальше по теме{% endif %}</p>
 			<ul class="post__related">
 				{% for r in related %}
 				<li><a href="{{ r.href | url }}"><span class="post__related-title">{{ r.title }}</span><span class="post__related-sub">{{ r.sub }}</span></a></li>
@@ -105,12 +106,12 @@ layout: layouts/base.njk
 
 	<section class="section section--book">
 		<div class="container container--narrow reveal">
-			<p class="section__eyebrow">Обсудим ваше событие</p>
-			<h2 class="section__title">Напишите — соберём программу и смету.</h2>
-			<p class="section__lead">Расскажите дату, площадку и формат. Пришлём состав, тайминг и цену под ваше событие в течение дня.</p>
+			<p class="section__eyebrow">{% if isEn %}Let's Discuss Your Event{% else %}Обсудим ваше событие{% endif %}</p>
+			<h2 class="section__title">{% if isEn %}Message us for a program and quote.{% else %}Напишите — соберём программу и смету.{% endif %}</h2>
+			<p class="section__lead">{% if isEn %}Share the date, venue and format. We will send a suitable lineup, timing and price, normally within a day.{% else %}Расскажите дату, площадку и формат. Пришлём состав, тайминг и цену под ваше событие в течение дня.{% endif %}</p>
 			<div class="book__cta">
-				<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
-				<a class="btn btn--ghost-dark" href="{{ '/events/' | url }}">Все события</a>
+				<a class="btn btn--primary" href="{{ site.telegram }}">{% if isEn %}Message on Telegram{% else %}Написать в Телеграм{% endif %}</a>
+				<a class="btn btn--ghost-dark" href="{{ ('/en/events/' if isEn else '/events/') | url }}">{% if isEn %}All events{% else %}Все события{% endif %}</a>
 			</div>
 		</div>
 	</section>

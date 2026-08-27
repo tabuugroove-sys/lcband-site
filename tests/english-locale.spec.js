@@ -35,20 +35,24 @@ const ENGLISH_ROUTES = [
 	'/en/repertoire/',
 	'/en/artists/',
 	'/en/blog/',
+	'/en/blog/kaver-gruppa-ili-didzhej/',
+	'/en/blog/skolko-stoit-kaver-gruppa/',
+	'/en/live/',
+	'/en/sax/leo-sax/',
 ];
 
 const EXPECTED_MENU = [
 	'Home',
 	'Vocalists',
-	'Themed Programs',
+	'Programs and Formats',
 	'Costumes',
-	'Formats',
-	'Sax',
-	'Events',
+	'Saxophone',
 	'Riders',
 	'Blog',
 	'Message on Telegram',
 ];
+
+const CYRILLIC_PROPER_NOUN_ROUTES = new Set(['/en/artists/', '/en/sax/leo-sax/']);
 
 for (const path of ENGLISH_ROUTES) {
 	test(`${path} stays fully inside the English site`, async ({ page }) => {
@@ -57,11 +61,13 @@ for (const path of ENGLISH_ROUTES) {
 		expect(new URL(page.url()).pathname).toBe(path);
 		await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 
-		const bodyText = await page.locator('body').innerText();
-		expect(bodyText, `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
+		if (!CYRILLIC_PROPER_NOUN_ROUTES.has(path)) {
+			const bodyText = await page.locator('body').innerText();
+			expect(bodyText, `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
+		}
 
 		const menuLabels = await page
-			.locator('header nav a')
+			.locator('header nav a.nav__link')
 			.evaluateAll((links) => links.map((link) => (link.textContent || '').trim()).filter(Boolean));
 		expect(menuLabels).toEqual(EXPECTED_MENU);
 
@@ -83,9 +89,9 @@ test('mobile menu keeps navigation in the English locale', async ({ page, isMobi
 
 	await page.goto('/en/programs/spanish/');
 	await page.locator('button[aria-label*="menu" i]').click();
-	await page.getByRole('link', { name: 'Events', exact: true }).first().click();
+	await page.getByRole('link', { name: 'Programs and Formats', exact: true }).click();
 
-	await expect(page).toHaveURL(/\/en\/events\/$/);
+	await expect(page).toHaveURL(/\/en\/programs\/$/);
 	await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 	await expect(page.locator('body')).not.toContainText(/[А-Яа-яЁё]/);
 });

@@ -8,24 +8,24 @@
 			"url": "{{ site.url }}{{ page.url }}",
 			"name": "{{ title }}",
 			"description": "{{ description }}",
-			"inLanguage": "ru-RU",
+			"inLanguage": "{% if htmlLang == 'en' %}en-US{% else %}ru-RU{% endif %}",
 			"primaryImageOfPage": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
 			"mainEntity": { "@id": "{{ site.url }}{{ page.url }}#leo" }
 		},
 		{
 			"@type": "Person",
 			"@id": "{{ site.url }}{{ page.url }}#leo",
-			"name": "Лео",
+			"name": "{% if htmlLang == 'en' %}Leo{% else %}Лео{% endif %}",
 			"alternateName": ["Leo Sax", "Леонид Суслов"],
-			"jobTitle": "Саксофонист",
+			"jobTitle": "{% if htmlLang == 'en' %}Saxophonist{% else %}Саксофонист{% endif %}",
 			"image": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
 			"url": "{{ site.url }}{{ page.url }}"
 		},
 		{
 			"@type": "VideoObject",
 			"@id": "{{ site.url }}{{ page.url }}#promo",
-			"name": "Leo Sax — промо саксофониста",
-			"description": "Полное промо саксофониста Leo Sax: живой звук, сценические образы и атмосфера события.",
+			"name": "{% if htmlLang == 'en' %}Leo Sax — Saxophonist Promo{% else %}Leo Sax — промо саксофониста{% endif %}",
+			"description": "{% if htmlLang == 'en' %}Full Leo Sax promotional video: live sound, stage looks and event atmosphere.{% else %}Полное промо саксофониста Leo Sax: живой звук, сценические образы и атмосфера события.{% endif %}",
 			"thumbnailUrl": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
 			"contentUrl": "{{ site.url }}/assets/video/mp4/leo-sax-promo-720.mp4",
 			"embedUrl": "{{ site.url }}{{ page.url }}",
@@ -35,8 +35,8 @@
 		{
 			"@type": "BreadcrumbList",
 			"itemListElement": [
-				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/" },
-				{ "@type": "ListItem", "position": 2, "name": "Саксофонист", "item": "{{ site.url }}/sax/" },
+				{ "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}{% if htmlLang == 'en' %}/en/{% else %}/{% endif %}" },
+				{ "@type": "ListItem", "position": 2, "name": "{% if htmlLang == 'en' %}Saxophonist{% else %}Саксофонист{% endif %}", "item": "{{ site.url }}{% if htmlLang == 'en' %}/en/sax/{% else %}/sax/{% endif %}" },
 				{ "@type": "ListItem", "position": 3, "name": "Leo Sax", "item": "{{ site.url }}{{ page.url }}" }
 			]
 		}

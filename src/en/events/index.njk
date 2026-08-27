@@ -23,7 +23,7 @@ permalink: /en/events/
 <section class="section section--light">
 	<div class="container reveal">
 		<ul class="events-grid events-grid--list">
-			{% for e in enContent.events %}
+			{% for e in enEvents %}
 			<li class="event-tile">
 				<a href="{{ ('/en/events/' + e.slug + '/') | url }}">
 					<div class="event-tile__photo"><img src="{{ ('/assets/photos/' + e.image) | url }}" alt="{{ e.title }} — Luxury Cover Band" loading="lazy"></div>

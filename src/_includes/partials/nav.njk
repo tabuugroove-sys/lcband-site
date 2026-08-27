@@ -89,43 +89,82 @@
 	</div>
 </header>
 {% elif htmlLang == 'en' %}
-{#- English version (/en/): flat menu with translated landing pages. -#}
+{% set navEn = [
+	{href:'/en/', label:'Home'},
+	{href:'/en/vocalists/', label:'Vocalists'},
+	{href:'/en/programs/', label:'Programs and Formats'},
+	{href:'/en/costumes/', label:'Costumes'},
+	{href:'/en/sax/', label:'Saxophone'},
+	{href:'/en/riders/', label:'Riders'},
+	{href:'/en/blog/', label:'Blog'},
+	{href:site.telegram, label:'Message on Telegram', cta:true}
+] %}
 <header class="nav" id="nav">
 	<div class="nav__inner">
 		<a class="nav__logo" href="{{ '/en/' | url }}" aria-label="{{ site.name }} — home">
 			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
 		</a>
 		<nav class="nav__links" aria-label="Main navigation">
-			<div class="nav__item" data-nav-path="/en/">
-				<a class="nav__link" href="{{ '/en/' | url }}">Home</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/vocalists/">
-				<a class="nav__link" href="{{ '/en/vocalists/' | url }}">Vocalists</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/programs/">
-				<a class="nav__link" href="{{ '/en/programs/' | url }}">Themed Programs</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/costumes/">
-				<a class="nav__link" href="{{ '/en/costumes/' | url }}">Costumes</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/formats/">
-				<a class="nav__link" href="{{ '/en/formats/' | url }}">Formats</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/sax/">
-				<a class="nav__link" href="{{ '/en/sax/' | url }}">Sax</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/events/">
-				<a class="nav__link" href="{{ '/en/events/' | url }}">Events</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/riders/">
-				<a class="nav__link" href="{{ '/en/riders/' | url }}">Riders</a>
-			</div>
-			<div class="nav__item" data-nav-path="/en/blog/">
-				<a class="nav__link" href="{{ '/en/blog/' | url }}">Blog</a>
-			</div>
-			<div class="nav__item" data-nav-path="{{ site.telegram }}">
-				<a class="nav__link nav__cta" href="{{ site.telegram }}">Message on Telegram</a>
-			</div>
+			{% for item in navEn %}
+				{% set kids = [] %}
+				{% set labelField = 'title' %}
+				{% if item.href == '/en/programs/' %}{% set kids = enContent.programs %}{% endif %}
+				{% if item.href == '/en/vocalists/' %}{% set kids = enContent.vocalists %}{% set labelField = 'name' %}{% endif %}
+
+				{% if kids | length %}
+				<div class="nav__item nav__item--has-dropdown" data-nav-path="{{ item.href }}">
+					<div class="nav__primary-row">
+						<a class="nav__link" href="{{ item.href | url }}" aria-haspopup="true">{{ item.label }}</a>
+						<button class="nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="nav-submenu-{{ loop.index }}" aria-label="Open sections: {{ item.label }}">
+							<span aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — sections">
+						<div class="nav__dropdown-inner">
+							<div class="nav__dropdown-cols">
+								<div class="nav__dropdown-col nav__dropdown-col--main">
+									<p class="nav__dropdown-label">{{ item.label }}</p>
+									<ul class="nav__dropdown-list">
+										{% for child in kids %}
+										<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
+										{% endfor %}
+									</ul>
+								</div>
+								{% if item.href == '/en/programs/' %}
+								<div class="nav__dropdown-col nav__dropdown-col--related">
+									<p class="nav__dropdown-label">Formats</p>
+									<ul class="nav__dropdown-related">
+										{% for f in enContent.formats %}<li role="none"><a role="menuitem" href="{{ ('/en/formats/' + f.slug + '/') | url }}">{{ f.title }}</a></li>{% endfor %}
+										<li><a href="{{ '/en/formats/' | url }}">All formats ›</a></li>
+									</ul>
+								</div>
+								<div class="nav__dropdown-col nav__dropdown-col--cta">
+									<p class="nav__dropdown-label">Events</p>
+									<ul class="nav__dropdown-related">
+										{% for e in enEvents %}<li role="none"><a role="menuitem" href="{{ ('/en/events/' + e.slug + '/') | url }}">{{ e.eyebrow }}</a></li>{% endfor %}
+										<li><a href="{{ '/en/events/' | url }}">All events ›</a></li>
+									</ul>
+								</div>
+								{% else %}
+								<div class="nav__dropdown-col nav__dropdown-col--related">
+									<p class="nav__dropdown-label">More on the site</p>
+									<ul class="nav__dropdown-related">
+										{% for other in navEn %}{% if other.href != item.href and other.href != '/en/' and not other.cta %}<li><a href="{{ other.href | url }}">{{ other.label }}</a></li>{% endif %}{% endfor %}
+									</ul>
+								</div>
+								<div class="nav__dropdown-col nav__dropdown-col--cta">
+									<p class="nav__dropdown-label">Ready to discuss?</p>
+									<ul class="nav__dropdown-related"><li><a href="{{ site.telegram }}">Message on Telegram</a></li><li><a href="{{ '/en/#videos' | url }}">Watch videos</a></li></ul>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% else %}
+				<div class="nav__item" data-nav-path="{{ item.href }}"><a class="nav__link{% if item.cta %} nav__cta{% endif %}" href="{{ item.href | url }}">{{ item.label }}</a></div>
+				{% endif %}
+			{% endfor %}
 		</nav>
 		<button class="nav__burger" aria-label="Menu" aria-expanded="false">
 			<span></span><span></span><span></span>

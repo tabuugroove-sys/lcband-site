@@ -1,45 +1,55 @@
 ---
 layout: layouts/base.njk
+eleventyExcludeFromCollections: true
 htmlLang: en
 ogLocale: en_US
-title: Blog — Luxury Cover Band
-description: "Short English guides by Luxury Cover Band for booking a live band, planning formats and choosing the right lineup."
+title: "Live Music Blog — Luxury Cover Band"
+description: "Luxury Cover Band guides to live-band pricing, choosing between live music and a DJ, and selecting the right event format."
+keywords: "cover band blog, how to choose a cover band, live event music, cover band price"
 permalink: /en/blog/
 ---
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+    { "@type": "Blog", "@id": "{{ site.url }}/en/blog/#blog", "name": "Luxury Cover Band Blog", "url": "{{ site.url }}/en/blog/", "inLanguage": "en-US", "publisher": { "@id": "{{ site.url }}/#musicgroup" } },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "{{ site.shortName }}", "item": "{{ site.url }}/en/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ site.url }}/en/blog/" }
+    ] }
+  ]
+}
+</script>
+{% endblock %}
 
 <section class="page-hero page-hero--list">
-	<div class="container container--narrow">
-		<p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Blog</span></p>
-		<p class="page-hero__eyebrow">Guides</p>
-		<h1 class="page-hero__title">Live-band planning<br><span class="muted">without guesswork.</span></h1>
-		<p class="page-hero__lead">Use these short notes to brief us faster: date, venue, format, audience and the musical mood you want.</p>
-	</div>
+  <div class="container container--narrow">
+    <p class="page-hero__breadcrumb"><a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span><span>Blog</span></p>
+    <p class="page-hero__eyebrow">Blog</p>
+    <h1 class="page-hero__title">Live music insights<br><span class="muted">without the filler.</span></h1>
+    <p class="page-hero__lead">Practical guides from a working band: what live music costs, how to choose a format and what to check when booking a band.</p>
+  </div>
 </section>
 
-<section class="section section--light">
-	<div class="container reveal">
-		<ul class="caps">
-			<li class="cap">
-				<a class="cap__link" href="{{ site.telegram }}">
-					<h3 class="cap__title">How to get a quote</h3>
-					<p class="cap__text">Send the event date, city or venue, timing, approximate audience size and the kind of program you need.</p>
-					<span class="cap__more">Message on Telegram ›</span>
-				</a>
-			</li>
-			<li class="cap">
-				<a class="cap__link" href="{{ '/en/formats/' | url }}">
-					<h3 class="cap__title">Which format to choose</h3>
-					<p class="cap__text">Main show, welcome set, home band, live karaoke or themed program — choose by event flow, not only by repertoire.</p>
-					<span class="cap__more">Open formats ›</span>
-				</a>
-			</li>
-			<li class="cap">
-				<a class="cap__link" href="{{ '/en/riders/' | url }}">
-					<h3 class="cap__title">What the venue should prepare</h3>
-					<p class="cap__text">The technical rider depends on lineup size and venue type. The international English rider is ready for foreign venues.</p>
-					<span class="cap__more">Open riders ›</span>
-				</a>
-			</li>
-		</ul>
-	</div>
+<section class="section section--flush">
+  <div class="container container--narrow reveal">
+    <ul class="blog-list">
+      {% for post in collections.enPosts | reverse %}
+      <li class="blog-card"><a class="blog-card__link" href="{{ post.url | url }}">
+        {% if post.data.heroImage %}<div class="blog-card__media"><img src="{{ ('/assets/photos/' + post.data.heroImage) | url }}" alt="{{ post.data.h1 or post.data.title }} — Luxury Cover Band" loading="lazy"></div>{% endif %}
+        <div class="blog-card__body"><span class="blog-card__eyebrow">{{ post.data.eyebrow or 'Article' }}</span><span class="blog-card__title">{{ post.data.h1 or post.data.title }}</span><span class="blog-card__lead">{{ post.data.lead }}</span></div>
+      </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--book">
+  <div class="container container--narrow reveal">
+    <p class="section__eyebrow">Ready to discuss?</p>
+    <h2 class="section__title">Message us and we will build a program for your event.</h2>
+    <div class="book__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a><a class="btn btn--ghost-dark" href="{{ '/en/events/' | url }}">All events</a></div>
+  </div>
 </section>

@@ -10,8 +10,24 @@ ogLocale: en_US
 eleventyComputed:
   title: "{{ program.title }} — {{ site.shortName }}"
   description: "{{ program.lead }}"
+  keywords: "{{ program.keywords }}"
   ogImage: "{{ program.poster }}"
 ---
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
+    { "@type": "Service", "@id": "{{ site.url }}{{ page.url }}#service", "name": "{{ program.title }}", "description": {{ program.lead | dump | safe }}, "serviceType": "Themed live-band program", "provider": { "@id": "{{ site.url }}/#musicgroup" }, "areaServed": ["Moscow", "Russia", "International tours"], "url": "{{ site.url }}{{ page.url }}" }
+    {% for item in program.videos %},
+    { "@type": "VideoObject", "@id": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}", "name": "{{ item.title }} — {{ program.title }}", "description": {{ program.lead | dump | safe }}, "thumbnailUrl": "{{ site.url }}/{{ item.poster }}", "contentUrl": "{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4", "embedUrl": "{{ site.url }}{{ page.url }}", "uploadDate": "2026-06-18", "publisher": { "@id": "{{ site.url }}/#musicgroup" } }
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
 
 <section class="page-hero{% if program.slug == 'spanish' %} page-hero--spanish-promo{% endif %}">
 	<div class="container container--narrow">
@@ -20,11 +36,21 @@ eleventyComputed:
 			<a href="{{ '/en/programs/' | url }}">Themed Programs</a> <span>·</span>
 			<span>{{ program.label }}</span>
 		</p>
-		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p>
-		<h1 class="page-hero__title">{{ program.headline }}</h1>
-		<p class="page-hero__lead">{{ program.lead }}</p>
+		{% if program.slug != 'spanish' %}
+		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p><h1 class="page-hero__title">{{ program.headline }}</h1><p class="page-hero__lead">{{ program.lead }}</p>
+		{% endif %}
 	</div>
-	{% if program.poster %}
+	{% if program.slug == 'spanish' %}
+	<div class="spanish-promo">
+		<div class="spanish-promo__visual" aria-hidden="true">
+			<div class="spanish-promo__card"><img class="spanish-promo__lights" src="{{ '/assets/photos/spanish-hero/lights-overlay.png?v=2' | url }}" alt="" loading="lazy" decoding="async"><p class="spanish-promo__card-title">Macarena<br>Despacito<br>Bailando</p></div>
+			<img class="spanish-promo__orb spanish-promo__orb--one" src="{{ '/assets/photos/spanish-hero/teddy-white.jpg' | url }}" alt="" loading="eager">
+			<img class="spanish-promo__orb spanish-promo__orb--two" src="{{ '/assets/photos/spanish-hero/latin-duo.jpg' | url }}" alt="" loading="eager">
+			<img class="spanish-promo__orb spanish-promo__orb--three" src="{{ '/assets/photos/spanish-hero/teddy-latina.jpg' | url }}" alt="" loading="eager">
+		</div>
+		<div class="spanish-promo__copy"><p class="spanish-promo__eyebrow">{{ program.eyebrow }}</p><h1 class="spanish-promo__title">{{ program.headline }}</h1><p class="spanish-promo__lead">{{ program.lead }}</p></div>
+	</div>
+	{% elif program.poster %}
 	<div class="page-hero__media">
 		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
 		{% if program.video %}
@@ -34,7 +60,7 @@ eleventyComputed:
 	{% endif %}
 </section>
 
-<section class="section section--light program-video-carousel">
+{% if program.videos %}<section class="section section--light program-video-carousel">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Video</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">in live format.</span></h2>
@@ -57,10 +83,11 @@ eleventyComputed:
 		</ul>
 	</div>
 </section>
+{% endif %}
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		<h2 class="section__title">What is included<br><span class="muted">in the program.</span></h2>
+		<h2 class="section__title">What is included<br><span class="muted{% if program.slug == 'spanish' %} muted--spanish-gradient{% endif %}">in the program.</span></h2>
 		<ul class="bullets">
 			{% for b in program.bullets %}
 			<li class="bullet">
