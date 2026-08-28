@@ -103,7 +103,14 @@ jobs:
             assets/video/mp4/latin-modern-program-720.mp4 \
             assets/video/mp4/latin-modern-program-1080.mp4 \
             assets/video/mp4/teddy-jzhet-720.mp4 \
-            assets/video/mp4/teddy-jzhet-1080.mp4
+            assets/video/mp4/teddy-jzhet-1080.mp4 \
+            assets/video/mp4/stereo-sax-promo-480.mp4 \
+            assets/video/mp4/stereo-sax-promo-720.mp4 \
+            assets/video/mp4/stereo-sax-promo-1080.mp4 \
+            assets/video/mp4/stereo-sax-clip-hotel-720.mp4 \
+            assets/video/mp4/stereo-sax-clip-showroom-720.mp4 \
+            assets/video/mp4/stereo-sax-clip-party-720.mp4 \
+            assets/video/mp4/stereo-sax-clip-newyear-720.mp4
           for remote_dir in \
             '~/domains/a1279060.xsph.ru/public_html' \
             '~/domains/luxuryband.ru/public_html'
