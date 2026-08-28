@@ -1,0 +1,191 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: stereoSaxLocales
+  size: 1
+  alias: locale
+permalink: "{{ locale.permalink }}"
+eleventyComputed:
+  title: "{{ locale.title }}"
+  description: "{{ locale.description }}"
+  keywords: "{{ locale.keywords }}"
+  htmlLang: "{{ locale.lang }}"
+  ogLocale: "{% if locale.lang == 'en' %}en_US{% else %}ru_RU{% endif %}"
+ogImage: assets/stereo-sax/hero/stereo-sax-hero-1672.webp
+barePage: true
+showMainNav: true
+bodyClass: leo-sax-page
+pageStylesheet: /assets/stereo-sax/stereo-sax.css?v=1
+pageScript: /assets/stereo-sax/stereo-sax.js?v=1
+---
+{% set isEn = locale.lang == 'en' %}
+{% set gallery = [
+	{ slug: "playing-yellow", alt: "Stereo Sax играет на тенор-саксофоне в жёлтом студийном свете", altEn: "Stereo Sax playing tenor saxophone in warm yellow studio light" },
+	{ slug: "blue-velvet", alt: "Саксофонист Андрей в синем бархатном пиджаке с саксофоном", altEn: "Stereo Sax in a blue velvet jacket with his saxophone" },
+	{ slug: "white-jacket", alt: "Stereo Sax в белом пиджаке с тенор-саксофоном", altEn: "Stereo Sax in a white jacket with a tenor saxophone" },
+	{ slug: "red-leather", alt: "Саксофонист в кожаной куртке на красном фоне", altEn: "Stereo Sax in a leather jacket against a red backdrop" },
+	{ slug: "mirror-alto", alt: "Stereo Sax с альт-саксофоном у гримёрного зеркала", altEn: "Stereo Sax with an alto saxophone by a dressing-room mirror" },
+	{ slug: "terrace-white", alt: "Stereo Sax в белом костюме на летней площадке", altEn: "Stereo Sax in a white suit at a summer venue" },
+	{ slug: "pier-live", alt: "Живое выступление Stereo Sax на набережной", altEn: "Stereo Sax performing live on a waterfront stage" }
+] %}
+
+{% set clips = [
+	{ slug: "hotel", alt: "Welcome-сет Stereo Sax в лобби отеля", altEn: "Stereo Sax welcome set in a hotel lobby" },
+	{ slug: "showroom", alt: "Stereo Sax в автосалоне у белого рояля", altEn: "Stereo Sax at a showroom by a white grand piano" },
+	{ slug: "party", alt: "Вечерняя программа Stereo Sax с шоу-перформерами", altEn: "Stereo Sax evening party set with show performers" },
+	{ slug: "newyear", alt: "Новогодний джазовый сет Stereo Sax", altEn: "Stereo Sax New Year jazz set" }
+] %}
+
+{% set repertoire = [
+	{ title: "Зарубежные", count: "45 треков", songs: [
+		["Più che puoi","Eros Ramazzotti"],["Sway","Dean Martin"],["The Shadow of Your Smile","Johnny Mandel"],
+		["Just the Two of Us","Grover Washington"],["Careless Whisper","George Michael"],["Black Orpheus","Jazz standard"],
+		["Despacito","Luis Fonsi ft. Daddy Yankee"],["Lady","Modjo"],["Hallelujah","Alexandra Burke"],
+		["My All","Mariah Carey"],["If I Ain’t Got You","Alicia Keys"],["Stand by Me","Ben E. King"],
+		["It’s My Life (Latin Version)","Bon Jovi"],["You’ve Got a Friend","Carole King"],["Get Lucky","Daft Punk feat. Pharrell Williams"],
+		["What a Wonderful World","Louis Armstrong"],["Can’t Take My Eyes Off You","Frankie Valli"],["Loving You","Kenny G"],
+		["Die with a Smile","Bruno Mars, Lady Gaga"],["Flowers","Miley Cyrus"],["I’m Not the Only One","Sam Smith"],
+		["Isn’t She Lovely","Jazz standard"],["Bésame Mucho",""] ,["The Moment","Kenny G"],
+		["Paradise","Kenny G"],["Sunny","Boney M."],["Englishman in New York","Sting"],
+		["Fly Me to the Moon","Julie London"],["The Chicken","Brian Bromberg"],["L-O-V-E","Nat King Cole"],
+		["The Girl from Ipanema","Stan Getz"],["Heal the World","Michael Jackson"],["Just the Way You Are","Billy Joel"],
+		["Don’t Know Why","Norah Jones"],["Easy","Lionel Richie"],["When I Need You","Celine Dion"],
+		["Feelings","Morris Albert"],["The Door","Teddy Swims"],["Mirrors","Justin Timberlake"],
+		["I Believe","Dave Koz"],["Easy on Me","Adele"],["I Will Survive","Gloria Gaynor"],
+		["Shape of You (Club Version)","Ed Sheeran"],["Dance Monkey","Tones and I"],["Magic Moments","Perry Como"]
+	] },
+	{ title: "Отечественные", count: "25 треков", songs: [
+		["Счастье","Алексей Чумаков"],["Я не могу без тебя","Алексей Чумаков"],["Сказка под дождём","Игорь Бутман"],
+		["Я буду всегда с тобой","Леонид Агутин"],["Летний дождь","Леонид Агутин"],["With You","Егор Сесарев"],
+		["Девочка, танцуй","Artik & Asti"],["Life","Zivert"],["С Днём рождения","Ирина Аллегрова"],
+		["Ночь","Chebanov"],["Всё в твоих руках","Анжелика Варум, Леонид Агутин"],["Нарисовать мечту","Анастасия Иванова"],
+		["Тут и там","Алексей Чумаков"],["Половина сердца","Маша Шейх, Ева Власова"],["Я — это ты","Мурат Насыров"],
+		["Луч солнца золотого","Муслим Магомаев"],["Эта история","Шер Остон"],["Ветер перемен","Александр Панайотов"],
+		["Я люблю тебя до слёз","Александр Серов"],["Есть только миг","Хор Турецкого"],["Моя","Ара Мартиросян"],
+		["Куда уходит детство","ВИА «Сливки»"],["Полетели","Филипп Киркоров"],["Комета","Jony"],
+		["А снег идёт","Кватро"]
+	] }
+] %}
+
+<div class="leo">
+	<section class="leo-hero" data-leo-hero aria-labelledby="stereo-title">
+		<div class="leo-hero__stage">
+			<picture class="leo-hero__picture">
+				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-mobile-640.webp?v=1' | url }} 640w" sizes="100vw">
+				<source type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-640.webp?v=1' | url }} 640w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1280.webp?v=1' | url }} 1280w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.webp?v=1' | url }} 1672w" sizes="100vw">
+				<img class="leo-hero__image" src="{{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.jpg?v=1' | url }}" alt="{% if isEn %}Stereo Sax performing with his saxophone{% else %}Stereo Sax — саксофонист Андрей с саксофоном{% endif %}" width="1672" height="941" fetchpriority="high" decoding="async">
+			</picture>
+			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="{% if isEn %}Stereo Sax promotional video{% else %}Промо-видео Stereo Sax{% endif %}"></video>
+		</div>
+		<div class="leo-hero__shade" aria-hidden="true"></div>
+
+		<div class="leo-crest">
+			<header class="leo-wordmark">
+				<h1 id="stereo-title">STEREO <span>SAX</span></h1>
+			</header>
+		</div>
+
+		<button class="leo-play" type="button" data-leo-play aria-label="{% if isEn %}Watch the full Stereo Sax promo{% else %}Смотреть полное промо Stereo Sax{% endif %}">
+			<span aria-hidden="true"></span>
+		</button>
+
+		<div class="leo-player-ui" data-player-ui aria-hidden="true" inert>
+			<button class="leo-player-ui__close" type="button" data-video-close aria-label="{% if isEn %}Close video{% else %}Закрыть видео{% endif %}"></button>
+			<div class="leo-player-ui__quality" role="group" aria-label="{% if isEn %}Video quality{% else %}Качество видео{% endif %}">
+				<button type="button" data-video-quality="480">480p</button>
+				<button type="button" data-video-quality="720">720p</button>
+				<button type="button" data-video-quality="1080">1080p</button>
+			</div>
+			<div class="leo-player-ui__bar">
+				<button class="leo-player-ui__toggle" type="button" data-video-toggle aria-label="{% if isEn %}Pause{% else %}Пауза{% endif %}"></button>
+				<input class="leo-player-ui__progress" data-video-progress type="range" min="0" max="100" value="0" step="0.1" aria-label="{% if isEn %}Video position{% else %}Позиция видео{% endif %}">
+				<span class="leo-player-ui__time" data-video-time>0:00 / 3:46</span>
+				<button class="leo-player-ui__fullscreen" type="button" data-video-fullscreen aria-label="{% if isEn %}Full screen{% else %}На весь экран{% endif %}"></button>
+			</div>
+		</div>
+		<p class="leo-player-status" data-player-status aria-live="polite"></p>
+	</section>
+
+	<section class="leo-gallery" aria-label="{% if isEn %}Stereo Sax photos{% else %}Фотографии Stereo Sax{% endif %}">
+		<div class="leo-carousel" data-carousel="photos">
+			<button class="leo-carousel__arrow leo-carousel__arrow--prev" type="button" data-carousel-prev aria-label="{% if isEn %}Previous photo{% else %}Предыдущее фото{% endif %}"></button>
+			<div class="leo-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="{% if isEn %}Stereo Sax photos{% else %}Фотографии Stereo Sax{% endif %}">
+				<div class="leo-carousel__track" data-carousel-track>
+					{% for photo in gallery %}
+					<figure class="leo-slide" data-carousel-slide data-slide-index="{{ loop.index0 }}">
+						<picture>
+							<source type="image/webp" srcset="{{ ('/assets/stereo-sax/gallery/' + photo.slug + '-480.webp') | url }} 480w, {{ ('/assets/stereo-sax/gallery/' + photo.slug + '-960.webp') | url }} 960w" sizes="(max-width: 700px) 78vw, 31vw">
+							<img src="{{ ('/assets/stereo-sax/gallery/' + photo.slug + '-960.jpg') | url }}" alt="{% if isEn %}{{ photo.altEn }}{% else %}{{ photo.alt }}{% endif %}" width="960" height="1440" loading="lazy" decoding="async">
+						</picture>
+					</figure>
+					{% endfor %}
+				</div>
+			</div>
+			<button class="leo-carousel__arrow leo-carousel__arrow--next" type="button" data-carousel-next aria-label="{% if isEn %}Next photo{% else %}Следующее фото{% endif %}"></button>
+		</div>
+		<div class="leo-carousel__dots" data-carousel-dots="photos" aria-label="{% if isEn %}Photo gallery position{% else %}Позиция в фотогалерее{% endif %}">
+			{% for photo in gallery %}<button type="button" data-carousel-dot="{{ loop.index0 }}" aria-label="{% if isEn %}Photo{% else %}Фото{% endif %} {{ loop.index }}"{% if loop.first %} class="is-active" aria-current="true"{% endif %}></button>{% endfor %}
+		</div>
+	</section>
+
+	<section class="leo-moments" aria-labelledby="stereo-moments-title">
+		<div class="leo-wrap">
+			<div class="leo-section-head">
+				<p class="leo-kicker">{% if isEn %}Occasions{% else %}Сценарий{% endif %}</p>
+				<h2 id="stereo-moments-title">{% if isEn %}One saxophone —<br><em>four moods of the evening.</em>{% else %}Один саксофон —<br><em>четыре настроения вечера.</em>{% endif %}</h2>
+				<p class="leo-repertoire__lead">{% if isEn %}A warm tone and effortless phrasing set the atmosphere free — from laid-back grooves to melodies everyone knows.{% else %}Приятный тембр и мягкие пассажи саксофона создают особую атмосферу — от раскрепощённых ритмов до знакомых каждому мелодий.{% endif %}</p>
+			</div>
+			<div class="leo-moments__grid">
+				<article><span>01</span><h3>Welcome</h3><p>{% if isEn %}First meetings, clinking glasses — and the evening already has a sound.{% else %}Первые встречи, звон бокалов — и вечер уже звучит.{% endif %}</p></article>
+				<article><span>02</span><h3>Sax &amp; DJ</h3><p>{% if isEn %}Dance sets on top of the DJ — rhythm with a live pulse.{% else %}Танцы: саксофон поверх сета диджея — ритм с живым дыханием.{% endif %}</p></article>
+				<article><span>03</span><h3>{% if isEn %}With a cover band{% else %}С кавер-группой{% endif %}</h3><p>{% if isEn %}Joint numbers with a live band — one big show on stage.{% else %}Совместные номера с живой кавер-группой — единое шоу на сцене.{% endif %}</p></article>
+				<article><span>04</span><h3>Jazz</h3><p>{% if isEn %}Warm jazz for dinner and lounge, staying comfortably beside conversation.{% else %}Тёплый джаз для ужина и лаунжа — рядом с разговорами, не вместо них.{% endif %}</p></article>
+			</div>
+		</div>
+	</section>
+
+	<section class="leo-gallery leo-clips" aria-labelledby="stereo-clips-title">
+		<div class="leo-wrap">
+			<div class="leo-section-head">
+				<p class="leo-kicker">{% if isEn %}Live{% else %}Живьём{% endif %}</p>
+				<h2 id="stereo-clips-title">{% if isEn %}Moments<br><em>from real events.</em>{% else %}Моменты<br><em>с настоящих событий.</em>{% endif %}</h2>
+			</div>
+		</div>
+		<div class="leo-carousel" data-carousel="clips">
+			<button class="leo-carousel__arrow leo-carousel__arrow--prev" type="button" data-carousel-prev aria-label="{% if isEn %}Previous video{% else %}Предыдущее видео{% endif %}"></button>
+			<div class="leo-carousel__viewport" data-carousel-viewport tabindex="0" aria-label="{% if isEn %}Stereo Sax live videos{% else %}Живые видео Stereo Sax{% endif %}">
+				<div class="leo-carousel__track" data-carousel-track>
+					{% for clip in clips %}
+					<figure class="leo-slide leo-slide--video" data-carousel-slide data-slide-index="{{ loop.index0 }}">
+						<video controls playsinline preload="none" poster="{{ ('/assets/stereo-sax/clips/' + clip.slug + '-poster.jpg') | url }}" src="{{ ('/assets/video/mp4/stereo-sax-clip-' + clip.slug + '-720.mp4') | url }}" aria-label="{% if isEn %}{{ clip.altEn }}{% else %}{{ clip.alt }}{% endif %}"></video>
+					</figure>
+					{% endfor %}
+				</div>
+			</div>
+			<button class="leo-carousel__arrow leo-carousel__arrow--next" type="button" data-carousel-next aria-label="{% if isEn %}Next video{% else %}Следующее видео{% endif %}"></button>
+		</div>
+		<div class="leo-carousel__dots" data-carousel-dots="clips" aria-label="{% if isEn %}Video position{% else %}Позиция в видеогалерее{% endif %}">
+			{% for clip in clips %}<button type="button" data-carousel-dot="{{ loop.index0 }}" aria-label="{% if isEn %}Video{% else %}Видео{% endif %} {{ loop.index }}"{% if loop.first %} class="is-active" aria-current="true"{% endif %}></button>{% endfor %}
+		</div>
+	</section>
+
+	<section class="leo-repertoire" aria-labelledby="stereo-repertoire-title">
+		<div class="leo-wrap">
+			<div class="leo-section-head leo-section-head--rep">
+				<p class="leo-kicker">{% if isEn %}Repertoire{% else %}Репертуар{% endif %}</p>
+				<h2 id="stereo-repertoire-title">{% if isEn %}Music follows<br><em>the rhythm of the event.</em>{% else %}Музыка следует<br><em>ритму события.</em>{% endif %}</h2>
+				<p class="leo-repertoire__lead">{% if isEn %}From the breath of jazz to a light pop motif, the program shifts the mood smoothly and without unnecessary words.{% else %}От дыхания джаза до лёгкого поп-мотива — программа меняет настроение мягко, без лишних слов.{% endif %}</p>
+			</div>
+			<div class="leo-repertoire__groups">
+				{% for group in repertoire %}
+				<details class="leo-repertoire__group">
+					<summary><span>{% if isEn %}{% if loop.first %}International{% else %}Russian-Language{% endif %}{% else %}{{ group.title }}{% endif %}</span><small>{% if isEn %}{{ group.songs | length }} tracks{% else %}{{ group.count }}{% endif %}</small><i aria-hidden="true"></i></summary>
+					<ul>
+						{% for song in group.songs %}<li><strong>{{ song[0] }}</strong>{% if song[1] %}<span>{{ song[1] }}</span>{% endif %}</li>{% endfor %}
+					</ul>
+				</details>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+</div>
