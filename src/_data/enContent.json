@@ -43,9 +43,9 @@
 			"poster": "assets/video/posters/teddy-macarena-en-4x3.jpg",
 			"video": "teddy-macarena",
 			"videos": [
-				{"slug": "latin-modern-program", "title": "Modern Latin Program", "label": "Latino", "poster": "assets/video/posters/latin-modern-program-en-4x3.jpg"},
+				{"slug": "latin-modern-program", "title": "Modern Latin Show", "label": "Latino", "poster": "assets/video/posters/latin-modern-program-en-show-4x3.jpg"},
 				{"slug": "live-baskov-revva", "title": "Baskov + Revva + Ukupnik", "label": "Live", "poster": "assets/video/posters/live-baskov-revva.jpg"},
-				{"slug": "latin-music-luxury-cover-band", "title": "Latin Music", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band-en-4x3.jpg"},
+				{"slug": "latin-music-luxury-cover-band", "title": "Authentic Latin Show", "label": "Latino", "poster": "assets/video/posters/latin-music-luxury-cover-band-en-show-4x3.jpg"},
 				{"slug": "luxury-latin-dance-master-class", "title": "Dance Masterclass", "label": "Interactive", "poster": "assets/video/posters/luxury-latin-dance-master-class-en-4x3.jpg"},
 				{"slug": "teddy-latina-promo", "title": "Teddy · LATIN", "label": "Latino", "poster": "assets/video/posters/teddy-latina-promo-en-4x3.jpg"}
 			]
