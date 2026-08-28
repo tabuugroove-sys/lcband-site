@@ -15,7 +15,7 @@ ogImage: assets/stereo-sax/hero/stereo-sax-hero-1672.webp
 barePage: true
 showMainNav: true
 bodyClass: leo-sax-page
-pageStylesheet: /assets/stereo-sax/stereo-sax.css?v=1
+pageStylesheet: /assets/stereo-sax/stereo-sax.css?v=2
 pageScript: /assets/stereo-sax/stereo-sax.js?v=1
 ---
 {% set isEn = locale.lang == 'en' %}
@@ -71,9 +71,9 @@ pageScript: /assets/stereo-sax/stereo-sax.js?v=1
 	<section class="leo-hero" data-leo-hero aria-labelledby="stereo-title">
 		<div class="leo-hero__stage">
 			<picture class="leo-hero__picture">
-				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-mobile-640.webp?v=1' | url }} 640w" sizes="100vw">
-				<source type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-640.webp?v=1' | url }} 640w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1280.webp?v=1' | url }} 1280w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.webp?v=1' | url }} 1672w" sizes="100vw">
-				<img class="leo-hero__image" src="{{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.jpg?v=1' | url }}" alt="{% if isEn %}Stereo Sax performing with his saxophone{% else %}Stereo Sax — саксофонист Андрей с саксофоном{% endif %}" width="1672" height="941" fetchpriority="high" decoding="async">
+				<source media="(max-width: 700px)" type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-mobile-640.webp?v=2' | url }} 640w" sizes="100vw">
+				<source type="image/webp" srcset="{{ '/assets/stereo-sax/hero/stereo-sax-hero-640.webp?v=2' | url }} 640w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1280.webp?v=2' | url }} 1280w, {{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.webp?v=2' | url }} 1672w" sizes="100vw">
+				<img class="leo-hero__image" src="{{ '/assets/stereo-sax/hero/stereo-sax-hero-1672.jpg?v=2' | url }}" alt="{% if isEn %}Stereo Sax performing with his saxophone{% else %}Stereo Sax — саксофонист Андрей с саксофоном{% endif %}" width="1672" height="941" fetchpriority="high" decoding="async">
 			</picture>
 			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="{% if isEn %}Stereo Sax promotional video{% else %}Промо-видео Stereo Sax{% endif %}"></video>
 		</div>

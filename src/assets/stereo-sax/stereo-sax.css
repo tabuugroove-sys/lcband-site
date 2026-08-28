@@ -53,9 +53,11 @@ img, video { display: block; max-width: 100%; }
 .leo-hero__stage { z-index: 0; background: #000; }
 .leo-hero__picture { transition: opacity 0.55s var(--leo-ease), transform 1.2s var(--leo-ease); }
 .leo-hero__image {
+	/* Stereo Sax: фигура слева в полный рост — без дополнительного зума,
+	   иначе cover срезает голову/ступни. Держим музыканта в кадре слева. */
 	object-fit: cover;
-	object-position: 50% 45%;
-	transform: scale(1.14);
+	object-position: 30% 42%;
+	transform: none;
 	transform-origin: 50% 20%;
 }
 .leo-player {
@@ -533,7 +535,7 @@ summary:focus-visible,
 	.leo-wrap,
 	.leo-section-head--dark { width: calc(100% - 40px); }
 	.leo-hero { min-height: 560px; }
-	.leo-hero__image { object-position: center center; transform: scale(1.14); transform-origin: 50% 10%; }
+	.leo-hero__image { object-position: center 30%; transform: none; transform-origin: 50% 10%; }
 	.leo-wordmark { top: max(58px, calc(env(safe-area-inset-top) + 52px)); left: 14px; }
 	.leo-wordmark h1 { font-size: 15px; letter-spacing: 0.15em; text-indent: 0.15em; white-space: nowrap; }
 	.leo-crest__mark { top: max(54px, calc(env(safe-area-inset-top) + 48px)); right: 10px; width: 78px; }
