@@ -223,6 +223,16 @@
       "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
     },
     {
+      "path": "assets/video/mp4/old-money-band-1080.mp4",
+      "bytes": 41175276,
+      "sha256": "c9d7889eccce8a1f5325a775ab540de0ec255884047e0ddb5bc72556d2fa1623"
+    },
+    {
+      "path": "assets/video/mp4/old-money-band-720.mp4",
+      "bytes": 18145577,
+      "sha256": "dce85af977a6faee91f81a7be764e23d2178a7c3aa9e8d06d212b19f7faa4902"
+    },
+    {
       "path": "assets/video/mp4/promo-amore-no-1080.mp4",
       "bytes": 64302179,
       "sha256": "150026cd1af4d5e83e51811f6ce791741637a548f668e581e3656392e430bc10"

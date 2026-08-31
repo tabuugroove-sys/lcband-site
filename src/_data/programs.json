@@ -168,20 +168,27 @@
 	},
 	{
 		"slug": "jazz",
-		"title": "Джазовая программа",
-		"label": "Jazz Vocal/Инструментальный",
-		"eyebrow": "Jazz Vocal/Инструментальный",
-		"headline": "Swing. Soul. Standards.",
-		"lead": "Живой джаз — от Синатры до Амалии Родригеш. Камерный формат для галерей, ресторанов, tasting-ужинов. Или полноформатный swing-блок на большой сцене.",
+		"title": "Old Money Band — джазовая программа",
+		"label": "Old Money Band",
+		"eyebrow": "Old Money Band · Jazz",
+		"headline": "Old Money. Swing. Lounge.",
+		"lead": "Old Money Band — джазовый проект Luxury Cover Band: мужской вокал, саксофон, контрабас и живой ритм. Мягкий джаз и lounge, который создаёт атмосферу и не мешает разговору — велкомы, ужины, галереи, яхты.",
 		"bullets": [
-			"Jazz standards (Fly Me to the Moon, Autumn Leaves, Girl from Ipanema)",
-			"Swing блок (Sinatra, Tony Bennett, Dean Martin)",
-			"Soul (Etta James, Nina Simone, Aretha Franklin)",
-			"Bossa Nova / Latin Jazz переходы"
+			"Jazz standards (Fly Me to the Moon, Autumn Leaves, Sinatra)",
+			"Мягкий lounge-фон под общение гостей",
+			"Swing и soul-блоки для полноформатной сцены",
+			"Чисто инструментальный сет — по запросу",
+			"Составы от дуэта до полного бенда"
 		],
-		"poster": "assets/video/posters/live-berezy.jpg",
-		"video": "live-berezy",
+		"poster": "assets/video/posters/old-money-band.jpg",
+		"video": "old-money-band",
 		"videos": [
+			{
+				"slug": "old-money-band",
+				"title": "Old Money Band",
+				"label": "Promo",
+				"poster": "assets/video/posters/old-money-band.jpg"
+			},
 			{
 				"slug": "live-berezy",
 				"title": "Берёзы live",
@@ -201,7 +208,7 @@
 				"poster": "assets/video/posters/live-soho.jpg"
 			}
 		],
-		"keywords": "джаз кавер группа, jazz cover band moscow, swing программа на корпоратив"
+		"keywords": "джаз кавер группа, old money band, jazz cover band moscow, джаз на велком, swing программа на корпоратив"
 	},
 	{
 		"slug": "rock",
