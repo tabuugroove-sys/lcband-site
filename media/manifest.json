@@ -1,0 +1,476 @@
+{
+  "version": 1,
+  "origin": "https://luxuryband.ru",
+  "files": [
+    {
+      "path": "assets/video/mp4/interact-chainsmokers-1080.mp4",
+      "bytes": 13988806,
+      "sha256": "0670ff7660284c91ee9cc12b20e05ffbf828dcfa2b414c6e3af0ec1647270c91"
+    },
+    {
+      "path": "assets/video/mp4/interact-chainsmokers-720.mp4",
+      "bytes": 6373025,
+      "sha256": "9447409626661550c0b464b722ffb7e0a6fa7d5e1ad4b6f6b62a67ca3beba324"
+    },
+    {
+      "path": "assets/video/mp4/interact-laz-coco-jambo-1080.mp4",
+      "bytes": 35870426,
+      "sha256": "569e857aa75cf63f2ba46e2df8f2fe11b60e5386850bc995baaadcc2ff8c892d"
+    },
+    {
+      "path": "assets/video/mp4/interact-laz-coco-jambo-720.mp4",
+      "bytes": 15062572,
+      "sha256": "eceabe18e3bc90936eba17d87d73d10715c790812b1c182e38be178efad85ccc"
+    },
+    {
+      "path": "assets/video/mp4/interact-macarena-1080.mp4",
+      "bytes": 8370015,
+      "sha256": "b8749b6101e97007985bda1d8293b03da453201bba96b03ab190dfa4f2bcc1f9"
+    },
+    {
+      "path": "assets/video/mp4/interact-macarena-720.mp4",
+      "bytes": 3459420,
+      "sha256": "f0f39feca552ae4b2470c0dfd7e12d3613c1bf703d5df15d90b81daaef033121"
+    },
+    {
+      "path": "assets/video/mp4/interact-wedding-shallow-1080.mp4",
+      "bytes": 31285996,
+      "sha256": "f533692811c9efcdcaf0fc1102215b5aa73ae0890189eb174153affed37312ae"
+    },
+    {
+      "path": "assets/video/mp4/interact-wedding-shallow-720.mp4",
+      "bytes": 13331068,
+      "sha256": "a495be913a8f794acd0c6db29ac20af5965f830ac6f06f3c05c4765b0c0e43ff"
+    },
+    {
+      "path": "assets/video/mp4/latin-modern-program-1080.mp4",
+      "bytes": 77160872,
+      "sha256": "42500ae994d474ff9c204d5883092fcc67dce3a9c8f9ad68425383e8a96a1140"
+    },
+    {
+      "path": "assets/video/mp4/latin-modern-program-720.mp4",
+      "bytes": 35055643,
+      "sha256": "7dbe42c59751ec3cd87930e84925206747f4722d23441211ca1283f5ab2d1565"
+    },
+    {
+      "path": "assets/video/mp4/latin-music-luxury-cover-band-1080.mp4",
+      "bytes": 57720171,
+      "sha256": "fea55670d0fb87d46a5ebd2d68abbeac22fa9776759054f2ae6d93d0333a120c"
+    },
+    {
+      "path": "assets/video/mp4/latin-music-luxury-cover-band-2160.mp4",
+      "bytes": 85141848,
+      "sha256": "43a7b0c62ed64e31f2c049a326fba0e7e0cd7c1ba2f23356d907e61539482e16"
+    },
+    {
+      "path": "assets/video/mp4/latin-music-luxury-cover-band-720.mp4",
+      "bytes": 28961641,
+      "sha256": "aba7650c3bece704f8f42c806c14f2d22dfb15b765ee83f9ea69e1f6e41d64db"
+    },
+    {
+      "path": "assets/video/mp4/leo-sax-promo-1080.mp4",
+      "bytes": 69205183,
+      "sha256": "c54414ced9d9995cdfe2f756b1f11c7e2bf8ccf045d077e1abc1a52203c20815"
+    },
+    {
+      "path": "assets/video/mp4/leo-sax-promo-480.mp4",
+      "bytes": 16413764,
+      "sha256": "27686a2a4127ff9b525af438ec7dacdb851a08417c0cfce9274f2271ec763e08"
+    },
+    {
+      "path": "assets/video/mp4/leo-sax-promo-720.mp4",
+      "bytes": 32319080,
+      "sha256": "68aa3eab3cdbe74840132854c3fdb59fe93daf11accfcd682eef939827a693ba"
+    },
+    {
+      "path": "assets/video/mp4/live-adele-hello-1080.mp4",
+      "bytes": 41098577,
+      "sha256": "3c30c2a1944b1987f3918e4ef0e34ca709a7a4ee31f241dbe459df0e160b906f"
+    },
+    {
+      "path": "assets/video/mp4/live-adele-hello-720.mp4",
+      "bytes": 18825581,
+      "sha256": "55c0f5309df707b484950f06e1c9c2a26757d3b4814256e8a9f2d466bc229e20"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-lcb-1080.mp4",
+      "bytes": 6614141,
+      "sha256": "555d1a742e6555770104119582b6bea04beac0a564e08f4f01ea23cd2c6306b1"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-lcb-720.mp4",
+      "bytes": 4633701,
+      "sha256": "b7e3a20a754f74af4b740425a3bb0f050fe061cc8c69cba465b277d0b4b0c61a"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-revva-1080.mp4",
+      "bytes": 23101911,
+      "sha256": "7e044ae625af409dfad3c00906bbc2290f52e7e046e7cc27ef70fd7ea510dd35"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-revva-720.mp4",
+      "bytes": 16649915,
+      "sha256": "e90d87865637654ad385c9f3cbe7085e7a8a17b346af2aded0f2e92f209c6fca"
+    },
+    {
+      "path": "assets/video/mp4/live-berezy-1080.mp4",
+      "bytes": 23663958,
+      "sha256": "8cef8921d81db2799d44dd0114f97d032331e734cb61c4a073802eeb8423db02"
+    },
+    {
+      "path": "assets/video/mp4/live-berezy-720.mp4",
+      "bytes": 15993667,
+      "sha256": "fa0b62ce80d4400a3e591b4508595ac899dd9f728c4e5abfa59fcc58668dfb34"
+    },
+    {
+      "path": "assets/video/mp4/live-big-lineup-1080.mp4",
+      "bytes": 66442564,
+      "sha256": "9a82e71d2d93f67de0199dc88869a9a3fc690a650e91cc746a2fbee135956295"
+    },
+    {
+      "path": "assets/video/mp4/live-big-lineup-720.mp4",
+      "bytes": 42139431,
+      "sha256": "1c4ccd0c50bbb633b8e0055dd4379f417e623ca2d3ebe3b078362f4e3dc0450e"
+    },
+    {
+      "path": "assets/video/mp4/live-dance-monkey-1080.mp4",
+      "bytes": 45614361,
+      "sha256": "68703b4caa4a6f260988dfce577171153cdcb9a3dbd1995d731825d9b4183194"
+    },
+    {
+      "path": "assets/video/mp4/live-dance-monkey-720.mp4",
+      "bytes": 19071424,
+      "sha256": "0b0fb0a55c31dd2413e64910f0ef93fd505bdd2aa37cdf2b6fdcb0624b51a8d6"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-1080.mp4",
+      "bytes": 83774916,
+      "sha256": "023e1a7dd540f3aab62489ee0c6d62e4463be13187ad85fc4299bc3ed0aac8fb"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-720.mp4",
+      "bytes": 47784760,
+      "sha256": "8fdb3d2fbf99cbf6cb01ce222df544a515caf4aaffc302653ce87ae483af0a41"
+    },
+    {
+      "path": "assets/video/mp4/live-jazz-vintage-1080.mp4",
+      "bytes": 88235579,
+      "sha256": "0e127868c3567376f04f433ad914d89806fe3de5fdbd2b2dc88f324eb1ba8908"
+    },
+    {
+      "path": "assets/video/mp4/live-jazz-vintage-720.mp4",
+      "bytes": 42228908,
+      "sha256": "013d346d89fc845a8e399db5bb0b1e82719bb7c241b41956eb17d60fa6c6e39f"
+    },
+    {
+      "path": "assets/video/mp4/live-lets-get-loud-1080.mp4",
+      "bytes": 4008293,
+      "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4"
+    },
+    {
+      "path": "assets/video/mp4/live-lets-get-loud-720.mp4",
+      "bytes": 2716570,
+      "sha256": "f91f249d02e1892393ea868a5ad005879ef69d5621ffc1f7ecf7b43fa048a2df"
+    },
+    {
+      "path": "assets/video/mp4/live-perfect-1080.mp4",
+      "bytes": 50322561,
+      "sha256": "ee5158c3f60baa368b60da01ef290ffc19031339dff1488542f0b086e49c81aa"
+    },
+    {
+      "path": "assets/video/mp4/live-perfect-720.mp4",
+      "bytes": 28220323,
+      "sha256": "f4b577103d4b240d76e41bfe7d23289fd0741fb0dd7504943531f00a2c9602f5"
+    },
+    {
+      "path": "assets/video/mp4/live-sax-wedding-welcome-1080.mp4",
+      "bytes": 71503164,
+      "sha256": "306294b8620ed2f09c4eab7a8197d837a4f921a9e18040e557c59245dc632133"
+    },
+    {
+      "path": "assets/video/mp4/live-sax-wedding-welcome-720.mp4",
+      "bytes": 35365935,
+      "sha256": "b50c5f936a29e1c9f077d37204296267987c3ccc94bb7b5401711b8a532393fb"
+    },
+    {
+      "path": "assets/video/mp4/live-simple-the-best-1080.mp4",
+      "bytes": 6136847,
+      "sha256": "2a334a00382d52e7e968f724bbfacfa830e5002390324258dbda6b65c1cfab3c"
+    },
+    {
+      "path": "assets/video/mp4/live-simple-the-best-720.mp4",
+      "bytes": 3062584,
+      "sha256": "1de8ee7dc479854a4dc482747ecb435e520d696e8dd6af4a5c61f4cc18d0310f"
+    },
+    {
+      "path": "assets/video/mp4/live-soho-1080.mp4",
+      "bytes": 35295315,
+      "sha256": "ca243314358ff48c6c95ee5c11db0cc08b4e8481a37dd8f4705d4d48967f2d3e"
+    },
+    {
+      "path": "assets/video/mp4/live-soho-720.mp4",
+      "bytes": 20394607,
+      "sha256": "a10f138bea9c646b99439753586469980df0c756a2b31fe25af27088e21a74b1"
+    },
+    {
+      "path": "assets/video/mp4/luxury-latin-dance-master-class-1080.mp4",
+      "bytes": 42143090,
+      "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
+    },
+    {
+      "path": "assets/video/mp4/luxury-latin-dance-master-class-720.mp4",
+      "bytes": 42143090,
+      "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
+    },
+    {
+      "path": "assets/video/mp4/promo-amore-no-1080.mp4",
+      "bytes": 64302179,
+      "sha256": "150026cd1af4d5e83e51811f6ce791741637a548f668e581e3656392e430bc10"
+    },
+    {
+      "path": "assets/video/mp4/promo-amore-no-720.mp4",
+      "bytes": 27284303,
+      "sha256": "3e738aa9c919a5e00afb7bc0d0bb2cb81d6e14c812fa5efc8d93d0dca1470ee3"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-1080.mp4",
+      "bytes": 39222616,
+      "sha256": "9d530c792ce11ba1d8956e9142b16851355e327649a7450edba67e096ed83071"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-720.mp4",
+      "bytes": 18467169,
+      "sha256": "def2c335e687b22df55ea844a112e957b5c72db74a3c9766e557e86ce290dc4c"
+    },
+    {
+      "path": "assets/video/mp4/promo-danza-cuduro-1080.mp4",
+      "bytes": 19214751,
+      "sha256": "b675ae2c1b9d01d4445a69430ac8c9740e2159f55af8ac1b9f50d268e62810ac"
+    },
+    {
+      "path": "assets/video/mp4/promo-danza-cuduro-2160.mp4",
+      "bytes": 32341600,
+      "sha256": "991ffa5cb81ea74362a3cc112a5a25f886f47eefab64a5106f9f88d123f9a126"
+    },
+    {
+      "path": "assets/video/mp4/promo-danza-cuduro-720.mp4",
+      "bytes": 10508925,
+      "sha256": "da993ea52b5cdf4106c142246e1a78cb5a15c65a3ec3321eec9385792d3cdeb0"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-1080.mp4",
+      "bytes": 41187899,
+      "sha256": "cee1bc1996e98e31d7c17f295ba8bf38588ad2633b4f88c383b5f725c1d09854"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-2160.mp4",
+      "bytes": 96380445,
+      "sha256": "fb1de3d73c9f283f89519176ed1ff322966b4098f13ca280dd78b997bff9a684"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-720.mp4",
+      "bytes": 19066968,
+      "sha256": "a4992ebd846bcd927c58382b3efedf5b1e5ad77e8bc72e27d0f7abb1df44ba89"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-1080.mp4",
+      "bytes": 26621615,
+      "sha256": "97ebd688c50c07b1f775c7e027496350d2cedb910f71f0367e7e49e084937e04"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-2160.mp4",
+      "bytes": 65280497,
+      "sha256": "d6e1021243cd2362f0264eb83c1c6c0501d695dd6c812d51938550f5bc1bdae9"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-720.mp4",
+      "bytes": 11321849,
+      "sha256": "2e8c0b70cfd08d0ec32119a707658556161af8606cf0212d439f62c223c9b2b5"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-1080.mp4",
+      "bytes": 22411516,
+      "sha256": "f9e15ab699c49c3af66e4df9ec5d525e5abbea317676f8981e917dc0d18ff7df"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-720.mp4",
+      "bytes": 7382831,
+      "sha256": "bc1d5c9e544dc8ec030db92cdcd12ecdcd2b2dfdcac6c3e58a74a077796375d8"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-1080.mp4",
+      "bytes": 32943991,
+      "sha256": "3aa99506719b4bf84a8ebaa36b0a719e220bb19ff513da30f488c49c45e05aed"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-2160.mp4",
+      "bytes": 89525280,
+      "sha256": "8417ccd9fb02837d8a65ef3c3019b0cb0d4e25535f4754ea174ced8fef68544d"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-720.mp4",
+      "bytes": 13581339,
+      "sha256": "65e57bf6b2931067d3fb2b850b0c5525f7bbce87927bb41ad8eb57082faa0400"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-1080.mp4",
+      "bytes": 20765297,
+      "sha256": "2c990dc75ffa35830c8ba2651b3e117a75640456e46743093e5c37677f5f757c"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-720.mp4",
+      "bytes": 5983382,
+      "sha256": "29fc7e3ef077412f00250e36989d8b91874ffce19d36530dfa281efa4f8c082b"
+    },
+    {
+      "path": "assets/video/mp4/sax-hero.mp4",
+      "bytes": 3737627,
+      "sha256": "45bde160d581c22a6c44b84ba3394dfae979d5344e152c0dff8770c9429ebe54"
+    },
+    {
+      "path": "assets/video/mp4/sax-welcome-720.mp4",
+      "bytes": 30457106,
+      "sha256": "20b2f83cf0fd49fdcef9700eb921ee86a860f3c769f556f44415d8a1fdeee6e5"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-clip-hotel-720.mp4",
+      "bytes": 4968040,
+      "sha256": "61eedad0aaeaec7de07b1e82a2ff3f0195a251d4c7c8e86cba2e5fd6d4f81779"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-clip-newyear-720.mp4",
+      "bytes": 13974129,
+      "sha256": "322d8fb53c591e8229c286856f025c869c6c0cef677e5020e81707b71cc4b112"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-clip-party-720.mp4",
+      "bytes": 18629338,
+      "sha256": "45878f4f6f5716e2514f44d72b0abc560d6ebdb7d2179e558a09ccbe99072a34"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-clip-showroom-720.mp4",
+      "bytes": 6205709,
+      "sha256": "794bf172f03c80e15738627edfd077224bd5cf6353d47e74fe3729b5ea54e577"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-promo-1080.mp4",
+      "bytes": 84756477,
+      "sha256": "1f3ff011e5c2e3ea3bbaad201830929d6d2f4df5d7e139d0d4438da0aeb69c24"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-promo-480.mp4",
+      "bytes": 30377518,
+      "sha256": "8e51fb162fd4cdd1fc15ff018f1b2edc352c659b9ffde67b2e2089e1c58569fa"
+    },
+    {
+      "path": "assets/video/mp4/stereo-sax-promo-720.mp4",
+      "bytes": 67826637,
+      "sha256": "03e31d2724adc6677f610617fa214ec5a08949d8bb0fe4998989ca4d412fd437"
+    },
+    {
+      "path": "assets/video/mp4/teddy-jzhet-1080.mp4",
+      "bytes": 5455290,
+      "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
+    },
+    {
+      "path": "assets/video/mp4/teddy-jzhet-720.mp4",
+      "bytes": 5455290,
+      "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
+    },
+    {
+      "path": "assets/video/mp4/teddy-latina-promo-1080.mp4",
+      "bytes": 91230180,
+      "sha256": "c136b07c6fd9959278f685aa7368396c84048d2d5464206a526f2aaf15fea413"
+    },
+    {
+      "path": "assets/video/mp4/teddy-latina-promo-720.mp4",
+      "bytes": 91230180,
+      "sha256": "c136b07c6fd9959278f685aa7368396c84048d2d5464206a526f2aaf15fea413"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-1080.mp4",
+      "bytes": 15604153,
+      "sha256": "085b34e08dc4da7514e43c07fcd78786aacaea2af3bace3f1314807c2878fef4"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-720.mp4",
+      "bytes": 10136793,
+      "sha256": "dd91fa6eb49b8630fcc59db4daf08e5bb3202b777248be01bf9dbf0fd80587d3"
+    },
+    {
+      "path": "assets/video/mp4/thematic-french-1080.mp4",
+      "bytes": 16215410,
+      "sha256": "823007ce994921ad913eae7c35d962c9ecfa78e6f4a4a0a2937235ea78e0e552"
+    },
+    {
+      "path": "assets/video/mp4/thematic-french-720.mp4",
+      "bytes": 5983382,
+      "sha256": "29fc7e3ef077412f00250e36989d8b91874ffce19d36530dfa281efa4f8c082b"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-1080.mp4",
+      "bytes": 25829923,
+      "sha256": "b0e3b588d7c288de7d0799d4828979d52b3cbf2c29d0152cb3d372e280d73964"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-720.mp4",
+      "bytes": 10490766,
+      "sha256": "7a7f67b867f9ffe5355fa69d61f80fcc7c3b5e4ed58105e79353a3ef32016c96"
+    },
+    {
+      "path": "assets/video/mp4/thematic-pop-dance-monkey-1080.mp4",
+      "bytes": 22839476,
+      "sha256": "820f067805f35263c7f4133c7b920ed47450ee4f4534e17bea7c8e18f8ce1346"
+    },
+    {
+      "path": "assets/video/mp4/thematic-pop-dance-monkey-720.mp4",
+      "bytes": 9385957,
+      "sha256": "9fefec4883ae2eff8191b1356afeac6df576b72b9f3a6856916ab4f5804b2685"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-90s-1080.mp4",
+      "bytes": 16202690,
+      "sha256": "a4f22af362e2421a8b4d9e6d9711f39dd972cdf60e3160a9fd1e457e814a9ebe"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-90s-720.mp4",
+      "bytes": 17322268,
+      "sha256": "e76e064a2e5a64f658672e43ac0a9ec9a9de15d52925e8e3272a418d4dbe65c9"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-boyar-1080.mp4",
+      "bytes": 10466234,
+      "sha256": "e158414ff9c10e7d7434b362402fab6823d58ee5adde11d821ccf505e4211dd2"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-boyar-720.mp4",
+      "bytes": 4933169,
+      "sha256": "ec59cb278ec0b8bffd608d592e312927972d475920e33a5b10de03150a5236c3"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-1080.mp4",
+      "bytes": 22349695,
+      "sha256": "c665dc8f5145b9202ed526517f83b13c5e90625b7bf4f6691f122f2be98da9b8"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-2160.mp4",
+      "bytes": 70994296,
+      "sha256": "9ea8b23cb0c7abd949478bfd5435a768816ba564bbc307b42763f7fce4a67247"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-720.mp4",
+      "bytes": 7977459,
+      "sha256": "f2719d01b4ce417c6f4b113bde6d0cd20f9aadf97b8fc478280bab46270c93dc"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-stilyagi-1080.mp4",
+      "bytes": 16743825,
+      "sha256": "a512dabb8ab1a07b660d6618b9b09f956caedf67f73b51a3746d20813f03813a"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-stilyagi-720.mp4",
+      "bytes": 14434904,
+      "sha256": "f38725511064744d16bac1261b6537ab2ba5fe18d9f21de7dff1030cd110ecca"
+    }
+  ]
+}

@@ -4,12 +4,16 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "build": "eleventy",
+    "clean": "node tools/clean-site.mjs",
+    "build": "npm run clean && eleventy",
     "dev": "PATHPREFIX=/ eleventy --serve",
-    "preview": "PATHPREFIX=/ eleventy",
+    "preview": "npm run clean && PATHPREFIX=/ eleventy",
+    "media:manifest": "node tools/media-manifest.mjs --write",
+    "media:check": "node tools/media-manifest.mjs --check-production",
+    "media:upload": "node tools/upload-video.mjs",
     "seo:audit": "node tools/seo-audit.mjs",
-    "seo:check": "PATHPREFIX=/ eleventy && node tools/seo-audit.mjs",
-    "test": "PATHPREFIX=/ eleventy && playwright test"
+    "seo:check": "npm run preview && node tools/seo-audit.mjs",
+    "test": "npm run preview && playwright test"
   },
   "repository": {
     "type": "git",

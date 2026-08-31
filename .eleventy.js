@@ -2,14 +2,32 @@ import fs from "node:fs";
 import path from "node:path";
 
 export default function (eleventyConfig) {
-	// Passthrough static assets untouched
-	eleventyConfig.addPassthroughCopy("src/assets");
+	// Git tracks code and lightweight assets. MP4 files live on Sprinthost and
+	// are catalogued in media/manifest.json, so they must never enter _site or
+	// a GitHub Actions artifact.
+	const passthroughAssetDirectories = [
+		"costumes",
+		"docs",
+		"hero",
+		"leo-sax",
+		"photos",
+		"repertoire",
+		"riders",
+		"stereo-sax",
+		"video/posters",
+		"vocalists",
+	];
+	for (const assetDirectory of passthroughAssetDirectories) {
+		eleventyConfig.addPassthroughCopy({
+			[`src/assets/${assetDirectory}`]: `assets/${assetDirectory}`,
+		});
+	}
+	eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
 	eleventyConfig.addPassthroughCopy("src/styles.css");
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root
 	eleventyConfig.addPassthroughCopy("src/.htaccess");
-	eleventyConfig.addPassthroughCopy({ "src/assets/repertoire": "assets/repertoire" });
 
 	// Search-engine verification files — keep exact filename at site root
 	eleventyConfig.addPassthroughCopy("src/yandex_aee9a8b3d1cfc306.html");

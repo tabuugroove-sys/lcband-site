@@ -7,6 +7,10 @@ Thumbs.db
 node_modules/
 _site/
 
+# Production video is served by Sprinthost. Keep local working copies on the
+# Mac, but never commit MP4 binaries to Git again.
+src/assets/video/mp4/*.mp4
+
 # Nano Banana backups (keep local only)
 src/assets/.nanobanana-backup/
 
@@ -14,6 +18,9 @@ src/assets/.nanobanana-backup/
 tools/*
 !tools/seo-audit.mjs
 !tools/agent-gate.sh
+!tools/clean-site.mjs
+!tools/media-manifest.mjs
+!tools/upload-video.mjs
 !tools/hooks/
 !tools/hooks/pre-push
 output/

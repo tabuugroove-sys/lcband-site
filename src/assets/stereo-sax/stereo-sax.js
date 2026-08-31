@@ -12,7 +12,7 @@
 	const fullscreenButton = hero?.querySelector('[data-video-fullscreen]');
 	const qualityButtons = [...(hero?.querySelectorAll('[data-video-quality]') || [])];
 	const status = hero?.querySelector('[data-player-status]');
-	const base = (window.SITE_BASE || '/').replace(/\/?$/, '/');
+	const base = (window.VIDEO_BASE || 'https://luxuryband.ru/').replace(/\/?$/, '/');
 	const qualities = ['480', '720', '1080'];
 	let currentQuality = '720';
 	let qualityWasChosen = false;

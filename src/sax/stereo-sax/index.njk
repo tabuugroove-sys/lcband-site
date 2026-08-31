@@ -157,7 +157,7 @@ pageScript: /assets/stereo-sax/stereo-sax.js?v=1
 				<div class="leo-carousel__track" data-carousel-track>
 					{% for clip in clips %}
 					<figure class="leo-slide leo-slide--video" data-carousel-slide data-slide-index="{{ loop.index0 }}">
-						<video controls playsinline preload="none" poster="{{ ('/assets/stereo-sax/clips/' + clip.slug + '-poster.jpg') | url }}" src="{{ ('/assets/video/mp4/stereo-sax-clip-' + clip.slug + '-720.mp4') | url }}" aria-label="{% if isEn %}{{ clip.altEn }}{% else %}{{ clip.alt }}{% endif %}"></video>
+						<video controls playsinline preload="none" poster="{{ ('/assets/stereo-sax/clips/' + clip.slug + '-poster.jpg') | url }}" src="{{ site.url }}/assets/video/mp4/stereo-sax-clip-{{ clip.slug }}-720.mp4" aria-label="{% if isEn %}{{ clip.altEn }}{% else %}{{ clip.alt }}{% endif %}"></video>
 					</figure>
 					{% endfor %}
 				</div>

@@ -4,8 +4,8 @@
 #
 # WHY THIS EXISTS:
 #   Multiple autonomous agents (Claude Code, Codex) edit this repo. Git is the
-#   SINGLE SOURCE OF TRUTH and every push auto-deploys to BOTH the preview AND
-#   the live domain luxuryband.ru via GitHub Actions (.github/workflows/
+#   SINGLE SOURCE OF TRUTH and every push auto-deploys the lightweight build
+#   to the live domain luxuryband.ru via GitHub Actions (.github/workflows/
 #   deploy-sprinthost.yml). If two agents edit in parallel — or one edits from a
 #   stale local HEAD — they silently clobber each other's work on production.
 #

@@ -66,7 +66,10 @@
 	<meta name="color-scheme" content="dark light">
 	{% endif %}
 
-	<script>window.SITE_BASE = "{{ '/' | url }}";</script>
+	<script>
+		window.SITE_BASE = "{{ '/' | url }}";
+		window.VIDEO_BASE = "{{ site.url }}/";
+	</script>
 
 	{% if leoSaxPage %}
 	{% include "partials/leo-sax-schema.njk" %}

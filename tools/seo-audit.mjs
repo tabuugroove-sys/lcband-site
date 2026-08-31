@@ -5,6 +5,8 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const SITE_DIR = path.join(ROOT, "_site");
 const OUT_DIR = path.join(ROOT, "output");
 const SITE_URL = "https://luxuryband.ru";
+const MEDIA_MANIFEST = JSON.parse(fs.readFileSync(path.join(ROOT, "media", "manifest.json"), "utf8"));
+const PUBLISHED_MEDIA = new Set(MEDIA_MANIFEST.files.map(file => file.path));
 
 function walk(dir, predicate = () => true) {
 	const out = [];
@@ -126,12 +128,12 @@ for (const file of htmlFiles) {
 		// 720 is the baseline every player slug must have; higher qualities are
 		// optional — the player degrades gracefully and hides unavailable ones.
 		for (const q of ["720", "1080"]) {
-			const mp4 = `/assets/video/mp4/${slug}-${q}.mp4`;
-			if (!existsUrlTarget(mp4, file)) {
+			const mp4 = `assets/video/mp4/${slug}-${q}.mp4`;
+			if (!PUBLISHED_MEDIA.has(mp4)) {
 				issues.push({
 					level: q === "720" ? "error" : "warn",
 					page: rel,
-					issue: `missing video file: ${mp4}`,
+					issue: `missing production video in media manifest: /${mp4}`,
 				});
 			}
 		}

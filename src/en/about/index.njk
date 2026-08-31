@@ -27,7 +27,7 @@ permalink: /en/about/
 
 <section class="about-hero">
 	<video class="about-hero__video" autoplay muted loop playsinline poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
-		<source src="{{ '/assets/video/mp4/promo-danza-cuduro-1080.mp4' | url }}" type="video/mp4">
+		<source src="{{ site.url }}/assets/video/mp4/promo-danza-cuduro-1080.mp4" type="video/mp4">
 	</video>
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
@@ -65,7 +65,7 @@ permalink: /en/about/
 		<div class="story-rooms__device"><div class="story-rooms__frame">
 			{% for r in storyRooms %}
 			<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
-				<video muted loop playsinline preload="metadata" poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}"><source src="{{ ('/assets/video/mp4/' + r.video + '-1080.mp4') | url }}" type="video/mp4"></video>
+				<video muted loop playsinline preload="metadata" poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}"><source src="{{ site.url }}/assets/video/mp4/{{ r.video }}-1080.mp4" type="video/mp4"></video>
 			</div>
 			{% endfor %}
 		</div></div>

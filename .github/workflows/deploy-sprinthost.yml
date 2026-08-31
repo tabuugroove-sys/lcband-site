@@ -1,17 +1,20 @@
-name: Deploy to Sprinthost preview
+name: Build & Deploy to Sprinthost
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "media/**"
   workflow_dispatch:
 
 concurrency:
-  group: sprinthost-preview
+  group: sprinthost-production
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
@@ -22,13 +25,16 @@ jobs:
 
       - run: npm ci
 
-      - name: Build preview
-        run: PATHPREFIX=/ npx @11ty/eleventy
+      - name: Verify production media
+        run: npm run media:check
+
+      - name: Build production site
+        run: npm run preview
 
       - name: Install deploy client
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: Deploy static files without videos
+      - name: Deploy site to luxuryband.ru
         env:
           SSHPASS: ${{ secrets.SPRINTHOST_PASSWORD }}
           SPRINTHOST_HOST: ${{ secrets.SPRINTHOST_HOST }}
@@ -38,87 +44,10 @@ jobs:
           test -n "$SPRINTHOST_HOST"
           test -n "$SPRINTHOST_USER"
           cd _site
-          tar czf /tmp/lcband-static.tgz --exclude='*.mp4' .
-          for remote_dir in \
-            '~/domains/a1279060.xsph.ru/public_html' \
-            '~/domains/luxuryband.ru/public_html'
-          do
-            sshpass -e ssh \
-              -o StrictHostKeyChecking=no \
-              -o ServerAliveInterval=15 \
-              -o ServerAliveCountMax=4 \
-              "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
-              "tar xzf - -C $remote_dir" < /tmp/lcband-static.tgz
-          done
-
-      - name: Deploy selected video files
-        env:
-          SSHPASS: ${{ secrets.SPRINTHOST_PASSWORD }}
-          SPRINTHOST_HOST: ${{ secrets.SPRINTHOST_HOST }}
-          SPRINTHOST_USER: ${{ secrets.SPRINTHOST_USER }}
-        run: |
-          test -n "$SSHPASS"
-          test -n "$SPRINTHOST_HOST"
-          test -n "$SPRINTHOST_USER"
-          cd _site
-          tar czf /tmp/lcband-videos.tgz \
-            assets/video/mp4/leo-sax-promo-480.mp4 \
-            assets/video/mp4/leo-sax-promo-720.mp4 \
-            assets/video/mp4/leo-sax-promo-1080.mp4 \
-            assets/video/mp4/live-big-lineup-720.mp4 \
-            assets/video/mp4/live-big-lineup-1080.mp4 \
-            assets/video/mp4/live-berezy-720.mp4 \
-            assets/video/mp4/live-berezy-1080.mp4 \
-            assets/video/mp4/live-sax-wedding-welcome-720.mp4 \
-            assets/video/mp4/sax-welcome-720.mp4 \
-            assets/video/mp4/live-sax-wedding-welcome-1080.mp4 \
-            assets/video/mp4/interact-laz-coco-jambo-720.mp4 \
-            assets/video/mp4/interact-laz-coco-jambo-1080.mp4 \
-            assets/video/mp4/live-jazz-vintage-720.mp4 \
-            assets/video/mp4/live-jazz-vintage-1080.mp4 \
-            assets/video/mp4/live-simple-the-best-720.mp4 \
-            assets/video/mp4/live-simple-the-best-1080.mp4 \
-            assets/video/mp4/live-adele-hello-720.mp4 \
-            assets/video/mp4/live-adele-hello-1080.mp4 \
-            assets/video/mp4/promo-cold-heart-720.mp4 \
-            assets/video/mp4/promo-cold-heart-1080.mp4 \
-            assets/video/mp4/promo-egoistka-720.mp4 \
-            assets/video/mp4/promo-egoistka-1080.mp4 \
-            assets/video/mp4/promo-egoistka-2160.mp4 \
-            assets/video/mp4/promo-letet-2160.mp4 \
-            assets/video/mp4/promo-loca-loca-2160.mp4 \
-            assets/video/mp4/thematic-retro-heart-720.mp4 \
-            assets/video/mp4/thematic-retro-heart-1080.mp4 \
-            assets/video/mp4/thematic-retro-heart-2160.mp4 \
-            assets/video/mp4/promo-danza-cuduro-720.mp4 \
-            assets/video/mp4/promo-danza-cuduro-1080.mp4 \
-            assets/video/mp4/promo-danza-cuduro-2160.mp4 \
-            assets/video/mp4/luxury-latin-dance-master-class-720.mp4 \
-            assets/video/mp4/luxury-latin-dance-master-class-1080.mp4 \
-            assets/video/mp4/latin-music-luxury-cover-band-720.mp4 \
-            assets/video/mp4/latin-music-luxury-cover-band-1080.mp4 \
-            assets/video/mp4/latin-music-luxury-cover-band-2160.mp4 \
-            assets/video/mp4/teddy-latina-promo-720.mp4 \
-            assets/video/mp4/teddy-latina-promo-1080.mp4 \
-            assets/video/mp4/latin-modern-program-720.mp4 \
-            assets/video/mp4/latin-modern-program-1080.mp4 \
-            assets/video/mp4/teddy-jzhet-720.mp4 \
-            assets/video/mp4/teddy-jzhet-1080.mp4 \
-            assets/video/mp4/stereo-sax-promo-480.mp4 \
-            assets/video/mp4/stereo-sax-promo-720.mp4 \
-            assets/video/mp4/stereo-sax-promo-1080.mp4 \
-            assets/video/mp4/stereo-sax-clip-hotel-720.mp4 \
-            assets/video/mp4/stereo-sax-clip-showroom-720.mp4 \
-            assets/video/mp4/stereo-sax-clip-party-720.mp4 \
-            assets/video/mp4/stereo-sax-clip-newyear-720.mp4
-          for remote_dir in \
-            '~/domains/a1279060.xsph.ru/public_html' \
-            '~/domains/luxuryband.ru/public_html'
-          do
-            sshpass -e ssh \
-              -o StrictHostKeyChecking=no \
-              -o ServerAliveInterval=15 \
-              -o ServerAliveCountMax=4 \
-              "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
-              "tar xzf - -C $remote_dir" < /tmp/lcband-videos.tgz
-          done
+          tar czf /tmp/lcband-static.tgz .
+          sshpass -e ssh \
+            -o StrictHostKeyChecking=no \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=4 \
+            "$SPRINTHOST_USER@$SPRINTHOST_HOST" \
+            "tar xzf - -C 'domains/luxuryband.ru/public_html'" < /tmp/lcband-static.tgz

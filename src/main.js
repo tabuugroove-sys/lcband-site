@@ -373,7 +373,7 @@
 	};
 
 	function videoUrl(key, quality) {
-		const base = (window.SITE_BASE || "/").replace(/\/?$/, "/");
+		const base = (window.VIDEO_BASE || "https://luxuryband.ru/").replace(/\/?$/, "/");
 		const version = videoAssetVersions[key];
 		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
@@ -395,10 +395,10 @@
 	function videoQualityExists(key, quality) {
 		const cacheKey = `${key}-${quality}`;
 		if (qualityAvailability.has(cacheKey)) return qualityAvailability.get(cacheKey);
-		if (quality === '2160' && !known4kVideoKeys.has(key)) {
-			const missing = Promise.resolve(false);
-			qualityAvailability.set(cacheKey, missing);
-			return missing;
+		if (quality === '2160') {
+			const knownAvailability = Promise.resolve(known4kVideoKeys.has(key));
+			qualityAvailability.set(cacheKey, knownAvailability);
+			return knownAvailability;
 		}
 		const request = fetch(videoUrl(key, quality), { method: 'HEAD', cache: 'force-cache' })
 			.then(res => res.ok)
