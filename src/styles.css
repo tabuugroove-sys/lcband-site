@@ -679,6 +679,20 @@ h1, h2, h3, p { margin: 0; }
 	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
 }
 
+/* The centered 16:9 crop stays untouched through the accepted 2168px width.
+   Past it, freeze the top at the position produced by a 2168px-wide image;
+   any additional image height then overflows only below the hero. Expressing
+   the reference image height directly keeps the hand-off exact at every hero
+   height, while the top transform origin also holds during the slow zoom. */
+@media (min-width: 2169px) {
+	.hero__bg {
+		inset: auto 0 auto;
+		top: calc((100% - 1219.5px) / 2);
+		height: auto;
+		transform-origin: center top;
+	}
+}
+
 @keyframes heroZoom {
 	from { transform: scale(1.00); }
 	to   { transform: scale(1.06); }
