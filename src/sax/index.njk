@@ -228,9 +228,9 @@ permalink: /sax/
 
 /* hero */
 @keyframes sxHeroUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:none; } }
-.sx-hero { position:relative; min-height:100vh; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; background:#000; }
-.sx-hero__media { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; }
-.sx-hero__scrim { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.12) 30%,rgba(0,0,0,0.18) 55%,rgba(0,0,0,0.95) 100%); }
+.sx-hero { position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; background:#000; }
+.sx-hero__media { position:absolute; inset:0; z-index:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; }
+.sx-hero__scrim { position:absolute; inset:0; z-index:1; background:linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.12) 30%,rgba(0,0,0,0.18) 55%,rgba(0,0,0,0.95) 100%); }
 .sx-hero__content { position:relative; z-index:2; text-align:center; padding:0 24px 11vh; max-width:1040px; animation:sxHeroUp 1s cubic-bezier(0.22,0.61,0.36,1) both; }
 .sx-hero__content .sx-eyebrow { letter-spacing:0.42em; margin-bottom:26px; }
 .sx-hero__title { font-size:clamp(46px,8.4vw,116px); font-weight:600; letter-spacing:-0.025em; line-height:0.96; margin:0; color:#fafafa; }
@@ -293,6 +293,12 @@ permalink: /sax/
 .sx-book__contact { display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:46px; color:#86868b; font-size:15px; }
 
 @media (max-width:720px) {
+	.sx-hero__content { padding:0 20px max(42px, 8svh); }
+	.sx-hero__title { font-size:clamp(40px, 14vw, 68px); }
+	.sx-hero__lead { font-size:clamp(20px, 6.4vw, 28px); }
+	.sx-hero__cta { margin-top:28px; }
+	.sx-genres { gap:12px 0; letter-spacing:0.24em; }
+	.sx-genres span { padding:0 12px; }
 	.sx-band__body { grid-template-columns:1fr; text-align:center; }
 	.sx-band__photo img { height:auto; aspect-ratio:16 / 10; }
 	.sx-gallery { grid-template-columns:1fr; }
@@ -301,6 +307,15 @@ permalink: /sax/
 	.sx-moment,
 	.sx-format { min-height:0; }
 	.sx-songs { grid-template-columns:1fr; }
+	.sx-song { align-items:flex-start; }
+}
+
+@media (min-aspect-ratio: 2 / 1) {
+	/* A landscape performance video cannot fill an ultra-wide, shallow hero
+	   without losing faces. Preserve the complete frame over a soft extension
+	   of the same poster instead of cutting the musician's head. */
+	.sx-hero::before { content:""; position:absolute; inset:-36px; background:url("/assets/photos/sax-night.jpg") center 22% / cover no-repeat; filter:blur(26px) brightness(.54); transform:scale(1.04); }
+	.sx-hero__media { object-fit:contain; object-position:center; }
 }
 </style>
 

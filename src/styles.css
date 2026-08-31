@@ -330,6 +330,22 @@ h1, h2, h3, p { margin: 0; }
 	grid-template-columns: minmax(0, 520px);
 }
 
+/* Profile links belong directly below “Saxophone”: a compact vertical menu
+   keeps the pointer moving straight down instead of across a mega-panel. */
+.nav__dropdown--compact {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: auto;
+	width: max-content;
+	min-width: 260px;
+	padding: 20px 22px 26px;
+	border-radius: 0 0 18px 18px;
+}
+.nav__dropdown--compact .nav__dropdown-inner { max-width: none; padding: 0; }
+.nav__dropdown--compact .nav__dropdown-cols--single { grid-template-columns: 1fr; }
+.nav__dropdown--compact .nav__dropdown-list a { font-size: 20px; }
+
 .nav__dropdown-label {
 	font-family: "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
@@ -517,6 +533,7 @@ h1, h2, h3, p { margin: 0; }
 		padding: 0 0 8px 20px;
 		transition: none;
 	}
+	.nav__dropdown--compact { min-width: 0; border-radius: 0; }
 	.nav__dropdown-inner {
 		max-width: none;
 		padding: 0;
