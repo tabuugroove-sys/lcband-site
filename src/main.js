@@ -607,6 +607,7 @@
 		const heroPrev = hero.querySelector('[data-hero-prev]');
 		const heroNext = hero.querySelector('[data-hero-next]');
 		const desktopHeroRecommendations = window.matchMedia('(min-width: 735px)');
+		const mobileHeroSwipe = window.matchMedia('(max-width: 734px)');
 		const reducedHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const coarseHeroPointer = window.matchMedia('(pointer: coarse)');
 		const heroLang = (document.documentElement.lang || 'ru').toLowerCase();
@@ -809,7 +810,8 @@
 		function startAuto() {
 			if (reducedHeroMotion.matches || hero.classList.contains('is-playing')) return;
 			if (autoTimer) clearInterval(autoTimer);
-			autoTimer = setInterval(() => setActive(nextKey()), 5500);
+			const delay = mobileHeroSwipe.matches ? 3000 : 5500;
+			autoTimer = setInterval(() => setActive(nextKey()), delay);
 		}
 
 		function stopAuto() {
@@ -819,7 +821,7 @@
 		function scheduleAutoResume() {
 			if (autoResumeTimer) clearTimeout(autoResumeTimer);
 			if (reducedHeroMotion.matches) return;
-			autoResumeTimer = setTimeout(startAuto, 7000);
+			autoResumeTimer = setTimeout(startAuto, mobileHeroSwipe.matches ? 3000 : 7000);
 		}
 
 		function setHeroLoading(loading) {
@@ -1044,34 +1046,184 @@
 
 		let swipeStartX = 0;
 		let swipeStartY = 0;
+		let swipeLastX = 0;
+		let swipeLastAt = 0;
+		let swipeVelocityX = 0;
 		let swipePointerId = null;
+		let swipeAxis = '';
+		let swipeTargetKey = '';
+		let swipeActiveImg = null;
+		let swipeUnderImg = null;
+		let swipeFrame = 0;
+		let swipePendingX = 0;
 		let lastHeroSwipeAt = 0;
+
+		function adjacentHeroKey(direction) {
+			const idx = order.indexOf(current);
+			return direction < 0
+				? order[(idx + 1) % order.length]
+				: order[(idx - 1 + order.length) % order.length];
+		}
+
+		function clearSwipeFrame() {
+			if (!swipeFrame) return;
+			cancelAnimationFrame(swipeFrame);
+			swipeFrame = 0;
+		}
+
+		function clearMobileSwipe() {
+			clearSwipeFrame();
+			[swipeActiveImg, swipeUnderImg].forEach(img => {
+				if (!img) return;
+				img.classList.remove('is-swipe-dragging', 'is-swipe-under', 'is-swipe-settling');
+				img.style.removeProperty('transform');
+				img.style.removeProperty('opacity');
+			});
+			swipeTargetKey = '';
+			swipeActiveImg = null;
+			swipeUnderImg = null;
+			swipePendingX = 0;
+		}
+
+		function renderMobileSwipe() {
+			swipeFrame = 0;
+			const dx = swipePendingX;
+			const direction = dx < 0 ? -1 : 1;
+			const targetKey = adjacentHeroKey(direction);
+			const activeImg = hero.querySelector(`[data-hero-img="${current}"]`);
+			const underImg = hero.querySelector(`[data-hero-img="${targetKey}"]`);
+			if (!activeImg || !underImg) return;
+
+			if (swipeUnderImg && swipeUnderImg !== underImg) {
+				swipeUnderImg.classList.remove('is-swipe-under');
+				swipeUnderImg.style.removeProperty('transform');
+				swipeUnderImg.style.removeProperty('opacity');
+			}
+			swipeTargetKey = targetKey;
+			swipeActiveImg = activeImg;
+			swipeUnderImg = underImg;
+			activeImg.classList.add('is-swipe-dragging');
+			underImg.classList.add('is-swipe-under');
+
+			const width = Math.max(hero.clientWidth, 1);
+			const progress = Math.min(Math.abs(dx) / width, 1);
+			const rotation = (dx / width) * 9;
+			activeImg.style.transform = `translate3d(${dx}px, ${Math.abs(dx) * 0.025}px, 0) rotate(${rotation}deg)`;
+			activeImg.style.opacity = String(1 - progress * 0.18);
+			underImg.style.transform = `scale(${0.94 + progress * 0.06})`;
+			underImg.style.opacity = String(0.58 + progress * 0.42);
+		}
+
+		function queueMobileSwipe(dx) {
+			swipePendingX = dx;
+			if (!swipeFrame) swipeFrame = requestAnimationFrame(renderMobileSwipe);
+		}
+
+		function settleMobileSwipe(commit, dx) {
+			if (swipeFrame) {
+				cancelAnimationFrame(swipeFrame);
+				swipeFrame = 0;
+				renderMobileSwipe();
+			}
+			if (!swipeActiveImg || !swipeUnderImg || !swipeTargetKey) {
+				clearMobileSwipe();
+				scheduleAutoResume();
+				return;
+			}
+			const activeImg = swipeActiveImg;
+			const underImg = swipeUnderImg;
+			const targetKey = swipeTargetKey;
+			activeImg.classList.remove('is-swipe-dragging');
+			activeImg.classList.add('is-swipe-settling');
+			underImg.classList.add('is-swipe-settling');
+
+			requestAnimationFrame(() => {
+				if (commit) {
+					const direction = dx < 0 ? -1 : 1;
+					activeImg.style.transform = `translate3d(${direction * hero.clientWidth * 1.18}px, 42px, 0) rotate(${direction * 13}deg)`;
+					activeImg.style.opacity = '0';
+					underImg.style.transform = 'scale(1)';
+					underImg.style.opacity = '1';
+				} else {
+					activeImg.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+					activeImg.style.opacity = '1';
+					underImg.style.transform = 'scale(0.94)';
+					underImg.style.opacity = '0';
+				}
+			});
+
+			setTimeout(() => {
+				if (commit) setActive(targetKey);
+				clearMobileSwipe();
+				scheduleAutoResume();
+			}, reducedHeroMotion.matches ? 0 : 320);
+		}
+
 		hero.addEventListener('pointerdown', (e) => {
 			if (hero.classList.contains('is-playing')) return;
+			if (e.target.closest('a, button, input, select, textarea')) return;
 			swipeStartX = e.clientX;
 			swipeStartY = e.clientY;
+			swipeLastX = e.clientX;
+			swipeLastAt = performance.now();
+			swipeVelocityX = 0;
 			swipePointerId = e.pointerId;
+			swipeAxis = '';
+			stopAuto();
+			if (autoResumeTimer) {
+				clearTimeout(autoResumeTimer);
+				autoResumeTimer = null;
+			}
+			if (mobileHeroSwipe.matches) {
+				try { hero.setPointerCapture(e.pointerId); } catch (_) {}
+			}
+		});
+		hero.addEventListener('pointermove', (e) => {
+			if (!mobileHeroSwipe.matches || hero.classList.contains('is-playing') || e.pointerId !== swipePointerId) return;
+			const dx = e.clientX - swipeStartX;
+			const dy = e.clientY - swipeStartY;
+			if (!swipeAxis && Math.max(Math.abs(dx), Math.abs(dy)) >= 8) {
+				swipeAxis = Math.abs(dx) > Math.abs(dy) * 1.15 ? 'x' : 'y';
+			}
+			if (swipeAxis !== 'x') return;
+			e.preventDefault();
+			lastHeroSwipeAt = performance.now();
+			const now = performance.now();
+			swipeVelocityX = (e.clientX - swipeLastX) / Math.max(now - swipeLastAt, 1);
+			swipeLastX = e.clientX;
+			swipeLastAt = now;
+			queueMobileSwipe(dx);
 		});
 		hero.addEventListener('pointerup', (e) => {
 			if (hero.classList.contains('is-playing') || e.pointerId !== swipePointerId) return;
 			const dx = e.clientX - swipeStartX;
 			const dy = e.clientY - swipeStartY;
+			const velocity = performance.now() - swipeLastAt <= 120 ? swipeVelocityX : 0;
 			swipePointerId = null;
-			if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy) * 1.25) return;
+			if (mobileHeroSwipe.matches) {
+				const horizontal = swipeAxis === 'x' && Math.abs(dx) > Math.abs(dy) * 1.1;
+				const distanceCommit = Math.abs(dx) >= Math.min(hero.clientWidth * 0.18, 86);
+				const velocityCommit = Math.abs(dx) >= 24 && Math.abs(velocity) >= 0.5;
+				settleMobileSwipe(horizontal && (distanceCommit || velocityCommit), dx);
+				return;
+			}
+			if (Math.abs(dx) < 48 || Math.abs(dx) <= Math.abs(dy) * 1.25) {
+				scheduleAutoResume();
+				return;
+			}
 			e.preventDefault();
 			lastHeroSwipeAt = performance.now();
-			stopAuto();
-			const idx = order.indexOf(current);
-			const next = dx < 0
-				? order[(idx + 1) % order.length]
-				: order[(idx - 1 + order.length) % order.length];
+			const next = adjacentHeroKey(dx < 0 ? -1 : 1);
 			setActive(next);
 			scheduleAutoResume();
 		});
 		hero.addEventListener('pointercancel', () => {
+			if (mobileHeroSwipe.matches && swipeAxis === 'x') settleMobileSwipe(false, swipePendingX);
+			else scheduleAutoResume();
 			swipeStartX = 0;
 			swipeStartY = 0;
 			swipePointerId = null;
+			swipeAxis = '';
 		});
 		hero.addEventListener('click', (e) => {
 			if (performance.now() - lastHeroSwipeAt > 500) return;
@@ -1096,6 +1248,11 @@
 		};
 		if (desktopHeroRecommendations.addEventListener) desktopHeroRecommendations.addEventListener('change', syncHeroRecommendationsViewport);
 		else desktopHeroRecommendations.addListener(syncHeroRecommendationsViewport);
+		const syncHeroAutoplayRate = () => {
+			if (autoTimer) startAuto();
+		};
+		if (mobileHeroSwipe.addEventListener) mobileHeroSwipe.addEventListener('change', syncHeroAutoplayRate);
+		else mobileHeroSwipe.addListener(syncHeroAutoplayRate);
 		window.addEventListener('orientationchange', syncHeroFullscreenAfterRotate);
 		window.addEventListener('resize', syncHeroFullscreenAfterRotate);
 		if (screen.orientation?.addEventListener) screen.orientation.addEventListener('change', syncHeroFullscreenAfterRotate);

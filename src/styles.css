@@ -4538,10 +4538,31 @@ a.stat--link:hover { opacity: 0.7; }
 		position: absolute;
 		inset: 0;
 		height: auto;
+		perspective: 1000px;
 		user-select: none;
 		-webkit-user-drag: none;
 	}
 	.hero__stage img { -webkit-user-drag: none; }
+	.hero__bg.is-swipe-under {
+		z-index: 1;
+		animation: none !important;
+		backface-visibility: hidden;
+		will-change: transform, opacity;
+	}
+	.hero__bg.is-swipe-dragging {
+		z-index: 2;
+		animation: none !important;
+		transition: none;
+		backface-visibility: hidden;
+		will-change: transform, opacity;
+	}
+	.hero__bg.is-swipe-settling {
+		animation: none !important;
+		transition:
+			transform 0.32s cubic-bezier(.22, .78, .2, 1),
+			opacity 0.26s ease;
+		will-change: transform, opacity;
+	}
 	.hero__scrim {
 		display: block;
 		background: linear-gradient(180deg, rgba(0,0,0,0.08) 18%, rgba(0,0,0,0.22) 48%, rgba(0,0,0,0.88) 100%);
