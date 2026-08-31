@@ -4546,6 +4546,7 @@ a.stat--link:hover { opacity: 0.7; }
 	.hero__bg.is-swipe-under {
 		z-index: 1;
 		animation: none !important;
+		transition: none;
 		backface-visibility: hidden;
 		will-change: transform, opacity;
 	}
