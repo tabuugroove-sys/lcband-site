@@ -665,31 +665,27 @@ h1, h2, h3, p { margin: 0; }
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	/* Keep the complete lineup visible on portrait and near-square screens.
-	   The unused lower area becomes the dark copy field instead of cropping faces. */
-	object-fit: contain;
-	object-position: center top;
-	background: #000;
+	object-fit: cover;
+	object-position: center 50%;
 	opacity: 0;
 	transition: opacity 1.1s cubic-bezier(.4, 0, .2, 1);
-	transform-origin: center top;
 	will-change: opacity, transform;
 }
 
-/* Wide screens still use the full canvas, but crop only below the faces.
-   This is the face-safe equivalent of cover for very long browser windows. */
-@media (min-aspect-ratio: 7 / 4) {
-	.hero__bg { object-fit: cover; }
-}
-
-/* When the complete 16:9 frame is letterboxed, keep the play control on the
-   photograph rather than in the dark copy field below it. */
-@media (max-aspect-ratio: 7 / 4) {
-	.hero:not(.is-playing) .hero__play { top: min(50%, 28.125vw); }
+/* Preserve the original centred cover crop until a head reaches the top-safe
+   line. On wider screens the top crop is then clamped at 4.5% of the source;
+   any additional crop is taken only from the bottom of the photograph. */
+@media (min-aspect-ratio: 21 / 10) {
+	.hero__bg {
+		inset: auto 0 auto;
+		top: max(calc((100% - 56.25vw) / 2), -4.5vw);
+		height: auto;
+		transform-origin: center top;
+	}
 }
 
 /* Source images are pre-aligned (heads at y≈266/1350 ≈ 20% from top) so all
-   slides use identical face-safe framing. No per-slide transforms needed. */
+	 slides use identical framing. No per-slide transforms needed. */
 .hero__bg.is-active {
 	opacity: 1;
 	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
@@ -4524,31 +4520,34 @@ a.stat--link:hover { opacity: 0.7; }
 	.nav__dropdown-list a:hover,
 	.nav__dropdown-list a:focus-visible { color: #fff !important; }
 
-	/* Face-safe mobile hero: keep the complete 16:9 lineup as a photo strip,
-	   then place the copy immediately below on black. */
+	/* Full-height photographic hero. Copy stays on the photograph, the primary
+	   CTA fits a 375x667 viewport, and the stage accepts horizontal swipes. */
 	.hero {
-		height: auto;
-		min-height: 0;
-		max-height: none;
-		display: block;
-		padding: 0 0 max(16px, env(safe-area-inset-bottom));
+		height: 100vh;
+		height: 100svh;
+		min-height: 620px;
+		max-height: 860px;
+		display: flex;
+		align-items: flex-end;
+		padding: 0 22px max(16px, env(safe-area-inset-bottom));
 		touch-action: pan-y;
 	}
 	.hero__stage {
-		position: relative;
-		inset: auto;
-		width: 100%;
-		aspect-ratio: 16 / 9;
+		position: absolute;
+		inset: 0;
 		height: auto;
 		user-select: none;
 		-webkit-user-drag: none;
 	}
 	.hero__stage img { -webkit-user-drag: none; }
-	.hero__scrim { display: none; }
+	.hero__scrim {
+		display: block;
+		background: linear-gradient(180deg, rgba(0,0,0,0.08) 18%, rgba(0,0,0,0.22) 48%, rgba(0,0,0,0.88) 100%);
+	}
 	.hero__content {
 		width: 100%;
 		max-width: none;
-		padding: 28px 22px 0;
+		padding: 0;
 	}
 	.hero__eyebrow {
 		font-size: 11px;
@@ -4614,7 +4613,7 @@ a.stat--link:hover { opacity: 0.7; }
 	}
 	.hero__dot.is-active::after { border-color: rgba(255,255,255,0.92); }
 	.hero__play {
-		top: 28.125vw;
+		top: 43%;
 		width: 88px;
 		height: 88px;
 	}
