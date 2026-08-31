@@ -99,6 +99,11 @@
 	{href:'/en/blog/', label:'Blog'},
 	{href:site.telegram, label:'Message on Telegram', cta:true}
 ] %}
+{% set saxProfilesEn = [
+	{href:'/en/sax/', label:'Saxophonist'},
+	{href:'/en/sax/leo-sax/', label:'Leo Sax'},
+	{href:'/en/sax/stereo-sax/', label:'Stereo Sax'}
+] %}
 <header class="nav" id="nav">
 	<div class="nav__inner">
 		<a class="nav__logo" href="{{ '/en/' | url }}" aria-label="{{ site.name }} — home">
@@ -110,6 +115,7 @@
 				{% set labelField = 'title' %}
 				{% if item.href == '/en/programs/' %}{% set kids = enContent.programs %}{% endif %}
 				{% if item.href == '/en/vocalists/' %}{% set kids = enContent.vocalists %}{% set labelField = 'name' %}{% endif %}
+				{% if item.href == '/en/sax/' %}{% set kids = saxProfilesEn %}{% set labelField = 'label' %}{% endif %}
 
 				{% if kids | length %}
 				<div class="nav__item nav__item--has-dropdown" data-nav-path="{{ item.href }}">
@@ -121,16 +127,17 @@
 					</div>
 					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — sections">
 						<div class="nav__dropdown-inner">
-							<div class="nav__dropdown-cols">
+							<div class="nav__dropdown-cols{% if item.href == '/en/sax/' %} nav__dropdown-cols--single{% endif %}">
 								<div class="nav__dropdown-col nav__dropdown-col--main">
 									<p class="nav__dropdown-label">{{ item.label }}</p>
 									<ul class="nav__dropdown-list">
 										{% for child in kids %}
-										<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
+										<li role="none"><a role="menuitem" href="{% if child.href %}{{ child.href | url }}{% else %}{{ (item.href + child.slug + '/') | url }}{% endif %}">{{ child[labelField] }}</a></li>
 										{% endfor %}
 									</ul>
 								</div>
-								{% if item.href == '/en/programs/' %}
+								{% if item.href == '/en/sax/' %}
+								{% elif item.href == '/en/programs/' %}
 								<div class="nav__dropdown-col nav__dropdown-col--related">
 									<p class="nav__dropdown-label">Formats</p>
 									<ul class="nav__dropdown-related">
@@ -172,6 +179,11 @@
 	</div>
 </header>
 {% else %}
+{% set saxProfiles = [
+	{href:'/sax/', label:'Саксофонист'},
+	{href:'/sax/leo-sax/', label:'Leo Sax'},
+	{href:'/sax/stereo-sax/', label:'Stereo Sax'}
+] %}
 <header class="nav" id="nav">
 	<div class="nav__inner">
 		<a class="nav__logo" href="{{ '/' | url }}" aria-label="{{ site.name }} — на главную">
@@ -183,6 +195,7 @@
 				{% set labelField = 'title' %}
 				{% if item.href == '/programs/' %}{% set kids = programs %}{% set labelField = 'label' %}{% endif %}
 				{% if item.href == '/vocalists/' %}{% set kids = vocalists %}{% set labelField = 'name' %}{% endif %}
+				{% if item.href == '/sax/' %}{% set kids = saxProfiles %}{% set labelField = 'label' %}{% endif %}
 
 				{% if kids | length %}
 				<div class="nav__item nav__item--has-dropdown" data-nav-path="{{ item.href }}">
@@ -194,16 +207,17 @@
 					</div>
 					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — подразделы">
 						<div class="nav__dropdown-inner">
-							<div class="nav__dropdown-cols">
+							<div class="nav__dropdown-cols{% if item.href == '/sax/' %} nav__dropdown-cols--single{% endif %}">
 								<div class="nav__dropdown-col nav__dropdown-col--main">
 									<p class="nav__dropdown-label">{{ item.label }}</p>
 									<ul class="nav__dropdown-list">
 										{% for child in kids %}
-										<li role="none"><a role="menuitem" href="{{ (item.href + child.slug + '/') | url }}">{{ child[labelField] }}</a></li>
+										<li role="none"><a role="menuitem" href="{% if child.href %}{{ child.href | url }}{% else %}{{ (item.href + child.slug + '/') | url }}{% endif %}">{{ child[labelField] }}</a></li>
 										{% endfor %}
 									</ul>
 								</div>
-								{% if item.href == '/programs/' %}
+								{% if item.href == '/sax/' %}
+								{% elif item.href == '/programs/' %}
 								<div class="nav__dropdown-col nav__dropdown-col--related">
 									<p class="nav__dropdown-label">Форматы</p>
 									<ul class="nav__dropdown-related">

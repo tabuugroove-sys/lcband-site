@@ -40,7 +40,10 @@ test.describe('Leo Sax — structure and vendor-only scope', () => {
 		expect(graph.find((entry) => entry['@type'] === 'VideoObject')?.duration).toBe('PT2M35S');
 
 		await page.goto('/sax/');
-		await expect(page.locator('a[href="/sax/leo-sax/"]')).toHaveText(/Leo Sax.*промо/i);
+		const saxMenu = page.locator('.nav__item[data-nav-path="/sax/"]');
+		await expect(saxMenu.locator('a[href="/sax/leo-sax/"]')).toHaveText('Leo Sax');
+		await expect(saxMenu.locator('.nav__dropdown-list a')).toHaveCount(3);
+		await expect(page.locator('.sx-intro__profile')).toHaveCount(0);
 	});
 });
 

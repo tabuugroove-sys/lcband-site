@@ -326,6 +326,10 @@ h1, h2, h3, p { margin: 0; }
 	align-items: start;
 }
 
+.nav__dropdown-cols--single {
+	grid-template-columns: minmax(0, 520px);
+}
+
 .nav__dropdown-label {
 	font-family: "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
