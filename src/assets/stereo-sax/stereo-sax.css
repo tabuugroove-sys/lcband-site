@@ -381,6 +381,7 @@ img, video { display: block; max-width: 100%; }
 .leo-carousel__viewport {
 	overflow-x: auto;
 	overflow-y: hidden;
+	overflow-anchor: none;
 	overscroll-behavior-inline: contain;
 	padding-inline: calc((100vw - var(--slide-w)) / 2);
 	scroll-padding-inline: calc((100vw - var(--slide-w)) / 2);
@@ -392,7 +393,19 @@ img, video { display: block; max-width: 100%; }
 }
 .leo-carousel__viewport::-webkit-scrollbar { display: none; }
 .leo-carousel__viewport.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.leo-carousel.is-positioning .leo-carousel__viewport { scroll-snap-type: none; }
 .leo-carousel__track { display: flex; gap: clamp(14px, 1.6vw, 24px); width: max-content; }
+.leo-carousel.is-static .leo-carousel__viewport {
+	overflow-x: hidden;
+	padding-inline: 0;
+	scroll-padding-inline: 0;
+	scroll-snap-type: none;
+	cursor: default;
+}
+.leo-carousel.is-static .leo-carousel__track { margin-inline: auto; }
+.leo-carousel.is-static .leo-slide { scroll-snap-align: none; }
+.leo-carousel__arrow[hidden],
+.leo-carousel__dots[hidden] { display: none; }
 .leo-slide {
 	position: relative;
 	flex: 0 0 var(--slide-w);

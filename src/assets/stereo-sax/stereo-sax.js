@@ -267,7 +267,7 @@
 
 	syncQualityButtons();
 
-	function initCarousel(carousel, { loop = true, autoplay = true } = {}) {
+	function initCarousel(carousel, { loop = true, autoplay = true, staticWhenFit = false } = {}) {
 		if (!carousel) return;
 		const viewport = carousel.querySelector('[data-carousel-viewport]');
 		const track = carousel.querySelector('[data-carousel-track]');
@@ -285,6 +285,9 @@
 		let autoplayTimer = 0;
 		let carouselInView = false;
 		let carouselPaused = false;
+		let staticLayout = false;
+		let resizeTimer = 0;
+		let lastViewportWidth = -1;
 		const autoplayDelay = 4300;
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -315,7 +318,7 @@
 		}
 
 		function settleCarousel() {
-			if (!viewport || loopGuard) return;
+			if (!viewport || loopGuard || staticLayout) return;
 			const nearest = nearestTrackSlide();
 			if (!nearest) return;
 			const index = Number(nearest.dataset.slideIndex);
@@ -334,7 +337,7 @@
 		}
 
 		function adjacentSlide(direction) {
-			if (!realSlides.length) return null;
+			if (!realSlides.length || staticLayout) return null;
 			if (direction > 0 && currentSlide === realSlides.length - 1) return afterClone || realSlides[currentSlide];
 			if (direction < 0 && currentSlide === 0) return beforeClone || realSlides[0];
 			return realSlides[currentSlide + direction];
@@ -346,35 +349,103 @@
 
 		function scheduleAutoplay() {
 			clearAutoplay();
-			if (!autoplay || !carouselInView || carouselPaused || document.hidden || reducedMotion.matches || realSlides.length < 2) return;
+			if (!autoplay || staticLayout || !carouselInView || carouselPaused || document.hidden || reducedMotion.matches || realSlides.length < 2) return;
 			autoplayTimer = window.setTimeout(() => moveCarousel(1), autoplayDelay);
 		}
 
-		if (viewport && track && realSlides.length > 1) {
-			if (loop) {
-				const boundaryCloneCount = Math.min(2, realSlides.length);
-				const makeBoundaryClone = (slide, side) => {
-					const clone = slide.cloneNode(true);
-					clone.dataset.clone = side;
-					clone.setAttribute('aria-hidden', 'true');
-					clone.querySelectorAll('img').forEach((image) => { image.loading = 'eager'; });
-					return clone;
-				};
-				const beforeClones = realSlides.slice(-boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'before'));
-				const afterClones = realSlides.slice(0, boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'after'));
-				beforeClone = beforeClones[beforeClones.length - 1];
-				afterClone = afterClones[0];
-				track.prepend(...beforeClones);
-				track.append(...afterClones);
+		function removeBoundaryClones() {
+			track?.querySelectorAll('[data-clone]').forEach((clone) => {
+				clone.querySelectorAll('video').forEach((cloneVideo) => cloneVideo.pause());
+				clone.remove();
+			});
+			beforeClone = null;
+			afterClone = null;
+		}
+
+		function addBoundaryClones() {
+			if (!track || !loop) return;
+			const boundaryCloneCount = Math.min(2, realSlides.length);
+			const makeBoundaryClone = (slide, side) => {
+				const clone = slide.cloneNode(true);
+				clone.dataset.clone = side;
+				clone.setAttribute('aria-hidden', 'true');
+				clone.inert = true;
+				clone.querySelectorAll('img').forEach((image) => { image.loading = 'eager'; });
+				clone.querySelectorAll('video').forEach((cloneVideo) => {
+					cloneVideo.tabIndex = -1;
+					cloneVideo.preload = 'none';
+				});
+				return clone;
+			};
+			const beforeClones = realSlides.slice(-boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'before'));
+			const afterClones = realSlides.slice(0, boundaryCloneCount).map((slide) => makeBoundaryClone(slide, 'after'));
+			beforeClone = beforeClones[beforeClones.length - 1];
+			afterClone = afterClones[0];
+			track.prepend(...beforeClones);
+			track.append(...afterClones);
+		}
+
+		function setControlsHidden(hidden) {
+			[previous, next].forEach((button) => {
+				if (!button) return;
+				button.hidden = hidden;
+				button.disabled = hidden;
+			});
+			if (dotsRoot) dotsRoot.hidden = hidden;
+		}
+
+		function refreshLayout() {
+			if (!viewport || !track || !realSlides.length) return;
+			const viewportWidth = viewport.clientWidth;
+			if (Math.abs(viewportWidth - lastViewportWidth) < 0.5) return;
+			lastViewportWidth = viewportWidth;
+			loopGuard = true;
+			carousel.classList.add('is-positioning');
+			window.clearTimeout(scrollTimer);
+			removeBoundaryClones();
+			carousel.classList.remove('is-static');
+
+			const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+			const slidesWidth = realSlides.reduce((total, slide) => total + slide.getBoundingClientRect().width, 0);
+			const contentWidth = slidesWidth + gap * Math.max(realSlides.length - 1, 0);
+			staticLayout = staticWhenFit && contentWidth <= viewportWidth + 0.5;
+			carousel.classList.toggle('is-static', staticLayout);
+			setControlsHidden(staticLayout || realSlides.length < 2);
+			let slideToCenter = null;
+
+			if (staticLayout) {
+				clearAutoplay();
+				updateDots(0);
+				viewport.scrollTo({ left: 0, behavior: 'auto' });
+			} else {
+				addBoundaryClones();
+				slideToCenter = realSlides[currentSlide];
 			}
-			requestAnimationFrame(() => centerSlide(realSlides[0], 'auto'));
+
+			requestAnimationFrame(() => {
+				if (slideToCenter) centerSlide(slideToCenter, 'auto');
+				requestAnimationFrame(() => {
+					carousel.classList.remove('is-positioning');
+					loopGuard = false;
+					scheduleAutoplay();
+				});
+			});
+		}
+
+		function scheduleLayoutRefresh() {
+			window.clearTimeout(resizeTimer);
+			resizeTimer = window.setTimeout(refreshLayout, 80);
+		}
+
+		if (viewport && track && realSlides.length > 1) {
+			requestAnimationFrame(refreshLayout);
 
 			viewport.addEventListener('scroll', () => {
 				window.clearTimeout(scrollTimer);
 				scrollTimer = window.setTimeout(settleCarousel, 110);
 			}, { passive: true });
 			viewport.addEventListener('keydown', (event) => {
-				if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+				if (staticLayout || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
 				event.preventDefault();
 				const direction = event.key === 'ArrowRight' ? 1 : -1;
 				centerSlide(realSlides[(currentSlide + direction + realSlides.length) % realSlides.length]);
@@ -384,6 +455,7 @@
 			let dragStartScroll = 0;
 			let dragging = false;
 			viewport.addEventListener('pointerdown', (event) => {
+				if (staticLayout) return;
 				carouselPaused = true;
 				clearAutoplay();
 				if (event.pointerType !== 'mouse') return;
@@ -419,6 +491,8 @@
 			}, { threshold: 0.35 }).observe(carousel);
 			document.addEventListener('visibilitychange', scheduleAutoplay);
 			reducedMotion.addEventListener?.('change', scheduleAutoplay);
+			if ('ResizeObserver' in window) new ResizeObserver(scheduleLayoutRefresh).observe(viewport);
+			else window.addEventListener('resize', scheduleLayoutRefresh, { passive: true });
 		}
 
 		previous?.addEventListener('click', () => {
@@ -430,13 +504,14 @@
 			moveCarousel(1);
 		});
 		dots.forEach((dot) => dot.addEventListener('click', () => {
+			if (staticLayout) return;
 			centerSlide(realSlides[Number(dot.dataset.carouselDot)]);
 			scheduleAutoplay();
 		}));
 	}
 
 	initCarousel(document.querySelector('[data-carousel="photos"]'), { loop: true, autoplay: true });
-	initCarousel(document.querySelector('[data-carousel="clips"]'), { loop: false, autoplay: false });
+	initCarousel(document.querySelector('[data-carousel="clips"]'), { loop: true, autoplay: false, staticWhenFit: true });
 
 	// В видео-карусели одновременно играет только один ролик.
 	const clipVideos = [...document.querySelectorAll('[data-carousel="clips"] video')];
