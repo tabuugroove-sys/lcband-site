@@ -672,20 +672,8 @@ h1, h2, h3, p { margin: 0; }
 	will-change: opacity, transform;
 }
 
-/* Preserve the original centred cover crop until a head reaches the top-safe
-   line. On wider screens the top crop is then clamped at 4.5% of the source;
-   any additional crop is taken only from the bottom of the photograph. */
-@media (min-aspect-ratio: 21 / 10) {
-	.hero__bg {
-		inset: auto 0 auto;
-		top: max(calc((100% - 56.25vw) / 2), -4.5vw);
-		height: auto;
-		transform-origin: center top;
-	}
-}
-
 /* Source images are pre-aligned (heads at y≈266/1350 ≈ 20% from top) so all
-	 slides use identical framing. No per-slide transforms needed. */
+   slides use identical framing. No per-slide transforms needed. */
 .hero__bg.is-active {
 	opacity: 1;
 	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
