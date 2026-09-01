@@ -125,9 +125,9 @@
 							<span aria-hidden="true"></span>
 						</button>
 					</div>
-					<div class="nav__dropdown{% if item.href == '/en/sax/' %} nav__dropdown--compact{% endif %}" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — sections">
+					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — sections">
 						<div class="nav__dropdown-inner">
-							<div class="nav__dropdown-cols{% if item.href == '/en/sax/' %} nav__dropdown-cols--single{% endif %}">
+							<div class="nav__dropdown-cols">
 								<div class="nav__dropdown-col nav__dropdown-col--main">
 									<p class="nav__dropdown-label">{{ item.label }}</p>
 									<ul class="nav__dropdown-list">
@@ -136,8 +136,7 @@
 										{% endfor %}
 									</ul>
 								</div>
-								{% if item.href == '/en/sax/' %}
-								{% elif item.href == '/en/programs/' %}
+								{% if item.href == '/en/programs/' %}
 								<div class="nav__dropdown-col nav__dropdown-col--related">
 									<p class="nav__dropdown-label">Formats</p>
 									<ul class="nav__dropdown-related">
@@ -205,9 +204,9 @@
 							<span aria-hidden="true"></span>
 						</button>
 					</div>
-					<div class="nav__dropdown{% if item.href == '/sax/' %} nav__dropdown--compact{% endif %}" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — подразделы">
+					<div class="nav__dropdown" id="nav-submenu-{{ loop.index }}" role="menu" aria-label="{{ item.label }} — подразделы">
 						<div class="nav__dropdown-inner">
-							<div class="nav__dropdown-cols{% if item.href == '/sax/' %} nav__dropdown-cols--single{% endif %}">
+							<div class="nav__dropdown-cols">
 								<div class="nav__dropdown-col nav__dropdown-col--main">
 									<p class="nav__dropdown-label">{{ item.label }}</p>
 									<ul class="nav__dropdown-list">
@@ -216,8 +215,7 @@
 										{% endfor %}
 									</ul>
 								</div>
-								{% if item.href == '/sax/' %}
-								{% elif item.href == '/programs/' %}
+								{% if item.href == '/programs/' %}
 								<div class="nav__dropdown-col nav__dropdown-col--related">
 									<p class="nav__dropdown-label">Форматы</p>
 									<ul class="nav__dropdown-related">
