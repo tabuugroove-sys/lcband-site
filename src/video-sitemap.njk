@@ -31,6 +31,22 @@ eleventyExcludeFromCollections: true
 	</url>
 	{% endfor %}
 	{% endfor %}
+	{% for format in formats %}
+	{% for video in format.artist.videos %}
+	<url>
+		<loc>{{ site.url }}/formats/{{ format.slug }}/</loc>
+		<video:video>
+			<video:thumbnail_loc>{{ site.url }}/{{ video.poster }}</video:thumbnail_loc>
+			<video:title>{{ video.title }} — {{ format.artist.name }}</video:title>
+			<video:description>{{ video.description }}</video:description>
+			<video:content_loc>{{ site.url }}/assets/video/mp4/{{ video.slug }}-720.mp4</video:content_loc>
+			<video:duration>{{ video.durationSeconds }}</video:duration>
+			<video:family_friendly>yes</video:family_friendly>
+			<video:requires_subscription>no</video:requires_subscription>
+		</video:video>
+	</url>
+	{% endfor %}
+	{% endfor %}
 	{% for event in events %}
 	{% if event.featuredVideo %}
 	<url>

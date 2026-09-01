@@ -481,6 +481,21 @@
       "path": "assets/video/mp4/thematic-retro-stilyagi-720.mp4",
       "bytes": 14434904,
       "sha256": "f38725511064744d16bac1261b6537ab2ba5fe18d9f21de7dff1030cd110ecca"
+    },
+    {
+      "path": "assets/video/mp4/yuriy-acoustic-vocal-720.mp4",
+      "bytes": 8293354,
+      "sha256": "3d74f48f091845592e131746f2a40ab472f0b15ef6d8217749cd5e73637e63f8"
+    },
+    {
+      "path": "assets/video/mp4/yuriy-instrumental-720.mp4",
+      "bytes": 22065495,
+      "sha256": "4f6255bbb8af28275a70c550aa7252f8611d276e52f719c47c07fd6d491461cf"
+    },
+    {
+      "path": "assets/video/mp4/yuriy-live-stage-720.mp4",
+      "bytes": 29366009,
+      "sha256": "46242be2d006b870d8ec7f3a50017d10c5d2793937be8f01beb461223bcdf322"
     }
   ]
 }

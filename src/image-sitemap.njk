@@ -64,6 +64,35 @@ eleventyExcludeFromCollections: true
 		{% endif %}
 	</url>
 	{% endfor %}
+	{% for format in formats %}
+	{% if format.heroImage %}
+	<url>
+		<loc>{{ site.url }}/formats/{{ format.slug }}/</loc>
+		<image:image>
+			<image:loc>{{ site.url }}/{{ format.heroImage }}</image:loc>
+			<image:title>{{ format.heroAlt or (format.title + " — " + site.name) }}</image:title>
+		</image:image>
+		{% if format.artist and format.artist.photo %}
+		<image:image>
+			<image:loc>{{ site.url }}/{{ format.artist.photo.src }}</image:loc>
+			<image:title>{{ format.artist.photo.alt }}</image:title>
+		</image:image>
+		{% endif %}
+		{% for video in format.artist.videos %}
+		<image:image>
+			<image:loc>{{ site.url }}/{{ video.poster }}</image:loc>
+			<image:title>{{ video.title }} — {{ format.artist.name }}</image:title>
+		</image:image>
+		{% endfor %}
+		{% for photo in format.artist.gallery %}
+		<image:image>
+			<image:loc>{{ site.url }}/{{ photo.src }}</image:loc>
+			<image:title>{{ photo.alt }}</image:title>
+		</image:image>
+		{% endfor %}
+	</url>
+	{% endif %}
+	{% endfor %}
 	<url>
 		<loc>{{ site.url }}/sax/</loc>
 		<image:image>

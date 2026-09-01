@@ -6,11 +6,238 @@ pagination:
 permalink: "/formats/{{ format.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ format.title }} — {{ site.shortName }}"
+  title: "{{ format.seoTitle or format.title }} — {{ site.shortName }}"
   description: "{{ format.metaDescription or format.lead }}"
   keywords: "{{ format.keywords }}"
+  ogImage: "{{ format.heroImage or format.poster }}"
+  preloadImage: "{{ format.heroImage or format.poster }}"
 ---
 
+{% block schema %}
+{% if format.artist and format.artist.videos %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": "{{ site.url }}{{ page.url }}#artist",
+			"name": "{{ format.artist.name }}",
+			"jobTitle": "{{ format.artist.role }}",
+			"image": "{{ site.url }}/{{ format.artist.photo.src }}"
+		},
+		{
+			"@type": "WebPage",
+			"@id": "{{ site.url }}{{ page.url }}#webpage",
+			"url": "{{ site.url }}{{ page.url }}",
+			"name": "{{ format.seoTitle }}",
+			"description": "{{ format.metaDescription }}",
+			"inLanguage": "ru-RU",
+			"primaryImageOfPage": { "@id": "{{ site.url }}{{ page.url }}#primary-image" }
+		},
+		{
+			"@type": "ImageObject",
+			"@id": "{{ site.url }}{{ page.url }}#primary-image",
+			"contentUrl": "{{ site.url }}/{{ format.heroImage }}",
+			"caption": "{{ format.heroAlt }}"
+		},
+		{
+			"@type": "Service",
+			"@id": "{{ site.url }}{{ page.url }}#service",
+			"name": "{{ format.headline }}",
+			"description": "{{ format.lead }}",
+			"serviceType": "Выступление гитариста-вокалиста на мероприятии",
+			"provider": { "@id": "{{ site.url }}/#musicgroup" },
+			"areaServed": ["Москва", "Московская область"],
+			"offers": {
+				"@type": "AggregateOffer",
+				"lowPrice": "30000",
+				"highPrice": "50000",
+				"priceCurrency": "RUB"
+			},
+			"url": "{{ site.url }}{{ page.url }}"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{"@type": "ListItem", "position": 1, "name": "Главная", "item": "{{ site.url }}/"},
+				{"@type": "ListItem", "position": 2, "name": "Форматы", "item": "{{ site.url }}/formats/"},
+				{"@type": "ListItem", "position": 3, "name": "{{ format.title }}", "item": "{{ site.url }}{{ page.url }}"}
+			]
+		}
+		{% for item in format.artist.videos %},
+		{
+			"@type": "VideoObject",
+			"@id": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}",
+			"url": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}",
+			"name": "{{ item.title }} — {{ format.artist.name }}",
+			"description": "{{ item.description }}",
+			"duration": "{{ item.duration }}",
+			"isFamilyFriendly": true,
+			"thumbnailUrl": "{{ site.url }}/{{ item.poster }}",
+			"thumbnail": {"@type": "ImageObject", "contentUrl": "{{ site.url }}/{{ item.poster }}", "width": 720, "height": 1280},
+			"contentUrl": "{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4",
+			"uploadDate": "{{ item.uploadDate }}",
+			"publisher": { "@id": "{{ site.url }}/#musicgroup" }
+		}
+		{% endfor %}
+	]
+}
+</script>
+{% else %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Service",
+			"@id": "{{ site.url }}{{ page.url }}#service",
+			"name": "{{ format.title }}",
+			"description": "{{ format.lead }}",
+			"provider": { "@id": "{{ site.url }}/#musicgroup" },
+			"areaServed": ["Москва", "Московская область"],
+			"url": "{{ site.url }}{{ page.url }}"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+				{"@type": "ListItem", "position": 1, "name": "Главная", "item": "{{ site.url }}/"},
+				{"@type": "ListItem", "position": 2, "name": "Форматы", "item": "{{ site.url }}/formats/"},
+				{"@type": "ListItem", "position": 3, "name": "{{ format.title }}", "item": "{{ site.url }}{{ page.url }}"}
+			]
+		}
+	]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% if format.artist and format.artist.videos %}
+<section class="campfire-hero">
+	<div class="container campfire-hero__inner">
+		<div class="campfire-hero__copy">
+			<p class="page-hero__breadcrumb campfire-hero__breadcrumb">
+				<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+				<a href="{{ '/formats/' | url }}">Форматы</a> <span>·</span>
+				<span>{{ format.title }}</span>
+			</p>
+			<p class="page-hero__eyebrow">{{ format.eyebrow }}</p>
+			<h1 class="campfire-hero__title">{{ format.headline }}</h1>
+			<p class="campfire-hero__lead">{{ format.lead }}</p>
+			<ul class="campfire-hero__facts" aria-label="Основные условия">
+				{% for fact in format.facts %}<li>{{ fact }}</li>{% endfor %}
+			</ul>
+			<div class="campfire-hero__actions">
+				<a class="btn btn--primary" href="{{ site.telegram }}">Проверить дату</a>
+				<a class="campfire-hero__link" href="#format-videos">Смотреть видео <span aria-hidden="true">↓</span></a>
+			</div>
+		</div>
+		<figure class="campfire-hero__media">
+			<img src="{{ ('/' + format.heroImage) | url }}" alt="{{ format.heroAlt }}" fetchpriority="high" decoding="async">
+			<figcaption>Камерный формат · акустическая гитара · живой вокал</figcaption>
+		</figure>
+	</div>
+</section>
+
+<section class="section section--light program-video-carousel format-media-videos" id="format-videos">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Видео выступлений</p>
+		<h2 class="section__title">Посмотрите,<br><span class="muted">как звучит формат.</span></h2>
+		<p class="section__lead">Три коротких фрагмента показывают акустический вокал, живую сценическую подачу и инструментальный фон.</p>
+	</div>
+	<div class="video-shelf format-video-shelf reveal" data-video-carousel role="region" aria-label="Видео Юрия Шурховецкого">
+		{% for item in format.artist.videos %}
+		<a class="video-card video-card--portrait" id="video-{{ item.slug }}" href="{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4" data-video="{{ item.slug }}" aria-label="Смотреть: {{ item.title }}">
+			<img src="{{ ('/' + item.poster) | url }}" alt="{{ item.title }} — {{ format.artist.name }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+			<span class="video-card__play" aria-hidden="true"></span>
+			<span class="video-card__meta">
+				<span class="video-card__label">{{ item.label }}</span>
+				<span class="video-card__name">{{ item.title }}</span>
+				<span class="video-card__description">{{ item.description }}</span>
+			</span>
+		</a>
+		{% endfor %}
+	</div>
+	<div class="container container--narrow format-video-controls" aria-label="Управление видеокаруселью">
+		<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Предыдущее видео">‹</button>
+		<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Следующее видео">›</button>
+	</div>
+</section>
+
+<section class="section section--dark format-artist format-artist--profile">
+	<div class="container format-artist__grid reveal">
+		<figure class="format-artist__portrait">
+			<img src="{{ ('/' + format.artist.photo.src) | url }}" alt="{{ format.artist.photo.alt }}" loading="lazy" decoding="async">
+		</figure>
+		<div class="format-artist__copy">
+			<p class="section__eyebrow section__eyebrow--light">Гитарист-вокалист</p>
+			<h2 class="section__title section__title--light">{{ format.artist.name }}<br><span class="muted">живой контакт с гостями.</span></h2>
+			<p class="format-artist__lead">{{ format.artist.lead }}</p>
+			<p class="format-artist__price">{{ format.artist.price }}</p>
+			<a class="btn btn--ghost-light format-artist__repertoire" href="{{ format.artist.repertoireUrl }}" target="_blank" rel="noopener noreferrer">Посмотреть репертуар</a>
+		</div>
+	</div>
+</section>
+
+<section class="section section--light format-gallery-section">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Визуальная атмосфера</p>
+		<h2 class="section__title">У костра<br><span class="muted">и на сцене.</span></h2>
+		<p class="section__lead">Формат остаётся камерным, но подачу и звук можно адаптировать под площадку и сценарий вечера.</p>
+	</div>
+	<div class="container reveal">
+		<ul class="format-gallery" aria-label="Визуальная атмосфера формата и фото Юрия Шурховецкого">
+			{% for photo in format.artist.gallery %}
+			<li class="format-gallery__item">
+				<a href="{{ ('/' + photo.src) | url }}" data-lightbox>
+					<img src="{{ ('/' + photo.src) | url }}" alt="{{ photo.alt }}" loading="lazy" decoding="async">
+				</a>
+				<p>{{ photo.caption }}</p>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
+<section class="section section--light format-details-section">
+	<div class="container format-details reveal">
+		<div class="format-details__column">
+			<p class="section__eyebrow">Программа</p>
+			<h2 class="section__title">Что входит<br><span class="muted">в выступление.</span></h2>
+			<ul class="bullets">
+				{% for b in format.bullets %}
+				<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">{{ b }}</span></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="format-details__column">
+			<p class="section__eyebrow">Сценарии</p>
+			<h2 class="section__title">Для каких<br><span class="muted">мероприятий.</span></h2>
+			<ul class="format-scenarios">
+				{% for scenario in format.scenarios %}
+				<li><h3>{{ scenario.title }}</h3><p>{{ scenario.text }}</p></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<section class="section section--light format-faq-section">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">FAQ</p>
+		<h2 class="section__title">Вопросы<br><span class="muted">о выступлении.</span></h2>
+		<div class="faq">
+			{% for item in format.faq %}
+			<details class="faq__item">
+				<summary class="faq__q">{{ item.question }}</summary>
+				<div class="faq__a"><p>{{ item.answer }}</p></div>
+			</details>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% else %}
 <section class="page-hero">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">
@@ -35,37 +262,19 @@ eleventyComputed:
 		<h2 class="section__title">Что входит<br><span class="muted">в формат.</span></h2>
 		<ul class="bullets">
 			{% for b in format.bullets %}
-			<li class="bullet">
-				<span class="bullet__check">✓</span>
-				<span class="bullet__text">{{ b }}</span>
-			</li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text">{{ b }}</span></li>
 			{% endfor %}
 		</ul>
-	</div>
-</section>
-
-{% if format.artist %}
-<section class="section section--dark format-artist">
-	<div class="container container--narrow reveal">
-		<p class="section__eyebrow section__eyebrow--light">Основной артист</p>
-		<h2 class="section__title section__title--light">{{ format.artist.name }}<br><span class="muted">{{ format.artist.role }}.</span></h2>
-		<p class="format-artist__lead">{{ format.artist.lead }}</p>
-		<p class="format-artist__price">{{ format.artist.price }}</p>
-		<div class="format-artist__materials" aria-label="Промо и коммерческое предложение Юрия Шурховецкого">
-			{% for item in format.artist.materials %}
-			<a class="btn{% if loop.first %} btn--primary{% else %} btn--ghost-light{% endif %}" href="{{ item.url | url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}{% if item.download %} download{% endif %}>{{ item.label }}</a>
-			{% endfor %}
-		</div>
 	</div>
 </section>
 {% endif %}
 
 <section class="section section--book">
 	<div class="container container--narrow reveal">
-		<h2 class="section__title section__title--light">{{ format.cta }}.</h2>
+		<h2 class="section__title">{{ format.cta }}.</h2>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
-			<a class="btn btn--ghost-light" href="{{ '/formats/' | url }}">Все форматы</a>
+			<a class="btn btn--ghost-dark" href="{{ '/formats/' | url }}">Все форматы</a>
 		</div>
 	</div>
 </section>

@@ -387,6 +387,12 @@
 		'latin-music-luxury-cover-band'
 	]);
 
+	const known720OnlyVideoKeys = new Set([
+		'yuriy-acoustic-vocal',
+		'yuriy-live-stage',
+		'yuriy-instrumental'
+	]);
+
 	function setPickerQuality(quality) {
 		if (!lightboxPicker) return;
 		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === quality));
@@ -408,9 +414,16 @@
 	}
 
 	function updatePickerAvailability(key) {
+		const btn1080 = lightboxPicker?.querySelector('[data-q="1080"]');
 		const btn4k = lightboxPicker?.querySelector('[data-q="2160"]');
-		if (!btn4k) return;
+		if (!btn1080 || !btn4k) return;
+		btn1080.hidden = known720OnlyVideoKeys.has(key);
 		btn4k.hidden = true;
+		if (btn1080.hidden && currentQuality === '1080') {
+			currentQuality = '720';
+			setPickerQuality(currentQuality);
+			swapQuality();
+		}
 		videoQualityExists(key, '2160').then(exists => {
 			if (currentVideoKey !== key) return;
 			btn4k.hidden = !exists;

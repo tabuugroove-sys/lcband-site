@@ -50,6 +50,12 @@ function localPathFromUrl(url, pageFile) {
 }
 
 function existsUrlTarget(url, pageFile) {
+	let publishedPath = url;
+	if (/^https?:\/\//.test(publishedPath) && publishedPath.startsWith(SITE_URL)) {
+		publishedPath = publishedPath.slice(SITE_URL.length);
+	}
+	publishedPath = publishedPath.split("#")[0].split("?")[0].replace(/^\/+/, "");
+	if (PUBLISHED_MEDIA.has(publishedPath)) return true;
 	const target = localPathFromUrl(url, pageFile);
 	if (!target) return true;
 	if (fs.existsSync(target)) return true;

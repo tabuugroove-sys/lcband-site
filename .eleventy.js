@@ -11,7 +11,6 @@ export default function (eleventyConfig) {
 		"hero",
 		"leo-sax",
 		"photos",
-		"pdfs",
 		"repertoire",
 		"riders",
 		"stereo-sax",
