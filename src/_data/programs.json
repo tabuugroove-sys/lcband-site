@@ -172,35 +172,24 @@
 		"label": "Old Money Band",
 		"eyebrow": "Old Money Band · Jazz",
 		"headline": "Old Money. Swing. Lounge.",
-		"lead": "Old Money Band — джазовый проект Luxury Cover Band: мужской вокал, саксофон, контрабас и живой ритм. Мягкий джаз и lounge, который создаёт атмосферу и не мешает разговору — велкомы, ужины, галереи, яхты.",
+		"lead": "Old Money Band — джазовый проект Luxury Cover Band. Мягкий джаз и lounge: создаёт атмосферу и не мешает разговору. Велком, ужин, галерея, яхта. Составы — от дуэта до полного бенда. Во главе — один из лучших джазовых вокалистов Москвы.",
 		"bullets": [
 			"Jazz standards (Fly Me to the Moon, Autumn Leaves, Sinatra)",
-			"Мягкий lounge-фон под общение гостей",
-			"Swing и soul-блоки для полноформатной сцены",
-			"Чисто инструментальный сет — по запросу",
-			"Составы от дуэта до полного бенда"
+			"Мягкий фон под общение гостей",
+			"Чисто инструментальный состав — без вокала"
 		],
 		"poster": "assets/video/posters/old-money-band.jpg",
 		"video": "old-money-band",
-		"videoLead": "Основной промо-ролик проекта — минута, чтобы услышать подачу и увидеть состав.",
 		"promoUrl": "https://drive.google.com/drive/folders/15A03eFnNoFVSqagmK4aO5Gct0Zxa2UqC",
 		"promoLabel": "Скачать промо (Google Drive)",
-		"videos": [
-			{
-				"slug": "old-money-band",
-				"title": "Old Money Band",
-				"label": "Promo",
-				"poster": "assets/video/posters/old-money-band.jpg"
-			}
-		],
 		"photos": [
 			{"src": "assets/photos/old-money-band/portrait-cane.jpg", "alt": "Old Money Band — вокалист, студийный портрет в смокинге"},
-			{"src": "assets/photos/old-money-band/frame-bass.jpg", "alt": "Old Money Band — контрабас"},
-			{"src": "assets/photos/old-money-band/frame-vocal.jpg", "alt": "Old Money Band — вокал у винтажного микрофона"},
-			{"src": "assets/photos/old-money-band/frame-sax.jpg", "alt": "Old Money Band — саксофон"},
-			{"src": "assets/photos/old-money-band/frame-drums.jpg", "alt": "Old Money Band — барабаны"},
-			{"src": "assets/photos/old-money-band/portrait-lilac.jpg", "alt": "Old Money Band — вокалист, фэшн-портрет"},
-			{"src": "assets/photos/old-money-band/frame-sax-hands.jpg", "alt": "Old Money Band — саксофон крупным планом"}
+			{"src": "assets/photos/old-money-band/band-full.jpg", "alt": "Old Money Band — состав на сцене: клавиши, саксофон, контрабас, вокал, барабаны"},
+			{"src": "assets/photos/old-money-band/vocal-front.jpg", "alt": "Old Money Band — вокалист у винтажного микрофона"},
+			{"src": "assets/photos/old-money-band/bass-stage.jpg", "alt": "Old Money Band — контрабас в контровом свете"},
+			{"src": "assets/photos/old-money-band/band-move.jpg", "alt": "Old Money Band — живой номер, состав в дымке"},
+			{"src": "assets/photos/old-money-band/bass-face.jpg", "alt": "Old Money Band — контрабасист"},
+			{"src": "assets/photos/old-money-band/portrait-lilac.jpg", "alt": "Old Money Band — вокалист, фэшн-портрет"}
 		],
 		"keywords": "джаз кавер группа, old money band, jazz cover band moscow, джаз на велком, swing программа на корпоратив"
 	},

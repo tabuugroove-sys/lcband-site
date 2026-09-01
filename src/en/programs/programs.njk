@@ -82,11 +82,6 @@ eleventyComputed:
 		{% endfor %}
 		</ul>
 	</div>
-	{% if program.promoUrl %}
-	<div class="container container--narrow reveal program-promo-cta">
-		<a class="btn btn--ghost-dark" href="{{ program.promoUrl }}" target="_blank" rel="noopener">⬇ {{ program.promoLabel or "Download promo (Google Drive)" }}</a>
-	</div>
-	{% endif %}
 </section>
 {% endif %}
 
@@ -105,6 +100,11 @@ eleventyComputed:
 			{% endfor %}
 		</ul>
 	</div>
+	{% if program.promoUrl %}
+	<div class="container container--narrow reveal program-promo-cta">
+		<a class="btn btn--ghost-dark" href="{{ program.promoUrl }}" target="_blank" rel="noopener">⬇ {{ program.promoLabel or "Download promo (Google Drive)" }}</a>
+	</div>
+	{% endif %}
 </section>
 {% endif %}
 
