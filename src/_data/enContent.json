@@ -70,13 +70,17 @@
 		{
 			"slug": "jazz",
 			"title": "Old Money Band — Jazz Program",
-			"label": "Old Money Band",
+			"label": "Jazz Band",
 			"eyebrow": "Old Money Band · Jazz",
 			"headline": "Jazz. Swing. Lounge.",
 			"lead": "Old Money Band is a sensual jazz project that sets the mood. Welcome receptions, dinners, galleries, yachts. Lineups from a duo to a full band. An authentic musical performance with Moscow's best jazz vocalist.",
 			"bullets": ["Jazz standards (Fly Me to the Moon, Autumn Leaves, Sinatra)", "Soft lounge background that lets guests talk", "Instrumental-only lineup — no vocals"],
 			"poster": "assets/video/posters/old-money-band.jpg",
 			"video": "old-money-band",
+			"hideVideoCarousel": true,
+			"videos": [
+				{"slug": "old-money-band", "title": "Old Money Band", "label": "Promo", "poster": "assets/video/posters/old-money-band.jpg"}
+			],
 			"promoUrl": "https://drive.google.com/drive/folders/15A03eFnNoFVSqagmK4aO5Gct0Zxa2UqC",
 			"promoLabel": "Download promo (Google Drive)",
 			"photos": [

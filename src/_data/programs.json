@@ -169,7 +169,7 @@
 	{
 		"slug": "jazz",
 		"title": "Old Money Band — джазовая программа",
-		"label": "Old Money Band",
+		"label": "Jazz Band",
 		"eyebrow": "Old Money Band · Jazz",
 		"headline": "Джаз. Свинг. Лаундж.",
 		"lead": "Old Money Band — чувственный джазовый проект для создания атмосферы. Велком, ужин, галерея, яхта. Составы — от дуэта до полного бенда. Аутентичный музыкальный перформанс с лучшим джазовым вокалистом Москвы.",
@@ -180,6 +180,15 @@
 		],
 		"poster": "assets/video/posters/old-money-band.jpg",
 		"video": "old-money-band",
+		"hideVideoCarousel": true,
+		"videos": [
+			{
+				"slug": "old-money-band",
+				"title": "Old Money Band",
+				"label": "Promo",
+				"poster": "assets/video/posters/old-money-band.jpg"
+			}
+		],
 		"promoUrl": "https://drive.google.com/drive/folders/15A03eFnNoFVSqagmK4aO5Gct0Zxa2UqC",
 		"promoLabel": "Скачать промо (Google Drive)",
 		"photos": [

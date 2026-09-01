@@ -60,7 +60,7 @@ eleventyComputed:
 	{% endif %}
 </section>
 
-{% if program.videos %}<section class="section section--light program-video-carousel">
+{% if program.videos and not program.hideVideoCarousel %}<section class="section section--light program-video-carousel">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Video</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">in live format.</span></h2>
