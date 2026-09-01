@@ -182,31 +182,25 @@
 		],
 		"poster": "assets/video/posters/old-money-band.jpg",
 		"video": "old-money-band",
+		"videoLead": "Основной промо-ролик проекта — минута, чтобы услышать подачу и увидеть состав.",
+		"promoUrl": "https://drive.google.com/drive/folders/15A03eFnNoFVSqagmK4aO5Gct0Zxa2UqC",
+		"promoLabel": "Скачать промо (Google Drive)",
 		"videos": [
 			{
 				"slug": "old-money-band",
 				"title": "Old Money Band",
 				"label": "Promo",
 				"poster": "assets/video/posters/old-money-band.jpg"
-			},
-			{
-				"slug": "live-berezy",
-				"title": "Берёзы live",
-				"label": "Live",
-				"poster": "assets/video/posters/live-berezy.jpg"
-			},
-			{
-				"slug": "live-jazz-vintage",
-				"title": "Vintage jazz",
-				"label": "Jazz",
-				"poster": "assets/video/posters/live-jazz-vintage.jpg"
-			},
-			{
-				"slug": "live-soho",
-				"title": "SOHO Rooms",
-				"label": "Lounge live",
-				"poster": "assets/video/posters/live-soho.jpg"
 			}
+		],
+		"photos": [
+			{"src": "assets/photos/old-money-band/portrait-cane.jpg", "alt": "Old Money Band — вокалист, студийный портрет в смокинге"},
+			{"src": "assets/photos/old-money-band/frame-bass.jpg", "alt": "Old Money Band — контрабас"},
+			{"src": "assets/photos/old-money-band/frame-vocal.jpg", "alt": "Old Money Band — вокал у винтажного микрофона"},
+			{"src": "assets/photos/old-money-band/frame-sax.jpg", "alt": "Old Money Band — саксофон"},
+			{"src": "assets/photos/old-money-band/frame-drums.jpg", "alt": "Old Money Band — барабаны"},
+			{"src": "assets/photos/old-money-band/portrait-lilac.jpg", "alt": "Old Money Band — вокалист, фэшн-портрет"},
+			{"src": "assets/photos/old-money-band/frame-sax-hands.jpg", "alt": "Old Money Band — саксофон крупным планом"}
 		],
 		"keywords": "джаз кавер группа, old money band, jazz cover band moscow, джаз на велком, swing программа на корпоратив"
 	},

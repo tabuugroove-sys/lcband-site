@@ -64,7 +64,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Video</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">in live format.</span></h2>
-		<p class="section__lead">A few short videos to show the feel, repertoire and stage language of this program.</p>
+		<p class="section__lead">{{ program.videoLead or "A few short videos to show the feel, repertoire and stage language of this program." }}</p>
 	</div>
 	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="{{ program.title }} videos">
 		<ul class="video-rail__track">
@@ -80,6 +80,29 @@ eleventyComputed:
 			</a>
 		</li>
 		{% endfor %}
+		</ul>
+	</div>
+	{% if program.promoUrl %}
+	<div class="container container--narrow reveal program-promo-cta">
+		<a class="btn btn--ghost-dark" href="{{ program.promoUrl }}" target="_blank" rel="noopener">⬇ {{ program.promoLabel or "Download promo (Google Drive)" }}</a>
+	</div>
+	{% endif %}
+</section>
+{% endif %}
+
+{% if program.photos %}
+<section class="section section--light program-photos-section">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Photos</p>
+		<h2 class="section__title">The look<br><span class="muted">of the project.</span></h2>
+	</div>
+	<div class="container reveal">
+		<ul class="program-photos">
+			{% for ph in program.photos %}
+			<li class="program-photos__item">
+				<img src="{{ ('/' + ph.src) | url }}" alt="{{ ph.alt }}" loading="lazy" decoding="async">
+			</li>
+			{% endfor %}
 		</ul>
 	</div>
 </section>

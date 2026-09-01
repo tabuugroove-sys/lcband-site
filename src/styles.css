@@ -5164,3 +5164,36 @@ html[dir="rtl"] .cta-row--left { justify-content: flex-start; }
 /* keep timecodes and quality labels LTR (0:00 / 0:00, 1080p) */
 html[dir="rtl"] .hero__time,
 html[dir="rtl"] .hero__quality { direction: ltr; }
+
+/* ── Program photo gallery (Old Money Band etc.) ─────────────────────────
+   Masonry-free simple grid: portrait and 16:9 stills mix cleanly because
+   every cell crops to the same aspect via object-fit. Square corners match
+   .vtile (radius 0). */
+.program-promo-cta { margin-top: 22px; text-align: center; }
+.program-photos {
+	list-style: none;
+	margin: 0; padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+.program-photos__item {
+	position: relative;
+	overflow: hidden;
+	background: #000;
+	aspect-ratio: 4 / 3;
+}
+.program-photos__item img {
+	width: 100%; height: 100%;
+	object-fit: cover;
+	display: block;
+}
+/* First photo (hero portrait) spans two rows for an editorial layout. */
+.program-photos__item:first-child { grid-row: span 2; aspect-ratio: auto; }
+@media (max-width: 900px) {
+	.program-photos { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+	.program-photos { grid-template-columns: 1fr 1fr; gap: 8px; }
+	.program-photos__item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
+}
