@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+	<title id="title">Гитарист у костра</title>
+	<desc id="desc">Атмосферная иллюстрация акустической гитары и костра в вечернем лесу</desc>
+	<defs>
+		<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#07151a"/>
+			<stop offset="0.58" stop-color="#172a28"/>
+			<stop offset="1" stop-color="#3d2c20"/>
+		</linearGradient>
+		<radialGradient id="glow" cx="50%" cy="75%" r="45%">
+			<stop offset="0" stop-color="#ffb34d" stop-opacity=".74"/>
+			<stop offset=".38" stop-color="#d46925" stop-opacity=".22"/>
+			<stop offset="1" stop-color="#0d1918" stop-opacity="0"/>
+		</radialGradient>
+		<linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+			<stop offset="0" stop-color="#f04422"/>
+			<stop offset=".58" stop-color="#ffad36"/>
+			<stop offset="1" stop-color="#fff3bc"/>
+		</linearGradient>
+		<linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#9a542b"/>
+			<stop offset="1" stop-color="#472619"/>
+		</linearGradient>
+		<filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
+		<filter id="soft"><feGaussianBlur stdDeviation="7"/></filter>
+	</defs>
+
+	<rect width="1600" height="900" fill="url(#sky)"/>
+	<circle cx="1245" cy="168" r="67" fill="#efe4c5" opacity=".88"/>
+	<circle cx="1271" cy="145" r="67" fill="#0b1b1e" opacity=".36"/>
+
+	<path d="M0 560 105 442l-35 104 98-166-35 139 114-211-43 200 112-177-40 197 130-255-45 234 116-184-38 212 136-255-47 248 119-184-43 221 132-250-38 229 113-171-37 207 133-255-44 231 121-183-43 216 126-229-33 201 104-146-34 185 135-224-37 215 122-163-44 193 143-218v331H0Z" fill="#0b1717" opacity=".97"/>
+	<path d="M0 663c246-44 454-23 668 16 235 43 459 34 932-33v254H0Z" fill="#0c1413"/>
+	<ellipse cx="835" cy="684" rx="530" ry="298" fill="url(#glow)" filter="url(#blur)"/>
+
+	<g transform="translate(330 210) rotate(-8 340 320)">
+		<path d="M274 392c-60-37-76-110-33-164 34-42 92-50 137-20 31 21 41 54 38 87 29-16 63-12 88 8 43 34 48 99 11 140-44 49-127 50-174 8-17-15-30-36-35-58-10 6-21 8-32-1Z" fill="#9c5a2b" stroke="#d49b54" stroke-width="9"/>
+		<path d="M306 266c25-35 78-36 107-6 28 29 22 80-13 101-37 23-90 3-98-40-4-19-2-38 4-55Z" fill="#321d16" stroke="#e3b66f" stroke-width="8"/>
+		<circle cx="357" cy="310" r="34" fill="#121514" stroke="#e4bb73" stroke-width="5"/>
+		<path d="m401 282 394-210 32 60-400 202Z" fill="url(#wood)" stroke="#d69a50" stroke-width="8"/>
+		<path d="m787 67 91-21 35 61-85 40Z" fill="#61351f" stroke="#d69a50" stroke-width="8"/>
+		<g stroke="#f6d6a1" stroke-width="3" opacity=".8">
+			<path d="m404 292 408-218"/><path d="m407 301 410-217"/><path d="m409 311 413-216"/><path d="m411 321 415-216"/>
+		</g>
+		<g fill="#e3b36c"><circle cx="878" cy="62" r="7"/><circle cx="895" cy="91" r="7"/><circle cx="842" cy="130" r="7"/><circle cx="859" cy="102" r="7"/></g>
+	</g>
+
+	<g transform="translate(910 585)">
+		<ellipse cx="180" cy="202" rx="190" ry="48" fill="#ff8d2a" opacity=".22" filter="url(#soft)"/>
+		<g stroke="#2c1711" stroke-width="10" stroke-linecap="round">
+			<path d="M76 200 286 125"/><path d="m89 124 197 79"/>
+		</g>
+		<path d="M181 183C85 134 129 77 167 29c5 45 38 62 33 100 34-27 47-60 41-96 80 79 65 134-60 150Z" fill="url(#flame)"/>
+		<path d="M184 178c-43-29-29-62 0-92 0 27 23 33 13 58 22-12 28-27 27-43 29 39 16 65-40 77Z" fill="#fff0a6" opacity=".94"/>
+	</g>
+
+	<g fill="#ffbd55">
+		<circle cx="1083" cy="534" r="5"/><circle cx="1135" cy="498" r="4"/><circle cx="1067" cy="460" r="3"/><circle cx="1172" cy="442" r="5"/><circle cx="1119" cy="400" r="3"/><circle cx="1216" cy="524" r="3"/>
+	</g>
+	<path d="M0 820c350-55 635-22 821 9 258 43 454 31 779-18v89H0Z" fill="#07100f"/>
+</svg>

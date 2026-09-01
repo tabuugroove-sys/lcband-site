@@ -24,6 +24,7 @@ const ENGLISH_ROUTES = [
 	'/en/formats/home-band/',
 	'/en/formats/karaoke/',
 	'/en/formats/welcome/',
+	'/en/formats/gitarist-u-kostra/',
 	'/en/vocalists/',
 	'/en/vocalists/irina/',
 	'/en/vocalists/stas/',

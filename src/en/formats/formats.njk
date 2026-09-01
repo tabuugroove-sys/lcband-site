@@ -9,7 +9,7 @@ htmlLang: en
 ogLocale: en_US
 eleventyComputed:
   title: "{{ format.title }} — {{ site.shortName }}"
-  description: "{{ format.lead }}"
+  description: "{{ format.metaDescription or format.lead }}"
 ---
 
 <section class="page-hero">
@@ -24,6 +24,12 @@ eleventyComputed:
 		<p class="page-hero__lead">{{ format.lead }}</p>
 	</div>
 </section>
+
+{% if format.heroAlt %}
+<div class="page-hero__media reveal">
+	<img src="{{ ('/' + format.poster) | url }}" alt="{{ format.heroAlt }}" width="1600" height="900" fetchpriority="high" decoding="async">
+</div>
+{% endif %}
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
