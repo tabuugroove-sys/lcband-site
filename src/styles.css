@@ -321,9 +321,34 @@ h1, h2, h3, p { margin: 0; }
 
 .nav__dropdown-cols {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-columns: 1fr 2fr 1fr;
 	gap: 64px;
 	align-items: start;
+}
+
+@media (min-width: 735px) {
+	.nav__dropdown-col--main {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.nav__dropdown-col--related {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.nav__dropdown-col--cta {
+		grid-column: 3;
+		grid-row: 1;
+	}
+}
+
+/* On wide screens the primary list starts beneath the dropdown triggers,
+   while keeping enough width for the longest Saxophone profile title. */
+@media (min-width: 1200px) {
+	.nav__dropdown-cols {
+		grid-template-columns: 2fr 1.4fr 1fr;
+	}
 }
 
 .nav__dropdown-label {
