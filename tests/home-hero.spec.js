@@ -40,3 +40,32 @@ test.describe('Homepage hero swipe', () => {
 		});
 	});
 });
+
+test.describe('Homepage hero crop', () => {
+	for (const viewport of [
+		{ width: 1920, height: 640 },
+		{ width: 2169, height: 640 },
+		{ width: 3289, height: 850 },
+	]) {
+		test(`keeps every head below the navigation at ${viewport.width}x${viewport.height}`, async ({ page, isMobile }) => {
+			test.skip(isMobile, 'desktop crop contract');
+
+			await page.setViewportSize(viewport);
+			await page.goto('/');
+			await page.addStyleTag({ content: '.hero__bg.is-active { animation: none !important; }' });
+			await expect.poll(() => page.locator('[data-hero-img]').evaluateAll(images =>
+				images.every(image => image.complete && image.naturalWidth > 0)
+			)).toBe(true);
+
+			const headLines = await page.locator('[data-hero-img]').evaluateAll(images =>
+				images.map(image => {
+					const box = image.getBoundingClientRect();
+					return box.top + box.width * (165 / 2400);
+				})
+			);
+
+			expect(headLines).toHaveLength(4);
+			for (const headLine of headLines) expect(headLine).toBeGreaterThanOrEqual(59);
+		});
+	}
+});

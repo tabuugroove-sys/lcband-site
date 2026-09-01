@@ -672,22 +672,26 @@ h1, h2, h3, p { margin: 0; }
 	will-change: opacity, transform;
 }
 
-/* Source images are pre-aligned (heads at y≈266/1350 ≈ 20% from top) so all
-   slides use identical framing. No per-slide transforms needed. */
+/* Source images are pre-aligned, so all slides use identical framing. No
+   per-slide transforms needed. */
 .hero__bg.is-active {
 	opacity: 1;
 	animation: heroZoom 24s cubic-bezier(.42, 0, .58, 1) infinite alternate;
 }
 
-/* The centered 16:9 crop stays untouched through the accepted 2168px width.
-   Past it, freeze the top at the position produced by a 2168px-wide image;
-   any additional image height then overflows only below the hero. Expressing
-   the reference image height directly keeps the hand-off exact at every hero
-   height, while the top transform origin also holds during the slow zoom. */
-@media (min-width: 2169px) {
+/* On wide, shallow desktop heroes a centered 16:9 crop can move every head
+   above the viewport. The first hairline is aligned around y=165px in the
+   2400px-wide sources (6.875vw at full width), so clamp that line below the
+   navigation. Once the clamp is reached, extra image height overflows only
+   below the hero. The second media arm also covers heroes capped at 1000px. */
+@media (min-width: 735px) and (min-aspect-ratio: 16 / 9),
+	(min-width: 1778px) {
 	.hero__bg {
 		inset: auto 0 auto;
-		top: calc((100% - 1219.5px) / 2);
+		top: max(
+			calc((100% - 56.25vw) / 2),
+			calc(var(--nav-h) + 16px - 6.875vw)
+		);
 		height: auto;
 		transform-origin: center top;
 	}
