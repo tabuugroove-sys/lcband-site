@@ -44,6 +44,22 @@ eleventyComputed:
 	</div>
 </section>
 
+{% if format.artist %}
+<section class="section section--dark format-artist">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow section__eyebrow--light">Основной артист</p>
+		<h2 class="section__title section__title--light">{{ format.artist.name }}<br><span class="muted">{{ format.artist.role }}.</span></h2>
+		<p class="format-artist__lead">{{ format.artist.lead }}</p>
+		<p class="format-artist__price">{{ format.artist.price }}</p>
+		<div class="format-artist__materials" aria-label="Промо и коммерческое предложение Юрия Шурховецкого">
+			{% for item in format.artist.materials %}
+			<a class="btn{% if loop.first %} btn--primary{% else %} btn--ghost-light{% endif %}" href="{{ item.url | url }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}{% if item.download %} download{% endif %}>{{ item.label }}</a>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
 <section class="section section--book">
 	<div class="container container--narrow reveal">
 		<h2 class="section__title section__title--light">{{ format.cta }}.</h2>
