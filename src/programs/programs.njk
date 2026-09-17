@@ -142,7 +142,7 @@ eleventyComputed:
 
 {% if program.slug == 'jazz' and jazzRepertoire %}
 <!-- =============== JAZZ REPERTOIRE (Old Money Band, из официального PDF) =============== -->
-<section class="section" id="repertoire">
+<section class="section rep-section" id="repertoire">
 	<div class="container reveal">
 		<div class="container--narrow rep-head">
 			<p class="section__eyebrow">Репертуар</p>
@@ -156,8 +156,11 @@ eleventyComputed:
 			{% for g in jazzRepertoire.groups %}
 			<details class="rep-group" data-rep-group{% if loop.first %} open{% endif %}>
 				<summary class="rep-group__summary">
-					<span class="rep-group__title">{{ g.title }}</span>
-					<span class="rep-group__note">{{ g.note }}</span>
+					<span class="rep-group__index">0{{ loop.index }}</span>
+					<span class="rep-group__heading">
+						<span class="rep-group__title">{{ g.title }}</span>
+						<span class="rep-group__note">{{ g.note }}</span>
+					</span>
 					<span class="rep-group__count" data-rep-count>{{ g.songs | length }}</span>
 				</summary>
 				<ul class="rep-group__list">
