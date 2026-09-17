@@ -5547,6 +5547,8 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 .program-photos__item img {
 	width: 100%; height: 100%;
 	object-fit: cover;
+	/* портретные кадры: приоритет верхней части — головы не обрезаются */
+	object-position: center 20%;
 	display: block;
 }
 /* First photo (hero portrait) spans two rows for an editorial layout. */
