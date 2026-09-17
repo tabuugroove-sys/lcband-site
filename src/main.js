@@ -224,6 +224,41 @@
 		window.addEventListener('load', onWallResize);
 	}
 
+	// ---------- Jazz repertoire: live search (/programs/jazz/) ----------
+	// Фильтрует песни по подстроке (без учёта регистра), скрывает пустые
+	// группы, во время поиска раскрывает группы с совпадениями.
+	const repInput = document.querySelector('[data-rep-input]');
+	if (repInput) {
+		const repGroups = Array.from(document.querySelectorAll('[data-rep-group]'));
+		const repEmpty = document.querySelector('[data-rep-empty]');
+		const repData = repGroups.map(g => ({
+			el: g,
+			count: g.querySelector('[data-rep-count]'),
+			total: g.querySelectorAll('.rep-group__song').length,
+			songs: Array.from(g.querySelectorAll('.rep-group__song')).map(li => ({
+				el: li,
+				text: li.textContent.toLowerCase()
+			}))
+		}));
+		repInput.addEventListener('input', () => {
+			const q = repInput.value.trim().toLowerCase();
+			let anyVisible = false;
+			repData.forEach(g => {
+				let visible = 0;
+				g.songs.forEach(s => {
+					const show = !q || s.text.indexOf(q) !== -1;
+					s.el.classList.toggle('is-hidden', !show);
+					if (show) visible++;
+				});
+				g.el.classList.toggle('is-filtered-out', visible === 0);
+				if (q) g.el.open = visible > 0;
+				if (g.count) g.count.textContent = q ? visible : g.total;
+				if (visible > 0) anyVisible = true;
+			});
+			if (repEmpty) repEmpty.hidden = anyVisible;
+		});
+	}
+
 	// ---------- Toast ----------
 	let toastEl = null;
 	let toastTimer = null;

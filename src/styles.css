@@ -5560,3 +5560,116 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 	.program-photos { grid-template-columns: 1fr 1fr; gap: 8px; }
 	.program-photos__item:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 3; }
 }
+
+/* ========================================================================
+   Programs — Jazz repertoire (Old Money Band): поиск + аккордеон-группы
+   ======================================================================== */
+
+.rep-head { padding-left: 0; }
+
+.rep-filter { margin: 28px 0 36px; }
+
+.rep-filter__input {
+	width: 100%;
+	max-width: 520px;
+	font: inherit;
+	font-size: 17px;
+	padding: 14px 18px;
+	border: 1px solid rgba(0,0,0,.16);
+	border-radius: 12px;
+	background: #fff;
+	color: #1d1d1f;
+	outline: none;
+	transition: border-color .2s ease, box-shadow .2s ease;
+}
+.rep-filter__input:focus {
+	border-color: #1d1d1f;
+	box-shadow: 0 0 0 4px rgba(0,0,0,.06);
+}
+.rep-filter__input::placeholder { color: rgba(0,0,0,.4); }
+
+.rep-group {
+	border-top: 1px solid rgba(0,0,0,.12);
+}
+.rep-group:last-of-type { border-bottom: 1px solid rgba(0,0,0,.12); }
+
+.rep-group__summary {
+	display: flex;
+	align-items: baseline;
+	gap: 16px;
+	padding: 20px 4px;
+	cursor: pointer;
+	list-style: none;
+	user-select: none;
+}
+.rep-group__summary::-webkit-details-marker { display: none; }
+
+.rep-group__title {
+	font-family: var(--ff-display);
+	font-size: clamp(20px, 2.2vw, 28px);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: #1d1d1f;
+}
+
+.rep-group__note {
+	font-size: 14px;
+	color: rgba(0,0,0,.5);
+	flex: 1;
+}
+
+.rep-group__count {
+	font-variant-numeric: tabular-nums;
+	font-size: 14px;
+	font-weight: 600;
+	color: rgba(0,0,0,.45);
+	background: rgba(0,0,0,.05);
+	border-radius: 999px;
+	padding: 4px 12px;
+}
+
+.rep-group__summary::after {
+	content: '';
+	width: 10px; height: 10px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg);
+	transition: transform .25s ease;
+	align-self: center;
+	color: rgba(0,0,0,.4);
+}
+.rep-group[open] .rep-group__summary::after { transform: rotate(225deg); }
+
+.rep-group__list {
+	list-style: none;
+	margin: 0;
+	padding: 4px 4px 28px;
+	columns: 3;
+	column-gap: 32px;
+}
+
+.rep-group__song {
+	break-inside: avoid;
+	font-size: 15px;
+	line-height: 1.45;
+	color: rgba(0,0,0,.78);
+	padding: 5px 0;
+	border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.rep-group__song.is-hidden { display: none; }
+
+.rep-group.is-filtered-out { display: none; }
+
+.rep-empty {
+	padding: 24px 4px;
+	font-size: 16px;
+	color: rgba(0,0,0,.55);
+}
+
+@media (max-width: 900px) {
+	.rep-group__list { columns: 2; }
+	.rep-group__note { display: none; }
+}
+@media (max-width: 560px) {
+	.rep-group__list { columns: 1; }
+}
