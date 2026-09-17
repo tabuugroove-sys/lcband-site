@@ -5562,25 +5562,13 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 }
 
 /* ========================================================================
-   Programs — Jazz repertoire (Old Money Band): тёмная «old money» секция,
-   золотые акценты, песни чипсами, живой поиск, аккордеон-группы
+   Programs — Jazz repertoire (Old Money Band): секция в дизайн-системе
+   сайта (elev-фон, белые карточки, синий акцент), живой поиск, аккордеон
    ======================================================================== */
-
-.rep-section {
-	background-color: #14110c;
-	background-image:
-		radial-gradient(at top right, rgba(201,164,92,.16), transparent 55%),
-		radial-gradient(at bottom left, rgba(201,164,92,.07), transparent 50%);
-}
-
-.rep-section .section__eyebrow { color: rgba(201,164,92,.9); }
-.rep-section .section__title { color: #f5f1e8; }
-.rep-section .section__title .muted { color: rgba(245,241,232,.42); }
-.rep-section .section__lead { color: rgba(245,241,232,.6); }
 
 .rep-head { padding-left: 0; }
 
-.rep-filter { margin: 32px 0 40px; }
+.rep-filter { margin: 32px 0 28px; }
 
 .rep-filter__input {
 	width: 100%;
@@ -5588,35 +5576,45 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 	font: inherit;
 	font-size: 17px;
 	padding: 15px 20px;
-	border: 1px solid rgba(255,255,255,.16);
+	border: 1px solid rgba(0,0,0,.12);
 	border-radius: 14px;
-	background: rgba(255,255,255,.05);
-	color: #f5f1e8;
-	caret-color: #c9a45c;
+	background: #fff;
+	color: var(--c-text);
+	caret-color: var(--c-link);
 	outline: none;
-	transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+	transition: border-color .2s ease, box-shadow .2s ease;
 }
 .rep-filter__input:focus {
-	border-color: rgba(201,164,92,.7);
-	box-shadow: 0 0 0 4px rgba(201,164,92,.14);
-	background: rgba(255,255,255,.07);
+	border-color: var(--c-link);
+	box-shadow: 0 0 0 4px rgba(0,102,204,.12);
 }
-.rep-filter__input::placeholder { color: rgba(245,241,232,.35); }
+.rep-filter__input::placeholder { color: var(--c-text-secondary); }
 
-.rep-group { border-top: 1px solid rgba(255,255,255,.1); }
-.rep-group:last-of-type { border-bottom: 1px solid rgba(255,255,255,.1); }
+.rep-groups {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.rep-group {
+	background: #fff;
+	border: 1px solid rgba(0,0,0,.06);
+	border-radius: 18px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04);
+	overflow: hidden;
+}
 
 .rep-group__summary {
 	display: flex;
 	align-items: center;
-	gap: 20px;
-	padding: 26px 6px;
+	gap: 18px;
+	padding: 22px 24px;
 	cursor: pointer;
 	list-style: none;
 	user-select: none;
 	transition: background .2s ease;
 }
-.rep-group__summary:hover { background: rgba(255,255,255,.02); }
+.rep-group__summary:hover { background: rgba(0,0,0,.015); }
 .rep-group__summary::-webkit-details-marker { display: none; }
 
 .rep-group__index {
@@ -5624,57 +5622,57 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 	font-size: 15px;
 	font-weight: 600;
 	font-variant-numeric: tabular-nums;
-	letter-spacing: .08em;
-	color: rgba(201,164,92,.85);
-	min-width: 30px;
+	letter-spacing: .06em;
+	color: var(--c-link);
+	min-width: 28px;
 }
 
 .rep-group__heading {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: 3px;
 }
 
 .rep-group__title {
 	font-family: var(--ff-display);
-	font-size: clamp(22px, 2.4vw, 30px);
+	font-size: clamp(20px, 2.2vw, 26px);
 	font-weight: 600;
-	letter-spacing: -0.01em;
-	line-height: 1.1;
-	color: #f5f1e8;
+	letter-spacing: -0.015em;
+	line-height: 1.15;
+	color: var(--c-text);
 }
 
 .rep-group__note {
 	font-size: 14px;
-	letter-spacing: .01em;
-	color: rgba(245,241,232,.42);
+	color: var(--c-text-secondary);
 }
 
 .rep-group__count {
 	font-variant-numeric: tabular-nums;
-	font-size: 14px;
+	font-size: 13.5px;
 	font-weight: 600;
-	color: #c9a45c;
-	border: 1px solid rgba(201,164,92,.35);
+	color: var(--c-text-tertiary);
+	background: rgba(0,0,0,.045);
 	border-radius: 999px;
-	padding: 5px 14px;
+	padding: 5px 13px;
 }
 
 .rep-group__summary::after {
 	content: '';
-	width: 10px; height: 10px;
-	border-right: 1.5px solid rgba(245,241,232,.45);
-	border-bottom: 1.5px solid rgba(245,241,232,.45);
+	width: 9px; height: 9px;
+	border-right: 1.5px solid var(--c-text-secondary);
+	border-bottom: 1.5px solid var(--c-text-secondary);
 	transform: rotate(45deg);
 	transition: transform .25s ease;
+	flex: 0 0 auto;
 }
 .rep-group[open] .rep-group__summary::after { transform: rotate(225deg); }
 
 .rep-group__list {
 	list-style: none;
 	margin: 0;
-	padding: 6px 6px 34px 56px;
+	padding: 2px 24px 26px 70px;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
@@ -5683,35 +5681,39 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 .rep-group__song {
 	font-size: 14.5px;
 	line-height: 1.3;
-	color: rgba(245,241,232,.78);
-	background: rgba(255,255,255,.035);
-	border: 1px solid rgba(255,255,255,.13);
+	color: rgba(0,0,0,.78);
+	background: var(--c-bg-elevated);
+	border: 1px solid rgba(0,0,0,.07);
 	border-radius: 999px;
-	padding: 8px 15px;
-	transition: border-color .2s ease, color .2s ease, background .2s ease, transform .2s ease;
+	padding: 7px 14px;
+	transition: border-color .2s ease, color .2s ease, background .2s ease;
 }
 .rep-group__song:hover {
-	border-color: rgba(201,164,92,.6);
-	color: #e8cf9c;
-	background: rgba(201,164,92,.08);
-	transform: translateY(-1px);
+	border-color: rgba(0,102,204,.5);
+	color: var(--c-link);
+	background: rgba(0,102,204,.06);
 }
 .rep-group__song.is-hidden { display: none; }
 
 .rep-group.is-filtered-out { display: none; }
 
 .rep-empty {
-	padding: 28px 6px;
+	margin: 4px 0 0;
+	padding: 22px 24px;
 	font-size: 16px;
-	color: rgba(245,241,232,.55);
+	color: var(--c-text-secondary);
+	background: #fff;
+	border: 1px dashed rgba(0,0,0,.12);
+	border-radius: 18px;
 }
 
 @media (max-width: 900px) {
-	.rep-group__list { padding-left: 6px; }
+	.rep-group__list { padding-left: 24px; }
 	.rep-group__note { display: none; }
 }
 @media (max-width: 560px) {
-	.rep-group__summary { gap: 14px; padding: 20px 4px; }
+	.rep-group__summary { gap: 12px; padding: 18px; }
 	.rep-group__index { display: none; }
-	.rep-group__song { font-size: 13.5px; padding: 7px 13px; }
+	.rep-group__list { padding: 0 18px 22px; }
+	.rep-group__song { font-size: 13.5px; padding: 6px 12px; }
 }
