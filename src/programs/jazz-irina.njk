@@ -9,7 +9,7 @@ preloadImage: assets/jazz-irina/portrait-wide.webp
 bodyClass: jazz-irina-page
 barePage: true
 showMainNav: true
-pageStylesheet: /assets/jazz-irina/page.css?v=3
+pageStylesheet: /assets/jazz-irina/page.css?v=4
 pageScript: /assets/jazz-irina/page.js?v=3
 ---
 {% macro photo(slug, alt) %}
@@ -26,7 +26,7 @@ pageScript: /assets/jazz-irina/page.js?v=3
 </div></div>
 {% endmacro %}
 <div class="ji-page">
-<header class="ji-hero"><picture><source media="(max-width:734px)" srcset="{{ '/assets/jazz-irina/portrait.webp' | url }}"><img class="ji-hero-photo" src="{{ '/assets/jazz-irina/portrait-wide.webp' | url }}" alt="Ирина в чёрном кружевном платье с золотым микрофоном" width="1672" height="941" fetchpriority="high"></picture><div class="ji-intro"><p>Luxury Cover Band</p><h1><span>Ирина.</span><span>Джаз.</span></h1><a class="ji-link" href="#collection">Фото и видео <span aria-hidden="true">›</span></a></div></header>
+<header class="ji-hero"><picture><source media="(max-width:734px)" srcset="{{ '/assets/jazz-irina/portrait.webp' | url }}"><img class="ji-hero-photo" src="{{ '/assets/jazz-irina/portrait-wide.webp' | url }}" alt="Ирина в чёрном кружевном платье с золотым микрофоном" width="1672" height="941" fetchpriority="high"></picture><div class="ji-intro"><p>Luxury Cover Band</p><h1><span>Джаз.</span> <span>Лаундж.</span> <span>Гетсби.</span> <span>Гангстерский стиль.</span></h1><a class="ji-link" href="#collection">Фото и видео <span aria-hidden="true">›</span></a></div></header>
   <section class="ji-collection ji-collection--videos" id="collection" aria-label="Джазовые видео Ирины" aria-roledescription="карусель">
     <ul class="ji-track" aria-label="Джазовые видео">
       {{ video(jazzIrina.videos[4]) }}
