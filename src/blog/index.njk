@@ -5,6 +5,9 @@ title: "Блог о живой музыке на праздник — Luxury Cov
 description: "Блог Luxury Cover Band: сколько стоит кавер-группа, живая музыка или диджей, как выбрать формат под праздник. Разборы без воды от действующего бенда."
 keywords: "блог кавер группа, как выбрать кавер группу, живая музыка на праздник, сколько стоит кавер группа"
 permalink: /blog/
+bodyClass: blog-hub
+showMainNav: true
+pageStylesheet: /assets/blog-list.css?v=1
 ---
 {% block schema %}
 <script type="application/ld+json">
@@ -44,7 +47,7 @@ permalink: /blog/
 	</div>
 </section>
 
-<section class="section section--flush">
+<section class="section blog-hub__articles">
 	<div class="container container--narrow reveal">
 		<ul class="blog-list">
 			{% for post in collections.posts | reverse %}

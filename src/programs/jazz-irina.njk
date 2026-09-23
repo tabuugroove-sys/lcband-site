@@ -9,7 +9,7 @@ preloadImage: assets/jazz-irina/portrait-wide.webp
 bodyClass: jazz-irina-page
 barePage: true
 showMainNav: true
-pageStylesheet: /assets/jazz-irina/page.css?v=4
+pageStylesheet: /assets/jazz-irina/page.css?v=5
 pageScript: /assets/jazz-irina/page.js?v=3
 ---
 {% macro photo(slug, alt) %}
@@ -38,15 +38,15 @@ pageScript: /assets/jazz-irina/page.js?v=3
     </ul>
     {{ controls('Джаз. Вживую.') }}
   </section>
+  <section class="ji-repertoire" aria-labelledby="ji-repertoire-title">
+    <div class="ji-repertoire-head"><h2 id="ji-repertoire-title">Репертуар.</h2><a class="ji-link" href="{{ '/assets/repertoire/?v=20260923' | url }}" target="_blank" rel="noopener">Весь репертуар <span aria-hidden="true">↗</span></a></div>
+    <div class="ji-song-groups">{% for group in jazzIrina.repertoire %}<div><h3>{{ group.title }}</h3><ol>{% for song in group.songs %}<li><span class="ji-song-number" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span><span>{{ song }}</span></li>{% endfor %}</ol></div>{% endfor %}</div>
+  </section>
   <section class="ji-collection ji-collection--photos" id="photos" aria-label="Фотографии Ирины" aria-roledescription="карусель">
     <ul class="ji-track" aria-label="Фотографии Ирины">
       {% for p in jazzIrina.photos %}{{ photo(p.slug, p.alt) }}{% endfor %}
     </ul>
     {{ controls('Ирина. В кадре.') }}
-  </section>
-  <section class="ji-repertoire" aria-labelledby="ji-repertoire-title">
-    <div class="ji-repertoire-head"><h2 id="ji-repertoire-title">Репертуар.</h2><a class="ji-link" href="{{ '/assets/repertoire/' | url }}" target="_blank" rel="noopener">Весь репертуар <span aria-hidden="true">↗</span></a></div>
-    <div class="ji-song-groups">{% for group in jazzIrina.repertoire %}<div><h3>{{ group.title }}</h3><ol>{% for song in group.songs %}<li><span class="ji-song-number" aria-hidden="true">0{{ loop.index }}</span><span>{{ song }}</span></li>{% endfor %}</ol></div>{% endfor %}</div>
   </section>
   <section class="ji-booking" id="booking" aria-label="Бронирование"><p>Встреча гостей · Ужин · Гэтсби</p><a class="btn btn--primary" href="{{ site.telegram }}?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B4%D0%B6%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D1%81%20%D0%98%D1%80%D0%B8%D0%BD%D0%BE%D0%B9.">Написать в Telegram</a></section>
   <footer class="ji-footer"><a href="{{ '/programs/' | url }}">Все программы</a><a href="https://disk.yandex.ru/d/Pn5YZQ6IN48x7A" target="_blank" rel="noopener">Скачать видео ↗</a><a href="https://www.youtube.com/playlist?list=PLiQgqRMPy4t1WcwqpnSdgvY5RtFwN6x6t" target="_blank" rel="noopener">YouTube ↗</a></footer>

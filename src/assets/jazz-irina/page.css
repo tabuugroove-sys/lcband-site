@@ -11,7 +11,7 @@
 .ji-link span { font-size:25px; }
 .ji-collection { --card-height:clamp(360px,36vw,510px); --card-gap:12px; padding-top:12px; scroll-margin-top:var(--nav-h); }
 .ji-collection--videos { --card-height:clamp(300px,28vw,400px); }
-.ji-collection--photos { padding-top:28px; }
+.ji-collection--photos { padding-top:0; padding-bottom:48px; }
 .ji-track { display:flex; gap:var(--card-gap); overflow-x:auto; overflow-y:hidden; scrollbar-width:none; position:relative; scroll-behavior:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; padding:0; margin:0; }
 .ji-track::-webkit-scrollbar { display:none; }
 .ji-card { height:var(--card-height); flex:none; position:relative; overflow:hidden; background:var(--c-bg-elevated); }

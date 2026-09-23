@@ -7,6 +7,9 @@ title: "Live Music Blog — Luxury Cover Band"
 description: "Luxury Cover Band guides to live-band pricing, choosing between live music and a DJ, and selecting the right event format."
 keywords: "cover band blog, how to choose a cover band, live event music, cover band price"
 permalink: /en/blog/
+bodyClass: blog-hub
+showMainNav: true
+pageStylesheet: /assets/blog-list.css?v=1
 ---
 {% block schema %}
 <script type="application/ld+json">
@@ -33,7 +36,7 @@ permalink: /en/blog/
   </div>
 </section>
 
-<section class="section section--flush">
+<section class="section blog-hub__articles">
   <div class="container container--narrow reveal">
     <ul class="blog-list">
       {% for post in collections.enPosts | reverse %}

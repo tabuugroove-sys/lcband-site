@@ -24,6 +24,7 @@ export default function (eleventyConfig) {
 		});
 	}
 	eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
+	eleventyConfig.addPassthroughCopy("src/assets/blog-list.css");
 	eleventyConfig.addPassthroughCopy("src/styles.css");
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/robots.txt");

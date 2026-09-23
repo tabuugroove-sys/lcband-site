@@ -8,8 +8,11 @@
     {"slug":"irina-jazz-coco-live","title":"The Co-Co Jazz Band","label":"Живое звучание группы","duration":"3:46","youtube":"f1Irq17QAvA"}
   ],
   "repertoire": [
-    {"title":"Джазовые стандарты","songs":["Misty","It Don’t Mean a Thing","Sway","At Last","Over the Rainbow","Strangers in the Night"]},
-    {"title":"Соул и R&B","songs":["Sunny — джазовая версия","Golden","Ain’t No Sunshine","Smooth Operator","No Ordinary Love","I Say a Little Prayer"]}
+    {"title":"Джаз и свинг","songs":["Misty","It Don’t Mean a Thing","Sway","At Last","Over the Rainbow","Strangers in the Night","Hit the Road Jack"]},
+    {"title":"Лаундж","songs":["Подмосковные вечера","Всё в твоих руках","Forever Young","Море мы","I Know","Crazy in Love — vintage","Sunny — джазовая версия","Sixteen Tons"]},
+    {"title":"Соул","songs":["Ain’t No Sunshine","I Say a Little Prayer","I Belong to You","Killing Me Softly with His Song","Crazy","I Will Always Love You","Greatest Love of All"]},
+    {"title":"R&B","songs":["Give It Back","Smooth Operator","No Ordinary Love","Say It Right","Ain’t Nobody","New York","Halo"]},
+    {"title":"Французская классика","songs":["Je veux","Sous le ciel de Paris","La vie en rose","C’est si bon"]}
   ],
   "photos": [
     {"slug":"hero","alt":"Ирина на сцене с микрофоном","caption":"Живое выступление"},
