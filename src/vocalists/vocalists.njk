@@ -42,6 +42,9 @@ eleventyComputed:
 		<h1 class="page-hero__title">{{ vocalist.name }}</h1>
 		<p class="page-hero__lead">{{ vocalist.tagline }}</p>
 		<p class="page-hero__body">{{ vocalist.bio }}</p>
+		{% if vocalist.slug == 'irina' %}
+		<p class="page-hero__body"><a class="btn btn--ghost-dark" href="{{ '/programs/jazz-irina/' | url }}">Джаз с Ириной — видео и фото ↗</a></p>
+		{% endif %}
 		<div class="page-hero__tags">
 			{% for s in vocalist.specialty %}
 				<span class="tag">{{ s }}</span>

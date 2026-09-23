@@ -1,0 +1,17 @@
+{
+  "videos": [
+    {"slug":"irina-jazz-hit-the-road-jack","title":"Hit the Road Jack","label":"Ритм и характер","duration":"0:25","youtube":"xKoBXt4qMng"},
+    {"slug":"irina-jazz-the-best","title":"The Best","label":"Знакомый хит · live","duration":"0:19","youtube":"cloMytwIQY0"},
+    {"slug":"irina-jazz-sunny","title":"Sunny","label":"Солнечный грув","duration":"0:43","youtube":"BmuVoDgxk78"},
+    {"slug":"irina-jazz-live-session","title":"Live session","label":"Фрагмент выступления","duration":"0:15","youtube":"H_hHj2DjiWk"},
+    {"slug":"irina-jazz-taking-a-chance","title":"Taking a Chance on Love","label":"Джазовый стандарт","duration":"2:42","youtube":"U1tokU0vsE8"},
+    {"slug":"irina-jazz-coco-live","title":"The Co-Co Jazz Band","label":"Живое звучание группы","duration":"3:46","youtube":"f1Irq17QAvA"}
+  ],
+  "photos": [
+    {"slug":"black-stage","alt":"Ирина на сцене в чёрном платье с пайетками","caption":"Свет. Голос. Живая сцена."},
+    {"slug":"portrait","alt":"Портрет Ирины в чёрном кружевном вечернем образе","caption":"Ирина · вокал LuxuryBand"},
+    {"slug":"red-hat","alt":"Ирина в красном вечернем платье и шляпе","caption":"Красный акцент"},
+    {"slug":"emerald-stage","alt":"Ирина с микрофоном в изумрудном платье","caption":"Вечерний образ"},
+    {"slug":"red-live","alt":"Ирина поёт на сцене в красном платье","caption":"Энергия живого выступления"}
+  ]
+}

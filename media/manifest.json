@@ -43,6 +43,36 @@
       "sha256": "a495be913a8f794acd0c6db29ac20af5965f830ac6f06f3c05c4765b0c0e43ff"
     },
     {
+      "path": "assets/video/mp4/irina-jazz-coco-live-720.mp4",
+      "bytes": 16655361,
+      "sha256": "4ca28c9e30ed3ade3d92a1be4617516eba6b189e11676e753228e875fc0438aa"
+    },
+    {
+      "path": "assets/video/mp4/irina-jazz-hit-the-road-jack-720.mp4",
+      "bytes": 18404797,
+      "sha256": "c8df9c489399ce0845e82fcfe29208d49ff5b60be784c539dd7410e384d13da5"
+    },
+    {
+      "path": "assets/video/mp4/irina-jazz-live-session-720.mp4",
+      "bytes": 3339375,
+      "sha256": "9a7a6cb886eef8fa019e8d5bf3c968252d0a1596a20d226f2aa95bf7d63a3abb"
+    },
+    {
+      "path": "assets/video/mp4/irina-jazz-sunny-720.mp4",
+      "bytes": 11191316,
+      "sha256": "3b368da3a1d4bd13cce3c071cdfb87d019f5c471e8f0d78cbf511dcc3e7ad41a"
+    },
+    {
+      "path": "assets/video/mp4/irina-jazz-taking-a-chance-720.mp4",
+      "bytes": 11356550,
+      "sha256": "078ca5160a3279e5b0446ffe63e12363bede0c4d09a87dd256b911a3435a3a6d"
+    },
+    {
+      "path": "assets/video/mp4/irina-jazz-the-best-720.mp4",
+      "bytes": 5668855,
+      "sha256": "52ac1f55521b650253479e7c9d76eb88f1b65cf26bd23eba0936f848a7222dac"
+    },
+    {
       "path": "assets/video/mp4/latin-modern-program-1080.mp4",
       "bytes": 77160872,
       "sha256": "42500ae994d474ff9c204d5883092fcc67dce3a9c8f9ad68425383e8a96a1140"

@@ -9,6 +9,7 @@ export default function (eleventyConfig) {
 		"costumes",
 		"docs",
 		"hero",
+		"jazz-irina",
 		"leo-sax",
 		"photos",
 		"repertoire",
