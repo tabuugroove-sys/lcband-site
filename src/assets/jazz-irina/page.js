@@ -1,15 +1,24 @@
 (() => {
-  const track = document.querySelector('.ji-track');
+  const tracks = [...document.querySelectorAll('.ji-track')];
   const viewer = document.querySelector('.ji-viewer');
-  if (!track || !viewer) return;
+  if (!tracks.length || !viewer) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let links = [];
+  let current = 0;
+  let opener;
+  let previousOverflow = '';
+  let afterClose = () => {};
+
+  tracks.forEach(track => {
+  const collection = track.closest('.ji-collection');
   const originals = [...track.children];
-  const links = originals.map((card, index) => {
+  if (!originals.length) return;
+  const rowLinks = originals.map((card, index) => {
     const link = card.querySelector('.ji-media');
     link.dataset.index = index;
     return link;
   });
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const toggle = document.querySelector('.ji-toggle');
+  const toggle = collection.querySelector('.ji-toggle');
   let paused = reduced.matches;
   let hovered = false;
   let focused = false;
@@ -21,9 +30,6 @@
   let navigation = null;
   let drag = null;
   let suppressClick = false;
-  let current = 0;
-  let opener;
-  let previousOverflow = '';
   let frameId = 0;
 
   // Outer copies make both ends continuous; only the original set is tabbable.
@@ -36,10 +42,12 @@
   });
   track.prepend(...copy());
   track.append(...copy());
-  document.querySelector('.ji-toolbar').hidden = false;
+  collection.querySelector('.ji-toolbar').hidden = false;
   const measure = () => {
     const oldCycle = cycle;
     cycle = track.children[originals.length * 2].offsetLeft - originals[0].offsetLeft;
+    // Keep the next full cycle reachable even on displays wider than this row.
+    while (cycle && track.scrollWidth - track.clientWidth < cycle * 2 + 1) track.append(...copy());
     const phase = oldCycle ? ((track.scrollLeft % oldCycle) + oldCycle) % oldCycle / oldCycle : 0;
     position = cycle * (1 + phase);
     track.scrollLeft = position;
@@ -47,8 +55,7 @@
   };
   const wrap = () => {
     if (!cycle) return;
-    if (position < cycle * .5) position += cycle;
-    if (position > cycle * 2.5) position -= cycle;
+    if (position < cycle || position >= cycle * 2) position = cycle + ((position - cycle) % cycle + cycle) % cycle;
   };
   const updateToggle = () => {
     toggle.setAttribute('aria-pressed', String(paused));
@@ -143,11 +150,28 @@
     manualUntil = performance.now() + 2000;
     wake();
   };
-  document.querySelector('.ji-prev').addEventListener('click', () => advance(-1));
-  document.querySelector('.ji-next').addEventListener('click', () => advance(1));
+  collection.querySelector('.ji-prev').addEventListener('click', () => advance(-1));
+  collection.querySelector('.ji-next').addEventListener('click', () => advance(1));
   track.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); advance(event.key === 'ArrowRight' ? 1 : -1); }
   });
+  track.addEventListener('click', event => {
+    const link = event.target.closest('.ji-media');
+    if (!link) return;
+    event.preventDefault();
+    if (suppressClick) return;
+    navigation = null;
+    links = rowLinks;
+    opener = links[Number(link.dataset.index)];
+    afterClose = () => { manualUntil = performance.now() + 1600; };
+    previousOverflow = document.body.style.overflow;
+    viewer.setAttribute('aria-label', collection.getAttribute('aria-label'));
+    viewer.showModal();
+    document.body.style.overflow = 'hidden';
+    show(Number(link.dataset.index));
+  });
+  });
+
   const holder = viewer.querySelector('.ji-viewer-media');
   const stopVideo = () => {
     const video = holder.querySelector('video');
@@ -169,18 +193,6 @@
     fallback.hidden = !video;
     if (video) { fallback.href = link.dataset.youtube; media.play().catch(() => {}); }
   };
-  track.addEventListener('click', event => {
-    const link = event.target.closest('.ji-media');
-    if (!link) return;
-    event.preventDefault();
-    if (suppressClick) return;
-    navigation = null;
-    opener = links[Number(link.dataset.index)];
-    previousOverflow = document.body.style.overflow;
-    viewer.showModal();
-    document.body.style.overflow = 'hidden';
-    show(Number(link.dataset.index));
-  });
   viewer.querySelector('.ji-viewer-close').addEventListener('click', () => viewer.close());
   viewer.querySelector('.ji-viewer-prev').addEventListener('click', () => show(current - 1));
   viewer.querySelector('.ji-viewer-next').addEventListener('click', () => show(current + 1));
@@ -193,6 +205,6 @@
     stopVideo();
     document.body.style.overflow = previousOverflow;
     opener?.focus({preventScroll:true});
-    manualUntil = performance.now() + 1600;
+    afterClose();
   });
 })();

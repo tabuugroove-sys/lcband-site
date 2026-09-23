@@ -12,6 +12,7 @@
     {"title":"Соул и R&B","songs":["Sunny — джазовая версия","Golden","Ain’t No Sunshine","Smooth Operator","No Ordinary Love","I Say a Little Prayer"]}
   ],
   "photos": [
+    {"slug":"hero","alt":"Ирина на сцене с микрофоном","caption":"Живое выступление"},
     {"slug":"black-stage","alt":"Ирина на сцене в чёрном платье с пайетками","caption":"Свет. Голос. Живая сцена."},
     {"slug":"portrait","alt":"Портрет Ирины в чёрном кружевном вечернем образе","caption":"Ирина · вокал LuxuryBand"},
     {"slug":"red-hat","alt":"Ирина в красном вечернем платье и шляпе","caption":"Красный акцент"},

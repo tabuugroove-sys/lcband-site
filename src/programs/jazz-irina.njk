@@ -9,8 +9,8 @@ preloadImage: assets/jazz-irina/portrait-wide.webp
 bodyClass: jazz-irina-page
 barePage: true
 showMainNav: true
-pageStylesheet: /assets/jazz-irina/page.css?v=2
-pageScript: /assets/jazz-irina/page.js?v=2
+pageStylesheet: /assets/jazz-irina/page.css?v=3
+pageScript: /assets/jazz-irina/page.js?v=3
 ---
 {% macro photo(slug, alt) %}
 <li class="ji-card ji-card--photo"><a href="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" class="ji-media" data-kind="photo" data-title="{{ alt }}" aria-label="Увеличить фото: {{ alt }}"><img src="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" alt="{{ alt }}"{% if slug == 'hero' %} fetchpriority="high" loading="eager"{% else %} loading="lazy"{% endif %} decoding="async" draggable="false"><span class="ji-expand" aria-hidden="true">↗</span></a></li>
@@ -18,28 +18,31 @@ pageScript: /assets/jazz-irina/page.js?v=2
 {% macro video(v, portrait=false) %}
 <li class="ji-card ji-card--video{% if portrait %} ji-card--portrait{% endif %}"><a href="{{ site.url }}/assets/video/mp4/{{ v.slug }}-720.mp4" class="ji-media" data-kind="video" data-title="{{ v.title }}" data-youtube="https://www.youtube.com/watch?v={{ v.youtube }}" aria-label="Смотреть видео: {{ v.title }}"><img src="{{ ('/assets/jazz-irina/' + v.slug + '-card.jpg') | url }}" alt="" loading="lazy" decoding="async" draggable="false"><span class="ji-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></svg></span><span class="ji-card-caption"><span>{{ v.title }}</span><span>{{ v.duration }}</span></span></a></li>
 {% endmacro %}
+{% macro controls(label) %}
+<div class="ji-toolbar" hidden><h2 class="ji-collection-label">{{ label }}</h2><div class="ji-controls">
+  <button type="button" class="ji-control ji-toggle" aria-label="Остановить карусель" aria-pressed="false"><svg class="ji-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3v12H8zm5 0h3v12h-3z"/></svg><svg class="ji-resume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg></button>
+  <button type="button" class="ji-control ji-prev" aria-label="Предыдущая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+  <button type="button" class="ji-control ji-next" aria-label="Следующая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+</div></div>
+{% endmacro %}
 <div class="ji-page">
 <header class="ji-hero"><picture><source media="(max-width:734px)" srcset="{{ '/assets/jazz-irina/portrait.webp' | url }}"><img class="ji-hero-photo" src="{{ '/assets/jazz-irina/portrait-wide.webp' | url }}" alt="Ирина в чёрном кружевном платье с золотым микрофоном" width="1672" height="941" fetchpriority="high"></picture><div class="ji-intro"><p>Luxury Cover Band</p><h1><span>Ирина.</span><span>Джаз.</span></h1><a class="ji-link" href="#collection">Фото и видео <span aria-hidden="true">›</span></a></div></header>
-  <section class="ji-collection" id="collection" aria-label="Фото и видео Ирины" aria-roledescription="карусель">
-    <ul class="ji-track" aria-label="Живые выступления и фотографии">
-      {{ photo('hero', 'Ирина на сцене') }}
+  <section class="ji-collection ji-collection--videos" id="collection" aria-label="Джазовые видео Ирины" aria-roledescription="карусель">
+    <ul class="ji-track" aria-label="Джазовые видео">
       {{ video(jazzIrina.videos[4]) }}
-      {{ photo('portrait', jazzIrina.photos[1].alt) }}
       {{ video(jazzIrina.videos[5]) }}
-      {{ photo('red-hat', jazzIrina.photos[2].alt) }}
       {{ video(jazzIrina.videos[2], true) }}
-      {{ photo('emerald-stage', jazzIrina.photos[3].alt) }}
       {{ video(jazzIrina.videos[1], true) }}
-      {{ photo('black-stage', jazzIrina.photos[0].alt) }}
       {{ video(jazzIrina.videos[0]) }}
-      {{ photo('red-live', jazzIrina.photos[4].alt) }}
       {{ video(jazzIrina.videos[3], true) }}
     </ul>
-    <div class="ji-toolbar" hidden><span class="ji-collection-label">Фото и видео</span><div class="ji-controls">
-      <button type="button" class="ji-control ji-toggle" aria-label="Остановить карусель" aria-pressed="false"><svg class="ji-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3v12H8zm5 0h3v12h-3z"/></svg><svg class="ji-resume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg></button>
-      <button type="button" class="ji-control ji-prev" aria-label="Предыдущая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
-      <button type="button" class="ji-control ji-next" aria-label="Следующая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
-    </div></div>
+    {{ controls('Джаз. Вживую.') }}
+  </section>
+  <section class="ji-collection ji-collection--photos" id="photos" aria-label="Фотографии Ирины" aria-roledescription="карусель">
+    <ul class="ji-track" aria-label="Фотографии Ирины">
+      {% for p in jazzIrina.photos %}{{ photo(p.slug, p.alt) }}{% endfor %}
+    </ul>
+    {{ controls('Ирина. В кадре.') }}
   </section>
   <section class="ji-repertoire" aria-labelledby="ji-repertoire-title">
     <div class="ji-repertoire-head"><h2 id="ji-repertoire-title">Репертуар.</h2><a class="ji-link" href="{{ '/assets/repertoire/' | url }}" target="_blank" rel="noopener">Весь репертуар <span aria-hidden="true">↗</span></a></div>
