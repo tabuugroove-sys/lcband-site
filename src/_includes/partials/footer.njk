@@ -39,7 +39,6 @@
 				<h3 class="footer__col-title">{{ footerEn.headings.contact if footerEn else 'Связаться' }}</h3>
 				<ul>
 					<li><a href="{{ site.telegram }}">{{ footerEn.links.telegram if footerEn else 'Телеграм' }}</a></li>
-					{% if site.youtube %}<li><a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a></li>{% endif %}
 					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">{{ footerEn.links.vk if footerEn else 'ВКонтакте' }}</a></li>{% endif %}
 					{% if site.instagram %}<li><a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
 					<li><a href="{{ (footerBase + '/about/') | url }}">{{ footerEn.links.about if footerEn else 'О группе' }}</a></li>

@@ -191,9 +191,7 @@
     else media.alt = link.dataset.title;
     holder.append(media);
     viewer.querySelector('figcaption').textContent = `${current + 1} / ${links.length} · ${link.dataset.title}`;
-    const fallback = viewer.querySelector('.ji-fallback');
-    fallback.hidden = !video;
-    if (video) { fallback.href = link.dataset.youtube; media.play().catch(() => {}); }
+    if (video) media.play().catch(() => {});
   };
   viewer.querySelector('.ji-viewer-close').addEventListener('click', () => viewer.close());
   viewer.querySelector('.ji-viewer-prev').addEventListener('click', () => show(current - 1));
