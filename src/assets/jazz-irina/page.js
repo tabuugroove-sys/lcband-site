@@ -42,7 +42,8 @@
   });
   track.prepend(...copy());
   track.append(...copy());
-  collection.querySelector('.ji-toolbar').hidden = false;
+  const toolbar = collection.querySelector('.ji-toolbar');
+  if (toolbar) toolbar.hidden = false;
   const measure = () => {
     const oldCycle = cycle;
     cycle = track.children[originals.length * 2].offsetLeft - originals[0].offsetLeft;
@@ -58,11 +59,12 @@
     if (position < cycle || position >= cycle * 2) position = cycle + ((position - cycle) % cycle + cycle) % cycle;
   };
   const updateToggle = () => {
+    if (!toggle) return;
     toggle.setAttribute('aria-pressed', String(paused));
     toggle.setAttribute('aria-label', paused ? 'Запустить карусель' : 'Остановить карусель');
   };
   updateToggle();
-  toggle.addEventListener('click', () => { paused = !paused; updateToggle(); wake(); });
+  toggle?.addEventListener('click', () => { paused = !paused; updateToggle(); wake(); });
   reduced.addEventListener('change', () => { paused = reduced.matches; updateToggle(); wake(); });
   function tick(time) {
     frameId = 0;
@@ -150,8 +152,8 @@
     manualUntil = performance.now() + 2000;
     wake();
   };
-  collection.querySelector('.ji-prev').addEventListener('click', () => advance(-1));
-  collection.querySelector('.ji-next').addEventListener('click', () => advance(1));
+  collection.querySelector('.ji-prev')?.addEventListener('click', () => advance(-1));
+  collection.querySelector('.ji-next')?.addEventListener('click', () => advance(1));
   track.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); advance(event.key === 'ArrowRight' ? 1 : -1); }
   });

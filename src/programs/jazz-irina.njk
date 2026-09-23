@@ -10,7 +10,7 @@ bodyClass: jazz-irina-page
 barePage: true
 showMainNav: true
 pageStylesheet: /assets/jazz-irina/page.css?v=5
-pageScript: /assets/jazz-irina/page.js?v=3
+pageScript: /assets/jazz-irina/page.js?v=4
 ---
 {% macro photo(slug, alt) %}
 <li class="ji-card ji-card--photo"><a href="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" class="ji-media" data-kind="photo" data-title="{{ alt }}" aria-label="Увеличить фото: {{ alt }}"><img src="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" alt="{{ alt }}"{% if slug == 'hero' %} fetchpriority="high" loading="eager"{% else %} loading="lazy"{% endif %} decoding="async" draggable="false"><span class="ji-expand" aria-hidden="true">↗</span></a></li>
@@ -36,7 +36,6 @@ pageScript: /assets/jazz-irina/page.js?v=3
       {{ video(jazzIrina.videos[0]) }}
       {{ video(jazzIrina.videos[3], true) }}
     </ul>
-    {{ controls('Джаз. Вживую.') }}
   </section>
   <section class="ji-repertoire" aria-labelledby="ji-repertoire-title">
     <div class="ji-repertoire-head"><h2 id="ji-repertoire-title">Репертуар.</h2><a class="ji-link" href="{{ '/assets/repertoire/?v=20260923' | url }}" target="_blank" rel="noopener">Весь репертуар <span aria-hidden="true">↗</span></a></div>
