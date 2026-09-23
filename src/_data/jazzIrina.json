@@ -7,6 +7,10 @@
     {"slug":"irina-jazz-taking-a-chance","title":"Taking a Chance on Love","label":"Джазовый стандарт","duration":"2:42","youtube":"U1tokU0vsE8"},
     {"slug":"irina-jazz-coco-live","title":"The Co-Co Jazz Band","label":"Живое звучание группы","duration":"3:46","youtube":"f1Irq17QAvA"}
   ],
+  "repertoire": [
+    {"title":"Джазовые стандарты","songs":["Misty","It Don’t Mean a Thing","Sway","At Last","Over the Rainbow","Strangers in the Night"]},
+    {"title":"Соул и R&B","songs":["Sunny — джазовая версия","Golden","Ain’t No Sunshine","Smooth Operator","No Ordinary Love","I Say a Little Prayer"]}
+  ],
   "photos": [
     {"slug":"black-stage","alt":"Ирина на сцене в чёрном платье с пайетками","caption":"Свет. Голос. Живая сцена."},
     {"slug":"portrait","alt":"Портрет Ирины в чёрном кружевном вечернем образе","caption":"Ирина · вокал LuxuryBand"},

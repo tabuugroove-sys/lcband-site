@@ -2,81 +2,53 @@
 layout: layouts/base.njk
 permalink: /programs/jazz-irina/
 title: Джаз с Ириной — Luxury Cover Band
-description: "Джазовая программа LuxuryBand с вокалисткой Ириной: живые видео, вечерние образы и музыка для welcome, ужина и вечера в стиле Гэтсби."
-keywords: "джазовая группа с женским вокалом, Ирина LuxuryBand, джаз на корпоратив, группа на Гэтсби, джаз на свадьбу Москва"
-ogImage: assets/jazz-irina/hero.jpg
-preloadImage: assets/jazz-irina/hero.webp
+description: "Ирина и Luxury Cover Band. Джаз, соул и свинг — живые видео и фотографии."
+keywords: "джазовая группа с женским вокалом, Ирина LuxuryBand, джаз на корпоратив, группа на Гэтсби"
+ogImage: assets/jazz-irina/portrait-wide.jpg
+preloadImage: assets/jazz-irina/portrait-wide.webp
 bodyClass: jazz-irina-page
+barePage: true
 showMainNav: true
-pageStylesheet: /assets/jazz-irina/page.css
-pageScript: /assets/jazz-irina/page.js
+pageStylesheet: /assets/jazz-irina/page.css?v=2
+pageScript: /assets/jazz-irina/page.js?v=2
 ---
-
+{% macro photo(slug, alt) %}
+<li class="ji-card ji-card--photo"><a href="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" class="ji-media" data-kind="photo" data-title="{{ alt }}" aria-label="Увеличить фото: {{ alt }}"><img src="{{ ('/assets/jazz-irina/' + slug + '.webp') | url }}" alt="{{ alt }}"{% if slug == 'hero' %} fetchpriority="high" loading="eager"{% else %} loading="lazy"{% endif %} decoding="async" draggable="false"><span class="ji-expand" aria-hidden="true">↗</span></a></li>
+{% endmacro %}
+{% macro video(v, portrait=false) %}
+<li class="ji-card ji-card--video{% if portrait %} ji-card--portrait{% endif %}"><a href="{{ site.url }}/assets/video/mp4/{{ v.slug }}-720.mp4" class="ji-media" data-kind="video" data-title="{{ v.title }}" data-youtube="https://www.youtube.com/watch?v={{ v.youtube }}" aria-label="Смотреть видео: {{ v.title }}"><img src="{{ ('/assets/jazz-irina/' + v.slug + '-card.jpg') | url }}" alt="" loading="lazy" decoding="async" draggable="false"><span class="ji-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m9 5 11 7-11 7z"/></svg></span><span class="ji-card-caption"><span>{{ v.title }}</span><span>{{ v.duration }}</span></span></a></li>
+{% endmacro %}
 <div class="ji-page">
-  <section class="ji-hero" aria-labelledby="ji-title">
-    <div class="ji-hero-copy">
-      <nav class="ji-crumb" aria-label="Хлебные крошки"><a href="{{ '/programs/' | url }}">Программы</a><span aria-hidden="true"> / </span><span>Джаз с Ириной</span></nav>
-      <p class="ji-eyebrow">Luxury Cover Band <span>—</span> Jazz collection</p>
-      <h1 id="ji-title">Ирина.<br>В ритме<br><em>джаза.</em></h1>
-      <p class="ji-intro">Женский вокал, живой бенд и музыка,<br class="ji-desktop-break"> которая задаёт настроение вечеру.</p>
-      <div class="ji-actions"><a class="ji-button" href="#performances">Слушать и смотреть <span aria-hidden="true">↗</span></a><a class="ji-text-link" href="#booking">Обсудить выступление</a></div>
-      <p class="ji-hero-note">Welcome · Ужин · Вечер в стиле Гэтсби</p>
-    </div>
-    <figure class="ji-hero-image">
-      <img src="{{ '/assets/jazz-irina/hero.webp' | url }}" alt="Ирина поёт в микрофон на сцене, чёрное вечернее платье" fetchpriority="high" loading="eager" width="1200" height="1800">
-      <figcaption><span>IRINA</span><span>VOCAL / LIVE BAND</span></figcaption>
-    </figure>
-    <span class="ji-hero-index" aria-hidden="true">01 / THE VOICE</span>
+<header class="ji-hero"><picture><source media="(max-width:734px)" srcset="{{ '/assets/jazz-irina/portrait.webp' | url }}"><img class="ji-hero-photo" src="{{ '/assets/jazz-irina/portrait-wide.webp' | url }}" alt="Ирина в чёрном кружевном платье с золотым микрофоном" width="1672" height="941" fetchpriority="high"></picture><div class="ji-intro"><p>Luxury Cover Band</p><h1><span>Ирина.</span><span>Джаз.</span></h1><a class="ji-link" href="#collection">Фото и видео <span aria-hidden="true">›</span></a></div></header>
+  <section class="ji-collection" id="collection" aria-label="Фото и видео Ирины" aria-roledescription="карусель">
+    <ul class="ji-track" aria-label="Живые выступления и фотографии">
+      {{ photo('hero', 'Ирина на сцене') }}
+      {{ video(jazzIrina.videos[4]) }}
+      {{ photo('portrait', jazzIrina.photos[1].alt) }}
+      {{ video(jazzIrina.videos[5]) }}
+      {{ photo('red-hat', jazzIrina.photos[2].alt) }}
+      {{ video(jazzIrina.videos[2], true) }}
+      {{ photo('emerald-stage', jazzIrina.photos[3].alt) }}
+      {{ video(jazzIrina.videos[1], true) }}
+      {{ photo('black-stage', jazzIrina.photos[0].alt) }}
+      {{ video(jazzIrina.videos[0]) }}
+      {{ photo('red-live', jazzIrina.photos[4].alt) }}
+      {{ video(jazzIrina.videos[3], true) }}
+    </ul>
+    <div class="ji-toolbar" hidden><span class="ji-collection-label">Фото и видео</span><div class="ji-controls">
+      <button type="button" class="ji-control ji-toggle" aria-label="Остановить карусель" aria-pressed="false"><svg class="ji-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h3v12H8zm5 0h3v12h-3z"/></svg><svg class="ji-resume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg></button>
+      <button type="button" class="ji-control ji-prev" aria-label="Предыдущая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+      <button type="button" class="ji-control ji-next" aria-label="Следующая карточка"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+    </div></div>
   </section>
-
-  <section class="ji-statement ji-wrap">
-    <p class="ji-eyebrow">Музыка для особого вечера</p>
-    <h2>От первого бокала<br>до последнего <em>аккорда.</em></h2>
-    <p>Камерный welcome, джазовый ужин или яркий выход на сцену. Ирина и музыканты LuxuryBand соединяют джазовые интонации, свинг и знакомые мелодии. Послушайте живые записи — и выберите настроение своего события.</p>
+  <section class="ji-repertoire" aria-labelledby="ji-repertoire-title">
+    <div class="ji-repertoire-head"><h2 id="ji-repertoire-title">Репертуар.</h2><a class="ji-link" href="{{ '/assets/repertoire/' | url }}" target="_blank" rel="noopener">Весь репертуар <span aria-hidden="true">↗</span></a></div>
+    <div class="ji-song-groups">{% for group in jazzIrina.repertoire %}<div><h3>{{ group.title }}</h3><ol>{% for song in group.songs %}<li><span class="ji-song-number" aria-hidden="true">0{{ loop.index }}</span><span>{{ song }}</span></li>{% endfor %}</ol></div>{% endfor %}</div>
   </section>
-
-  <section class="ji-performances" id="performances" aria-labelledby="ji-video-title">
-    <div class="ji-wrap">
-      <div class="ji-section-head"><div><p class="ji-eyebrow">02 / Live collection</p><h2 id="ji-video-title">Сначала — <em>музыка.</em></h2></div><p>Шесть выступлений.<br>Голос и настроение вживую.</p></div>
-      <div class="ji-videos">
-        {% for v in jazzIrina.videos %}
-        <article class="ji-video-card">
-          <video controls playsinline preload="none" poster="{{ ('/assets/jazz-irina/' + v.slug + '.jpg') | url }}" aria-label="{{ v.title }} — джазовая программа LuxuryBand" width="1280" height="720">
-            <source src="{{ site.url }}/assets/video/mp4/{{ v.slug }}-720.mp4" type="video/mp4">
-            <a href="https://www.youtube.com/watch?v={{ v.youtube }}">Смотреть {{ v.title }} на YouTube</a>
-          </video>
-          <div class="ji-video-caption"><div><p>{{ v.label }}</p><h3>{{ v.title }}</h3></div><span>{{ v.duration }}</span></div>
-          <a class="ji-video-alternative" href="https://www.youtube.com/watch?v={{ v.youtube }}" target="_blank" rel="noopener">Открыть на YouTube ↗</a>
-        </article>
-        {% endfor %}
-      </div>
-      <div class="ji-collection-links"><a class="ji-text-link" href="https://disk.yandex.ru/d/Pn5YZQ6IN48x7A" target="_blank" rel="noopener">Скачать видео с Яндекс Диска ↗</a><a class="ji-text-link" href="https://www.youtube.com/playlist?list=PLiQgqRMPy4t1WcwqpnSdgvY5RtFwN6x6t" target="_blank" rel="noopener">Весь джазовый плейлист ↗</a></div>
-    </div>
-  </section>
-
-  <section class="ji-gallery-section ji-wrap" id="photos" aria-labelledby="ji-photo-title">
-    <div class="ji-section-head"><div><p class="ji-eyebrow">03 / Evening looks</p><h2 id="ji-photo-title">Вечерние <em>образы.</em></h2></div><p>Блеск, силуэт, сценический свет.<br>Фотографии Ирины.</p></div>
-    <div class="ji-gallery">
-      {% for ph in jazzIrina.photos %}
-      <figure class="ji-photo ji-photo--{{ ph.slug }}"><button type="button" class="ji-photo-open" data-ji-photo="{{ loop.index0 }}" aria-label="Увеличить фото: {{ ph.alt }}"><img src="{{ ('/assets/jazz-irina/' + ph.slug + '.webp') | url }}" alt="{{ ph.alt }}" loading="lazy" decoding="async"><span aria-hidden="true">↗</span></button><figcaption>{{ ph.caption }}</figcaption></figure>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section class="ji-formats ji-wrap" aria-labelledby="ji-format-title">
-    <p class="ji-eyebrow">04 / Ваше событие</p><h2 id="ji-format-title">Свой ритм.<br><em>Ваш формат.</em></h2>
-    <div class="ji-format-grid">
-      <article><span>01</span><h3>Welcome</h3><p>Живая музыка встречает гостей и создаёт атмосферу с первых минут.</p></article>
-      <article><span>02</span><h3>Джазовый ужин</h3><p>Мягкое звучание и вокал — для общения, красивого вечера и музыкальных пауз.</p></article>
-      <article><span>03</span><h3>Гэтсби & swing</h3><p>Выразительный вокал и ритм для тематической вечеринки или сценического выхода.</p></article>
-    </div>
-  </section>
-
-  <section class="ji-booking" id="booking"><div class="ji-wrap"><p class="ji-eyebrow">LuxuryBand · Джаз с Ириной</p><h2>Пусть этот вечер<br><em>зазвучит.</em></h2><p>Расскажите о дате, площадке и формате.<br>Уточним доступность, состав, программу и стоимость.</p><a class="ji-button" href="{{ site.telegram }}?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B4%D0%B6%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D1%81%20%D0%98%D1%80%D0%B8%D0%BD%D0%BE%D0%B9.">Обсудить дату в Telegram <span aria-hidden="true">↗</span></a><a class="ji-back" href="{{ '/programs/' | url }}">Все программы LuxuryBand</a></div></section>
+  <section class="ji-booking" id="booking" aria-label="Бронирование"><p>Встреча гостей · Ужин · Гэтсби</p><a class="btn btn--primary" href="{{ site.telegram }}?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%B4%D0%B6%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%20%D1%81%20%D0%98%D1%80%D0%B8%D0%BD%D0%BE%D0%B9.">Написать в Telegram</a></section>
+  <footer class="ji-footer"><a href="{{ '/programs/' | url }}">Все программы</a><a href="https://disk.yandex.ru/d/Pn5YZQ6IN48x7A" target="_blank" rel="noopener">Скачать видео ↗</a><a href="https://www.youtube.com/playlist?list=PLiQgqRMPy4t1WcwqpnSdgvY5RtFwN6x6t" target="_blank" rel="noopener">YouTube ↗</a></footer>
 </div>
-
+<dialog class="ji-viewer" aria-label="Фото и видео Ирины"><button type="button" class="ji-viewer-close" aria-label="Закрыть просмотр">×</button><button type="button" class="ji-viewer-prev" aria-label="Предыдущее фото или видео">‹</button><figure><div class="ji-viewer-media"></div><figcaption aria-live="polite"></figcaption><a class="ji-fallback" hidden target="_blank" rel="noopener">Открыть на YouTube ↗</a></figure><button type="button" class="ji-viewer-next" aria-label="Следующее фото или видео">›</button></dialog>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Джаз с Ириной — Luxury Cover Band","serviceType":"Джазовая программа с женским вокалом","url":"{{ site.url }}{{ page.url }}","image":"{{ site.url }}/assets/jazz-irina/hero.jpg","provider":{"@type":"MusicGroup","name":"Luxury Cover Band","url":"{{ site.url }}"},"areaServed":"Москва и Подмосковье"}
+{"@context":"https://schema.org","@type":"Service","name":"Джаз с Ириной — Luxury Cover Band","serviceType":"Джазовая программа с женским вокалом","url":"{{ site.url }}{{ page.url }}","image":"{{ site.url }}/assets/jazz-irina/portrait-wide.jpg","provider":{"@type":"MusicGroup","name":"Luxury Cover Band","url":"{{ site.url }}"},"areaServed":"Москва и Подмосковье"}
 </script>
-
-<dialog class="ji-lightbox" aria-label="Фотографии Ирины"><button type="button" class="ji-lightbox-close" aria-label="Закрыть фотографию">×</button><button type="button" class="ji-lightbox-prev" aria-label="Предыдущее фото">‹</button><figure><img src="" alt=""><figcaption aria-live="polite"></figcaption></figure><button type="button" class="ji-lightbox-next" aria-label="Следующее фото">›</button></dialog>
