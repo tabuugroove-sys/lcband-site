@@ -33,7 +33,7 @@ Choosing between a live cover band and a DJ is not about which is “cooler.” 
 
 ## The difference in one minute
 
-**A cover band** brings live sound, vocals, stage energy and a sense of presence. Guests see the music happening, respond to the singers and film the performance. A live version of a favorite song feels different from the original recording — and that difference is memorable.
+**A cover band** brings live sound, vocals, stage energy and a sense of presence. Guests see the music happening, respond to [the singers]({{ '/en/vocalists/' | url }}) and film the performance. A live version of a favorite song feels different from the original recording — and that difference is memorable.
 
 **A DJ** delivers a continuous stream of proven dance tracks, the exact original recordings and immediate flexibility. A DJ can follow the room and play a request instantly. The setup is also more compact and usually less expensive.
 
@@ -42,7 +42,7 @@ Choosing between a live cover band and a DJ is not about which is “cooler.” 
 - **Key moments** — the first dance, entrances, congratulations and the climax of the evening become real events.
 - **Atmosphere and status** — a live group establishes the level of the occasion from the welcome onward.
 - **Emotion and participation** — the singer works with the room and guests can perform on stage.
-- **Video and content** — live performance creates moments people want to revisit and share.
+- **Video and content** — [live performance]({{ '/en/live/' | url }}) creates moments people want to revisit and share.
 
 ## When a DJ may be enough
 

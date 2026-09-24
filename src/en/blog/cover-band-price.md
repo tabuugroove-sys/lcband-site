@@ -52,7 +52,7 @@ These are guide prices for a standard Moscow event. The exact quote is always ba
 
 ## What changes the price
 
-**Lineup.** This is the main factor. More singers and instruments create a fuller sound and broader repertoire, but they also cost more. The best lineup is often the one matched precisely to the venue rather than the largest possible band.
+**Lineup.** This is the main factor. More [singers]({{ '/en/vocalists/' | url }}) and instruments create a fuller sound and broader repertoire, but they also cost more. The best lineup is often the one matched precisely to the venue rather than the largest possible band.
 
 **Duration.** The standard is two 45-minute sets or three 30-minute sets. A welcome set, extra blocks and work into the early hours are priced separately.
 
@@ -60,9 +60,9 @@ These are guide prices for a standard Moscow event. The exact quote is always ba
 
 **City and logistics.** Moscow and nearby venues use the base rate. Other cities and international tours include travel, accommodation and schedule costs.
 
-**Sound, lighting and stage.** We bring the band's instruments. The venue usually supplies powerful front-of-house sound, lighting and the stage; if you need us to arrange them, they appear as separate transparent lines in the quote.
+**[Sound, lighting and stage]({{ '/en/riders/' | url }}).** We bring the band's instruments. The venue usually supplies powerful front-of-house sound, lighting and the stage; if you need us to arrange them, they appear as separate transparent lines in the quote.
 
-**Additional options.** A bespoke song about your story, a themed Italian, Latin or retro program, and guest interaction on stage can all be added to the core format.
+**Additional options.** A bespoke song about your story, a [themed Italian, Latin or retro program]({{ '/en/programs/' | url }}), and guest interaction on stage can all be added to the core format.
 
 ## Why the lowest price is rarely the best target
 

@@ -15,7 +15,7 @@
 	<meta property="og:title" content="{{ title or site.name }}">
 	<meta property="og:description" content="{{ description or site.tagline }}">
 	<meta property="og:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
-	<meta property="og:site_name" content="{{ site.name }}">
+	<meta property="og:site_name" content="{{ site.brandName }}">
 	<meta property="og:url" content="{{ site.url }}{{ page.url }}">
 
 	<meta name="twitter:card" content="summary_large_image">
@@ -23,20 +23,10 @@
 	<meta name="twitter:description" content="{{ description or site.tagline }}">
 	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 
-	{# hreflang: четыре языковые версии главной (RU — основная, /ae/ AR, /br/ PT, /en/ EN).
-	   Только на этих четырёх URL, чтобы RU/AR/PT/EN не конфликтовали в выдаче #}
-	{% if page.url == '/' or page.url == '/ae/' or page.url == '/br/' or page.url == '/en/' %}
-	<link rel="alternate" hreflang="ru" href="{{ site.url }}/">
-	<link rel="alternate" hreflang="ar" href="{{ site.url }}/ae/">
-	<link rel="alternate" hreflang="pt-BR" href="{{ site.url }}/br/">
-	<link rel="alternate" hreflang="en" href="{{ site.url }}/en/">
-	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/">
-	{% endif %}
-	{% if page.url == '/sax/' or page.url == '/en/sax/' %}
-	<link rel="alternate" hreflang="ru" href="{{ site.url }}/sax/">
-	<link rel="alternate" hreflang="en" href="{{ site.url }}/en/sax/">
-	<link rel="alternate" hreflang="x-default" href="{{ site.url }}/sax/">
-	{% endif %}
+	{# Only real, reciprocal translations; each page retains its own canonical. #}
+	{% for alternate in translations[page.url] %}
+	<link rel="alternate" hreflang="{{ alternate.lang }}" href="{{ site.url }}{{ alternate.url }}">
+	{% endfor %}
 	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}
 	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
@@ -51,12 +41,12 @@
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=50' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=51' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=50' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=51' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ '/sax/' | url }}">
@@ -83,10 +73,11 @@
 				"@type": "MusicGroup",
 				"@id": "{{ site.url }}/#musicgroup",
 				"name": "{{ site.name }}",
-				"alternateName": [{% if htmlLang == 'en' %}"{{ site.shortName }}", "Luxury Cover Band"{% else %}"{{ site.shortName }}", "Лакшери Кавер Бэнд", "кавер-группа Luxury Cover Band"{% endif %}],
-				"description": "{{ description or site.description }}",
+				"alternateName": ["{{ site.brandName }}", "{{ site.shortName }}"],
+				"description": "{{ site.descriptionEn if htmlLang == 'en' else site.description }}",
 				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
+				"logo": "{{ site.url }}/assets/favicon.svg",
 				"url": "{{ site.url }}",
 				"sameAs": [
 					"{{ site.telegram }}"
@@ -103,7 +94,8 @@
 				"@type": "LocalBusiness",
 				"@id": "{{ site.url }}/#business",
 				"name": "{{ site.name }}",
-				"description": "{{ description or site.description }}",
+				"alternateName": ["{{ site.brandName }}", "{{ site.shortName }}"],
+				"description": "{{ site.descriptionEn if htmlLang == 'en' else site.description }}",
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"url": "{{ site.url }}",
 				"address": {
@@ -123,9 +115,10 @@
 			{
 				"@type": "WebSite",
 				"@id": "{{ site.url }}/#website",
-				"name": "{{ site.name }}",
-				"url": "{{ site.url }}",
-				"inLanguage": "{% if htmlLang == 'en' %}en-US{% else %}ru-RU{% endif %}",
+				"name": "{{ site.brandName }}",
+				"alternateName": ["{{ site.name }}", "{{ site.shortName }}", "luxuryband.ru"],
+				"url": "{{ site.url }}/",
+				"inLanguage": ["ru", "en", "ar", "pt-BR"],
 				"publisher": { "@id": "{{ site.url }}/#musicgroup" }
 			}
 		]

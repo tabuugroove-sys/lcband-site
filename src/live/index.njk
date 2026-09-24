@@ -22,7 +22,7 @@ eleventyComputed:
 		</p>
 		<p class="page-hero__eyebrow">{% if isEn %}Live Shows{% else %}Концерты{% endif %}</p>
 		<h1 class="page-hero__title">{% if isEn %}From private events<br><span class="muted">to stadiums.</span>{% else %}От частных ивентов<br><span class="muted">до стадионов.</span>{% endif %}</h1>
-		<p class="page-hero__lead">{% if isEn %}Corporate and private events, weddings, television stages and major outdoor venues.{% else %}Корпоративные и частные события, свадьбы, ТВ-сцены и большие открытые площадки.{% endif %}</p>
+		<p class="page-hero__lead">{% if isEn %}<a href="{{ '/en/events/corporate/' | url }}">Corporate events</a>, private celebrations, <a href="{{ '/en/events/wedding/' | url }}">weddings</a>, television stages and major outdoor venues.{% else %}<a href="{{ '/events/corporate/' | url }}">Корпоративы</a>, частные события, <a href="{{ '/events/wedding/' | url }}">свадьбы</a>, ТВ-сцены и большие открытые площадки.{% endif %}</p>
 	</div>
 </section>
 

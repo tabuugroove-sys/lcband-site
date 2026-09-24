@@ -1,9 +1,11 @@
 {
 	"name": "Luxury Cover Band",
+	"brandName": "Luxury Band",
 	"shortName": "LC Band",
 	"url": "https://luxuryband.ru",
 	"tagline": "Международный кавер-бенд. 500+ песен на 12 языках.",
-	"description": "Luxury Cover Band (LC Band) — топовый международный кавер-бенд. 500+ песен в 12 языках, опыт стадионов и ТВ. Свадьбы, корпоративы, ТВ-проекты, туры. Состав 2–20 человек, 20+ сценических образов.",
+	"description": "Luxury Band — Luxury Cover Band (LC Band), международная кавер-группа из Москвы. 500+ песен на 12 языках. Свадьбы, корпоративы и гастроли. Состав 2–20 музыкантов.",
+	"descriptionEn": "Luxury Band — Luxury Cover Band (LC Band), an international cover band from Moscow. 500+ songs in 12 languages for weddings, corporate events and tours.",
 	"defaultOgImage": "assets/hero/hero-red.jpg",
 	"phone": "",
 	"telegram": "https://t.me/Luxurycover_ru",

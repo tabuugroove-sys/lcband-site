@@ -42,6 +42,7 @@
 					{% if site.vk %}<li><a href="{{ site.vk }}" rel="noopener" target="_blank">{{ footerEn.links.vk if footerEn else 'ВКонтакте' }}</a></li>{% endif %}
 					{% if site.instagram %}<li><a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a></li>{% endif %}
 					<li><a href="{{ (footerBase + '/about/') | url }}">{{ footerEn.links.about if footerEn else 'О группе' }}</a></li>
+					<li><a href="{{ (footerBase + '/live/') | url }}">{{ 'Live videos' if footerEn else 'Видео выступлений' }}</a></li>
 					<li><a href="{{ (footerBase + '/blog/') | url }}">{{ footerEn.links.blog if footerEn else 'Блог' }}</a></li>
 					<li><a href="{{ (footerBase + '/repertoire/') | url }}">{{ footerEn.links.repertoire if footerEn else 'Репертуар' }}</a></li>
 					<li><a href="{{ (footerBase + '/riders/') | url }}">{{ footerEn.links.riders if footerEn else 'Райдеры' }}</a></li>
@@ -49,8 +50,15 @@
 			</div>
 		</div>
 		<div class="footer__bottom">
-			<span class="footer__brand">{{ site.name }} · {{ site.shortName }}</span>
+			<a class="footer__brand" href="{{ (footerBase + '/') | url }}">{{ site.brandName }} · {{ site.name }}</a>
 			<span class="footer__meta">{{ 'Moscow' if footerEn else site.city }} · {{ footerEn.links.tours if footerEn else 'Международные туры' }} · © 2026</span>
 		</div>
+		{% if translations[page.url] %}
+		<nav class="footer__languages" aria-label="{{ 'Language' if footerEn else 'Язык' }}">
+			{% for alternate in translations[page.url] %}{% if alternate.lang != 'x-default' %}
+			<a href="{{ alternate.url | url }}" lang="{{ alternate.lang }}" hreflang="{{ alternate.lang }}"{% if alternate.url == page.url %} aria-current="page"{% endif %}>{{ alternate.label }}</a>
+			{% endif %}{% endfor %}
+		</nav>
+		{% endif %}
 	</div>
 </footer>

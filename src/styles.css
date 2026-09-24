@@ -4398,6 +4398,17 @@ a.stat--link:hover { opacity: 0.7; }
 
 .footer__row { display: none; }
 
+.footer__languages {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 24px;
+	margin-top: 16px;
+	font-size: 13px;
+}
+.footer__languages a { padding: 10px 0; }
+.footer__languages a[aria-current="page"] { font-weight: 600; }
+.footer__languages a:hover { text-decoration: underline; }
+
 /* ============== SAX / WELCOME PAGE ============== */
 .sax-hero {
 	background: linear-gradient(180deg, #fff 0%, #F5F5F7 100%);

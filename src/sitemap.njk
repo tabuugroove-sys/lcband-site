@@ -6,7 +6,6 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>{{ site.url }}/</loc>
-		<lastmod>{{ "" | xmlDate }}</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -20,6 +19,8 @@ eleventyExcludeFromCollections: true
 	<url><loc>{{ site.url }}/repertoire/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/sax/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/sax/leo-sax/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/sax/stereo-sax/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/assets/repertoire/</loc><priority>0.6</priority></url>
 	{% for p in programs %}
 	<url><loc>{{ site.url }}/programs/{{ p.slug }}/</loc><priority>0.7</priority></url>
 	{% endfor %}
@@ -47,6 +48,7 @@ eleventyExcludeFromCollections: true
 	<url><loc>{{ site.url }}/en/repertoire/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/en/sax/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/en/sax/leo-sax/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/sax/stereo-sax/</loc><priority>0.7</priority></url>
 	{% for p in programs %}
 	<url><loc>{{ site.url }}/en/programs/{{ p.slug }}/</loc><priority>0.7</priority></url>
 	{% endfor %}
