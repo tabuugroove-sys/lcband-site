@@ -33,7 +33,7 @@ h1 { font-size: clamp(48px,5vw,70px); font-weight: 400; line-height: 1.15; lette
 h1 > [lang="zh-Hans"] { color: var(--ink); font-size: 1.08em; letter-spacing: .05em; }
 .hero-poem { margin-top: 28px; font-size: clamp(31px,3.15vw,44px); line-height: 1.2; letter-spacing: -.035em; }
 .hero-poem em { font-style: normal; color: #737868; }
-.intro { font-size: 15px; color: var(--muted); line-height: 1.7; margin-block: 22px 24px; letter-spacing: .01em; }
+.intro { font-size: 21px; color: var(--muted); line-height: 1.6; margin-block: 27px 30px; letter-spacing: -.015em; }
 .primary { border-radius: 2px; background: #963f32; padding: 14px 23px; font-size: 13px; letter-spacing: .025em; }
 .primary:hover { background: #7f3025; }
 .hero-note { font-size: 11px; line-height: 1.9; margin-top: 18px; }
@@ -98,7 +98,7 @@ footer { font-size: 11px; }
   h1 { font-size: 55px; }
   .hero .eyebrow { font-size: 9px; margin-bottom: 19px; }
   .hero-poem { font-size: 35px; margin-top: 23px; line-height: 1.2; }
-  .intro { font-size: 14px; margin-block: 21px 24px; }
+  .intro { font-size: 17px; margin-block: 21px 24px; }
   .hero-art { height: 470px; border-width: 5px; box-shadow: 8px 10px 0 #ddd6c255; }
   .hero-art-label { left: 16px; bottom: 18px; }
   .hero-art-label strong { font-size: 17px; }
