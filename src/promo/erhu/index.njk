@@ -1,0 +1,78 @@
+---
+permalink: /promo/erhu/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Эрху — китайская скрипка · Luxury Band</title>
+  <meta name="description" content="Сольный номер на китайской скрипке эрху. Видео выступлений и репертуар для вашего события.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta property="og:title" content="Эрху. Звучание, которое запоминается.">
+  <meta property="og:description" content="Видео выступлений и репертуар · Luxury Band">
+  <meta property="og:image" content="https://luxuryband.ru/assets/erhu/posters/tg-79729.jpg">
+  <meta property="og:url" content="https://luxuryband.ru/promo/erhu/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/erhu/gallery.css">
+  <script src="/assets/erhu/gallery.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#gallery">Перейти к видео</a>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Навигация галереи">
+      <a class="brand" href="https://luxuryband.ru/"><img src="/assets/favicon.svg" width="30" height="30" alt=""><span>Luxury Band</span></a>
+      <div class="navlinks"><a href="#gallery">Видео</a><a href="#repertoire">Репертуар</a><button class="share" type="button">Поделиться <span aria-hidden="true">↗</span></button></div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Живой звук. Китайская скрипка.</p>
+        <h1 id="hero-title">Эрху.<br><span>Звучание,<br>которое<br>запоминается.</span></h1>
+        <p class="intro">Две струны. Особый характер.<br>Сольный инструментальный номер<br class="desktop"> для вашего события.</p>
+        <a class="primary" href="#gallery">Смотреть видео <span aria-hidden="true">↓</span></a>
+        <p class="hero-note">5–15 минут · 1–3 произведения</p>
+      </div>
+      <a class="hero-art play-item" href="/assets/video/mp4/erhu-01-rain.mp4" data-slug="01-rain" aria-label="Смотреть видео: Дождь в Цзяннани">
+        <img src="/assets/erhu/posters/01-rain.jpg" width="480" height="854" alt="Исполнение на эрху на фоне цветущей сакуры" fetchpriority="high">
+        <div class="hero-art-label"><span class="round-play" aria-hidden="true">▶</span><span><small>ПОСЛУШАЙТЕ ЭРХУ</small><strong>Дождь в Цзяннани</strong><small>0:52</small></span></div>
+      </a>
+    </section>
+    <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">Видеогалерея</p><h2 id="gallery-title">Сначала — послушайте.</h2></div><p class="section-intro">Сольные записи и выступления на сцене.<br>Выберите видео, чтобы увидеть номер целиком.</p></div>
+        <div class="gallery-tools"><div class="filters" aria-label="Формат видео"><button type="button" data-filter="all" aria-pressed="true">Все видео <span>11</span></button><button type="button" data-filter="solo" aria-pressed="false">Соло</button><button type="button" data-filter="stage" aria-pressed="false">На сцене</button></div><span class="result-count" aria-live="polite">11 видео</span></div>
+        <div class="video-grid">
+        {% for video in erhuVideos %}
+          <article class="video-card" data-category="{{ video.category }}">
+            <a class="thumbnail play-item" href="{{ video.url }}" data-slug="{{ video.slug }}" aria-label="Смотреть видео: {{ video.title }}">
+              <img src="{{ video.poster }}" alt="{{ video.title }} — кадр выступления на эрху" loading="lazy" decoding="async" width="480" height="854">
+              <span class="round-play" aria-hidden="true">▶</span><span class="duration">{{ video.time }}</span>
+            </a>
+            <div class="card-details"><span class="card-label">{{ video.label }}</span><h3>{{ video.title }}</h3><a class="download" href="{{ video.url }}" download aria-label="Скачать видео: {{ video.title }}">Скачать видео <span aria-hidden="true">↓</span></a></div>
+          </article>
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+    <section class="repertoire wrap" id="repertoire" aria-labelledby="repertoire-title">
+      <div><p class="eyebrow">Программа</p><h2 id="repertoire-title">Мелодии<br>с настроением.</h2><p class="section-intro">Пять произведений для сольного номера.<br>Программу и длительность согласуем<br>под формат вашего события.</p><a class="text-link" href="/assets/erhu/repertoire.txt" download>Скачать репертуар <span aria-hidden="true">↓</span></a></div>
+      <ol class="song-list"><li><span>01</span>Дождь в Цзяннани</li><li><span>02</span>Бело-синий фарфор</li><li><span>03</span>Цветок жасмина</li><li><span>04</span>Тихая луна</li><li><span>05</span>Прекрасная степь — мой дом</li></ol>
+    </section>
+    <section class="contact wrap" aria-labelledby="contact-title"><p class="eyebrow">Для вашего события</p><h2 id="contact-title">Начнём с даты.</h2><p>Напишите, где и когда планируется выступление.<br>Подтвердим доступность, программу и условия.</p><div class="contact-links"><a class="primary" href="https://t.me/Luxurycover_ru" target="_blank" rel="noopener">Обсудить выступление <span aria-hidden="true">↗</span></a><a class="text-link" href="https://drive.google.com/drive/folders/1d9dS6L7lHlbROonWRyD0ModH0tyQTt4m" target="_blank" rel="noopener">Материалы на Google Диске ↗</a></div></section>
+  </main>
+  <footer class="wrap"><a href="https://luxuryband.ru/">Luxury Band</a><span>Эрху · Видео и репертуар</span><a href="#">Наверх ↑</a></footer>
+  <dialog class="player" aria-labelledby="player-title">
+    <div class="player-head"><div><p class="eyebrow">Видеогалерея</p><h2 id="player-title">Видео выступления</h2></div><button class="close-player" aria-label="Закрыть видео" type="button">×</button></div>
+    <video controls playsinline preload="none" aria-label="Видео выступления на эрху"></video>
+    <p class="playback-error" hidden>Не удалось начать воспроизведение. Попробуйте открыть или скачать видео по ссылке ниже.</p>
+    <div class="player-foot"><div><button class="previous" type="button" aria-label="Предыдущее видео">←</button><span class="player-count"></span><button class="next" type="button" aria-label="Следующее видео">→</button></div><a class="player-download" download>Скачать видео ↓</a></div>
+  </dialog>
+  <p class="toast" role="status" hidden></p>
+</body>
+</html>

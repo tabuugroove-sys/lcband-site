@@ -1,0 +1,101 @@
+[
+  {
+    "slug": "01-rain",
+    "title": "Дождь в Цзяннани",
+    "url": "/assets/video/mp4/erhu-01-rain.mp4",
+    "poster": "/assets/erhu/posters/01-rain.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:52"
+  },
+  {
+    "slug": "tg-79729",
+    "title": "Бело-синий фарфор",
+    "url": "/assets/video/mp4/erhu-tg-79729.mp4",
+    "poster": "/assets/erhu/posters/tg-79729.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:45"
+  },
+  {
+    "slug": "02-jasmine",
+    "title": "Цветок жасмина",
+    "url": "/assets/video/mp4/erhu-02-jasmine.mp4",
+    "poster": "/assets/erhu/posters/02-jasmine.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:38"
+  },
+  {
+    "slug": "vk-425",
+    "title": "Тихая луна",
+    "url": "/assets/video/mp4/erhu-vk-425.mp4",
+    "poster": "/assets/erhu/posters/vk-425.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:26"
+  },
+  {
+    "slug": "vk-429",
+    "title": "Прекрасная степь — мой дом",
+    "url": "/assets/video/mp4/erhu-vk-429.mp4",
+    "poster": "/assets/erhu/posters/vk-429.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:27"
+  },
+  {
+    "slug": "vk-396",
+    "title": "Цветок жасмина — запись 2:18",
+    "url": "/assets/video/mp4/erhu-vk-396.mp4",
+    "poster": "/assets/erhu/posters/vk-396.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "2:18"
+  },
+  {
+    "slug": "vk-442",
+    "title": "Дождь в Цзяннани — клип",
+    "url": "/assets/video/mp4/erhu-vk-442.mp4",
+    "poster": "/assets/erhu/posters/vk-442.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:26"
+  },
+  {
+    "slug": "03-horses",
+    "title": "Скачка лошадей",
+    "url": "/assets/video/mp4/erhu-03-horses.mp4",
+    "poster": "/assets/erhu/posters/03-horses.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:37"
+  },
+  {
+    "slug": "tg-61888",
+    "title": "Цветок жасмина — другая запись",
+    "url": "/assets/video/mp4/erhu-tg-61888.mp4",
+    "poster": "/assets/erhu/posters/tg-61888.jpg",
+    "category": "solo",
+    "label": "Сольное исполнение",
+    "time": "0:38"
+  },
+  {
+    "slug": "04-festival",
+    "title": "Международный фестиваль молодёжи",
+    "url": "/assets/video/mp4/erhu-04-festival.mp4",
+    "poster": "/assets/erhu/posters/04-festival.jpg",
+    "category": "stage",
+    "label": "На сцене",
+    "time": "1:02"
+  },
+  {
+    "slug": "tg-64079",
+    "title": "Калинка — ансамбль Дуань",
+    "url": "/assets/video/mp4/erhu-tg-64079.mp4",
+    "poster": "/assets/erhu/posters/tg-64079.jpg",
+    "category": "stage",
+    "label": "На сцене",
+    "time": "1:46"
+  }
+]

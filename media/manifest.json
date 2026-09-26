@@ -3,6 +3,61 @@
   "origin": "https://luxuryband.ru",
   "files": [
     {
+      "path": "assets/video/mp4/erhu-01-rain.mp4",
+      "bytes": 19123771,
+      "sha256": "c45bf2fa98682c67fb0dea24a14928f8a0fcaaf9db7623832fad7ee759f8018f"
+    },
+    {
+      "path": "assets/video/mp4/erhu-02-jasmine.mp4",
+      "bytes": 14605509,
+      "sha256": "15defaa0443860c2a955960ff134e9d1fccd59751451ebf8c686b640f43a611d"
+    },
+    {
+      "path": "assets/video/mp4/erhu-03-horses.mp4",
+      "bytes": 7629232,
+      "sha256": "8df612848a1233556e35e0d9c9f1e481bef25c90c07c1952a95973caf1a367d2"
+    },
+    {
+      "path": "assets/video/mp4/erhu-04-festival.mp4",
+      "bytes": 25277968,
+      "sha256": "1c323cc24e00c5f88ec25b4a999559cd5de5b080cc0cb4738d6cba2564f18701"
+    },
+    {
+      "path": "assets/video/mp4/erhu-tg-61888.mp4",
+      "bytes": 14604002,
+      "sha256": "a417845181ffbcd790b728e99af1d0053af7cb19cc6fc32555729516aecca942"
+    },
+    {
+      "path": "assets/video/mp4/erhu-tg-64079.mp4",
+      "bytes": 40962343,
+      "sha256": "d34d48ea003ce31b89d2eb4d6f674c0f5ae58a055ec6809b49b946f300d00bc9"
+    },
+    {
+      "path": "assets/video/mp4/erhu-tg-79729.mp4",
+      "bytes": 16119218,
+      "sha256": "253f458a94990e5b4bdb09fa27b368b448cb208cda93c443be97b3073f78bcfe"
+    },
+    {
+      "path": "assets/video/mp4/erhu-vk-396.mp4",
+      "bytes": 53391121,
+      "sha256": "59d54217c447d7693f7de37c100a2161034be1c9a127e923f59f9e6a67ce5235"
+    },
+    {
+      "path": "assets/video/mp4/erhu-vk-425.mp4",
+      "bytes": 4136470,
+      "sha256": "58049ea2f0a9e6e461e242d2436a45ccf98c78a56bda9965fa0b5511debe83ee"
+    },
+    {
+      "path": "assets/video/mp4/erhu-vk-429.mp4",
+      "bytes": 5501858,
+      "sha256": "11b200cb8e1d0d78bc8eb17c46cf13be4e48bf9b4d624f3df79e15adaebe77cd"
+    },
+    {
+      "path": "assets/video/mp4/erhu-vk-442.mp4",
+      "bytes": 12088364,
+      "sha256": "a745c31584e968be50920c4e13c7254564cb0664e65e5e9fee56d28442c33e31"
+    },
+    {
       "path": "assets/video/mp4/interact-chainsmokers-1080.mp4",
       "bytes": 13988806,
       "sha256": "0670ff7660284c91ee9cc12b20e05ffbf828dcfa2b414c6e3af0ec1647270c91"

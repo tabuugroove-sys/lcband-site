@@ -8,6 +8,7 @@ export default function (eleventyConfig) {
 	const passthroughAssetDirectories = [
 		"costumes",
 		"docs",
+		"erhu",
 		"hero",
 		"jazz-irina",
 		"leo-sax",
