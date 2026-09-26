@@ -2,6 +2,7 @@
   {
     "slug": "01-rain",
     "title": "Дождь в Цзяннани",
+    "titleZh": "江南雨",
     "url": "/assets/video/mp4/erhu-01-rain.mp4",
     "poster": "/assets/erhu/posters/01-rain.jpg",
     "category": "solo",
@@ -11,6 +12,7 @@
   {
     "slug": "tg-79729",
     "title": "Бело-синий фарфор",
+    "titleZh": "青花瓷",
     "url": "/assets/video/mp4/erhu-tg-79729.mp4",
     "poster": "/assets/erhu/posters/tg-79729.jpg",
     "category": "solo",
@@ -20,6 +22,7 @@
   {
     "slug": "02-jasmine",
     "title": "Цветок жасмина",
+    "titleZh": "茉莉花",
     "url": "/assets/video/mp4/erhu-02-jasmine.mp4",
     "poster": "/assets/erhu/posters/02-jasmine.jpg",
     "category": "solo",
@@ -29,6 +32,7 @@
   {
     "slug": "vk-425",
     "title": "Тихая луна",
+    "titleZh": "静月",
     "url": "/assets/video/mp4/erhu-vk-425.mp4",
     "poster": "/assets/erhu/posters/vk-425.jpg",
     "category": "solo",
@@ -38,6 +42,7 @@
   {
     "slug": "vk-429",
     "title": "Прекрасная степь — мой дом",
+    "titleZh": "美丽的草原我的家",
     "url": "/assets/video/mp4/erhu-vk-429.mp4",
     "poster": "/assets/erhu/posters/vk-429.jpg",
     "category": "solo",
@@ -47,6 +52,7 @@
   {
     "slug": "vk-396",
     "title": "Цветок жасмина — запись 2:18",
+    "titleZh": "茉莉花 · 两分十八秒版",
     "url": "/assets/video/mp4/erhu-vk-396.mp4",
     "poster": "/assets/erhu/posters/vk-396.jpg",
     "category": "solo",
@@ -56,6 +62,7 @@
   {
     "slug": "vk-442",
     "title": "Дождь в Цзяннани — клип",
+    "titleZh": "江南雨 · 短片",
     "url": "/assets/video/mp4/erhu-vk-442.mp4",
     "poster": "/assets/erhu/posters/vk-442.jpg",
     "category": "solo",
@@ -65,6 +72,7 @@
   {
     "slug": "03-horses",
     "title": "Скачка лошадей",
+    "titleZh": "赛马",
     "url": "/assets/video/mp4/erhu-03-horses.mp4",
     "poster": "/assets/erhu/posters/03-horses.jpg",
     "category": "solo",
@@ -74,6 +82,7 @@
   {
     "slug": "tg-61888",
     "title": "Цветок жасмина — другая запись",
+    "titleZh": "茉莉花 · 另一版",
     "url": "/assets/video/mp4/erhu-tg-61888.mp4",
     "poster": "/assets/erhu/posters/tg-61888.jpg",
     "category": "solo",
@@ -83,6 +92,7 @@
   {
     "slug": "04-festival",
     "title": "Международный фестиваль молодёжи",
+    "titleZh": "国际青年节",
     "url": "/assets/video/mp4/erhu-04-festival.mp4",
     "poster": "/assets/erhu/posters/04-festival.jpg",
     "category": "stage",
@@ -92,6 +102,7 @@
   {
     "slug": "tg-64079",
     "title": "Калинка — ансамбль Дуань",
+    "titleZh": "卡林卡 · 合奏",
     "url": "/assets/video/mp4/erhu-tg-64079.mp4",
     "poster": "/assets/erhu/posters/tg-64079.jpg",
     "category": "stage",

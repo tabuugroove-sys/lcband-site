@@ -22,7 +22,7 @@
     dialog.querySelector('.player-count').textContent = `${current + 1} / ${items.length}`;
     const download = dialog.querySelector('.player-download');
     download.href = item.url;
-    download.download = `${item.title}.mp4`;
+    download.download = `${item.title.replaceAll('/', '—')}.mp4`;
     error.hidden = true;
     video.load();
     video.play().catch(() => { /* Native controls remain usable when autoplay is blocked. */ });

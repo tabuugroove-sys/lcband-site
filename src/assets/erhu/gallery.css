@@ -3,3 +3,125 @@
 @media(min-width:1500px){.hero{padding-block:75px 95px}.hero-art{height:680px}}@media(max-width:1000px){.wrap{width:calc(100% - 56px)}.hero{gap:30px}.hero-art{height:580px}h1{font-size:56px}.video-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.section-heading{display:block}.section-heading .section-intro{margin-top:20px}.repertoire{gap:40px}.song-list li{font-size:17px}}@media(max-width:650px){.wrap{width:calc(100% - 40px)}.nav{height:58px;gap:15px}.brand{font-size:14px;gap:8px}.brand img{width:27px;height:27px}.navlinks{gap:16px;font-size:12px}.navlinks>a{display:none}.share{font-size:12px}.hero{display:flex;flex-direction:column;align-items:stretch;gap:34px;padding-block:39px 42px}.hero .eyebrow{font-size:9px;margin-bottom:19px}h1{font-size:54px;letter-spacing:-.054em}.intro{font-size:18px;margin-block:21px 24px}.desktop{display:none}.hero-art{height:460px;max-height:125vw;border-radius:20px}.hero-art-label{left:20px;bottom:22px}.hero-art-label strong{font-size:18px}.hero-note{font-size:11px}.gallery-section{padding-block:50px}.eyebrow{font-size:10px}h2{font-size:35px}.section-intro{font-size:15px}.gallery-tools{margin-block:25px 22px}.filters{gap:5px}.filters button{padding:10px 13px;font-size:12px}.result-count{display:none}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}.thumbnail{border-radius:12px;aspect-ratio:3/4}.thumbnail .round-play{left:11px;bottom:11px;width:32px;height:32px;font-size:10px}.duration{right:10px;bottom:21px;font-size:10px}.card-details{padding-top:12px}h3{font-size:16px;line-height:1.3;margin-block:7px 10px}.card-label{font-size:8px;letter-spacing:.08em}.download{font-size:11px}.repertoire{display:block;padding-block:55px}.song-list{margin-top:32px}.song-list li{font-size:17px;gap:20px;padding:20px 0}.contact{padding:43px 22px;margin-bottom:40px;border-radius:22px}.contact p:not(.eyebrow){font-size:15px}.contact-links{flex-direction:column;gap:23px}.primary{font-size:14px;padding:14px 21px}footer{flex-wrap:wrap;font-size:11px;row-gap:14px}footer span{order:3;width:100%}.player{padding:14px;border-radius:17px;width:calc(100% - 20px)}.player h2{font-size:18px}.player video{height:62dvh}.player-download{font-size:12px}.player-foot{gap:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media(max-width:380px){h1{font-size:clamp(40px,13vw,49px)}.filters button{padding-inline:11px}.song-list li{font-size:16px}}
+
+/* Ink, vermilion and warm paper — a quiet landscape for the recordings. */
+:root {
+  --ink: #272c29;
+  --muted: #6b6d61;
+  --paper: #eae5d8;
+  --blue: #963f32;
+  --line: #cdc7b6;
+  --display: "Iowan Old Style", "Palatino Linotype", Georgia, "Songti SC", "Noto Serif CJK SC", serif;
+  background: #f2ecdf;
+}
+body { background: radial-gradient(ellipse at 3% 8%, #fffaf350, transparent 45%), #f2ecdf; }
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 30; pointer-events: none; opacity: .12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%238a795a' filter='url(%23paper)' opacity='.32' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+}
+[lang="zh-Hans"] { font-family: "Songti SC", "Noto Serif CJK SC", "SimSun", serif; font-weight: 400; }
+.slash { color: #9d6752; font-weight: 400; padding-inline: .1em; }
+.topbar { background: #f2ecdfed; border-color: #cdc7b677; }
+.brand { letter-spacing: -.2px; }
+.navlinks { font-size: 12px; }
+.hero { position: relative; grid-template-columns: 1fr 1fr; padding-block: 65px 55px; gap: 80px; }
+.hero::before { content: ""; position: absolute; width: 440px; height: 440px; border: 1px solid #a7493520; border-radius: 50%; left: -160px; top: 55px; pointer-events: none; }
+.hero-copy { position: relative; }
+.eyebrow { color: #767063; font-size: 10px; letter-spacing: .18em; }
+h1, h2, h3, .hero-poem, .song-list, .hero-art-label strong { font-family: var(--display); }
+h1 { font-size: clamp(48px,5vw,70px); font-weight: 400; line-height: 1.15; letter-spacing: -.05em; white-space: nowrap; }
+h1 > [lang="zh-Hans"] { color: var(--ink); font-size: 1.08em; letter-spacing: .05em; }
+.hero-poem { margin-top: 28px; font-size: clamp(31px,3.15vw,44px); line-height: 1.2; letter-spacing: -.035em; }
+.hero-poem em { font-style: normal; color: #737868; }
+.intro { font-size: 15px; color: var(--muted); line-height: 1.7; margin-block: 22px 24px; letter-spacing: .01em; }
+.primary { border-radius: 2px; background: #963f32; padding: 14px 23px; font-size: 13px; letter-spacing: .025em; }
+.primary:hover { background: #7f3025; }
+.hero-note { font-size: 11px; line-height: 1.9; margin-top: 18px; }
+.hero-art { height: 650px; border-radius: 2px; border: 7px solid #faf6eb; outline: 1px solid #d7d0bc; box-shadow: 12px 15px 0 #ddd6c255; }
+.hero-art > img { filter: saturate(.8); }
+.hero-art-label { left: 22px; bottom: 25px; right: 22px; gap: 13px; }
+.hero-art-label strong { font-size: 19px; line-height: 1.5; font-weight: 400; }
+.hero-art-label .slash { color: #dfc8ac; }
+.hero-art-label small { font-size: 9px; }
+.round-play { border-color: #e5d9beaa; background: #f6eddd22; }
+.seal { position: absolute; top: 22px; right: 22px; background: #98392fe8; color: #f9e6c9; border: 1px solid #e7baa488; outline: 3px solid #98392f; padding: 7px 8px; font-size: 23px; line-height: 1.1; transform: rotate(2deg); }
+.landscape { height: 110px; overflow: hidden; color: #555d4e; margin-top: -35px; }
+.landscape svg { display: block; width: 100%; height: 100%; }
+.gallery-section { background: #eae5d8; padding-block: 75px 80px; border-top: 1px solid #d5cfbf; }
+.section-heading { gap: 45px; align-items: center; }
+h2 { font-size: clamp(31px,3.1vw,43px); font-weight: 400; line-height: 1.25; letter-spacing: -.045em; }
+h2 [lang="zh-Hans"] { font-size: .68em; letter-spacing: .08em; white-space: nowrap; }
+.section-intro { font-size: 15px; line-height: 1.85; }
+.gallery-tools { margin-block: 32px 30px; padding-bottom: 20px; border-bottom: 1px solid #ccc6b5; }
+.filters { gap: 9px; }
+.filters button { background: transparent; border: 1px solid #c8c0ac; border-radius: 2px; padding: 10px 15px; font-size: 12px; }
+.filters button[aria-pressed=true] { background: #444f43; border-color: #444f43; color: #faf4e6; }
+.filters button span { opacity: 1; margin-left: 0; }
+.filters button span:last-child:not([lang]) { opacity: .65; margin-left: 4px; }
+.video-grid { gap: 33px 23px; }
+.thumbnail { border-radius: 2px; outline: 1px solid #c6beaa; border: 5px solid #f6f0e3; background: #d2cbb9; }
+.thumbnail img { filter: saturate(.78); }
+.thumbnail:hover img { filter: saturate(1); }
+.card-details { padding: 16px 0 0; }
+.card-label { color: #737362; font-size: 9px; letter-spacing: .1em; }
+h3 { font-size: 20px; font-weight: 400; line-height: 1.4; letter-spacing: -.02em; margin-block: 9px 13px; overflow-wrap: anywhere; }
+h3 [lang="zh-Hans"] { color: #717763; font-size: .82em; }
+.download { font-size: 11px; }
+.repertoire { padding-block: 100px; gap: 65px; }
+.repertoire .poem { font-family: var(--display); font-size: 21px; line-height: 1.7; color: #636a5b; }
+.practical { font-size: 13px; line-height: 1.7; color: var(--muted); margin: 0 0 23px; }
+.song-list li { gap: 22px; padding: 23px 0; font-size: 21px; line-height: 1.5; }
+.song-list li > span:not(.song-number) { font-size: inherit; color: var(--ink); }
+.song-list .song-number { color: #a44736; font-size: 19px; min-width: 24px; font-family: "Songti SC", serif; }
+.song-list [lang="zh-Hans"] { font-size: .84em; color: #757a67; }
+.contact { position: relative; border-radius: 2px; background: #e8e3d5; border: 1px solid #ccc4af; outline: 5px solid #f2ecdf; outline-offset: -11px; padding: 67px 35px; }
+.contact p:not(.eyebrow):not(.practical) { font-family: var(--display); font-size: 24px; line-height: 1.6; color: #666d5e; }
+.contact p.practical { font-size: 13px; margin: -10px 0 30px; }
+footer { font-size: 11px; }
+.player { background: #242923; border-color: #777a66; border-radius: 3px; }
+.player::backdrop { background: #151912e8; }
+.player h2 { font-family: var(--display); font-size: 24px; line-height: 1.35; }
+.player video { border-radius: 1px; }
+.close-player, .player-foot button { background: #414a3f; }
+.player-download { color: #dec299; }
+.toast { border-radius: 2px; background: #444f43; }
+@media (max-width: 1000px) {
+  .hero { gap: 40px; }
+  .hero-art { height: 620px; }
+  .section-heading { display: block; }
+  .repertoire { gap: 35px; }
+  .song-list li { font-size: 19px; }
+}
+@media (max-width: 650px) {
+  .hero { gap: 37px; padding-block: 40px 50px; }
+  .hero::before { width: 340px; height: 340px; left: -200px; top: 40px; }
+  h1 { font-size: 55px; }
+  .hero .eyebrow { font-size: 9px; margin-bottom: 19px; }
+  .hero-poem { font-size: 35px; margin-top: 23px; line-height: 1.2; }
+  .intro { font-size: 14px; margin-block: 21px 24px; }
+  .hero-art { height: 470px; border-width: 5px; box-shadow: 8px 10px 0 #ddd6c255; }
+  .hero-art-label { left: 16px; bottom: 18px; }
+  .hero-art-label strong { font-size: 17px; }
+  .seal { top: 18px; right: 17px; font-size: 20px; }
+  .landscape { height: 65px; margin-top: -20px; }
+  .gallery-section { padding-block: 45px 50px; }
+  h2 { font-size: 34px; }
+  .section-intro { font-size: 14px; }
+  .gallery-tools { margin-block: 24px; padding-bottom: 17px; }
+  .filters { gap: 6px; }
+  .filters button { padding: 9px 10px; font-size: 11px; }
+  .video-grid { gap: 26px 14px; }
+  .thumbnail { border-width: 3px; }
+  .card-label { font-size: 8px; letter-spacing: .02em; }
+  h3 { font-size: 18px; line-height: 1.35; }
+  .repertoire { padding-block: 55px; }
+  .repertoire .poem { font-size: 21px; }
+  .song-list li { font-size: 20px; gap: 17px; }
+  .contact { padding: 40px 24px; }
+  .contact p:not(.eyebrow):not(.practical) { font-size: 22px; }
+  .player h2 { font-size: 18px; }
+  .player-head > div { min-width: 0; }
+  .player-head h2 { overflow-wrap: anywhere; }
+  footer { font-size: 10px; }
+}
+@media (max-width: 360px) { h1 { font-size: 49px; } .filters button { padding: 9px 8px; font-size: 10px; } }
