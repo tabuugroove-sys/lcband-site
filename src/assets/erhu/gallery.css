@@ -125,3 +125,43 @@ footer { font-size: 11px; }
   footer { font-size: 10px; }
 }
 @media (max-width: 360px) { h1 { font-size: 49px; } .filters button { padding: 9px 8px; font-size: 10px; } }
+
+/* One photograph; its lower-left square becomes a living window. */
+.hero { grid-template-columns: .8fr 1.2fr; gap: 42px; }
+.living-scene { position: relative; width: 100%; aspect-ratio: 1; isolation: isolate; }
+.scene-photo { width: 100%; height: 100%; object-fit: contain; }
+.scene-window { position: absolute; left: 0; bottom: 0; width: 64.03508772%; aspect-ratio: 1; }
+.scene-motion { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity .45s; mask-image: linear-gradient(to right, transparent, #000 18%, #000 84%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 94%, transparent); mask-composite: intersect; }
+.scene-motion video { position: absolute; width: 104%; max-width: none; height: auto; left: 7.5%; top: -52.4%; }
+.is-playing .scene-motion { opacity: 1; }
+.scene-start { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 12px; padding: 22px 18px; color: #fff8ec; background: radial-gradient(ellipse at bottom left, #152016b3, transparent 72%); text-shadow: 0 1px 6px #0008; text-align: left; font-family: var(--display); font-size: 19px; line-height: 1.3; }
+.scene-start .round-play { width: 46px; height: 46px; font-size: 14px; }
+.scene-start .slash { color: #ead7bf; }
+.scene-start small { display: block; font-family: -apple-system, sans-serif; font-size: 10px; letter-spacing: .12em; margin-top: 6px; }
+.scene-start:hover .round-play { background: #fff4; }
+.scene-start[aria-busy=true] .round-play { opacity: .5; }
+.scene-controls { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; gap: 5px; padding: 24px 8px 8px; background: linear-gradient(transparent, #142017dc); color: #fff8ec; }
+.scene-controls button, .scene-expand { display: grid; place-items: center; flex-shrink: 0; min-width: 34px; height: 40px; padding: 0; background: transparent; color: inherit; font-size: 20px; }
+.scene-seek { min-width: 0; width: 100%; height: 28px; accent-color: #f4ddbc; cursor: pointer; }
+.scene-time { font-size: 10px; font-variant-numeric: tabular-nums; }
+.scene-error { position: absolute; left: 8px; right: 8px; top: 8px; padding: 12px; background: #f2ecdf; font-size: 13px; line-height: 1.5; }
+.scene-error a { text-decoration: underline; }
+.living-scene [hidden] { display: none; }
+.thumbnail[data-slug="01-rain"] { aspect-ratio: 1; }
+.thumbnail[data-slug="01-rain"] img { filter: none; }
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: .85fr 1.15fr; gap: 24px; }
+  .scene-start { font-size: 16px; padding: 14px 12px; gap: 8px; }
+  .scene-start .round-play { width: 36px; height: 36px; font-size: 11px; }
+  .scene-controls { gap: 2px; padding-inline: 4px; }
+  .scene-controls button, .scene-expand { min-width: 29px; }
+}
+@media (max-width: 750px) {
+  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 34px; }
+  .living-scene { width: calc(100% + 40px); margin-inline: -20px; }
+  .scene-start { font-size: 17px; padding: 18px 14px; }
+}
+@media (max-width: 380px) {
+  .scene-start { font-size: 15px; }
+  .scene-time { display: none; }
+}

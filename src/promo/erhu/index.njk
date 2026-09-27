@@ -18,8 +18,8 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=3">
-  <script src="/assets/erhu/gallery.js?v=2" defer></script>
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=4">
+  <script src="/assets/erhu/gallery.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#gallery">Перейти к видео</a>
@@ -37,11 +37,21 @@ eleventyExcludeFromCollections: true
         <a class="primary" href="#gallery">Слушать и смотреть <span aria-hidden="true">↓</span></a>
         <p class="hero-note">5–15 минут · 1–3 произведения</p>
       </div>
-      <a class="hero-art play-item" href="/assets/video/mp4/erhu-01-rain.mp4" data-slug="01-rain" aria-label="Смотреть видео: Дождь в Цзяннани / 江南雨">
-        <img src="/assets/erhu/posters/01-rain.jpg" width="480" height="854" alt="Дождь в Цзяннани / 江南雨 — исполнение на эрху среди цветущих ветвей" fetchpriority="high">
-        <span class="seal" lang="zh-Hans" aria-hidden="true">弦<br>音</span>
-        <div class="hero-art-label"><span class="round-play" aria-hidden="true">▶</span><span><strong>Дождь в Цзяннани <span class="slash">/</span> <span lang="zh-Hans">江南雨</span></strong><small>0:52</small></span></div>
-      </a>
+      <div class="living-scene">
+        <img class="scene-photo" src="/assets/erhu/blossom-scene.webp" width="1254" height="1254" alt="Музыкант с эрху под цветущими ветвями" fetchpriority="high">
+        <div class="scene-window">
+          <div class="scene-motion"><video id="scene-video" playsinline preload="none" aria-label="Дождь в Цзяннани / 江南雨" data-src="/assets/video/mp4/erhu-01-rain.mp4"></video></div>
+          <button class="scene-start" type="button" aria-label="Смотреть видео: Дождь в Цзяннани / 江南雨" aria-controls="scene-video"><span class="round-play" aria-hidden="true">▶</span><span>Дождь в Цзяннани <span class="slash">/</span> <span lang="zh-Hans">江南雨</span><small>0:52</small></span></button>
+          <div class="scene-controls" hidden>
+            <button class="scene-toggle" type="button" aria-label="Пауза" aria-controls="scene-video">Ⅱ</button>
+            <input class="scene-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Позиция воспроизведения">
+            <span class="scene-time">0:00</span>
+            <button class="scene-mute" type="button" aria-label="Выключить звук" aria-pressed="false">♪</button>
+            <a class="scene-expand play-item" href="/assets/video/mp4/erhu-01-rain.mp4" data-slug="01-rain" aria-label="Открыть полное видео">⤢</a>
+          </div>
+          <p class="scene-error" role="status" hidden>Видео не загрузилось. <a href="/assets/video/mp4/erhu-01-rain.mp4">Открыть видео ↗</a></p>
+        </div>
+      </div>
     </section>
     <div class="landscape" aria-hidden="true"><svg viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 127Q95 112 159 117T286 101L387 61 436 81 495 44 529 69 594 33 651 66 713 54 790 94Q900 114 1000 76L1092 23 1138 48 1190 34 1277 88 1360 65 1440 92V150H0Z" fill="currentColor" opacity=".055"/><path d="M0 145L117 121 192 136 287 95 354 111 450 91 558 126 677 99 770 129 867 104 970 128 1108 83 1197 105 1280 90 1390 122 1440 115V150H0Z" fill="currentColor" opacity=".09"/></svg></div>
     <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
