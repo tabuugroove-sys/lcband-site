@@ -132,7 +132,7 @@ footer { font-size: 11px; }
 .scene-photo { z-index: -1; }
 .scene-window { position: relative; width: 100%; height: 100%; overflow: hidden; background: #151912; }
 .is-playing .scene-poster { visibility: hidden; }
-.scene-window::after { content: ""; position: absolute; inset: 0; z-index: 4; border: 2px solid #f6ead0; box-shadow: 0 0 0 1px #75634599, inset 0 0 0 1px #75634566; pointer-events: none; }
+.scene-window::after { content: ""; position: absolute; inset: 0; z-index: 4; border: 7px solid #fff; pointer-events: none; }
 .scene-motion { position: absolute; inset: 0; overflow: hidden; display: none; background: #151912; }
 .scene-motion video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 43%; }
 .is-playing .scene-motion { display: block; }
@@ -182,6 +182,7 @@ footer { font-size: 11px; }
   .hero { width: calc(100% - 40px); display: flex; flex-direction: column; align-items: stretch; gap: 37px; padding: 98px 0 50px; }
   .hero-copy { order: 0; }
   .living-scene { order: 1; height: 470px; margin: 0; }
+  .scene-window::after { border-width: 5px; }
   .scene-photo, .scene-poster { width: calc(100% + 40px); left: -20px; top: -35px; height: calc(100% + 65px); object-position: center top; }
   .hero::after { content: ""; position: absolute; top: 0; right: -20px; width: calc(100% + 40px); height: 80px; background: url('/assets/erhu/blossom-scene.webp') right top / 100% auto; z-index: -1; }
   .hero { isolation: isolate; }
