@@ -1,0 +1,8 @@
+{#- Живой отзыв в виде входящего сообщения. Данные — src/_data/reviews.json:
+    текст выводим дословно, без редактуры. -#}
+{% macro reviewBubble(r) %}
+<figure class="review">
+	<blockquote class="review__bubble"><p>{{ r.text }}</p></blockquote>
+	<figcaption class="review__from"><span class="review__who">{{ r.from }}</span> · {{ r.context }}</figcaption>
+</figure>
+{% endmacro %}

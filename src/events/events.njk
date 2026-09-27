@@ -153,6 +153,18 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% from "partials/review.njk" import reviewBubble %}
+{% set eventReview = reviews.byId[reviews.events[event.slug]] %}
+{% if eventReview %}
+<section class="section section--light" id="review">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Отзыв</p>
+		<h2 class="section__title">Пишут<br><span class="muted">после выступлений.</span></h2>
+		<div class="reviews reviews--single">{{ reviewBubble(eventReview) }}</div>
+	</div>
+</section>
+{% endif %}
+
 {% if event.slug == 'corporate' %}
 <section class="section section--light" id="formats">
 	<div class="container container--narrow reveal">

@@ -333,6 +333,21 @@
 	</div>
 </section>
 
+<!-- =============== REVIEWS (живые сообщения, данные — _data/reviews.json) =============== -->
+{% from "partials/review.njk" import reviewBubble %}
+<section class="section section--light" id="reviews">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Отзывы</p>
+		<h2 class="section__title">Пишут<br><span class="muted">после выступлений.</span></h2>
+		<p class="section__lead">Сообщения зрителей и клиентов — как есть, без редактуры.</p>
+	</div>
+	<div class="container reveal">
+		<div class="reviews">
+			{% for id in reviews.home %}{{ reviewBubble(reviews.byId[id]) }}{% endfor %}
+		</div>
+	</div>
+</section>
+
 <!-- =============== BOOK =============== -->
 <section class="section section--book" id="book">
 	<div class="container container--narrow reveal">

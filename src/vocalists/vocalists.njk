@@ -56,6 +56,18 @@ eleventyComputed:
 	</div>
 </section>
 
+{% from "partials/review.njk" import reviewBubble %}
+{% set vocalistReview = reviews.byId[reviews.vocalists[vocalist.slug]] %}
+{% if vocalistReview %}
+<section class="section section--light" id="review">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Отзыв</p>
+		<h2 class="section__title">Пишут<br><span class="muted">после выступлений.</span></h2>
+		<div class="reviews reviews--single">{{ reviewBubble(vocalistReview) }}</div>
+	</div>
+</section>
+{% endif %}
+
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Остальные вокалисты</p>
