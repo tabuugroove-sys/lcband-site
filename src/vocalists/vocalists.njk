@@ -7,7 +7,7 @@ permalink: "/vocalists/{{ vocalist.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
   title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
-  description: "{{ vocalist.tagline }}"
+  description: "{{ vocalist.name }} ({{ vocalist.role }}) — {{ site.name }}. {{ vocalist.tagline }}"
   keywords: "{{ vocalist.keywords }}"
   ogImage: "{{ vocalist.photo }}"
 ---
@@ -42,6 +42,9 @@ eleventyComputed:
 		<h1 class="page-hero__title">{{ vocalist.name }}</h1>
 		<p class="page-hero__lead">{{ vocalist.tagline }}</p>
 		<p class="page-hero__body">{{ vocalist.bio }}</p>
+		{% for paragraph in vocalist.story %}
+		<p class="page-hero__body">{{ paragraph }}</p>
+		{% endfor %}
 		{% if vocalist.slug == 'irina' %}
 		<p class="page-hero__body"><a class="btn btn--ghost-dark" href="{{ '/programs/jazz-irina/' | url }}">Джаз с Ириной — видео и фото ↗</a></p>
 		{% endif %}
