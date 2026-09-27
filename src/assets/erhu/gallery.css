@@ -166,3 +166,36 @@ footer { font-size: 11px; }
   .scene-start { font-size: 15px; }
   .scene-time { display: none; }
 }
+
+/* The flowering scene reaches the screen edges, beneath the navigation. */
+.topbar { position: absolute; width: 100%; top: 0; background: transparent; border: 0; backdrop-filter: none; }
+.nav { height: 80px; }
+.navlinks { padding: 5px 17px; background: #f2ecdfde; backdrop-filter: blur(10px); border: 1px solid #fff8; border-radius: 2px; }
+.hero { width: 100%; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) min(58vw, 100svh, 1040px); gap: 0; align-items: center; }
+.hero::before { display: none; }
+.hero-copy { padding: 110px 28px 70px max(48px, calc((100vw - 1200px) / 2)); }
+.hero h1 { font-size: clamp(40px, 4.2vw, 70px); }
+.hero .intro { font-size: clamp(16px, 1.25vw, 21px); }
+.living-scene { width: 100%; margin: 0; align-self: start; }
+.landscape { position: relative; z-index: 1; margin-top: 0; }
+@media (min-width: 1600px) {
+  .hero { grid-template-columns: minmax(0, 1fr) min(58vw, 100svh, 1040px); }
+}
+@media (min-width: 901px) and (max-width: 1100px) {
+  .hero-copy { padding-left: 28px; padding-right: 20px; }
+}
+@media (max-width: 900px) {
+  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .living-scene { order: -1; width: 100%; margin: 0; }
+  .hero-copy { padding: 40px max(20px, calc((100vw - 650px) / 2)) 45px; }
+  .hero h1 { font-size: clamp(49px, 8vw, 70px); }
+  .hero .intro { font-size: 18px; }
+  .nav { height: 68px; }
+  .brand { background: #f2ecdfde; padding: 7px 10px; backdrop-filter: blur(10px); border-radius: 2px; }
+  .navlinks { padding-inline: 12px; gap: 16px; }
+}
+@media (max-width: 650px) {
+  .nav { width: calc(100% - 24px); gap: 10px; }
+  .navlinks { padding: 3px 10px; }
+  .hero .intro { font-size: 17px; }
+}
