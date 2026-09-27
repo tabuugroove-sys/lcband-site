@@ -126,15 +126,16 @@ footer { font-size: 11px; }
 }
 @media (max-width: 360px) { h1 { font-size: 49px; } .filters button { padding: 9px 8px; font-size: 10px; } }
 
-/* One photograph; its lower-left square becomes a living window. */
-.hero { grid-template-columns: .8fr 1.2fr; gap: 42px; }
-.living-scene { position: relative; width: 100%; aspect-ratio: 1; isolation: isolate; }
-.scene-photo { width: 100%; height: 100%; object-fit: contain; }
-.scene-window { position: absolute; left: 0; bottom: 0; width: 64.03508772%; aspect-ratio: 1; }
+/* The photograph surrounds an opaque, independent video frame. */
+.living-scene { position: relative; width: 100%; height: 650px; isolation: isolate; }
+.scene-photo, .scene-poster { position: absolute; left: 0; top: -129px; width: calc(100% + max(48px, (100vw - 1200px) / 2)); max-width: none; height: calc(100% + 129px); object-fit: cover; object-position: right top; }
+.scene-photo { z-index: -1; }
+.scene-window { position: relative; width: 100%; height: 100%; overflow: hidden; background: #151912; }
+.is-playing .scene-poster { visibility: hidden; }
 .scene-window::after { content: ""; position: absolute; inset: 0; z-index: 4; border: 2px solid #f6ead0; box-shadow: 0 0 0 1px #75634599, inset 0 0 0 1px #75634566; pointer-events: none; }
-.scene-motion { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity .45s; mask-image: linear-gradient(to right, transparent, #000 18%, #000 84%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 94%, transparent); mask-composite: intersect; }
-.scene-motion video { position: absolute; width: 104%; max-width: none; height: auto; left: 7.5%; top: -52.4%; }
-.is-playing .scene-motion { opacity: 1; }
+.scene-motion { position: absolute; inset: 0; overflow: hidden; display: none; background: #151912; }
+.scene-motion video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 43%; }
+.is-playing .scene-motion { display: block; }
 .scene-start { position: absolute; inset: 0; display: flex; align-items: flex-end; gap: 12px; padding: 22px 18px; color: #fff8ec; background: radial-gradient(ellipse at bottom left, #152016b3, transparent 72%); text-shadow: 0 1px 6px #0008; text-align: left; font-family: var(--display); font-size: 19px; line-height: 1.3; }
 .scene-start .round-play { width: 46px; height: 46px; font-size: 14px; }
 .scene-start .slash { color: #ead7bf; }
@@ -151,15 +152,12 @@ footer { font-size: 11px; }
 .thumbnail[data-slug="01-rain"] { aspect-ratio: 1; }
 .thumbnail[data-slug="01-rain"] img { filter: none; }
 @media (max-width: 1000px) {
-  .hero { grid-template-columns: .85fr 1.15fr; gap: 24px; }
   .scene-start { font-size: 16px; padding: 14px 12px; gap: 8px; }
   .scene-start .round-play { width: 36px; height: 36px; font-size: 11px; }
   .scene-controls { gap: 2px; padding-inline: 4px; }
   .scene-controls button, .scene-expand { min-width: 29px; }
 }
 @media (max-width: 750px) {
-  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 34px; }
-  .living-scene { width: calc(100% + 40px); margin-inline: -20px; }
   .scene-start { font-size: 17px; padding: 18px 14px; }
 }
 @media (max-width: 380px) {
@@ -167,35 +165,27 @@ footer { font-size: 11px; }
   .scene-time { display: none; }
 }
 
-/* The flowering scene reaches the screen edges, beneath the navigation. */
+/* Keep the original player placement; only the backdrop reaches the edges. */
 .topbar { position: absolute; width: 100%; top: 0; background: transparent; border: 0; backdrop-filter: none; }
-.nav { height: 80px; }
+.nav { height: 64px; }
 .navlinks { padding: 5px 17px; background: #f2ecdfde; backdrop-filter: blur(10px); border: 1px solid #fff8; border-radius: 2px; }
-.hero { width: 100%; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) min(58vw, 100svh, 1040px); gap: 0; align-items: center; }
+.hero { width: min(1200px, calc(100% - 96px)); margin-inline: auto; padding: 129px 0 55px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .hero::before { display: none; }
-.hero-copy { padding: 110px 28px 70px max(48px, calc((100vw - 1200px) / 2)); }
-.hero h1 { font-size: clamp(40px, 4.2vw, 70px); }
-.hero .intro { font-size: clamp(16px, 1.25vw, 21px); }
-.living-scene { width: 100%; margin: 0; align-self: start; }
-.landscape { position: relative; z-index: 1; margin-top: 0; }
-@media (min-width: 1600px) {
-  .hero { grid-template-columns: minmax(0, 1fr) min(58vw, 100svh, 1040px); }
-}
-@media (min-width: 901px) and (max-width: 1100px) {
-  .hero-copy { padding-left: 28px; padding-right: 20px; }
-}
-@media (max-width: 900px) {
-  .hero { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
-  .living-scene { order: -1; width: 100%; margin: 0; }
-  .hero-copy { padding: 40px max(20px, calc((100vw - 650px) / 2)) 45px; }
-  .hero h1 { font-size: clamp(49px, 8vw, 70px); }
-  .hero .intro { font-size: 18px; }
-  .nav { height: 68px; }
-  .brand { background: #f2ecdfde; padding: 7px 10px; backdrop-filter: blur(10px); border-radius: 2px; }
-  .navlinks { padding-inline: 12px; gap: 16px; }
+.hero-copy { padding: 0; }
+.landscape { position: relative; margin-top: 0; }
+@media (max-width: 1000px) {
+  .hero { width: calc(100% - 56px); gap: 40px; }
+  .living-scene { height: 620px; }
+  .scene-photo, .scene-poster { width: calc(100% + 28px); }
 }
 @media (max-width: 650px) {
+  .hero { width: calc(100% - 40px); display: flex; flex-direction: column; align-items: stretch; gap: 37px; padding: 98px 0 50px; }
+  .hero-copy { order: 0; }
+  .living-scene { order: 1; height: 470px; margin: 0; }
+  .scene-photo, .scene-poster { width: calc(100% + 40px); left: -20px; top: -35px; height: calc(100% + 65px); object-position: center top; }
+  .hero::after { content: ""; position: absolute; top: 0; right: -20px; width: calc(100% + 40px); height: 80px; background: url('/assets/erhu/blossom-scene.webp') right top / 100% auto; z-index: -1; }
+  .hero { isolation: isolate; }
   .nav { width: calc(100% - 24px); gap: 10px; }
+  .brand { padding: 7px 10px; background: #f2ecdfde; backdrop-filter: blur(10px); border-radius: 2px; }
   .navlinks { padding: 3px 10px; }
-  .hero .intro { font-size: 17px; }
 }
