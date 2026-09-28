@@ -245,7 +245,7 @@ footer { font-size: 11px; }
 @media(max-width:1000px) { .video-card { flex-basis: calc((100% - 23px) / 2); } }
 @media(max-width:650px) { .video-card { flex-basis: 100%; } .carousel-controls { gap: 10px; } .carousel-dots button { width: 23px; } }
 
-.hero .brush-button { display: inline-flex; justify-content: center; align-items: center; width: min(330px, 100%); min-height: 76px; padding: 20px 30px; border: 0; border-radius: 0; background: url('/assets/erhu/brush-button.png') center 49% / 150% auto no-repeat; color: #fff8e9; font-size: 15px; letter-spacing: .02em; text-shadow: 0 1px 2px #59211655; }
+.hero .brush-button { display: inline-flex; justify-content: center; align-items: center; width: min(330px, 100%); aspect-ratio: 3; padding: 20px 0 0 66px; border: 0; border-radius: 0; background: url('/assets/erhu/brush-button.png?v=2') center / contain no-repeat; color: #fff8e9; font-size: 15px; letter-spacing: .02em; text-shadow: 0 1px 2px #59211655; }
 .hero .brush-button:hover { background-color: transparent; filter: brightness(1.06); transform: translateY(-2px); }
 
 /* The opening scene keeps its warm paper; the rest follows the main site. */
@@ -293,8 +293,9 @@ body::before { display: none; }
 }
 @media(max-width:650px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 40px); } }
 
-.hero .calligraphy-title { width: 100%; max-width: 520px; margin: 0; line-height: 0; }
-.calligraphy-title img { display: block; width: 100%; height: auto; }
+.hero .calligraphy-title { display: grid; place-items: center; width: 100%; max-width: 520px; margin: 0; }
+.calligraphy-title img { grid-area: 1 / 1; display: block; width: 100%; height: auto; }
+.calligraphy-title > span { grid-area: 1 / 1; position: relative; color: var(--ink); }
 
 .repertoire { display: block; }
 .repertoire-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
