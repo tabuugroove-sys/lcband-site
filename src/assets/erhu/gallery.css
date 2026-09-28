@@ -220,7 +220,7 @@ footer { font-size: 11px; }
   .living-scene { order: 1; height: 470px; margin: 0; }
   .scene-window::after { border-width: 5px; }
   .scene-photo, .scene-poster { width: calc(100% + 40px); left: -20px; top: -35px; height: calc(100% + 65px); object-position: center top; }
-  .hero::after { content: ""; position: absolute; top: 0; right: -20px; width: calc(100% + 40px); height: 80px; background: url('/assets/erhu/blossom-scene.webp') right top / 100% auto; z-index: -1; }
+  .hero::after { content: ""; position: absolute; top: 0; right: -20px; width: calc(100% + 40px); height: 80px; background: url('/assets/erhu/erhu-blossom-scene-960.webp') right top / 100% auto; z-index: -1; }
   .hero { isolation: isolate; }
   .nav { width: calc(100% - 24px); gap: 10px; }
   .brand { padding: 7px 10px; background: #f2ecdfde; backdrop-filter: blur(10px); border-radius: 2px; }
@@ -255,12 +255,7 @@ body::before { display: none; }
 .topbar { color: #fff; }
 .topbar .brand, .topbar .navlinks { background: #000; border-color: #fff3; }
 .topbar .share, .hero .intro, .hero .hero-note, .hero .slash, .hero .scene-start, .hero .scene-controls { color: #fff; }
-.hero .scene-photo, .hero::after { display: none; }
-.hero .scene-poster { inset: 0; width: 100%; height: 100%; object-position: center; }
-.hero .intro, .hero .brush-button, .calligraphy-title > span { font-family: "Times New Roman", "PT Serif", Georgia, serif; }
-.hero .intro { letter-spacing: .08em; }
-.hero .brush-button { background: transparent; border: 1px solid #fff; padding: 17px 24px 17px 31px; width: auto; aspect-ratio: auto; color: #fff; font-size: 18px; letter-spacing: .38em; text-shadow: none; }
-.hero .brush-button:hover { background: #ffffff1a; }
+.hero .brush-button { background-image: url('/assets/erhu/brush-button-660.webp'); color: #fff; }
 .gallery-section { background: #fff; border: 0; }
 .gallery-section h2, .photos-section h2, .repertoire h2, .song-list, .photo-card h3 { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; letter-spacing: -.035em; }
 .gallery-section h2, .photos-section h2, .repertoire h2 { font-weight: 600; }
@@ -303,7 +298,7 @@ body::before { display: none; }
 
 .hero .calligraphy-title { display: grid; place-items: center; width: 100%; max-width: 520px; margin: 0; }
 .calligraphy-title img { grid-area: 1 / 1; display: block; width: 100%; height: auto; }
-.calligraphy-title > span { grid-area: 1 / 1; position: relative; color: #fff; text-transform: uppercase; letter-spacing: .3em; padding-left: .3em; font-weight: 400; }
+.calligraphy-title > span { grid-area: 1 / 1; position: relative; color: #fff; }
 
 .repertoire { display: block; }
 .repertoire-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
