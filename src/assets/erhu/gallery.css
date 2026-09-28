@@ -247,3 +247,48 @@ footer { font-size: 11px; }
 
 .hero .brush-button { display: inline-flex; justify-content: center; align-items: center; width: min(330px, 100%); min-height: 76px; padding: 20px 30px; border: 0; border-radius: 0; background: url('/assets/erhu/brush-button.png') center 49% / 150% auto no-repeat; color: #fff8e9; font-size: 15px; letter-spacing: .02em; text-shadow: 0 1px 2px #59211655; }
 .hero .brush-button:hover { background-color: transparent; filter: brightness(1.06); transform: translateY(-2px); }
+
+/* The opening scene keeps its warm paper; the rest follows the main site. */
+body { background: #fff; }
+body::before { display: none; }
+.hero-backdrop { background: radial-gradient(ellipse at 3% 8%, #fffaf350, transparent 45%), #f2ecdf; overflow: hidden; }
+.gallery-section { background: #fff; border: 0; }
+.gallery-section h2, .photos-section h2, .repertoire h2, .song-list, .photo-card h3 { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; letter-spacing: -.035em; }
+.gallery-section h2, .photos-section h2, .repertoire h2 { font-weight: 600; }
+.gallery-tools { border-color: #e5e5e7; }
+.filters button { border: 0; border-radius: 24px; background: #f5f5f7; color: #6e6e73; }
+.filters button[aria-pressed=true] { background: #1d1d1f; color: #fff; }
+.gallery-section > .wrap { width: 100%; }
+.gallery-section .section-heading, .gallery-tools { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
+.video-grid { position: relative; gap: 6px; padding: 0 max(15vw, calc((100vw - 1100px) / 2)); scroll-padding-inline: 50%; }
+.video-card { flex: 0 0 min(70vw, 1100px); position: relative; scroll-snap-align: center; }
+.thumbnail { aspect-ratio: 16/9; border: 0; outline: 0; border-radius: 0; background: #101010; }
+.thumbnail img { object-fit: contain; filter: none; }
+.thumbnail .round-play { left: 50%; bottom: auto; top: 50%; transform: translate(-50%, -50%); width: clamp(48px, 6vw, 72px); height: clamp(48px, 6vw, 72px); color: #1d1d1f; background: #fffffff0; border: 0; font-size: 22px; }
+.thumbnail .duration { bottom: 22px; right: 24px; }
+.card-details { position: absolute; bottom: 20px; left: 24px; right: 65px; color: #fff; padding: 0; pointer-events: none; text-shadow: 0 2px 12px #0009; }
+.card-label { color: #ffffffb3; }
+.card-details h3 { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-size: 23px; font-weight: 600; line-height: 1.2; margin: 6px 0; }
+.card-details h3 [lang], .card-details .slash { color: #ffffffb3; }
+.card-details .download { pointer-events: auto; color: #fff; font-size: 11px; }
+.carousel-controls > button { background: #f5f5f7; border: 0; color: #1d1d1f; }
+.carousel-controls > button:hover:not(:disabled) { background: #e8e8ed; color: #1d1d1f; }
+.carousel-dots button[aria-current=true]::after { background: #1d1d1f; }
+.carousel-dots button::after { background: #d2d2d7; }
+.photo-open { border: 0; outline: 0; background: #f5f5f7; border-radius: 12px; overflow: hidden; }
+.photo-card h3 { font-size: 18px; font-weight: 500; }
+.repertoire .poem, .song-list [lang], .photo-card [lang], .section-intro { color: #6e6e73; }
+.song-list li, footer { border-color: #e5e5e7; }
+.repertoire .poem { font-family: inherit; font-size: 18px; }
+@media(pointer:fine) { .video-grid { cursor: grab; } .video-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; } }
+@media(max-width:1000px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 56px); } }
+@media(max-width:734px) {
+ .video-grid { padding-inline: 8vw; }
+ .video-card { flex-basis: 84vw; }
+ .card-details { left: 14px; bottom: 12px; right: 55px; }
+ .card-details h3 { font-size: 16px; }
+ .card-label { font-size: 8px; }
+ .card-details .download { font-size: 10px; }
+ .thumbnail .duration { bottom: 15px; right: 14px; }
+}
+@media(max-width:650px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 40px); } }

@@ -95,7 +95,9 @@
     video.load();
     video.play().catch(() => { /* Native controls remain usable when autoplay is blocked. */ });
   };
-  document.querySelectorAll('.play-item').forEach(link => link.addEventListener('click', event => {
+  document.addEventListener('click', event => {
+    const link = event.target.closest('.play-item');
+    if (!link || event.defaultPrevented) return;
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     if (typeof dialog.showModal !== 'function') return;
     event.preventDefault();
@@ -105,7 +107,7 @@
     document.body.classList.add('modal-open');
     select(items.findIndex(item => item.slug === link.dataset.slug));
     dialog.querySelector('.close-player').focus();
-  }));
+  });
   dialog.querySelector('.close-player').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
@@ -128,34 +130,59 @@
   const carouselDots = document.querySelector('.carousel-dots');
   const carouselPrev = document.querySelector('.carousel-prev');
   const carouselNext = document.querySelector('.carousel-next');
-  let stops = [0];
+  let slides = [];
+  let visibleCards = [];
   let page = 0;
+  let settling;
+  const center = card => card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
+  const nearest = () => slides.reduce((best, card, index) => Math.abs(center(card) - track.scrollLeft) < Math.abs(center(slides[best]) - track.scrollLeft) ? index : best, 0);
   const updateCarousel = () => {
-    page = stops.reduce((best, stop, index) => Math.abs(stop - track.scrollLeft) < Math.abs(stops[best] - track.scrollLeft) ? index : best, 0);
-    carouselPrev.disabled = page === 0;
-    carouselNext.disabled = page === stops.length - 1;
+    if (!slides.length) return;
+    page = nearest() % visibleCards.length;
     [...carouselDots.children].forEach((dot, index) => dot.setAttribute('aria-current', String(index === page)));
-    document.querySelector('.carousel-position').textContent = `${page + 1} / ${stops.length}`;
+    document.querySelector('.carousel-position').textContent = `${page + 1} / ${visibleCards.length}`;
+    clearTimeout(settling);
+    settling = setTimeout(() => {
+      if (track.classList.contains('is-dragging')) return;
+      const index = nearest();
+      if (index < visibleCards.length || index >= visibleCards.length * 2) {
+        track.scrollTo({left: center(slides[visibleCards.length + page]), behavior: 'instant'});
+      }
+    }, 180);
   };
   const goToPage = index => {
-    track.scrollTo({left: stops[Math.max(0, Math.min(index, stops.length - 1))], behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    const actual = nearest();
+    let target = actual - (actual % visibleCards.length) + index;
+    if (target < 0 || target >= slides.length) {
+      track.scrollTo({left: center(slides[visibleCards.length + page]), behavior: 'instant'});
+      target = visibleCards.length + index;
+    }
+    track.scrollTo({left: center(slides[target]), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
   };
   const rebuildCarousel = () => {
-    const visible = cards.filter(card => !card.hidden);
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const width = visible[0]?.getBoundingClientRect().width || track.clientWidth;
-    const perPage = Math.max(1, Math.round((track.clientWidth + gap) / (width + gap)));
-    const max = Math.max(0, track.scrollWidth - track.clientWidth);
-    stops = Array.from({length: Math.max(1, Math.ceil(visible.length / perPage))}, (_, index) => Math.min(index * perPage * (width + gap), max));
-    carouselDots.replaceChildren(...stops.map((_, index) => {
+    track.querySelectorAll('[data-loop-clone]').forEach(card => card.remove());
+    visibleCards = cards.filter(card => !card.hidden);
+    const clone = card => {
+      const copy = card.cloneNode(true);
+      copy.dataset.loopClone = 'true';
+      copy.setAttribute('aria-hidden', 'true');
+      copy.querySelectorAll('a, button').forEach(control => control.tabIndex = -1);
+      return copy;
+    };
+    track.prepend(...visibleCards.map(clone));
+    track.append(...visibleCards.map(clone));
+    slides = [...track.children].filter(card => !card.hidden);
+    carouselDots.replaceChildren(...visibleCards.map((_, index) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Страница ${index + 1}`);
+      dot.setAttribute('aria-label', `Видео ${index + 1}`);
       dot.setAttribute('aria-controls', 'video-carousel');
       dot.addEventListener('click', () => goToPage(index));
       return dot;
     }));
-    carouselControls.hidden = stops.length < 2;
+    carouselControls.hidden = visibleCards.length < 2;
+    carouselPrev.disabled = carouselNext.disabled = false;
+    track.scrollTo({left: center(slides[visibleCards.length]), behavior: 'instant'});
     updateCarousel();
   };
   carouselPrev.addEventListener('click', () => goToPage(page - 1));
@@ -164,8 +191,36 @@
   track.addEventListener('keydown', event => {
     if (event.target !== track || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    goToPage(event.key === 'Home' ? 0 : event.key === 'End' ? stops.length - 1 : page + (event.key === 'ArrowLeft' ? -1 : 1));
+    goToPage(event.key === 'Home' ? 0 : event.key === 'End' ? visibleCards.length - 1 : page + (event.key === 'ArrowLeft' ? -1 : 1));
   });
+  let dragStart = null;
+  let dragMoved = false;
+  track.addEventListener('dragstart', event => event.preventDefault());
+  track.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    dragStart = {x: event.clientX, left: track.scrollLeft};
+    dragMoved = false;
+  });
+  window.addEventListener('pointermove', event => {
+    if (!dragStart) return;
+    const dx = event.clientX - dragStart.x;
+    if (Math.abs(dx) > 5) {
+      dragMoved = true;
+      track.classList.add('is-dragging');
+      track.scrollLeft = dragStart.left - dx;
+    }
+  });
+  const endDrag = () => {
+    if (!dragStart) return;
+    dragStart = null;
+    track.classList.remove('is-dragging');
+    updateCarousel();
+  };
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+  track.addEventListener('click', event => {
+    if (dragMoved) { event.preventDefault(); event.stopPropagation(); dragMoved = false; }
+  }, true);
   new ResizeObserver(rebuildCarousel).observe(track);
   rebuildCarousel();
   document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
