@@ -244,3 +244,6 @@ footer { font-size: 11px; }
 .carousel-position { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
 @media(max-width:1000px) { .video-card { flex-basis: calc((100% - 23px) / 2); } }
 @media(max-width:650px) { .video-card { flex-basis: 100%; } .carousel-controls { gap: 10px; } .carousel-dots button { width: 23px; } }
+
+.hero .brush-button { display: inline-flex; justify-content: center; align-items: center; width: min(330px, 100%); min-height: 76px; padding: 20px 30px; border: 0; border-radius: 0; background: url('/assets/erhu/brush-button.png') center 49% / 150% auto no-repeat; color: #fff8e9; font-size: 15px; letter-spacing: .02em; text-shadow: 0 1px 2px #59211655; }
+.hero .brush-button:hover { background-color: transparent; filter: brightness(1.06); transform: translateY(-2px); }
