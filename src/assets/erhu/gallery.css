@@ -299,6 +299,8 @@ body::before { display: none; }
 .hero .calligraphy-title { display: grid; place-items: center; width: 100%; max-width: 520px; margin: 0; }
 .calligraphy-title img { grid-area: 1 / 1; display: block; width: 100%; height: auto; }
 .calligraphy-title > span { grid-area: 1 / 1; position: relative; color: #fff; }
+/* The visible ink ends at x=978 in the 1040px calligraphy asset. */
+.hero .intro { width: min(489px, 94.04%); text-align: right; }
 
 .repertoire { display: block; }
 .repertoire-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
