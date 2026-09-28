@@ -286,10 +286,11 @@ main { position: relative; isolation: isolate; overflow-x: clip; }
 .filters button[aria-pressed=true] { background: #1d1d1f; color: #fff; }
 .gallery-section > .wrap { width: 100%; }
 .gallery-section .section-heading, .gallery-tools { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
-.video-grid { --video-height: min(620px, 72svh, 149vw); position: relative; align-items: flex-start; gap: 6px; padding: 0 50%; scroll-padding-inline: 50%; }
+.video-grid { --video-height: min(620px, 72svh, 149vw); position: relative; align-items: flex-start; gap: 24px; padding: 0 50%; scroll-padding-inline: 50%; }
 .video-card { flex: 0 0 auto; width: calc(var(--video-height) * var(--video-ratio)); max-width: 84vw; position: relative; scroll-snap-align: center; }
-.thumbnail { aspect-ratio: var(--video-ratio); border: 0; outline: 0; border-radius: 0; background: #101010; }
+.thumbnail { aspect-ratio: var(--video-ratio); border: 0; outline: 0; border-radius: 8px; background: #101010; overflow: hidden; }
 .thumbnail img { object-fit: contain; filter: none; }
+.thumbnail::after { content: ""; position: absolute; inset: 0; border: 1px solid #0003; border-radius: inherit; pointer-events: none; z-index: 2; }
 .thumbnail .round-play { left: 50%; bottom: auto; top: 50%; transform: translate(-50%, -50%); width: clamp(48px, 6vw, 72px); height: clamp(48px, 6vw, 72px); color: #1d1d1f; background: #fffffff0; border: 0; font-size: 22px; }
 .thumbnail .duration { bottom: 22px; right: 24px; }
 .card-details { position: absolute; bottom: 20px; left: 24px; right: 65px; color: #fff; padding: 0; pointer-events: none; text-shadow: 0 2px 12px #0009; }
@@ -312,7 +313,7 @@ main { position: relative; isolation: isolate; overflow-x: clip; }
 @media(pointer:fine) { .video-grid { cursor: grab; } .video-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; } }
 @media(max-width:1000px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 56px); } }
 @media(max-width:734px) {
- .video-grid { padding-inline: 50%; }
+ .video-grid { padding-inline: 50%; gap: 16px; }
  .card-details { left: 14px; bottom: 12px; right: 55px; }
  .card-details h3 { font-size: 16px; }
  .card-label { font-size: 8px; }
