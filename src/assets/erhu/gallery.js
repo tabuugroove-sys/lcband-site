@@ -123,10 +123,57 @@
   video.addEventListener('error', () => { if (video.getAttribute('src')) error.hidden = false; });
   dialog.querySelector('.previous').addEventListener('click', () => select(current - 1));
   dialog.querySelector('.next').addEventListener('click', () => select(current + 1));
+  const track = document.querySelector('.video-grid');
+  const carouselControls = document.querySelector('.carousel-controls');
+  const carouselDots = document.querySelector('.carousel-dots');
+  const carouselPrev = document.querySelector('.carousel-prev');
+  const carouselNext = document.querySelector('.carousel-next');
+  let stops = [0];
+  let page = 0;
+  const updateCarousel = () => {
+    page = stops.reduce((best, stop, index) => Math.abs(stop - track.scrollLeft) < Math.abs(stops[best] - track.scrollLeft) ? index : best, 0);
+    carouselPrev.disabled = page === 0;
+    carouselNext.disabled = page === stops.length - 1;
+    [...carouselDots.children].forEach((dot, index) => dot.setAttribute('aria-current', String(index === page)));
+    document.querySelector('.carousel-position').textContent = `${page + 1} / ${stops.length}`;
+  };
+  const goToPage = index => {
+    track.scrollTo({left: stops[Math.max(0, Math.min(index, stops.length - 1))], behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  };
+  const rebuildCarousel = () => {
+    const visible = cards.filter(card => !card.hidden);
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const width = visible[0]?.getBoundingClientRect().width || track.clientWidth;
+    const perPage = Math.max(1, Math.round((track.clientWidth + gap) / (width + gap)));
+    const max = Math.max(0, track.scrollWidth - track.clientWidth);
+    stops = Array.from({length: Math.max(1, Math.ceil(visible.length / perPage))}, (_, index) => Math.min(index * perPage * (width + gap), max));
+    carouselDots.replaceChildren(...stops.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Страница ${index + 1}`);
+      dot.setAttribute('aria-controls', 'video-carousel');
+      dot.addEventListener('click', () => goToPage(index));
+      return dot;
+    }));
+    carouselControls.hidden = stops.length < 2;
+    updateCarousel();
+  };
+  carouselPrev.addEventListener('click', () => goToPage(page - 1));
+  carouselNext.addEventListener('click', () => goToPage(page + 1));
+  track.addEventListener('scroll', updateCarousel, {passive: true});
+  track.addEventListener('keydown', event => {
+    if (event.target !== track || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    goToPage(event.key === 'Home' ? 0 : event.key === 'End' ? stops.length - 1 : page + (event.key === 'ArrowLeft' ? -1 : 1));
+  });
+  new ResizeObserver(rebuildCarousel).observe(track);
+  rebuildCarousel();
   document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('[data-filter]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
     cards.forEach(card => { card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter; });
     document.querySelector('.result-count').textContent = `${cards.filter(card => !card.hidden).length} видео`;
+    track.scrollTo({left: 0, behavior: 'instant'});
+    rebuildCarousel();
   }));
   const photoViewer = document.querySelector('.photo-viewer');
   const photoLinks = [...document.querySelectorAll('.photo-open')];

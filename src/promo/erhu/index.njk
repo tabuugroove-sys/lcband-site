@@ -18,8 +18,8 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=9">
-  <script src="/assets/erhu/gallery.js?v=4" defer></script>
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=10">
+  <script src="/assets/erhu/gallery.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip" href="#gallery">Перейти к видео</a>
@@ -59,7 +59,7 @@ eleventyExcludeFromCollections: true
       <div class="wrap">
         <div class="section-heading"><div><h2 id="gallery-title">Звучащие свитки <span class="slash">/</span> <span lang="zh-Hans">弦音画卷</span></h2></div><p class="section-intro">Выберите мелодию.<br>Прислушайтесь к тишине.</p></div>
         <div class="gallery-tools"><div class="filters" aria-label="Формат видео"><button type="button" data-filter="all" aria-pressed="true">Все / <span lang="zh-Hans">全部</span> <span>{{ erhuVideos | length }}</span></button><button type="button" data-filter="solo" aria-pressed="false">Соло / <span lang="zh-Hans">独奏</span></button><button type="button" data-filter="stage" aria-pressed="false">На сцене / <span lang="zh-Hans">舞台</span></button></div><span class="result-count" aria-live="polite">{{ erhuVideos | length }} видео</span></div>
-        <div class="video-grid">
+        <div class="video-grid" id="video-carousel" role="region" aria-label="Карусель видео" aria-roledescription="карусель" tabindex="0">
         {% for video in erhuVideos %}
           <article class="video-card" data-category="{{ video.category }}">
             <a class="thumbnail play-item" href="{{ video.url }}" data-slug="{{ video.slug }}" aria-label="Смотреть видео: {{ video.title }} / {{ video.titleZh }}">
@@ -69,6 +69,12 @@ eleventyExcludeFromCollections: true
             <div class="card-details"><span class="card-label">{{ video.label }} / <span lang="zh-Hans">{% if video.category == 'solo' %}独奏{% else %}舞台{% endif %}</span></span><h3><span>{{ video.title }}</span> <span class="slash">/</span> <span lang="zh-Hans">{{ video.titleZh }}</span></h3><a class="download" href="{{ video.url }}" download aria-label="Скачать видео: {{ video.title }} / {{ video.titleZh }}">Скачать видео <span aria-hidden="true">↓</span></a></div>
           </article>
         {% endfor %}
+        </div>
+        <div class="carousel-controls" hidden>
+          <button class="carousel-prev" type="button" aria-label="Предыдущие видео" aria-controls="video-carousel">←</button>
+          <div class="carousel-dots" aria-label="Страницы карусели"></div>
+          <span class="carousel-position" aria-live="polite"></span>
+          <button class="carousel-next" type="button" aria-label="Следующие видео" aria-controls="video-carousel">→</button>
         </div>
       </div>
     </section>
