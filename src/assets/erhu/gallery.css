@@ -279,7 +279,9 @@ body::before { display: none; }
 .carousel-controls > button:hover:not(:disabled) { background: #e8e8ed; color: #1d1d1f; }
 .carousel-dots button[aria-current=true]::after { background: #1d1d1f; }
 .carousel-dots button::after { background: #d2d2d7; }
-.photo-open { border: 0; outline: 0; background: #f5f5f7; border-radius: 12px; overflow: hidden; }
+.photo-open { aspect-ratio: auto; border: 0; outline: 0; background: transparent; border-radius: 0; overflow: hidden; }
+.photo-open img { height: auto; }
+.photo-viewer { border-radius: 0; }
 .photo-card h3 { font-size: 18px; font-weight: 500; }
 .repertoire .poem, .song-list [lang], .photo-card [lang], .section-intro { color: #6e6e73; }
 .song-list li, footer { border-color: #e5e5e7; }
