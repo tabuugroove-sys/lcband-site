@@ -57,7 +57,7 @@ eleventyExcludeFromCollections: true
     </div>
     <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
       <div class="wrap">
-        <div class="section-heading"><div><h2 id="gallery-title">Звучащие свитки <span class="slash">/</span> <span lang="zh-Hans">弦音画卷</span></h2></div><p class="section-intro">Выберите мелодию.<br>Прислушайтесь к тишине.</p></div>
+        <div class="section-heading"><div><h2 id="gallery-title">Звучащие свитки <span class="slash">/</span> <span lang="zh-Hans">弦音画卷</span></h2></div></div>
         <div class="gallery-tools"><div class="filters" aria-label="Формат видео"><button type="button" data-filter="all" aria-pressed="true">Все / <span lang="zh-Hans">全部</span> <span>{{ erhuVideos | length }}</span></button><button type="button" data-filter="solo" aria-pressed="false">Соло / <span lang="zh-Hans">独奏</span></button><button type="button" data-filter="stage" aria-pressed="false">На сцене / <span lang="zh-Hans">舞台</span></button></div><span class="result-count" aria-live="polite">{{ erhuVideos | length }} видео</span></div>
         <div class="video-grid" id="video-carousel" role="region" aria-label="Карусель видео" aria-roledescription="карусель" tabindex="0">
         {% for video in erhuVideos %}
