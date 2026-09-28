@@ -1088,6 +1088,16 @@
       "sha256": "f17a43707021d0788f5ce390269d43b73218f290382bd5b314e7feb24eb53617"
     },
     {
+      "path": "assets/video/mp4/raim-piano-karaoke.mp4",
+      "bytes": 22240227,
+      "sha256": "824fe37e3a6842541a8fe2bd0518f30e518e36720c4052556688ba2befb6e648"
+    },
+    {
+      "path": "assets/video/mp4/raim-piano-promo.mp4",
+      "bytes": 41946345,
+      "sha256": "f17a43707021d0788f5ce390269d43b73218f290382bd5b314e7feb24eb53617"
+    },
+    {
       "path": "assets/video/mp4/sax-hero.mp4",
       "bytes": 3737627,
       "sha256": "45bde160d581c22a6c44b84ba3394dfae979d5344e152c0dff8770c9429ebe54"

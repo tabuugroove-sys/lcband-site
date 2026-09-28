@@ -1,0 +1,11 @@
+{
+  "artist": "RAIM",
+  "sourceFolder": "https://disk.yandex.ru/d/vzDBlmH_doHNYQ",
+  "verifiedAt": "2026-09-28",
+  "notes": "Both pages represent formats from RAIM's own promo folder. A separate second pianist has not been identified. No unverified repertoire, public prices or direct contractor contact details are published.",
+  "videos": [
+    { "sourceName": "ПРОМО Хлебозавод.mp4", "output": "assets/video/mp4/raim-piano-promo.mp4", "durationSeconds": 197.333, "width": 1280, "height": 720 },
+    { "sourceName": "ПРОМО Караоке под живое пианино.mp4", "output": "assets/video/mp4/raim-piano-karaoke.mp4", "durationSeconds": 143.081, "width": 1280, "height": 720 }
+  ],
+  "images": "Optimized WebP derivatives of the source folder's Фото photos and stills of the two above videos. Originals are retained separately."
+}

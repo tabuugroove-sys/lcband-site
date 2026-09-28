@@ -65,6 +65,10 @@
 					{% for f in formats %}
 						<li><a href="{{ (footerBase + '/formats/' + f.slug + '/') | url }}">{{ (footerEn.formats[f.slug] or f.slug) if footerEn else f.title }}</a></li>
 					{% endfor %}
+					{% if not footerEn %}
+					<li><a href="{{ '/piano/raim/' | url }}">Пианист RAIM</a></li>
+					<li><a href="{{ '/piano/karaoke/' | url }}">Караоке под живое пианино</a></li>
+					{% endif %}
 				</ul>
 			</div>
 			<div class="footer__col">

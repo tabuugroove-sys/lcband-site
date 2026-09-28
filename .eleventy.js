@@ -28,6 +28,7 @@ export default function (eleventyConfig) {
 		"jazz-irina",
 		"leo-sax",
 		"photos",
+		"piano",
 		"riders",
 		"stereo-sax",
 		"video/posters",
