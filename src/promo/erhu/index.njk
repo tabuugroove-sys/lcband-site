@@ -18,7 +18,7 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=25">
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=26">
   <script src="/assets/erhu/gallery.js?v=6" defer></script>
 </head>
 <body>
@@ -107,20 +107,12 @@ eleventyExcludeFromCollections: true
     </section>
     </div>
     <section class="repertoire wrap" id="repertoire" aria-labelledby="repertoire-title">
-      <div class="repertoire-heading"><h2 id="repertoire-title">Репертуар <span class="slash">/</span> <span lang="zh-Hans">曲目</span></h2><a class="text-link" href="/assets/erhu/repertoire.txt?v=4" download>Скачать полный репертуар <span aria-hidden="true">↓</span></a></div>
-      <div class="repertoire-groups">
-      {% for group in erhuRepertoire %}
-        <div class="repertoire-group">
-          <h3>{{ group.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ group.titleZh }}</span></h3>
-          <p class="repertoire-note">{{ group.note }}</p>
-          <ol class="song-list">
-          {% for song in group.songs %}
-            <li><span class="song-number">{{ loop.index }}</span><span class="song-name">{{ song.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ song.titleZh }}</span>{% if song.note or song.key %}<small class="song-detail">{{ song.note }}{{ song.key }}</small>{% endif %}</span>{% if song.duration %}<span class="song-duration">{{ song.duration }}</span>{% endif %}</li>
-          {% endfor %}
-          </ol>
-        </div>
+      <div class="repertoire-heading"><h2 id="repertoire-title">Репертуар <span class="slash">/</span> <span lang="zh-Hans">曲目</span></h2><a class="text-link" href="/assets/erhu/repertoire.txt?v=5" download>Скачать полный репертуар <span aria-hidden="true">↓</span></a></div>
+      <ol class="song-list repertoire-list" role="list">
+      {% for song in erhuRepertoire %}
+        <li><span class="song-number" aria-hidden="true">{{ loop.index }}</span><span class="song-name">{{ song.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ song.titleZh }}</span>{% if song.note or song.key %}<small class="song-detail">{{ song.note }}{{ song.key }}</small>{% endif %}</span></li>
       {% endfor %}
-      </div>
+      </ol>
       <p class="repertoire-note">Закажите музыканта на эрху в Москве для деловых и культурных мероприятий. Китайская инструментальная музыка — для приёмов китайских делегаций, встреч с партнёрами из Китая, клиентских вечеров и презентаций брендов. Живое звучание китайской скрипки дополнит открытие выставки, вечер в галерее или чайную церемонию. Программу согласуем с учётом формата события и гостей.<br><span lang="zh-Hans">为莫斯科的商务和文化活动预约二胡演奏者。中国器乐现场演奏适合中国代表团欢迎会、与中国合作伙伴的商务交流、客户交流晚会及品牌发布会。二胡悠扬的琴声，也能为展览开幕、画廊之夜或茶会增添氛围。演出曲目将根据活动形式与来宾需求协商安排。</span></p>
     </section>
   </main>

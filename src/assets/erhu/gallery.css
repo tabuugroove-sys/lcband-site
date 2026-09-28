@@ -328,13 +328,11 @@ body::before { display: none; }
 
 .repertoire { display: block; }
 .repertoire-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 38px; }
-.repertoire-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; margin-bottom: 24px; }
-.repertoire-group h3 { font-family: inherit; font-size: 20px; font-weight: 500; margin: 0 0 10px; }
+.repertoire-list { columns: 2; column-gap: 64px; margin: 0 0 24px; border-top: 1px solid #e5e5e7; }
 .repertoire-note { color: #6e6e73; font-size: 12px; line-height: 1.6; }
-.repertoire-group .song-list { margin-top: 22px; }
-.repertoire-group .song-list li { align-items: baseline; gap: 14px; padding: 17px 0; font-size: 17px; }
-.repertoire-group .song-number { color: #8e8e93; font-family: inherit; font-size: 12px; min-width: 20px; }
-.repertoire-group .song-name { flex: 1; min-width: 0; }
+.repertoire-list li { break-inside: avoid; align-items: baseline; gap: 14px; padding: 17px 0; font-size: 17px; }
+.repertoire-list li:first-child { border-top: 0; }
+.repertoire-list .song-number { color: #8e8e93; font-family: inherit; font-size: 12px; min-width: 20px; }
+.repertoire-list .song-name { flex: 1; min-width: 0; }
 .song-detail { display: block; margin-top: 3px; font-size: 12px; color: #6e6e73; letter-spacing: 0; }
-.repertoire-group .song-list .song-duration { font-size: 12px; color: #6e6e73; white-space: nowrap; font-variant-numeric: tabular-nums; }
-@media(max-width:650px) { .repertoire-heading { display: block; } .repertoire-heading .text-link { display: inline-block; margin-top: 20px; } .repertoire-groups { grid-template-columns: 1fr; gap: 40px; } }
+@media(max-width:650px) { .repertoire-heading { display: block; } .repertoire-heading .text-link { display: inline-block; margin-top: 20px; } .repertoire-list { columns: 1; } }
