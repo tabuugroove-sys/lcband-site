@@ -75,7 +75,7 @@ eleventyExcludeFromCollections: true
         {% for video in erhuVideos %}
           <article class="video-card" data-category="{{ video.category }}" style="--video-ratio: {{ video.width }} / {{ video.height }}">
             <a class="thumbnail play-item" href="{{ video.url }}" data-slug="{{ video.slug }}" aria-label="Смотреть видео: {{ video.title }} / {{ video.titleZh }}">
-              <img src="{{ video.poster }}" alt="{{ video.title }} / {{ video.titleZh }} — кадр выступления на эрху" loading="lazy" decoding="async" width="{{ video.width }}" height="{{ video.height }}">
+              <img src="{{ video.poster }}"{% if video.posterSmall %} srcset="{{ video.posterSmall }} 480w, {{ video.poster }} 900w" sizes="min(348.75px, 40.5svh, 83.8125vw)"{% endif %} alt="{% if video.posterAlt %}{{ video.posterAlt }}{% else %}{{ video.title }} / {{ video.titleZh }} — кадр выступления на эрху{% endif %}" loading="lazy" decoding="async" width="{{ video.width }}" height="{{ video.height }}">
               <span class="round-play" aria-hidden="true">▶</span><span class="duration">{{ video.time }}</span>
             </a>
             <div class="card-details"><span class="card-label">{{ video.label }} / <span lang="zh-Hans">{% if video.category == 'solo' %}独奏{% else %}舞台{% endif %}</span></span><h3><span>{{ video.title }}</span> <span class="slash">/</span> <span lang="zh-Hans">{{ video.titleZh }}</span></h3><a class="download" href="{{ video.url }}" download aria-label="Скачать видео: {{ video.title }} / {{ video.titleZh }}">Скачать видео <span aria-hidden="true">↓</span></a></div>

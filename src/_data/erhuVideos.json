@@ -6,7 +6,9 @@
     "title": "Бело-синий фарфор",
     "titleZh": "青花瓷",
     "url": "/assets/video/mp4/erhu-tg-79729.mp4",
-    "poster": "/assets/erhu/posters/tg-79729.webp",
+    "poster": "/assets/erhu/posters/erhu-muzykant-moskva-900.webp",
+    "posterSmall": "/assets/erhu/posters/erhu-muzykant-moskva-480.webp",
+    "posterAlt": "Музыкант на эрху в Москве — исполнительница в светлом костюме с китайским инструментом",
     "category": "solo",
     "label": "Сольное исполнение",
     "time": "0:45"
