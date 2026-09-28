@@ -314,3 +314,10 @@ body::before { display: none; }
 .song-detail { display: block; margin-top: 3px; font-size: 12px; color: #6e6e73; letter-spacing: 0; }
 .repertoire-group .song-list .song-duration { font-size: 12px; color: #6e6e73; white-space: nowrap; font-variant-numeric: tabular-nums; }
 @media(max-width:650px) { .repertoire-heading { display: block; } .repertoire-heading .text-link { display: inline-block; margin-top: 20px; } .repertoire-groups { grid-template-columns: 1fr; gap: 40px; } }
+
+/* Huiwen border between the blocks. One vector tile, repeated along x; `round`
+   fits a whole number of tiles to the width, so the border ends cleanly at both
+   screen edges at any width. */
+.meander { display: block; width: 100%; height: clamp(24px, 2.6vw, 40px); background: url("/assets/erhu/erhu-meander.svg") 0 0 / auto 100% round no-repeat; }
+.meander-after-photos { margin-top: 80px; }
+@media (max-width: 650px) { .meander-after-photos { margin-top: 48px; } }
