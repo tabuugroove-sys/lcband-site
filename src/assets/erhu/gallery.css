@@ -302,6 +302,7 @@ body::before { display: none; }
 .carousel-dots button::after { background: #d2d2d7; }
 .photo-open { aspect-ratio: 3/4; border: 0; outline: 0; background: transparent; border-radius: 0; overflow: hidden; }
 .photo-open img { height: 100%; object-fit: cover; object-position: center 44%; }
+.photo-open[href="/assets/erhu/photos/erhu-79865-960.webp"] img { transform: scale(1.27); transform-origin: center bottom; }
 .photo-viewer { border-radius: 0; }
 .photo-card h3 { font-size: 18px; font-weight: 500; }
 .repertoire .poem, .song-list [lang], .photo-card [lang], .section-intro { color: #6e6e73; }
