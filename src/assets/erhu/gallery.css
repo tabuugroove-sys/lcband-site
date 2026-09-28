@@ -290,7 +290,7 @@ main { position: relative; isolation: isolate; overflow-x: clip; }
 .video-card { flex: 0 0 auto; width: calc(var(--video-height) * var(--video-ratio)); max-width: 84vw; position: relative; scroll-snap-align: center; }
 .thumbnail { aspect-ratio: var(--video-ratio); border: 0; outline: 0; border-radius: 8px; background: #101010; overflow: hidden; }
 .thumbnail img { object-fit: contain; filter: none; }
-.thumbnail::after { content: ""; position: absolute; inset: 0; border: 1px solid #0003; border-radius: inherit; pointer-events: none; z-index: 2; }
+.thumbnail::before { content: ""; position: absolute; inset: 0; border: 1px solid #0003; border-radius: inherit; pointer-events: none; z-index: 2; }
 .thumbnail .round-play { left: 50%; bottom: auto; top: 50%; transform: translate(-50%, -50%); width: clamp(48px, 6vw, 72px); height: clamp(48px, 6vw, 72px); color: #1d1d1f; background: #fffffff0; border: 0; font-size: 22px; }
 .thumbnail .duration { bottom: 22px; right: 24px; }
 .card-details { position: absolute; bottom: 20px; left: 24px; right: 65px; color: #fff; padding: 0; pointer-events: none; text-shadow: 0 2px 12px #0009; }
