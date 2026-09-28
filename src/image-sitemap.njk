@@ -5,6 +5,17 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 	<url>
+		<loc>{{ site.url }}/promo/erhu/</loc>
+		<image:image><image:loc>{{ site.url }}/assets/erhu/erhu-chinese-calligraphy-1040.webp</image:loc></image:image>
+		<image:image><image:loc>{{ site.url }}/assets/erhu/erhu-blossom-scene-960.webp</image:loc></image:image>
+		{% for photo in erhuPhotos %}
+		<image:image><image:loc>{{ site.url }}/assets/erhu/photos/erhu-{{ photo.id }}-960.webp</image:loc></image:image>
+		{% endfor %}
+		{% for video in erhuVideos %}
+		<image:image><image:loc>{{ site.url }}{{ video.poster }}</image:loc></image:image>
+		{% endfor %}
+	</url>
+	<url>
 		<loc>{{ site.url }}/</loc>
 		{% for image in ["assets/hero/hero-red.jpg", "assets/hero/hero-bw.jpg", "assets/hero/hero-gold.jpg", "assets/hero/hero-white.jpg", "assets/photos/vocalists.jpg", "assets/photos/themes.jpg", "assets/photos/author-music-stage.jpg", "assets/photos/wedding.jpg", "assets/photos/birthday.jpg", "assets/photos/clients.jpg"] %}
 		<image:image>

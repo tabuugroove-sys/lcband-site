@@ -7,9 +7,9 @@ eleventyExcludeFromCollections: true
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Эрху / 二胡 · Luxury Band</title>
-  <meta name="description" content="Пчела над жасмином роняет слезу. Лишь голос эрху наполняет тишину. Эрху / 二胡 — видео, фотографии и репертуар.">
-  <meta name="robots" content="noindex,nofollow">
+  <title>Эрху — китайский инструмент 二胡: фото и видео · Luxury Band</title>
+  <meta name="description" content="Эрху (二胡): видео исполнения, фотографии музыканта и репертуар. Китайская каллиграфия с названием инструмента и образы для выступления.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#000000">
   <meta property="og:title" content="Эрху / 二胡">
   <meta property="og:description" content="Пчела над жасмином роняет слезу. Лишь голос эрху наполняет тишину. Luxury Band">
@@ -33,14 +33,13 @@ eleventyExcludeFromCollections: true
     <div class="hero-backdrop">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title" class="calligraphy-title"><img src="/assets/erhu/erhu-calligraphy.png?v=2" width="1672" height="941" alt="" aria-hidden="true" fetchpriority="high"><span>Эрху</span></h1>
+        <h1 id="hero-title" class="calligraphy-title"><img src="/assets/erhu/erhu-chinese-calligraphy-1040.webp" srcset="/assets/erhu/erhu-chinese-calligraphy-520.webp 520w, /assets/erhu/erhu-chinese-calligraphy-1040.webp 1040w" sizes="(max-width: 650px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 96px) / 2), 520px" width="1040" height="585" alt="Китайская каллиграфия 二胡 — название инструмента эрху, красные мазки кистью" fetchpriority="high"><span>Эрху</span></h1>
         <p class="intro">Пчела над жасмином роняет слезу.<br>Цветок принимает прозрачную каплю.<br>Лишь голос эрху наполняет тишину.</p>
         <a class="primary brush-button" href="#gallery">СМОТРЕТЬ</a>
       </div>
       <div class="living-scene">
-        <img class="scene-photo" src="/assets/erhu/blossom-scene.webp" width="1254" height="1254" alt="Музыкант с эрху под цветущими ветвями" fetchpriority="high">
         <div class="scene-window">
-          <img class="scene-poster" src="/assets/erhu/blossom-scene.webp" width="1254" height="1254" alt="Дождь в Цзяннани / 江南雨 — обложка видео">
+          <img class="scene-poster" src="/assets/erhu/erhu-blossom-scene-960.webp" srcset="/assets/erhu/erhu-blossom-scene-480.webp 480w, /assets/erhu/erhu-blossom-scene-960.webp 960w" sizes="(max-width: 650px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 96px) / 2), 560px" width="960" height="960" alt="Музыкант с китайским инструментом эрху под розовыми цветущими ветвями — обложка «Дождь в Цзяннани»" decoding="async">
           <div class="scene-motion"><video id="scene-video" playsinline preload="none" aria-label="Дождь в Цзяннани / 江南雨" data-src="/assets/video/mp4/erhu-01-rain.mp4"></video></div>
           <button class="scene-start" type="button" aria-label="Смотреть видео: Дождь в Цзяннани / 江南雨" aria-controls="scene-video"><span class="round-play" aria-hidden="true">▶</span><span>Дождь в Цзяннани <span class="slash">/</span> <span lang="zh-Hans">江南雨</span><small>0:52</small></span></button>
           <div class="scene-controls" hidden>
@@ -83,8 +82,8 @@ eleventyExcludeFromCollections: true
       <div class="photo-grid">
       {% for photo in erhuPhotos %}
         <figure class="photo-card">
-          <a class="photo-open" href="/assets/erhu/photos/{{ photo.id }}.jpg" aria-label="Открыть фото: {{ photo.title }} / {{ photo.titleZh }}">
-            <img src="/assets/erhu/photos/{{ photo.id }}.jpg" alt="{{ photo.alt }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy" decoding="async">
+          <a class="photo-open" href="/assets/erhu/photos/erhu-{{ photo.id }}-960.webp" aria-label="Открыть фото: {{ photo.title }} / {{ photo.titleZh }}">
+            <img src="/assets/erhu/photos/erhu-{{ photo.id }}-960.webp" srcset="/assets/erhu/photos/erhu-{{ photo.id }}-480.webp 480w, /assets/erhu/photos/erhu-{{ photo.id }}-960.webp {{ photo.width }}w" sizes="(max-width: 650px) calc((100vw - 54px) / 2), (max-width: 1000px) calc((100vw - 79px) / 2), 283px" alt="{{ photo.alt }}" width="{{ photo.width }}" height="{{ photo.height }}" loading="lazy" decoding="async">
             <span class="photo-enlarge" aria-hidden="true">↗</span>
           </a>
           <figcaption><h3>{{ photo.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ photo.titleZh }}</span></h3>{% if photo.note %}<p class="photo-note">{{ photo.note }} / <span lang="zh-Hans">{{ photo.noteZh }}</span></p>{% endif %}</figcaption>
