@@ -18,7 +18,7 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=13">
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=14">
   <script src="/assets/erhu/gallery.js?v=6" defer></script>
 </head>
 <body>
@@ -93,8 +93,21 @@ eleventyExcludeFromCollections: true
       </div>
     </section>
     <section class="repertoire wrap" id="repertoire" aria-labelledby="repertoire-title">
-      <div><h2 id="repertoire-title">Репертуар <span class="slash">/</span> <span lang="zh-Hans">曲目</span></h2><p class="section-intro poem">Луна не тревожит воду.<br>Мелодия остаётся.</p><a class="text-link" href="/assets/erhu/repertoire.txt?v=3" download>Скачать репертуар <span aria-hidden="true">↓</span></a></div>
-      <ol class="song-list"><li><span class="song-number">一</span><span>Дождь в Цзяннани <span class="slash">/</span> <span lang="zh-Hans">江南雨</span></span></li><li><span class="song-number">二</span><span>Бело-синий фарфор <span class="slash">/</span> <span lang="zh-Hans">青花瓷</span></span></li><li><span class="song-number">三</span><span>Цветок жасмина <span class="slash">/</span> <span lang="zh-Hans">茉莉花</span></span></li><li><span class="song-number">四</span><span>Тихая луна <span class="slash">/</span> <span lang="zh-Hans">静月</span></span></li><li><span class="song-number">五</span><span>Прекрасная степь — мой дом <span class="slash">/</span> <span lang="zh-Hans">美丽的草原我的家</span></span></li></ol>
+      <div class="repertoire-heading"><h2 id="repertoire-title">Репертуар <span class="slash">/</span> <span lang="zh-Hans">曲目</span></h2><a class="text-link" href="/assets/erhu/repertoire.txt?v=4" download>Скачать полный репертуар <span aria-hidden="true">↓</span></a></div>
+      <div class="repertoire-groups">
+      {% for group in erhuRepertoire %}
+        <div class="repertoire-group">
+          <h3>{{ group.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ group.titleZh }}</span></h3>
+          <p class="repertoire-note">{{ group.note }}</p>
+          <ol class="song-list">
+          {% for song in group.songs %}
+            <li><span class="song-number">{{ loop.index }}</span><span class="song-name">{{ song.title }} <span class="slash">/</span> <span lang="zh-Hans">{{ song.titleZh }}</span>{% if song.note or song.key %}<small class="song-detail">{{ song.note }}{{ song.key }}</small>{% endif %}</span>{% if song.duration %}<span class="song-duration">{{ song.duration }}</span>{% endif %}</li>
+          {% endfor %}
+          </ol>
+        </div>
+      {% endfor %}
+      </div>
+      <p class="repertoire-note">Китайские подписи — переводы русских названий.</p>
     </section>
   </main>
   <footer class="wrap"><a href="https://luxuryband.ru/">Luxury Band</a><span>Эрху / <span lang="zh-Hans">二胡</span> · Видео, фото и репертуар / <span lang="zh-Hans">影像、照片与曲目</span></span><a href="#">Наверх ↑</a></footer>
