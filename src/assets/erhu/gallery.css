@@ -257,6 +257,12 @@ body::before { display: none; }
 .topbar .share, .hero .intro, .hero .hero-note, .hero .slash, .hero .scene-start, .hero .scene-controls { color: #fff; }
 .hero .brush-button { background-image: url('/assets/erhu/brush-button-660.webp'); color: #fff; }
 .gallery-section { background: #fff; border: 0; }
+.gallery-section, .photos-backdrop { position: relative; isolation: isolate; overflow: clip; }
+.gallery-section::before, .photos-backdrop::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.gallery-section::before { inset: 0; background: url('/assets/erhu/autumn-leaves.webp') center / cover no-repeat; opacity: .6; }
+.gallery-section .section-heading h2 { text-shadow: 0 1px 16px #fff, 0 1px 5px #fff; }
+.photos-backdrop { background: #fff; }
+.photos-backdrop::before { left: 50%; top: 55%; width: max(120%, 1100px); aspect-ratio: 3; transform: translate(-50%, -50%) rotate(-8deg); background: url('/assets/erhu/green-silk.webp') center / contain no-repeat; }
 .gallery-section h2, .photos-section h2, .repertoire h2, .song-list, .photo-card h3 { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; letter-spacing: -.035em; }
 .gallery-section h2, .photos-section h2, .repertoire h2 { font-weight: 600; }
 .gallery-tools { border-color: #e5e5e7; }
