@@ -4629,6 +4629,7 @@ a.stat--link:hover { opacity: 0.7; }
 	margin-top: 1.5em;
 }
 .prose p { margin: 0; }
+.prose > :not(h2, h3) + p { margin-top: 1.1em; }
 .prose strong { font-weight: 600; }
 .prose a { color: var(--c-link); text-decoration: none; }
 .prose a:hover { text-decoration: underline; }
