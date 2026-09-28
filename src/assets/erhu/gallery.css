@@ -252,14 +252,27 @@ footer { font-size: 11px; }
 body { background: #fff; }
 body::before { display: none; }
 .hero-backdrop { background: #000; color: #fff; overflow: hidden; }
+.landscape-night { height: clamp(90px, 9vw, 140px); margin-top: -35px; background: #000; }
 .topbar { color: #fff; }
 .topbar .brand, .topbar .navlinks { background: #000; border-color: #fff3; }
 .topbar .share, .hero .intro, .hero .hero-note, .hero .slash, .hero .scene-start, .hero .scene-controls { color: #fff; }
 .hero .brush-button { background-image: url('/assets/erhu/brush-button-660.webp'); color: #fff; }
 .gallery-section { background: #fff; border: 0; }
 .gallery-section, .photos-backdrop { position: relative; isolation: isolate; overflow: clip; }
-.gallery-section::before, .photos-backdrop::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
-.gallery-section::before { inset: 0; background: url('/assets/erhu/autumn-leaves.webp') center / cover no-repeat; opacity: .6; }
+.photos-backdrop::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.gallery-leaves { position: absolute; inset: 0 0 auto; height: 330px; overflow: hidden; z-index: -1; pointer-events: none; }
+.gallery-leaf { position: absolute; width: clamp(230px, 21vw, 350px); max-width: none; height: auto; opacity: .58; }
+.gallery-leaf-center { left: 61%; top: -44px; transform: translateX(-50%) rotate(145deg); }
+.gallery-leaf-right { left: 94%; top: -20px; transform: translateX(-50%) rotate(65deg) scale(.94); }
+.gallery-leaf-lower { left: 34%; top: 175px; transform: translateX(-50%) rotate(-25deg) scale(1.12); }
+@media(max-width:650px) {
+  .landscape-night { height: 45px; margin-top: -15px; }
+  .gallery-leaves { height: 290px; }
+  .gallery-leaf { width: 150px; opacity: .42; }
+  .gallery-leaf-center { left: 63%; top: -20px; }
+  .gallery-leaf-right { left: 99%; top: 30px; }
+  .gallery-leaf-lower { left: 20%; top: 167px; }
+}
 .gallery-section .section-heading h2 { text-shadow: 0 1px 16px #fff, 0 1px 5px #fff; }
 .photos-backdrop { background: #fff; }
 .photos-backdrop::before { left: 50%; top: 55%; width: max(120%, 1100px); aspect-ratio: 3; transform: translate(-50%, -50%) rotate(-8deg); background: url('/assets/erhu/green-silk.webp') center / contain no-repeat; }
@@ -285,8 +298,8 @@ body::before { display: none; }
 .carousel-controls > button:hover:not(:disabled) { background: #e8e8ed; color: #1d1d1f; }
 .carousel-dots button[aria-current=true]::after { background: #1d1d1f; }
 .carousel-dots button::after { background: #d2d2d7; }
-.photo-open { aspect-ratio: auto; border: 0; outline: 0; background: transparent; border-radius: 0; overflow: hidden; }
-.photo-open img { height: auto; }
+.photo-open { aspect-ratio: 3/4; border: 0; outline: 0; background: transparent; border-radius: 0; overflow: hidden; }
+.photo-open img { height: 100%; object-fit: cover; object-position: center 44%; }
 .photo-viewer { border-radius: 0; }
 .photo-card h3 { font-size: 18px; font-weight: 500; }
 .repertoire .poem, .song-list [lang], .photo-card [lang], .section-intro { color: #6e6e73; }

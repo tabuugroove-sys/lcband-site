@@ -18,7 +18,7 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=22">
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=23">
   <script src="/assets/erhu/gallery.js?v=6" defer></script>
 </head>
 <body>
@@ -54,8 +54,14 @@ eleventyExcludeFromCollections: true
         </div>
       </div>
     </section>
+    <div class="landscape landscape-night" aria-hidden="true"><svg viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 127Q95 112 159 117T286 101L387 61 436 81 495 44 529 69 594 33 651 66 713 54 790 94Q900 114 1000 76L1092 23 1138 48 1190 34 1277 88 1360 65 1440 92V150H0Z" fill="#27353c" stroke="#60727a" stroke-opacity=".4" stroke-width=".7"/><path d="M0 145L117 121 192 136 287 95 354 111 450 91 558 126 677 99 770 129 867 104 970 128 1108 83 1197 105 1280 90 1390 122 1440 115V150H0Z" fill="#121d23" stroke="#4b5b64" stroke-opacity=".55" stroke-width=".7"/></svg></div>
     </div>
     <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="gallery-leaves" aria-hidden="true">
+        <img class="gallery-leaf gallery-leaf-center" src="/assets/erhu/maple-leaf.svg" alt="" width="340" height="370">
+        <img class="gallery-leaf gallery-leaf-right" src="/assets/erhu/maple-leaf.svg" alt="" width="340" height="370">
+        <img class="gallery-leaf gallery-leaf-lower" src="/assets/erhu/maple-leaf.svg" alt="" width="340" height="370">
+      </div>
       <div class="wrap">
         <div class="section-heading"><div><h2 id="gallery-title">Звучащие свитки <span class="slash">/</span> <span lang="zh-Hans">弦音画卷</span></h2></div></div>
         <div class="gallery-tools"><div class="filters" aria-label="Формат видео"><button type="button" data-filter="all" aria-pressed="true">Все / <span lang="zh-Hans">全部</span> <span>{{ erhuVideos | length }}</span></button><button type="button" data-filter="solo" aria-pressed="false">Соло / <span lang="zh-Hans">独奏</span></button><button type="button" data-filter="stage" aria-pressed="false">На сцене / <span lang="zh-Hans">舞台</span></button></div><span class="result-count" aria-live="polite">{{ erhuVideos | length }} видео</span></div>
