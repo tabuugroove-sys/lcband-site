@@ -248,10 +248,19 @@ footer { font-size: 11px; }
 .hero .brush-button { display: inline-flex; justify-content: center; align-items: center; width: min(330px, 100%); aspect-ratio: 3; padding: 20px 0 0 66px; border: 0; border-radius: 0; background: url('/assets/erhu/brush-button.png?v=2') center / contain no-repeat; color: #fff8e9; font-size: 15px; letter-spacing: .02em; text-shadow: 0 1px 2px #59211655; }
 .hero .brush-button:hover { background-color: transparent; filter: brightness(1.06); transform: translateY(-2px); }
 
-/* The opening scene keeps its warm paper; the rest follows the main site. */
+/* A black opening scene; the gallery keeps the main site's white canvas. */
 body { background: #fff; }
 body::before { display: none; }
-.hero-backdrop { background: radial-gradient(ellipse at 3% 8%, #fffaf350, transparent 45%), #f2ecdf; overflow: hidden; }
+.hero-backdrop { background: #000; color: #fff; overflow: hidden; }
+.topbar { color: #fff; }
+.topbar .brand, .topbar .navlinks { background: #000; border-color: #fff3; }
+.topbar .share, .hero .intro, .hero .hero-note, .hero .slash, .hero .scene-start, .hero .scene-controls { color: #fff; }
+.hero .scene-photo, .hero::after { display: none; }
+.hero .scene-poster { inset: 0; width: 100%; height: 100%; object-position: center; }
+.hero .intro, .hero .brush-button, .calligraphy-title > span { font-family: "Times New Roman", "PT Serif", Georgia, serif; }
+.hero .intro { letter-spacing: .08em; }
+.hero .brush-button { background: transparent; border: 1px solid #fff; padding: 17px 24px 17px 31px; width: auto; aspect-ratio: auto; color: #fff; font-size: 18px; letter-spacing: .38em; text-shadow: none; }
+.hero .brush-button:hover { background: #ffffff1a; }
 .gallery-section { background: #fff; border: 0; }
 .gallery-section h2, .photos-section h2, .repertoire h2, .song-list, .photo-card h3 { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; letter-spacing: -.035em; }
 .gallery-section h2, .photos-section h2, .repertoire h2 { font-weight: 600; }
@@ -260,9 +269,9 @@ body::before { display: none; }
 .filters button[aria-pressed=true] { background: #1d1d1f; color: #fff; }
 .gallery-section > .wrap { width: 100%; }
 .gallery-section .section-heading, .gallery-tools { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
-.video-grid { position: relative; gap: 6px; padding: 0 max(15vw, calc((100vw - 1100px) / 2)); scroll-padding-inline: 50%; }
-.video-card { flex: 0 0 min(70vw, 1100px); position: relative; scroll-snap-align: center; }
-.thumbnail { aspect-ratio: 16/9; border: 0; outline: 0; border-radius: 0; background: #101010; }
+.video-grid { --video-height: min(620px, 72svh, 149vw); position: relative; align-items: flex-start; gap: 6px; padding: 0 50%; scroll-padding-inline: 50%; }
+.video-card { flex: 0 0 auto; width: calc(var(--video-height) * var(--video-ratio)); max-width: 84vw; position: relative; scroll-snap-align: center; }
+.thumbnail { aspect-ratio: var(--video-ratio); border: 0; outline: 0; border-radius: 0; background: #101010; }
 .thumbnail img { object-fit: contain; filter: none; }
 .thumbnail .round-play { left: 50%; bottom: auto; top: 50%; transform: translate(-50%, -50%); width: clamp(48px, 6vw, 72px); height: clamp(48px, 6vw, 72px); color: #1d1d1f; background: #fffffff0; border: 0; font-size: 22px; }
 .thumbnail .duration { bottom: 22px; right: 24px; }
@@ -283,8 +292,7 @@ body::before { display: none; }
 @media(pointer:fine) { .video-grid { cursor: grab; } .video-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; } }
 @media(max-width:1000px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 56px); } }
 @media(max-width:734px) {
- .video-grid { padding-inline: 8vw; }
- .video-card { flex-basis: 84vw; }
+ .video-grid { padding-inline: 50%; }
  .card-details { left: 14px; bottom: 12px; right: 55px; }
  .card-details h3 { font-size: 16px; }
  .card-label { font-size: 8px; }
@@ -295,7 +303,7 @@ body::before { display: none; }
 
 .hero .calligraphy-title { display: grid; place-items: center; width: 100%; max-width: 520px; margin: 0; }
 .calligraphy-title img { grid-area: 1 / 1; display: block; width: 100%; height: auto; }
-.calligraphy-title > span { grid-area: 1 / 1; position: relative; color: var(--ink); }
+.calligraphy-title > span { grid-area: 1 / 1; position: relative; color: #fff; text-transform: uppercase; letter-spacing: .3em; padding-left: .3em; font-weight: 400; }
 
 .repertoire { display: block; }
 .repertoire-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 38px; }

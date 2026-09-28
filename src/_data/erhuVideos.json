@@ -1,6 +1,8 @@
 [
   {
     "slug": "tg-79729",
+    "width": 720,
+    "height": 1280,
     "title": "Бело-синий фарфор",
     "titleZh": "青花瓷",
     "url": "/assets/video/mp4/erhu-tg-79729.mp4",
@@ -11,6 +13,8 @@
   },
   {
     "slug": "02-jasmine",
+    "width": 720,
+    "height": 1280,
     "title": "Цветок жасмина",
     "titleZh": "茉莉花",
     "url": "/assets/video/mp4/erhu-02-jasmine.mp4",
@@ -21,6 +25,8 @@
   },
   {
     "slug": "vk-425",
+    "width": 1080,
+    "height": 1920,
     "title": "Тихая луна",
     "titleZh": "静月",
     "url": "/assets/video/mp4/erhu-vk-425.mp4",
@@ -31,6 +37,8 @@
   },
   {
     "slug": "vk-429",
+    "width": 1080,
+    "height": 1920,
     "title": "Прекрасная степь — мой дом",
     "titleZh": "美丽的草原我的家",
     "url": "/assets/video/mp4/erhu-vk-429.mp4",
@@ -41,6 +49,8 @@
   },
   {
     "slug": "vk-396",
+    "width": 1080,
+    "height": 1920,
     "title": "Цветок жасмина — запись 2:18",
     "titleZh": "茉莉花 · 两分十八秒版",
     "url": "/assets/video/mp4/erhu-vk-396.mp4",
@@ -51,6 +61,8 @@
   },
   {
     "slug": "03-horses",
+    "width": 672,
+    "height": 848,
     "title": "Скачка лошадей",
     "titleZh": "赛马",
     "url": "/assets/video/mp4/erhu-03-horses.mp4",
@@ -61,6 +73,8 @@
   },
   {
     "slug": "04-festival",
+    "width": 720,
+    "height": 1280,
     "title": "Международный фестиваль молодёжи",
     "titleZh": "国际青年节",
     "url": "/assets/video/mp4/erhu-04-festival.mp4",
@@ -71,6 +85,8 @@
   },
   {
     "slug": "tg-64079",
+    "width": 720,
+    "height": 1280,
     "title": "Калинка — ансамбль Дуань",
     "titleZh": "卡林卡 · 合奏",
     "url": "/assets/video/mp4/erhu-tg-64079.mp4",

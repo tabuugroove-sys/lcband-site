@@ -10,7 +10,7 @@ eleventyExcludeFromCollections: true
   <title>Эрху / 二胡 · Luxury Band</title>
   <meta name="description" content="Пчела над жасмином роняет слезу. Лишь голос эрху наполняет тишину. Эрху / 二胡 — видео, фотографии и репертуар.">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#f2ecdf">
+  <meta name="theme-color" content="#000000">
   <meta property="og:title" content="Эрху / 二胡">
   <meta property="og:description" content="Пчела над жасмином роняет слезу. Лишь голос эрху наполняет тишину. Luxury Band">
   <meta property="og:image" content="https://luxuryband.ru/assets/erhu/posters/tg-79729.jpg">
@@ -18,7 +18,7 @@ eleventyExcludeFromCollections: true
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://luxuryband.ru/promo/erhu/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=15">
+  <link rel="stylesheet" href="/assets/erhu/gallery.css?v=16">
   <script src="/assets/erhu/gallery.js?v=6" defer></script>
 </head>
 <body>
@@ -35,7 +35,7 @@ eleventyExcludeFromCollections: true
       <div class="hero-copy">
         <h1 id="hero-title" class="calligraphy-title"><img src="/assets/erhu/erhu-calligraphy.png?v=2" width="1672" height="941" alt="" aria-hidden="true" fetchpriority="high"><span>Эрху</span></h1>
         <p class="intro">Пчела над жасмином роняет слезу.<br>Цветок принимает прозрачную каплю.<br>Лишь голос эрху наполняет тишину.</p>
-        <a class="primary brush-button" href="#gallery">Слушать и смотреть</a>
+        <a class="primary brush-button" href="#gallery">СМОТРЕТЬ</a>
       </div>
       <div class="living-scene">
         <img class="scene-photo" src="/assets/erhu/blossom-scene.webp" width="1254" height="1254" alt="Музыкант с эрху под цветущими ветвями" fetchpriority="high">
@@ -61,9 +61,9 @@ eleventyExcludeFromCollections: true
         <div class="gallery-tools"><div class="filters" aria-label="Формат видео"><button type="button" data-filter="all" aria-pressed="true">Все / <span lang="zh-Hans">全部</span> <span>{{ erhuVideos | length }}</span></button><button type="button" data-filter="solo" aria-pressed="false">Соло / <span lang="zh-Hans">独奏</span></button><button type="button" data-filter="stage" aria-pressed="false">На сцене / <span lang="zh-Hans">舞台</span></button></div><span class="result-count" aria-live="polite">{{ erhuVideos | length }} видео</span></div>
         <div class="video-grid" id="video-carousel" role="region" aria-label="Карусель видео" aria-roledescription="карусель" tabindex="0">
         {% for video in erhuVideos %}
-          <article class="video-card" data-category="{{ video.category }}">
+          <article class="video-card" data-category="{{ video.category }}" style="--video-ratio: {{ video.width }} / {{ video.height }}">
             <a class="thumbnail play-item" href="{{ video.url }}" data-slug="{{ video.slug }}" aria-label="Смотреть видео: {{ video.title }} / {{ video.titleZh }}">
-              <img src="{{ video.poster }}" alt="{{ video.title }} / {{ video.titleZh }} — кадр выступления на эрху" loading="lazy" decoding="async" width="480" height="854">
+              <img src="{{ video.poster }}" alt="{{ video.title }} / {{ video.titleZh }} — кадр выступления на эрху" loading="lazy" decoding="async" width="{{ video.width }}" height="{{ video.height }}">
               <span class="round-play" aria-hidden="true">▶</span><span class="duration">{{ video.time }}</span>
             </a>
             <div class="card-details"><span class="card-label">{{ video.label }} / <span lang="zh-Hans">{% if video.category == 'solo' %}独奏{% else %}舞台{% endif %}</span></span><h3><span>{{ video.title }}</span> <span class="slash">/</span> <span lang="zh-Hans">{{ video.titleZh }}</span></h3><a class="download" href="{{ video.url }}" download aria-label="Скачать видео: {{ video.title }} / {{ video.titleZh }}">Скачать видео <span aria-hidden="true">↓</span></a></div>
