@@ -292,3 +292,6 @@ body::before { display: none; }
  .thumbnail .duration { bottom: 15px; right: 14px; }
 }
 @media(max-width:650px) { .gallery-section .section-heading, .gallery-tools { width: calc(100% - 40px); } }
+
+.hero .calligraphy-title { width: 100%; max-width: 520px; margin: 0; line-height: 0; }
+.calligraphy-title img { display: block; width: 100%; height: auto; }
