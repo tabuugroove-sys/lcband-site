@@ -262,7 +262,7 @@ main { position: relative; isolation: isolate; overflow-x: clip; }
 .gallery-section { position: relative; isolation: isolate; overflow: clip; background: transparent; }
 .photos-backdrop { position: relative; overflow: visible; }
 .photos-backdrop::before { content: ""; position: absolute; z-index: -1; pointer-events: none; }
-.gallery-leaves { position: absolute; inset: 0 0 auto; height: 460px; overflow: hidden; z-index: -1; pointer-events: none; }
+.gallery-leaves { position: absolute; inset: 0 0 auto; height: 460px; overflow: visible; z-index: -1; pointer-events: none; }
 .gallery-leaf { position: absolute; width: clamp(230px, 21vw, 350px); max-width: none; height: auto; opacity: .58; }
 .gallery-leaf-center { left: 61%; top: 20px; transform: translateX(-50%) rotate(145deg); }
 .gallery-leaf-right { left: 94%; top: 45px; transform: translateX(-50%) rotate(65deg) scale(.94); }

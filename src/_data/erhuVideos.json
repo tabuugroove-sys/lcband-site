@@ -20,7 +20,9 @@
     "title": "Цветок жасмина",
     "titleZh": "茉莉花",
     "url": "/assets/video/mp4/erhu-02-jasmine.mp4",
-    "poster": "/assets/erhu/posters/02-jasmine.webp",
+    "poster": "/assets/erhu/posters/erhu-muzykant-moskva-jasmine-900.webp",
+    "posterSmall": "/assets/erhu/posters/erhu-muzykant-moskva-jasmine-480.webp",
+    "posterAlt": "Музыкант на эрху в Москве — исполнительница в тёмном вышитом костюме, Цветок жасмина",
     "category": "solo",
     "label": "Сольное исполнение",
     "time": "0:38"
