@@ -34,7 +34,9 @@
     "title": "Тихая луна",
     "titleZh": "静月",
     "url": "/assets/video/mp4/erhu-vk-425.mp4",
-    "poster": "/assets/erhu/posters/vk-425.webp",
+    "poster": "/assets/erhu/posters/erhu-muzykant-moskva-moon-900.webp",
+    "posterSmall": "/assets/erhu/posters/erhu-muzykant-moskva-moon-480.webp",
+    "posterAlt": "Музыкант на эрху в Москве — исполнительница в светлом костюме в чайном пространстве, Тихая луна",
     "category": "solo",
     "label": "Сольное исполнение",
     "time": "0:26"
