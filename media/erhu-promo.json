@@ -1,0 +1,91 @@
+{
+  "url": "/assets/erhu/downloads/erhu-promo-20260928.zip",
+  "bytes": 187186444,
+  "sha256": "35c61c9e8a11241eacd902f40f038418107e5648a92762d8ffc3f0c46897d38d",
+  "files": [
+    {
+      "source": "/assets/video/mp4/erhu-01-rain.mp4",
+      "path": "Видео/01 — Дождь в Цзяннани.mp4",
+      "bytes": 19123771,
+      "sha256": "c45bf2fa98682c67fb0dea24a14928f8a0fcaaf9db7623832fad7ee759f8018f"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-tg-79729.mp4",
+      "path": "Видео/02 — Бело-синий фарфор.mp4",
+      "bytes": 16119218,
+      "sha256": "253f458a94990e5b4bdb09fa27b368b448cb208cda93c443be97b3073f78bcfe"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-02-jasmine.mp4",
+      "path": "Видео/03 — Цветок жасмина.mp4",
+      "bytes": 14605509,
+      "sha256": "15defaa0443860c2a955960ff134e9d1fccd59751451ebf8c686b640f43a611d"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-vk-425.mp4",
+      "path": "Видео/04 — Тихая луна.mp4",
+      "bytes": 4136470,
+      "sha256": "58049ea2f0a9e6e461e242d2436a45ccf98c78a56bda9965fa0b5511debe83ee"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-vk-429.mp4",
+      "path": "Видео/05 — Прекрасная степь — мой дом.mp4",
+      "bytes": 5501858,
+      "sha256": "11b200cb8e1d0d78bc8eb17c46cf13be4e48bf9b4d624f3df79e15adaebe77cd"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-vk-396.mp4",
+      "path": "Видео/06 — Цветок жасмина — запись 2:18.mp4",
+      "bytes": 53391121,
+      "sha256": "59d54217c447d7693f7de37c100a2161034be1c9a127e923f59f9e6a67ce5235"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-03-horses.mp4",
+      "path": "Видео/07 — Скачка лошадей.mp4",
+      "bytes": 7629232,
+      "sha256": "8df612848a1233556e35e0d9c9f1e481bef25c90c07c1952a95973caf1a367d2"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-04-festival.mp4",
+      "path": "Видео/08 — Международный фестиваль молодёжи.mp4",
+      "bytes": 25277968,
+      "sha256": "1c323cc24e00c5f88ec25b4a999559cd5de5b080cc0cb4738d6cba2564f18701"
+    },
+    {
+      "source": "/assets/video/mp4/erhu-tg-64079.mp4",
+      "path": "Видео/09 — Калинка — ансамбль Дуань.mp4",
+      "bytes": 40962343,
+      "sha256": "d34d48ea003ce31b89d2eb4d6f674c0f5ae58a055ec6809b49b946f300d00bc9"
+    },
+    {
+      "source": "/assets/erhu/photos/erhu-79865-960.webp",
+      "path": "Фото/01 — Тёмный образ.webp",
+      "bytes": 95386,
+      "sha256": "246050b16583d046333f196f543740589e9079d6c0ce0388b39d0d90775f4590"
+    },
+    {
+      "source": "/assets/erhu/photos/erhu-79863-960.webp",
+      "path": "Фото/02 — Светлый образ.webp",
+      "bytes": 143182,
+      "sha256": "c6cd7a2e5c0956258e406bee8bad9be16eec369f2e155a110cbf065c14a7f73c"
+    },
+    {
+      "source": "/assets/erhu/photos/erhu-79864-960.webp",
+      "path": "Фото/03 — У цветущей ветви.webp",
+      "bytes": 70396,
+      "sha256": "731251499af992f83021ed6ce24a9077109c906ff783e28c37476853897e4873"
+    },
+    {
+      "source": "/assets/erhu/photos/erhu-79866-styled-960.webp",
+      "path": "Фото/04 — Сценический костюм.webp",
+      "bytes": 125488,
+      "sha256": "b887185c7f03ab6e0abc7de05bb16d88f8c2965d98fc46e5a5ce6b4d4ecfe6d2"
+    },
+    {
+      "source": "/assets/erhu/repertoire.txt",
+      "path": "Репертуар.txt",
+      "bytes": 1900,
+      "sha256": "07ff0bffb7fe6e898f2cb8dd1d033eb6bce4af03a69b4be4035982347b3f9441"
+    }
+  ]
+}
