@@ -125,6 +125,17 @@
   video.addEventListener('error', () => { if (video.getAttribute('src')) error.hidden = false; });
   dialog.querySelector('.previous').addEventListener('click', () => select(current - 1));
   dialog.querySelector('.next').addEventListener('click', () => select(current + 1));
+  const advanceBeforeEnd = () => {
+    if (!dialog.open || document.hidden || document.querySelector('.video-share-dialog[open]') || video.seeking) return;
+    if (video.paused && !video.ended) return;
+    const duration = video.duration;
+    if (!Number.isFinite(duration) || duration <= 0 || duration - video.currentTime > Math.min(3, duration / 2)) return;
+    const playlist = cards.map((card, index) => card.hidden ? -1 : index).filter(index => index >= 0);
+    if (playlist.length < 2) return;
+    select(playlist[(playlist.indexOf(current) + 1) % playlist.length]);
+  };
+  video.addEventListener('timeupdate', advanceBeforeEnd);
+  video.addEventListener('ended', advanceBeforeEnd);
   const track = document.querySelector('.video-grid');
   const carouselControls = document.querySelector('.carousel-controls');
   const carouselDots = document.querySelector('.carousel-dots');

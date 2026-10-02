@@ -345,6 +345,17 @@
 			openAdjacentVideo(1);
 		});
 
+		const advanceBeforeEnd = () => {
+			if (!currentVideoKey || !lightbox.classList.contains('is-open') || lightboxVideoEl.style.display === 'none') return;
+			if (document.hidden || document.querySelector('.video-share-dialog[open]') || lightboxVideoEl.seeking) return;
+			if (lightboxVideoEl.paused && !lightboxVideoEl.ended) return;
+			const duration = lightboxVideoEl.duration;
+			if (!Number.isFinite(duration) || duration <= 0) return;
+			if (duration - lightboxVideoEl.currentTime <= Math.min(3, duration / 2)) openAdjacentVideo(1);
+		};
+		lightboxVideoEl.addEventListener('timeupdate', advanceBeforeEnd);
+		lightboxVideoEl.addEventListener('ended', advanceBeforeEnd);
+
 		lightboxPicker.addEventListener('click', (e) => {
 			const btn = e.target.closest('button');
 			if (!btn) return;
