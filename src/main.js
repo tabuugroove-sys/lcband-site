@@ -290,7 +290,6 @@
 	let stallCount = 0;
 	let stallTimer = null;
 	let playAttemptId = 0;
-	const qualityAvailability = new Map();
 
 	function networkSuggestsLow() {
 		const c = navigator.connection;
@@ -425,15 +424,6 @@
 		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
 
-	const known4kVideoKeys = new Set([
-		'promo-egoistka',
-		'promo-letet',
-		'promo-loca-loca',
-		'thematic-retro-heart',
-		'promo-danza-cuduro',
-		'latin-music-luxury-cover-band'
-	]);
-
 	const known720OnlyVideoKeys = new Set([
 		'yuriy-acoustic-vocal',
 		'yuriy-live-stage',
@@ -446,18 +436,7 @@
 	}
 
 	function videoQualityExists(key, quality) {
-		const cacheKey = `${key}-${quality}`;
-		if (qualityAvailability.has(cacheKey)) return qualityAvailability.get(cacheKey);
-		if (quality === '2160') {
-			const knownAvailability = Promise.resolve(known4kVideoKeys.has(key));
-			qualityAvailability.set(cacheKey, knownAvailability);
-			return knownAvailability;
-		}
-		const request = fetch(videoUrl(key, quality), { method: 'HEAD', cache: 'force-cache' })
-			.then(res => res.ok)
-			.catch(() => false);
-		qualityAvailability.set(cacheKey, request);
-		return request;
+		return window.LCBVideoQuality.exists(videoUrl(key, quality));
 	}
 
 	function updatePickerAvailability(key) {

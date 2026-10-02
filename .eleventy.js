@@ -28,14 +28,16 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/assets/blog-list.css");
 	eleventyConfig.addPassthroughCopy("src/styles.css");
 	eleventyConfig.addPassthroughCopy("src/main.js");
+	eleventyConfig.addPassthroughCopy("src/video-quality.js");
 	eleventyConfig.addPassthroughCopy("src/video-share.js");
 	eleventyConfig.addPassthroughCopy("src/video-share.css");
 	eleventyConfig.addPassthroughCopy("src/download.php");
 	eleventyConfig.addTransform("videoSharing", function (content) {
-		if (!this.page.outputPath?.endsWith('.html') || this.page.url === '/embed/') return content;
+		if (!this.page.outputPath?.endsWith('.html')) return content;
+		content = content.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=2"><script src="/video-quality.js?v=1" defer></script></head>');
+		if (this.page.url === '/embed/') return content;
 		return content.replace(/live-icon-(720|1080)\.mp4(?!\?)/g, 'live-icon-$1.mp4?v=20261002cut6')
-			.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=1"></head>')
-			.replace('</body>', '<script src="/video-share.js?v=3" defer></script></body>');
+			.replace('</body>', '<script src="/video-share.js?v=4" defer></script></body>');
 	});
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root

@@ -23,5 +23,11 @@
   address.searchParams.set('file', url.pathname.split('/').pop());
   const download = document.getElementById('download');
   download.href = address.href; download.hidden = false;
+  video.addEventListener('loadstart', () => {
+    address.searchParams.set('file', new URL(video.src).pathname.split('/').pop());
+    download.href = address.href;
+    document.getElementById('error').hidden = !video.error;
+  });
+  document.addEventListener('DOMContentLoaded', () => window.LCBVideoQuality.attach(video, document.querySelector('footer')));
 })();
 </script></body></html>

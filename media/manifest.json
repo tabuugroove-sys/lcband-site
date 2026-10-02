@@ -93,6 +93,11 @@
       "sha256": "f533692811c9efcdcaf0fc1102215b5aa73ae0890189eb174153affed37312ae"
     },
     {
+      "path": "assets/video/mp4/interact-wedding-shallow-2160.mp4",
+      "bytes": 209914335,
+      "sha256": "23879a5f2c16f5c7be6f89d02c642b9b275b6fb43d7a23210a6830f425a42c65"
+    },
+    {
       "path": "assets/video/mp4/interact-wedding-shallow-720.mp4",
       "bytes": 13331068,
       "sha256": "a495be913a8f794acd0c6db29ac20af5965f830ac6f06f3c05c4765b0c0e43ff"
@@ -323,6 +328,11 @@
       "sha256": "150026cd1af4d5e83e51811f6ce791741637a548f668e581e3656392e430bc10"
     },
     {
+      "path": "assets/video/mp4/promo-amore-no-2160.mp4",
+      "bytes": 215014972,
+      "sha256": "84c612bcc99700aa17402dbb5e088a626e44989390f0d8b9a398a4dba9f30786"
+    },
+    {
       "path": "assets/video/mp4/promo-amore-no-720.mp4",
       "bytes": 27284303,
       "sha256": "3e738aa9c919a5e00afb7bc0d0bb2cb81d6e14c812fa5efc8d93d0dca1470ee3"
@@ -331,6 +341,11 @@
       "path": "assets/video/mp4/promo-cold-heart-1080.mp4",
       "bytes": 39222616,
       "sha256": "9d530c792ce11ba1d8956e9142b16851355e327649a7450edba67e096ed83071"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-2160.mp4",
+      "bytes": 94766882,
+      "sha256": "f14718c2872d3224dbfeaf9d2510263233d420d4b55871df6a332a6a21f6b059"
     },
     {
       "path": "assets/video/mp4/promo-cold-heart-720.mp4",
@@ -386,6 +401,11 @@
       "path": "assets/video/mp4/promo-lets-get-it-started-1080.mp4",
       "bytes": 22411516,
       "sha256": "f9e15ab699c49c3af66e4df9ec5d525e5abbea317676f8981e917dc0d18ff7df"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-2160.mp4",
+      "bytes": 113052182,
+      "sha256": "4ffee66247429571665d5670ac11839f016991d6a688cfcc44030633c67bf628"
     },
     {
       "path": "assets/video/mp4/promo-lets-get-it-started-720.mp4",
@@ -506,6 +526,11 @@
       "path": "assets/video/mp4/thematic-italian-1080.mp4",
       "bytes": 25829923,
       "sha256": "b0e3b588d7c288de7d0799d4828979d52b3cbf2c29d0152cb3d372e280d73964"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-2160.mp4",
+      "bytes": 65921536,
+      "sha256": "91b1bcca8bc34da0403d24922cac3adafb4857fffc4d81894559f840be061f6f"
     },
     {
       "path": "assets/video/mp4/thematic-italian-720.mp4",

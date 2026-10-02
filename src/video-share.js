@@ -104,6 +104,7 @@
     if (node.tagName === 'VIDEO') {
       new MutationObserver(update).observe(node, { attributes: true, attributeFilter: ['src'], childList: true });
       node.addEventListener('loadstart', update);
+      if (!node.matches('.lightbox__video, [data-hero-video], [data-leo-video]')) window.LCBVideoQuality.attach(node, bar);
     }
     button.addEventListener('click', event => {
       event.preventDefault(); event.stopPropagation();
