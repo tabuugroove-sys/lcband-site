@@ -12,6 +12,7 @@
   catch { document.getElementById('error').hidden = false; return; }
   if (url.origin !== 'https://luxuryband.ru' || !/^\/assets\/video\/mp4\/[a-zA-Z0-9_-]+\.mp4$/.test(url.pathname)) { document.getElementById('error').hidden = false; return; }
   url.searchParams.delete('download');
+  if (/\/live-icon-(720|1080)\.mp4$/.test(url.pathname)) url.searchParams.set('v', '20261002cut6');
   const video = document.querySelector('video');
   video.src = url.href;
   video.addEventListener('error', () => { document.getElementById('error').hidden = false; });

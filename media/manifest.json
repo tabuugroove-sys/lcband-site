@@ -229,13 +229,13 @@
     },
     {
       "path": "assets/video/mp4/live-icon-1080.mp4",
-      "bytes": 83774916,
-      "sha256": "023e1a7dd540f3aab62489ee0c6d62e4463be13187ad85fc4299bc3ed0aac8fb"
+      "bytes": 93995308,
+      "sha256": "b84747d1fb118aef27475193c393cee2d124b918dcc2ebe63634ee1fb3f2750a"
     },
     {
       "path": "assets/video/mp4/live-icon-720.mp4",
-      "bytes": 47784760,
-      "sha256": "8fdb3d2fbf99cbf6cb01ce222df544a515caf4aaffc302653ce87ae483af0a41"
+      "bytes": 54788168,
+      "sha256": "11d1abb5fad04c71ea26e04facd571595ca64488da8e0ffacc99749de869917e"
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-1080.mp4",

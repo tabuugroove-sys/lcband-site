@@ -403,6 +403,7 @@
 	}
 
 	const videoAssetVersions = {
+		'live-icon': '20261002cut6',
 		'promo-egoistka': '20260826trim3',
 		'thematic-retro-heart': '20260826trim2'
 	};

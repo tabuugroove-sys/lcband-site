@@ -11,6 +11,7 @@
       const url = candidate.origin === location.origin ? new URL(candidate.pathname + candidate.search, origin) : candidate;
       if (url.origin !== origin || !/^\/assets\/video\/mp4\/[a-zA-Z0-9_-]+\.mp4$/.test(url.pathname)) return null;
       url.searchParams.delete('download');
+      if (/\/live-icon-(720|1080)\.mp4$/.test(url.pathname)) url.searchParams.set('v', '20261002cut6');
       return url;
     } catch { return null; }
   };

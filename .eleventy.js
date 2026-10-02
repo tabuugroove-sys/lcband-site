@@ -33,8 +33,9 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/download.php");
 	eleventyConfig.addTransform("videoSharing", function (content) {
 		if (!this.page.outputPath?.endsWith('.html') || this.page.url === '/embed/') return content;
-		return content.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=1"></head>')
-			.replace('</body>', '<script src="/video-share.js?v=2" defer></script></body>');
+		return content.replace(/live-icon-(720|1080)\.mp4(?!\?)/g, 'live-icon-$1.mp4?v=20261002cut6')
+			.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=1"></head>')
+			.replace('</body>', '<script src="/video-share.js?v=3" defer></script></body>');
 	});
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root
