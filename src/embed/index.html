@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Видео — Luxury Band</title>
+<style>html,body{margin:0;background:#090909;color:#fff;height:100%;font:14px system-ui}body{display:flex;flex-direction:column}video{width:100%;min-height:0;flex:1;object-fit:contain}footer{padding:10px 16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}a{color:#eee}p{padding:16px}</style></head>
+<body><video controls playsinline preload="metadata"></video><footer><span id="title">Luxury Band</span><a id="download" download hidden>Скачать видео ↓</a><a href="https://luxuryband.ru/" target="_blank" rel="noopener">Luxury Band ↗</a></footer><p id="error" hidden>Видео недоступно. Проверьте ссылку.</p>
+<script>
+(() => {
+  const params = new URLSearchParams(location.search);
+  const source = params.get('src');
+  if (!source) { document.getElementById('error').hidden = false; return; }
+  let url;
+  try { url = new URL(source, 'https://luxuryband.ru'); }
+  catch { document.getElementById('error').hidden = false; return; }
+  if (url.origin !== 'https://luxuryband.ru' || !/^\/assets\/video\/mp4\/[a-zA-Z0-9_-]+\.mp4$/.test(url.pathname)) { document.getElementById('error').hidden = false; return; }
+  url.searchParams.delete('download');
+  const video = document.querySelector('video');
+  video.src = url.href;
+  video.addEventListener('error', () => { document.getElementById('error').hidden = false; });
+  const title = params.get('title') || 'Luxury Band';
+  document.title = title + ' — Luxury Band';
+  document.getElementById('title').textContent = title;
+  url.searchParams.set('download', '1');
+  const download = document.getElementById('download');
+  download.href = url.href; download.hidden = false;
+})();
+</script></body></html>

@@ -44,8 +44,11 @@ RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]
 
 # 5) CORS только для видеофайлов — чтобы их можно было fetch'ить с других origin
 #    (нужно для программной перезаливки на видеохостинги; на рендер сайта не влияет)
+RewriteCond %{QUERY_STRING} (^|&)download=1(&|$)
+RewriteRule \.(mp4|webm|mov|m4v)$ - [E=video_download:1]
 <IfModule mod_headers.c>
 	<FilesMatch "\.(mp4|webm|mov|m4v)$">
+		Header set Content-Disposition "attachment" env=video_download
 		Header set Access-Control-Allow-Origin "*"
 		Header set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
 	</FilesMatch>
