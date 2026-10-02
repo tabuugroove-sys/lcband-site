@@ -44,8 +44,8 @@
     urlInput.value = player.href;
     embedInput.value = `<iframe src="${player.href.replaceAll('&', '&amp;')}" title="Luxury Band video" width="640" height="360" style="max-width:100%;aspect-ratio:16/9;border:0" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
     dialog.querySelector('.video-share-name').textContent = sharedTitle;
-    const download = new URL(url);
-    download.searchParams.set('download', '1');
+    const download = new URL('/download.php', origin);
+    download.searchParams.set('file', url.pathname.split('/').pop());
     dialog.querySelector('.video-share-download').href = download.href;
     dialog.querySelector('[data-social="telegram"]').href = `https://t.me/share/url?url=${encodeURIComponent(player.href)}&text=${encodeURIComponent(sharedTitle)}`;
     dialog.querySelector('[data-social="whatsapp"]').href = `https://wa.me/?text=${encodeURIComponent(sharedTitle + ' ' + player.href)}`;
@@ -93,7 +93,11 @@
     const update = () => {
       const source = validSource(getSource());
       bar.hidden = !source;
-      if (source) { source.searchParams.set('download', '1'); download.href = source.href; }
+      if (source) {
+        const address = new URL('/download.php', origin);
+        address.searchParams.set('file', source.pathname.split('/').pop());
+        download.href = address.href;
+      }
     };
     update();
     if (node.tagName === 'VIDEO') {

@@ -18,8 +18,9 @@
   const title = params.get('title') || 'Luxury Band';
   document.title = title + ' — Luxury Band';
   document.getElementById('title').textContent = title;
-  url.searchParams.set('download', '1');
+  const address = new URL('/download.php', 'https://luxuryband.ru');
+  address.searchParams.set('file', url.pathname.split('/').pop());
   const download = document.getElementById('download');
-  download.href = url.href; download.hidden = false;
+  download.href = address.href; download.hidden = false;
 })();
 </script></body></html>

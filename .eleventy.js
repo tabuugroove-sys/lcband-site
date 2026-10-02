@@ -30,10 +30,11 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/video-share.js");
 	eleventyConfig.addPassthroughCopy("src/video-share.css");
+	eleventyConfig.addPassthroughCopy("src/download.php");
 	eleventyConfig.addTransform("videoSharing", function (content) {
 		if (!this.page.outputPath?.endsWith('.html') || this.page.url === '/embed/') return content;
 		return content.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=1"></head>')
-			.replace('</body>', '<script src="/video-share.js?v=1" defer></script></body>');
+			.replace('</body>', '<script src="/video-share.js?v=2" defer></script></body>');
 	});
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root
