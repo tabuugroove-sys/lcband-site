@@ -103,7 +103,7 @@ permalink: /about/
 
 <!-- ЗАГЛУШКИ: видео в блоке выше — временные, позже заменим на слайдшоу образов и другие материалы -->
 
-<section class="section section--flush">
+<section class="section">
 	<div class="container reveal">
 		{% set aboutStats = [
 			{num: site.stats.shows, label: 'выступлений'},
@@ -142,7 +142,7 @@ permalink: /about/
 			<p class="section__eyebrow">Опыт</p>
 			<h2 class="feature-block__title">Большие сцены<br><span class="muted">и большие события.</span></h2>
 			<p class="feature-block__text">Музыканты группы — 15–20 лет на сцене: концерты на стадионах и в залах на 2000–5000 человек, регулярные эфиры на федеральных каналах (включая Первый), совместные номера с топ-звёздами эстрады.</p>
-			<p class="feature-block__text">В подборке ниже — запись совместного номера с Николаем Басковым и Александром Реввой. Другие концертные фрагменты — в <a class="evidence-link" href="{{ '/#videos' | url }}">видеогалерее</a>.</p>
+			<p class="feature-block__text">В подборке ниже — «Volare» с Николаем Басковым и Luxury Cover Band. Другие концертные фрагменты — в <a class="evidence-link" href="{{ '/#videos' | url }}">видеогалерее</a>.</p>
 		</div>
 	</div>
 </section>
@@ -178,12 +178,11 @@ permalink: /about/
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Примеры выступлений</p>
 		<h2 class="section__title">Записи, истории<br><span class="muted">и отзывы.</span></h2>
-		<p class="section__lead">Выберите фрагмент, чтобы услышать вокал и инструменты. Для своего события можно отдельно обсудить состав, песни и интерактив.</p>
 	</div>
 	<div class="container reveal">
 		{% set examples = [
 			{slug:'interact-laz-coco-jambo', title:'LAZ · Coco Jambo', text:'Концертный интерактив LAZ. На его странице — рассказ о Дне города в Лабытнангах 12 сентября 2026 года и отзыв зрительницы.', href:'/vocalists/laz/', linkLabel:'История концерта и отзыв'},
-			{slug:'live-baskov-revva', title:'Басков + Ревва · Лайв', text:'Запись совместного номера — конкретный пример работы музыкантов на одной сцене с приглашёнными артистами.', href:'/#videos', linkLabel:'Другие концертные записи'},
+			{slug:'live-baskov-lcb', title:'Volare · Николай Басков и LC Band', text:'«Volare» — совместное исполнение Николая Баскова и Luxury Cover Band.', href:'/#videos', linkLabel:'Другие концертные записи'},
 			{slug:'live-perfect', title:'Perfect · живое исполнение', text:'Пример живой версии песни для первого танца. На свадебной странице — варианты программы и отзыв Алёны после свадьбы в июне 2026 года.', href:'/events/wedding/#review', linkLabel:'Свадебная программа и отзыв'}
 		] %}
 		<ul class="formats formats--examples">
