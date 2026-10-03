@@ -483,13 +483,13 @@
 
 	function getVideoItems() {
 		const scope = currentVideoRail || document; // keep arrow-nav within the same carousel
-		const nodes = [...scope.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play')];
+		const nodes = [...scope.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play, #examples .format__link[data-video]')];
 		const seen = new Set();
 		return nodes.reduce((items, node) => {
 			const key = node.dataset.video;
 			if (!key || seen.has(key)) return items;
 			seen.add(key);
-			const title = node.querySelector('.vtile__title, .video-card__name')?.textContent?.trim() || node.getAttribute('aria-label') || 'Видео';
+			const title = node.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || node.getAttribute('aria-label') || 'Видео';
 			const poster = node.querySelector('img')?.src || '';
 			items.push({ key, title, poster });
 			return items;
@@ -606,14 +606,14 @@
 	});
 
 	document.addEventListener('click', (e) => {
-		const a = e.target.closest('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play');
+		const a = e.target.closest('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play, #examples .format__link[data-video]');
 			if (!a) return;
 			e.preventDefault();
 			e.stopPropagation();
 			a.blur();
-			const title = a.querySelector('.vtile__title, .video-card__name')?.textContent?.trim() || a.getAttribute('aria-label') || 'Видео';
+			const title = a.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || a.getAttribute('aria-label') || 'Видео';
 			const poster = a.querySelector('img')?.src || a.closest('.page-hero')?.querySelector('.page-hero__media img')?.src || '';
-			currentVideoRail = a.closest('.video-rail, [data-video-carousel], .program-video-carousel') || null;
+			currentVideoRail = a.closest('.video-rail, [data-video-carousel], .program-video-carousel, .formats--examples') || null;
 			openVideo(a.dataset.video, title, poster);
 		});
 

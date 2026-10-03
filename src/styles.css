@@ -2461,7 +2461,8 @@ a.stat--link:hover { opacity: 0.7; }
 
 @media (max-width: 900px)  { .formats { grid-template-columns: 1fr; } }
 
-.formats--examples { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#examples .section__title { margin-bottom: clamp(48px, 6vw, 80px); }
+.formats--examples { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .formats--examples .format__link { height: auto; }
 .formats--examples .format__body { padding: 24px; }
 .formats--examples .format__body > a { color: #0071E3; margin-top: 12px; }
