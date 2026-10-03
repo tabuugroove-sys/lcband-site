@@ -154,7 +154,14 @@
 				activeIndex = playKey;
 				videos.forEach((v, i) => {
 					if (!v) return;
-					if (i === current || i === appearing) { v.play && v.play().catch(() => {}); }
+					if (i === current || i === appearing) {
+						const source = v.querySelector('source[data-src]');
+						if (source && !source.getAttribute('src')) {
+							source.src = source.dataset.src;
+							v.load();
+						}
+						v.play().catch(() => {});
+					}
 					else if (v.pause) { v.pause(); }
 				});
 			}
@@ -819,16 +826,6 @@
 			}, 180);
 		}
 
-		function preloadHeroClip(key = heroVideoMap[current]) {
-			if (!heroVideo || !key || hero.classList.contains('is-playing')) return;
-			if (navigator.connection?.saveData) return;
-			const source = videoUrl(key, heroQuality);
-			if (heroVideo.getAttribute('src') === source) return;
-			heroVideo.preload = 'metadata';
-			heroVideo.src = source;
-			heroVideo.load();
-		}
-
 		function setActive(key) {
 			current = key;
 			dots.forEach(d => {
@@ -838,7 +835,6 @@
 			});
 			imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
 			taglines.forEach(line => line.classList.toggle('is-active', line.dataset.tagline === key));
-			preloadHeroClip(heroVideoMap[key]);
 		}
 
 		function nextKey() {
@@ -1061,7 +1057,6 @@
 			if (heroProgressFilled) heroProgressFilled.style.width = '0%';
 			if (heroTime) heroTime.textContent = '0:00 / 0:00';
 			setHeroLoading(false);
-			preloadHeroClip(heroVideoMap[current]);
 			scheduleAutoResume();
 		}
 
@@ -1355,7 +1350,6 @@
 		if (!reducedHeroMotion.matches) {
 			startAuto();
 		}
-		preloadHeroClip();
 	}
 
 	// ---------- Smooth anchor scroll ----------

@@ -4,6 +4,15 @@
   const en = document.documentElement.lang === 'en';
   const label = (ru, english) => en ? english : ru;
   const attached = new WeakSet();
+  const observedPlayers = new WeakSet();
+  const openedPlayers = new WeakSet();
+  const playerHost = video => video.closest('.lightbox, .hero, [data-leo-hero]') || video.parentElement;
+  const playerIsOpen = video => {
+    const host = playerHost(video);
+    if (video.matches('.lightbox__video')) return host.classList.contains('is-open');
+    if (video.matches('[data-hero-video], [data-leo-video]')) return host.classList.contains('is-playing');
+    return openedPlayers.has(video);
+  };
   const validSource = value => {
     try {
       if (!value) return null;
@@ -85,15 +94,10 @@
     download.textContent = label('Скачать', 'Download') + ' ↓';
     download.download = '';
     bar.append(button, download);
-    if (node === host && node.tagName === 'A') {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'video-share-card';
-      node.before(wrapper);
-      wrapper.append(node, bar);
-    } else host.append(bar);
+    host.append(bar);
     const update = () => {
       const source = validSource(getSource());
-      bar.hidden = !source;
+      bar.hidden = !source || !playerIsOpen(node);
       if (source) {
         const address = new URL('/download.php', origin);
         address.searchParams.set('file', source.pathname.split('/').pop());
@@ -103,6 +107,7 @@
     update();
     if (node.tagName === 'VIDEO') {
       new MutationObserver(update).observe(node, { attributes: true, attributeFilter: ['src'], childList: true });
+      new MutationObserver(update).observe(host, { attributes: true, attributeFilter: ['class', 'open'] });
       node.addEventListener('loadstart', update);
       if (!node.matches('.lightbox__video, [data-hero-video], [data-leo-video]')) window.LCBVideoQuality.attach(node, bar);
     }
@@ -113,14 +118,18 @@
     download.addEventListener('click', event => { event.stopPropagation(); update(); });
   }
   function scan() {
-    document.querySelectorAll('[data-video]:not([data-video-quality]), a.play-item[href*="/assets/video/mp4/"]').forEach(node => {
-      const host = node.closest('li, .video-card') || node.parentElement;
-      toolbar(node, () => node.dataset.video ? `${origin}/assets/video/mp4/${node.dataset.video}-720.mp4` : node.getAttribute('href'), host);
-    });
-    document.querySelectorAll('video').forEach(video => {
-      const host = video.closest('.lightbox, .hero, .about-hero, [data-leo-hero], .living-scene, .sx-hero') || video.parentElement;
-      const overlay = host !== video.parentElement || host.matches('.lightbox, .hero, .about-hero, .sx-hero');
-      toolbar(video, () => video.getAttribute('src') || video.dataset.src || video.querySelector('source')?.getAttribute('src') || (video.hasAttribute('data-leo-video') ? `${origin}/assets/video/mp4/${location.pathname.includes('stereo-sax') ? 'stereo' : 'leo'}-sax-promo-720.mp4` : ''), host, overlay);
+    document.querySelectorAll('video.lightbox__video, video[data-hero-video], video[data-leo-video], video[controls]').forEach(video => {
+      if (observedPlayers.has(video)) return;
+      observedPlayers.add(video);
+      const open = () => {
+        openedPlayers.add(video);
+        if (!playerIsOpen(video)) return;
+        const host = playerHost(video);
+        const overlay = host !== video.parentElement || host.matches('.lightbox, .hero');
+        toolbar(video, () => video.getAttribute('src') || video.querySelector('source')?.getAttribute('src'), host, overlay);
+      };
+      video.addEventListener('play', open);
+      if (!video.paused) open();
     });
   }
   scan();

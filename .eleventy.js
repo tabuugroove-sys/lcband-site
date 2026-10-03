@@ -37,7 +37,7 @@ export default function (eleventyConfig) {
 		content = content.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=2"><script src="/video-quality.js?v=1" defer></script></head>');
 		if (this.page.url === '/embed/') return content;
 		return content.replace(/live-icon-(720|1080)\.mp4(?!\?)/g, 'live-icon-$1.mp4?v=20261002cut6')
-			.replace('</body>', '<script src="/video-share.js?v=4" defer></script></body>');
+			.replace('</body>', '<script src="/video-share.js?v=5" defer></script></body>');
 	});
 	eleventyConfig.addPassthroughCopy("src/robots.txt");
 	eleventyConfig.addPassthroughCopy("src/eabb0705846202e830565870a38f394c.txt"); // IndexNow key — must survive at site root

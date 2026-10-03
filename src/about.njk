@@ -24,9 +24,9 @@ permalink: /about/
 {% endblock %}
 
 <section class="about-hero">
-	<video class="about-hero__video" autoplay muted loop playsinline
+	<video class="about-hero__video" autoplay muted loop playsinline preload="none"
 		poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
-		<source src="{{ site.url }}/assets/video/mp4/promo-danza-cuduro-1080.mp4" type="video/mp4">
+		<source src="{{ site.url }}/assets/video/mp4/promo-danza-cuduro-720.mp4" type="video/mp4">
 	</video>
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
@@ -62,7 +62,7 @@ permalink: /about/
 {#- Полосы и слои экрана строятся из ОДНОГО массива: новая полоса = одна
     запись {eyebrow, title, text, bg, tint?, light?, video}. Порядок записей =
     порядок полос и z-порядок слоёв. Видео и постер берутся по slug'у video:
-    /assets/video/mp4/<video>-1080.mp4 + /assets/video/posters/<video>.jpg
+    /assets/video/mp4/<video>-720.mp4 + /assets/video/posters/<video>.jpg
     bg — любое CSS-background; палитра ниже = точные цвета полос section-rooms
     с apple.com/apple-tv-4k (Music / Fitness+ / Arcade / Photos). -#}
 {% set storyRooms = [
@@ -77,9 +77,9 @@ permalink: /about/
 			<div class="story-rooms__frame">
 				{% for r in storyRooms %}
 				<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
-					<video muted loop playsinline preload="metadata"
+					<video muted loop playsinline preload="none"
 						poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}">
-						<source src="{{ site.url }}/assets/video/mp4/{{ r.video }}-1080.mp4" type="video/mp4">
+						<source data-src="{{ site.url }}/assets/video/mp4/{{ r.video }}-720.mp4" type="video/mp4">
 					</video>
 				</div>
 				{% endfor %}
