@@ -6,11 +6,12 @@
 		"eyebrow": "Italia",
 		"headline": "Ретро и современная Италия.",
 		"lead": "Adriano Celentano, Pino Daniele, Eros Ramazzotti, Laura Pausini — и современные итальянские хиты. Русским составом, с правильной фонетикой.",
+		"videoLead": "Italian show и Amore No — примеры итальянской программы. Let's Get Loud — дополнительный латинский номер для танцевального блока; его можно обсудить отдельно.",
 		"bullets": [
 			"Классика 60–80-х (Celentano, Lucio Dalla, Mina)",
 			"Современная эстрада (Eros Ramazzotti, Tiziano Ferro)",
-			"Фильмовая Италия (Amore no, Felicità, Cuando Calienta El Sol)",
-			"Под итальянские свадьбы и тематические ивенты"
+			"Итальянская поп-программа — Amore No, Felicità",
+			"Сет-лист под итальянскую свадьбу, ужин или тематическое событие — согласуем песни и длительность блока"
 		],
 		"poster": "assets/video/posters/thematic-italian.jpg",
 		"video": "thematic-italian",

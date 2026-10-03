@@ -186,6 +186,7 @@ eleventyComputed:
 			</li>
 			{% endfor %}
 		</ul>
+		{% if program.slug == 'italian' %}<p class="section__lead">Посмотрите <a class="evidence-link" href="{{ '/repertoire/' | url }}">репертуар с поиском</a> и выберите знакомые песни. Для новой композиции обсудим возможность подготовки к вашей дате. Состав, звук и время саундчека согласуем по <a class="evidence-link" href="{{ '/riders/' | url }}">техническому райдеру</a>.</p>{% endif %}
 	</div>
 </section>
 
@@ -216,7 +217,7 @@ eleventyComputed:
 <section class="section section--book">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Бронирование</p>
-		<h2 class="section__title">Хочу<br><span class="muted-light">{{ program.title | lower }}.</span></h2>
+		<h2 class="section__title">{% if program.slug == 'italian' %}Хочу<br><span class="muted-light">итальянскую программу.</span>{% else %}Хочу<br><span class="muted-light">{{ program.title | lower }}.</span>{% endif %}</h2>
 		<p class="section__lead">Напишите дату, место и формат — подберём состав и пришлём тайминг.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>

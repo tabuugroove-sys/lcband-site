@@ -136,6 +136,22 @@ eleventyComputed:
 </section>
 {% endfor %}
 
+{% if event.slug == 'wedding' or event.slug == 'corporate' %}
+<section class="section section--light" id="booking-details">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Подготовка</p>
+		<h2 class="section__title">Что согласуем<br><span class="muted">до бронирования.</span></h2>
+		<ul class="bullets">
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Состав.</strong> Количество вокалистов и инструментов под площадку и бюджет. <a href="{{ '/vocalists/' | url }}">Вокалисты и примеры исполнения</a> — на отдельных страницах.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Тайминг.</strong> Обычно 2×45 или 3×30 минут для основной программы. Welcome{% if event.slug == 'wedding' %}, церемонию и первый танец{% endif %} вписываем в сценарий отдельно.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Песни и выходы гостей.</strong> Выбираем композиции из <a href="{{ '/repertoire/' | url }}">репертуара</a>. Новую песню и совместный номер обсуждаем заранее: версия, сроки подготовки и момент выхода.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Техника.</strong> Проверяем звук, свет, сцену и время саундчека с площадкой по <a href="{{ '/riders/' | url }}">райдеру выбранного состава</a>.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Смета.</strong> Указываем состав и хронометраж; welcome, DJ, дополнительную технику и выезд учитываем по запросу. <a href="{{ '/blog/skolko-stoit-kaver-gruppa/' | url }}">Из чего складывается стоимость</a>.</span></li>
+		</ul>
+	</div>
+</section>
+{% endif %}
+
 {% if event.featuredVideo %}
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
@@ -270,6 +286,7 @@ eleventyComputed:
 <section class="section section--book">
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">{{ event.cta }}.</h2>
+		{% if event.slug == 'wedding' or event.slug == 'corporate' %}<p class="section__lead">Напишите дату, город, площадку, формат и желаемый бюджет. Пришлём предложение с составом, блоками программы и сметой.</p>{% endif %}
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="{{ '/events/' | url }}">Все события</a>

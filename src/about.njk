@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Luxury Band — о группе Luxury Cover Band
-description: "Luxury Band — Luxury Cover Band (LC Band): 2000+ выступлений в 40 странах. Вокалисты, сценические образы, история группы, ТВ-проекты и авторская музыка."
+description: "Luxury Band — о группе: примеры выступлений, концерт LAZ в Лабытнангах, совместные номера, отзывы, вокалисты, репертуар и райдеры для свадьбы и корпоратива."
 keywords: "о группе luxury cover band, опыт кавер группы, международная кавер группа, выступления на стадионах, кавер группа на тв"
 permalink: /about/
 ---
@@ -31,7 +31,7 @@ permalink: /about/
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>
-		<h1 class="about-hero__title">Кавер-группа мирового уровня.<br>Весь мир как сцена.</h1>
+		<h1 class="about-hero__title">Кавер-группа для свадьбы,<br>корпоратива и концертной сцены.</h1>
 	</div>
 </section>
 
@@ -66,10 +66,10 @@ permalink: /about/
     bg — любое CSS-background; палитра ниже = точные цвета полос section-rooms
     с apple.com/apple-tv-4k (Music / Fitness+ / Arcade / Photos). -#}
 {% set storyRooms = [
-	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Поём на 12 языках — с правильной фонетикой, не транслитом. Итальянский, испанский, французский, английский и другие — под программу и аудиторию.', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-chainsmokers'},
-	{eyebrow:'Репертуар', title:'500+ песен.<br>Любая эпоха и жанр.', text:'От ретро и джаза до современных хитов. Собираем сет-лист под вашу аудиторию и повод — не играем один и тот же концерт всем.', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
-	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Мы так и работаем всегда: зовём зрителей на сцену или спускаемся к ним.', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'От классики до тематического шоу — каждый сценический образ группы продуман как законченная визуальная история.', bg:'#f5f5f7', light:true, video:'live-icon'}
+	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-chainsmokers'},
+	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
+	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Рассказ о выступлении 12 сентября 2026 года и выходе к зрителям — на странице LAZ.', href:'/vocalists/laz/', linkLabel:'Рассказ о концерте в Лабытнангах', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'Красный, чёрно-белый, золотой и другие сценические образы — в фотогалерее. Выбираем костюмы под палитру и формат события.', href:'/costumes/', linkLabel:'Посмотреть сценические образы', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
 	<div class="story-rooms__gallery" aria-hidden="true">
@@ -94,6 +94,7 @@ permalink: /about/
 				<p class="story-room__eyebrow">{{ r.eyebrow }}</p>
 				<h3 class="story-room__title">{{ r.title | safe }}</h3>
 				<p class="story-room__text">{{ r.text }}</p>
+				<p class="story-room__text"><a href="{{ r.href | url }}">{{ r.linkLabel }} →</a></p>
 			</div>
 		</div>
 		{% endfor %}
@@ -141,6 +142,7 @@ permalink: /about/
 			<p class="section__eyebrow">Опыт</p>
 			<h2 class="feature-block__title">Большие сцены<br><span class="muted">и большие события.</span></h2>
 			<p class="feature-block__text">Музыканты группы — 15–20 лет на сцене: концерты на стадионах и в залах на 2000–5000 человек, регулярные эфиры на федеральных каналах (включая Первый), совместные номера с топ-звёздами эстрады.</p>
+			<p class="feature-block__text">В подборке ниже — запись совместного номера с Николаем Басковым и Александром Реввой. Другие концертные фрагменты — в <a class="evidence-link" href="{{ '/#videos' | url }}">видеогалерее</a>.</p>
 		</div>
 	</div>
 </section>
@@ -154,6 +156,7 @@ permalink: /about/
 			<p class="section__eyebrow">Вокалисты</p>
 			<h2 class="feature-block__title">Свои треки<br><span class="muted">и громкие коллаборации.</span></h2>
 			<p class="feature-block__text">Вокалисты ведут собственные лейблы, выпускают авторскую музыку на стриминговых площадках, записали 5 совместных треков (фитов) со звёздами и сотрудничают с российскими и мировыми артистами.</p>
+			<p class="feature-block__text">Познакомьтесь с <a class="evidence-link" href="{{ '/vocalists/' | url }}">вокалистами</a> и посмотрите <a class="evidence-link" href="{{ '/artists/' | url }}">их авторские проекты</a>.</p>
 		</div>
 	</div>
 </section>
@@ -171,9 +174,36 @@ permalink: /about/
 	</div>
 </section>
 
+<section class="section section--elev" id="examples">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Примеры выступлений</p>
+		<h2 class="section__title">Записи, истории<br><span class="muted">и отзывы.</span></h2>
+		<p class="section__lead">Выберите фрагмент, чтобы услышать вокал и инструменты. Для своего события можно отдельно обсудить состав, песни и интерактив.</p>
+	</div>
+	<div class="container reveal">
+		{% set examples = [
+			{slug:'interact-laz-coco-jambo', title:'LAZ · Coco Jambo', text:'Концертный интерактив LAZ. На его странице — рассказ о Дне города в Лабытнангах 12 сентября 2026 года и отзыв зрительницы.', href:'/vocalists/laz/', linkLabel:'История концерта и отзыв'},
+			{slug:'live-baskov-revva', title:'Басков + Ревва · Лайв', text:'Запись совместного номера — конкретный пример работы музыкантов на одной сцене с приглашёнными артистами.', href:'/#videos', linkLabel:'Другие концертные записи'},
+			{slug:'live-perfect', title:'Perfect · живое исполнение', text:'Пример живой версии песни для первого танца. На свадебной странице — варианты программы и отзыв Алёны после свадьбы в июне 2026 года.', href:'/events/wedding/#review', linkLabel:'Свадебная программа и отзыв'}
+		] %}
+		<ul class="formats formats--examples">
+			{% for example in examples %}
+			<li class="format">
+				<a class="format__link" href="{{ ('/embed/?src=/assets/video/mp4/' + example.slug + '-720.mp4') | url }}" data-video="{{ example.slug }}" aria-label="Смотреть видео: {{ example.title }}">
+					<div class="format__photo"><img src="{{ ('/assets/video/posters/' + example.slug + '.jpg') | url }}" alt="{{ example.title }} — концертная запись" loading="lazy"></div>
+					<div class="format__body"><h3 class="format__title">{{ example.title }}</h3><span class="format__more">Смотреть видео →</span></div>
+				</a>
+				<div class="format__body"><p class="format__text">{{ example.text }}</p><a href="{{ example.href | url }}">{{ example.linkLabel }} →</a></div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+
 <section class="section section--book">
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Соберём программу под ваше событие.</h2>
+		<p class="section__lead">Пришлите дату, город, площадку и формат. Обсудим состав, длительность блоков и песни; требования к звуку и сцене — по <a class="evidence-link" href="{{ '/riders/' | url }}">райдеру выбранного состава</a>.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="{{ '/events/' | url }}">Все события</a>
