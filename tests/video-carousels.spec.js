@@ -96,7 +96,7 @@ test.describe('video rails — open + play', () => {
 			{ key: 'promo-loca-loca', path: '/' },
 			{ key: 'thematic-retro-heart', path: '/' },
 			{ key: 'promo-danza-cuduro', path: '/' },
-			{ key: 'latin-music-luxury-cover-band', path: '/programs/spanish/' }
+			{ key: 'latin-music-luxury-cover-band', path: '/programs/latin/' }
 		];
 
 		let currentPath = '';

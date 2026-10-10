@@ -65,11 +65,11 @@ eleventyExcludeFromCollections: true
 			<image:title>{{ video.title }} — {{ program.title }}</image:title>
 		</image:image>
 		{% endfor %}
-		{% if program.slug == "spanish" %}
+		{% if program.slug == "latin" %}
 		{% for image in ["spanish-hero/latin-duo.jpg", "spanish-hero/teddy-latina.jpg", "spanish-hero/teddy-white.jpg"] %}
 		<image:image>
 			<image:loc>{{ site.url }}/assets/photos/{{ image }}</image:loc>
-			<image:title>Латинская программа — {{ site.name }}</image:title>
+			<image:title>Латинское шоу — {{ site.name }}</image:title>
 		</image:image>
 		{% endfor %}
 		{% endif %}

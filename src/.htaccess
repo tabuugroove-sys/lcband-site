@@ -29,6 +29,13 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 #     чтобы не плодить дубль под запрос «сколько стоит кавер-группа».
 RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoit-kaver-gruppa/ [L,R=301]
 
+# 2b) программа «Испанская» стала «Латинское шоу»: /programs/spanish/ → /programs/latin/
+#     (RU и EN). Цель абсолютная https — см. предупреждение выше. Страница-заглушка со
+#     canonical и refresh лежит на старом адресе на случай, если сервер отдаст физический
+#     файл раньше rewrite (деплой распаковывает архив поверх и старые файлы не удаляет).
+RewriteRule ^programs/spanish/?$ https://luxuryband.ru/programs/latin/ [L,R=301]
+RewriteRule ^en/programs/spanish/?$ https://luxuryband.ru/en/programs/latin/ [L,R=301]
+
 # 3) /index.html → /  (корень и подпапки) — убирает дубль главной и вложенных
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
 RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]

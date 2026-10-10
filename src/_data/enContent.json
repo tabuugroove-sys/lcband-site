@@ -33,12 +33,12 @@
 			]
 		},
 		{
-			"slug": "spanish",
-			"title": "Spanish / Latin Program",
-			"label": "Espana",
-			"eyebrow": "Espana",
-			"headline": "Latino. Salsa. Reggaeton.",
-			"lead": "A high-energy Latin program built to move the room: Spanish-language hits, dance interaction, Macarena moments and a vibrant Cuban-Latin stage feel.",
+			"slug": "latin",
+			"title": "Latin Show",
+			"label": "Latin",
+			"eyebrow": "Latino · Salsa · Reggaeton",
+			"headline": "Latin Show",
+			"lead": "A Latin-style show with a live band: Teddy, from Guantánamo, calls guests on stage for the Macarena, and the band plays Ricky Martin, Shakira and Bad Bunny.",
 			"bullets": ["Classic Latin hits", "Modern reggaeton and pop-Latino energy", "Macarena, Bailando and Despacito moments", "Optional dance masterclass with Teddy"],
 			"poster": "assets/video/posters/teddy-macarena-en-4x3.jpg",
 			"video": "teddy-macarena",

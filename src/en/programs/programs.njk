@@ -29,18 +29,18 @@ eleventyComputed:
 </script>
 {% endblock %}
 
-<section class="page-hero{% if program.slug == 'spanish' %} page-hero--spanish-promo{% endif %}">
+<section class="page-hero{% if program.slug == 'latin' %} page-hero--spanish-promo{% endif %}">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">
 			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
 			<a href="{{ '/en/programs/' | url }}">Themed Programs</a> <span>·</span>
 			<span>{{ program.label }}</span>
 		</p>
-		{% if program.slug != 'spanish' %}
+		{% if program.slug != 'latin' %}
 		<p class="page-hero__eyebrow">{{ program.eyebrow }}</p><h1 class="page-hero__title">{{ program.headline }}</h1><p class="page-hero__lead">{{ program.lead }}</p>
 		{% endif %}
 	</div>
-	{% if program.slug == 'spanish' %}
+	{% if program.slug == 'latin' %}
 	<div class="spanish-promo">
 		<div class="spanish-promo__visual" aria-hidden="true">
 			<div class="spanish-promo__card"><img class="spanish-promo__lights" src="{{ '/assets/photos/spanish-hero/lights-overlay.png?v=2' | url }}" alt="" loading="lazy" decoding="async"><p class="spanish-promo__card-title">Macarena<br>Despacito<br>Bailando</p></div>
@@ -110,7 +110,7 @@ eleventyComputed:
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		<h2 class="section__title">What is included<br><span class="muted{% if program.slug == 'spanish' %} muted--spanish-gradient{% endif %}">in the program.</span></h2>
+		<h2 class="section__title">What is included<br><span class="muted{% if program.slug == 'latin' %} muted--spanish-gradient{% endif %}">in the program.</span></h2>
 		<ul class="bullets">
 			{% for b in program.bullets %}
 			<li class="bullet">

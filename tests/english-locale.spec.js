@@ -7,7 +7,7 @@ const ENGLISH_ROUTES = [
 	'/en/programs/',
 	'/en/programs/italian/',
 	'/en/programs/french/',
-	'/en/programs/spanish/',
+	'/en/programs/latin/',
 	'/en/programs/retro/',
 	'/en/programs/jazz/',
 	'/en/programs/rock/',
@@ -88,7 +88,7 @@ for (const path of ENGLISH_ROUTES) {
 test('mobile menu keeps navigation in the English locale', async ({ page, isMobile }) => {
 	test.skip(!isMobile, 'mobile navigation regression');
 
-	await page.goto('/en/programs/spanish/');
+	await page.goto('/en/programs/latin/');
 	await page.locator('button[aria-label*="menu" i]').click();
 	await page.getByRole('link', { name: 'Programs and Formats', exact: true }).click();
 
