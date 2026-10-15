@@ -6,6 +6,7 @@ pagination:
 permalink: "/vocalists/{{ vocalist.slug }}/"
 layout: layouts/base.njk
 eleventyComputed:
+  bodyClass: "vocalist-page--{{ vocalist.slug }}"
   title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
   description: "{{ vocalist.name }} ({{ vocalist.role }}) — {{ site.name }}. {{ vocalist.tagline }}"
   keywords: "{{ vocalist.keywords }}"

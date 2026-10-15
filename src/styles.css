@@ -4098,6 +4098,31 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	.page-hero__photo { width: 100%; max-width: 520px; justify-self: center; }
 }
 
+.vocalist-page--teddy { --sec-pad: clamp(104px, 12vw, 176px); }
+
+.vocalist-page--teddy .page-hero--vocalist {
+	padding-top: calc(var(--nav-h) + clamp(96px, 9vw, 144px));
+	padding-bottom: clamp(96px, 9vw, 144px);
+}
+
+.vocalist-page--teddy .page-hero--split { gap: clamp(48px, 7vw, 112px); }
+.vocalist-page--teddy .page-hero__title { margin-bottom: 28px; }
+.vocalist-page--teddy .page-hero__lead { line-height: 1.35; }
+.vocalist-page--teddy .page-hero__body { margin-top: 36px; line-height: 1.65; }
+.vocalist-page--teddy .page-hero__tags { margin-top: 40px; gap: 12px; }
+.vocalist-page--teddy #videos .section__title,
+.vocalist-page--teddy #photos .section__title { margin-bottom: clamp(36px, 4vw, 64px); }
+
+@media (max-width: 900px) {
+	.vocalist-page--teddy .page-hero--vocalist {
+		padding-top: calc(var(--nav-h) + 64px);
+		padding-bottom: 80px;
+	}
+	.vocalist-page--teddy .page-hero--split { gap: 48px; }
+	.vocalist-page--teddy .page-hero__body { margin-top: 28px; }
+	.vocalist-page--teddy .page-hero__tags { margin-top: 32px; }
+}
+
 /* Bullets */
 
 .bullets {

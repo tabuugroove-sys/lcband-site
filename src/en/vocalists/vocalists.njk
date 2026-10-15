@@ -8,6 +8,7 @@ layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
 eleventyComputed:
+  bodyClass: "vocalist-page--{{ vocalist.slug }}"
   title: "{{ vocalist.name }} — {{ vocalist.role }} · {{ site.shortName }}"
   description: "{{ vocalist.tagline }}"
   keywords: "{{ vocalist.keywords }}"
