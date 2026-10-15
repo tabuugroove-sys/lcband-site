@@ -29,23 +29,25 @@ eleventyComputed:
 </script>
 {% endblock %}
 
-<section class="page-hero page-hero--split">
-	<div class="page-hero__text container">
-		<p class="page-hero__breadcrumb">
-			<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
-			<a href="{{ '/en/vocalists/' | url }}">Vocalists</a> <span>·</span>
-			<span>{{ vocalist.name }}</span>
-		</p>
-		<p class="page-hero__eyebrow">{{ vocalist.role }}</p>
-		<h1 class="page-hero__title">{{ vocalist.name }}</h1>
-		<p class="page-hero__lead">{{ vocalist.tagline }}</p>
-		<p class="page-hero__body">{{ vocalist.bio }}</p>
-		<div class="page-hero__tags">
-			{% for s in vocalist.specialty %}<span class="tag">{{ s }}</span>{% endfor %}
+<section class="page-hero page-hero--vocalist">
+	<div class="container page-hero--split">
+		<div class="page-hero__text">
+			<p class="page-hero__breadcrumb">
+				<a href="{{ '/en/' | url }}">{{ site.shortName }}</a> <span>·</span>
+				<a href="{{ '/en/vocalists/' | url }}">Vocalists</a> <span>·</span>
+				<span>{{ vocalist.name }}</span>
+			</p>
+			<p class="page-hero__eyebrow">{{ vocalist.role }}</p>
+			<h1 class="page-hero__title">{{ vocalist.name }}</h1>
+			<p class="page-hero__lead">{{ vocalist.tagline }}</p>
+			<p class="page-hero__body">{{ vocalist.bio }}</p>
+			<div class="page-hero__tags">
+				{% for s in vocalist.specialty %}<span class="tag">{{ s }}</span>{% endfor %}
+			</div>
 		</div>
-	</div>
-	<div class="page-hero__photo">
-		<img src="{{ ('/' + vocalist.photo) | url }}" alt="{{ vocalist.name }} — Luxury Cover Band vocalist" loading="eager">
+		<div class="page-hero__photo">
+			<img src="{{ ('/' + vocalist.photo) | url }}" alt="{{ vocalist.name }} — Luxury Cover Band vocalist" loading="eager">
+		</div>
 	</div>
 </section>
 
