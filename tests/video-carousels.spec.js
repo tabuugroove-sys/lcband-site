@@ -20,6 +20,7 @@ import { test, expect } from '@playwright/test';
 
 /** Returns an ElementHandle for a tile that is fully inside the viewport. */
 async function findVisibleTile(page, railSelector) {
+	await page.locator(railSelector).scrollIntoViewIfNeeded();
 	const handle = await page.evaluateHandle((sel) => {
 		const links = [...document.querySelectorAll(`${sel} .vtile__link[data-video]`)];
 		const vw = window.innerWidth;
@@ -95,8 +96,12 @@ test.describe('video rails — open + play', () => {
 			{ key: 'promo-letet', path: '/' },
 			{ key: 'promo-loca-loca', path: '/' },
 			{ key: 'thematic-retro-heart', path: '/' },
-			{ key: 'promo-danza-cuduro', path: '/' },
-			{ key: 'latin-music-luxury-cover-band', path: '/programs/latin/' }
+			{ key: 'promo-main-reel', path: '/' },
+			{ key: 'promo-amore-no', path: '/' },
+			{ key: 'thematic-italian', path: '/' },
+			{ key: 'promo-cold-heart', path: '/' },
+			{ key: 'promo-lets-get-it-started', path: '/' },
+			{ key: 'interact-wedding-shallow', path: '/' }
 		];
 
 		let currentPath = '';
@@ -116,6 +121,23 @@ test.describe('video rails — open + play', () => {
 			await page.keyboard.press('Escape');
 			await expect(lightbox).not.toHaveClass(/is-open/);
 		}
+	});
+
+	test('the local Latin original plays without advertising an unavailable 4K version', async ({ page }) => {
+		await page.goto('/programs/latin/');
+		await page.locator('[data-video="latin-music-luxury-cover-band"]').first().click();
+		const lightbox = page.locator('#lightbox');
+		await expect(lightbox).toHaveClass(/is-open/);
+		await expect(lightbox.locator('[data-q="1080"]')).toHaveText('Оригинал');
+		await expect(lightbox.locator('[data-q="2160"]')).toBeHidden();
+		const video = lightbox.locator('video');
+		await expect.poll(() => video.evaluate(el => el.readyState)).toBeGreaterThanOrEqual(2);
+		await expect.poll(() => video.evaluate(el => el.currentTime)).toBeGreaterThan(0);
+	});
+
+	test('the complete promo package has a direct download link', async ({ page }) => {
+		await page.goto('/');
+		await expect(page.getByRole('link', { name: 'Скачать промопакет ↓', exact: true })).toHaveAttribute('href', '/promo-package.php');
 	});
 });
 

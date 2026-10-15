@@ -64,7 +64,8 @@ for (const path of ENGLISH_ROUTES) {
 
 		if (!CYRILLIC_PROPER_NOUN_ROUTES.has(path)) {
 			const bodyText = await page.locator('body').innerText();
-			expect(bodyText, `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
+			// The locale picker intentionally names Russian in its own language.
+			expect(bodyText.replace('Русский', ''), `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
 		}
 
 		const menuLabels = await page
@@ -74,6 +75,7 @@ for (const path of ENGLISH_ROUTES) {
 
 		const wrongPageLinks = await page.locator('a[href]').evaluateAll((links) =>
 			links.flatMap((link) => {
+				if ((link.textContent || '').trim() === 'Русский') return [];
 				const url = new URL(link.getAttribute('href') || '', window.location.href);
 				const isInternal = url.origin === window.location.origin;
 				const isPage = url.pathname.endsWith('/') || url.pathname.endsWith('.html');
@@ -119,14 +121,12 @@ test('Russian and English homepages keep their own opening videos in the first b
 		.evaluate((video) => video.dispatchEvent(new Event('ended')));
 
 	await page.goto('/');
-	expect(await openingPromos()).toEqual(['promo-egoistka', 'thematic-retro-heart']);
+	expect(await openingPromos()).toEqual(['promo-main-reel', 'promo-egoistka']);
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
-	expect(await heroVideoSource()).toContain('/promo-egoistka-');
-	expect(await heroVideoSource()).toContain('?v=20260826trim3');
+	expect(await heroVideoSource()).toMatch(/promo-main-reel-[a-f0-9]{12}-\d+\.mp4$/);
 	await finishHeroVideo();
-	expect(await heroVideoSource()).toContain('/thematic-retro-heart-');
-	expect(await heroVideoSource()).toContain('?v=20260826trim2');
+	expect(await heroVideoSource()).toMatch(/promo-egoistka-[a-f0-9]{12}-\d+\.mp4$/);
 
 	await page.goto('/en/');
 	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);

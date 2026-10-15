@@ -60,6 +60,7 @@ eleventyComputed:
 </section>
 
 {% from "partials/review.njk" import reviewBubble %}
+{% include "partials/vocalist-media.njk" %}
 {% set vocalistReview = reviews.byId[reviews.vocalists[vocalist.slug]] %}
 {% if vocalistReview %}
 <section class="section section--light" id="review">

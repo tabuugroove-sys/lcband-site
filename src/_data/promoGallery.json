@@ -1,0 +1,318 @@
+{
+  "aboutRows": [
+    [
+      "photos/promo-eca8ceb0bfe6.jpg",
+      "photos/promo-8ad03e697837.jpg",
+      "photos/promo-8fc39cf54e36.jpg"
+    ],
+    [
+      "photos/promo-178ae4ea7fdd.jpg",
+      "photos/promo-f760232e4b30.jpg",
+      "photos/promo-d2418be96414.jpg"
+    ],
+    [
+      "photos/promo-3bd930c518c1.jpg",
+      "photos/promo-ee4564fb64e2.jpg",
+      "photos/promo-1639102f14e0.jpg"
+    ]
+  ],
+  "costumes": [
+    {
+      "slug": "vocalists-red-feature",
+      "title": "Красные · вокалисты",
+      "titleEn": "Red Stage Look",
+      "priority": true,
+      "original": "assets/promo/lcband/9125c393aaf2e5e2c3a5bb4c.jpeg"
+    },
+    {
+      "slug": "black-sequin-stage-costumes-cover-band-vocalists",
+      "title": "Чёрный · пайетки",
+      "titleEn": "Black Glitter",
+      "priority": false,
+      "original": "assets/promo/lcband/343ab4f7d2f4d04359dce261.png"
+    },
+    {
+      "slug": "gold",
+      "title": "Золото",
+      "titleEn": "Gold",
+      "priority": false,
+      "original": "assets/promo/lcband/8aecf8fad62ae75daee3c83d.jpg"
+    },
+    {
+      "slug": "white",
+      "title": "Белый",
+      "titleEn": "White",
+      "priority": false,
+      "original": "assets/promo/lcband/949797844031470d1ccc550c.jpg"
+    },
+    {
+      "slug": "red",
+      "title": "Красный · группа",
+      "titleEn": "Red",
+      "priority": false,
+      "original": "assets/promo/lcband/066a5c79f05580ad133fdc9a.jpg"
+    },
+    {
+      "slug": "red-group",
+      "title": "Красный · дуэт",
+      "titleEn": "Red · Duo",
+      "priority": false,
+      "original": "assets/promo/lcband/6ceecae4dff0083f7002e947.jpeg"
+    },
+    {
+      "slug": "all-black",
+      "title": "All Black",
+      "titleEn": "All Black",
+      "priority": false,
+      "original": "assets/promo/lcband/ce78d8367f67c1bc15c026d0.jpeg"
+    },
+    {
+      "slug": "black-white",
+      "title": "Чёрно-белый",
+      "titleEn": "Black & White",
+      "priority": false,
+      "original": "assets/promo/lcband/b748fb627e5d9eb6f4eb9e18.jpg"
+    },
+    {
+      "slug": "black-silver",
+      "title": "Чёрно-серебряный",
+      "titleEn": "Black & Silver",
+      "priority": false,
+      "original": "assets/promo/lcband/c1b5441ccebc3212786a96e5.jpeg"
+    },
+    {
+      "slug": "black-red",
+      "title": "Чёрно-красный",
+      "titleEn": "Black & Red",
+      "priority": false,
+      "original": "assets/promo/lcband/cbc4440637789650e147cd6d.png"
+    },
+    {
+      "slug": "pink",
+      "title": "PINK",
+      "titleEn": "Pink",
+      "priority": false,
+      "original": "assets/promo/lcband/43f59db6cda9248f0dba7d26.jpeg"
+    },
+    {
+      "slug": "blue",
+      "title": "Синий",
+      "titleEn": "Blue",
+      "priority": false,
+      "original": "assets/promo/lcband/f6b8714a84fa4801931a3e98.jpg"
+    },
+    {
+      "slug": "dark-green",
+      "title": "Тёмно-зелёный",
+      "titleEn": "Dark Green",
+      "priority": false,
+      "original": "assets/promo/lcband/30d51a0059b8c188802fd349.jpeg"
+    },
+    {
+      "slug": "gold-studio",
+      "title": "Золотистое",
+      "titleEn": "Gold Studio",
+      "priority": false,
+      "original": "assets/promo/lcband/0e57670466ece55034f10e57.jpeg"
+    },
+    {
+      "slug": "beige-glitter",
+      "title": "Бежевый",
+      "titleEn": "Beige Glitter",
+      "priority": false,
+      "original": "assets/promo/lcband/76131f42e4a4dd397e00c7d1.jpg"
+    },
+    {
+      "slug": "shimmer",
+      "title": "Световое шоу",
+      "titleEn": "Light show",
+      "priority": false,
+      "original": "assets/promo/lcband/d36bfa38cad78a5506842cfc.png"
+    },
+    {
+      "slug": "flowers",
+      "title": "Цветы",
+      "titleEn": "Flowers",
+      "priority": false,
+      "original": "assets/promo/lcband/7b1a03b5e6f51f1770ba9f34.jpg"
+    }
+  ],
+  "vocalists": {
+    "laz": {
+      "photos": [
+        {
+          "preview": "assets/photos/promo-0197faa394d0.jpg",
+          "original": "assets/promo/lcband/0197faa394d0cc78bf8b9d4b.jpg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-4e5982dcf4dc.jpg",
+          "original": "assets/promo/lcband/4e5982dcf4dc2a78c4411318.jpg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-52badb035bf1.jpg",
+          "original": "assets/promo/lcband/52badb035bf137b33f26f58c.jpg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-a176fbaba981.jpg",
+          "original": "assets/promo/lcband/a176fbaba981fc22ff0e5d0a.jpg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-06118ffe5317.jpg",
+          "original": "assets/promo/lcband/06118ffe5317e1d569304f18.jpg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-ec879e6139b5.jpg",
+          "original": "assets/promo/lcband/ec879e6139b531548e6467d6.jpeg",
+          "caption": "LAZ · фото"
+        },
+        {
+          "preview": "assets/photos/promo-e234c69d200c.jpg",
+          "original": "assets/promo/lcband/e234c69d200c6ebb6ebc2ab4.jpeg",
+          "caption": "LAZ · фото"
+        }
+      ],
+      "videos": [
+        {
+          "slug": "promo-cold-heart",
+          "title": "LAZ Cold Heart",
+          "titleEn": "Cold Heart",
+          "poster": "assets/video/posters/promo-cold-heart.jpg"
+        },
+        {
+          "slug": "interact-laz-coco-jambo",
+          "title": "ИНТЕРАКТИВ LAZ · Coco Jambo",
+          "titleEn": "LAZ · Coco Jambo",
+          "poster": "assets/video/posters/interact-laz-coco-jambo.jpg"
+        },
+        {
+          "slug": "laz-video-02",
+          "title": "LAZ · выступление 02",
+          "titleEn": "LAZ · Live 3",
+          "poster": "assets/video/posters/laz-video-02.jpg"
+        },
+        {
+          "slug": "laz-video-03",
+          "title": "LAZ · выступление 03",
+          "titleEn": "LAZ · Live 4",
+          "poster": "assets/video/posters/laz-video-03.jpg"
+        },
+        {
+          "slug": "laz-video-04",
+          "title": "LAZ · выступление 04",
+          "titleEn": "LAZ · Live 5",
+          "poster": "assets/video/posters/laz-video-04.jpg"
+        },
+        {
+          "slug": "laz-live-05",
+          "title": "LAZ · лайв 05",
+          "titleEn": "LAZ · Live 6",
+          "poster": "assets/video/posters/laz-live-05.jpg"
+        },
+        {
+          "slug": "laz-live-06",
+          "title": "LAZ · лайв 06",
+          "titleEn": "LAZ · Live 7",
+          "poster": "assets/video/posters/laz-live-06.jpg"
+        },
+        {
+          "slug": "laz-live-07",
+          "title": "LAZ · лайв 07",
+          "titleEn": "LAZ · Live 8",
+          "poster": "assets/video/posters/laz-live-07.jpg"
+        }
+      ]
+    },
+    "teddy": {
+      "photos": [
+        {
+          "preview": "assets/photos/promo-c9a7d0b3dc8d.jpg",
+          "original": "assets/promo/lcband/c9a7d0b3dc8d9f28f170c85b.jpeg",
+          "caption": "Teddy · фото"
+        },
+        {
+          "preview": "assets/photos/promo-acd14655894a.jpg",
+          "original": "assets/promo/lcband/acd14655894a0448c7a387bd.jpeg",
+          "caption": "Teddy · фото"
+        },
+        {
+          "preview": "assets/photos/promo-d4432e1e3df1.jpg",
+          "original": "assets/promo/lcband/d4432e1e3df129d5af743a04.jpg",
+          "caption": "Teddy · фото"
+        },
+        {
+          "preview": "assets/photos/promo-ea370d4980bc.jpg",
+          "original": "assets/promo/lcband/ea370d4980bc6d2720d16786.jpg",
+          "caption": "Teddy · с Luxury Cover Band"
+        },
+        {
+          "preview": "assets/photos/promo-45bc6a328e48.jpg",
+          "original": "assets/promo/lcband/45bc6a328e484e20fecba2b8.jpeg",
+          "caption": "Teddy · с Luxury Cover Band"
+        }
+      ],
+      "videos": [
+        {
+          "slug": "teddy-macarena",
+          "title": "ИНТЕРАКТИВ - Teddy · Macarena",
+          "titleEn": "Teddy · Macarena",
+          "poster": "assets/video/posters/teddy-macarena.jpg"
+        },
+        {
+          "slug": "luxury-latin-dance-master-class",
+          "title": "ИНТЕРАКТИВ Teddy · Танцевальный мастер-класс",
+          "titleEn": "Teddy · Dance workshop",
+          "poster": "assets/video/posters/luxury-latin-dance-master-class.jpg"
+        },
+        {
+          "slug": "latin-music-luxury-cover-band",
+          "title": "Latin music Luxury Cover Band",
+          "titleEn": "Latin music · Luxury Cover Band",
+          "poster": "assets/video/posters/latin-music-luxury-cover-band.jpg"
+        },
+        {
+          "slug": "teddy-latina-promo",
+          "title": "Видео Tедди ЛАТИНА Промо",
+          "titleEn": "Teddy · Latin promo",
+          "poster": "assets/video/posters/teddy-latina-promo.jpg"
+        },
+        {
+          "slug": "teddy-live-lcband",
+          "title": "Видео Tедди Лайв с LCBAND",
+          "titleEn": "Teddy · Live with Luxury Cover Band",
+          "poster": "assets/video/posters/teddy-live-lcband.jpg"
+        },
+        {
+          "slug": "teddy-macarena-vendor",
+          "title": "Видео Тедди - MACARENA",
+          "titleEn": "Teddy · Macarena live",
+          "poster": "assets/video/posters/teddy-macarena-vendor.jpg"
+        },
+        {
+          "slug": "teddy-egor-kreed",
+          "title": "Видео Тедди ft. Егор Крид",
+          "titleEn": "Teddy · Egor Kreed",
+          "poster": "assets/video/posters/teddy-egor-kreed.jpg"
+        },
+        {
+          "slug": "teddy-jzhet",
+          "title": "Видео Тедди жжет",
+          "titleEn": "Teddy · Live",
+          "poster": "assets/video/posters/teddy-jzhet.jpg"
+        }
+      ]
+    },
+    "irina": {
+      "photos": [],
+      "videos": []
+    },
+    "stas": {
+      "photos": [],
+      "videos": []
+    }
+  }
+}

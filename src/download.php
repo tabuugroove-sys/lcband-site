@@ -16,7 +16,22 @@ if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'HEAD'], true)) {
     exit;
 }
 header('Content-Type: video/mp4');
-header('Content-Disposition: attachment; filename="' . $filename . '"');
+$displayName = $filename;
+$catalogue = json_decode(@file_get_contents(__DIR__ . '/promo-package.json') ?: '{}', true);
+foreach (($catalogue['files'] ?? []) as $entry) {
+    if (basename($entry['path']) === $filename) { $displayName = basename($entry['name']); break; }
+}
+if ($displayName === $filename) {
+    foreach (($catalogue['videos'] ?? []) as $video) {
+        if (!preg_match('/\A' . preg_quote($video['family'], '/') . '-(720|1080|2160)\.mp4\z/', $filename, $quality)) continue;
+        foreach ($catalogue['files'] as $entry) {
+            if ($entry['path'] !== $video['original']) continue;
+            $displayName = pathinfo(basename($entry['name']), PATHINFO_FILENAME) . ' — ' . $quality[1] . 'p.mp4';
+            break 2;
+        }
+    }
+}
+header('Content-Disposition: attachment; filename="' . $filename . '"; filename*=UTF-8\'\'' . rawurlencode($displayName));
 header('Content-Length: ' . filesize($file));
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: private, no-store');

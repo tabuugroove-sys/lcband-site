@@ -1,0 +1,41 @@
+{% set media = promoGallery.vocalists[vocalist.slug] %}
+{% set isEn = htmlLang == 'en' %}
+{% if media.videos.length %}
+<section class="section" id="videos">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">{{ vocalist.name }}</p>
+		<h2 class="section__title">{% if isEn %}Watch live.{% else %}Видео выступлений.{% endif %}</h2>
+	</div>
+	<div class="video-rail video-rail--small reveal" role="region" aria-label="{{ vocalist.name }} — {% if isEn %}performance videos{% else %}видео выступлений{% endif %}">
+		<ul class="video-rail__track">
+			{% for video in media.videos %}
+			<li class="vtile vtile--small">
+				<a class="vtile__link" href="#" data-video="{{ video.slug }}">
+					<img class="vtile__poster" src="{{ ('/' + video.poster) | url }}" alt="{{ video.titleEn if isEn else video.title }}" loading="lazy">
+					<span class="vtile__play" aria-hidden="true"></span>
+					<div class="vtile__caption"><span class="vtile__title">{{ video.titleEn if isEn else video.title }}</span></div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</section>
+{% endif %}
+{% if media.photos.length %}
+<section class="section section--flush" id="photos">
+	<div class="container container--narrow reveal"><h2 class="section__title">{% if isEn %}Photos.{% else %}Фото.{% endif %}</h2></div>
+	<ul class="ig-grid">
+		{% for photo in media.photos %}
+		<li class="ig-tile"><a class="ig-tile__link" href="{{ ('/' + photo.original) | url }}" data-lightbox><img src="{{ ('/' + photo.preview) | url }}" alt="{{ vocalist.name + ' — live performance' if isEn else photo.caption }}" loading="lazy"></a></li>
+		{% endfor %}
+	</ul>
+</section>
+{% endif %}
+{% if media.photos.length or media.videos.length %}
+<section class="section section--light">
+	<div class="container container--narrow reveal">
+		<p class="section__lead">{% if isEn %}Download individual videos in the player, or get all videos, photos, repertoire and riders in one ZIP.{% else %}Отдельное видео можно скачать в плеере. Весь комплект видео, фото, репертуара и райдеров — в одном ZIP.{% endif %}</p>
+		<a class="btn btn--blue" href="{{ '/promo-package.php' | url }}">{% if isEn %}Download promo package ↓{% else %}Скачать промопакет ↓{% endif %}</a>
+	</div>
+</section>
+{% endif %}

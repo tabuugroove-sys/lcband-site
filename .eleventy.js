@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 export default function (eleventyConfig) {
+	const promoCatalogueFile = new URL('./media/lcband-promo-package.json', import.meta.url);
+	const promoCatalogue = fs.existsSync(promoCatalogueFile) ? JSON.parse(fs.readFileSync(promoCatalogueFile, 'utf8')) : null;
 	// Git tracks code and lightweight assets. MP4 files live on Sprinthost and
 	// are catalogued in media/manifest.json, so they must never enter _site or
 	// a GitHub Actions artifact.
@@ -32,8 +34,17 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/video-share.js");
 	eleventyConfig.addPassthroughCopy("src/video-share.css");
 	eleventyConfig.addPassthroughCopy("src/download.php");
+	eleventyConfig.addPassthroughCopy("src/promo-package.php");
+	eleventyConfig.addPassthroughCopy("src/lib/promo-zip.php");
+	eleventyConfig.addPassthroughCopy({ "media/lcband-promo-package.json": "promo-package.json" });
 	eleventyConfig.addTransform("videoSharing", function (content) {
 		if (!this.page.outputPath?.endsWith('.html')) return content;
+		// Native players and existing embeds use the same revision as the ZIP.
+		content = content.replace(/assets\/video\/mp4\/([a-z0-9-]+)-(480|720|1080|2160)\.mp4(?:\?v=[a-z0-9]+)?/g, (url, slug, quality) => {
+			const video = promoCatalogue?.videos?.[slug];
+			return video ? `assets/video/mp4/${video.family}-${quality}.mp4` : url;
+		});
+		content = content.replace(/assets\/photos\/wall\/costumes--[a-z0-9-]+-(300|520)\.webp(?!\?)/g, '$&?v=20261014canon');
 		content = content.replace('</head>', '<link rel="stylesheet" href="/video-share.css?v=2"><script src="/video-quality.js?v=1" defer></script></head>');
 		if (this.page.url === '/embed/') return content;
 		return content.replace(/live-icon-(720|1080)\.mp4(?!\?)/g, 'live-icon-$1.mp4?v=20261002cut6')

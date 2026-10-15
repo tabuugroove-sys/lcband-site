@@ -58,14 +58,44 @@
       "sha256": "a745c31584e968be50920c4e13c7254564cb0664e65e5e9fee56d28442c33e31"
     },
     {
+      "path": "assets/video/mp4/french-je-taime-1080.mp4",
+      "bytes": 88127864,
+      "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b"
+    },
+    {
+      "path": "assets/video/mp4/french-je-taime-3567a99b1071-1080.mp4",
+      "bytes": 88127864,
+      "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b"
+    },
+    {
+      "path": "assets/video/mp4/french-je-taime-3567a99b1071-720.mp4",
+      "bytes": 88127864,
+      "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b"
+    },
+    {
+      "path": "assets/video/mp4/french-je-taime-720.mp4",
+      "bytes": 88127864,
+      "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b"
+    },
+    {
       "path": "assets/video/mp4/interact-chainsmokers-1080.mp4",
-      "bytes": 13988806,
-      "sha256": "0670ff7660284c91ee9cc12b20e05ffbf828dcfa2b414c6e3af0ec1647270c91"
+      "bytes": 69281171,
+      "sha256": "2a2aabc4b03653b6a8872b77302984e7b491fc98610b15ec5bc917633bf90900"
+    },
+    {
+      "path": "assets/video/mp4/interact-chainsmokers-2a2aabc4b036-1080.mp4",
+      "bytes": 69281171,
+      "sha256": "2a2aabc4b03653b6a8872b77302984e7b491fc98610b15ec5bc917633bf90900"
+    },
+    {
+      "path": "assets/video/mp4/interact-chainsmokers-2a2aabc4b036-720.mp4",
+      "bytes": 43887199,
+      "sha256": "d7a5a0c085c728304215d940a4d07ef7533294066e7a09ae727576bb4b1e7d1e"
     },
     {
       "path": "assets/video/mp4/interact-chainsmokers-720.mp4",
-      "bytes": 6373025,
-      "sha256": "9447409626661550c0b464b722ffb7e0a6fa7d5e1ad4b6f6b62a67ca3beba324"
+      "bytes": 43887199,
+      "sha256": "d7a5a0c085c728304215d940a4d07ef7533294066e7a09ae727576bb4b1e7d1e"
     },
     {
       "path": "assets/video/mp4/interact-laz-coco-jambo-1080.mp4",
@@ -73,9 +103,19 @@
       "sha256": "569e857aa75cf63f2ba46e2df8f2fe11b60e5386850bc995baaadcc2ff8c892d"
     },
     {
+      "path": "assets/video/mp4/interact-laz-coco-jambo-569e857aa75c-1080.mp4",
+      "bytes": 35870426,
+      "sha256": "569e857aa75cf63f2ba46e2df8f2fe11b60e5386850bc995baaadcc2ff8c892d"
+    },
+    {
+      "path": "assets/video/mp4/interact-laz-coco-jambo-569e857aa75c-720.mp4",
+      "bytes": 11483793,
+      "sha256": "f2c58cc68dc153d388ab91c4a756603904b8d9a8c0386e11281e7949ad4005a2"
+    },
+    {
       "path": "assets/video/mp4/interact-laz-coco-jambo-720.mp4",
-      "bytes": 15062572,
-      "sha256": "eceabe18e3bc90936eba17d87d73d10715c790812b1c182e38be178efad85ccc"
+      "bytes": 11483793,
+      "sha256": "f2c58cc68dc153d388ab91c4a756603904b8d9a8c0386e11281e7949ad4005a2"
     },
     {
       "path": "assets/video/mp4/interact-macarena-1080.mp4",
@@ -89,18 +129,33 @@
     },
     {
       "path": "assets/video/mp4/interact-wedding-shallow-1080.mp4",
-      "bytes": 31285996,
-      "sha256": "f533692811c9efcdcaf0fc1102215b5aa73ae0890189eb174153affed37312ae"
+      "bytes": 44493684,
+      "sha256": "ef82e85da79d6ae7bfb9a51425a11884212e7d3e4834ece9be7d2ba92c767c82"
     },
     {
       "path": "assets/video/mp4/interact-wedding-shallow-2160.mp4",
-      "bytes": 209914335,
-      "sha256": "23879a5f2c16f5c7be6f89d02c642b9b275b6fb43d7a23210a6830f425a42c65"
+      "bytes": 176224335,
+      "sha256": "71c06b8df348a5d35836dc52c5d4c56a6e1e7f56bca2817225fdf43248bf416f"
+    },
+    {
+      "path": "assets/video/mp4/interact-wedding-shallow-71c06b8df348-1080.mp4",
+      "bytes": 44493684,
+      "sha256": "ef82e85da79d6ae7bfb9a51425a11884212e7d3e4834ece9be7d2ba92c767c82"
+    },
+    {
+      "path": "assets/video/mp4/interact-wedding-shallow-71c06b8df348-2160.mp4",
+      "bytes": 176224335,
+      "sha256": "71c06b8df348a5d35836dc52c5d4c56a6e1e7f56bca2817225fdf43248bf416f"
+    },
+    {
+      "path": "assets/video/mp4/interact-wedding-shallow-71c06b8df348-720.mp4",
+      "bytes": 18997346,
+      "sha256": "dd825ce93c6101e4b0d82f86627e78f327c15e91218279ef0b9b2c54601a993f"
     },
     {
       "path": "assets/video/mp4/interact-wedding-shallow-720.mp4",
-      "bytes": 13331068,
-      "sha256": "a495be913a8f794acd0c6db29ac20af5965f830ac6f06f3c05c4765b0c0e43ff"
+      "bytes": 18997346,
+      "sha256": "dd825ce93c6101e4b0d82f86627e78f327c15e91218279ef0b9b2c54601a993f"
     },
     {
       "path": "assets/video/mp4/irina-jazz-coco-live-720.mp4",
@@ -144,18 +199,173 @@
     },
     {
       "path": "assets/video/mp4/latin-music-luxury-cover-band-1080.mp4",
-      "bytes": 57720171,
-      "sha256": "fea55670d0fb87d46a5ebd2d68abbeac22fa9776759054f2ae6d93d0333a120c"
+      "bytes": 45883298,
+      "sha256": "5dbc76c5b3d23f4ab73152c2bd5f8ab8c84cf934c684f1827f7887f7954317bb"
     },
     {
-      "path": "assets/video/mp4/latin-music-luxury-cover-band-2160.mp4",
-      "bytes": 85141848,
-      "sha256": "43a7b0c62ed64e31f2c049a326fba0e7e0cd7c1ba2f23356d907e61539482e16"
+      "path": "assets/video/mp4/latin-music-luxury-cover-band-5dbc76c5b3d2-1080.mp4",
+      "bytes": 45883298,
+      "sha256": "5dbc76c5b3d23f4ab73152c2bd5f8ab8c84cf934c684f1827f7887f7954317bb"
+    },
+    {
+      "path": "assets/video/mp4/latin-music-luxury-cover-band-5dbc76c5b3d2-720.mp4",
+      "bytes": 28158386,
+      "sha256": "37689073f048a03a8f8f833a7880af05020f3f3a026119166941d43ab1522133"
     },
     {
       "path": "assets/video/mp4/latin-music-luxury-cover-band-720.mp4",
-      "bytes": 28961641,
-      "sha256": "aba7650c3bece704f8f42c806c14f2d22dfb15b765ee83f9ea69e1f6e41d64db"
+      "bytes": 28158386,
+      "sha256": "37689073f048a03a8f8f833a7880af05020f3f3a026119166941d43ab1522133"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-05-1080.mp4",
+      "bytes": 4928725,
+      "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-05-720.mp4",
+      "bytes": 4928725,
+      "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-05-7c00c40971e6-1080.mp4",
+      "bytes": 4928725,
+      "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-05-7c00c40971e6-720.mp4",
+      "bytes": 4928725,
+      "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-06-1080.mp4",
+      "bytes": 4763549,
+      "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-06-720.mp4",
+      "bytes": 4763549,
+      "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-06-b45b19336ca8-1080.mp4",
+      "bytes": 4763549,
+      "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-06-b45b19336ca8-720.mp4",
+      "bytes": 4763549,
+      "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-07-05ac48dc87e7-1080.mp4",
+      "bytes": 8899289,
+      "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-07-05ac48dc87e7-720.mp4",
+      "bytes": 8899289,
+      "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-07-1080.mp4",
+      "bytes": 8899289,
+      "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b"
+    },
+    {
+      "path": "assets/video/mp4/laz-live-07-720.mp4",
+      "bytes": 8899289,
+      "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-1080.mp4",
+      "bytes": 34893202,
+      "sha256": "2a1bb25324e7d5fe66b041fb6a1fd86aeddee879db7c2b93bc63078b5a048dbe"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-2160.mp4",
+      "bytes": 183803116,
+      "sha256": "6e03fbfccac7fc868b01f558db7e6a104db34a7bfe2b556b3eb2c6293d1e12d3"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-6e03fbfccac7-1080.mp4",
+      "bytes": 34893202,
+      "sha256": "2a1bb25324e7d5fe66b041fb6a1fd86aeddee879db7c2b93bc63078b5a048dbe"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-6e03fbfccac7-2160.mp4",
+      "bytes": 183803116,
+      "sha256": "6e03fbfccac7fc868b01f558db7e6a104db34a7bfe2b556b3eb2c6293d1e12d3"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-6e03fbfccac7-720.mp4",
+      "bytes": 14411395,
+      "sha256": "71f3bac43f144fa1b56c744f36dac2bcee210b85cdea5f961731a5879762d113"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-02-720.mp4",
+      "bytes": 14411395,
+      "sha256": "71f3bac43f144fa1b56c744f36dac2bcee210b85cdea5f961731a5879762d113"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-1080.mp4",
+      "bytes": 23607476,
+      "sha256": "61bbc937951b5ed4b6e231804908cd609bd3960033bece7f35157727a420279b"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-2160.mp4",
+      "bytes": 106873089,
+      "sha256": "c2e4674ab9db336c19b7f5a8e943b40c1faaf518dda85fe18cb029cbdc01d991"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-720.mp4",
+      "bytes": 10149085,
+      "sha256": "8e61a3b7e5ecbf6f0e8c02929fc11321ec21fca6f8e63dff30d620b8887547c6"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-c2e4674ab9db-1080.mp4",
+      "bytes": 23607476,
+      "sha256": "61bbc937951b5ed4b6e231804908cd609bd3960033bece7f35157727a420279b"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-c2e4674ab9db-2160.mp4",
+      "bytes": 106873089,
+      "sha256": "c2e4674ab9db336c19b7f5a8e943b40c1faaf518dda85fe18cb029cbdc01d991"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-03-c2e4674ab9db-720.mp4",
+      "bytes": 10149085,
+      "sha256": "8e61a3b7e5ecbf6f0e8c02929fc11321ec21fca6f8e63dff30d620b8887547c6"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-1080.mp4",
+      "bytes": 45702509,
+      "sha256": "a389d15b4b1171bce9bbd243bac076cdac44098bac2a27ee0d52b0ace50b7af4"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-2160.mp4",
+      "bytes": 183224462,
+      "sha256": "432fb7cf841b8f77b4a940b24f894b9a70742f1ca24607d9b13063462272ab7b"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-432fb7cf841b-1080.mp4",
+      "bytes": 45702509,
+      "sha256": "a389d15b4b1171bce9bbd243bac076cdac44098bac2a27ee0d52b0ace50b7af4"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-432fb7cf841b-2160.mp4",
+      "bytes": 183224462,
+      "sha256": "432fb7cf841b8f77b4a940b24f894b9a70742f1ca24607d9b13063462272ab7b"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-432fb7cf841b-720.mp4",
+      "bytes": 19474034,
+      "sha256": "f335fd0cdf7f851cbb1501f5258cf979abff050ad55d8dbae07642d20e8447a0"
+    },
+    {
+      "path": "assets/video/mp4/laz-video-04-720.mp4",
+      "bytes": 19474034,
+      "sha256": "f335fd0cdf7f851cbb1501f5258cf979abff050ad55d8dbae07642d20e8447a0"
     },
     {
       "path": "assets/video/mp4/leo-sax-promo-1080.mp4",
@@ -188,9 +398,19 @@
       "sha256": "555d1a742e6555770104119582b6bea04beac0a564e08f4f01ea23cd2c6306b1"
     },
     {
+      "path": "assets/video/mp4/live-baskov-lcb-555d1a742e65-1080.mp4",
+      "bytes": 6614141,
+      "sha256": "555d1a742e6555770104119582b6bea04beac0a564e08f4f01ea23cd2c6306b1"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-lcb-555d1a742e65-720.mp4",
+      "bytes": 2272377,
+      "sha256": "4d4d51108851ce6c214da7970ada3e62943a1746247538c16b571efb1a34ffcc"
+    },
+    {
       "path": "assets/video/mp4/live-baskov-lcb-720.mp4",
-      "bytes": 4633701,
-      "sha256": "b7e3a20a754f74af4b740425a3bb0f050fe061cc8c69cba465b277d0b4b0c61a"
+      "bytes": 2272377,
+      "sha256": "4d4d51108851ce6c214da7970ada3e62943a1746247538c16b571efb1a34ffcc"
     },
     {
       "path": "assets/video/mp4/live-baskov-revva-1080.mp4",
@@ -199,48 +419,128 @@
     },
     {
       "path": "assets/video/mp4/live-baskov-revva-720.mp4",
-      "bytes": 16649915,
-      "sha256": "e90d87865637654ad385c9f3cbe7085e7a8a17b346af2aded0f2e92f209c6fca"
+      "bytes": 6374055,
+      "sha256": "4c564a228498808f6be8e7ef46da2769414e763afa8fbe133879c076d93ae58e"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-revva-7e044ae625af-1080.mp4",
+      "bytes": 23101911,
+      "sha256": "7e044ae625af409dfad3c00906bbc2290f52e7e046e7cc27ef70fd7ea510dd35"
+    },
+    {
+      "path": "assets/video/mp4/live-baskov-revva-7e044ae625af-720.mp4",
+      "bytes": 6374055,
+      "sha256": "4c564a228498808f6be8e7ef46da2769414e763afa8fbe133879c076d93ae58e"
     },
     {
       "path": "assets/video/mp4/live-berezy-1080.mp4",
-      "bytes": 23663958,
-      "sha256": "8cef8921d81db2799d44dd0114f97d032331e734cb61c4a073802eeb8423db02"
+      "bytes": 144742066,
+      "sha256": "189baf0f30d906490847473dc4041e5dbd97493c616156e59e13c77ee3f0ef2a"
+    },
+    {
+      "path": "assets/video/mp4/live-berezy-189baf0f30d9-1080.mp4",
+      "bytes": 144742066,
+      "sha256": "189baf0f30d906490847473dc4041e5dbd97493c616156e59e13c77ee3f0ef2a"
+    },
+    {
+      "path": "assets/video/mp4/live-berezy-189baf0f30d9-720.mp4",
+      "bytes": 28742409,
+      "sha256": "67824001dd965a7ba6aa620c8eb17cd5bf7d376cf1fa2000539d4a1eafd2d707"
     },
     {
       "path": "assets/video/mp4/live-berezy-720.mp4",
-      "bytes": 15993667,
-      "sha256": "fa0b62ce80d4400a3e591b4508595ac899dd9f728c4e5abfa59fcc58668dfb34"
+      "bytes": 28742409,
+      "sha256": "67824001dd965a7ba6aa620c8eb17cd5bf7d376cf1fa2000539d4a1eafd2d707"
     },
     {
       "path": "assets/video/mp4/live-big-lineup-1080.mp4",
-      "bytes": 66442564,
-      "sha256": "9a82e71d2d93f67de0199dc88869a9a3fc690a650e91cc746a2fbee135956295"
+      "bytes": 125612069,
+      "sha256": "8e85acb4c9bb43c05f46e988786395f3a2586337d8a70ab708d9cc3774a69539"
     },
     {
       "path": "assets/video/mp4/live-big-lineup-720.mp4",
-      "bytes": 42139431,
-      "sha256": "1c4ccd0c50bbb633b8e0055dd4379f417e623ca2d3ebe3b078362f4e3dc0450e"
+      "bytes": 62701528,
+      "sha256": "516dcaa469cc3a6199437f3457c703cb2b2e2e68288f523b41b8ce335360dd3a"
+    },
+    {
+      "path": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-1080.mp4",
+      "bytes": 125612069,
+      "sha256": "8e85acb4c9bb43c05f46e988786395f3a2586337d8a70ab708d9cc3774a69539"
+    },
+    {
+      "path": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-720.mp4",
+      "bytes": 62701528,
+      "sha256": "516dcaa469cc3a6199437f3457c703cb2b2e2e68288f523b41b8ce335360dd3a"
     },
     {
       "path": "assets/video/mp4/live-dance-monkey-1080.mp4",
-      "bytes": 45614361,
-      "sha256": "68703b4caa4a6f260988dfce577171153cdcb9a3dbd1995d731825d9b4183194"
+      "bytes": 73762792,
+      "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127"
+    },
+    {
+      "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
+      "bytes": 73762792,
+      "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127"
+    },
+    {
+      "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-720.mp4",
+      "bytes": 14694661,
+      "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41"
     },
     {
       "path": "assets/video/mp4/live-dance-monkey-720.mp4",
-      "bytes": 19071424,
-      "sha256": "0b0fb0a55c31dd2413e64910f0ef93fd505bdd2aa37cdf2b6fdcb0624b51a8d6"
+      "bytes": 14694661,
+      "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41"
+    },
+    {
+      "path": "assets/video/mp4/live-duet-1080.mp4",
+      "bytes": 30203738,
+      "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73"
+    },
+    {
+      "path": "assets/video/mp4/live-duet-720.mp4",
+      "bytes": 9428913,
+      "sha256": "c23dc763d3d500fdced4d5d5a2242e54cefb4e2f88a9b608bac7f66121de8ad5"
+    },
+    {
+      "path": "assets/video/mp4/live-duet-bb9a54beebc4-1080.mp4",
+      "bytes": 30203738,
+      "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73"
+    },
+    {
+      "path": "assets/video/mp4/live-duet-bb9a54beebc4-720.mp4",
+      "bytes": 9428913,
+      "sha256": "c23dc763d3d500fdced4d5d5a2242e54cefb4e2f88a9b608bac7f66121de8ad5"
     },
     {
       "path": "assets/video/mp4/live-icon-1080.mp4",
-      "bytes": 93995308,
-      "sha256": "b84747d1fb118aef27475193c393cee2d124b918dcc2ebe63634ee1fb3f2750a"
+      "bytes": 562307219,
+      "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
+      "bytes": 562307219,
+      "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-658a05cb8405-720.mp4",
+      "bytes": 113468576,
+      "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f"
     },
     {
       "path": "assets/video/mp4/live-icon-720.mp4",
-      "bytes": 54788168,
-      "sha256": "11d1abb5fad04c71ea26e04facd571595ca64488da8e0ffacc99749de869917e"
+      "bytes": 113468576,
+      "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f"
+    },
+    {
+      "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",
+      "bytes": 88235579,
+      "sha256": "0e127868c3567376f04f433ad914d89806fe3de5fdbd2b2dc88f324eb1ba8908"
+    },
+    {
+      "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-720.mp4",
+      "bytes": 21616346,
+      "sha256": "923e9a449b87a89efe75ab71d7219bd7d604b28245dc677249396b88b67cc047"
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-1080.mp4",
@@ -249,8 +549,8 @@
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-720.mp4",
-      "bytes": 42228908,
-      "sha256": "013d346d89fc845a8e399db5bb0b1e82719bb7c241b41956eb17d60fa6c6e39f"
+      "bytes": 21616346,
+      "sha256": "923e9a449b87a89efe75ab71d7219bd7d604b28245dc677249396b88b67cc047"
     },
     {
       "path": "assets/video/mp4/live-lets-get-loud-1080.mp4",
@@ -259,18 +559,38 @@
     },
     {
       "path": "assets/video/mp4/live-lets-get-loud-720.mp4",
-      "bytes": 2716570,
-      "sha256": "f91f249d02e1892393ea868a5ad005879ef69d5621ffc1f7ecf7b43fa048a2df"
+      "bytes": 4008293,
+      "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4"
+    },
+    {
+      "path": "assets/video/mp4/live-lets-get-loud-c8c6a3c13743-1080.mp4",
+      "bytes": 4008293,
+      "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4"
+    },
+    {
+      "path": "assets/video/mp4/live-lets-get-loud-c8c6a3c13743-720.mp4",
+      "bytes": 4008293,
+      "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4"
     },
     {
       "path": "assets/video/mp4/live-perfect-1080.mp4",
-      "bytes": 50322561,
-      "sha256": "ee5158c3f60baa368b60da01ef290ffc19031339dff1488542f0b086e49c81aa"
+      "bytes": 92869031,
+      "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567"
+    },
+    {
+      "path": "assets/video/mp4/live-perfect-34be773c40a4-1080.mp4",
+      "bytes": 92869031,
+      "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567"
+    },
+    {
+      "path": "assets/video/mp4/live-perfect-34be773c40a4-720.mp4",
+      "bytes": 60033971,
+      "sha256": "8b8482ddf792d2fbd9440876238ba4fb19d708ca588656ac3345745137d9f5cf"
     },
     {
       "path": "assets/video/mp4/live-perfect-720.mp4",
-      "bytes": 28220323,
-      "sha256": "f4b577103d4b240d76e41bfe7d23289fd0741fb0dd7504943531f00a2c9602f5"
+      "bytes": 60033971,
+      "sha256": "8b8482ddf792d2fbd9440876238ba4fb19d708ca588656ac3345745137d9f5cf"
     },
     {
       "path": "assets/video/mp4/live-sax-wedding-welcome-1080.mp4",
@@ -294,13 +614,23 @@
     },
     {
       "path": "assets/video/mp4/live-soho-1080.mp4",
-      "bytes": 35295315,
-      "sha256": "ca243314358ff48c6c95ee5c11db0cc08b4e8481a37dd8f4705d4d48967f2d3e"
+      "bytes": 68548821,
+      "sha256": "28f9b449e584d0a11def2a35c3ecef6541e053e149a0851bca35110d8cc8923b"
+    },
+    {
+      "path": "assets/video/mp4/live-soho-28f9b449e584-1080.mp4",
+      "bytes": 68548821,
+      "sha256": "28f9b449e584d0a11def2a35c3ecef6541e053e149a0851bca35110d8cc8923b"
+    },
+    {
+      "path": "assets/video/mp4/live-soho-28f9b449e584-720.mp4",
+      "bytes": 13843286,
+      "sha256": "a56f3a717aa89b37314e0914f0231a3c229d3e1bba73fb01d633bcc914114276"
     },
     {
       "path": "assets/video/mp4/live-soho-720.mp4",
-      "bytes": 20394607,
-      "sha256": "a10f138bea9c646b99439753586469980df0c756a2b31fe25af27088e21a74b1"
+      "bytes": 13843286,
+      "sha256": "a56f3a717aa89b37314e0914f0231a3c229d3e1bba73fb01d633bcc914114276"
     },
     {
       "path": "assets/video/mp4/luxury-latin-dance-master-class-1080.mp4",
@@ -308,9 +638,19 @@
       "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
     },
     {
-      "path": "assets/video/mp4/luxury-latin-dance-master-class-720.mp4",
+      "path": "assets/video/mp4/luxury-latin-dance-master-class-1ff201fa861b-1080.mp4",
       "bytes": 42143090,
       "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
+    },
+    {
+      "path": "assets/video/mp4/luxury-latin-dance-master-class-1ff201fa861b-720.mp4",
+      "bytes": 12463618,
+      "sha256": "630fcb86850839a3b732101116f1402daa14417538416c7ffcca0cd695d1b7c6"
+    },
+    {
+      "path": "assets/video/mp4/luxury-latin-dance-master-class-720.mp4",
+      "bytes": 12463618,
+      "sha256": "630fcb86850839a3b732101116f1402daa14417538416c7ffcca0cd695d1b7c6"
     },
     {
       "path": "assets/video/mp4/old-money-band-1080.mp4",
@@ -324,33 +664,63 @@
     },
     {
       "path": "assets/video/mp4/promo-amore-no-1080.mp4",
-      "bytes": 64302179,
-      "sha256": "150026cd1af4d5e83e51811f6ce791741637a548f668e581e3656392e430bc10"
+      "bytes": 47840885,
+      "sha256": "23b6f267b4269bccf6cd81a8c3ef626c27f836684105b7e571472d05a0329ed1"
     },
     {
       "path": "assets/video/mp4/promo-amore-no-2160.mp4",
-      "bytes": 215014972,
-      "sha256": "84c612bcc99700aa17402dbb5e088a626e44989390f0d8b9a398a4dba9f30786"
+      "bytes": 223468463,
+      "sha256": "b15ab05a955f22f0987d33506d84ba1dda5bf2a14ba00a135c9a46dc5481bafc"
     },
     {
       "path": "assets/video/mp4/promo-amore-no-720.mp4",
-      "bytes": 27284303,
-      "sha256": "3e738aa9c919a5e00afb7bc0d0bb2cb81d6e14c812fa5efc8d93d0dca1470ee3"
+      "bytes": 21471792,
+      "sha256": "cafb7868f2bd4b9306d72a055f9885b205ee128ef33c0b46a3b1e332b0fdc105"
+    },
+    {
+      "path": "assets/video/mp4/promo-amore-no-b15ab05a955f-1080.mp4",
+      "bytes": 47840885,
+      "sha256": "23b6f267b4269bccf6cd81a8c3ef626c27f836684105b7e571472d05a0329ed1"
+    },
+    {
+      "path": "assets/video/mp4/promo-amore-no-b15ab05a955f-2160.mp4",
+      "bytes": 223468463,
+      "sha256": "b15ab05a955f22f0987d33506d84ba1dda5bf2a14ba00a135c9a46dc5481bafc"
+    },
+    {
+      "path": "assets/video/mp4/promo-amore-no-b15ab05a955f-720.mp4",
+      "bytes": 21471792,
+      "sha256": "cafb7868f2bd4b9306d72a055f9885b205ee128ef33c0b46a3b1e332b0fdc105"
     },
     {
       "path": "assets/video/mp4/promo-cold-heart-1080.mp4",
-      "bytes": 39222616,
-      "sha256": "9d530c792ce11ba1d8956e9142b16851355e327649a7450edba67e096ed83071"
+      "bytes": 36116499,
+      "sha256": "4a9b3975bf081d38fc6fd4bc99a9fc49b5e624b56fb230fc08d31929ce1d9c8d"
     },
     {
       "path": "assets/video/mp4/promo-cold-heart-2160.mp4",
-      "bytes": 94766882,
-      "sha256": "f14718c2872d3224dbfeaf9d2510263233d420d4b55871df6a332a6a21f6b059"
+      "bytes": 180809340,
+      "sha256": "861f4fa4ed161fec85b3af5ede99848ae79536e98391ed35b534101235f76699"
     },
     {
       "path": "assets/video/mp4/promo-cold-heart-720.mp4",
-      "bytes": 18467169,
-      "sha256": "def2c335e687b22df55ea844a112e957b5c72db74a3c9766e557e86ce290dc4c"
+      "bytes": 15222216,
+      "sha256": "2148b760b4f0219438601ec49987c0c9a31313dd25964dd0f3eba3591a234696"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-861f4fa4ed16-1080.mp4",
+      "bytes": 36116499,
+      "sha256": "4a9b3975bf081d38fc6fd4bc99a9fc49b5e624b56fb230fc08d31929ce1d9c8d"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-861f4fa4ed16-2160.mp4",
+      "bytes": 180809340,
+      "sha256": "861f4fa4ed161fec85b3af5ede99848ae79536e98391ed35b534101235f76699"
+    },
+    {
+      "path": "assets/video/mp4/promo-cold-heart-861f4fa4ed16-720.mp4",
+      "bytes": 15222216,
+      "sha256": "2148b760b4f0219438601ec49987c0c9a31313dd25964dd0f3eba3591a234696"
     },
     {
       "path": "assets/video/mp4/promo-danza-cuduro-1080.mp4",
@@ -369,73 +739,163 @@
     },
     {
       "path": "assets/video/mp4/promo-egoistka-1080.mp4",
-      "bytes": 41187899,
-      "sha256": "cee1bc1996e98e31d7c17f295ba8bf38588ad2633b4f88c383b5f725c1d09854"
+      "bytes": 28418354,
+      "sha256": "6a1df3bb01de3de5fcd27605b1f027418fecbc8a3cc9e33e0992a4399296aea7"
     },
     {
       "path": "assets/video/mp4/promo-egoistka-2160.mp4",
-      "bytes": 96380445,
-      "sha256": "fb1de3d73c9f283f89519176ed1ff322966b4098f13ca280dd78b997bff9a684"
+      "bytes": 170722298,
+      "sha256": "76bde926f919a85f73cd8f4d75cc3fc4a16c2b25ec2c931e644d1c69b9007cf5"
     },
     {
       "path": "assets/video/mp4/promo-egoistka-720.mp4",
-      "bytes": 19066968,
-      "sha256": "a4992ebd846bcd927c58382b3efedf5b1e5ad77e8bc72e27d0f7abb1df44ba89"
+      "bytes": 12930707,
+      "sha256": "5008c3f4eacc5e26e28afe0c82ff5ed38cd1eddab3f8e97bc9a6596163d06b1e"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-76bde926f919-1080.mp4",
+      "bytes": 28418354,
+      "sha256": "6a1df3bb01de3de5fcd27605b1f027418fecbc8a3cc9e33e0992a4399296aea7"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-76bde926f919-2160.mp4",
+      "bytes": 170722298,
+      "sha256": "76bde926f919a85f73cd8f4d75cc3fc4a16c2b25ec2c931e644d1c69b9007cf5"
+    },
+    {
+      "path": "assets/video/mp4/promo-egoistka-76bde926f919-720.mp4",
+      "bytes": 12930707,
+      "sha256": "5008c3f4eacc5e26e28afe0c82ff5ed38cd1eddab3f8e97bc9a6596163d06b1e"
     },
     {
       "path": "assets/video/mp4/promo-letet-1080.mp4",
-      "bytes": 26621615,
-      "sha256": "97ebd688c50c07b1f775c7e027496350d2cedb910f71f0367e7e49e084937e04"
+      "bytes": 25625721,
+      "sha256": "9b525fd3adda7f4bacd30a1b601a59fb225d64ad28bb14449a7a4acfddf74567"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-16c584e1181b-1080.mp4",
+      "bytes": 25625721,
+      "sha256": "9b525fd3adda7f4bacd30a1b601a59fb225d64ad28bb14449a7a4acfddf74567"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-16c584e1181b-2160.mp4",
+      "bytes": 103071127,
+      "sha256": "16c584e1181b9db7b17d5b95295c2f7bef22e970ecc05617e8128600090cd9ff"
+    },
+    {
+      "path": "assets/video/mp4/promo-letet-16c584e1181b-720.mp4",
+      "bytes": 11151589,
+      "sha256": "338834fb8f0daaca8d4c258532f024224f81ac07ccb8e6090d1f146b3c089e8f"
     },
     {
       "path": "assets/video/mp4/promo-letet-2160.mp4",
-      "bytes": 65280497,
-      "sha256": "d6e1021243cd2362f0264eb83c1c6c0501d695dd6c812d51938550f5bc1bdae9"
+      "bytes": 103071127,
+      "sha256": "16c584e1181b9db7b17d5b95295c2f7bef22e970ecc05617e8128600090cd9ff"
     },
     {
       "path": "assets/video/mp4/promo-letet-720.mp4",
-      "bytes": 11321849,
-      "sha256": "2e8c0b70cfd08d0ec32119a707658556161af8606cf0212d439f62c223c9b2b5"
+      "bytes": 11151589,
+      "sha256": "338834fb8f0daaca8d4c258532f024224f81ac07ccb8e6090d1f146b3c089e8f"
     },
     {
       "path": "assets/video/mp4/promo-lets-get-it-started-1080.mp4",
-      "bytes": 22411516,
-      "sha256": "f9e15ab699c49c3af66e4df9ec5d525e5abbea317676f8981e917dc0d18ff7df"
+      "bytes": 23606972,
+      "sha256": "45171b8f8e1a4bbe007015ae52fb35e9b8b590b1d2efd2c7cdcecf93f383a500"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-20f68040ec37-1080.mp4",
+      "bytes": 23606972,
+      "sha256": "45171b8f8e1a4bbe007015ae52fb35e9b8b590b1d2efd2c7cdcecf93f383a500"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-20f68040ec37-2160.mp4",
+      "bytes": 105683855,
+      "sha256": "20f68040ec37741c35b6607f74892083641fa49a06043286906fa51a7fc9b336"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-20f68040ec37-720.mp4",
+      "bytes": 10105901,
+      "sha256": "f2b60e89d04ced97567d2a66b45eefe3a35343d5e27d3f706baff2e8c43f1e4d"
     },
     {
       "path": "assets/video/mp4/promo-lets-get-it-started-2160.mp4",
-      "bytes": 113052182,
-      "sha256": "4ffee66247429571665d5670ac11839f016991d6a688cfcc44030633c67bf628"
+      "bytes": 105683855,
+      "sha256": "20f68040ec37741c35b6607f74892083641fa49a06043286906fa51a7fc9b336"
     },
     {
       "path": "assets/video/mp4/promo-lets-get-it-started-720.mp4",
-      "bytes": 7382831,
-      "sha256": "bc1d5c9e544dc8ec030db92cdcd12ecdcd2b2dfdcac6c3e58a74a077796375d8"
+      "bytes": 10105901,
+      "sha256": "f2b60e89d04ced97567d2a66b45eefe3a35343d5e27d3f706baff2e8c43f1e4d"
     },
     {
       "path": "assets/video/mp4/promo-loca-loca-1080.mp4",
-      "bytes": 32943991,
-      "sha256": "3aa99506719b4bf84a8ebaa36b0a719e220bb19ff513da30f488c49c45e05aed"
+      "bytes": 20350428,
+      "sha256": "c778197e4557a0bb49a10f0c12ec6be05124247a48a90c1807edbfcfabfc5642"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-146380546c25-1080.mp4",
+      "bytes": 20350428,
+      "sha256": "c778197e4557a0bb49a10f0c12ec6be05124247a48a90c1807edbfcfabfc5642"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-146380546c25-2160.mp4",
+      "bytes": 103617313,
+      "sha256": "146380546c25718f125ff33cd91f57b079dc607d34e99c687e0e59e9ce5ad76d"
+    },
+    {
+      "path": "assets/video/mp4/promo-loca-loca-146380546c25-720.mp4",
+      "bytes": 8351430,
+      "sha256": "550d5d534df69ce3f074f55d0657b121508d6573f5991c709592af9bfbb7189f"
     },
     {
       "path": "assets/video/mp4/promo-loca-loca-2160.mp4",
-      "bytes": 89525280,
-      "sha256": "8417ccd9fb02837d8a65ef3c3019b0cb0d4e25535f4754ea174ced8fef68544d"
+      "bytes": 103617313,
+      "sha256": "146380546c25718f125ff33cd91f57b079dc607d34e99c687e0e59e9ce5ad76d"
     },
     {
       "path": "assets/video/mp4/promo-loca-loca-720.mp4",
-      "bytes": 13581339,
-      "sha256": "65e57bf6b2931067d3fb2b850b0c5525f7bbce87927bb41ad8eb57082faa0400"
+      "bytes": 8351430,
+      "sha256": "550d5d534df69ce3f074f55d0657b121508d6573f5991c709592af9bfbb7189f"
     },
     {
       "path": "assets/video/mp4/promo-main-reel-1080.mp4",
-      "bytes": 20765297,
-      "sha256": "2c990dc75ffa35830c8ba2651b3e117a75640456e46743093e5c37677f5f757c"
+      "bytes": 270978715,
+      "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-2160.mp4",
+      "bytes": 943419316,
+      "sha256": "3c92641df7482a07312a6bc746e44fc695a6a08e5ebb4a4d7db26b269190907a"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-3c92641df748-1080.mp4",
+      "bytes": 270978715,
+      "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-3c92641df748-2160.mp4",
+      "bytes": 943419316,
+      "sha256": "3c92641df7482a07312a6bc746e44fc695a6a08e5ebb4a4d7db26b269190907a"
+    },
+    {
+      "path": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
+      "bytes": 115806379,
+      "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537"
     },
     {
       "path": "assets/video/mp4/promo-main-reel-720.mp4",
-      "bytes": 5983382,
-      "sha256": "29fc7e3ef077412f00250e36989d8b91874ffce19d36530dfa281efa4f8c082b"
+      "bytes": 115806379,
+      "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537"
+    },
+    {
+      "path": "assets/video/mp4/raim-piano-karaoke.mp4",
+      "bytes": 22240227,
+      "sha256": "824fe37e3a6842541a8fe2bd0518f30e518e36720c4052556688ba2befb6e648"
+    },
+    {
+      "path": "assets/video/mp4/raim-piano-promo.mp4",
+      "bytes": 41946345,
+      "sha256": "f17a43707021d0788f5ce390269d43b73218f290382bd5b314e7feb24eb53617"
     },
     {
       "path": "assets/video/mp4/sax-hero.mp4",
@@ -483,6 +943,26 @@
       "sha256": "03e31d2724adc6677f610617fa214ec5a08949d8bb0fe4998989ca4d412fd437"
     },
     {
+      "path": "assets/video/mp4/teddy-egor-kreed-1080.mp4",
+      "bytes": 2922463,
+      "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065"
+    },
+    {
+      "path": "assets/video/mp4/teddy-egor-kreed-720.mp4",
+      "bytes": 2922463,
+      "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065"
+    },
+    {
+      "path": "assets/video/mp4/teddy-egor-kreed-cd3d17707a24-1080.mp4",
+      "bytes": 2922463,
+      "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065"
+    },
+    {
+      "path": "assets/video/mp4/teddy-egor-kreed-cd3d17707a24-720.mp4",
+      "bytes": 2922463,
+      "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065"
+    },
+    {
       "path": "assets/video/mp4/teddy-jzhet-1080.mp4",
       "bytes": 5455290,
       "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
@@ -493,14 +973,64 @@
       "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
     },
     {
+      "path": "assets/video/mp4/teddy-jzhet-b9672528ed35-1080.mp4",
+      "bytes": 5455290,
+      "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
+    },
+    {
+      "path": "assets/video/mp4/teddy-jzhet-b9672528ed35-720.mp4",
+      "bytes": 5455290,
+      "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b"
+    },
+    {
       "path": "assets/video/mp4/teddy-latina-promo-1080.mp4",
       "bytes": 91230180,
       "sha256": "c136b07c6fd9959278f685aa7368396c84048d2d5464206a526f2aaf15fea413"
     },
     {
       "path": "assets/video/mp4/teddy-latina-promo-720.mp4",
+      "bytes": 20372580,
+      "sha256": "a7ec7e7d3e568e9a1ac0070319e3028fe8a7aa51b5e58f308ec571d41ee5b1a6"
+    },
+    {
+      "path": "assets/video/mp4/teddy-latina-promo-c136b07c6fd9-1080.mp4",
       "bytes": 91230180,
       "sha256": "c136b07c6fd9959278f685aa7368396c84048d2d5464206a526f2aaf15fea413"
+    },
+    {
+      "path": "assets/video/mp4/teddy-latina-promo-c136b07c6fd9-720.mp4",
+      "bytes": 20372580,
+      "sha256": "a7ec7e7d3e568e9a1ac0070319e3028fe8a7aa51b5e58f308ec571d41ee5b1a6"
+    },
+    {
+      "path": "assets/video/mp4/teddy-live-lcband-1080.mp4",
+      "bytes": 123107731,
+      "sha256": "ff8c47eb2f54490db2dfa88946d25a309f0d2208c84f0481e5b9f755d8589cfd"
+    },
+    {
+      "path": "assets/video/mp4/teddy-live-lcband-720.mp4",
+      "bytes": 35923116,
+      "sha256": "e0cd3e3a63ead652c76809a3b42b06d4cc15bdd68bdbe2241d108a6e9e795c15"
+    },
+    {
+      "path": "assets/video/mp4/teddy-live-lcband-ff8c47eb2f54-1080.mp4",
+      "bytes": 123107731,
+      "sha256": "ff8c47eb2f54490db2dfa88946d25a309f0d2208c84f0481e5b9f755d8589cfd"
+    },
+    {
+      "path": "assets/video/mp4/teddy-live-lcband-ff8c47eb2f54-720.mp4",
+      "bytes": 35923116,
+      "sha256": "e0cd3e3a63ead652c76809a3b42b06d4cc15bdd68bdbe2241d108a6e9e795c15"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-085b34e08dc4-1080.mp4",
+      "bytes": 15604153,
+      "sha256": "085b34e08dc4da7514e43c07fcd78786aacaea2af3bace3f1314807c2878fef4"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-085b34e08dc4-720.mp4",
+      "bytes": 8192874,
+      "sha256": "20c1f0ec8836300dbf8e289c7145b4fffc753008ec00a5288be868fea887e645"
     },
     {
       "path": "assets/video/mp4/teddy-macarena-1080.mp4",
@@ -509,33 +1039,78 @@
     },
     {
       "path": "assets/video/mp4/teddy-macarena-720.mp4",
-      "bytes": 10136793,
-      "sha256": "dd91fa6eb49b8630fcc59db4daf08e5bb3202b777248be01bf9dbf0fd80587d3"
+      "bytes": 8192874,
+      "sha256": "20c1f0ec8836300dbf8e289c7145b4fffc753008ec00a5288be868fea887e645"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-vendor-1080.mp4",
+      "bytes": 14953662,
+      "sha256": "93e5e3ead6941dd02a0ba38f8b157ec0153435ec3674615990ec0559e1982ab2"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-vendor-720.mp4",
+      "bytes": 8193326,
+      "sha256": "7847bb7baeb4b7e15178b93e455a4c5732b70b02a2bda725362879db942d0148"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-vendor-93e5e3ead694-1080.mp4",
+      "bytes": 14953662,
+      "sha256": "93e5e3ead6941dd02a0ba38f8b157ec0153435ec3674615990ec0559e1982ab2"
+    },
+    {
+      "path": "assets/video/mp4/teddy-macarena-vendor-93e5e3ead694-720.mp4",
+      "bytes": 8193326,
+      "sha256": "7847bb7baeb4b7e15178b93e455a4c5732b70b02a2bda725362879db942d0148"
     },
     {
       "path": "assets/video/mp4/thematic-french-1080.mp4",
-      "bytes": 16215410,
-      "sha256": "823007ce994921ad913eae7c35d962c9ecfa78e6f4a4a0a2937235ea78e0e552"
+      "bytes": 31427199,
+      "sha256": "34b41f966ddc51fd61c39263490649e5eeae5d928b89e4c3abd51e1870b53d4e"
+    },
+    {
+      "path": "assets/video/mp4/thematic-french-34b41f966ddc-1080.mp4",
+      "bytes": 31427199,
+      "sha256": "34b41f966ddc51fd61c39263490649e5eeae5d928b89e4c3abd51e1870b53d4e"
+    },
+    {
+      "path": "assets/video/mp4/thematic-french-34b41f966ddc-720.mp4",
+      "bytes": 20956431,
+      "sha256": "ee218c1aee41564ec472a0155f9d48e546d272dc3973d4d5907ca41cf828b10c"
     },
     {
       "path": "assets/video/mp4/thematic-french-720.mp4",
-      "bytes": 5983382,
-      "sha256": "29fc7e3ef077412f00250e36989d8b91874ffce19d36530dfa281efa4f8c082b"
+      "bytes": 20956431,
+      "sha256": "ee218c1aee41564ec472a0155f9d48e546d272dc3973d4d5907ca41cf828b10c"
     },
     {
       "path": "assets/video/mp4/thematic-italian-1080.mp4",
-      "bytes": 25829923,
-      "sha256": "b0e3b588d7c288de7d0799d4828979d52b3cbf2c29d0152cb3d372e280d73964"
+      "bytes": 23870422,
+      "sha256": "bdd35fd69ad0bf46571aa1451d4d30d0c7b4afe14771797c206372507c03f466"
     },
     {
       "path": "assets/video/mp4/thematic-italian-2160.mp4",
-      "bytes": 65921536,
-      "sha256": "91b1bcca8bc34da0403d24922cac3adafb4857fffc4d81894559f840be061f6f"
+      "bytes": 110412963,
+      "sha256": "f8d3a074839cd80176b8caa829fdc917d0f5e168b65165380351e93636f0fe05"
     },
     {
       "path": "assets/video/mp4/thematic-italian-720.mp4",
-      "bytes": 10490766,
-      "sha256": "7a7f67b867f9ffe5355fa69d61f80fcc7c3b5e4ed58105e79353a3ef32016c96"
+      "bytes": 9913933,
+      "sha256": "32692356dce132dd7a1cd4d714cede794ddd8c1be423aa12c2e0d8e09b13d7dd"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-f8d3a074839c-1080.mp4",
+      "bytes": 23870422,
+      "sha256": "bdd35fd69ad0bf46571aa1451d4d30d0c7b4afe14771797c206372507c03f466"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-f8d3a074839c-2160.mp4",
+      "bytes": 110412963,
+      "sha256": "f8d3a074839cd80176b8caa829fdc917d0f5e168b65165380351e93636f0fe05"
+    },
+    {
+      "path": "assets/video/mp4/thematic-italian-f8d3a074839c-720.mp4",
+      "bytes": 9913933,
+      "sha256": "32692356dce132dd7a1cd4d714cede794ddd8c1be423aa12c2e0d8e09b13d7dd"
     },
     {
       "path": "assets/video/mp4/thematic-pop-dance-monkey-1080.mp4",
@@ -559,38 +1134,73 @@
     },
     {
       "path": "assets/video/mp4/thematic-retro-boyar-1080.mp4",
-      "bytes": 10466234,
-      "sha256": "e158414ff9c10e7d7434b362402fab6823d58ee5adde11d821ccf505e4211dd2"
+      "bytes": 51010011,
+      "sha256": "b74af0408561d852b3239547eacaa71e7f8e333186ef2eef66798769aa9d299a"
     },
     {
       "path": "assets/video/mp4/thematic-retro-boyar-720.mp4",
-      "bytes": 4933169,
-      "sha256": "ec59cb278ec0b8bffd608d592e312927972d475920e33a5b10de03150a5236c3"
+      "bytes": 26004509,
+      "sha256": "aeacf746c3f8867ee7407eae5ae5e3fc11066acd7a4fac5761bb85baa80e5665"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-boyar-b74af0408561-1080.mp4",
+      "bytes": 51010011,
+      "sha256": "b74af0408561d852b3239547eacaa71e7f8e333186ef2eef66798769aa9d299a"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-boyar-b74af0408561-720.mp4",
+      "bytes": 26004509,
+      "sha256": "aeacf746c3f8867ee7407eae5ae5e3fc11066acd7a4fac5761bb85baa80e5665"
     },
     {
       "path": "assets/video/mp4/thematic-retro-heart-1080.mp4",
-      "bytes": 22349695,
-      "sha256": "c665dc8f5145b9202ed526517f83b13c5e90625b7bf4f6691f122f2be98da9b8"
+      "bytes": 23802237,
+      "sha256": "aef5afda2b670ccbd783e6682c8736dab4d4f705c2c97965dcaa0d502e6e12b9"
     },
     {
       "path": "assets/video/mp4/thematic-retro-heart-2160.mp4",
-      "bytes": 70994296,
-      "sha256": "9ea8b23cb0c7abd949478bfd5435a768816ba564bbc307b42763f7fce4a67247"
+      "bytes": 113468836,
+      "sha256": "3d35c67e279b13fcd8a0fa6570cdd2bd7a0b9ea5dccdde9679c0e7ad9ff9ea22"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-3d35c67e279b-1080.mp4",
+      "bytes": 23802237,
+      "sha256": "aef5afda2b670ccbd783e6682c8736dab4d4f705c2c97965dcaa0d502e6e12b9"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-3d35c67e279b-2160.mp4",
+      "bytes": 113468836,
+      "sha256": "3d35c67e279b13fcd8a0fa6570cdd2bd7a0b9ea5dccdde9679c0e7ad9ff9ea22"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-heart-3d35c67e279b-720.mp4",
+      "bytes": 10090950,
+      "sha256": "d2933d768ec742c3b15aed8a56e77bd2c74383b7b8b0f7577409c27a015bccf5"
     },
     {
       "path": "assets/video/mp4/thematic-retro-heart-720.mp4",
-      "bytes": 7977459,
-      "sha256": "f2719d01b4ce417c6f4b113bde6d0cd20f9aadf97b8fc478280bab46270c93dc"
+      "bytes": 10090950,
+      "sha256": "d2933d768ec742c3b15aed8a56e77bd2c74383b7b8b0f7577409c27a015bccf5"
     },
     {
       "path": "assets/video/mp4/thematic-retro-stilyagi-1080.mp4",
-      "bytes": 16743825,
-      "sha256": "a512dabb8ab1a07b660d6618b9b09f956caedf67f73b51a3746d20813f03813a"
+      "bytes": 64423500,
+      "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-stilyagi-47279982f3a0-1080.mp4",
+      "bytes": 64423500,
+      "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-stilyagi-47279982f3a0-720.mp4",
+      "bytes": 64423500,
+      "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
     },
     {
       "path": "assets/video/mp4/thematic-retro-stilyagi-720.mp4",
-      "bytes": 14434904,
-      "sha256": "f38725511064744d16bac1261b6537ab2ba5fe18d9f21de7dff1030cd110ecca"
+      "bytes": 64423500,
+      "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
     },
     {
       "path": "assets/video/mp4/yuriy-acoustic-vocal-720.mp4",

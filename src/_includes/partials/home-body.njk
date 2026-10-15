@@ -255,6 +255,7 @@
 <!-- =============== VIDEO RAILS (Apple-style 2 rows) =============== -->
 <section class="section" id="videos">
 	{% set promos = [
+		{slug:'promo-main-reel', title:'Luxury Cover Band · Полное промо', eyebrow:'Промо'},
 		{slug:'promo-egoistka', poster:'promo-egoistka-2026-red-stage', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
 		{slug:'thematic-retro-heart', poster:'thematic-retro-heart-2026', title:'You\'re My Heart · Ретро', eyebrow:'Тематик'},
 		{slug:'promo-danza-cuduro', poster:'promo-danza-cuduro-2026', title:'Danza Cuduro · Live', eyebrow:'Лайв'},
@@ -288,6 +289,10 @@
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
 		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
+		<div class="cta-row">
+			<a class="btn btn--blue" href="{{ '/promo-package.php' | url }}" aria-describedby="promo-package-details">Скачать промопакет ↓</a>
+		</div>
+		<p class="section__lead" id="promo-package-details">Видео, фото, репертуар и райдеры — одним ZIP-файлом, около 4,8 ГБ.</p>
 	</div>
 
 	<div class="video-rail video-rail--big reveal" role="region" aria-label="Студийные проморолики">

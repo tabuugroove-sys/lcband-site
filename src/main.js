@@ -427,6 +427,11 @@
 
 	function videoUrl(key, quality) {
 		const base = (window.VIDEO_BASE || "https://luxuryband.ru/").replace(/\/?$/, "/");
+		const shared = window.LCBPromoVideoSources?.[key];
+		if (shared) {
+			if (quality === '720' && !shared.has720) quality = '1080';
+			return `${base}assets/video/mp4/${shared.family}-${quality}.mp4`;
+		}
 		const version = videoAssetVersions[key];
 		return `${base}assets/video/mp4/${key}-${quality}.mp4${version ? `?v=${version}` : ''}`;
 	}
@@ -439,17 +444,24 @@
 
 	function setPickerQuality(quality) {
 		if (!lightboxPicker) return;
+		if (quality === '720' && window.LCBPromoVideoSources?.[currentVideoKey]?.has720 === false) quality = '1080';
 		lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b.dataset.q === quality));
 	}
 
 	function videoQualityExists(key, quality) {
+		const shared = window.LCBPromoVideoSources?.[key];
+		if (shared) return Promise.resolve(quality === '2160' ? shared.quality === 2160 : quality !== '720' || shared.has720);
 		return window.LCBVideoQuality.exists(videoUrl(key, quality));
 	}
 
 	function updatePickerAvailability(key) {
+		const shared = window.LCBPromoVideoSources?.[key];
+		const btn720 = lightboxPicker?.querySelector('[data-q="720"]');
 		const btn1080 = lightboxPicker?.querySelector('[data-q="1080"]');
 		const btn4k = lightboxPicker?.querySelector('[data-q="2160"]');
 		if (!btn1080 || !btn4k) return;
+		if (btn720) btn720.hidden = shared?.has720 === false;
+		btn1080.textContent = shared?.quality === 1080 ? ((document.documentElement.lang || 'ru').toLowerCase().startsWith('en') ? 'Original' : 'Оригинал') : '1080p';
 		btn1080.hidden = known720OnlyVideoKeys.has(key);
 		btn4k.hidden = true;
 		if (btn1080.hidden && currentQuality === '1080') {

@@ -25,8 +25,8 @@ permalink: /about/
 
 <section class="about-hero">
 	<video class="about-hero__video" autoplay muted loop playsinline preload="none"
-		poster="{{ '/assets/video/posters/promo-danza-cuduro-2026.jpg' | url }}">
-		<source src="{{ site.url }}/assets/video/mp4/promo-danza-cuduro-720.mp4" type="video/mp4">
+		poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
+		<source src="{{ site.url }}/assets/video/mp4/promo-main-reel-720.mp4" type="video/mp4">
 	</video>
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
@@ -35,12 +35,13 @@ permalink: /about/
 	</div>
 </section>
 
-<!-- ЗАГЛУШКА: видео Danza Cuduro временно вместо динамичной нарезки — заменить, когда будет готов монтаж -->
-
 <section class="photo-wall" aria-hidden="true">
 	{% set row0 = ['costumes/dark-green-group.jpg', 'photos/corporate-employee-interactive-live-band.jpg', 'photos/author-music-stage.jpg', 'photos/wedding.jpg', 'costumes/gold-studio.jpg', 'photos/sax-day.jpg', 'costumes/red.jpg', 'costumes/blue.jpg', 'photos/corporate.jpg', 'photos/concert-07.jpg', 'photos/clients.jpg', 'costumes/all-black.jpg', 'costumes/vocalists-red-feature.jpg', 'costumes/flowers.jpg', 'photos/themes.jpg', 'photos/birthday-guests-on-stage-live-band.jpg', 'costumes/red-group.jpg'] %}
 	{% set row1 = ['costumes/black-red.jpg', 'photos/birthday-surprise-live-band.jpg', 'photos/birthday.jpg', 'photos/vocalists-mobile.jpg', 'costumes/shimmer.jpg', 'photos/sax-band-show-dj-knobs-original-faces.jpg', 'photos/concert-moscow.jpg', 'photos/concert-2021.jpg', 'costumes/beige-glitter.jpg', 'costumes/white.jpg', 'photos/wedding-night-dance-floor-live-band.jpg', 'costumes/dark-green.jpg', 'costumes/pink.jpg', 'costumes/black-silver.jpg', 'photos/vocalists.jpg', 'photos/birthday-retro-block-live-band.jpg', 'costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg'] %}
 	{% set row2 = ['costumes/black-white.jpg', 'photos/sax.jpg', 'photos/hero-studio.jpg', 'photos/wedding-custom-song-story-live-band.jpg', 'photos/concert-big.jpg', 'costumes/gold.jpg', 'photos/concert-event.jpg', 'photos/concert-teddi.jpg', 'photos/concert-light.jpg', 'costumes/black-couple.jpg', 'photos/wedding-family-guest-performance-live-band.jpg', 'photos/corporate-dancefloor-live-cover-band.jpg', 'photos/concert-10k.jpg', 'photos/first-wedding-dance-live-cover-band.jpg', 'photos/wedding-ceremony-saxophone-live-music.jpg', 'photos/sax-night.jpg', 'photos/wedding-banquet-live-cover-band.jpg'] %}
+	{% set row0 = row0.concat(promoGallery.aboutRows[0]) %}
+	{% set row1 = row1.concat(promoGallery.aboutRows[1]) %}
+	{% set row2 = row2.concat(promoGallery.aboutRows[2]) %}
 	{#- Ленты используют обрезанные webp-копии (src/assets/photos/wall/),
 	    сгенерированные из оригиналов с приоритетом на головы (кроп сверху).
 	    Оригиналы 13.3 MB → лента ~0.7 MB. Для регена см. историю git. -#}
