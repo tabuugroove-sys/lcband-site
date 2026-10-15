@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<div class="footer__bottom">
-			<a class="footer__brand" href="{{ (footerBase + '/') | url }}">{{ site.brandName }} · {{ site.name }}</a>
+			<a class="footer__brand" href="{{ (footerBase + '/') | url }}">{{ site.name }}</a>
 			<span class="footer__meta">{{ 'Moscow' if footerEn else site.city }} · {{ footerEn.links.tours if footerEn else 'Международные туры' }} · © 2026</span>
 		</div>
 		{% if translations[page.url] %}
