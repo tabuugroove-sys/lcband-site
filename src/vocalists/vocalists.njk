@@ -44,9 +44,11 @@ eleventyComputed:
 			<h1 class="page-hero__title">{{ vocalist.name }}</h1>
 			<p class="page-hero__lead">{{ vocalist.tagline }}</p>
 			<p class="page-hero__body">{{ vocalist.bio }}</p>
+			{% if vocalist.slug != 'laz' %}
 			{% for paragraph in vocalist.story %}
 			<p class="page-hero__body">{{ paragraph }}</p>
 			{% endfor %}
+			{% endif %}
 			{% if vocalist.slug == 'irina' %}
 			<p class="page-hero__body"><a class="btn btn--ghost-dark" href="{{ '/programs/jazz-irina/' | url }}">Джаз с Ириной — видео и фото ↗</a></p>
 			{% endif %}
@@ -61,6 +63,19 @@ eleventyComputed:
 		</div>
 	</div>
 </section>
+
+{% if vocalist.slug == 'laz' and vocalist.story.length %}
+<section class="section section--light vocalist-story" aria-labelledby="vocalist-story-title">
+	<div class="container vocalist-story__layout">
+		<h2 class="section__title" id="vocalist-story-title">День города<br><span class="muted">в Лабытнангах.</span></h2>
+		<div class="vocalist-story__text">
+			{% for paragraph in vocalist.story %}
+			<p>{{ paragraph }}</p>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
 
 {% from "partials/review.njk" import reviewBubble %}
 {% include "partials/vocalist-media.njk" %}
