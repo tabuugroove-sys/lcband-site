@@ -68,6 +68,19 @@ eleventyComputed:
 {% include "partials/vocalist-media.njk" %}
 {% set vocalistReview = reviews.byId[reviews.vocalists[vocalist.slug]] %}
 
+{% if vocalist.voice and vocalist.voice.length %}
+<section class="section section--light vocalist-story" aria-labelledby="vocalist-voice-title">
+	<div class="container vocalist-story__layout">
+		<h2 class="section__title" id="vocalist-voice-title">{{ vocalist.name }}<br><span class="muted">своими словами.</span></h2>
+		<div class="vocalist-story__text">
+			{% for paragraph in vocalist.voice %}
+			<p>{{ paragraph }}</p>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
 {% if vocalist.slug == 'laz' and vocalist.story.length %}
 <section class="section section--light vocalist-story" aria-labelledby="vocalist-story-title">
 	<div class="container vocalist-story__layout">
