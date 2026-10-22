@@ -143,51 +143,51 @@
         {
           "preview": "assets/photos/promo-0197faa394d0.jpg",
           "original": "assets/promo/lcband/0197faa394d0cc78bf8b9d4b.jpg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         },
         {
           "preview": "assets/photos/promo-4e5982dcf4dc.jpg",
           "original": "assets/promo/lcband/4e5982dcf4dc2a78c4411318.jpg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         },
         {
           "preview": "assets/photos/promo-52badb035bf1.jpg",
           "original": "assets/promo/lcband/52badb035bf137b33f26f58c.jpg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         },
         {
           "preview": "assets/photos/promo-06118ffe5317.jpg",
           "original": "assets/promo/lcband/06118ffe5317e1d569304f18.jpg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         },
         {
           "preview": "assets/photos/promo-ec879e6139b5.jpg",
           "original": "assets/promo/lcband/ec879e6139b531548e6467d6.jpeg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         },
         {
           "preview": "assets/photos/promo-e234c69d200c.jpg",
           "original": "assets/promo/lcband/e234c69d200c6ebb6ebc2ab4.jpeg",
-          "caption": "LAZ · фото"
+          "caption": "Lazzy · фото"
         }
       ],
       "videos": [
         {
           "slug": "promo-cold-heart",
-          "title": "LAZ Cold Heart",
-          "titleEn": "Cold Heart",
+          "title": "Lazzy — Cold Heart",
+          "titleEn": "Lazzy — Cold Heart",
           "poster": "assets/video/posters/promo-cold-heart.jpg"
         },
         {
           "slug": "interact-laz-coco-jambo",
-          "title": "ИНТЕРАКТИВ LAZ · Coco Jambo",
-          "titleEn": "LAZ · Coco Jambo",
+          "title": "Lazzy — ИНТЕРАКТИВ",
+          "titleEn": "Lazzy — Audience interaction",
           "poster": "assets/video/posters/interact-laz-coco-jambo.jpg"
         },
         {
           "slug": "laz-video-02",
-          "title": "LAZ · выступление 02",
-          "titleEn": "LAZ · Live 3",
+          "title": "Lazzy — выступление",
+          "titleEn": "Lazzy — Live performance",
           "poster": "assets/video/posters/laz-video-02.jpg"
         },
         {
