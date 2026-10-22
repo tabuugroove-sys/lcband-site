@@ -84,7 +84,7 @@ eleventyComputed:
 {% if vocalist.slug == 'laz' and vocalist.story.length %}
 <section class="section section--light vocalist-story" aria-labelledby="vocalist-story-title">
 	<div class="container vocalist-story__layout">
-		<h2 class="section__title" id="vocalist-story-title">День города<br><span class="muted">в Лабытнангах.</span></h2>
+		<h2 class="section__title" id="vocalist-story-title">Вокал<br><span class="muted">и контакт с залом.</span></h2>
 		<div class="vocalist-story__text">
 			{% for paragraph in vocalist.story %}
 			<p>{{ paragraph }}</p>
@@ -114,7 +114,7 @@ eleventyComputed:
 		<ul class="vocalists">
 			{% for v in vocalists %}
 				{% if v.slug != vocalist.slug %}
-				<li class="voc">
+				<li class="voc voc--{{ v.slug }}">
 					<a class="voc__link" href="{{ ('/vocalists/' + v.slug + '/') | url }}">
 						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — вокалист Luxury Cover Band" loading="lazy"></div>
 						<h3 class="voc__name">{{ v.name }}</h3>

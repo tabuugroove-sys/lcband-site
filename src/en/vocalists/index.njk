@@ -20,7 +20,7 @@ permalink: /en/vocalists/
 	<div class="container reveal">
 		<ul class="vocalists">
 			{% for v in enContent.vocalists %}
-			<li class="voc">
+			<li class="voc voc--{{ v.slug }}">
 				<a class="voc__link" href="{{ ('/en/vocalists/' + v.slug + '/') | url }}">
 					<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — {{ v.role }}" loading="lazy"></div>
 					<h3 class="voc__name">{{ v.name }}</h3>

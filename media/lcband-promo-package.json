@@ -1,5 +1,5 @@
 {
-  "version": "20261014-local",
+  "version": "20261022-vocalists",
   "timestamp": 1791979200,
   "archiveName": "LCBAND-promo.zip",
   "files": [
@@ -639,6 +639,48 @@
       "bytes": 630048,
       "sha256": "d4432e1e3df129d5af743a04a585efee7eac257b62c77b0e26ab5673bef94246",
       "crc32": "63bb4eb4"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — выступление в белом пиджаке.jpg",
+      "path": "assets/photos/stas-202610-stage-white-full.jpg",
+      "bytes": 2831573,
+      "sha256": "42aa8005499b0b88049141b75b5cc5b8ad923696a74aa96f16e911c3e1fee12f",
+      "crc32": "6394de82"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — вокал на сцене.jpg",
+      "path": "assets/photos/stas-202610-stage-black-full.jpg",
+      "bytes": 78644,
+      "sha256": "5032e907002fbc373c80f3630152249f34cde2a574efdd197af21ea7ac57b8ec",
+      "crc32": "5d1b718b"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — концертный номер.jpg",
+      "path": "assets/photos/stas-202610-stage-sequins-full.jpg",
+      "bytes": 163243,
+      "sha256": "5a04b79efa0b84a7d6316fa22b5f4b455f289ea54a914ef99c9a7f70f890b2b5",
+      "crc32": "8c4a49b8"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — студийный портрет.jpg",
+      "path": "assets/photos/stas-202610-studio-bw-full.jpg",
+      "bytes": 1331925,
+      "sha256": "c783ce5a4f7f1bb598d6fc20440d4986b2e3f2dd3bb1dc668c0f656daaf4f967",
+      "crc32": "70f81d1a"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет в костюме.jpg",
+      "path": "assets/photos/stas-202610-portrait-suit-full.jpg",
+      "bytes": 159735,
+      "sha256": "d4668a0d25ae621ec7515f354a01e61feac08adaad67155af832bff7e840fc77",
+      "crc32": "f1c7e5bf"
+    },
+    {
+      "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет.jpg",
+      "path": "assets/photos/stas-202610-portrait-orange-full.jpg",
+      "bytes": 4271905,
+      "sha256": "19a35336cdf52ae872d1028235f704b083f8bb05080ae720b4fe5117bfa1adca",
+      "crc32": "3c109c6f"
     }
   ],
   "videos": {

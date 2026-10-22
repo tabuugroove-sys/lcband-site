@@ -306,7 +306,44 @@
       "videos": []
     },
     "stas": {
-      "photos": [],
+      "photos": [
+        {
+          "preview": "assets/photos/stas-202610-stage-white.jpg",
+          "original": "assets/photos/stas-202610-stage-white-full.jpg",
+          "caption": "Стас — выступление в белом пиджаке",
+          "captionEn": "Stas — live performance in a white jacket"
+        },
+        {
+          "preview": "assets/photos/stas-202610-stage-black.jpg",
+          "original": "assets/photos/stas-202610-stage-black-full.jpg",
+          "caption": "Стас — вокал на сцене",
+          "captionEn": "Stas — live vocals"
+        },
+        {
+          "preview": "assets/photos/stas-202610-stage-sequins.jpg",
+          "original": "assets/photos/stas-202610-stage-sequins-full.jpg",
+          "caption": "Стас — концертный номер",
+          "captionEn": "Stas — concert performance"
+        },
+        {
+          "preview": "assets/photos/stas-202610-studio-bw.jpg",
+          "original": "assets/photos/stas-202610-studio-bw-full.jpg",
+          "caption": "Стас — студийный портрет",
+          "captionEn": "Stas — studio portrait"
+        },
+        {
+          "preview": "assets/photos/stas-202610-portrait-suit.jpg",
+          "original": "assets/photos/stas-202610-portrait-suit-full.jpg",
+          "caption": "Стас — портрет в костюме",
+          "captionEn": "Stas — portrait in a suit"
+        },
+        {
+          "preview": "assets/photos/stas-202610-portrait-orange.jpg",
+          "original": "assets/photos/stas-202610-portrait-orange-full.jpg",
+          "caption": "Стас — портрет",
+          "captionEn": "Stas — portrait"
+        }
+      ],
       "videos": []
     }
   }

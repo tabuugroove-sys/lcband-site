@@ -12,7 +12,7 @@ try {
     $raw = file_get_contents(__DIR__ . '/promo-package.json');
     $catalogue = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
     foreach ($catalogue['files'] as $entry) {
-        if (!preg_match('~\Aassets/(?:video/mp4|promo/lcband)/[a-z0-9][a-z0-9.-]*\z~', $entry['path'])) {
+        if (!preg_match('~\Aassets/(?:video/mp4|promo/lcband|photos)/[a-z0-9][a-z0-9.-]*\z~', $entry['path'])) {
             throw new RuntimeException('Invalid public media path');
         }
     }

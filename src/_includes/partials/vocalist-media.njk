@@ -26,7 +26,7 @@
 	<div class="container container--narrow reveal"><h2 class="section__title">{% if isEn %}Photos.{% else %}Фото.{% endif %}</h2></div>
 	<ul class="ig-grid">
 		{% for photo in media.photos %}
-		<li class="ig-tile"><a class="ig-tile__link" href="{{ ('/' + photo.original) | url }}" data-lightbox><img src="{{ ('/' + photo.preview) | url }}" alt="{{ vocalist.name + ' — live performance' if isEn else photo.caption }}" loading="lazy"></a></li>
+		<li class="ig-tile"><a class="ig-tile__link" href="{{ ('/' + photo.original) | url }}" data-lightbox><img src="{{ ('/' + photo.preview) | url }}" alt="{{ (photo.captionEn or (vocalist.name + ' — live performance')) if isEn else photo.caption }}" loading="lazy"></a></li>
 		{% endfor %}
 	</ul>
 </section>

@@ -54,6 +54,17 @@ eleventyComputed:
 
 {% include "partials/vocalist-media.njk" %}
 
+{% if vocalist.story and vocalist.story.length %}
+<section class="section section--light vocalist-story" aria-labelledby="vocalist-story-title">
+	<div class="container vocalist-story__layout">
+		<h2 class="section__title" id="vocalist-story-title">Voice<br><span class="muted">and audience.</span></h2>
+		<div class="vocalist-story__text">
+			{% for paragraph in vocalist.story %}<p>{{ paragraph }}</p>{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}
+
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Other vocalists</p>
@@ -64,7 +75,7 @@ eleventyComputed:
 		<ul class="vocalists">
 			{% for v in enContent.vocalists %}
 				{% if v.slug != vocalist.slug %}
-				<li class="voc">
+				<li class="voc voc--{{ v.slug }}">
 					<a class="voc__link" href="{{ ('/en/vocalists/' + v.slug + '/') | url }}">
 						<div class="voc__photo"><img src="{{ ('/' + v.photo) | url }}" alt="{{ v.name }} — Luxury Cover Band vocalist" loading="lazy"></div>
 						<h3 class="voc__name">{{ v.name }}</h3>
