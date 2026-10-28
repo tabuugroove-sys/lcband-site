@@ -16,7 +16,6 @@ export default function (eleventyConfig) {
 		"jazz-irina",
 		"leo-sax",
 		"photos",
-		"repertoire",
 		"riders",
 		"stereo-sax",
 		"video/posters",
@@ -27,6 +26,11 @@ export default function (eleventyConfig) {
 			[`src/assets/${assetDirectory}`]: `assets/${assetDirectory}`,
 		});
 	}
+	// The catalogue HTML is rendered as a template. Copying the whole directory
+	// as well creates two writers for index.html and makes transforms race.
+	eleventyConfig.addPassthroughCopy("src/assets/repertoire/repertoire.pdf");
+	eleventyConfig.addPassthroughCopy("src/assets/repertoire/repertoire-2024.docx");
+	eleventyConfig.addPassthroughCopy("src/assets/repertoire/images");
 	eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
 	eleventyConfig.addPassthroughCopy("src/assets/blog-list.css");
 	eleventyConfig.addPassthroughCopy("src/styles.css");
