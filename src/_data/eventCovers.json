@@ -21,10 +21,10 @@
     }
   },
   "birthday": {
-    "image": "events-birthday-20261028.webp",
+    "image": "events-birthday-stage-20261028.webp",
     "alt": {
-      "ru": "Гостья поёт вместе с вокалистом перед музыкантами группы",
-      "en": "A guest singing with a vocalist in front of the band"
+      "ru": "Большой состав Luxury Cover Band выступает перед гостями на праздничной сцене",
+      "en": "The full Luxury Cover Band lineup performing for guests on a brightly lit stage"
     }
   },
   "private-party": {
@@ -35,10 +35,10 @@
     }
   },
   "tv": {
-    "image": "events-tv-20261028.webp",
+    "image": "events-tv-broadcast-20261028.webp",
     "alt": {
-      "ru": "Вокалисты и музыканты выступают на сцене с синим светом и большим экраном",
-      "en": "Vocalists and musicians performing on a blue-lit stage with a large screen"
+      "ru": "Вокалистка и гитарист Luxury Cover Band во время телевизионного выступления Dance Monkey",
+      "en": "Luxury Cover Band vocalist and guitarist performing Dance Monkey for television"
     }
   },
   "abroad": {
