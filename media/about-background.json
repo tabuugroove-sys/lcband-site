@@ -5,8 +5,8 @@
   "audio": false,
   "fps": 24,
   "outputs": [
-    {"path": "assets/video/mp4/about-background-20261028-540.mp4", "width": 960, "height": 540, "bytes": 1442827},
-    {"path": "assets/video/mp4/about-background-20261028-360.mp4", "width": 640, "height": 360, "bytes": 722610}
+    {"path": "assets/hero/about-background-20261028-540.mp4", "width": 960, "height": 540, "bytes": 1442827, "sha256": "ee8d9bf0075565455b32810bea381883c12090dd501230d50b0148c27b93a89e"},
+    {"path": "assets/hero/about-background-20261028-360.mp4", "width": 640, "height": 360, "bytes": 722610, "sha256": "4ebbc4d0d52dc1de9515a2531df0d60a573db4c330e281f6d7bce70962f177ae"}
   ],
-  "delivery": "Only while visible, without Save-Data or reduced-motion. Full performances remain available on click."
+  "delivery": "Small background loops are committed under assets/hero and deployed with the normal site build. Only play while visible, without Save-Data or reduced-motion. Full performances remain available on click."
 }
