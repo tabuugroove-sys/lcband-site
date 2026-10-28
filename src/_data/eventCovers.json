@@ -1,0 +1,51 @@
+{
+  "wedding": {
+    "image": "events-wedding-20261028.webp",
+    "alt": {
+      "ru": "Пара танцует под живое пение в зале с белыми драпировками",
+      "en": "A couple dancing to live vocals in a room with white drapes"
+    }
+  },
+  "corporate": {
+    "image": "events-corporate-20261028.webp",
+    "alt": {
+      "ru": "Группа выступает на сцене с ярким экраном, гости танцуют перед сценой",
+      "en": "The band performing in front of a bright screen as guests dance by the stage"
+    }
+  },
+  "new-year": {
+    "image": "events-new-year-20261028.webp",
+    "alt": {
+      "ru": "Музыканты Luxury Cover Band в чёрных и золотых сценических костюмах",
+      "en": "Luxury Cover Band musicians in black and gold stage outfits"
+    }
+  },
+  "birthday": {
+    "image": "events-birthday-20261028.webp",
+    "alt": {
+      "ru": "Гостья поёт вместе с вокалистом перед музыкантами группы",
+      "en": "A guest singing with a vocalist in front of the band"
+    }
+  },
+  "private-party": {
+    "image": "events-private-party-20261028.webp",
+    "alt": {
+      "ru": "Вокалисты, гитарист и саксофонист выступают в зале с кирпичными стенами",
+      "en": "Vocalists, a guitarist and a saxophonist performing in a brick-walled room"
+    }
+  },
+  "tv": {
+    "image": "events-tv-20261028.webp",
+    "alt": {
+      "ru": "Вокалисты и музыканты выступают на сцене с синим светом и большим экраном",
+      "en": "Vocalists and musicians performing on a blue-lit stage with a large screen"
+    }
+  },
+  "abroad": {
+    "image": "events-abroad-20261028.webp",
+    "alt": {
+      "ru": "Три вокалиста поют на площадке с конфетти в окружении гостей",
+      "en": "Three vocalists singing on a confetti-covered platform surrounded by guests"
+    }
+  }
+}

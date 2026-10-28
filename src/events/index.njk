@@ -22,9 +22,10 @@ permalink: /events/
 	<div class="container reveal">
 		<ul class="events-grid events-grid--list">
 			{% for e in events %}
+			{% set cover = eventCovers[e.slug] %}
 			<li class="event-tile">
 				<a href="{{ ('/events/' + e.slug + '/') | url }}">
-					<div class="event-tile__photo"><img src="{{ ('/assets/photos/' + e.blocks[0].image) | url }}" alt="{{ e.blocks[0].imageAlt or (e.title + ' — Luxury Cover Band') }}" loading="lazy"></div>
+					<div class="event-tile__photo"><img src="{{ ('/assets/photos/' + cover.image) | url }}" alt="{{ cover.alt.ru }}" width="1152" height="720" loading="lazy" decoding="async"></div>
 					<div class="event-tile__body">
 						<div class="event-tile__eyebrow">{{ e.eyebrow }}</div>
 						<h2 class="event-tile__title">{{ e.title }}</h2>
