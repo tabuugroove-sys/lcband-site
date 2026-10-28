@@ -23,15 +23,18 @@ permalink: /about/
 </script>
 {% endblock %}
 
-<section class="about-hero">
-	<video class="about-hero__video" autoplay muted loop playsinline preload="none"
+<section class="about-hero" data-analytics-section="about-hero">
+	<video class="about-hero__video" muted loop playsinline preload="none" data-background-video
+		data-src-desktop="{{ '/assets/hero/about-background-20261028-540.mp4' | url }}"
+		data-src-mobile="{{ '/assets/hero/about-background-20261028-360.mp4' | url }}"
 		poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
-		<source src="{{ site.url }}/assets/video/mp4/promo-main-reel-720.mp4" type="video/mp4">
 	</video>
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>
 		<h1 class="about-hero__title">Кавер-группа для свадьбы,<br>корпоратива и концертной сцены.</h1>
+		<p class="about-hero__lead">Послушайте живые выступления и расскажите о вашем событии — обсудим состав и программу.</p>
+		<div class="cta-row"><a class="btn btn--primary" href="{{ site.telegram }}">Обсудить выступление</a><a class="btn btn--ghost" href="#" data-video="promo-main-reel">Смотреть выступления</a></div>
 	</div>
 </section>
 
@@ -69,9 +72,9 @@ permalink: /about/
     зелёная и красная полосы затемнены, тинт текста осветлён: белый текст на
     исходных цветах читался на 1,2–3,1:1, нужно ≥ 4,5:1. -#}
 {% set storyRooms = [
-	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #6a5ce0, #572f91)', tint:'#d4cfe8', video:'interact-chainsmokers'},
-	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #08876b, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
-	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Рассказ о выступлении 12 сентября 2026 года и выходе к зрителям — на странице LAZ.', href:'/vocalists/laz/', linkLabel:'Рассказ о концерте в Лабытнангах', bg:'radial-gradient(at top right, #c9462a, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Репертуар', title:'Песни<br>на 12 языках.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
+	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
+	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Рассказ о выступлении 12 сентября 2026 года и выходе к зрителям — на странице LAZ. В ролике — пример интерактива на другом выступлении.', href:'/vocalists/laz/', linkLabel:'Рассказ о концерте в Лабытнангах', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
 	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'Красный, чёрно-белый, золотой и другие сценические образы — в фотогалерее. Выбираем костюмы под палитру и формат события.', href:'/costumes/', linkLabel:'Посмотреть сценические образы', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
@@ -94,8 +97,9 @@ permalink: /about/
 		<div class="story-room{% if r.light %} story-room--light{% endif %}" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};{% if r.tint %} --room-tint: {{ r.tint }};{% endif %}">
 			<div class="story-room__copy">
 				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
+				<a class="story-room__watch" href="#" data-video="{{ r.video }}">Смотреть видео</a>
 				<p class="story-room__eyebrow">{{ r.eyebrow }}</p>
-				<h3 class="story-room__title">{{ r.title | safe }}</h3>
+				<h2 class="story-room__title">{{ r.title | safe }}</h2>
 				<p class="story-room__text">{{ r.text }}</p>
 				<p class="story-room__text"><a href="{{ r.href | url }}">{{ r.linkLabel }} →</a></p>
 			</div>
@@ -159,14 +163,14 @@ permalink: /about/
 	</div>
 	<div class="container reveal">
 		{% set examples = [
-			{slug:'interact-laz-coco-jambo', title:'LAZ · Coco Jambo', text:'Концертный интерактив LAZ. На его странице — рассказ о Дне города в Лабытнангах 12 сентября 2026 года и отзыв зрительницы.', href:'/vocalists/laz/', linkLabel:'История концерта и отзыв'},
-			{slug:'live-baskov-lcb', title:'Volare · Николай Басков и LC Band', text:'«Volare» — совместное исполнение Николая Баскова и Luxury Cover Band.', href:'/#videos', linkLabel:'Другие концертные записи'},
-			{slug:'live-perfect', title:'Perfect · живое исполнение', text:'Пример живой версии песни для первого танца. На свадебной странице — варианты программы и отзыв Алёны после свадьбы в июне 2026 года.', href:'/events/wedding/#review', linkLabel:'Свадебная программа и отзыв'}
+			{slug:'interact-laz-coco-jambo', watch:'/watch/laz-coco-jambo/', title:'LAZ · Coco Jambo', text:'Концертный фрагмент с LAZ. На странице вокалиста — другие записи, истории выступлений и отзыв зрительницы.', href:'/vocalists/laz/', linkLabel:'Истории выступлений и отзыв'},
+			{slug:'live-baskov-lcb', watch:'/watch/volare-baskov/', title:'Volare · Николай Басков и LC Band', text:'«Volare» — короткий фрагмент совместного исполнения Николая Баскова и Luxury Cover Band.', href:'/#videos', linkLabel:'Другие концертные записи'},
+			{slug:'live-perfect', watch:'/watch/perfect/', title:'Perfect · живое исполнение', text:'Пример живой версии песни для первого танца. На свадебной странице — варианты программы и отзыв Алёны после свадьбы в июне 2026 года.', href:'/events/wedding/#review', linkLabel:'Свадебная программа и отзыв'}
 		] %}
 		<ul class="formats formats--examples">
 			{% for example in examples %}
 			<li class="format">
-				<a class="format__link" href="{{ ('/embed/?src=/assets/video/mp4/' + example.slug + '-720.mp4') | url }}" data-video="{{ example.slug }}" aria-label="Смотреть видео: {{ example.title }}">
+				<a class="format__link" href="{{ example.watch | url }}" aria-label="Смотреть видео: {{ example.title }}">
 					<div class="format__photo"><img src="{{ ('/assets/video/posters/' + example.slug + '.jpg') | url }}" alt="{{ example.title }} — концертная запись" loading="lazy"></div>
 					<div class="format__body"><h3 class="format__title">{{ example.title }}</h3><span class="format__more">Смотреть видео →</span></div>
 				</a>

@@ -1,10 +1,12 @@
+{% set localeCopy = uiCopy[htmlLang or 'ru'] %}
+{% set contactUrl = site.whatsapp if htmlLang and htmlLang != 'ru' else site.telegram %}
 <!DOCTYPE html>
 <html lang="{{ htmlLang or 'ru' }}"{% if htmlDir %} dir="{{ htmlDir }}"{% endif %}>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<title>{{ title or site.name }}</title>
-	<meta name="description" content="{{ description or site.description }}">
+	<meta name="description" content="{{ description or localeCopy.description }}">
 	{% if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
 	<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 	<meta name="theme-color" content="#000000">
@@ -13,14 +15,14 @@
 	<meta property="og:type" content="website">
 	<meta property="og:locale" content="{{ ogLocale or 'ru_RU' }}">
 	<meta property="og:title" content="{{ title or site.name }}">
-	<meta property="og:description" content="{{ description or site.tagline }}">
+	<meta property="og:description" content="{{ description or (site.tagline if not htmlLang or htmlLang == 'ru' else localeCopy.description) }}">
 	<meta property="og:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 	<meta property="og:site_name" content="{{ site.brandName }}">
 	<meta property="og:url" content="{{ site.url }}{{ page.url }}">
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="{{ title or site.name }}">
-	<meta name="twitter:description" content="{{ description or site.tagline }}">
+	<meta name="twitter:description" content="{{ description or (site.tagline if not htmlLang or htmlLang == 'ru' else localeCopy.description) }}">
 	<meta name="twitter:image" content="{{ site.url }}/{{ ogImage or site.defaultOgImage }}">
 
 	{# Only real, reciprocal translations; each page retains its own canonical. #}
@@ -30,6 +32,7 @@
 	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}
 	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
+	<link rel="stylesheet" href="{{ '/promo-downloads.css?v=1' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
 	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404.
@@ -41,15 +44,15 @@
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=63' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=64' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=63' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=64' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
-	<link rel="up" href="{{ '/sax/' | url }}">
+	<link rel="up" href="{{ ('/en/sax/' if htmlLang == 'en' else '/sax/') | url }}">
 	<link rel="preload" as="image" href="{{ '/assets/leo-sax/hero/leo-sax-hero-mobile-640.avif?v=4' | url }}" type="image/avif" media="(max-width: 700px)" fetchpriority="high">
 	<link rel="preload" as="image" type="image/avif" media="(min-width: 701px)" fetchpriority="high"
 		imagesrcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.avif?v=4' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.avif?v=4' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.avif?v=4' | url }} 1672w" imagesizes="100vw">
@@ -74,13 +77,13 @@
 				"@id": "{{ site.url }}/#musicgroup",
 				"name": "{{ site.name }}",
 				"alternateName": ["{{ site.brandName }}", "{{ site.shortName }}"],
-				"description": "{{ site.descriptionEn if htmlLang == 'en' else site.description }}",
+				"description": {{ localeCopy.description | dump | safe }},
 				"genre": ["Pop", "Rock", "Jazz", "Soul", "Funk", "Retro", "Latin", "Italian", "French chanson"],
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"logo": "{{ site.url }}/assets/favicon.svg",
 				"url": "{{ site.url }}",
 				"sameAs": [
-					"{{ site.telegram }}"
+					"{{ contactUrl }}"
 					{% if site.youtube %}, "{{ site.youtube }}"{% endif %}
 					{% if site.vk %}, "{{ site.vk }}"{% endif %}
 					{% if site.instagram %}, "{{ site.instagram }}"{% endif %}
@@ -88,25 +91,25 @@
 					, "https://profi.ru/profile/treda_2177/"
 					, "https://moskva.artist.ru/Luxury_Cover_Band/"
 				],
-				"areaServed": [{% if htmlLang == 'en' %}"Moscow", "Russia", "International tours"{% else %}"Москва", "Россия", "Международные туры"{% endif %}]
+				"areaServed": {{ localeCopy.areaServed | dump | safe }}
 			},
 			{
 				"@type": "LocalBusiness",
 				"@id": "{{ site.url }}/#business",
 				"name": "{{ site.name }}",
 				"alternateName": ["{{ site.brandName }}", "{{ site.shortName }}"],
-				"description": "{{ site.descriptionEn if htmlLang == 'en' else site.description }}",
+				"description": {{ localeCopy.description | dump | safe }},
 				"image": "{{ site.url }}/{{ site.defaultOgImage }}",
 				"url": "{{ site.url }}",
 				"address": {
 					"@type": "PostalAddress",
-					"addressLocality": "{% if htmlLang == 'en' %}Moscow{% else %}{{ site.city }}{% endif %}",
+					"addressLocality": {{ localeCopy.city | dump | safe }},
 					"addressCountry": "RU"
 				},
-				"areaServed": [{% if htmlLang == 'en' %}"Moscow", "Moscow Region", "Russia", "International tours"{% else %}"Москва", "Московская область", "Россия", "Международные туры"{% endif %}],
+				"areaServed": {{ localeCopy.businessAreaServed | dump | safe }},
 				"priceRange": "$$",
 				"sameAs": [
-					"{{ site.telegram }}"
+					"{{ contactUrl }}"
 					{% if site.youtube %}, "{{ site.youtube }}"{% endif %}
 					{% if site.vk %}, "{{ site.vk }}"{% endif %}
 					{% if site.instagram %}, "{{ site.instagram }}"{% endif %}
@@ -145,6 +148,7 @@
 	<!-- /Yandex.Metrika counter -->
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+	<script src="{{ '/analytics.js?v=1' | url }}" defer></script>
 
 	{% if not barePage or showMainNav %}
 	{% include "partials/nav.njk" %}
@@ -161,13 +165,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261014' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261014promo' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261028i18n' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261014' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261014promo' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261028i18n' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

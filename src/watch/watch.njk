@@ -1,0 +1,60 @@
+---
+pagination:
+  data: watchVideos
+  size: 1
+  alias: video
+permalink: "{{ video.url }}"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ video.title }} — {{ 'Watch video' if video.lang == 'en' else 'Смотреть видео' }}"
+  description: "{{ video.description }}"
+  htmlLang: "{{ video.lang }}"
+  ogLocale: "{{ 'en_US' if video.lang == 'en' else 'ru_RU' }}"
+  ogImage: "{{ video.poster }}"
+---
+{% set isEnglish = video.lang == 'en' %}
+<section class="section section--light" style="padding-top:110px;">
+  <div class="container container--narrow">
+    <p class="page-hero__breadcrumb"><a href="{{ video.aboutUrl | url }}">{{ 'About the band' if isEnglish else 'О группе' }}</a> <span>·</span> {{ 'Performance video' if isEnglish else 'Видео выступления' }}</p>
+    <h1 class="section__title" style="font-size:clamp(28px,4vw,48px);">{{ video.title }}</h1>
+    <video controls playsinline preload="metadata" poster="{{ ('/' + video.poster) | url }}" width="{{ video.width }}" height="{{ video.height }}" aria-label="{{ video.title }}" style="display:block;width:min(100%,calc(55svh * {{ video.width }} / {{ video.height }}),calc(640px * {{ video.width }} / {{ video.height }}));height:auto;aspect-ratio:{{ video.width }}/{{ video.height }};margin:24px auto;background:#000;border-radius:16px;">
+      <source src="{{ site.url }}/{{ video.contentPath }}" type="video/mp4">
+      <a href="{{ site.url }}/{{ video.contentPath }}">{{ 'Open the video' if isEnglish else 'Открыть видео' }}</a>
+    </video>
+    <p class="section__eyebrow">{{ 'Recording' if isEnglish else 'Запись' }} · {{ video.durationLabel }}</p>
+    <p class="section__lead">{{ video.context }}</p>
+    <p><a class="evidence-link" href="{{ video.relatedUrl | url }}">{{ video.relatedLabel }} →</a></p>
+  </div>
+</section>
+<section class="section section--book">
+  <div class="container container--narrow">
+    <h2 class="section__title">{{ 'Discuss music for your event.' if isEnglish else 'Обсудим музыку для вашего события.' }}</h2>
+    <p class="section__lead">{{ 'Send us the date, city and event format. We will discuss the lineup and songs with you.' if isEnglish else 'Пришлите дату, город и формат события. Обсудим состав и песни для вашей программы.' }}</p>
+    <a class="btn btn--primary" href="{{ site.whatsapp if isEnglish else site.telegram }}">{{ 'Message on WhatsApp' if isEnglish else 'Написать в Telegram' }}</a>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ video.url }}#webpage",
+      "url": "{{ site.url }}{{ video.url }}",
+      "name": {{ video.title | dump | safe }},
+      "inLanguage": "{{ video.lang }}",
+      "mainEntity": {"@id": "{{ site.url }}{{ video.url }}#video"}
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "{{ site.url }}{{ video.url }}#video",
+      "name": {{ video.title | dump | safe }},
+      "description": {{ video.description | dump | safe }},
+      "thumbnailUrl": "{{ site.url }}/{{ video.poster }}",
+      "contentUrl": "{{ site.url }}/{{ video.contentPath }}",
+      "duration": "{{ video.durationISO }}",
+      "mainEntityOfPage": {"@id": "{{ site.url }}{{ video.url }}#webpage"}
+    }
+  ]
+}
+</script>

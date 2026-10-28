@@ -8,21 +8,30 @@ if (!in_array($_SERVER['REQUEST_METHOD'], ['GET', 'HEAD'], true)) {
     exit;
 }
 $archive = null;
+$language = is_string($_GET['lang'] ?? null) ? $_GET['lang'] : 'ru';
+$errors = [
+    'ru' => ['invalid' => 'Неизвестное качество архива.', 'unavailable' => 'Промопакет обновляется. Попробуйте скачать его через минуту.'],
+    'en' => ['invalid' => 'Unknown archive quality.', 'unavailable' => 'The promo package is being updated. Please try again in a minute.'],
+    'ar' => ['invalid' => 'جودة الأرشيف غير معروفة.', 'unavailable' => 'يجري تحديث الحزمة الترويجية. يرجى المحاولة مجددًا بعد دقيقة.'],
+    'pt-BR' => ['invalid' => 'Qualidade de arquivo desconhecida.', 'unavailable' => 'O pacote promocional está sendo atualizado. Tente novamente em um minuto.'],
+];
+$errorCopy = $errors[$language] ?? $errors['en'];
 try {
     $raw = file_get_contents(__DIR__ . '/promo-package.json');
     $catalogue = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
-    foreach ($catalogue['files'] as $entry) {
+    $selected = lcb_zip_select($catalogue, $_GET['quality'] ?? null);
+    foreach ($selected['files'] as $entry) {
         if (!preg_match('~\Aassets/(?:video/mp4|promo/lcband|photos)/[a-z0-9][a-z0-9.-]*\z~', $entry['path'])) {
             throw new RuntimeException('Invalid public media path');
         }
     }
-    $etag = '"' . hash('sha256', $raw) . '"';
+    $etag = '"' . hash('sha256', json_encode($selected, JSON_THROW_ON_ERROR)) . '"';
     if (!isset($_SERVER['HTTP_RANGE']) && ($_SERVER['HTTP_IF_NONE_MATCH'] ?? '') === $etag) {
         header('ETag: ' . $etag);
         http_response_code(304);
         exit;
     }
-    $archive = lcb_zip_archive($catalogue['files'], __DIR__, $catalogue['timestamp']);
+    $archive = lcb_zip_archive($selected['files'], __DIR__, $selected['timestamp']);
     $requestedRange = $_SERVER['HTTP_RANGE'] ?? null;
     if (isset($_SERVER['HTTP_IF_RANGE']) && $_SERVER['HTTP_IF_RANGE'] !== $etag) $requestedRange = null;
     try {
@@ -37,7 +46,7 @@ try {
         header("Content-Range: bytes $start-$end/" . $archive['length']);
     }
     header('Content-Type: application/zip');
-    header('Content-Disposition: attachment; filename="LCBAND-promo.zip"');
+    header('Content-Disposition: attachment; filename="' . $selected['archiveName'] . '"');
     header('Content-Length: ' . ($end - $start + 1));
     header('Accept-Ranges: bytes');
     header('ETag: ' . $etag);
@@ -53,12 +62,16 @@ try {
         echo $bytes;
         flush();
     });
+} catch (InvalidArgumentException $error) {
+    http_response_code(400);
+    header('Content-Type: text/plain; charset=utf-8');
+    if ($_SERVER['REQUEST_METHOD'] !== 'HEAD') echo $errorCopy['invalid'];
 } catch (Throwable $error) {
     if (!headers_sent()) {
         http_response_code(503);
         header('Content-Type: text/plain; charset=utf-8');
         header('Retry-After: 60');
-        echo 'Промопакет обновляется. Попробуйте скачать его через минуту.';
+        if ($_SERVER['REQUEST_METHOD'] !== 'HEAD') echo $errorCopy['unavailable'];
     }
 } finally {
     if ($archive !== null) lcb_zip_close($archive);

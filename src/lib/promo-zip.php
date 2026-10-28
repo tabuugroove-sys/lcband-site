@@ -1,6 +1,23 @@
 <?php
 declare(strict_types=1);
 
+function lcb_zip_select(array $catalogue, mixed $quality): array
+{
+    if ($quality !== null && !in_array($quality, ['1080', '720'], true)) {
+        throw new InvalidArgumentException('Unknown archive quality');
+    }
+    $selected = $quality === null ? $catalogue : ($catalogue['variants'][$quality] ?? null);
+    if (!is_array($selected) || !isset($selected['files'], $selected['archiveName']) ||
+        !preg_match('/\ALCBAND-promo(?:-[A-Za-z0-9-]+)?\.zip\z/', $selected['archiveName'])) {
+        throw new RuntimeException('Requested archive is unavailable');
+    }
+    return [
+        'files' => $selected['files'],
+        'archiveName' => $selected['archiveName'],
+        'timestamp' => $catalogue['timestamp'],
+    ];
+}
+
 // Stored ZIP64 records, as defined by PKWARE APPNOTE 4.3. No archive is staged
 // on disk. Open descriptors bind each request to one immutable media revision.
 function lcb_zip_archive(array $entries, string $root, int $timestamp): array

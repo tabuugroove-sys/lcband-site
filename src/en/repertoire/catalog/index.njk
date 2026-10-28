@@ -1,0 +1,125 @@
+---
+layout: false
+permalink: /en/repertoire/catalog/index.html
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>420 Song Entries: Search the Selection — Luxury Cover Band</title>
+<meta name="description" content="Search Luxury Cover Band's published selection of 420 song entries by artist, title or category. Discuss your choices, print the selection or save it as a PDF.">
+<link rel="canonical" href="https://luxuryband.ru/en/repertoire/catalog/">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
+<style>
+{{ englishRepertoire.style | safe }}
+button { font:inherit; cursor:pointer; }
+button:focus-visible { outline:3px solid #0071e3; outline-offset:4px; }
+.actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px 24px; }
+.download { border:0; padding:0; background:none; color:#0066cc; }
+.catalogue-note { max-width:660px; margin:20px 0 0; color:#6e6e73; font-size:15px; line-height:1.6; }
+.filters { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.filters button { min-height:44px; padding:8px 14px; border:1px solid #d2d2d7; border-radius:100px; background:#fff; color:inherit; font-size:13px; }
+.filters button:hover { background:#f5f5f7; }
+.filters button[aria-pressed="true"] { color:#fff; background:#1d1d1f; border-color:#1d1d1f; }
+.print-brand { display:none; }
+@media(max-width:734px) {
+ .topbar .wrap { align-items:flex-start; padding-block:16px; }
+ .actions { flex-direction:column; align-items:flex-end; gap:0; }
+ .actions a,.actions button { min-height:44px; font-size:13px; }
+ .filters { flex-wrap:nowrap; overflow-x:auto; gap:8px; padding:4px 0 8px; }
+ .filters button { flex:0 0 auto; padding:8px 12px; font-size:12px; }
+}
+@media print {
+ .print-brand { display:block; margin:0 0 16px; font-size:12px; }
+ .catalogue-note { margin-top:12px; font-size:11px; }
+ .song-section[hidden] { display:block!important; }
+ .song-section li[hidden] { display:flex!important; }
+ .empty { display:none!important; }
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="{{ '/en/' | url }}">Luxury Cover Band</a>
+  <div class="actions">
+    <a href="{{ site.whatsapp }}">Message on WhatsApp</a>
+    <button class="download" id="print" type="button" hidden>Print / Save as PDF <span aria-hidden="true">↓</span></button>
+  </div>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="print-brand">Luxury Cover Band · luxuryband.ru/en/repertoire/catalog/</p>
+  <h1>Song selection.</h1>
+  <p class="lead">From jazz standards to dance-floor favourites.</p>
+  <p class="catalogue-note">Browse {{ englishRepertoire.count }} song entries by artist, title or category. Some songs appear in more than one category; this is not the band's complete repertoire. Russian titles use Latin spelling. Print or save this selection as a PDF using the button above.</p>
+</div>
+<div class="browse">
+  <label class="search" hidden><span>Find a song or artist</span><input type="search" placeholder="For example, Sade or Sway" autocomplete="off" aria-controls="song-list"></label>
+  <div class="filters" role="group" aria-label="Filter songs by category" hidden>
+    <button type="button" data-category="all" aria-pressed="true" aria-controls="song-list">All songs</button>
+    {% for section in englishRepertoire.sections %}<button type="button" data-category="{{ section.id }}" aria-pressed="false" aria-controls="song-list">{{ section.title | escape }}</button>{% endfor %}
+  </div>
+  <p class="results" role="status" aria-live="polite">{{ englishRepertoire.count }} songs</p>
+</div>
+<div id="song-list">
+{% for section in englishRepertoire.sections %}
+<section class="song-section" id="{{ section.id }}" aria-labelledby="{{ section.id }}-title">
+  <div class="section-heading"><h2 id="{{ section.id }}-title">{{ section.title | escape }}</h2>{% if section.note %}<p>{{ section.note | escape }}</p>{% endif %}</div>
+  <ol start="{{ section.start }}">
+  {% for song in section.songs %}<li value="{{ song.number }}" data-search="{{ song.search | escape }}"><span class="number" aria-hidden="true">{{ song.label }}</span><span class="song">{{ song.title | escape }}</span></li>{% endfor %}
+  </ol>
+</section>
+{% endfor %}
+</div>
+<p class="empty" hidden>No songs found. Try another title or artist, or choose All songs.</p>
+</main>
+<footer><div class="wrap"><p>Tell us your favourites and any songs to avoid. We will tailor the lineup and set list to your event.</p><a href="{{ '/en/repertoire/' | url }}">Repertoire overview ↗</a></div></footer>
+<script>
+(() => {
+  if (new URLSearchParams(window.location.search).get('view') === 'embedded') document.documentElement.dataset.embedded = '';
+  const search = document.querySelector('input[type="search"]');
+  const sections = [...document.querySelectorAll('.song-section')];
+  const status = document.querySelector('.results');
+  const buttons = [...document.querySelectorAll('[data-category]')];
+  // Accept original Russian queries too, without putting Cyrillic titles in this page.
+  const russianLetters = ['a','b','v','g','d','e','zh','z','i','y','k','l','m','n','o','p','r','s','t','u','f','kh','ts','ch','sh','shch','','y','','e','yu','ya'];
+  const normalize = value => [...value.toLowerCase()].map(character => {
+    const code = character.codePointAt(0);
+    return code === 1105 ? 'yo' : code >= 1072 && code <= 1103 ? russianLetters[code - 1072] : character;
+  }).join('').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’‘]/g, "'").replace(/^\s*the weekend\b/, 'the weeknd').replace(/\btons and i\b/g, 'tones and i').replace(/gollyutsinatsii/g, 'gallyutsinatsii').replace(/[^a-z0-9]+/g, ' ').trim();
+  const entries = sections.map(section => ({ section, title:normalize(section.querySelector('h2').textContent), items:[...section.querySelectorAll('li')].map(item => ({ item, text:normalize(item.dataset.search) })) }));
+  const total = entries.reduce((count, entry) => count + entry.items.length, 0);
+  let category = 'all';
+  const filter = () => {
+    const words = normalize(search.value).split(' ').filter(Boolean);
+    let count = 0;
+    entries.forEach(({section,title,items}) => {
+      let visible = 0;
+      items.forEach(({item,text}) => {
+        item.hidden = (category !== 'all' && section.id !== category) || !words.every(word => `${text} ${title}`.includes(word));
+        if (!item.hidden) visible++;
+      });
+      section.hidden = visible === 0;
+      count += visible;
+    });
+    status.textContent = `${count} of ${total} songs`;
+    document.querySelector('.empty').hidden = count > 0;
+  };
+  search.addEventListener('input', filter);
+  buttons.forEach(button => button.addEventListener('click', () => {
+    category = button.dataset.category;
+    buttons.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+    filter();
+  }));
+  document.querySelector('.search').hidden = false;
+  document.querySelector('.filters').hidden = false;
+  const printButton = document.getElementById('print');
+  printButton.hidden = false;
+  printButton.addEventListener('click', () => window.print());
+  if (window.location.hash === '#print') printButton.focus();
+})();
+</script>
+</body>
+</html>

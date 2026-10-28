@@ -33,6 +33,9 @@ addGroup([
 // Explicit equivalents from the static templates and post front matter.
 const staticPairs = [
 	['/about/', '/en/about/'],
+	['/watch/laz-coco-jambo/', '/en/watch/laz-coco-jambo/'],
+	['/watch/volare-baskov/', '/en/watch/volare-baskov/'],
+	['/watch/perfect/', '/en/watch/perfect/'],
 	['/blog/', '/en/blog/'],
 	['/costumes/', '/en/costumes/'],
 	['/events/', '/en/events/'],

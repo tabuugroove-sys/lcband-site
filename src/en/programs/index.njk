@@ -39,6 +39,7 @@ permalink: /en/programs/
 		<div class="container container--narrow reveal">
 			<h3 class="section__title section__title--compact">{{ p.title }}</h3>
 			<p class="section__lead">{{ p.lead }}</p>
+			{% if p.slug == 'italian' %}<p class="section__lead">Let's Get Loud is an optional Latin number that can be discussed alongside the Italian set.</p>{% elif p.slug == 'rock' %}<p class="section__lead">These are general examples of the band's performances. For a specific rock song, request a performance example and confirm its inclusion in your programme.</p>{% endif %}
 			<div class="program-video-carousel__controls" aria-label="Video navigation for {{ p.title }}">
 				<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Previous video">‹</button>
 				<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Next video">›</button>

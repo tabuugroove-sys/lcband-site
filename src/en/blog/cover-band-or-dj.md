@@ -16,11 +16,11 @@ faq:
   - q: "Can we combine a live band and a DJ?"
     a: "Yes. It is the most popular plan for major events. The band performs the welcome and main sets; the DJ fills technical breaks and continues the dancefloor after the live show."
   - q: "Can a cover band play any song like a DJ?"
-    a: "A live repertoire is broader than it may seem: ours has 500+ songs in 12 languages, and we can prepare a requested song for your event. A DJ has instant access to recordings; a band delivers live energy."
+    a: "Start with the published repertoire. If your song is not listed, send a title or link so we can discuss the arrangement and confirm whether it can be prepared for your date."
 related:
   - href: "/en/blog/skolko-stoit-kaver-gruppa/"
     title: "How Much Does a Cover Band Cost?"
-    sub: "Price ranges and what changes the quote"
+    sub: "What changes the price and what the quote includes"
   - href: "/en/formats/welcome/"
     title: "Welcome Program"
     sub: "Live lounge and jazz for guest arrival"
@@ -35,7 +35,7 @@ Choosing between a live cover band and a DJ is not about which is “cooler.” 
 
 **A cover band** brings live sound, vocals, stage energy and a sense of presence. Guests see the music happening, respond to [the singers]({{ '/en/vocalists/' | url }}) and film the performance. A live version of a favorite song feels different from the original recording — and that difference is memorable.
 
-**A DJ** delivers a continuous stream of proven dance tracks, the exact original recordings and immediate flexibility. A DJ can follow the room and play a request instantly. The setup is also more compact and usually less expensive.
+**A DJ** works with original recordings and can change the set as the evening develops. Discuss must-play tracks, requests and the performance schedule beforehand. The setup is usually more compact than a full band.
 
 ## When live music is stronger
 
@@ -59,10 +59,10 @@ At medium and large weddings and corporate events, a band and a DJ complement ea
 2. **Main program** — the cover band performs the major blocks of the evening.
 3. **Breaks and afterparty** — the DJ fills technical pauses and continues after the band.
 
-This gives you the wow effect of live music at the important moments and a continuous dancefloor without drops in energy.
+This arrangement combines live performances with recorded music during breaks and after the band. We agree the timing and each performer’s role beforehand.
 
 ## How to decide for your event
 
 If **impact and atmosphere** matter most, favor the live band. If **budget and a continuous dancefloor** are the priority, a DJ covers the foundation. For a large event, combine them.
 
-We work in all three scenarios: a full live lineup, a compact group for key moments, or a band paired with the venue's DJ. Send the format and budget on [Telegram]({{ site.telegram }}) and we will suggest the right combination.
+We work in all three scenarios: a full live lineup, a compact group for key moments, or a band paired with the venue's DJ. Send the format and budget on [WhatsApp]({{ site.whatsapp }}) and we will suggest the right combination.

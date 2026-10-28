@@ -1,89 +1,24 @@
-{% if htmlLang == 'ar' %}
-{#- Арабская версия (/ae/): плоское RTL-меню без дропдаунов — подразделы
-    ведут на русские страницы, их заголовки из data-коллекций не переведены -#}
+{% if htmlLang == 'ar' or htmlLang == 'pt-BR' %}
+{% set landingNav = footerI18n[htmlLang] %}
 <header class="nav" id="nav">
 	<div class="nav__inner">
-		<a class="nav__logo" href="{{ '/ae/' | url }}" aria-label="{{ site.name }} — الصفحة الرئيسية">
+		<a class="nav__logo" href="{{ landingNav.home | url }}" aria-label="{{ site.name }} — {{ landingNav.nav.home }}">
 			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
 		</a>
-		<nav class="nav__links" aria-label="التنقل الرئيسي">
-			<div class="nav__item" data-nav-path="/ae/">
-				<a class="nav__link" href="{{ '/ae/' | url }}">الرئيسية</a>
+		<nav class="nav__links" aria-label="{{ landingNav.nav.aria }}">
+			<div class="nav__item" data-nav-path="{{ landingNav.home }}">
+				<a class="nav__link" href="{{ landingNav.home | url }}">{{ landingNav.nav.home }}</a>
 			</div>
-			<div class="nav__item" data-nav-path="/vocalists/">
-				<a class="nav__link" href="{{ '/vocalists/' | url }}">المطربون</a>
+			{% for anchor, label in landingNav.nav.sections %}
+			<div class="nav__item" data-nav-path="{{ landingNav.home }}#{{ anchor }}">
+				<a class="nav__link" href="{{ (landingNav.home + '#' + anchor) | url }}">{{ label }}</a>
 			</div>
-			<div class="nav__item" data-nav-path="/programs/">
-				<a class="nav__link" href="{{ '/programs/' | url }}">البرامج الموضوعية</a>
-			</div>
-			<div class="nav__item" data-nav-path="/costumes/">
-				<a class="nav__link" href="{{ '/costumes/' | url }}">الأزياء</a>
-			</div>
-			<div class="nav__item" data-nav-path="/formats/">
-				<a class="nav__link" href="{{ '/formats/' | url }}">الصيغ</a>
-			</div>
-			<div class="nav__item" data-nav-path="/sax/">
-				<a class="nav__link" href="{{ '/sax/' | url }}">ساكسفون</a>
-			</div>
-			<div class="nav__item" data-nav-path="/events/">
-				<a class="nav__link" href="{{ '/events/' | url }}">المناسبات</a>
-			</div>
-			<div class="nav__item" data-nav-path="/riders/">
-				<a class="nav__link" href="{{ '/riders/' | url }}">الرايدر</a>
-			</div>
-			<div class="nav__item" data-nav-path="/blog/">
-				<a class="nav__link" href="{{ '/blog/' | url }}">المدونة</a>
-			</div>
-			<div class="nav__item" data-nav-path="{{ site.telegram }}">
-				<a class="nav__link nav__cta" href="{{ site.telegram }}">راسلنا على تيليجرام</a>
+			{% endfor %}
+			<div class="nav__item" data-nav-path="{{ site.whatsapp }}">
+				<a class="nav__link nav__cta" href="{{ site.whatsapp }}">{{ landingNav.links.whatsapp }}</a>
 			</div>
 		</nav>
-		<button class="nav__burger" aria-label="القائمة" aria-expanded="false">
-			<span></span><span></span><span></span>
-		</button>
-	</div>
-</header>
-{% elif htmlLang == 'pt-BR' %}
-{#- Versão em português (/br/): menu plano sem dropdowns — as subpáginas
-    levam às páginas em russo, seus títulos vindos das coleções de dados não são traduzidos -#}
-<header class="nav" id="nav">
-	<div class="nav__inner">
-		<a class="nav__logo" href="{{ '/br/' | url }}" aria-label="{{ site.name }} — página inicial">
-			<img class="nav__logo-mark" src="{{ '/assets/favicon.svg' | url }}" alt="{{ site.name }}" width="28" height="28">
-		</a>
-		<nav class="nav__links" aria-label="Navegação principal">
-			<div class="nav__item" data-nav-path="/br/">
-				<a class="nav__link" href="{{ '/br/' | url }}">Início</a>
-			</div>
-			<div class="nav__item" data-nav-path="/vocalists/">
-				<a class="nav__link" href="{{ '/vocalists/' | url }}">Vocalistas</a>
-			</div>
-			<div class="nav__item" data-nav-path="/programs/">
-				<a class="nav__link" href="{{ '/programs/' | url }}">Programas Temáticos</a>
-			</div>
-			<div class="nav__item" data-nav-path="/costumes/">
-				<a class="nav__link" href="{{ '/costumes/' | url }}">Figurinos</a>
-			</div>
-			<div class="nav__item" data-nav-path="/formats/">
-				<a class="nav__link" href="{{ '/formats/' | url }}">Formatos</a>
-			</div>
-			<div class="nav__item" data-nav-path="/sax/">
-				<a class="nav__link" href="{{ '/sax/' | url }}">Saxofone</a>
-			</div>
-			<div class="nav__item" data-nav-path="/events/">
-				<a class="nav__link" href="{{ '/events/' | url }}">Eventos</a>
-			</div>
-			<div class="nav__item" data-nav-path="/riders/">
-				<a class="nav__link" href="{{ '/riders/' | url }}">Riders</a>
-			</div>
-			<div class="nav__item" data-nav-path="/blog/">
-				<a class="nav__link" href="{{ '/blog/' | url }}">Blog</a>
-			</div>
-			<div class="nav__item" data-nav-path="{{ site.telegram }}">
-				<a class="nav__link nav__cta" href="{{ site.telegram }}">Falar no Telegram</a>
-			</div>
-		</nav>
-		<button class="nav__burger" aria-label="Menu" aria-expanded="false">
+		<button class="nav__burger" aria-label="{{ landingNav.nav.menu }}" aria-expanded="false">
 			<span></span><span></span><span></span>
 		</button>
 	</div>
@@ -97,7 +32,7 @@
 	{href:'/en/sax/', label:'Saxophone'},
 	{href:'/en/riders/', label:'Riders'},
 	{href:'/en/blog/', label:'Blog'},
-	{href:site.telegram, label:'Message on Telegram', cta:true}
+	{href:site.whatsapp, label:'Message on WhatsApp', cta:true}
 ] %}
 {% set saxProfilesEn = [
 	{href:'/en/sax/', label:'Saxophonist'},
@@ -134,6 +69,10 @@
 										{% for child in kids %}
 										<li role="none"><a role="menuitem" href="{% if child.href %}{{ child.href | url }}{% else %}{{ (item.href + child.slug + '/') | url }}{% endif %}">{{ child[labelField] }}</a></li>
 										{% endfor %}
+										{% if item.href == '/en/programs/' %}
+										<li class="nav__mobile-shortcut" role="none"><a role="menuitem" href="{{ '/en/formats/' | url }}">All formats ›</a></li>
+										<li class="nav__mobile-shortcut" role="none"><a role="menuitem" href="{{ '/en/events/' | url }}">All events ›</a></li>
+										{% endif %}
 									</ul>
 								</div>
 								{% if item.href == '/en/programs/' %}
@@ -160,7 +99,7 @@
 								</div>
 								<div class="nav__dropdown-col nav__dropdown-col--cta">
 									<p class="nav__dropdown-label">Ready to discuss?</p>
-									<ul class="nav__dropdown-related"><li><a href="{{ site.telegram }}">Message on Telegram</a></li><li><a href="{{ '/en/#videos' | url }}">Watch videos</a></li></ul>
+									<ul class="nav__dropdown-related"><li><a href="{{ site.whatsapp }}">Message on WhatsApp</a></li><li><a href="{{ '/en/#videos' | url }}">Watch videos</a></li></ul>
 								</div>
 								{% endif %}
 							</div>
@@ -213,6 +152,10 @@
 										{% for child in kids %}
 										<li role="none"><a role="menuitem" href="{% if child.href %}{{ child.href | url }}{% else %}{{ (item.href + child.slug + '/') | url }}{% endif %}">{{ child[labelField] }}</a></li>
 										{% endfor %}
+										{% if item.href == '/programs/' %}
+										<li class="nav__mobile-shortcut" role="none"><a role="menuitem" href="{{ '/formats/' | url }}">Все форматы ›</a></li>
+										<li class="nav__mobile-shortcut" role="none"><a role="menuitem" href="{{ '/events/' | url }}">Все события ›</a></li>
+										{% endif %}
 									</ul>
 								</div>
 								{% if item.href == '/programs/' %}

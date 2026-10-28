@@ -242,7 +242,7 @@ eleventyComputed:
 	<div class="artist-catalog__hero">
 		<p class="artist-catalog__kicker">Luxury Cover Band {% if isEn %}ARTISTS{% else %}АРТИСТЫ{% endif %}</p>
 		<h1>{% if isEn %}Original Music{% else %}Авторская музыка{% endif %}</h1>
-		<p class="artist-catalog__lead">{% if isEn %}Original tracks by Lazzy, Bumbata and Zace in one clean playlist.{% else %}Авторские треки Lazzy, Bumbata и Zace в одном спокойном плейлисте.{% endif %}</p>
+		<p class="artist-catalog__lead">{% if isEn %}Original releases by <a href="{{ '/en/vocalists/laz/' | url }}">LAZ (Lazzy)</a>, <a href="{{ '/en/vocalists/teddy/' | url }}">Teddy’s band Bumbata</a> and <a href="{{ '/en/vocalists/stas/' | url }}">Stas, performing as Zace</a>.{% else %}Авторские релизы <a href="{{ '/vocalists/laz/' | url }}">LAZ (Lazzy)</a>, <a href="{{ '/vocalists/teddy/' | url }}">группы Тедди Bumbata</a> и <a href="{{ '/vocalists/stas/' | url }}">Стаса под именем Zace</a>.{% endif %}</p>
 	</div>
 
 	<div class="artist-catalog__columns" aria-label="{% if isEn %}Artists and tracks{% else %}Артисты и треки{% endif %}">
@@ -257,17 +257,18 @@ eleventyComputed:
 
 			<ol class="artist-column__tracks">
 				{% for track in artist.tracks %}
+				{% set trackTitle = (enContent.originalTrackTitles[track.title] or track.title) if isEn else track.title %}
 				<li class="track-row{% if not track.preview %} track-row--disabled{% endif %}">
-					<img class="track-row__cover" src="{{ track.cover }}" alt="{{ track.title }} — {% if isEn %}Luxury Cover Band track artwork{% else %}обложка трека Luxury Cover Band{% endif %}" loading="lazy">
+					<img class="track-row__cover" src="{{ track.cover }}" alt="{{ trackTitle }} — {% if isEn %}Luxury Cover Band track artwork{% else %}обложка трека Luxury Cover Band{% endif %}" loading="lazy">
 					<button
 						class="track-row__play"
 						type="button"
 						{% if track.preview %}
 						data-preview="{{ track.preview }}"
-						aria-label="{% if isEn %}Play{% else %}Воспроизвести{% endif %} {{ track.title }}"
+						aria-label="{% if isEn %}Play{% else %}Воспроизвести{% endif %} {{ trackTitle }}"
 						{% else %}
 						disabled
-						aria-label="{% if isEn %}Preview unavailable for{% else %}Превью для{% endif %} {{ track.title }}{% if not isEn %} недоступно{% endif %}"
+						aria-label="{% if isEn %}Preview unavailable for{% else %}Превью для{% endif %} {{ trackTitle }}{% if not isEn %} недоступно{% endif %}"
 						title="{% if isEn %}Preview unavailable{% else %}Превью недоступно{% endif %}"
 						{% endif %}
 					>
@@ -275,7 +276,7 @@ eleventyComputed:
 					</button>
 					<div class="track-row__body">
 						<div class="track-row__meta">
-							<span class="track-row__title">{{ track.title }}</span>
+							<span class="track-row__title">{{ trackTitle }}</span>
 							<span class="track-row__year">{{ track.year }}</span>
 						</div>
 						<div class="track-wave" aria-hidden="true">

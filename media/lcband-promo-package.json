@@ -1,7 +1,7 @@
 {
   "version": "20261022-vocalists",
   "timestamp": 1791979200,
-  "archiveName": "LCBAND-promo.zip",
+  "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
     {
       "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  4K.mp4",
@@ -951,7 +951,7 @@
       "has720": true,
       "width": 3840,
       "height": 2160,
-      "duration": 53.0,
+      "duration": 53,
       "family": "laz-video-02-6e03fbfccac7"
     },
     "laz-video-03": {
@@ -1052,6 +1052,1379 @@
       "height": 848,
       "duration": 26.366667,
       "family": "teddy-jzhet-b9672528ed35"
+    }
+  },
+  "bytes": 4798004342,
+  "variants": {
+    "720": {
+      "archiveName": "LCBAND-promo-720p.zip",
+      "bytes": 1183586256,
+      "files": [
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  720p.mp4",
+          "path": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
+          "bytes": 115806379,
+          "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537",
+          "crc32": "bdc6b5ae"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/01 Эгоистка .mp4",
+          "path": "assets/video/mp4/promo-egoistka-76bde926f919-720.mp4",
+          "bytes": 12930707,
+          "sha256": "5008c3f4eacc5e26e28afe0c82ff5ed38cd1eddab3f8e97bc9a6596163d06b1e",
+          "crc32": "4e5503ed"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/02 РЕТРО — You're my heart, You're my soul.mp4",
+          "path": "assets/video/mp4/thematic-retro-heart-3d35c67e279b-720.mp4",
+          "bytes": 10090950,
+          "sha256": "d2933d768ec742c3b15aed8a56e77bd2c74383b7b8b0f7577409c27a015bccf5",
+          "crc32": "a86d4d10"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/03 РЕТРО  —  Италия  - Amore no.mp4",
+          "path": "assets/video/mp4/promo-amore-no-b15ab05a955f-720.mp4",
+          "bytes": 21471792,
+          "sha256": "cafb7868f2bd4b9306d72a055f9885b205ee128ef33c0b46a3b1e332b0fdc105",
+          "crc32": "646d517e"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/04 Итальянская программа Cosa sei.mp4",
+          "path": "assets/video/mp4/thematic-italian-f8d3a074839c-720.mp4",
+          "bytes": 9913933,
+          "sha256": "32692356dce132dd7a1cd4d714cede794ddd8c1be423aa12c2e0d8e09b13d7dd",
+          "crc32": "4140b582"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Cold Heart .mp4",
+          "path": "assets/video/mp4/promo-cold-heart-861f4fa4ed16-720.mp4",
+          "bytes": 15222216,
+          "sha256": "2148b760b4f0219438601ec49987c0c9a31313dd25964dd0f3eba3591a234696",
+          "crc32": "a744c236"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Let's get it started.mp4",
+          "path": "assets/video/mp4/promo-lets-get-it-started-20f68040ec37-720.mp4",
+          "bytes": 10105901,
+          "sha256": "f2b60e89d04ced97567d2a66b45eefe3a35343d5e27d3f706baff2e8c43f1e4d",
+          "crc32": "6efe4d88"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Loca Loca — монтаж под sound loca.mp4",
+          "path": "assets/video/mp4/promo-loca-loca-146380546c25-720.mp4",
+          "bytes": 8351430,
+          "sha256": "550d5d534df69ce3f074f55d0657b121508d6573f5991c709592af9bfbb7189f",
+          "crc32": "4b89c0b4"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Первый свадебный танец Shallow.mp4",
+          "path": "assets/video/mp4/interact-wedding-shallow-71c06b8df348-720.mp4",
+          "bytes": 18997346,
+          "sha256": "dd825ce93c6101e4b0d82f86627e78f327c15e91218279ef0b9b2c54601a993f",
+          "crc32": "a5a8aba2"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/Лететь по белому свету — без первых 2 секунд.mp4",
+          "path": "assets/video/mp4/promo-letet-16c584e1181b-720.mp4",
+          "bytes": 11151589,
+          "sha256": "338834fb8f0daaca8d4c258532f024224f81ac07ccb8e6090d1f146b3c089e8f",
+          "crc32": "6ac56b5c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Басков  Ревва · Лайв.mp4",
+          "path": "assets/video/mp4/live-baskov-revva-7e044ae625af-720.mp4",
+          "bytes": 6374055,
+          "sha256": "4c564a228498808f6be8e7ef46da2769414e763afa8fbe133879c076d93ae58e",
+          "crc32": "f7c875ed"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Басков · LC Band.mp4",
+          "path": "assets/video/mp4/live-baskov-lcb-555d1a742e65-720.mp4",
+          "bytes": 2272377,
+          "sha256": "4d4d51108851ce6c214da7970ada3e62943a1746247538c16b571efb1a34ffcc",
+          "crc32": "022cb7f1"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ -  Lets Get Loud · Лайв.mp4",
+          "path": "assets/video/mp4/live-lets-get-loud-c8c6a3c13743-1080.mp4",
+          "bytes": 4008293,
+          "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4",
+          "crc32": "aadaf980"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ - Teddy · Macarena.mp4",
+          "path": "assets/video/mp4/teddy-macarena-085b34e08dc4-720.mp4",
+          "bytes": 8192874,
+          "sha256": "20c1f0ec8836300dbf8e289c7145b4fffc753008ec00a5288be868fea887e645",
+          "crc32": "e532ae26"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ LAZ · Coco Jambo.mp4",
+          "path": "assets/video/mp4/interact-laz-coco-jambo-569e857aa75c-720.mp4",
+          "bytes": 11483793,
+          "sha256": "f2c58cc68dc153d388ab91c4a756603904b8d9a8c0386e11281e7949ad4005a2",
+          "crc32": "38b605a7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ Teddy · Танцевальный мастер-класс.mp4",
+          "path": "assets/video/mp4/luxury-latin-dance-master-class-1ff201fa861b-720.mp4",
+          "bytes": 12463618,
+          "sha256": "630fcb86850839a3b732101116f1402daa14417538416c7ffcca0cd695d1b7c6",
+          "crc32": "7d0ac4b9"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ с детьми  —  Live in soho.m4v",
+          "path": "assets/video/mp4/live-soho-28f9b449e584-720.mp4",
+          "bytes": 13843286,
+          "sha256": "a56f3a717aa89b37314e0914f0231a3c229d3e1bba73fb01d633bcc914114276",
+          "crc32": "aa4f685b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mov",
+          "path": "assets/video/mp4/live-icon-658a05cb8405-720.mp4",
+          "bytes": 113468576,
+          "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f",
+          "crc32": "e2b06ef6"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
+          "path": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-720.mp4",
+          "bytes": 62701528,
+          "sha256": "516dcaa469cc3a6199437f3457c703cb2b2e2e68288f523b41b8ce335360dd3a",
+          "crc32": "0391e74a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Je team Студийный лайв.mov",
+          "path": "assets/video/mp4/french-je-taime-3567a99b1071-1080.mp4",
+          "bytes": 88127864,
+          "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b",
+          "crc32": "89166177"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/LCB LIVE Березы Парк.mov",
+          "path": "assets/video/mp4/live-berezy-189baf0f30d9-720.mp4",
+          "bytes": 28742409,
+          "sha256": "67824001dd965a7ba6aa620c8eb17cd5bf7d376cf1fa2000539d4a1eafd2d707",
+          "crc32": "2aaf97e1"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/The  Dont Let Me Down cover by Chainsmokers .mp4",
+          "path": "assets/video/mp4/interact-chainsmokers-2a2aabc4b036-720.mp4",
+          "bytes": 43887199,
+          "sha256": "d7a5a0c085c728304215d940a4d07ef7533294066e7a09ae727576bb4b1e7d1e",
+          "crc32": "4ecd2baf"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ДУЭТ.m4v",
+          "path": "assets/video/mp4/live-duet-bb9a54beebc4-720.mp4",
+          "bytes": 9428913,
+          "sha256": "c23dc763d3d500fdced4d5d5a2242e54cefb4e2f88a9b608bac7f66121de8ad5",
+          "crc32": "404fe5d2"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Живая Трансляция. -  DANCE MONKEY.m4v",
+          "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-720.mp4",
+          "bytes": 14694661,
+          "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41",
+          "crc32": "e7da6414"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
+          "path": "assets/video/mp4/live-perfect-34be773c40a4-720.mp4",
+          "bytes": 60033971,
+          "sha256": "8b8482ddf792d2fbd9440876238ba4fb19d708ca588656ac3345745137d9f5cf",
+          "crc32": "d4f2e1ad"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/19 · Джазовая · Винтажная.mp4",
+          "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-720.mp4",
+          "bytes": 21616346,
+          "sha256": "923e9a449b87a89efe75ab71d7219bd7d604b28245dc677249396b88b67cc047",
+          "crc32": "00a5c515"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Ретро программа Стиляги.mp4",
+          "path": "assets/video/mp4/thematic-retro-stilyagi-47279982f3a0-1080.mp4",
+          "bytes": 64423500,
+          "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5",
+          "crc32": "3ab7311f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Ретро программа, Михаил Боярский.mp4",
+          "path": "assets/video/mp4/thematic-retro-boyar-b74af0408561-720.mp4",
+          "bytes": 26004509,
+          "sha256": "aeacf746c3f8867ee7407eae5ae5e3fc11066acd7a4fac5761bb85baa80e5665",
+          "crc32": "34b5a316"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Французская программа - Je Veux (Live).mp4",
+          "path": "assets/video/mp4/thematic-french-34b41f966ddc-720.mp4",
+          "bytes": 20956431,
+          "sha256": "ee218c1aee41564ec472a0155f9d48e546d272dc3973d4d5907ca41cf828b10c",
+          "crc32": "751bb315"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/875 (1).jpg",
+          "path": "assets/promo/lcband/eca8ceb0bfe67faf062b5884.jpg",
+          "bytes": 6945753,
+          "sha256": "eca8ceb0bfe67faf062b5884a8b6c171141e66b6cf08b42894e8df7146f0f837",
+          "crc32": "6175a33c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Big concert .jpg",
+          "path": "assets/promo/lcband/178ae4ea7fdd279668718091.jpg",
+          "bytes": 2435590,
+          "sha256": "178ae4ea7fdd279668718091bd4196113fa375e230bd59194af567531ac24952",
+          "crc32": "25590f5f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Big concert.jpg",
+          "path": "assets/promo/lcband/8926c40348cdf6f660d8974a.jpg",
+          "bytes": 8348584,
+          "sha256": "8926c40348cdf6f660d8974acde86955f91cf439d49870794305ca83b1c51e3e",
+          "crc32": "384ea07a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/LC BAND.png",
+          "path": "assets/promo/lcband/d36bfa38cad78a5506842cfc.png",
+          "bytes": 1840319,
+          "sha256": "d36bfa38cad78a5506842cfcdbd8a20daf938a821d4cd569dd756fe208c1187e",
+          "crc32": "8b8a5940"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Luxury Band Cover.jpg",
+          "path": "assets/promo/lcband/3bd930c518c1deecd9c84346.jpg",
+          "bytes": 2037440,
+          "sha256": "3bd930c518c1deecd9c84346e2c1399ba3e9293f375836b131f9bf7f27bd5250",
+          "crc32": "6806b5b2"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Luxury Cover Band.JPG",
+          "path": "assets/promo/lcband/baebcb496a4a1e29459cca4f.jpg",
+          "bytes": 10889846,
+          "sha256": "baebcb496a4a1e29459cca4feeb2b10f2a8715496b3f42b321c75fe6155a7220",
+          "crc32": "006ef4e4"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/STUDIO LUXURY COVER BAND .jpg",
+          "path": "assets/promo/lcband/8ad03e697837c2b059b68792.jpg",
+          "bytes": 9962326,
+          "sha256": "8ad03e697837c2b059b68792a9777680eac26e6d5b15e6c4acf225657aab4879",
+          "crc32": "9e6aae01"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/STUDIO LUXURY COVER BAND.jpeg",
+          "path": "assets/promo/lcband/f760232e4b30856ff6d331c7.jpeg",
+          "bytes": 1498713,
+          "sha256": "f760232e4b30856ff6d331c7e378b36b5ea3dfc0249c292db37aae4c6f37f0d1",
+          "crc32": "38c81568"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Teddi.jpg",
+          "path": "assets/promo/lcband/ea370d4980bc6d2720d16786.jpg",
+          "bytes": 6306258,
+          "sha256": "ea370d4980bc6d2720d167867d6807331726308aad256225ed3a99bed53e72f6",
+          "crc32": "87a65c3c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Vocalists.jpeg",
+          "path": "assets/promo/lcband/9125c393aaf2e5e2c3a5bb4c.jpeg",
+          "bytes": 1883318,
+          "sha256": "9125c393aaf2e5e2c3a5bb4c5c1c92475bf809dcd5b70ff367e416fdab1b15b2",
+          "crc32": "65bbe09c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/sax.jpeg",
+          "path": "assets/promo/lcband/543d62e119cb531a57df033c.jpeg",
+          "bytes": 21788920,
+          "sha256": "543d62e119cb531a57df033c1519b9cfb3d2ea9265e5d7862adfd452272c74d8",
+          "crc32": "22f2e493"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Авторская песня.png",
+          "path": "assets/promo/lcband/3f98b89a72f7bcb1e4817a4b.png",
+          "bytes": 5821759,
+          "sha256": "3f98b89a72f7bcb1e4817a4b3d2e77557187555e57652b4ff60c3f8d9e813a28",
+          "crc32": "db65cd23"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Белый.JPG",
+          "path": "assets/promo/lcband/949797844031470d1ccc550c.jpg",
+          "bytes": 2734638,
+          "sha256": "949797844031470d1ccc550cad5719ae7ec753b8eb5b7ef84175d0e70e69505a",
+          "crc32": "76814339"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотая_зажигалка_2022-0722_enhanced.jpg",
+          "path": "assets/promo/lcband/ee4564fb64e2e34d510e05a7.jpg",
+          "bytes": 995582,
+          "sha256": "ee4564fb64e2e34d510e05a7b5e2ebc1da6f8579970946ebf12921057265d6cc",
+          "crc32": "7ff56e95"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотая_зажигалка_2022-0736.jpg",
+          "path": "assets/promo/lcband/8fc39cf54e360780df74d356.jpg",
+          "bytes": 1605209,
+          "sha256": "8fc39cf54e360780df74d356d1ea299085f79759bf51fb4b358e7b47b8c3d1af",
+          "crc32": "593d7e1f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотое.JPG",
+          "path": "assets/promo/lcband/8aecf8fad62ae75daee3c83d.jpg",
+          "bytes": 3534984,
+          "sha256": "8aecf8fad62ae75daee3c83d3d018f412e0db74934f4eae2e8e899153be0460c",
+          "crc32": "c1b7981b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 2021.07.02 .jpg",
+          "path": "assets/promo/lcband/d2418be9641495c2230d9f5e.jpg",
+          "bytes": 657025,
+          "sha256": "d2418be9641495c2230d9f5ee56bc5a1b5d52719e19ba7732fb655e6a00f81a2",
+          "crc32": "9fc90c91"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 2021.07.02.jpg",
+          "path": "assets/promo/lcband/1639102f14e0f37536f21de2.jpg",
+          "bytes": 520589,
+          "sha256": "1639102f14e0f37536f21de2af2a40be9cf8a36132158579ee5464d672fddc7e",
+          "crc32": "313d2fb0"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 26.10.21.jpeg",
+          "path": "assets/promo/lcband/45bc6a328e484e20fecba2b8.jpeg",
+          "bytes": 286622,
+          "sha256": "45bc6a328e484e20fecba2b8478c092ffe8d398614648b0ecd636f15f81829f6",
+          "crc32": "096c67e7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Кавер группа Москва.jpg",
+          "path": "assets/promo/lcband/b70875efacec2a2b6cb58eec.jpg",
+          "bytes": 593816,
+          "sha256": "b70875efacec2a2b6cb58eec262443750178d14849e519ba63823ff971411a8c",
+          "crc32": "29503d4d"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Красный.JPG",
+          "path": "assets/promo/lcband/066a5c79f05580ad133fdc9a.jpg",
+          "bytes": 3634586,
+          "sha256": "066a5c79f05580ad133fdc9acbb860c61ba5967ce77b290665d30972549e433d",
+          "crc32": "80f121da"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ч.б.JPG",
+          "path": "assets/promo/lcband/b748fb627e5d9eb6f4eb9e18.jpg",
+          "bytes": 2961299,
+          "sha256": "b748fb627e5d9eb6f4eb9e18cf266e96ff3c0ae7302fdf382ad261f14dfcad83",
+          "crc32": "044d34c0"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/LC BAND RED ROCK.png",
+          "path": "assets/promo/lcband/cbc4440637789650e147cd6d.png",
+          "bytes": 1995904,
+          "sha256": "cbc4440637789650e147cd6de4ed8b70ca170b8365ab6e49061e952fd3a6644a",
+          "crc32": "db19d36c"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/PINK.jpeg",
+          "path": "assets/promo/lcband/43f59db6cda9248f0dba7d26.jpeg",
+          "bytes": 1258975,
+          "sha256": "43f59db6cda9248f0dba7d26983016a41dfcc0e41a14a1f834e845604690f50c",
+          "crc32": "a75b01cd"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Бежевый блестящий.jpg",
+          "path": "assets/promo/lcband/76131f42e4a4dd397e00c7d1.jpg",
+          "bytes": 997534,
+          "sha256": "76131f42e4a4dd397e00c7d1a860b43b1300671fd225a1c46ee54724ac878bb4",
+          "crc32": "752b54ab"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Золотистое.jpeg",
+          "path": "assets/promo/lcband/0e57670466ece55034f10e57.jpeg",
+          "bytes": 514326,
+          "sha256": "0e57670466ece55034f10e5763bcebc691964473034d81c22a0f5a5d4c6852c6",
+          "crc32": "a772b7d5"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Красный 2.jpeg",
+          "path": "assets/promo/lcband/6ceecae4dff0083f7002e947.jpeg",
+          "bytes": 441919,
+          "sha256": "6ceecae4dff0083f7002e947684408c46c0a9f500258199a8db21cd93f8eec13",
+          "crc32": "af4161b2"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Синий.jpg",
+          "path": "assets/promo/lcband/f6b8714a84fa4801931a3e98.jpg",
+          "bytes": 614855,
+          "sha256": "f6b8714a84fa4801931a3e98d02301d8b10854012e822c45e1c269b4c3f1266e",
+          "crc32": "a4e26a51"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Темно-зеленый.jpeg",
+          "path": "assets/promo/lcband/30d51a0059b8c188802fd349.jpeg",
+          "bytes": 415772,
+          "sha256": "30d51a0059b8c188802fd34913108d93bb019b099e123cc2121cc77a5d91fb71",
+          "crc32": "6c9e2037"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Цветы.jpg",
+          "path": "assets/promo/lcband/7b1a03b5e6f51f1770ba9f34.jpg",
+          "bytes": 170725,
+          "sha256": "7b1a03b5e6f51f1770ba9f345048f4a4706781414204e95e4ea1f1432c99ddfe",
+          "crc32": "72a3ea46"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/ЧЕРНЫЙ.jpeg",
+          "path": "assets/promo/lcband/ce78d8367f67c1bc15c026d0.jpeg",
+          "bytes": 122557,
+          "sha256": "ce78d8367f67c1bc15c026d09d2b66043e002410fcd81af60c4eed1b85a327c4",
+          "crc32": "53814deb"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Черно-серебряное.jpeg",
+          "path": "assets/promo/lcband/c1b5441ccebc3212786a96e5.jpeg",
+          "bytes": 603485,
+          "sha256": "c1b5441ccebc3212786a96e54486d6185cf5ebd1a5d7ac3cee89adeecd86d09f",
+          "crc32": "ddbb8730"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Черный в паетках.png",
+          "path": "assets/promo/lcband/343ab4f7d2f4d04359dce261.png",
+          "bytes": 2279678,
+          "sha256": "343ab4f7d2f4d04359dce2612cc14d1cb779bc7b9adcdf3db71d79f777c5f596",
+          "crc32": "5eacfecd"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/02 Видео LAZ .mp4",
+          "path": "assets/video/mp4/laz-video-02-6e03fbfccac7-720.mp4",
+          "bytes": 14411395,
+          "sha256": "71f3bac43f144fa1b56c744f36dac2bcee210b85cdea5f961731a5879762d113",
+          "crc32": "ecf93e51"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/03 Видео LAZ .mp4.mp4",
+          "path": "assets/video/mp4/laz-video-03-c2e4674ab9db-720.mp4",
+          "bytes": 10149085,
+          "sha256": "8e61a3b7e5ecbf6f0e8c02929fc11321ec21fca6f8e63dff30d620b8887547c6",
+          "crc32": "a76907c7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/04 Видео LAZ .mp4",
+          "path": "assets/video/mp4/laz-video-04-432fb7cf841b-720.mp4",
+          "bytes": 19474034,
+          "sha256": "f335fd0cdf7f851cbb1501f5258cf979abff050ad55d8dbae07642d20e8447a0",
+          "crc32": "31561e18"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/05 ЛАЙВ LAZ .MOV",
+          "path": "assets/video/mp4/laz-live-05-7c00c40971e6-1080.mp4",
+          "bytes": 4928725,
+          "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94",
+          "crc32": "1289dc1c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/06 ЛАЙВ LAZ .MOV.mp4",
+          "path": "assets/video/mp4/laz-live-06-b45b19336ca8-1080.mp4",
+          "bytes": 4763549,
+          "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4",
+          "crc32": "6c44e575"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/07 ЛАЙВ LAZ .MOV.MOV",
+          "path": "assets/video/mp4/laz-live-07-05ac48dc87e7-1080.mp4",
+          "bytes": 8899289,
+          "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b",
+          "crc32": "bc921642"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_564.jpg",
+          "path": "assets/promo/lcband/0197faa394d0cc78bf8b9d4b.jpg",
+          "bytes": 9118923,
+          "sha256": "0197faa394d0cc78bf8b9d4b24686e1d7154307dac327a63cd4487523da181a7",
+          "crc32": "f1ca500c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_754.jpg",
+          "path": "assets/promo/lcband/4e5982dcf4dc2a78c4411318.jpg",
+          "bytes": 10896836,
+          "sha256": "4e5982dcf4dc2a78c4411318108611620c24dd175d68ed8d9602d5ed0dab6e89",
+          "crc32": "d2c8bd43"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_794.jpg",
+          "path": "assets/promo/lcband/52badb035bf137b33f26f58c.jpg",
+          "bytes": 9520981,
+          "sha256": "52badb035bf137b33f26f58c75019301c3c0b40149d11e8fa43896dd2c370585",
+          "crc32": "c02b5dbc"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ КАРСНОЕ.JPG",
+          "path": "assets/promo/lcband/a176fbaba981fc22ff0e5d0a.jpg",
+          "bytes": 10480148,
+          "sha256": "a176fbaba981fc22ff0e5d0a06421c4441b960e2bb3d22c01442ae4066f3fc87",
+          "crc32": "5439c7d9"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ ПОРТРЕТ.JPG",
+          "path": "assets/promo/lcband/06118ffe5317e1d569304f18.jpg",
+          "bytes": 7809353,
+          "sha256": "06118ffe5317e1d569304f1893861c9a4b111c0fdb8b398b3df1e2e44d6cc9d6",
+          "crc32": "19745cfc"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ ФЕШН.jpeg",
+          "path": "assets/promo/lcband/ec879e6139b531548e6467d6.jpeg",
+          "bytes": 170549,
+          "sha256": "ec879e6139b531548e6467d676723f09395698e2fcd263c3cec0402bb0fd9b60",
+          "crc32": "e851c514"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ.jpeg",
+          "path": "assets/promo/lcband/e234c69d200c6ebb6ebc2ab4.jpeg",
+          "bytes": 172936,
+          "sha256": "e234c69d200c6ebb6ebc2ab4c97734b11246b42d69b7d4d8c54f5348a5399bd2",
+          "crc32": "01fba884"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/LCBand бытовой райдер 6 чел , питание 2 раза.pdf",
+          "path": "assets/promo/lcband/8a89aa7bf901e49fa2547c16.pdf",
+          "bytes": 45566,
+          "sha256": "8a89aa7bf901e49fa2547c1652e734c483b159af12b786e54920b38556112d18",
+          "crc32": "c62c8984"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/LUXURY BAND договор рыба.docx",
+          "path": "assets/promo/lcband/e707477a931287b659788b8a.docx",
+          "bytes": 17892,
+          "sha256": "e707477a931287b659788b8a8493a40a5249c2d3c3477ed37c400f965a5d4662",
+          "crc32": "07d666cd"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo Black.png",
+          "path": "assets/promo/lcband/029cdc035fb3020db46270ea.png",
+          "bytes": 18566,
+          "sha256": "029cdc035fb3020db46270ea3d7d74db6ea45a772be1b8b19f5407b47dcb3021",
+          "crc32": "9da0449c"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo Purple.png",
+          "path": "assets/promo/lcband/37ab02a661b915a4fd666bca.png",
+          "bytes": 18762,
+          "sha256": "37ab02a661b915a4fd666bca2ec3a97915a3d1240d9b4ef3a2396c7c8a3b36a1",
+          "crc32": "69aeacfc"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo white.png",
+          "path": "assets/promo/lcband/330fc4b705550bc8cfc33125.png",
+          "bytes": 17470,
+          "sha256": "330fc4b705550bc8cfc33125639a6ec3f83ff1094f95067bffd6e6f48bdf07e5",
+          "crc32": "c7ada6d7"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/T Rider LCB 2023 6pc 2+4 +bv.pdf",
+          "path": "assets/promo/lcband/3e7bc2f5b555b727df4e66a4.pdf",
+          "bytes": 231326,
+          "sha256": "3e7bc2f5b555b727df4e66a4a497dcb586550424a76c6dbdf90d483f9acc09a9",
+          "crc32": "e553858c"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/РЕПЕРТУАР LCBand И_С_L_Т (2).pdf",
+          "path": "assets/promo/lcband/5ea1eae379dfcdf2172c1e72.pdf",
+          "bytes": 4399839,
+          "sha256": "5ea1eae379dfcdf2172c1e728e0f110827c6e0d13eee55642217704632b7847d",
+          "crc32": "267ce34b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Latin music Luxury Cover Band.mp4",
+          "path": "assets/video/mp4/latin-music-luxury-cover-band-5dbc76c5b3d2-720.mp4",
+          "bytes": 28158386,
+          "sha256": "37689073f048a03a8f8f833a7880af05020f3f3a026119166941d43ab1522133",
+          "crc32": "a8a97e72"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Tедди ЛАТИНА Промо.mp4",
+          "path": "assets/video/mp4/teddy-latina-promo-c136b07c6fd9-720.mp4",
+          "bytes": 20372580,
+          "sha256": "a7ec7e7d3e568e9a1ac0070319e3028fe8a7aa51b5e58f308ec571d41ee5b1a6",
+          "crc32": "7f923365"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Tедди Лайв с LCBAND.m4v",
+          "path": "assets/video/mp4/teddy-live-lcband-ff8c47eb2f54-720.mp4",
+          "bytes": 35923116,
+          "sha256": "e0cd3e3a63ead652c76809a3b42b06d4cc15bdd68bdbe2241d108a6e9e795c15",
+          "crc32": "73cfefe6"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди - MACARENA.mp4",
+          "path": "assets/video/mp4/teddy-macarena-vendor-93e5e3ead694-720.mp4",
+          "bytes": 8193326,
+          "sha256": "7847bb7baeb4b7e15178b93e455a4c5732b70b02a2bda725362879db942d0148",
+          "crc32": "0bbbecbe"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди ft. Егор Крид.mp4",
+          "path": "assets/video/mp4/teddy-egor-kreed-cd3d17707a24-1080.mp4",
+          "bytes": 2922463,
+          "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065",
+          "crc32": "b935d514"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди жжет.mp4",
+          "path": "assets/video/mp4/teddy-jzhet-b9672528ed35-1080.mp4",
+          "bytes": 5455290,
+          "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b",
+          "crc32": "f0dd6ba7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Концерт в Дубае .jpeg",
+          "path": "assets/promo/lcband/c9a7d0b3dc8d9f28f170c85b.jpeg",
+          "bytes": 3977937,
+          "sha256": "c9a7d0b3dc8d9f28f170c85be88d069897dbf2e7024a2f03a4bcef94d5df0580",
+          "crc32": "55422752"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Тедди Латина.jpeg",
+          "path": "assets/promo/lcband/acd14655894a0448c7a387bd.jpeg",
+          "bytes": 78253,
+          "sha256": "acd14655894a0448c7a387bdc3a91580d64d89d27b78e8a4323eb9d791fe07e5",
+          "crc32": "1b4b585c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/большой состав .jpg",
+          "path": "assets/promo/lcband/d4432e1e3df129d5af743a04.jpg",
+          "bytes": 630048,
+          "sha256": "d4432e1e3df129d5af743a04a585efee7eac257b62c77b0e26ab5673bef94246",
+          "crc32": "63bb4eb4"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — выступление в белом пиджаке.jpg",
+          "path": "assets/photos/stas-202610-stage-white-full.jpg",
+          "bytes": 2831573,
+          "sha256": "42aa8005499b0b88049141b75b5cc5b8ad923696a74aa96f16e911c3e1fee12f",
+          "crc32": "6394de82"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — вокал на сцене.jpg",
+          "path": "assets/photos/stas-202610-stage-black-full.jpg",
+          "bytes": 78644,
+          "sha256": "5032e907002fbc373c80f3630152249f34cde2a574efdd197af21ea7ac57b8ec",
+          "crc32": "5d1b718b"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — концертный номер.jpg",
+          "path": "assets/photos/stas-202610-stage-sequins-full.jpg",
+          "bytes": 163243,
+          "sha256": "5a04b79efa0b84a7d6316fa22b5f4b455f289ea54a914ef99c9a7f70f890b2b5",
+          "crc32": "8c4a49b8"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — студийный портрет.jpg",
+          "path": "assets/photos/stas-202610-studio-bw-full.jpg",
+          "bytes": 1331925,
+          "sha256": "c783ce5a4f7f1bb598d6fc20440d4986b2e3f2dd3bb1dc668c0f656daaf4f967",
+          "crc32": "70f81d1a"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет в костюме.jpg",
+          "path": "assets/photos/stas-202610-portrait-suit-full.jpg",
+          "bytes": 159735,
+          "sha256": "d4668a0d25ae621ec7515f354a01e61feac08adaad67155af832bff7e840fc77",
+          "crc32": "f1c7e5bf"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет.jpg",
+          "path": "assets/photos/stas-202610-portrait-orange-full.jpg",
+          "bytes": 4271905,
+          "sha256": "19a35336cdf52ae872d1028235f704b083f8bb05080ae720b4fe5117bfa1adca",
+          "crc32": "3c109c6f"
+        }
+      ]
+    },
+    "1080": {
+      "archiveName": "LCBAND-promo-1080p.zip",
+      "bytes": 2742512939,
+      "files": [
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  1080p.mp4",
+          "path": "assets/video/mp4/promo-main-reel-3c92641df748-1080.mp4",
+          "bytes": 270978715,
+          "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20",
+          "crc32": "60487196"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/01 Эгоистка .mp4",
+          "path": "assets/video/mp4/promo-egoistka-76bde926f919-1080.mp4",
+          "bytes": 28418354,
+          "sha256": "6a1df3bb01de3de5fcd27605b1f027418fecbc8a3cc9e33e0992a4399296aea7",
+          "crc32": "d8c62b5d"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/02 РЕТРО — You're my heart, You're my soul.mp4",
+          "path": "assets/video/mp4/thematic-retro-heart-3d35c67e279b-1080.mp4",
+          "bytes": 23802237,
+          "sha256": "aef5afda2b670ccbd783e6682c8736dab4d4f705c2c97965dcaa0d502e6e12b9",
+          "crc32": "83d7916c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/03 РЕТРО  —  Италия  - Amore no.mp4",
+          "path": "assets/video/mp4/promo-amore-no-b15ab05a955f-1080.mp4",
+          "bytes": 47840885,
+          "sha256": "23b6f267b4269bccf6cd81a8c3ef626c27f836684105b7e571472d05a0329ed1",
+          "crc32": "2bf23284"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/04 Итальянская программа Cosa sei.mp4",
+          "path": "assets/video/mp4/thematic-italian-f8d3a074839c-1080.mp4",
+          "bytes": 23870422,
+          "sha256": "bdd35fd69ad0bf46571aa1451d4d30d0c7b4afe14771797c206372507c03f466",
+          "crc32": "375a809a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Cold Heart .mp4",
+          "path": "assets/video/mp4/promo-cold-heart-861f4fa4ed16-1080.mp4",
+          "bytes": 36116499,
+          "sha256": "4a9b3975bf081d38fc6fd4bc99a9fc49b5e624b56fb230fc08d31929ce1d9c8d",
+          "crc32": "df99c6fe"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Let's get it started.mp4",
+          "path": "assets/video/mp4/promo-lets-get-it-started-20f68040ec37-1080.mp4",
+          "bytes": 23606972,
+          "sha256": "45171b8f8e1a4bbe007015ae52fb35e9b8b590b1d2efd2c7cdcecf93f383a500",
+          "crc32": "f77c1f33"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Loca Loca — монтаж под sound loca.mp4",
+          "path": "assets/video/mp4/promo-loca-loca-146380546c25-1080.mp4",
+          "bytes": 20350428,
+          "sha256": "c778197e4557a0bb49a10f0c12ec6be05124247a48a90c1807edbfcfabfc5642",
+          "crc32": "3f4fa61c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/LAZ Первый свадебный танец Shallow.mp4",
+          "path": "assets/video/mp4/interact-wedding-shallow-71c06b8df348-1080.mp4",
+          "bytes": 44493684,
+          "sha256": "ef82e85da79d6ae7bfb9a51425a11884212e7d3e4834ece9be7d2ba92c767c82",
+          "crc32": "731e9285"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/Лететь по белому свету — без первых 2 секунд.mp4",
+          "path": "assets/video/mp4/promo-letet-16c584e1181b-1080.mp4",
+          "bytes": 25625721,
+          "sha256": "9b525fd3adda7f4bacd30a1b601a59fb225d64ad28bb14449a7a4acfddf74567",
+          "crc32": "8722b931"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Басков  Ревва · Лайв.mp4",
+          "path": "assets/video/mp4/live-baskov-revva-7e044ae625af-1080.mp4",
+          "bytes": 23101911,
+          "sha256": "7e044ae625af409dfad3c00906bbc2290f52e7e046e7cc27ef70fd7ea510dd35",
+          "crc32": "ee81a147"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Басков · LC Band.mp4",
+          "path": "assets/video/mp4/live-baskov-lcb-555d1a742e65-1080.mp4",
+          "bytes": 6614141,
+          "sha256": "555d1a742e6555770104119582b6bea04beac0a564e08f4f01ea23cd2c6306b1",
+          "crc32": "2ac79f2f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ -  Lets Get Loud · Лайв.mp4",
+          "path": "assets/video/mp4/live-lets-get-loud-c8c6a3c13743-1080.mp4",
+          "bytes": 4008293,
+          "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4",
+          "crc32": "aadaf980"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ - Teddy · Macarena.mp4",
+          "path": "assets/video/mp4/teddy-macarena-085b34e08dc4-1080.mp4",
+          "bytes": 15604153,
+          "sha256": "085b34e08dc4da7514e43c07fcd78786aacaea2af3bace3f1314807c2878fef4",
+          "crc32": "516823d9"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ LAZ · Coco Jambo.mp4",
+          "path": "assets/video/mp4/interact-laz-coco-jambo-569e857aa75c-1080.mp4",
+          "bytes": 35870426,
+          "sha256": "569e857aa75cf63f2ba46e2df8f2fe11b60e5386850bc995baaadcc2ff8c892d",
+          "crc32": "c4b09c75"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ Teddy · Танцевальный мастер-класс.mp4",
+          "path": "assets/video/mp4/luxury-latin-dance-master-class-1ff201fa861b-1080.mp4",
+          "bytes": 42143090,
+          "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8",
+          "crc32": "4d7a8607"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРАКТИВ с детьми  —  Live in soho.m4v",
+          "path": "assets/video/mp4/live-soho-28f9b449e584-1080.mp4",
+          "bytes": 68548821,
+          "sha256": "28f9b449e584d0a11def2a35c3ecef6541e053e149a0851bca35110d8cc8923b",
+          "crc32": "ff1d030b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mov",
+          "path": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
+          "bytes": 562307219,
+          "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87",
+          "crc32": "9570fd4c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
+          "path": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-1080.mp4",
+          "bytes": 125612069,
+          "sha256": "8e85acb4c9bb43c05f46e988786395f3a2586337d8a70ab708d9cc3774a69539",
+          "crc32": "5a8851f3"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Je team Студийный лайв.mov",
+          "path": "assets/video/mp4/french-je-taime-3567a99b1071-1080.mp4",
+          "bytes": 88127864,
+          "sha256": "3567a99b10710577b401e4e9d6d33359f75880731ee4257c0501bdc62d0b214b",
+          "crc32": "89166177"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/LCB LIVE Березы Парк.mov",
+          "path": "assets/video/mp4/live-berezy-189baf0f30d9-1080.mp4",
+          "bytes": 144742066,
+          "sha256": "189baf0f30d906490847473dc4041e5dbd97493c616156e59e13c77ee3f0ef2a",
+          "crc32": "324dbbe8"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/The  Dont Let Me Down cover by Chainsmokers .mp4",
+          "path": "assets/video/mp4/interact-chainsmokers-2a2aabc4b036-1080.mp4",
+          "bytes": 69281171,
+          "sha256": "2a2aabc4b03653b6a8872b77302984e7b491fc98610b15ec5bc917633bf90900",
+          "crc32": "8aacade1"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ДУЭТ.m4v",
+          "path": "assets/video/mp4/live-duet-bb9a54beebc4-1080.mp4",
+          "bytes": 30203738,
+          "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73",
+          "crc32": "a38ee747"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Живая Трансляция. -  DANCE MONKEY.m4v",
+          "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
+          "bytes": 73762792,
+          "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127",
+          "crc32": "851f4783"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
+          "path": "assets/video/mp4/live-perfect-34be773c40a4-1080.mp4",
+          "bytes": 92869031,
+          "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567",
+          "crc32": "2adb14af"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/19 · Джазовая · Винтажная.mp4",
+          "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",
+          "bytes": 88235579,
+          "sha256": "0e127868c3567376f04f433ad914d89806fe3de5fdbd2b2dc88f324eb1ba8908",
+          "crc32": "eeade831"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Ретро программа Стиляги.mp4",
+          "path": "assets/video/mp4/thematic-retro-stilyagi-47279982f3a0-1080.mp4",
+          "bytes": 64423500,
+          "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5",
+          "crc32": "3ab7311f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Ретро программа, Михаил Боярский.mp4",
+          "path": "assets/video/mp4/thematic-retro-boyar-b74af0408561-1080.mp4",
+          "bytes": 51010011,
+          "sha256": "b74af0408561d852b3239547eacaa71e7f8e333186ef2eef66798769aa9d299a",
+          "crc32": "01f47c32"
+        },
+        {
+          "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/Французская программа - Je Veux (Live).mp4",
+          "path": "assets/video/mp4/thematic-french-34b41f966ddc-1080.mp4",
+          "bytes": 31427199,
+          "sha256": "34b41f966ddc51fd61c39263490649e5eeae5d928b89e4c3abd51e1870b53d4e",
+          "crc32": "2f3f6b7a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/875 (1).jpg",
+          "path": "assets/promo/lcband/eca8ceb0bfe67faf062b5884.jpg",
+          "bytes": 6945753,
+          "sha256": "eca8ceb0bfe67faf062b5884a8b6c171141e66b6cf08b42894e8df7146f0f837",
+          "crc32": "6175a33c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Big concert .jpg",
+          "path": "assets/promo/lcband/178ae4ea7fdd279668718091.jpg",
+          "bytes": 2435590,
+          "sha256": "178ae4ea7fdd279668718091bd4196113fa375e230bd59194af567531ac24952",
+          "crc32": "25590f5f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Big concert.jpg",
+          "path": "assets/promo/lcband/8926c40348cdf6f660d8974a.jpg",
+          "bytes": 8348584,
+          "sha256": "8926c40348cdf6f660d8974acde86955f91cf439d49870794305ca83b1c51e3e",
+          "crc32": "384ea07a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/LC BAND.png",
+          "path": "assets/promo/lcband/d36bfa38cad78a5506842cfc.png",
+          "bytes": 1840319,
+          "sha256": "d36bfa38cad78a5506842cfcdbd8a20daf938a821d4cd569dd756fe208c1187e",
+          "crc32": "8b8a5940"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Luxury Band Cover.jpg",
+          "path": "assets/promo/lcband/3bd930c518c1deecd9c84346.jpg",
+          "bytes": 2037440,
+          "sha256": "3bd930c518c1deecd9c84346e2c1399ba3e9293f375836b131f9bf7f27bd5250",
+          "crc32": "6806b5b2"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Luxury Cover Band.JPG",
+          "path": "assets/promo/lcband/baebcb496a4a1e29459cca4f.jpg",
+          "bytes": 10889846,
+          "sha256": "baebcb496a4a1e29459cca4feeb2b10f2a8715496b3f42b321c75fe6155a7220",
+          "crc32": "006ef4e4"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/STUDIO LUXURY COVER BAND .jpg",
+          "path": "assets/promo/lcband/8ad03e697837c2b059b68792.jpg",
+          "bytes": 9962326,
+          "sha256": "8ad03e697837c2b059b68792a9777680eac26e6d5b15e6c4acf225657aab4879",
+          "crc32": "9e6aae01"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/STUDIO LUXURY COVER BAND.jpeg",
+          "path": "assets/promo/lcband/f760232e4b30856ff6d331c7.jpeg",
+          "bytes": 1498713,
+          "sha256": "f760232e4b30856ff6d331c7e378b36b5ea3dfc0249c292db37aae4c6f37f0d1",
+          "crc32": "38c81568"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Teddi.jpg",
+          "path": "assets/promo/lcband/ea370d4980bc6d2720d16786.jpg",
+          "bytes": 6306258,
+          "sha256": "ea370d4980bc6d2720d167867d6807331726308aad256225ed3a99bed53e72f6",
+          "crc32": "87a65c3c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Vocalists.jpeg",
+          "path": "assets/promo/lcband/9125c393aaf2e5e2c3a5bb4c.jpeg",
+          "bytes": 1883318,
+          "sha256": "9125c393aaf2e5e2c3a5bb4c5c1c92475bf809dcd5b70ff367e416fdab1b15b2",
+          "crc32": "65bbe09c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/sax.jpeg",
+          "path": "assets/promo/lcband/543d62e119cb531a57df033c.jpeg",
+          "bytes": 21788920,
+          "sha256": "543d62e119cb531a57df033c1519b9cfb3d2ea9265e5d7862adfd452272c74d8",
+          "crc32": "22f2e493"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Авторская песня.png",
+          "path": "assets/promo/lcband/3f98b89a72f7bcb1e4817a4b.png",
+          "bytes": 5821759,
+          "sha256": "3f98b89a72f7bcb1e4817a4b3d2e77557187555e57652b4ff60c3f8d9e813a28",
+          "crc32": "db65cd23"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Белый.JPG",
+          "path": "assets/promo/lcband/949797844031470d1ccc550c.jpg",
+          "bytes": 2734638,
+          "sha256": "949797844031470d1ccc550cad5719ae7ec753b8eb5b7ef84175d0e70e69505a",
+          "crc32": "76814339"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотая_зажигалка_2022-0722_enhanced.jpg",
+          "path": "assets/promo/lcband/ee4564fb64e2e34d510e05a7.jpg",
+          "bytes": 995582,
+          "sha256": "ee4564fb64e2e34d510e05a7b5e2ebc1da6f8579970946ebf12921057265d6cc",
+          "crc32": "7ff56e95"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотая_зажигалка_2022-0736.jpg",
+          "path": "assets/promo/lcband/8fc39cf54e360780df74d356.jpg",
+          "bytes": 1605209,
+          "sha256": "8fc39cf54e360780df74d356d1ea299085f79759bf51fb4b358e7b47b8c3d1af",
+          "crc32": "593d7e1f"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Золотое.JPG",
+          "path": "assets/promo/lcband/8aecf8fad62ae75daee3c83d.jpg",
+          "bytes": 3534984,
+          "sha256": "8aecf8fad62ae75daee3c83d3d018f412e0db74934f4eae2e8e899153be0460c",
+          "crc32": "c1b7981b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 2021.07.02 .jpg",
+          "path": "assets/promo/lcband/d2418be9641495c2230d9f5e.jpg",
+          "bytes": 657025,
+          "sha256": "d2418be9641495c2230d9f5ee56bc5a1b5d52719e19ba7732fb655e6a00f81a2",
+          "crc32": "9fc90c91"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 2021.07.02.jpg",
+          "path": "assets/promo/lcband/1639102f14e0f37536f21de2.jpg",
+          "bytes": 520589,
+          "sha256": "1639102f14e0f37536f21de2af2a40be9cf8a36132158579ee5464d672fddc7e",
+          "crc32": "313d2fb0"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ивент 26.10.21.jpeg",
+          "path": "assets/promo/lcband/45bc6a328e484e20fecba2b8.jpeg",
+          "bytes": 286622,
+          "sha256": "45bc6a328e484e20fecba2b8478c092ffe8d398614648b0ecd636f15f81829f6",
+          "crc32": "096c67e7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Кавер группа Москва.jpg",
+          "path": "assets/promo/lcband/b70875efacec2a2b6cb58eec.jpg",
+          "bytes": 593816,
+          "sha256": "b70875efacec2a2b6cb58eec262443750178d14849e519ba63823ff971411a8c",
+          "crc32": "29503d4d"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Красный.JPG",
+          "path": "assets/promo/lcband/066a5c79f05580ad133fdc9a.jpg",
+          "bytes": 3634586,
+          "sha256": "066a5c79f05580ad133fdc9acbb860c61ba5967ce77b290665d30972549e433d",
+          "crc32": "80f121da"
+        },
+        {
+          "name": "01 PROMO LCBAND/ФОТО/Ч.б.JPG",
+          "path": "assets/promo/lcband/b748fb627e5d9eb6f4eb9e18.jpg",
+          "bytes": 2961299,
+          "sha256": "b748fb627e5d9eb6f4eb9e18cf266e96ff3c0ae7302fdf382ad261f14dfcad83",
+          "crc32": "044d34c0"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/LC BAND RED ROCK.png",
+          "path": "assets/promo/lcband/cbc4440637789650e147cd6d.png",
+          "bytes": 1995904,
+          "sha256": "cbc4440637789650e147cd6de4ed8b70ca170b8365ab6e49061e952fd3a6644a",
+          "crc32": "db19d36c"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/PINK.jpeg",
+          "path": "assets/promo/lcband/43f59db6cda9248f0dba7d26.jpeg",
+          "bytes": 1258975,
+          "sha256": "43f59db6cda9248f0dba7d26983016a41dfcc0e41a14a1f834e845604690f50c",
+          "crc32": "a75b01cd"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Бежевый блестящий.jpg",
+          "path": "assets/promo/lcband/76131f42e4a4dd397e00c7d1.jpg",
+          "bytes": 997534,
+          "sha256": "76131f42e4a4dd397e00c7d1a860b43b1300671fd225a1c46ee54724ac878bb4",
+          "crc32": "752b54ab"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Золотистое.jpeg",
+          "path": "assets/promo/lcband/0e57670466ece55034f10e57.jpeg",
+          "bytes": 514326,
+          "sha256": "0e57670466ece55034f10e5763bcebc691964473034d81c22a0f5a5d4c6852c6",
+          "crc32": "a772b7d5"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Красный 2.jpeg",
+          "path": "assets/promo/lcband/6ceecae4dff0083f7002e947.jpeg",
+          "bytes": 441919,
+          "sha256": "6ceecae4dff0083f7002e947684408c46c0a9f500258199a8db21cd93f8eec13",
+          "crc32": "af4161b2"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Синий.jpg",
+          "path": "assets/promo/lcband/f6b8714a84fa4801931a3e98.jpg",
+          "bytes": 614855,
+          "sha256": "f6b8714a84fa4801931a3e98d02301d8b10854012e822c45e1c269b4c3f1266e",
+          "crc32": "a4e26a51"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Темно-зеленый.jpeg",
+          "path": "assets/promo/lcband/30d51a0059b8c188802fd349.jpeg",
+          "bytes": 415772,
+          "sha256": "30d51a0059b8c188802fd34913108d93bb019b099e123cc2121cc77a5d91fb71",
+          "crc32": "6c9e2037"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Цветы.jpg",
+          "path": "assets/promo/lcband/7b1a03b5e6f51f1770ba9f34.jpg",
+          "bytes": 170725,
+          "sha256": "7b1a03b5e6f51f1770ba9f345048f4a4706781414204e95e4ea1f1432c99ddfe",
+          "crc32": "72a3ea46"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/ЧЕРНЫЙ.jpeg",
+          "path": "assets/promo/lcband/ce78d8367f67c1bc15c026d0.jpeg",
+          "bytes": 122557,
+          "sha256": "ce78d8367f67c1bc15c026d09d2b66043e002410fcd81af60c4eed1b85a327c4",
+          "crc32": "53814deb"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Черно-серебряное.jpeg",
+          "path": "assets/promo/lcband/c1b5441ccebc3212786a96e5.jpeg",
+          "bytes": 603485,
+          "sha256": "c1b5441ccebc3212786a96e54486d6185cf5ebd1a5d7ac3cee89adeecd86d09f",
+          "crc32": "ddbb8730"
+        },
+        {
+          "name": "01 PROMO LCBAND/КОСТЮМЫ/Черный в паетках.png",
+          "path": "assets/promo/lcband/343ab4f7d2f4d04359dce261.png",
+          "bytes": 2279678,
+          "sha256": "343ab4f7d2f4d04359dce2612cc14d1cb779bc7b9adcdf3db71d79f777c5f596",
+          "crc32": "5eacfecd"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/02 Видео LAZ .mp4",
+          "path": "assets/video/mp4/laz-video-02-6e03fbfccac7-1080.mp4",
+          "bytes": 34893202,
+          "sha256": "2a1bb25324e7d5fe66b041fb6a1fd86aeddee879db7c2b93bc63078b5a048dbe",
+          "crc32": "59de8fd5"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/03 Видео LAZ .mp4.mp4",
+          "path": "assets/video/mp4/laz-video-03-c2e4674ab9db-1080.mp4",
+          "bytes": 23607476,
+          "sha256": "61bbc937951b5ed4b6e231804908cd609bd3960033bece7f35157727a420279b",
+          "crc32": "4de84c6a"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/04 Видео LAZ .mp4",
+          "path": "assets/video/mp4/laz-video-04-432fb7cf841b-1080.mp4",
+          "bytes": 45702509,
+          "sha256": "a389d15b4b1171bce9bbd243bac076cdac44098bac2a27ee0d52b0ace50b7af4",
+          "crc32": "5c9c2013"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/05 ЛАЙВ LAZ .MOV",
+          "path": "assets/video/mp4/laz-live-05-7c00c40971e6-1080.mp4",
+          "bytes": 4928725,
+          "sha256": "7c00c40971e6707fc5fc6adaa2af69f6e5a1c450cee2a51c2bd4266ad7a4ba94",
+          "crc32": "1289dc1c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/06 ЛАЙВ LAZ .MOV.mp4",
+          "path": "assets/video/mp4/laz-live-06-b45b19336ca8-1080.mp4",
+          "bytes": 4763549,
+          "sha256": "b45b19336ca8f6c13fee2bbe79f6b6bf0767354ff835cb17a32cc6ae4f37f9c4",
+          "crc32": "6c44e575"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/07 ЛАЙВ LAZ .MOV.MOV",
+          "path": "assets/video/mp4/laz-live-07-05ac48dc87e7-1080.mp4",
+          "bytes": 8899289,
+          "sha256": "05ac48dc87e74d83c36c02016c53a317569d36bc44030bf094cc5f0bef9c511b",
+          "crc32": "bc921642"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_564.jpg",
+          "path": "assets/promo/lcband/0197faa394d0cc78bf8b9d4b.jpg",
+          "bytes": 9118923,
+          "sha256": "0197faa394d0cc78bf8b9d4b24686e1d7154307dac327a63cd4487523da181a7",
+          "crc32": "f1ca500c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_754.jpg",
+          "path": "assets/promo/lcband/4e5982dcf4dc2a78c4411318.jpg",
+          "bytes": 10896836,
+          "sha256": "4e5982dcf4dc2a78c4411318108611620c24dd175d68ed8d9602d5ed0dab6e89",
+          "crc32": "d2c8bd43"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/M2PR_794.jpg",
+          "path": "assets/promo/lcband/52badb035bf137b33f26f58c.jpg",
+          "bytes": 9520981,
+          "sha256": "52badb035bf137b33f26f58c75019301c3c0b40149d11e8fa43896dd2c370585",
+          "crc32": "c02b5dbc"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ КАРСНОЕ.JPG",
+          "path": "assets/promo/lcband/a176fbaba981fc22ff0e5d0a.jpg",
+          "bytes": 10480148,
+          "sha256": "a176fbaba981fc22ff0e5d0a06421c4441b960e2bb3d22c01442ae4066f3fc87",
+          "crc32": "5439c7d9"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ ПОРТРЕТ.JPG",
+          "path": "assets/promo/lcband/06118ffe5317e1d569304f18.jpg",
+          "bytes": 7809353,
+          "sha256": "06118ffe5317e1d569304f1893861c9a4b111c0fdb8b398b3df1e2e44d6cc9d6",
+          "crc32": "19745cfc"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ ФЕШН.jpeg",
+          "path": "assets/promo/lcband/ec879e6139b531548e6467d6.jpeg",
+          "bytes": 170549,
+          "sha256": "ec879e6139b531548e6467d676723f09395698e2fcd263c3cec0402bb0fd9b60",
+          "crc32": "e851c514"
+        },
+        {
+          "name": "01 PROMO LCBAND/ЛЕЙЗИ  (black eyed peas стиль)/ЛЕЙЗИ.jpeg",
+          "path": "assets/promo/lcband/e234c69d200c6ebb6ebc2ab4.jpeg",
+          "bytes": 172936,
+          "sha256": "e234c69d200c6ebb6ebc2ab4c97734b11246b42d69b7d4d8c54f5348a5399bd2",
+          "crc32": "01fba884"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/LCBand бытовой райдер 6 чел , питание 2 раза.pdf",
+          "path": "assets/promo/lcband/8a89aa7bf901e49fa2547c16.pdf",
+          "bytes": 45566,
+          "sha256": "8a89aa7bf901e49fa2547c1652e734c483b159af12b786e54920b38556112d18",
+          "crc32": "c62c8984"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/LUXURY BAND договор рыба.docx",
+          "path": "assets/promo/lcband/e707477a931287b659788b8a.docx",
+          "bytes": 17892,
+          "sha256": "e707477a931287b659788b8a8493a40a5249c2d3c3477ed37c400f965a5d4662",
+          "crc32": "07d666cd"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo Black.png",
+          "path": "assets/promo/lcband/029cdc035fb3020db46270ea.png",
+          "bytes": 18566,
+          "sha256": "029cdc035fb3020db46270ea3d7d74db6ea45a772be1b8b19f5407b47dcb3021",
+          "crc32": "9da0449c"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo Purple.png",
+          "path": "assets/promo/lcband/37ab02a661b915a4fd666bca.png",
+          "bytes": 18762,
+          "sha256": "37ab02a661b915a4fd666bca2ec3a97915a3d1240d9b4ef3a2396c7c8a3b36a1",
+          "crc32": "69aeacfc"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/Logo/Logo white.png",
+          "path": "assets/promo/lcband/330fc4b705550bc8cfc33125.png",
+          "bytes": 17470,
+          "sha256": "330fc4b705550bc8cfc33125639a6ec3f83ff1094f95067bffd6e6f48bdf07e5",
+          "crc32": "c7ada6d7"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/T Rider LCB 2023 6pc 2+4 +bv.pdf",
+          "path": "assets/promo/lcband/3e7bc2f5b555b727df4e66a4.pdf",
+          "bytes": 231326,
+          "sha256": "3e7bc2f5b555b727df4e66a4a497dcb586550424a76c6dbdf90d483f9acc09a9",
+          "crc32": "e553858c"
+        },
+        {
+          "name": "01 PROMO LCBAND/Райдеры, Репертуар, Догвор/РЕПЕРТУАР LCBand И_С_L_Т (2).pdf",
+          "path": "assets/promo/lcband/5ea1eae379dfcdf2172c1e72.pdf",
+          "bytes": 4399839,
+          "sha256": "5ea1eae379dfcdf2172c1e728e0f110827c6e0d13eee55642217704632b7847d",
+          "crc32": "267ce34b"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Latin music Luxury Cover Band.mp4",
+          "path": "assets/video/mp4/latin-music-luxury-cover-band-5dbc76c5b3d2-1080.mp4",
+          "bytes": 45883298,
+          "sha256": "5dbc76c5b3d23f4ab73152c2bd5f8ab8c84cf934c684f1827f7887f7954317bb",
+          "crc32": "72aaced3"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Tедди ЛАТИНА Промо.mp4",
+          "path": "assets/video/mp4/teddy-latina-promo-c136b07c6fd9-1080.mp4",
+          "bytes": 91230180,
+          "sha256": "c136b07c6fd9959278f685aa7368396c84048d2d5464206a526f2aaf15fea413",
+          "crc32": "15000bc4"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Tедди Лайв с LCBAND.m4v",
+          "path": "assets/video/mp4/teddy-live-lcband-ff8c47eb2f54-1080.mp4",
+          "bytes": 123107731,
+          "sha256": "ff8c47eb2f54490db2dfa88946d25a309f0d2208c84f0481e5b9f755d8589cfd",
+          "crc32": "5c9534b9"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди - MACARENA.mp4",
+          "path": "assets/video/mp4/teddy-macarena-vendor-93e5e3ead694-1080.mp4",
+          "bytes": 14953662,
+          "sha256": "93e5e3ead6941dd02a0ba38f8b157ec0153435ec3674615990ec0559e1982ab2",
+          "crc32": "6d18f1b1"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди ft. Егор Крид.mp4",
+          "path": "assets/video/mp4/teddy-egor-kreed-cd3d17707a24-1080.mp4",
+          "bytes": 2922463,
+          "sha256": "cd3d17707a24422985f0a6913195235c0187dfb69b2b429ce3e4b0d71b9dd065",
+          "crc32": "b935d514"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Видео Тедди жжет.mp4",
+          "path": "assets/video/mp4/teddy-jzhet-b9672528ed35-1080.mp4",
+          "bytes": 5455290,
+          "sha256": "b9672528ed3599fba447d7b2fb3533505f3bc51b51a958bcf83291ce533b519b",
+          "crc32": "f0dd6ba7"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Концерт в Дубае .jpeg",
+          "path": "assets/promo/lcband/c9a7d0b3dc8d9f28f170c85b.jpeg",
+          "bytes": 3977937,
+          "sha256": "c9a7d0b3dc8d9f28f170c85be88d069897dbf2e7024a2f03a4bcef94d5df0580",
+          "crc32": "55422752"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/Тедди Латина.jpeg",
+          "path": "assets/promo/lcband/acd14655894a0448c7a387bd.jpeg",
+          "bytes": 78253,
+          "sha256": "acd14655894a0448c7a387bdc3a91580d64d89d27b78e8a4323eb9d791fe07e5",
+          "crc32": "1b4b585c"
+        },
+        {
+          "name": "01 PROMO LCBAND/ТЕДДИ  (Латина)/большой состав .jpg",
+          "path": "assets/promo/lcband/d4432e1e3df129d5af743a04.jpg",
+          "bytes": 630048,
+          "sha256": "d4432e1e3df129d5af743a04a585efee7eac257b62c77b0e26ab5673bef94246",
+          "crc32": "63bb4eb4"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — выступление в белом пиджаке.jpg",
+          "path": "assets/photos/stas-202610-stage-white-full.jpg",
+          "bytes": 2831573,
+          "sha256": "42aa8005499b0b88049141b75b5cc5b8ad923696a74aa96f16e911c3e1fee12f",
+          "crc32": "6394de82"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — вокал на сцене.jpg",
+          "path": "assets/photos/stas-202610-stage-black-full.jpg",
+          "bytes": 78644,
+          "sha256": "5032e907002fbc373c80f3630152249f34cde2a574efdd197af21ea7ac57b8ec",
+          "crc32": "5d1b718b"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — концертный номер.jpg",
+          "path": "assets/photos/stas-202610-stage-sequins-full.jpg",
+          "bytes": 163243,
+          "sha256": "5a04b79efa0b84a7d6316fa22b5f4b455f289ea54a914ef99c9a7f70f890b2b5",
+          "crc32": "8c4a49b8"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — студийный портрет.jpg",
+          "path": "assets/photos/stas-202610-studio-bw-full.jpg",
+          "bytes": 1331925,
+          "sha256": "c783ce5a4f7f1bb598d6fc20440d4986b2e3f2dd3bb1dc668c0f656daaf4f967",
+          "crc32": "70f81d1a"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет в костюме.jpg",
+          "path": "assets/photos/stas-202610-portrait-suit-full.jpg",
+          "bytes": 159735,
+          "sha256": "d4668a0d25ae621ec7515f354a01e61feac08adaad67155af832bff7e840fc77",
+          "crc32": "f1c7e5bf"
+        },
+        {
+          "name": "01 PROMO LCBAND/СТАС/Фото/Стас — портрет.jpg",
+          "path": "assets/photos/stas-202610-portrait-orange-full.jpg",
+          "bytes": 4271905,
+          "sha256": "19a35336cdf52ae872d1028235f704b083f8bb05080ae720b4fe5117bfa1adca",
+          "crc32": "3c109c6f"
+        }
+      ]
     }
   }
 }

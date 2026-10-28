@@ -107,7 +107,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Видео</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">в живом формате.</span></h2>
-		<p class="section__lead">{{ program.videoLead or "Несколько фрагментов программы — live-выступления и клипы, чтобы быстро показать настроение этого блока." }}</p>
+		<p class="section__lead">{% if program.slug == 'rock' %}Ниже — общие примеры выступлений группы и промо Let's Get It Started. Они показывают состав и сценическую подачу. Для выбранной рок-песни запросите отдельный пример исполнения и подтвердите её включение в программу.{% else %}{{ program.videoLead or "Несколько фрагментов программы — live-выступления и клипы, чтобы быстро показать настроение этого блока." }}{% endif %}</p>
 	</div>
 	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="Видео {{ program.title }}">
 		<ul class="video-rail__track">
@@ -158,7 +158,7 @@ eleventyComputed:
 		<div class="container--narrow rep-head">
 			<p class="section__eyebrow">Репертуар</p>
 			<h2 class="section__title">{{ jazzRepertoire.total }}+ песен.<br><span class="muted">От Синатры до Земфиры.</span></h2>
-			<p class="section__lead">Полный репертуар Old Money Band. Не нашли свою песню? Выучим к вашей дате.</p>
+			<p class="section__lead">Опубликованный репертуар Old Money Band. Если нужной песни нет, пришлите название или ссылку: обсудим возможность и сроки подготовки.</p>
 			<div class="rep-filter">
 				<input class="rep-filter__input" type="search" placeholder="Найти песню или артиста…" data-rep-input aria-label="Найти песню в репертуаре Old Money Band">
 			</div>
@@ -180,7 +180,7 @@ eleventyComputed:
 				</ul>
 			</details>
 			{% endfor %}
-			<p class="rep-empty" data-rep-empty hidden>Ничего не найдено. Напишите нам в Телеграм — выучим песню к вашей дате.</p>
+			<p class="rep-empty" data-rep-empty hidden>Ничего не найдено. Напишите нам в Телеграм — обсудим выбранную песню и возможность подготовки.</p>
 		</div>
 	</div>
 </section>
@@ -222,7 +222,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Варианты</p>
 		<h2 class="section__title">Другие тематические программы.</h2>
-		<p class="section__lead">{{ site.stats.songs }} песен, {{ site.stats.languages }} языков — собираем вечер из любых комбинаций.</p>
+		<p class="section__lead">Можно сочетать несколько тематических блоков. Песни, состав и длительность согласуем под ваше событие.</p>
 	</div>
 	<div class="container reveal">
 		<ul class="caps">
@@ -245,7 +245,8 @@ eleventyComputed:
 <section class="section section--book">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Бронирование</p>
-		<h2 class="section__title">{% if program.slug == 'italian' %}Хочу<br><span class="muted-light">итальянскую программу.</span>{% else %}Хочу<br><span class="muted-light">{{ program.title | lower }}.</span>{% endif %}</h2>
+		{% set bookingTitles = {italian: 'Обсудить итальянскую программу.', french: 'Обсудить французскую программу.', latin: 'Обсудить латиноамериканское шоу.', retro: 'Обсудить ретропрограмму.', jazz: 'Обсудить выступление Old Money Band.', rock: 'Обсудить рок-программу.'} %}
+		<h2 class="section__title">{{ bookingTitles[program.slug] or 'Обсудить программу.' }}</h2>
 		<p class="section__lead">Напишите дату, место и формат — подберём состав и пришлём тайминг.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>

@@ -1,8 +1,8 @@
 ---
 layout: layouts/base.njk
 title: Тематические программы — Luxury Cover Band
-description: "Тематические программы Luxury Cover Band: Italia, France, Latin, Retro/Машина Времени, Jazz Vocal/Инструментальный и Rock. 500+ песен на 12 языках."
-keywords: "тематические программы кавер группы, русская программа, итальянская кавер группа, французская программа, джаз вокал, инструментальная программа, ретро машина времени, рок кавер группа"
+description: "Тематические программы Luxury Cover Band: Italia, France, Latin, Ретро 60-х–90-х, Jazz Vocal/Инструментальный и Rock. 500+ песен на 12 языках."
+keywords: "тематические программы кавер группы, русская программа, итальянская кавер группа, французская программа, джаз вокал, инструментальная программа, ретро 60-х 70-х 80-х 90-х, рок кавер группа"
 permalink: /programs/
 ---
 
@@ -13,8 +13,8 @@ permalink: /programs/
 			<span>Тематические программы</span>
 		</p>
 		<p class="page-hero__eyebrow">6 тематических программ</p>
-		<h1 class="page-hero__title">Тематические программы<br><span class="muted">под любой формат.</span></h1>
-		<p class="page-hero__lead">Italia, France, Latin (латинское шоу), Retro/Машина Времени, Jazz Vocal/Инструментальный, Rock и другие направления. Каждая программа — собственный репертуар, подача и визуальный язык.</p>
+		<h1 class="page-hero__title">Тематические программы.</h1>
+		<p class="page-hero__lead">Italia, France, Latin (латинское шоу), Ретро 60-х–90-х, Jazz Vocal/Инструментальный, Rock и другие направления. Каждая программа — собственный репертуар, подача и визуальный язык.</p>
 	</div>
 </section>
 
@@ -49,6 +49,7 @@ permalink: /programs/
 			<div class="container container--narrow reveal">
 				<h3 class="section__title section__title--compact">{{ p.title }}</h3>
 				<p class="section__lead">{{ p.lead }}</p>
+				{% if p.slug == 'italian' %}<p class="section__lead">Let's Get Loud — дополнительный латинский номер, который можно обсудить вместе с итальянским блоком.</p>{% elif p.slug == 'rock' %}<p class="section__lead">Ниже — общие примеры выступлений группы. Для конкретной рок-песни запросите пример исполнения и подтвердите её включение в программу.</p>{% endif %}
 				<div class="program-video-carousel__controls" aria-label="Навигация по видео {{ p.title }}">
 					<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Предыдущее видео">‹</button>
 					<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Следующее видео">›</button>

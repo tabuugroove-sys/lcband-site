@@ -117,8 +117,8 @@ eleventyComputed:
 <section class="section section--light" id="formats">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Performance Formats</p>
-		<h2 class="section__title">One team —<br><span class="muted">four roles.</span></h2>
-		<p class="section__lead">We do more than play a concert. We become part of the event — from choir collaboration to live-band karaoke with your guests.</p>
+		<h2 class="section__title">Performance options<br><span class="muted">for corporate events.</span></h2>
+		<p class="section__lead">We perform with choirs, accompany employees and guests, and host live-band karaoke.</p>
 	</div>
 	<div class="container reveal"><ul class="formats">
 		{% for f in enContent.formats %}
@@ -131,30 +131,48 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% if event.slug == 'tv' %}
+<section class="section section--elev" id="production-details">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Tell us about the production.</h2>
+		<p class="section__lead">Send the date, location, project format, songs and lineup requirements. We agree live sound or another recording format, rehearsals, performance length, time on set and requirements for using the recording.</p>
+		<a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss a filming project</a>
+	</div>
+</section>
+{% elif event.slug == 'abroad' %}
+<section class="section section--elev" id="tour-details">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Plan an international performance.</h2>
+		<p class="section__lead">For a quote, send the country, city, dates, venue, number of performances and preferred lineup. We separately agree flights, transfers, accommodation, instrument transport, required documents and local equipment.</p>
+		<div class="book__cta"><a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss dates and itinerary</a><a class="btn btn--ghost-dark" href="{{ '/assets/riders/rider-international-7pc-en.pdf' | url }}">English rider · 7-piece · PDF</a></div>
+	</div>
+</section>
+{% else %}
 <section class="section section--elev" id="addons">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Additional Services</p>
 		<h2 class="section__title">We can build<br><span class="muted">the entire evening.</span></h2>
-		<p class="section__lead">Along with the band, we can provide the technical and entertainment elements of your event — as a complete package or separate services.</p>
+		<p class="section__lead">Sound, lighting, a DJ and other services can be discussed alongside the band. Agreed services and their prices will be listed in the quote.</p>
 	</div>
 	<div class="container reveal">
 		<ul class="addon-grid">
-			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="20" cy="20" r="2.2" fill="currentColor" stroke="none"/><path d="M14 14a8.4 8.4 0 000 12"/><path d="M26 14a8.4 8.4 0 010 12"/><path d="M9.5 9.5a15 15 0 000 21"/><path d="M30.5 9.5a15 15 0 010 21"/></svg></span><h3 class="addon-card__title">Sound</h3><p class="addon-card__text">Professional sound for venues of any size, from an intimate room to an outdoor site.</p></li>
+			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="20" cy="20" r="2.2" fill="currentColor" stroke="none"/><path d="M14 14a8.4 8.4 0 000 12"/><path d="M26 14a8.4 8.4 0 010 12"/><path d="M9.5 9.5a15 15 0 000 21"/><path d="M30.5 9.5a15 15 0 010 21"/></svg></span><h3 class="addon-card__title">Sound</h3><p class="addon-card__text">Sound equipment selected for the venue size, audience layout and technical restrictions.</p></li>
 			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h12l3 10H11z"/><path d="M15 18l-4 14M25 18l4 14M20 18v14"/></svg></span><h3 class="addon-card__title">Lighting</h3><p class="addon-card__text">A lighting show and stage design tailored to your event concept and colors.</p></li>
 			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="18" cy="20" r="11"/><circle cx="18" cy="20" r="2.4" fill="currentColor" stroke="none"/><path d="M27 11l5-3M29 9v5"/></svg></span><h3 class="addon-card__title">DJ</h3><p class="addon-card__text">A DJ for the afterparty, moving smoothly from the live set to a dancefloor that lasts until morning.</p></li>
 			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="15.5" y="7" width="9" height="15" rx="4.5"/><path d="M11 18a9 9 0 0018 0"/><path d="M20 27v5M15 32h10"/></svg></span><h3 class="addon-card__title">Host</h3><p class="addon-card__text">A host who manages timing, interactive moments and the room's energy throughout the evening.</p></li>
 			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="20" cy="14" rx="10" ry="4"/><path d="M10 14v10a10 4 0 0020 0V14"/><path d="M13 8l7 8M27 8l-7 8"/></svg></span><h3 class="addon-card__title">Drum Show</h3><p class="addon-card__text">A drum show with LED effects — a striking centerpiece in the middle of the program.</p></li>
 			<li class="addon-card"><span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="27" r="4"/><circle cx="27" cy="24" r="4"/><path d="M19 27V9l12-3v18"/></svg></span><h3 class="addon-card__title">Jazz Band</h3><p class="addon-card__text">A compact jazz lineup for the welcome area and cocktail reception.</p></li>
 		</ul>
-		<div class="addon-grid__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Discuss on Telegram</a></div>
+		<div class="addon-grid__cta"><a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss on WhatsApp</a></div>
 	</div>
 </section>
+{% endif %}
 
 {% if event.faq %}
 <section class="section section--light" id="faq">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Questions</p><h2 class="section__title">Frequently asked<br><span class="muted">questions.</span></h2>
-		<div class="faq">{% for item in event.faq %}<details class="faq__item"><summary class="faq__q">{{ item.q }}</summary><div class="faq__a"><p>{% set _ans = item.aHtml if item.aHtml else item.a %}{{ _ans | replace("Telegram", '<a href="' + site.telegram + '">Telegram</a>') | safe }}</p></div></details>{% endfor %}</div>
+		<div class="faq">{% for item in event.faq %}<details class="faq__item"><summary class="faq__q">{{ item.q }}</summary><div class="faq__a"><p>{% set _ans = item.aHtml if item.aHtml else item.a %}{{ _ans | replace("WhatsApp", '<a href="' + site.whatsapp + '">WhatsApp</a>') | safe }}</p></div></details>{% endfor %}</div>
 	</div>
 </section>
 {% endif %}
@@ -176,7 +194,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">{{ event.cta }}.</h2>
 		<div class="book__cta">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--primary" href="{{ site.whatsapp }}">Message on WhatsApp</a>
 			<a class="btn btn--ghost-dark" href="{{ '/en/events/' | url }}">All events</a>
 		</div>
 	</div>

@@ -16,7 +16,7 @@ barePage: true
 showMainNav: true
 bodyClass: leo-sax-page
 pageStylesheet: /assets/leo-sax/leo-sax.css?v=7
-pageScript: /assets/leo-sax/leo-sax.js?v=3
+pageScript: /assets/leo-sax/leo-sax.js?v=20261028i18n
 leoSaxPage: true
 ---
 {% set isEn = locale.lang == 'en' %}
@@ -151,18 +151,25 @@ leoSaxPage: true
 			<div class="leo-section-head leo-section-head--rep">
 				<p class="leo-kicker">{% if isEn %}Repertoire{% else %}Репертуар{% endif %}</p>
 				<h2 id="leo-repertoire-title">{% if isEn %}Music follows<br><em>the rhythm of the event.</em>{% else %}Музыка следует<br><em>ритму события.</em>{% endif %}</h2>
-				<p class="leo-repertoire__lead">{% if isEn %}From the breath of jazz to a light pop motif, the program shifts the mood smoothly and without unnecessary words.{% else %}От дыхания джаза до лёгкого поп-мотива — программа меняет настроение мягко, без лишних слов.{% endif %}</p>
+				<p class="leo-repertoire__lead">{% if isEn %}This is a shared selection of saxophone repertoire ideas. Send your preferred songs so we can confirm the set list and arrangements with Leo Sax for your date.{% else %}Общая подборка песен для саксофонной программы. Пришлите пожелания: конкретные композиции и версии исполнения подтвердим с Leo Sax на вашу дату.{% endif %}</p>
 			</div>
 			<div class="leo-repertoire__groups">
 				{% for group in repertoire %}
 				<details class="leo-repertoire__group">
 					<summary><span>{% if isEn %}{% if loop.first %}International{% else %}Russian-Language{% endif %}{% else %}{{ group.title }}{% endif %}</span><small>{% if isEn %}{{ group.songs | length }} tracks{% else %}{{ group.count }}{% endif %}</small><i aria-hidden="true"></i></summary>
 					<ul>
-						{% for song in group.songs %}<li><strong>{{ song[0] }}</strong>{% if song[1] %}<span>{{ song[1] }}</span>{% endif %}</li>{% endfor %}
+						{% for song in group.songs %}<li><strong>{{ (enContent.saxSongTitles[song[0]] or song[0]) if isEn else song[0] }}</strong>{% if song[1] %}<span>{{ (enContent.saxArtists[song[1]] or song[1]) if isEn else song[1] }}</span>{% endif %}</li>{% endfor %}
 					</ul>
 				</details>
 				{% endfor %}
 			</div>
+		</div>
+	</section>
+	<section class="section section--book" id="booking">
+		<div class="container container--narrow">
+			<h2 class="section__title">{% if isEn %}Discuss a Leo Sax performance.{% else %}Обсудить выступление Leo Sax.{% endif %}</h2>
+			<p class="section__lead">{% if isEn %}Send the date, venue and format: welcome, ceremony, dinner or a set with a DJ. We will check availability and agree songs, duration and sound equipment.{% else %}Пришлите дату, площадку и формат: welcome, церемония, ужин или сет с DJ. Проверим доступность, согласуем песни, продолжительность и звуковое оборудование.{% endif %}</p>
+			<div class="book__cta"><a class="btn btn--primary" href="{{ site.whatsapp if isEn else site.telegram }}">{% if isEn %}Message on WhatsApp{% else %}Написать в Телеграм{% endif %}</a><a class="btn btn--ghost-dark" href="{{ ('/en/sax/' if isEn else '/sax/') | url }}">{% if isEn %}All saxophone formats{% else %}Все форматы с саксофоном{% endif %}</a></div>
 		</div>
 	</section>
 </div>

@@ -1,0 +1,25 @@
+.promo-downloads .cta-row {
+  margin-block: 20px 16px;
+  gap: 12px;
+}
+
+.promo-downloads .btn {
+  box-sizing: border-box;
+  flex: 1 1 220px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  gap: 6px;
+  white-space: normal;
+  text-align: center;
+}
+
+.promo-downloads .btn bdi {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.promo-downloads > .muted {
+  margin-block: 0 28px;
+  font-size: 15px;
+  line-height: 1.5;
+}

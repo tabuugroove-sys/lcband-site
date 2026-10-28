@@ -83,7 +83,7 @@ layout: layouts/base.njk
 				{% for item in faq %}
 				<details class="faq__item">
 					<summary class="faq__q">{{ item.q }}</summary>
-					<div class="faq__a"><p>{{ item.a | replace(('Telegram' if isEn else 'Телеграм'), '<a href="' + site.telegram + '">' + ('Telegram' if isEn else 'Телеграм') + '</a>') | safe }}</p></div>
+					<div class="faq__a"><p>{{ item.a | replace(('WhatsApp' if isEn else 'Телеграм'), '<a href="' + (site.whatsapp if isEn else site.telegram) + '">' + ('WhatsApp' if isEn else 'Телеграм') + '</a>') | safe }}</p></div>
 				</details>
 				{% endfor %}
 			</div>
@@ -108,9 +108,9 @@ layout: layouts/base.njk
 		<div class="container container--narrow reveal">
 			<p class="section__eyebrow">{% if isEn %}Let's Discuss Your Event{% else %}Обсудим ваше событие{% endif %}</p>
 			<h2 class="section__title">{% if isEn %}Message us for a program and quote.{% else %}Напишите — соберём программу и смету.{% endif %}</h2>
-			<p class="section__lead">{% if isEn %}Share the date, venue and format. We will send a suitable lineup, timing and price, normally within a day.{% else %}Расскажите дату, площадку и формат. Пришлём состав, тайминг и цену под ваше событие в течение дня.{% endif %}</p>
+			<p class="section__lead">{% if isEn %}Share the date, venue and format. We will check availability and prepare a lineup, timing and quote.{% else %}Расскажите дату, площадку и формат. Проверим доступность и подготовим предложение с составом, таймингом и сметой.{% endif %}</p>
 			<div class="book__cta">
-				<a class="btn btn--primary" href="{{ site.telegram }}">{% if isEn %}Message on Telegram{% else %}Написать в Телеграм{% endif %}</a>
+				<a class="btn btn--primary" href="{{ site.whatsapp if isEn else site.telegram }}">{% if isEn %}Message on WhatsApp{% else %}Написать в Телеграм{% endif %}</a>
 				<a class="btn btn--ghost-dark" href="{{ ('/en/events/' if isEn else '/events/') | url }}">{% if isEn %}All events{% else %}Все события{% endif %}</a>
 			</div>
 		</div>

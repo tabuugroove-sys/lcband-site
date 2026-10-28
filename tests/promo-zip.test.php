@@ -12,6 +12,31 @@ try {
     foreach (['one.bin' => 'Промо/Видео/Первое.mp4', 'two.bin' => 'Промо/Фото/Второе.jpg'] as $path => $name) {
         $entries[] = ['path' => $path, 'name' => $name, 'bytes' => filesize($root . '/' . $path), 'crc32' => hash_file('crc32b', $root . '/' . $path)];
     }
+    $catalogue = [
+        'archiveName' => 'LCBAND-promo-4K-original.zip', 'timestamp' => 1791979200, 'files' => $entries,
+        'variants' => [
+            '1080' => ['archiveName' => 'LCBAND-promo-1080p.zip', 'files' => [$entries[0]]],
+            '720' => ['archiveName' => 'LCBAND-promo-720p.zip', 'files' => [$entries[1]]],
+        ],
+    ];
+    check(lcb_zip_select($catalogue, null)['files'] === $entries, 'Default no longer selects originals');
+    foreach (['1080' => 0, '720' => 1] as $quality => $index) {
+        $selected = lcb_zip_select($catalogue, (string)$quality);
+        check($selected['files'] === [$entries[$index]], 'Wrong quality payload selected');
+        check($selected['archiveName'] === "LCBAND-promo-{$quality}p.zip", 'Wrong quality filename');
+        $variant = lcb_zip_archive($selected['files'], $root, $selected['timestamp']);
+        $expectedLength = $entries[$index]['bytes'] + 124 + 2 * strlen($entries[$index]['name']) + 98;
+        check($variant['length'] === $expectedLength, 'Catalogue size formula differs from ZIP64 stream');
+        lcb_zip_close($variant);
+    }
+    foreach (['', '4k', '2160', '../720', ['720'], 720] as $invalid) {
+        try { lcb_zip_select($catalogue, $invalid); throw new RuntimeException('Invalid quality accepted'); }
+        catch (InvalidArgumentException $expected) {}
+    }
+    $incomplete = $catalogue;
+    unset($incomplete['variants']['720']);
+    try { lcb_zip_select($incomplete, '720'); throw new RuntimeException('Missing quality silently fell back'); }
+    catch (RuntimeException $expected) { check($expected->getMessage() !== 'Missing quality silently fell back', 'Missing quality silently fell back'); }
     $archive = lcb_zip_archive($entries, $root, 1791979200);
     $all = '';
     lcb_zip_emit($archive, 0, $archive['length'] - 1, static function ($bytes) use (&$all) { $all .= $bytes; });

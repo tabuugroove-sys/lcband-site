@@ -1,6 +1,10 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+	await page.route('**/*.mp4*', route => route.abort());
+});
+
 const ENGLISH_ROUTES = [
 	'/en/',
 	'/en/about/',
@@ -34,12 +38,14 @@ const ENGLISH_ROUTES = [
 	'/en/sax/',
 	'/en/riders/',
 	'/en/repertoire/',
+	'/en/repertoire/catalog/',
 	'/en/artists/',
 	'/en/blog/',
 	'/en/blog/kaver-gruppa-ili-didzhej/',
 	'/en/blog/skolko-stoit-kaver-gruppa/',
 	'/en/live/',
 	'/en/sax/leo-sax/',
+	'/en/sax/stereo-sax/',
 ];
 
 const EXPECTED_MENU = [
@@ -50,10 +56,8 @@ const EXPECTED_MENU = [
 	'Saxophone',
 	'Riders',
 	'Blog',
-	'Message on Telegram',
+	'Message on WhatsApp',
 ];
-
-const CYRILLIC_PROPER_NOUN_ROUTES = new Set(['/en/artists/', '/en/sax/leo-sax/']);
 
 for (const path of ENGLISH_ROUTES) {
 	test(`${path} stays fully inside the English site`, async ({ page }) => {
@@ -62,20 +66,20 @@ for (const path of ENGLISH_ROUTES) {
 		expect(new URL(page.url()).pathname).toBe(path);
 		await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 
-		if (!CYRILLIC_PROPER_NOUN_ROUTES.has(path)) {
-			const bodyText = await page.locator('body').innerText();
-			// The locale picker intentionally names Russian in its own language.
-			expect(bodyText.replace('Русский', ''), `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
-		}
+		const bodyText = await page.locator('body').innerText();
+		expect(bodyText, `${path} should not contain Russian UI text`).not.toMatch(/[А-Яа-яЁё]/);
+		await expect(page.locator('a[href*="t.me"]')).toHaveCount(0);
+		expect(await page.locator('a[href^="https://wa.me/971502776169"]').count()).toBeGreaterThan(0);
 
 		const menuLabels = await page
 			.locator('header nav a.nav__link')
 			.evaluateAll((links) => links.map((link) => (link.textContent || '').trim()).filter(Boolean));
-		expect(menuLabels).toEqual(EXPECTED_MENU);
+		if (path !== '/en/repertoire/catalog/') expect(menuLabels).toEqual(EXPECTED_MENU);
+		if (path === '/en/repertoire/catalog/') await expect(page.locator('.song-section li')).toHaveCount(420);
 
 		const wrongPageLinks = await page.locator('a[href]').evaluateAll((links) =>
 			links.flatMap((link) => {
-				if ((link.textContent || '').trim() === 'Русский') return [];
+				if (link.hasAttribute('hreflang')) return [];
 				const url = new URL(link.getAttribute('href') || '', window.location.href);
 				const isInternal = url.origin === window.location.origin;
 				const isPage = url.pathname.endsWith('/') || url.pathname.endsWith('.html');
@@ -166,6 +170,6 @@ test('English sax page is a translated structural twin of the Russian page', asy
 	);
 	const serializedSchemas = JSON.stringify(schemas);
 	expect(serializedSchemas).not.toMatch(/[А-Яа-яЁё]/);
-	expect(serializedSchemas).toContain('"inLanguage":"en-US"');
+	expect(serializedSchemas).toContain('"@type":"FAQPage"');
 	expect(serializedSchemas).toContain('https://luxuryband.ru/en/');
 });

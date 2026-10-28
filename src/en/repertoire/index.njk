@@ -2,8 +2,8 @@
 layout: layouts/base.njk
 htmlLang: en
 ogLocale: en_US
-title: Repertoire — Luxury Cover Band
-description: "The current Luxury Cover Band repertoire: pop, rock, retro, jazz, lounge and international songs. Browse the full list or download the PDF."
+title: Repertoire for Your Event — Luxury Cover Band
+description: "Explore a published selection of 420 song entries, search by artist or title, and discuss your event set list with Luxury Cover Band."
 keywords: "cover band repertoire, song list, Luxury Cover Band repertoire, PDF repertoire"
 permalink: /en/repertoire/
 ---
@@ -21,10 +21,10 @@ permalink: /en/repertoire/
 	<div class="container reveal">
 		<div class="repertoire">
 			<div class="repertoire__text">
-				<p class="section__lead">Browse by mood or find your favourite song. The full repertoire is available online and as a PDF.</p>
+				<p class="section__lead">Search the published selection of 420 entries below. Some songs appear in more than one category; this is not the band's complete repertoire. Ask us about any song you cannot find.</p>
 				<div class="repertoire__cta">
-					<a class="btn btn--dark" href="{{ '/assets/repertoire/?v=20260924' | url }}" target="_blank" rel="noopener">Browse repertoire</a>
-					<a class="btn btn--ghost-dark" href="{{ '/assets/repertoire/repertoire.pdf?v=20260923' | url }}" download>Download PDF</a>
+					<a class="btn btn--dark" href="{{ site.whatsapp }}">Discuss your song choices</a>
+					<a class="btn btn--ghost-dark" href="{{ '/en/repertoire/catalog/#print' | url }}">Print / Save as PDF</a>
 				</div>
 			</div>
 			<div class="repertoire__badges">
@@ -33,5 +33,6 @@ permalink: /en/repertoire/
 				{% endfor %}
 			</div>
 		</div>
+		<iframe src="{{ '/en/repertoire/catalog/?view=embedded' | url }}" title="Search the Luxury Cover Band song selection" loading="lazy" style="display:block;width:100%;height:800px;border:0;margin-top:32px;"></iframe>
 	</div>
 </section>

@@ -179,8 +179,8 @@ eleventyComputed:
 <section class="section section--light" id="formats">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Форматы работы</p>
-		<h2 class="section__title">Одна команда —<br><span class="muted">четыре роли.</span></h2>
-		<p class="section__lead">Мы не просто играем концерт. Мы встраиваемся в формат события — от хоровой коллаборации до караоке-шоу с гостями.</p>
+		<h2 class="section__title">Форматы выступления<br><span class="muted">на корпоративе.</span></h2>
+		<p class="section__lead">Выступаем с хором, аккомпанируем сотрудникам и гостям, проводим караоке с живой группой.</p>
 	</div>
 	<div class="container reveal">
 		<ul class="formats">
@@ -202,18 +202,35 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% if event.slug == 'tv' %}
+<section class="section section--elev" id="production-details">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Что нужно для обсуждения съёмки.</h2>
+		<p class="section__lead">Пришлите дату, площадку, формат проекта, песни и требования к составу. Согласуем живой звук или другой формат записи, репетиции, длительность номера, время на площадке и требования к использованию записи.</p>
+		<a class="btn btn--primary" href="{{ site.telegram }}">Обсудить участие в съёмке</a>
+	</div>
+</section>
+{% elif event.slug == 'abroad' %}
+<section class="section section--elev" id="tour-details">
+	<div class="container container--narrow reveal">
+		<h2 class="section__title">Условия зарубежного выступления.</h2>
+		<p class="section__lead">Для расчёта нужны страна, город, даты, площадка, число выступлений и желаемый состав. Отдельно согласуем перелёты, трансферы, проживание, перевозку инструментов, необходимые документы и оборудование на месте.</p>
+		<div class="book__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Обсудить даты и маршрут</a><a class="btn btn--ghost-dark" href="{{ '/assets/riders/rider-international-7pc-en.pdf' | url }}">Английский райдер · 7 человек · PDF</a></div>
+	</div>
+</section>
+{% else %}
 <section class="section section--elev" id="addons">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Дополнительно</p>
 		<h2 class="section__title">Соберём вечер<br><span class="muted">целиком.</span></h2>
-		<p class="section__lead">Кроме бенда закрываем техническую и развлекательную часть события — под ключ или отдельными блоками.</p>
+		<p class="section__lead">Звук, свет, DJ и другие услуги можно обсудить вместе с выступлением группы. Согласованные позиции и их стоимость перечислим в смете.</p>
 	</div>
 	<div class="container reveal">
 		<ul class="addon-grid">
 			<li class="addon-card">
 				<span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="20" cy="20" r="2.2" fill="currentColor" stroke="none"/><path d="M14 14a8.4 8.4 0 000 12"/><path d="M26 14a8.4 8.4 0 010 12"/><path d="M9.5 9.5a15 15 0 000 21"/><path d="M30.5 9.5a15 15 0 010 21"/></svg></span>
 				<h3 class="addon-card__title">Звук</h3>
-				<p class="addon-card__text">Профессиональный звук под площадку любого размера — от камерного зала до открытой территории.</p>
+				<p class="addon-card__text">Подбор звукового оборудования под размеры площадки, размещение гостей и технические ограничения.</p>
 			</li>
 			<li class="addon-card">
 				<span class="addon-card__icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h12l3 10H11z"/><path d="M15 18l-4 14M25 18l4 14M20 18v14"/></svg></span>
@@ -246,6 +263,7 @@ eleventyComputed:
 		</div>
 	</div>
 </section>
+{% endif %}
 
 {% if event.faq %}
 <section class="section section--light" id="faq">

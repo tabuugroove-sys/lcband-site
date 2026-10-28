@@ -32,13 +32,293 @@
 			"abroad": "International Tours"
 		},
 		"links": {
-			"telegram": "Telegram",
 			"vk": "VK",
 			"about": "About the Band",
 			"blog": "Blog",
 			"repertoire": "Repertoire",
 			"riders": "Riders",
-			"tours": "International Tours"
+			"tours": "International Tours",
+			"whatsapp": "WhatsApp"
+		},
+		"languages": {
+			"ru": "Russian",
+			"en": "English",
+			"ar": "Arabic",
+			"pt-BR": "Portuguese"
 		}
+	},
+	"ar": {
+		"home": "/ae/",
+		"city": "موسكو",
+		"languageLabel": "اللغة",
+		"languages": {
+			"ru": "الروسية",
+			"en": "الإنجليزية",
+			"ar": "العربية",
+			"pt-BR": "البرتغالية"
+		},
+		"headings": {
+			"programs": "البرامج الموسيقية",
+			"vocalists": "المطربون",
+			"formats": "صيغ العروض",
+			"events": "المناسبات",
+			"contact": "تواصل معنا"
+		},
+		"links": {
+			"whatsapp": "راسلنا على واتساب",
+			"about": "عن الفرقة",
+			"videos": "فيديوهات العروض",
+			"planning": "التخطيط للحفل",
+			"repertoire": "قائمة الأغاني",
+			"riders": "المتطلبات الفنية",
+			"tours": "جولات دولية"
+		},
+		"nav": {
+			"home": "الرئيسية",
+			"aria": "التنقل الرئيسي",
+			"menu": "القائمة",
+			"sections": {
+				"lineup": "المطربون",
+				"programs": "البرامج",
+				"costumes": "الأزياء",
+				"formats": "صيغ العروض",
+				"sax": "الساكسفون",
+				"events": "المناسبات",
+				"riders": "المتطلبات الفنية",
+				"planning": "التخطيط"
+			}
+		},
+		"programs": {
+			"italian": "البرنامج الإيطالي",
+			"french": "البرنامج الفرنسي",
+			"latin": "العرض اللاتيني",
+			"retro": "أغاني الريترو",
+			"jazz": "برنامج الجاز",
+			"rock": "برنامج الروك"
+		},
+		"vocalists": {
+			"irina": "إيرينا",
+			"stas": "ستاس",
+			"teddy": "تيدي",
+			"laz": "لازي"
+		},
+		"formats": {
+			"choir-collab": "عرض مع الكورال",
+			"home-band": "فرقة لمشاركة الموظفين",
+			"karaoke": "كاريوكي مع فرقة حية",
+			"welcome": "موسيقى استقبال الضيوف",
+			"gitarist-u-kostra": "غيتار وغناء حول النار"
+		},
+		"events": {
+			"wedding": "حفلات الزفاف",
+			"corporate": "فعاليات الشركات",
+			"new-year": "حفلات رأس السنة",
+			"birthday": "أعياد الميلاد والمناسبات السنوية",
+			"private-party": "الحفلات الخاصة",
+			"tv": "التلفزيون والتصوير",
+			"abroad": "الجولات الدولية"
+		},
+		"request": "ناقش هذا الخيار عبر واتساب",
+		"summaries": {
+			"vocalists": {
+				"irina": "تقود فقرات البوب والريترو، وتؤدي الأغاني الإيطالية والجاز. نختار معها الأغاني التي تناسب أجواء الحفل.",
+				"stas": "مطرب ومقدم فقرات تفاعلية. يقدم البوب والروك والسول، ويشارك في الثنائيات والثلاثيات.",
+				"teddy": "مطرب وعازف باس كوبي من غوانتانامو. يقود الفقرات اللاتينية والرقص الجماعي مع الضيوف.",
+				"laz": "يقدم الأغاني بالإنجليزية وفقرات السول والموسيقى الراقصة، ويتفاعل مع الجمهور أثناء العرض."
+			},
+			"programs": {
+				"italian": "أغاني إيطالية كلاسيكية ومعاصرة من Adriano Celentano إلى Eros Ramazzotti وLaura Pausini، لحفلات الزفاف والعشاء والأمسيات الإيطالية.",
+				"french": "من Edith Piaf إلى ZAZ. برنامج فرنسي لحفلات الاستقبال والأمسيات الهادئة، مع اختيار الأغاني حسب الضيوف.",
+				"latin": "فرقة حية مع تيدي، وأغانٍ مثل Macarena وBailando، وفقرات رقص ومشاركة الجمهور.",
+				"retro": "أغانٍ من الستينيات حتى التسعينيات. نختار الحقبة والأغاني بما يناسب جمهور الحفل.",
+				"jazz": "جاز وسوينغ ولاونج لاستقبال الضيوف أو العشاء. نحدد حجم التشكيلة ومستوى الصوت حسب المكان.",
+				"rock": "روك كلاسيكي وأغانٍ بطابع الملاعب من Queen وAC/DC إلى Muse وFoo Fighters، مع غناء حي وصوت الفرقة."
+			},
+			"formats": {
+				"choir-collab": "نؤدي مع كورالكم، وننسق التوزيع الموسيقي والبروفات ودعم قسم الإيقاع قبل المناسبة.",
+				"home-band": "يغني موظفو الشركة أو الضيوف بمرافقة الفرقة. نحضر الأغاني والنغمات والمداخل معهم قبل الحفل.",
+				"karaoke": "يختار الضيوف أغاني من قائمتنا ويغنون مع العازفين، مع دعم مطربي الفرقة.",
+				"welcome": "جاز أو موسيقى صوتية هادئة أثناء وصول الضيوف، ثم انتقال إلى البرنامج الرئيسي.",
+				"gitarist-u-kostra": "غيتار وغناء لمناسبة صغيرة أو لقاء في الهواء الطلق. ننسق الأغاني والمدة وتجهيز الصوت حسب المكان."
+			},
+			"events": {
+				"wedding": "موسيقى للمراسم واستقبال الضيوف والرقصة الأولى والعشاء والرقص. ننسق الفقرات مع جدول يوم الزفاف.",
+				"corporate": "من الاستقبال والعشاء إلى البرنامج الرئيسي والرقص. يمكن أن يشارك الموظفون في فقرات مع الفرقة.",
+				"new-year": "برنامج احتفالي يجمع الأغاني المناسبة للموسم والموسيقى الراقصة. نتحقق من توفر التاريخ والتشكيلة عند الاستفسار.",
+				"birthday": "أغاني صاحب المناسبة والعائلة والأصدقاء، مع فقرات تفاعلية يختارها المنظم.",
+				"private-party": "تشكيلة ودرجة صوت تناسبان المطعم أو العشاء أو الحفل الخاص، من برنامج صوتي صغير إلى فرقة كاملة.",
+				"tv": "عروض للتصوير والبث، مع تنسيق التوقيت ومداخل الفنانين والصوت مع فريق الإنتاج.",
+				"abroad": "نناقش المدينة والتواريخ والتشكيلة والسفر والمتطلبات الفنية للعروض والجولات الدولية."
+			}
+		},
+		"guides": [
+			{
+				"id": "costumes",
+				"title": "أزياء تناسب مناسبتك",
+				"text": "إطلالات حمراء وذهبية وبيضاء وبالأبيض والأسود. يمكنك مشاهدة هذه الخيارات في أعلى الصفحة، ثم ننسق الأزياء مع ألوان المناسبة وصيغة العرض."
+			},
+			{
+				"id": "sax",
+				"title": "ساكسفون منفرد أو مع الفرقة",
+				"text": "ساكسفون لاستقبال الضيوف والمراسم والعشاء أو فقرات الرقص مع الدي جي. راسلنا لتحديد الفنان والبرنامج المناسبين لتاريخك ومكان الحفل."
+			},
+			{
+				"id": "repertoire",
+				"title": "اختيار الأغاني",
+				"text": "أكثر من 500 أغنية بـ12 لغة، من الجاز إلى البوب والروك واللاتيني. أخبرنا بلغات الضيوف وأغانيك المفضلة لنرسل قائمة مختارة ونرتب الفقرات."
+			},
+			{
+				"id": "artists",
+				"title": "موسيقى من تأليف مطربينا",
+				"text": "يصدر مطربو الفرقة أغانيهم ومشاريعهم الموسيقية الخاصة. راسلنا لمعرفة الإصدارات والفقرات الأصلية التي يمكن مناقشتها لمناسبتك."
+			},
+			{
+				"id": "planning",
+				"title": "كيف نخطط للحفل",
+				"text": "أرسل التاريخ والمدينة والمكان ونوع المناسبة. نراجع عدد الضيوف والبرنامج والتشكيلة والميزانية، ثم نتفق على تفاصيل العرض."
+			},
+			{
+				"id": "riders",
+				"title": "المتطلبات الفنية",
+				"text": "تختلف احتياجات الصوت والمسرح والمراقبة حسب التشكيلة. نرسل المتطلبات المناسبة بعد تحديد عدد العازفين، وننسقها مع فريق المكان قبل الحفل."
+			}
+		]
+	},
+	"pt-BR": {
+		"home": "/br/",
+		"city": "Moscou",
+		"languageLabel": "Idioma",
+		"languages": {
+			"ru": "Russo",
+			"en": "Inglês",
+			"ar": "Árabe",
+			"pt-BR": "Português"
+		},
+		"headings": {
+			"programs": "Programas temáticos",
+			"vocalists": "Vocalistas",
+			"formats": "Formatos",
+			"events": "Eventos",
+			"contact": "Contato"
+		},
+		"links": {
+			"whatsapp": "Falar no WhatsApp",
+			"about": "Sobre a banda",
+			"videos": "Vídeos dos shows",
+			"planning": "Planeje seu evento",
+			"repertoire": "Repertório",
+			"riders": "Riders técnicos",
+			"tours": "Turnês internacionais"
+		},
+		"nav": {
+			"home": "Início",
+			"aria": "Navegação principal",
+			"menu": "Menu",
+			"sections": {
+				"lineup": "Vocalistas",
+				"programs": "Programas",
+				"costumes": "Figurinos",
+				"formats": "Formatos",
+				"sax": "Saxofone",
+				"events": "Eventos",
+				"riders": "Riders",
+				"planning": "Planejamento"
+			}
+		},
+		"programs": {
+			"italian": "Programa italiano",
+			"french": "Programa francês",
+			"latin": "Show latino",
+			"retro": "Programa retrô",
+			"jazz": "Programa de jazz",
+			"rock": "Programa de rock"
+		},
+		"vocalists": {
+			"irina": "Irina",
+			"stas": "Stas",
+			"teddy": "Teddy",
+			"laz": "Lazzy"
+		},
+		"formats": {
+			"choir-collab": "Show com coral",
+			"home-band": "Banda para apresentações da equipe",
+			"karaoke": "Karaokê com banda ao vivo",
+			"welcome": "Música para recepção",
+			"gitarist-u-kostra": "Voz e violão ao redor da fogueira"
+		},
+		"events": {
+			"wedding": "Casamentos",
+			"corporate": "Eventos corporativos",
+			"new-year": "Festas de Ano-Novo",
+			"birthday": "Aniversários e comemorações",
+			"private-party": "Festas particulares",
+			"tv": "TV e gravações",
+			"abroad": "Turnês internacionais"
+		},
+		"request": "Conversar sobre esta opção no WhatsApp",
+		"summaries": {
+			"vocalists": {
+				"irina": "Conduz os blocos de pop e retrô e canta repertório italiano e jazz. A seleção de músicas acompanha o clima do evento.",
+				"stas": "Cantor e MC, conduz momentos interativos. Seu repertório passa por pop, rock e soul, com participações em duos e trios.",
+				"teddy": "Cantor e baixista cubano de Guantánamo. Conduz o repertório latino e as danças com a participação dos convidados.",
+				"laz": "Canta em inglês e apresenta blocos de soul e música dançante, interagindo com o público durante o show."
+			},
+			"programs": {
+				"italian": "Clássicos e hits italianos de Adriano Celentano, Eros Ramazzotti e Laura Pausini para casamentos, jantares e eventos temáticos.",
+				"french": "De Edith Piaf a ZAZ. Um programa francês para recepções e noites intimistas, com a seleção ajustada ao público.",
+				"latin": "Banda ao vivo com Teddy, músicas como Macarena e Bailando, dança e participação dos convidados.",
+				"retro": "Músicas dos anos 60 aos 90. Escolhemos as décadas e os sucessos de acordo com o público da festa.",
+				"jazz": "Jazz, swing e lounge para a recepção ou o jantar. A formação e o volume acompanham as condições do local.",
+				"rock": "Rock clássico e hits de estádio, de Queen e AC/DC a Muse e Foo Fighters, com voz e banda ao vivo."
+			},
+			"formats": {
+				"choir-collab": "Tocamos com o seu coral e alinhamos os arranjos, os ensaios e o acompanhamento da banda antes do evento.",
+				"home-band": "Funcionários ou convidados cantam acompanhados pela banda. Preparamos músicas, tonalidades e entradas com os participantes.",
+				"karaoke": "Os convidados escolhem músicas do repertório e cantam com os instrumentistas, com apoio dos vocalistas da banda.",
+				"welcome": "Jazz ou música acústica durante a chegada dos convidados, com uma transição para o programa principal.",
+				"gitarist-u-kostra": "Voz e violão para uma celebração intimista ou ao ar livre. Alinhamos repertório, duração e estrutura de som com o local."
+			},
+			"events": {
+				"wedding": "Música para cerimônia, recepção, primeira dança, jantar e pista. Organizamos os blocos de acordo com o cronograma do casamento.",
+				"corporate": "Da recepção e do jantar ao show principal e à pista. A equipe da empresa também pode participar de números com a banda.",
+				"new-year": "Um programa de festa com músicas de fim de ano e sucessos para dançar. Confirmamos a disponibilidade da data e da formação na consulta.",
+				"birthday": "Músicas escolhidas pelo aniversariante, pela família e pelos amigos, com momentos de interação combinados com o organizador.",
+				"private-party": "Formação e volume adequados ao restaurante, jantar ou festa particular, de um formato acústico à banda completa.",
+				"tv": "Apresentações para gravação e transmissão, com entradas, duração e som alinhados à equipe de produção.",
+				"abroad": "Alinhamos cidade, datas, formação, viagem e estrutura técnica para apresentações e turnês internacionais."
+			}
+		},
+		"guides": [
+			{
+				"id": "costumes",
+				"title": "Figurinos para o seu evento",
+				"text": "Looks vermelhos, dourados, brancos e em preto e branco. Veja essas opções no início da página; depois, alinhamos os figurinos à paleta do evento e ao formato do show."
+			},
+			{
+				"id": "sax",
+				"title": "Saxofone solo ou com a banda",
+				"text": "Saxofone para recepção, cerimônia, jantar ou pista com DJ. Fale conosco para escolher o artista e o programa de acordo com a data e o local."
+			},
+			{
+				"id": "repertoire",
+				"title": "Escolha das músicas",
+				"text": "Mais de 500 músicas em 12 idiomas, do jazz ao pop, rock e repertório latino. Conte quais idiomas e músicas seus convidados preferem para receber uma seleção e organizar os blocos."
+			},
+			{
+				"id": "artists",
+				"title": "Música autoral dos nossos vocalistas",
+				"text": "Os vocalistas da banda também lançam suas próprias músicas e projetos. Fale conosco para conhecer os lançamentos e discutir a participação de repertório autoral no evento."
+			},
+			{
+				"id": "planning",
+				"title": "Como planejamos o evento",
+				"text": "Envie data, cidade, local e tipo de evento. Conversamos sobre o número de convidados, o programa, a formação e o orçamento para definir os detalhes do show."
+			},
+			{
+				"id": "riders",
+				"title": "Riders técnicos",
+				"text": "As necessidades de som, palco e monitoração variam conforme a formação. Enviamos o rider adequado depois de definir os músicos e alinhamos os detalhes com a equipe do local."
+			}
+		]
 	}
 }

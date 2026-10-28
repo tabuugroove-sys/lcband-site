@@ -5,6 +5,20 @@
 
 (() => {
 	'use strict';
+	const copy = window.LCBLocale.copy;
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	const saveData = Boolean(navigator.connection?.saveData);
+	const backgroundVideo = document.querySelector('[data-background-video]');
+	if (backgroundVideo && !reduceMotion.matches && !saveData) {
+		let visible = false;
+		const updateBackground = () => {
+			if (!visible || document.hidden) { backgroundVideo.pause(); return; }
+			if (!backgroundVideo.getAttribute('src')) backgroundVideo.src = window.innerWidth <= 734 ? backgroundVideo.dataset.srcMobile : backgroundVideo.dataset.srcDesktop;
+			backgroundVideo.play().catch(() => {});
+		};
+		new IntersectionObserver(entries => { visible = entries[0].isIntersecting; updateBackground(); }, {threshold:0.1}).observe(backgroundVideo);
+		document.addEventListener('visibilitychange', updateBackground);
+	}
 
 	// ---------- Locale memory ----------
 	try {
@@ -111,7 +125,7 @@
 	// таймеров; реверс скролла = реверс шторки. Без JS / reduced-motion
 	// секция остаётся статичной (постер + текст в каждой полосе).
 	const storyRooms = document.querySelector('[data-story-rooms]');
-	if (storyRooms && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	if (storyRooms && window.innerWidth > 900 && !reduceMotion.matches && !saveData) {
 		storyRooms.classList.add('is-enhanced');
 		const rooms = Array.from(storyRooms.querySelectorAll('[data-room]'));
 		const layers = Array.from(storyRooms.querySelectorAll('[data-story-layer]'));
@@ -129,6 +143,7 @@
 
 		const render = () => {
 			ticking = false;
+			if (!storyRooms.classList.contains('is-enhanced')) return;
 			const y = window.scrollY;
 			// wipe привязан к геометрии экрана: старт — верх полосы достиг НИЖНЕЙ
 			// границы плеера, финиш — верх полосы дошёл до ВЕРХНЕЙ границы.
@@ -148,7 +163,7 @@
 			// вне секции на паузе всё
 			const firstTop = roomTops[0] - y;
 			const lastBottom = roomTops[rooms.length - 1] - y + rooms[rooms.length - 1].offsetHeight;
-			if (firstTop >= vh || lastBottom <= 0) { current = -1; appearing = -1; }
+			if (document.hidden || firstTop >= vh || lastBottom <= 0) { current = -1; appearing = -1; }
 			const playKey = current + ':' + appearing;
 			if (playKey !== activeIndex) {
 				activeIndex = playKey;
@@ -170,12 +185,28 @@
 		const onScroll = () => {
 			if (!ticking) { ticking = true; requestAnimationFrame(render); }
 		};
-		const onResize = () => { measure(); render(); };
+		const onResize = () => {
+			if (window.innerWidth <= 900 || reduceMotion.matches || navigator.connection?.saveData) {
+				storyRooms.classList.remove('is-enhanced');
+				videos.forEach(video => {
+					if (!video) return;
+					video.pause();
+					const source = video.querySelector('source[src]');
+					if (source) { source.removeAttribute('src'); video.load(); }
+				});
+				activeIndex = -1;
+				return;
+			}
+			storyRooms.classList.add('is-enhanced');
+			measure(); render();
+		};
 
 		measure();
 		render();
 		window.addEventListener('scroll', onScroll, { passive: true });
 		window.addEventListener('resize', onResize, { passive: true });
+		document.addEventListener('visibilitychange', onResize);
+		reduceMotion.addEventListener('change', onResize);
 		// после догрузки шрифтов/картинок выше по странице — перемерить
 		window.addEventListener('load', onResize);
 	}
@@ -320,7 +351,7 @@
 		lightboxPicker = document.createElement('div');
 		lightboxPicker.className = 'lightbox__picker';
 		lightboxPicker.innerHTML = `
-			<button data-q="auto" class="is-active">Авто</button>
+			<button data-q="auto" class="is-active">${copy.auto}</button>
 			<button data-q="720">720p</button>
 			<button data-q="1080" class="hd">1080p</button>
 			<button data-q="2160" class="hd" hidden>4K</button>
@@ -330,14 +361,14 @@
 		lightboxPrev = document.createElement('button');
 		lightboxPrev.className = 'lightbox__nav lightbox__nav--prev';
 		lightboxPrev.type = 'button';
-		lightboxPrev.setAttribute('aria-label', 'Предыдущее видео');
+		lightboxPrev.setAttribute('aria-label', copy.previousVideo);
 		lightboxPrev.innerHTML = '<span aria-hidden="true">‹</span>';
 		lightbox.appendChild(lightboxPrev);
 
 		lightboxNext = document.createElement('button');
 		lightboxNext.className = 'lightbox__nav lightbox__nav--next';
 		lightboxNext.type = 'button';
-		lightboxNext.setAttribute('aria-label', 'Следующее видео');
+		lightboxNext.setAttribute('aria-label', copy.nextVideo);
 		lightboxNext.innerHTML = '<span aria-hidden="true">›</span>';
 		lightbox.appendChild(lightboxNext);
 
@@ -368,7 +399,7 @@
 			const q = btn.dataset.q;
 			lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b === btn));
 			if (q === 'auto') {
-				currentQuality = networkSuggestsLow() ? '720' : '1080';
+				currentQuality = known720OnlyVideoKeys.has(currentVideoKey) || networkSuggestsLow() ? '720' : '1080';
 				stallCount = 0;
 			} else {
 				currentQuality = q;
@@ -388,7 +419,7 @@
 				currentQuality = '720';
 				const btn720 = lightboxPicker.querySelector('[data-q="720"]');
 				lightboxPicker.querySelectorAll('button').forEach(b => b.classList.toggle('is-active', b === btn720));
-				showToast('Медленная сеть — переключили на 720p');
+				showToast(copy.slow720);
 				swapQuality();
 			}
 		});
@@ -406,15 +437,15 @@
 		lightboxVideoEl.addEventListener('error', () => {
 			if (currentQuality === '2160') {
 				currentQuality = '1080';
-				showToast('4K недоступно, переключили на 1080p');
+				showToast(copy.fallback1080);
 				swapQuality();
 			} else if (currentQuality === '1080') {
 				currentQuality = '720';
-				showToast('1080p недоступно, переключили на 720p');
+				showToast(copy.fallback720);
 				swapQuality();
 			} else {
 				lightbox?.classList.remove('is-video-loading');
-				showToast('Видео ещё загружается на хостинг');
+				showToast(copy.uploading);
 			}
 		});
 	}
@@ -437,6 +468,7 @@
 	}
 
 	const known720OnlyVideoKeys = new Set([
+		'sax-welcome',
 		'yuriy-acoustic-vocal',
 		'yuriy-live-stage',
 		'yuriy-instrumental'
@@ -461,7 +493,7 @@
 		const btn4k = lightboxPicker?.querySelector('[data-q="2160"]');
 		if (!btn1080 || !btn4k) return;
 		if (btn720) btn720.hidden = shared?.has720 === false;
-		btn1080.textContent = shared?.quality === 1080 ? ((document.documentElement.lang || 'ru').toLowerCase().startsWith('en') ? 'Original' : 'Оригинал') : '1080p';
+		btn1080.textContent = shared?.quality === 1080 ? copy.original : '1080p';
 		btn1080.hidden = known720OnlyVideoKeys.has(key);
 		btn4k.hidden = true;
 		if (btn1080.hidden && currentQuality === '1080') {
@@ -469,6 +501,7 @@
 			setPickerQuality(currentQuality);
 			swapQuality();
 		}
+		if (known720OnlyVideoKeys.has(key)) return;
 		videoQualityExists(key, '2160').then(exists => {
 			if (currentVideoKey !== key) return;
 			btn4k.hidden = !exists;
@@ -508,7 +541,7 @@
 			const key = node.dataset.video;
 			if (!key || seen.has(key)) return items;
 			seen.add(key);
-			const title = node.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || node.getAttribute('aria-label') || 'Видео';
+			const title = node.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || node.getAttribute('aria-label') || copy.video;
 			const poster = node.querySelector('img')?.src || '';
 			items.push({ key, title, poster });
 			return items;
@@ -537,7 +570,7 @@
 		if (!lightbox) return;
 		buildVideoUI();
 		currentVideoKey = key;
-		currentVideoTitle = title || 'Видео';
+		currentVideoTitle = title || copy.video;
 		currentVideoPoster = poster || '';
 		stallCount = 0;
 		currentQuality = '720';
@@ -630,7 +663,7 @@
 			e.preventDefault();
 			e.stopPropagation();
 			a.blur();
-			const title = a.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || a.getAttribute('aria-label') || 'Видео';
+			const title = a.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || a.getAttribute('aria-label') || copy.video;
 			const poster = a.querySelector('img')?.src || a.closest('.page-hero')?.querySelector('.page-hero__media img')?.src || '';
 			currentVideoRail = a.closest('.video-rail, [data-video-carousel], .program-video-carousel, .formats--examples') || null;
 			openVideo(a.dataset.video, title, poster);
@@ -669,37 +702,7 @@
 		const reducedHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		const coarseHeroPointer = window.matchMedia('(pointer: coarse)');
 		const heroLang = (document.documentElement.lang || 'ru').toLowerCase();
-		const heroCopy = heroLang.startsWith('en') ? {
-			pause: 'Pause',
-			resume: 'Resume',
-			watch: 'Watch',
-			loadingMuted: 'Video started muted — tap the video to turn sound on',
-			playFailed: 'Could not start the video. Press play again.',
-			qualityFallback1080: '4K is unavailable, switching to 1080p',
-			qualityFallback720: '1080p is unavailable, switching to 720p',
-			videoUnavailable: 'Video is temporarily unavailable',
-			costumes: {
-				red: 'Red look',
-				bw: 'Black-and-white look',
-				gold: 'Gold look',
-				white: 'White look'
-			}
-		} : {
-			pause: 'Пауза',
-			resume: 'Продолжить',
-			watch: 'Смотреть',
-			loadingMuted: 'Видео запущено без звука — коснитесь видео, чтобы включить звук',
-			playFailed: 'Не удалось запустить видео. Нажмите ещё раз.',
-			qualityFallback1080: '4K недоступно, переключаем на 1080p',
-			qualityFallback720: '1080p недоступно, переключаем на 720p',
-			videoUnavailable: 'Видео временно недоступно',
-			costumes: {
-				red: 'Красный образ',
-				bw: 'Чёрно-белый образ',
-				gold: 'Золотой образ',
-				white: 'Белый образ'
-			}
-		};
+		const heroCopy = copy;
 		let heroQuality = (coarseHeroPointer.matches || window.matchMedia('(max-width: 734px)').matches) ? '720' : '1080';
 		let heroQualityKey = '';
 		let currentHeroVideoKey = '';
@@ -728,7 +731,7 @@
 			.filter((key, index, list) => key && list.indexOf(key) === index);
 		const heroClips = {
 			'promo-egoistka': {
-				title: 'Эгоистка', costume: 'red', costumeLabel: heroCopy.costumes.red,
+				title: copy.egoistka, costume: 'red', costumeLabel: heroCopy.costumes.red,
 				poster: 'promo-egoistka-2026-red-stage.jpg?v=20260620i'
 			},
 			'promo-lets-get-it-started': {
@@ -748,7 +751,7 @@
 				poster: 'promo-amore-no.jpg?v=20260620i'
 			},
 			'promo-letet': {
-				title: 'Лететь', costume: 'white', costumeLabel: heroCopy.costumes.white,
+				title: copy.letet, costume: 'white', costumeLabel: heroCopy.costumes.white,
 				poster: 'promo-letet.jpg?v=20260620i'
 			},
 			'thematic-italian': {
@@ -764,7 +767,7 @@
 				poster: 'promo-loca-loca.jpg?v=20260620i'
 			},
 			'promo-danza-cuduro': {
-				title: 'Danza Cuduro', costume: 'bw', costumeLabel: heroCopy.costumes.bw,
+				title: 'Danza Kuduro', costume: 'bw', costumeLabel: heroCopy.costumes.bw,
 				poster: 'promo-danza-cuduro-2026.jpg?v=20260620i'
 			}
 		};

@@ -26,7 +26,7 @@
     const picker = document.createElement('span');
     picker.className = 'video-quality-picker';
     picker.setAttribute('role', 'group');
-    picker.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Video quality' : 'Качество видео');
+    picker.setAttribute('aria-label', window.LCBLocale.copy.quality);
     picker.hidden = true;
     host.append(picker);
     let currentKey = '';

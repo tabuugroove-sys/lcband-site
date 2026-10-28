@@ -27,7 +27,7 @@ permalink: /formats/
 					<div class="format__photo"><img src="{{ ('/' + f.poster) | url }}" alt="{{ f.title }} — формат LC Band" loading="lazy"></div>
 					<div class="format__body">
 						<span class="format__label">{{ f.eyebrow }}</span>
-						<h3 class="format__title">{{ f.title }}</h3>
+						<h2 class="format__title">{{ f.title }}</h2>
 						<p class="format__text">{{ f.lead }}</p>
 						<span class="format__more">Подробнее ›</span>
 					</div>
@@ -35,5 +35,10 @@ permalink: /formats/
 			</li>
 			{% endfor %}
 		</ul>
+		<div style="margin-top:48px;max-width:760px;">
+			<h2 class="section__title">Китайская музыка на эрху.</h2>
+			<p class="section__lead">Инструментальная программа для деловых приёмов, презентаций, выставок и чайных церемоний. Послушайте записи и обсудите программу под гостей вашего события.</p>
+			<a class="btn btn--ghost-dark" href="{{ '/promo/erhu/' | url }}">Послушать эрху и посмотреть репертуар →</a>
+		</div>
 	</div>
 </section>

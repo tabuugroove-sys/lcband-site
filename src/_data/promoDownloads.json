@@ -1,0 +1,42 @@
+{
+  "ru": {
+    "label": "Скачать промопакет",
+    "original": "4K / Оригинал",
+    "fullHd": "Full HD 1080p",
+    "hd": "HD 720p",
+    "unit": "ГБ",
+    "description": "Каждый ZIP включает видео, фото, репертуар и райдеры.",
+    "qualityNote": "Качество видео — до выбранного разрешения. Записи меньшего разрешения, фото и документы сохраняются в оригинале.",
+    "languageNote": ""
+  },
+  "en": {
+    "label": "Download promo package",
+    "original": "4K / Original",
+    "fullHd": "Full HD 1080p",
+    "hd": "HD 720p",
+    "unit": "GB",
+    "description": "Each ZIP includes videos, photos, repertoire and riders.",
+    "qualityNote": "Videos are available up to the selected resolution. Lower-resolution recordings, photos and documents keep their original quality.",
+    "languageNote": "Archive filenames and documents retain their original languages."
+  },
+  "ar": {
+    "label": "تحميل الحزمة الترويجية",
+    "original": "4K / النسخة الأصلية",
+    "fullHd": "Full HD 1080p",
+    "hd": "HD 720p",
+    "unit": "غيغابايت",
+    "description": "تتضمن كل حزمة ZIP فيديوهات وصورًا وقائمة الأغاني والمتطلبات الفنية.",
+    "qualityNote": "تصل دقة الفيديو إلى الدقة المحددة. تبقى التسجيلات الأقل دقة والصور والمستندات بجودتها الأصلية.",
+    "languageNote": "تحتفظ أسماء الملفات والمستندات داخل الحزمة بلغاتها الأصلية."
+  },
+  "pt-BR": {
+    "label": "Baixar pacote promocional",
+    "original": "4K / Original",
+    "fullHd": "Full HD 1080p",
+    "hd": "HD 720p",
+    "unit": "GB",
+    "description": "Cada ZIP inclui vídeos, fotos, repertório e riders.",
+    "qualityNote": "Os vídeos têm resolução de até a opção escolhida. Gravações de resolução inferior, fotos e documentos mantêm a qualidade original.",
+    "languageNote": "Os nomes dos arquivos e os documentos mantêm seus idiomas originais."
+  }
+}

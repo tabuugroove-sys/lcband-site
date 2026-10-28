@@ -1,8 +1,7 @@
 (() => {
   'use strict';
   const origin = 'https://luxuryband.ru';
-  const en = document.documentElement.lang === 'en';
-  const label = (ru, english) => en ? english : ru;
+  const { lang, copy } = window.LCBLocale;
   const attached = new WeakSet();
   const observedPlayers = new WeakSet();
   const openedPlayers = new WeakSet();
@@ -27,16 +26,16 @@
   const dialog = document.createElement('dialog');
   dialog.className = 'video-share-dialog';
   dialog.setAttribute('aria-labelledby', 'video-share-title');
-  dialog.innerHTML = `<form method="dialog"><button class="video-share-close" aria-label="${label('Закрыть', 'Close')}">×</button></form>
-    <h2 id="video-share-title">${label('Поделиться видео', 'Share video')}</h2>
+  dialog.innerHTML = `<form method="dialog"><button class="video-share-close" aria-label="${copy.close}">×</button></form>
+    <h2 id="video-share-title">${copy.shareVideo}</h2>
     <p class="video-share-name"></p>
-    <label>${label('Ссылка на видео', 'Video link')}<input readonly class="video-share-url"></label>
-    <div class="video-share-options"><button type="button" data-copy="url">${label('Скопировать ссылку', 'Copy link')}</button><button type="button" data-native>${label('Поделиться…', 'Share…')}</button></div>
-    <div class="video-share-social"><a data-social="telegram" target="_blank" rel="noopener">Telegram</a><a data-social="whatsapp" target="_blank" rel="noopener">WhatsApp</a><a data-social="vk" target="_blank" rel="noopener">ВКонтакте</a></div>
-    <label>${label('Код для встраивания плеера', 'Player embed code')}<textarea readonly class="video-share-embed" rows="3"></textarea></label>
-    <button type="button" data-copy="embed">${label('Скопировать код', 'Copy code')}</button>
-    <p class="video-share-help">${label('Если соцсеть не поддерживает вставку плеера, отправьте ссылку или скачайте видео и загрузите его в публикацию.', 'If the platform does not support embedded players, share the link or download the video and upload it to your post.')}</p>
-    <a class="video-share-download" download>${label('Скачать видео', 'Download video')} ↓</a><p class="video-share-status" role="status"></p>`;
+    <label>${copy.videoLink}<input readonly class="video-share-url"></label>
+    <div class="video-share-options"><button type="button" data-copy="url">${copy.copyLink}</button><button type="button" data-native>${copy.shareMore}</button></div>
+    <div class="video-share-social">${lang === 'ru' ? '<a data-social="telegram" target="_blank" rel="noopener">Telegram</a>' : ''}<a data-social="whatsapp" target="_blank" rel="noopener">WhatsApp</a>${lang === 'ru' ? '<a data-social="vk" target="_blank" rel="noopener">ВКонтакте</a>' : ''}</div>
+    <label>${copy.embedCode}<textarea readonly class="video-share-embed" rows="3"></textarea></label>
+    <button type="button" data-copy="embed">${copy.copyCode}</button>
+    <p class="video-share-help">${copy.shareHelp}</p>
+    <a class="video-share-download" download>${copy.downloadVideo} ↓</a><p class="video-share-status" role="status"></p>`;
   document.body.append(dialog);
   let returnFocus;
   let sharedTitle;
@@ -51,35 +50,36 @@
     const player = new URL('/embed/', origin);
     player.searchParams.set('src', url.pathname + url.search);
     player.searchParams.set('title', sharedTitle);
+    if (lang !== 'ru') player.searchParams.set('lang', lang);
     urlInput.value = player.href;
-    embedInput.value = `<iframe src="${player.href.replaceAll('&', '&amp;')}" title="Luxury Band video" width="640" height="360" style="max-width:100%;aspect-ratio:16/9;border:0" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    embedInput.value = `<iframe src="${player.href.replaceAll('&', '&amp;')}" title="${copy.video} — Luxury Band" width="640" height="360" style="max-width:100%;aspect-ratio:16/9;border:0" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
     dialog.querySelector('.video-share-name').textContent = sharedTitle;
     const download = new URL('/download.php', origin);
     download.searchParams.set('file', url.pathname.split('/').pop());
     dialog.querySelector('.video-share-download').href = download.href;
-    dialog.querySelector('[data-social="telegram"]').href = `https://t.me/share/url?url=${encodeURIComponent(player.href)}&text=${encodeURIComponent(sharedTitle)}`;
+    if (lang === 'ru') dialog.querySelector('[data-social="telegram"]').href = `https://t.me/share/url?url=${encodeURIComponent(player.href)}&text=${encodeURIComponent(sharedTitle)}`;
     dialog.querySelector('[data-social="whatsapp"]').href = `https://wa.me/?text=${encodeURIComponent(sharedTitle + ' ' + player.href)}`;
-    dialog.querySelector('[data-social="vk"]').href = `https://vk.com/share.php?url=${encodeURIComponent(player.href)}&title=${encodeURIComponent(sharedTitle)}`;
+    if (lang === 'ru') dialog.querySelector('[data-social="vk"]').href = `https://vk.com/share.php?url=${encodeURIComponent(player.href)}&title=${encodeURIComponent(sharedTitle)}`;
     dialog.querySelector('[data-native]').hidden = !navigator.share;
     status.textContent = '';
     dialog.showModal();
   }
   dialog.addEventListener('close', () => returnFocus?.focus({ preventScroll: true }));
   dialog.addEventListener('click', async event => {
-    const copy = event.target.closest('[data-copy]');
-    if (copy) {
-      const field = copy.dataset.copy === 'url' ? urlInput : embedInput;
+    const copyAction = event.target.closest('[data-copy]');
+    if (copyAction) {
+      const field = copyAction.dataset.copy === 'url' ? urlInput : embedInput;
       try {
         await navigator.clipboard.writeText(field.value);
-        status.textContent = label('Скопировано', 'Copied');
+        status.textContent = copy.copied;
       } catch {
         field.focus(); field.select();
-        status.textContent = label('Скопируйте выделенный текст', 'Copy the selected text');
+        status.textContent = copy.copySelected;
       }
     }
     if (event.target.closest('[data-native]')) {
       try { await navigator.share({ title: sharedTitle, url: urlInput.value }); }
-      catch (error) { if (error.name !== 'AbortError') status.textContent = label('Используйте ссылку ниже', 'Use the link below'); }
+      catch (error) { if (error.name !== 'AbortError') status.textContent = copy.useLink; }
     }
   });
   function toolbar(node, getSource, host, overlay = false) {
@@ -89,9 +89,9 @@
     bar.className = 'video-share-actions' + (overlay ? ' video-share-actions--overlay' : '');
     const button = document.createElement('button');
     button.type = 'button';
-    button.textContent = label('Поделиться', 'Share') + ' ↗';
+    button.textContent = copy.share + ' ↗';
     const download = document.createElement('a');
-    download.textContent = label('Скачать', 'Download') + ' ↓';
+    download.textContent = copy.download + ' ↓';
     download.download = '';
     bar.append(button, download);
     host.append(bar);

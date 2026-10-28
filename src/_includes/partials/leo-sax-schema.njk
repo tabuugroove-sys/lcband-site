@@ -16,7 +16,7 @@
 			"@type": "Person",
 			"@id": "{{ site.url }}{{ page.url }}#leo",
 			"name": "{% if htmlLang == 'en' %}Leo{% else %}Лео{% endif %}",
-			"alternateName": ["Leo Sax", "Леонид Суслов"],
+			"alternateName": ["Leo Sax", "{% if htmlLang == 'en' %}Leonid Suslov{% else %}Леонид Суслов{% endif %}"],
 			"jobTitle": "{% if htmlLang == 'en' %}Saxophonist{% else %}Саксофонист{% endif %}",
 			"image": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
 			"url": "{{ site.url }}{{ page.url }}"

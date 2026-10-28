@@ -4,6 +4,18 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	{% for video in watchVideos %}
+	<url>
+		<loc>{{ site.url }}{{ video.url }}</loc>
+		<video:video>
+			<video:thumbnail_loc>{{ site.url }}/{{ video.poster }}</video:thumbnail_loc>
+			<video:title>{{ video.title }}</video:title>
+			<video:description>{{ video.description }}</video:description>
+			<video:content_loc>{{ site.url }}/{{ video.contentPath }}</video:content_loc>
+			<video:duration>{{ video.durationSeconds }}</video:duration>
+		</video:video>
+	</url>
+	{% endfor %}
 	<url>
 		<loc>{{ site.url }}/sax/leo-sax/</loc>
 		<video:video>

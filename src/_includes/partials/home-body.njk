@@ -116,7 +116,7 @@
 		</picture>
 		<div class="hero-banner__overlay">
 			<p class="section__eyebrow">Вокалисты</p>
-			<h2 class="section__title">Четыре голоса.<br><span class="muted">Четыре характера.</span></h2>
+			<h2 class="section__title">Ирина, Стас,<br><span class="muted">Тедди и LAZ.</span></h2>
 			<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
 			<div class="cta-row">
 				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Узнать больше</a>
@@ -139,7 +139,7 @@
 				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Корпоративы</h3>
-					<p class="tile__sub">Живой бренд на большой сцене.</p>
+					<p class="tile__sub">Живая музыка и выступления сотрудников.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/corporate/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
@@ -241,7 +241,7 @@
 		{slug:'promo-main-reel', title:'Luxury Cover Band · Полное промо', eyebrow:'Промо'},
 		{slug:'promo-egoistka', poster:'promo-egoistka-2026-red-stage', title:'Эгоистка · 2020–2025', eyebrow:'Клип'},
 		{slug:'thematic-retro-heart', poster:'thematic-retro-heart-2026', title:'You\'re My Heart · Ретро', eyebrow:'Тематик'},
-		{slug:'promo-danza-cuduro', poster:'promo-danza-cuduro-2026', title:'Danza Cuduro · Live', eyebrow:'Лайв'},
+			{slug:'promo-danza-cuduro', poster:'promo-danza-cuduro-2026', title:'Danza Kuduro · Live', eyebrow:'Лайв'},
 		{slug:'promo-lets-get-it-started', title:'Let\'s Get It Started', eyebrow:'Промо'},
 		{slug:'promo-cold-heart', title:'Cold Heart', eyebrow:'Промо'},
 		{slug:'promo-loca-loca', title:'Loca Loca · LAZ', eyebrow:'Промо'},
@@ -272,10 +272,7 @@
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
 		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
-		<div class="cta-row">
-			<a class="btn btn--blue" href="{{ '/promo-package.php' | url }}" aria-describedby="promo-package-details">Скачать промопакет ↓</a>
-		</div>
-		<p class="section__lead" id="promo-package-details">Видео, фото, репертуар и райдеры — одним ZIP-файлом, около 4,8 ГБ.</p>
+		{% include "partials/promo-downloads.njk" %}
 	</div>
 
 	<div class="video-rail video-rail--big reveal" role="region" aria-label="Студийные проморолики">
@@ -342,7 +339,7 @@
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Бронирование</p>
 		<h2 class="section__title">Напишите —<br><span class="muted">соберём программу под ваше событие.</span></h2>
-		<p class="section__lead">Расскажите дату, место и формат. Пришлём состав, тайминг и смету в течение дня.</p>
+		<p class="section__lead">Расскажите дату, место и формат. Проверим доступность музыкантов и подготовим предложение с составом, таймингом и сметой.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="#top">Наверх</a>

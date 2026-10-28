@@ -10,6 +10,9 @@ eleventyExcludeFromCollections: true
 		<priority>1.0</priority>
 	</url>
 	<url><loc>{{ site.url }}/about/</loc><priority>0.7</priority></url>
+	{% for video in watchVideos %}
+	<url><loc>{{ site.url }}{{ video.url }}</loc><priority>0.6</priority></url>
+	{% endfor %}
 	<url><loc>{{ site.url }}/programs/</loc><priority>0.8</priority></url>
 	<url><loc>{{ site.url }}/programs/jazz-irina/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/vocalists/</loc><priority>0.8</priority></url>
@@ -47,6 +50,7 @@ eleventyExcludeFromCollections: true
 	<url><loc>{{ site.url }}/en/formats/</loc><priority>0.8</priority></url>
 	<url><loc>{{ site.url }}/en/events/</loc><priority>0.8</priority></url>
 	<url><loc>{{ site.url }}/en/repertoire/</loc><priority>0.7</priority></url>
+	<url><loc>{{ site.url }}/en/repertoire/catalog/</loc><priority>0.6</priority></url>
 	<url><loc>{{ site.url }}/en/sax/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/en/sax/leo-sax/</loc><priority>0.7</priority></url>
 	<url><loc>{{ site.url }}/en/sax/stereo-sax/</loc><priority>0.7</priority></url>

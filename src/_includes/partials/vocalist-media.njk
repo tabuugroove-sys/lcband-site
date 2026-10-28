@@ -34,8 +34,8 @@
 {% if media.photos.length or media.videos.length %}
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		<p class="section__lead">{% if isEn %}Download individual videos in the player, or get all videos, photos, repertoire and riders in one ZIP.{% else %}Отдельное видео можно скачать в плеере. Весь комплект видео, фото, репертуара и райдеров — в одном ZIP.{% endif %}</p>
-		<a class="btn btn--blue" href="{{ '/promo-package.php' | url }}">{% if isEn %}Download promo package ↓{% else %}Скачать промопакет ↓{% endif %}</a>
+		{% if media.videos.length %}<p class="section__lead">{% if isEn %}Individual videos on this page can be downloaded in the player.{% else %}Отдельные видео с этой страницы можно скачать в плеере.{% endif %}</p>{% endif %}
+		{% include "partials/promo-downloads.njk" %}
 	</div>
 </section>
 {% endif %}

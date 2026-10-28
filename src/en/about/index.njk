@@ -25,14 +25,18 @@ permalink: /en/about/
 </script>
 {% endblock %}
 
-<section class="about-hero">
-	<video class="about-hero__video" autoplay muted loop playsinline preload="none" poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
-		<source src="{{ site.url }}/assets/video/mp4/promo-main-reel-720.mp4" type="video/mp4">
+<section class="about-hero" data-analytics-section="about-hero">
+	<video class="about-hero__video" muted loop playsinline preload="none" data-background-video
+		data-src-desktop="{{ '/assets/hero/about-background-20261028-540.mp4' | url }}"
+		data-src-mobile="{{ '/assets/hero/about-background-20261028-360.mp4' | url }}"
+		poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
 	</video>
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>
-		<h1 class="about-hero__title">A world-class cover band.<br>The world as a stage.</h1>
+		<h1 class="about-hero__title">Live music for weddings,<br>corporate events and concerts.</h1>
+		<p class="about-hero__lead">Watch our live performances, then tell us about your event so we can discuss the lineup and programme.</p>
+		<div class="cta-row"><a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss your event</a><a class="btn btn--ghost" href="#" data-video="promo-main-reel">Watch live performances</a></div>
 	</div>
 </section>
 
@@ -58,10 +62,10 @@ permalink: /en/about/
 </section>
 
 {% set storyRooms = [
-	{eyebrow:'Repertoire', title:'12 languages.<br>One repertoire.', text:'We sing in 12 languages with authentic pronunciation rather than transliteration. Italian, Spanish, French, English and more — selected for the program and the audience.', bg:'radial-gradient(at top right, #6a5ce0, #572f91)', tint:'#d4cfe8', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Repertoire', title:'500+ songs.<br>Every era and genre.', text:'From retro and jazz to current hits. We build the set list around your audience and occasion instead of playing the same concert at every event.', bg:'radial-gradient(at top right, #08876b, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
-	{eyebrow:'Interaction', title:'More than a concert.<br>A show with the room.', text:'Guest duets, contests and interactive numbers. We do more than play for the audience — we work with the room throughout the evening.', bg:'radial-gradient(at top right, #c9462a, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
-	{eyebrow:'Stage Looks', title:'20+ looks.<br>A visual identity for every event.', text:'From classic styling to themed shows, every band look is designed as a complete visual story.', bg:'#f5f5f7', light:true, video:'live-icon'}
+	{eyebrow:'Repertoire', title:'Songs<br>in 12 languages.', text:'Italian, Spanish, French, English and other languages — selected for the programme and the audience.', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Repertoire', title:'Jazz, pop, rock<br>and Latin music.', text:'We select songs and arrange the sets around your audience and event schedule.', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
+	{eyebrow:'Interaction', title:'Sing with the band.', text:'Guests sing duets with our vocalists and take part in live-band karaoke.', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
+	{eyebrow:'Stage Looks', title:'20+ stage looks.', text:'Red, black-and-white, gold and other stage costumes. We choose the outfits to suit the event colours and format.', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
 	<div class="story-rooms__gallery" aria-hidden="true">
@@ -78,7 +82,8 @@ permalink: /en/about/
 		<div class="story-room{% if r.light %} story-room--light{% endif %}" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};{% if r.tint %} --room-tint: {{ r.tint }};{% endif %}">
 			<div class="story-room__copy">
 				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
-				<p class="story-room__eyebrow">{{ r.eyebrow }}</p><h3 class="story-room__title">{{ r.title | safe }}</h3><p class="story-room__text">{{ r.text }}</p>
+				<a class="story-room__watch" href="#" data-video="{{ r.video }}">Watch video</a>
+				<p class="story-room__eyebrow">{{ r.eyebrow }}</p><h2 class="story-room__title">{{ r.title | safe }}</h2><p class="story-room__text">{{ r.text }}</p>
 			</div>
 		</div>
 		{% endfor %}
@@ -106,7 +111,26 @@ permalink: /en/about/
 	<div class="feature-block__body"><p class="section__eyebrow">Geography and Events</p><h2 class="feature-block__title">40 countries<br><span class="muted">and stages of every scale.</span></h2><p class="feature-block__text">More than 2,000 performances in 40 countries: three appearances for heads of state, regular high-level receptions including BRICS-format events, and shows for ministers, major corporations such as Yandex, Gazprom and Sberbank, as well as weddings and corporate celebrations.</p></div>
 </div></section>
 
+<section class="section section--elev" id="examples">
+	<div class="container container--narrow reveal">
+		<p class="section__eyebrow">Performance videos</p>
+		<h2 class="section__title">Watch the band<br><span class="muted">on stage.</span></h2>
+	</div>
+	<div class="container reveal">
+		<ul class="formats formats--examples">
+			{% for video in watchVideos %}{% if video.lang == 'en' %}
+			<li class="format">
+				<a class="format__link" href="{{ video.url | url }}" aria-label="Watch video: {{ video.title }}">
+					<div class="format__photo"><img src="{{ ('/' + video.poster) | url }}" alt="{{ video.title }} — performance recording" loading="lazy"></div>
+					<div class="format__body"><h3 class="format__title">{{ video.title }}</h3><p class="format__text">{{ video.description }}</p><span class="format__more">Watch video · {{ video.durationLabel }} →</span></div>
+				</a>
+			</li>
+			{% endif %}{% endfor %}
+		</ul>
+	</div>
+</section>
+
 <section class="section section--book"><div class="container container--narrow reveal">
 	<h2 class="section__title">We will build a program for your event.</h2>
-	<div class="book__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a><a class="btn btn--ghost-dark" href="{{ '/en/events/' | url }}">All events</a></div>
+	<div class="book__cta"><a class="btn btn--primary" href="{{ site.whatsapp }}">Message on WhatsApp</a><a class="btn btn--ghost-dark" href="{{ '/en/events/' | url }}">All events</a></div>
 </div></section>

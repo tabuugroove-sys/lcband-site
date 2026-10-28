@@ -1,0 +1,11 @@
+---
+permalink: /locale.js
+eleventyExcludeFromCollections: true
+---
+(() => {
+  'use strict';
+  const copies = {{ uiCopy | dump | safe }};
+  const requested = location.pathname.endsWith('/embed/') ? new URLSearchParams(location.search).get('lang') : document.documentElement.lang;
+  const lang = Object.hasOwn(copies, requested) ? requested : 'ru';
+  window.LCBLocale = { lang, copy: copies[lang] };
+})();

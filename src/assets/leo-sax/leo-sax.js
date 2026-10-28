@@ -1,5 +1,6 @@
 (() => {
 	'use strict';
+	const copy = window.LCBLocale.copy;
 
 	const hero = document.querySelector('[data-leo-hero]');
 	const video = hero?.querySelector('[data-leo-video]');
@@ -77,10 +78,10 @@
 			if (attempt !== sourceAttempt || !video) return;
 			video.muted = true;
 			video.play().then(() => {
-				showStatus('Коснитесь видео, чтобы включить звук');
+				showStatus(copy.tapSound);
 			}).catch(() => {
 				setLoading(false);
-				showStatus('Не удалось запустить видео');
+				showStatus(copy.cannotPlay);
 			});
 		});
 	}
@@ -163,11 +164,11 @@
 		const index = qualities.indexOf(currentQuality);
 		if (index <= 0) {
 			setLoading(false);
-			showStatus('Видео временно недоступно');
+			showStatus(copy.videoUnavailable);
 			return;
 		}
 		const next = qualities[index - 1];
-		showStatus(reason || `Сеть замедлилась — включаем ${next}p`);
+		showStatus(reason || copy.slowQuality.replace('{quality}', next));
 		changeQuality(next, false);
 	}
 
@@ -175,7 +176,7 @@
 		if (!video) return;
 		if (video.paused) {
 			video.muted = false;
-			video.play().catch(() => showStatus('Нажмите Play ещё раз'));
+			video.play().catch(() => showStatus(copy.playAgain));
 		} else {
 			video.pause();
 		}
@@ -203,7 +204,7 @@
 	video?.addEventListener('click', () => {
 		if (video.muted) {
 			video.muted = false;
-			showStatus('Звук включён', 1200);
+			showStatus(copy.soundOn, 1200);
 			return;
 		}
 		togglePlayback();
@@ -215,12 +216,12 @@
 	}));
 	video?.addEventListener('play', () => {
 		toggleButton?.classList.remove('is-paused');
-		toggleButton?.setAttribute('aria-label', 'Пауза');
+		toggleButton?.setAttribute('aria-label', copy.pause);
 	});
 	video?.addEventListener('pause', () => {
 		clearStallDowngrade();
 		toggleButton?.classList.add('is-paused');
-		toggleButton?.setAttribute('aria-label', 'Продолжить');
+		toggleButton?.setAttribute('aria-label', copy.resume);
 	});
 	video?.addEventListener('timeupdate', () => {
 		if (!video.duration) return;
@@ -249,7 +250,7 @@
 	});
 	video?.addEventListener('error', () => {
 		clearStallDowngrade();
-		if (hero?.classList.contains('is-playing')) downgradeQuality(`${currentQuality}p недоступно — снижаем качество`);
+		if (hero?.classList.contains('is-playing')) downgradeQuality(copy.unavailableQuality.replace('{quality}', currentQuality));
 	});
 	progress?.addEventListener('input', () => {
 		if (!video?.duration) return;

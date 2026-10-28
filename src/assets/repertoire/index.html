@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Репертуар — Luxury Cover Band</title>
-<meta name="description" content="Полный репертуар Luxury Cover Band: поп, рок, джаз, лаундж и песни на разных языках. Поиск по песням и исполнителям, скачать PDF.">
+<title>Подборка из 420 позиций: поиск песен — Luxury Cover Band</title>
+<meta name="description" content="Опубликованная подборка Luxury Cover Band: 420 позиций, поиск по песням и исполнителям. Обсудить выбранные песни, распечатать или сохранить подборку в PDF.">
 <link rel="canonical" href="https://luxuryband.ru/assets/repertoire/">
 <meta name="theme-color" content="#f5f5f7">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -20,7 +20,10 @@ a:focus-visible,input:focus-visible { outline:3px solid #0071e3; outline-offset:
 .topbar { border-bottom:1px solid #e5e5e7; }
 .topbar .wrap { min-height:72px; display:flex; justify-content:space-between; align-items:center; gap:20px; }
 .brand { color:inherit; font-size:17px; font-weight:600; letter-spacing:-.4px; }
-.download { display:inline-flex; min-height:44px; align-items:center; gap:10px; font-size:15px; white-space:nowrap; }
+.download { display:inline-flex; min-height:44px; align-items:center; gap:10px; font:inherit; font-size:15px; white-space:nowrap; border:0; background:none; color:#0066cc; cursor:pointer; }
+.catalogue-note { max-width:720px; color:#6e6e73; line-height:1.6; }
+html[data-embedded] .topbar,html[data-embedded] .hero,html[data-embedded] footer { display:none; }
+html[data-embedded] .browse { padding-top:24px; }
 .hero { padding:84px 0 52px; }
 h1 { font-size:clamp(48px,7vw,86px); line-height:1.05; letter-spacing:-.055em; font-weight:600; margin:0 0 24px; }
 .lead { margin:0; font-size:clamp(21px,3vw,28px); line-height:1.3; color:#6e6e73; letter-spacing:-.02em; }
@@ -71,13 +74,16 @@ footer a { white-space:nowrap; }
  h2 { font-size:22px; break-after:avoid; }
  li { font-size:11px; padding:6px 0; break-inside:avoid; }
  ol { column-gap:32px; }
+ .song-section[hidden] { display:block!important; }
+ .song-section li[hidden] { display:flex!important; }
+ .empty { display:none!important; }
 }
 </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap"><a class="brand" href="/">Luxury Cover Band</a><a class="download" href="repertoire.pdf?v=20260923" download>Скачать PDF <span aria-hidden="true">↓</span></a></div></header>
+<header class="topbar"><div class="wrap"><a class="brand" href="/">Luxury Cover Band</a><button class="download" id="print" type="button" hidden>Печать / PDF <span aria-hidden="true">↓</span></button></div></header>
 <main class="wrap">
-<div class="hero"><h1>Репертуар.</h1><p class="lead">От джаза до танцевальных хитов.</p></div>
+<div class="hero"><h1>Подборка песен.</h1><p class="lead">От джаза до танцевальных хитов.</p><p class="catalogue-note">В опубликованной подборке 420 позиций. Некоторые песни встречаются в нескольких разделах; это не полный репертуар группы. Если нужной песни нет, обсудите её с нами.</p><p><a href="https://t.me/Luxurycover_ru">Обсудить выбранные песни →</a> · <a href="/vocalists/">Составы и вокалисты</a></p></div>
 <div class="browse">
 <label class="search" hidden><span>Найти песню или исполнителя</span><input type="search" placeholder="Например, Sade или Sway" autocomplete="off" aria-controls="song-list"></label>
 <nav aria-label="Разделы репертуара">
@@ -115,10 +121,10 @@ footer a { white-space:nowrap; }
     <li value="11"><span class="number" aria-hidden="true">011</span><span class="song">Губин — Ночь</span></li>
     <li value="12"><span class="number" aria-hidden="true">012</span><span class="song">Gorky Park — Moscow Calling</span></li>
     <li value="13"><span class="number" aria-hidden="true">013</span><span class="song">Jony — Комета</span></li>
-    <li value="14"><span class="number" aria-hidden="true">014</span><span class="song">Леонид агутин — Хоп хей лалалей</span></li>
-    <li value="15"><span class="number" aria-hidden="true">015</span><span class="song">Леонид агутин — Романс</span></li>
-    <li value="16"><span class="number" aria-hidden="true">016</span><span class="song">Леонид агутин — Половина сердца</span></li>
-    <li value="17"><span class="number" aria-hidden="true">017</span><span class="song">Леонид агутин — На сиреневой луне</span></li>
+    <li value="14"><span class="number" aria-hidden="true">014</span><span class="song">Леонид Агутин — Хоп хей лалалей</span></li>
+    <li value="15"><span class="number" aria-hidden="true">015</span><span class="song">Леонид Агутин — Романс</span></li>
+    <li value="16"><span class="number" aria-hidden="true">016</span><span class="song">Леонид Агутин — Половина сердца</span></li>
+    <li value="17"><span class="number" aria-hidden="true">017</span><span class="song">Леонид Агутин — На сиреневой луне</span></li>
     <li value="18"><span class="number" aria-hidden="true">018</span><span class="song">Валерий Меладзе — Салют вера</span></li>
     <li value="19"><span class="number" aria-hidden="true">019</span><span class="song">Валерий Меладзе — Океан и три реки</span></li>
     <li value="20"><span class="number" aria-hidden="true">020</span><span class="song">Леприконсы — Хали-гали</span></li>
@@ -158,7 +164,7 @@ footer a { white-space:nowrap; }
     <li value="54"><span class="number" aria-hidden="true">054</span><span class="song">Ласковый май — Розовый вечер</span></li>
     <li value="55"><span class="number" aria-hidden="true">055</span><span class="song">Ласковый май — Седая ночь</span></li>
     <li value="56"><span class="number" aria-hidden="true">056</span><span class="song">Ласковый май — Детство</span></li>
-    <li value="57"><span class="number" aria-hidden="true">057</span><span class="song">Артур пирожков— Зацепила</span></li>
+    <li value="57"><span class="number" aria-hidden="true">057</span><span class="song">Артур Пирожков — Зацепила</span></li>
     <li value="58"><span class="number" aria-hidden="true">058</span><span class="song">Звонкий — Голоса</span></li>
     <li value="59"><span class="number" aria-hidden="true">059</span><span class="song">Звонкий — Shine</span></li>
     <li value="60"><span class="number" aria-hidden="true">060</span><span class="song">Артур Пирожков — Алкоголичка</span></li>
@@ -182,7 +188,7 @@ footer a { white-space:nowrap; }
     <li value="78"><span class="number" aria-hidden="true">078</span><span class="song">MONATIK — Кружит</span></li>
     <li value="79"><span class="number" aria-hidden="true">079</span><span class="song">MONATIK — Сейчас</span></li>
     <li value="80"><span class="number" aria-hidden="true">080</span><span class="song">Макс Барских — Неземная</span></li>
-    <li value="81"><span class="number" aria-hidden="true">081</span><span class="song">Макс Барских —Туманы</span></li>
+    <li value="81"><span class="number" aria-hidden="true">081</span><span class="song">Макс Барских — Туманы</span></li>
     <li value="82"><span class="number" aria-hidden="true">082</span><span class="song">Макс Барских — Подруга ночь</span></li>
     <li value="83"><span class="number" aria-hidden="true">083</span><span class="song">Дорн — Стыцамэн</span></li>
     <li value="84"><span class="number" aria-hidden="true">084</span><span class="song">Дорн — Бигуди</span></li>
@@ -210,22 +216,22 @@ footer a { white-space:nowrap; }
 <section class="song-section" id="pop-female" aria-labelledby="pop-female-title">
   <div class="section-heading"><h2 id="pop-female-title">Поп · женский вокал</h2></div>
   <ol start="101">
-    <li value="101"><span class="number" aria-hidden="true">101</span><span class="song">Куртукова —Матушка земля</span></li>
-    <li value="102"><span class="number" aria-hidden="true">102</span><span class="song">Anna Asti— Царица</span></li>
+    <li value="101"><span class="number" aria-hidden="true">101</span><span class="song">Куртукова — Матушка земля</span></li>
+    <li value="102"><span class="number" aria-hidden="true">102</span><span class="song">Anna Asti — Царица</span></li>
     <li value="103"><span class="number" aria-hidden="true">103</span><span class="song">Anna Asti — По барам</span></li>
     <li value="104"><span class="number" aria-hidden="true">104</span><span class="song">Artik &amp; Asti — Грустный денс</span></li>
     <li value="105"><span class="number" aria-hidden="true">105</span><span class="song">Artik&amp;Asti — Под гипнозом</span></li>
-    <li value="106"><span class="number" aria-hidden="true">106</span><span class="song">Filatov&amp;Karas- Мимо меня</span></li>
-    <li value="107"><span class="number" aria-hidden="true">107</span><span class="song">DJ Smash,Nevesta- Позвони</span></li>
+    <li value="106"><span class="number" aria-hidden="true">106</span><span class="song">Filatov&amp;Karas — Мимо меня</span></li>
+    <li value="107"><span class="number" aria-hidden="true">107</span><span class="song">DJ Smash,Nevesta — Позвони</span></li>
     <li value="108"><span class="number" aria-hidden="true">108</span><span class="song">Ева Власова — Танцуй вопреки</span></li>
-    <li value="109"><span class="number" aria-hidden="true">109</span><span class="song">Ева Власова - Бывшая</span></li>
+    <li value="109"><span class="number" aria-hidden="true">109</span><span class="song">Ева Власова — Бывшая</span></li>
     <li value="110"><span class="number" aria-hidden="true">110</span><span class="song">Люся Чеботина — Плакал Голливуд</span></li>
-    <li value="111"><span class="number" aria-hidden="true">111</span><span class="song">Люся Чеботина— Солнце монако</span></li>
+    <li value="111"><span class="number" aria-hidden="true">111</span><span class="song">Люся Чеботина — Солнце монако</span></li>
     <li value="112"><span class="number" aria-hidden="true">112</span><span class="song">Ю. Караулова — Ты не такой</span></li>
     <li value="113"><span class="number" aria-hidden="true">113</span><span class="song">Виагра-Попытка No’ 5</span></li>
     <li value="114"><span class="number" aria-hidden="true">114</span><span class="song">Виагра — Перемирие</span></li>
-    <li value="115"><span class="number" aria-hidden="true">115</span><span class="song">Zivert— Счастье</span></li>
-    <li value="116"><span class="number" aria-hidden="true">116</span><span class="song">Zivert —Один процент</span></li>
+    <li value="115"><span class="number" aria-hidden="true">115</span><span class="song">Zivert — Счастье</span></li>
+    <li value="116"><span class="number" aria-hidden="true">116</span><span class="song">Zivert — Один процент</span></li>
     <li value="117"><span class="number" aria-hidden="true">117</span><span class="song">Zivert — Life</span></li>
     <li value="118"><span class="number" aria-hidden="true">118</span><span class="song">ZIVERT — Beverly Hills</span></li>
     <li value="119"><span class="number" aria-hidden="true">119</span><span class="song">Zivert — Credo</span></li>
@@ -236,7 +242,7 @@ footer a { white-space:nowrap; }
     <li value="124"><span class="number" aria-hidden="true">124</span><span class="song">А&#x27;СТУДИО — Улетаю</span></li>
     <li value="125"><span class="number" aria-hidden="true">125</span><span class="song">А’СТУДИО — Папа мама</span></li>
     <li value="126"><span class="number" aria-hidden="true">126</span><span class="song">А-СТУДИО — Ещё люблю</span></li>
-    <li value="127"><span class="number" aria-hidden="true">127</span><span class="song">Блестящие— За четыре моря</span></li>
+    <li value="127"><span class="number" aria-hidden="true">127</span><span class="song">Блестящие — За четыре моря</span></li>
     <li value="128"><span class="number" aria-hidden="true">128</span><span class="song">#2Маши — Босая</span></li>
     <li value="129"><span class="number" aria-hidden="true">129</span><span class="song">#2Маши — Мама я танцую</span></li>
     <li value="130"><span class="number" aria-hidden="true">130</span><span class="song">Мот — Случайности не случайны</span></li>
@@ -245,19 +251,19 @@ footer a { white-space:nowrap; }
     <li value="133"><span class="number" aria-hidden="true">133</span><span class="song">А. Чумаков — Счастье</span></li>
     <li value="134"><span class="number" aria-hidden="true">134</span><span class="song">А.Чумаков — Тут и там</span></li>
     <li value="135"><span class="number" aria-hidden="true">135</span><span class="song">А.Чумаков — В Семи ветрах</span></li>
-    <li value="136"><span class="number" aria-hidden="true">136</span><span class="song">Севак— Когда мы с тобой</span></li>
+    <li value="136"><span class="number" aria-hidden="true">136</span><span class="song">Севак — Когда мы с тобой</span></li>
     <li value="137"><span class="number" aria-hidden="true">137</span><span class="song">Serebro — Между нами любовь</span></li>
     <li value="138"><span class="number" aria-hidden="true">138</span><span class="song">Serebro — Мама Люба давай</span></li>
-    <li value="139"><span class="number" aria-hidden="true">139</span><span class="song">Serebro —Мало тебя</span></li>
+    <li value="139"><span class="number" aria-hidden="true">139</span><span class="song">Serebro — Мало тебя</span></li>
     <li value="140"><span class="number" aria-hidden="true">140</span><span class="song">IOWA-Песня простая</span></li>
     <li value="141"><span class="number" aria-hidden="true">141</span><span class="song">IOWA — Улыбайся</span></li>
     <li value="142"><span class="number" aria-hidden="true">142</span><span class="song">IOWA — Мама</span></li>
-    <li value="143"><span class="number" aria-hidden="true">143</span><span class="song">IOWA— Мои стихи твоя гитара</span></li>
+    <li value="143"><span class="number" aria-hidden="true">143</span><span class="song">IOWA — Мои стихи твоя гитара</span></li>
     <li value="144"><span class="number" aria-hidden="true">144</span><span class="song">IOWA — Бьёт бит</span></li>
     <li value="145"><span class="number" aria-hidden="true">145</span><span class="song">Ёлка — Шар</span></li>
-    <li value="146"><span class="number" aria-hidden="true">146</span><span class="song">Валерия— Маленький самолёт</span></li>
-    <li value="147"><span class="number" aria-hidden="true">147</span><span class="song">Катя Лель— Мой мармеладный</span></li>
-    <li value="148"><span class="number" aria-hidden="true">148</span><span class="song">Буланова -Один день</span></li>
+    <li value="146"><span class="number" aria-hidden="true">146</span><span class="song">Валерия — Маленький самолёт</span></li>
+    <li value="147"><span class="number" aria-hidden="true">147</span><span class="song">Катя Лель — Мой мармеладный</span></li>
+    <li value="148"><span class="number" aria-hidden="true">148</span><span class="song">Буланова — Один день</span></li>
     <li value="149"><span class="number" aria-hidden="true">149</span><span class="song">Винтаж — Ева</span></li>
     <li value="150"><span class="number" aria-hidden="true">150</span><span class="song">Моя Мишель-Зима в сердце</span></li>
     <li value="151"><span class="number" aria-hidden="true">151</span><span class="song">Моя Мишель-Посмотри в глаза</span></li>
@@ -267,11 +273,11 @@ footer a { white-space:nowrap; }
   <div class="section-heading"><h2 id="english-female-title">Англоязычные · женский вокал</h2></div>
   <ol start="152">
     <li value="152"><span class="number" aria-hidden="true">152</span><span class="song">Sia — Cheap thrills</span></li>
-    <li value="153"><span class="number" aria-hidden="true">153</span><span class="song">Kylie Minogue - In your eyes</span></li>
+    <li value="153"><span class="number" aria-hidden="true">153</span><span class="song">Kylie Minogue — In your eyes</span></li>
     <li value="154"><span class="number" aria-hidden="true">154</span><span class="song">Leann Rimes — Can’t fight the moonlight</span></li>
     <li value="155"><span class="number" aria-hidden="true">155</span><span class="song">Adele — Rolling in the deep</span></li>
-    <li value="156"><span class="number" aria-hidden="true">156</span><span class="song">Tons and I — Dance monkey</span></li>
-    <li value="157"><span class="number" aria-hidden="true">157</span><span class="song">Ed Sheeran —Bad Habits</span></li>
+    <li value="156"><span class="number" aria-hidden="true">156</span><span class="song">Tones and I — Dance monkey</span></li>
+    <li value="157"><span class="number" aria-hidden="true">157</span><span class="song">Ed Sheeran — Bad Habits</span></li>
     <li value="158"><span class="number" aria-hidden="true">158</span><span class="song">Gnarls Barkley — Crazy</span></li>
     <li value="159"><span class="number" aria-hidden="true">159</span><span class="song">Alice Merton — No roots</span></li>
     <li value="160"><span class="number" aria-hidden="true">160</span><span class="song">Fergie — A Little Party</span></li>
@@ -287,8 +293,8 @@ footer a { white-space:nowrap; }
     <li value="170"><span class="number" aria-hidden="true">170</span><span class="song">Jasmine Thompson — Ain’t Nobody</span></li>
     <li value="171"><span class="number" aria-hidden="true">171</span><span class="song">Pharrell Williams — Happy</span></li>
     <li value="172"><span class="number" aria-hidden="true">172</span><span class="song">Jennifer Lopez — Waiting for tonight</span></li>
-    <li value="173"><span class="number" aria-hidden="true">173</span><span class="song">JLo- Let’s get loud</span></li>
-    <li value="174"><span class="number" aria-hidden="true">174</span><span class="song">Natalia Oreiro - Cambio dolor</span></li>
+    <li value="173"><span class="number" aria-hidden="true">173</span><span class="song">JLo — Let’s get loud</span></li>
+    <li value="174"><span class="number" aria-hidden="true">174</span><span class="song">Natalia Oreiro — Cambio dolor</span></li>
   </ol>
 </section>
 <section class="song-section" id="eighties" aria-labelledby="eighties-title">
@@ -300,21 +306,21 @@ footer a { white-space:nowrap; }
     <li value="178"><span class="number" aria-hidden="true">178</span><span class="song">Руки вверх — Крошка моя</span></li>
     <li value="179"><span class="number" aria-hidden="true">179</span><span class="song">Руки вверх — Алёшка</span></li>
     <li value="180"><span class="number" aria-hidden="true">180</span><span class="song">Руки Вверх — 18</span></li>
-    <li value="181"><span class="number" aria-hidden="true">181</span><span class="song">Reflex —Танцы</span></li>
+    <li value="181"><span class="number" aria-hidden="true">181</span><span class="song">Reflex — Танцы</span></li>
     <li value="182"><span class="number" aria-hidden="true">182</span><span class="song">Михей и Джуманджи — Сука любовь</span></li>
     <li value="183"><span class="number" aria-hidden="true">183</span><span class="song">Ласковый май — Белые розы</span></li>
     <li value="184"><span class="number" aria-hidden="true">184</span><span class="song">Иванушки — Тополиный пух</span></li>
-    <li value="185"><span class="number" aria-hidden="true">185</span><span class="song">Губин- Ночь</span></li>
-    <li value="186"><span class="number" aria-hidden="true">186</span><span class="song">Губин - Девушки как звезды</span></li>
+    <li value="185"><span class="number" aria-hidden="true">185</span><span class="song">Губин — Ночь</span></li>
+    <li value="186"><span class="number" aria-hidden="true">186</span><span class="song">Губин — Девушки как звезды</span></li>
     <li value="187"><span class="number" aria-hidden="true">187</span><span class="song">Губин-Зима-холода</span></li>
     <li value="188"><span class="number" aria-hidden="true">188</span><span class="song">Амега-Лететь</span></li>
     <li value="189"><span class="number" aria-hidden="true">189</span><span class="song">Gloria Gaynor — I will survive</span></li>
     <li value="190"><span class="number" aria-hidden="true">190</span><span class="song">Tina Turner — Simply the best</span></li>
     <li value="191"><span class="number" aria-hidden="true">191</span><span class="song">Venus — Shocking Blue</span></li>
     <li value="192"><span class="number" aria-hidden="true">192</span><span class="song">Moloko—Sing it back</span></li>
-    <li value="193"><span class="number" aria-hidden="true">193</span><span class="song">Mojo -Lady</span></li>
+    <li value="193"><span class="number" aria-hidden="true">193</span><span class="song">Mojo — Lady</span></li>
     <li value="194"><span class="number" aria-hidden="true">194</span><span class="song">Gala-Freed from desigre( Remix)</span></li>
-    <li value="195"><span class="number" aria-hidden="true">195</span><span class="song">La bouche -Be my lover ( Remix)</span></li>
+    <li value="195"><span class="number" aria-hidden="true">195</span><span class="song">La bouche — Be my lover ( Remix)</span></li>
     <li value="196"><span class="number" aria-hidden="true">196</span><span class="song">Ase of base — All that she wants</span></li>
     <li value="197"><span class="number" aria-hidden="true">197</span><span class="song">Eruptions — One way ticket</span></li>
     <li value="198"><span class="number" aria-hidden="true">198</span><span class="song">CC Catch — Heaven and hell</span></li>
@@ -322,12 +328,12 @@ footer a { white-space:nowrap; }
     <li value="200"><span class="number" aria-hidden="true">200</span><span class="song">Ветлицкая — Посмотри в глаза</span></li>
     <li value="201"><span class="number" aria-hidden="true">201</span><span class="song">Мираж — Музыка нас связала</span></li>
     <li value="202"><span class="number" aria-hidden="true">202</span><span class="song">Мираж — Новый герой</span></li>
-    <li value="203"><span class="number" aria-hidden="true">203</span><span class="song">Комбинация— American boy</span></li>
+    <li value="203"><span class="number" aria-hidden="true">203</span><span class="song">Комбинация — American boy</span></li>
     <li value="204"><span class="number" aria-hidden="true">204</span><span class="song">Демо — Солнышко</span></li>
     <li value="205"><span class="number" aria-hidden="true">205</span><span class="song">Варум — Зимняя вишня</span></li>
     <li value="206"><span class="number" aria-hidden="true">206</span><span class="song">Eurythmics — Sweet dreams</span></li>
     <li value="207"><span class="number" aria-hidden="true">207</span><span class="song">Eurythmics — Here comes the rain again</span></li>
-    <li value="208"><span class="number" aria-hidden="true">208</span><span class="song">Wh. Houston— I wanna dance with somebody</span></li>
+    <li value="208"><span class="number" aria-hidden="true">208</span><span class="song">Wh. Houston — I wanna dance with somebody</span></li>
   </ol>
 </section>
 <section class="song-section" id="caucasus" aria-labelledby="caucasus-title">
@@ -354,7 +360,7 @@ footer a { white-space:nowrap; }
     <li value="227"><span class="number" aria-hidden="true">227</span><span class="song">Тимур Темиров — Если бы тебя в этом мире</span></li>
     <li value="228"><span class="number" aria-hidden="true">228</span><span class="song">Zamiq — se nece de gozelsen</span></li>
     <li value="229"><span class="number" aria-hidden="true">229</span><span class="song">Гусейн Манапов — Ai giz kechme bizim mehleden</span></li>
-    <li value="230"><span class="number" aria-hidden="true">230</span><span class="song">Nicos Band— Georgian disco</span></li>
+    <li value="230"><span class="number" aria-hidden="true">230</span><span class="song">Nicos Band — Georgian disco</span></li>
     <li value="231"><span class="number" aria-hidden="true">231</span><span class="song">Лагучев — Горький вкус</span></li>
   </ol>
 </section>
@@ -378,7 +384,7 @@ footer a { white-space:nowrap; }
     <li value="246"><span class="number" aria-hidden="true">246</span><span class="song">Эй моряк (из к/ф «Человек амфибия»)</span></li>
     <li value="247"><span class="number" aria-hidden="true">247</span><span class="song">Эдита Пьеха — Наш Сосед</span></li>
     <li value="248"><span class="number" aria-hidden="true">248</span><span class="song">Синий иней</span></li>
-    <li value="249"><span class="number" aria-hidden="true">249</span><span class="song">Пугачёва —Позови меня с собой</span></li>
+    <li value="249"><span class="number" aria-hidden="true">249</span><span class="song">Пугачёва — Позови меня с собой</span></li>
     <li value="250"><span class="number" aria-hidden="true">250</span><span class="song">Пугачёва — Миллион алых роз</span></li>
     <li value="251"><span class="number" aria-hidden="true">251</span><span class="song">Roy Orbison — Pretty Woman</span></li>
     <li value="252"><span class="number" aria-hidden="true">252</span><span class="song">Ray Charles — Hit the road jack</span></li>
@@ -403,11 +409,11 @@ footer a { white-space:nowrap; }
     <li value="267"><span class="number" aria-hidden="true">267</span><span class="song">GORKY PARK — MOSCOW CALLING</span></li>
     <li value="268"><span class="number" aria-hidden="true">268</span><span class="song">Земляне — Трава у дома</span></li>
     <li value="269"><span class="number" aria-hidden="true">269</span><span class="song">Моральный кодекс — До свиданья мама</span></li>
-    <li value="270"><span class="number" aria-hidden="true">270</span><span class="song">Король и шут - Кукла колдуна</span></li>
-    <li value="271"><span class="number" aria-hidden="true">271</span><span class="song">Чичерина- Ту лу ла</span></li>
-    <li value="272"><span class="number" aria-hidden="true">272</span><span class="song">Би-2 - Полковник</span></li>
-    <li value="273"><span class="number" aria-hidden="true">273</span><span class="song">Смысловые голлюцинации - Вечно молодой</span></li>
-    <li value="274"><span class="number" aria-hidden="true">274</span><span class="song">Земфира - Искала</span></li>
+    <li value="270"><span class="number" aria-hidden="true">270</span><span class="song">Король и шут — Кукла колдуна</span></li>
+    <li value="271"><span class="number" aria-hidden="true">271</span><span class="song">Чичерина — Ту лу ла</span></li>
+    <li value="272"><span class="number" aria-hidden="true">272</span><span class="song">Би-2 — Полковник</span></li>
+    <li value="273"><span class="number" aria-hidden="true">273</span><span class="song">Смысловые галлюцинации — Вечно молодой</span></li>
+    <li value="274"><span class="number" aria-hidden="true">274</span><span class="song">Земфира — Искала</span></li>
   </ol>
 </section>
 <section class="song-section" id="slow" aria-labelledby="slow-title">
@@ -418,23 +424,23 @@ footer a { white-space:nowrap; }
     <li value="277"><span class="number" aria-hidden="true">277</span><span class="song">Iowa — Одно и то же</span></li>
     <li value="278"><span class="number" aria-hidden="true">278</span><span class="song">Бьянка-Абсолютно все</span></li>
     <li value="279"><span class="number" aria-hidden="true">279</span><span class="song">Пресняков — Замок из дождя</span></li>
-    <li value="280"><span class="number" aria-hidden="true">280</span><span class="song">Lara Fabian -Je t’aime</span></li>
-    <li value="281"><span class="number" aria-hidden="true">281</span><span class="song">А-Студио — Любовь -река</span></li>
-    <li value="282"><span class="number" aria-hidden="true">282</span><span class="song">Успенская- По полюшку</span></li>
+    <li value="280"><span class="number" aria-hidden="true">280</span><span class="song">Lara Fabian — Je t’aime</span></li>
+    <li value="281"><span class="number" aria-hidden="true">281</span><span class="song">А-Студио — Любовь — река</span></li>
+    <li value="282"><span class="number" aria-hidden="true">282</span><span class="song">Успенская — По полюшку</span></li>
     <li value="283"><span class="number" aria-hidden="true">283</span><span class="song">Максим — Знаешь ли ты</span></li>
-    <li value="284"><span class="number" aria-hidden="true">284</span><span class="song">Севара —Там нет меня</span></li>
-    <li value="285"><span class="number" aria-hidden="true">285</span><span class="song">Севара— Если бы любовь была такой</span></li>
+    <li value="284"><span class="number" aria-hidden="true">284</span><span class="song">Севара — Там нет меня</span></li>
+    <li value="285"><span class="number" aria-hidden="true">285</span><span class="song">Севара — Если бы любовь была такой</span></li>
     <li value="286"><span class="number" aria-hidden="true">286</span><span class="song">Город 312 — Останусь</span></li>
-    <li value="287"><span class="number" aria-hidden="true">287</span><span class="song">Пугачёва - Любовь похожая на сон</span></li>
+    <li value="287"><span class="number" aria-hidden="true">287</span><span class="song">Пугачёва — Любовь похожая на сон</span></li>
     <li value="288"><span class="number" aria-hidden="true">288</span><span class="song">Ани Лорак — Удержи моё сердце</span></li>
     <li value="289"><span class="number" aria-hidden="true">289</span><span class="song">Lady Gaga — Shallow</span></li>
     <li value="290"><span class="number" aria-hidden="true">290</span><span class="song">Adele — Someone like you</span></li>
     <li value="291"><span class="number" aria-hidden="true">291</span><span class="song">Aguilera — Hurt</span></li>
     <li value="292"><span class="number" aria-hidden="true">292</span><span class="song">Alicia Keys — New York</span></li>
-    <li value="293"><span class="number" aria-hidden="true">293</span><span class="song">No doubt - Don’t speak</span></li>
+    <li value="293"><span class="number" aria-hidden="true">293</span><span class="song">No doubt — Don’t speak</span></li>
     <li value="294"><span class="number" aria-hidden="true">294</span><span class="song">Ed Sheeran — Perfect</span></li>
     <li value="295"><span class="number" aria-hidden="true">295</span><span class="song">Beauty &amp; the Beast (из м/ф &quot;Красавица и Чудовище&quot;)</span></li>
-    <li value="296"><span class="number" aria-hidden="true">296</span><span class="song">Zivert- «Ветер перемен» К/Ф Мэри Поппинс</span></li>
+    <li value="296"><span class="number" aria-hidden="true">296</span><span class="song">Zivert — «Ветер перемен» К/Ф Мэри Поппинс</span></li>
     <li value="297"><span class="number" aria-hidden="true">297</span><span class="song">W.Houston — I will always love you</span></li>
     <li value="298"><span class="number" aria-hidden="true">298</span><span class="song">W.Houston — Greatest love of all</span></li>
     <li value="299"><span class="number" aria-hidden="true">299</span><span class="song">Beyonce — Halo</span></li>
@@ -485,7 +491,7 @@ footer a { white-space:nowrap; }
     <li value="334"><span class="number" aria-hidden="true">334</span><span class="song">Banderos-Desperado</span></li>
     <li value="335"><span class="number" aria-hidden="true">335</span><span class="song">Eros Ramazzotti — Un&#x27;Altra Te</span></li>
     <li value="336"><span class="number" aria-hidden="true">336</span><span class="song">Adriano Celentano — Confessa</span></li>
-    <li value="337"><span class="number" aria-hidden="true">337</span><span class="song">Adriano Celentano —Amore no</span></li>
+    <li value="337"><span class="number" aria-hidden="true">337</span><span class="song">Adriano Celentano — Amore no</span></li>
     <li value="338"><span class="number" aria-hidden="true">338</span><span class="song">Laura Pausini — In assenza di te</span></li>
   </ol>
 </section>
@@ -496,7 +502,7 @@ footer a { white-space:nowrap; }
     <li value="340"><span class="number" aria-hidden="true">340</span><span class="song">Lara Fabian — Je suis malade</span></li>
     <li value="341"><span class="number" aria-hidden="true">341</span><span class="song">Zaz — Je Veux</span></li>
     <li value="342"><span class="number" aria-hidden="true">342</span><span class="song">Zaz — Sous le ciel de Paris</span></li>
-    <li value="343"><span class="number" aria-hidden="true">343</span><span class="song">Zaz- La vie un rose</span></li>
+    <li value="343"><span class="number" aria-hidden="true">343</span><span class="song">Zaz — La vie un rose</span></li>
     <li value="344"><span class="number" aria-hidden="true">344</span><span class="song">Gregory Lemarchal — SOS</span></li>
     <li value="345"><span class="number" aria-hidden="true">345</span><span class="song">Céline Dion — L&#x27;amour existe encore</span></li>
     <li value="346"><span class="number" aria-hidden="true">346</span><span class="song">Mireille Mathieu — Pardonne moi</span></li>
@@ -510,14 +516,14 @@ footer a { white-space:nowrap; }
   <div class="section-heading"><h2 id="jazz-title">Джаз и лаундж</h2></div>
   <ol start="351">
     <li value="351"><span class="number" aria-hidden="true">351</span><span class="song">Подмосковные вечера</span></li>
-    <li value="352"><span class="number" aria-hidden="true">352</span><span class="song">Варум - Все в твоих руках</span></li>
-    <li value="353"><span class="number" aria-hidden="true">353</span><span class="song">A.von Kampen —Forever young</span></li>
+    <li value="352"><span class="number" aria-hidden="true">352</span><span class="song">Варум — Все в твоих руках</span></li>
+    <li value="353"><span class="number" aria-hidden="true">353</span><span class="song">A.von Kampen — Forever young</span></li>
     <li value="354"><span class="number" aria-hidden="true">354</span><span class="song">Lera &amp; Socrat — Море мы</span></li>
     <li value="355"><span class="number" aria-hidden="true">355</span><span class="song">Irma — I know</span></li>
     <li value="356"><span class="number" aria-hidden="true">356</span><span class="song">Beyonce — Crazy in love (vintage)</span></li>
     <li value="357"><span class="number" aria-hidden="true">357</span><span class="song">Sunny (jazz version)</span></li>
     <li value="358"><span class="number" aria-hidden="true">358</span><span class="song">Eva Cassidy — Ain’t no sunshine</span></li>
-    <li value="359"><span class="number" aria-hidden="true">359</span><span class="song">Billie Holiday -Misty</span></li>
+    <li value="359"><span class="number" aria-hidden="true">359</span><span class="song">Billie Holiday — Misty</span></li>
     <li value="360"><span class="number" aria-hidden="true">360</span><span class="song">T.E.Ford — Sixteen tons</span></li>
     <li value="361"><span class="number" aria-hidden="true">361</span><span class="song">Duke Ellington — It don&#x27;t mean a thing</span></li>
     <li value="362"><span class="number" aria-hidden="true">362</span><span class="song">Perry Como — Sway</span></li>
@@ -528,82 +534,83 @@ footer a { white-space:nowrap; }
     <li value="367"><span class="number" aria-hidden="true">367</span><span class="song">Jane Monheit — Over The Rainbow</span></li>
     <li value="368"><span class="number" aria-hidden="true">368</span><span class="song">Aretha Franklin — I Say A Little Prayer</span></li>
     <li value="369"><span class="number" aria-hidden="true">369</span><span class="song">Sinatra — Strangers in the nights</span></li>
-    <li value="370"><span class="number" aria-hidden="true">370</span><span class="song">Lenny Kravitz – I Belong To You</span></li>
-    <li value="371"><span class="number" aria-hidden="true">371</span><span class="song">Fugees - Killing me softly W his Song</span></li>
-    <li value="372"><span class="number" aria-hidden="true">372</span><span class="song">Nelly Furtado- Say it right</span></li>
+    <li value="370"><span class="number" aria-hidden="true">370</span><span class="song">Lenny Kravitz — I Belong To You</span></li>
+    <li value="371"><span class="number" aria-hidden="true">371</span><span class="song">Fugees — Killing me softly W his Song</span></li>
+    <li value="372"><span class="number" aria-hidden="true">372</span><span class="song">Nelly Furtado — Say it right</span></li>
   </ol>
 </section>
 <section class="song-section" id="new-year" aria-labelledby="new-year-title">
   <div class="section-heading"><h2 id="new-year-title">Новогодние</h2></div>
   <ol start="373">
     <li value="373"><span class="number" aria-hidden="true">373</span><span class="song">Дискотека Авария — Новогодняя</span></li>
-    <li value="374"><span class="number" aria-hidden="true">374</span><span class="song">Снежинка -(Чародеи К/Ф)</span></li>
+    <li value="374"><span class="number" aria-hidden="true">374</span><span class="song">Снежинка — (Чародеи К/Ф)</span></li>
     <li value="375"><span class="number" aria-hidden="true">375</span><span class="song">А.Хоралов — Новогодние игрушки</span></li>
     <li value="376"><span class="number" aria-hidden="true">376</span><span class="song">Abba — Happy New Year</span></li>
     <li value="377"><span class="number" aria-hidden="true">377</span><span class="song">Wham! — Last Christmas</span></li>
     <li value="378"><span class="number" aria-hidden="true">378</span><span class="song">Mariah Carey — All I Want For Christmas Is You</span></li>
     <li value="379"><span class="number" aria-hidden="true">379</span><span class="song">Фрэнк Синатра — Jingle Bells</span></li>
-    <li value="380"><span class="number" aria-hidden="true">380</span><span class="song">Michael Bubble - Let it snow</span></li>
+    <li value="380"><span class="number" aria-hidden="true">380</span><span class="song">Michael Bubble — Let it snow</span></li>
     <li value="381"><span class="number" aria-hidden="true">381</span><span class="song">Нина Бродская — Звенит январская вьюга</span></li>
-    <li value="382"><span class="number" aria-hidden="true">382</span><span class="song">Агузарова -А снег идёт</span></li>
+    <li value="382"><span class="number" aria-hidden="true">382</span><span class="song">Агузарова — А снег идёт</span></li>
   </ol>
 </section>
 <section class="song-section" id="laz" aria-labelledby="laz-title">
   <div class="section-heading"><h2 id="laz-title">С LAZ</h2><p>Для состава с LAZ.</p></div>
   <ol start="383">
-    <li value="383"><span class="number" aria-hidden="true">383</span><span class="song">The Black Eyed Peas - Let&#x27;s Get It Started</span></li>
-    <li value="384"><span class="number" aria-hidden="true">384</span><span class="song">The Black Eyed Peas - Don&#x27;t phunk with my heart</span></li>
-    <li value="385"><span class="number" aria-hidden="true">385</span><span class="song">The Black Eyed Peas - Pump It</span></li>
-    <li value="386"><span class="number" aria-hidden="true">386</span><span class="song">The Weekend - Blinding Lights</span></li>
-    <li value="387"><span class="number" aria-hidden="true">387</span><span class="song">Ricky Martin - Living la vida loca</span></li>
-    <li value="388"><span class="number" aria-hidden="true">388</span><span class="song">Pharrell Williams – Happy</span></li>
-    <li value="389"><span class="number" aria-hidden="true">389</span><span class="song">Portugal. The Man – Feel It Still</span></li>
-    <li value="390"><span class="number" aria-hidden="true">390</span><span class="song">Madcon – Begging</span></li>
-    <li value="391"><span class="number" aria-hidden="true">391</span><span class="song">Boney M - Sunny</span></li>
+    <li value="383"><span class="number" aria-hidden="true">383</span><span class="song">The Black Eyed Peas — Let&#x27;s Get It Started</span></li>
+    <li value="384"><span class="number" aria-hidden="true">384</span><span class="song">The Black Eyed Peas — Don&#x27;t phunk with my heart</span></li>
+    <li value="385"><span class="number" aria-hidden="true">385</span><span class="song">The Black Eyed Peas — Pump It</span></li>
+    <li value="386"><span class="number" aria-hidden="true">386</span><span class="song">The Weeknd — Blinding Lights</span></li>
+    <li value="387"><span class="number" aria-hidden="true">387</span><span class="song">Ricky Martin — Living la vida loca</span></li>
+    <li value="388"><span class="number" aria-hidden="true">388</span><span class="song">Pharrell Williams — Happy</span></li>
+    <li value="389"><span class="number" aria-hidden="true">389</span><span class="song">Portugal. The Man — Feel It Still</span></li>
+    <li value="390"><span class="number" aria-hidden="true">390</span><span class="song">Madcon — Begging</span></li>
+    <li value="391"><span class="number" aria-hidden="true">391</span><span class="song">Boney M — Sunny</span></li>
     <li value="392"><span class="number" aria-hidden="true">392</span><span class="song">Modern talking : Cheri Cheri lady</span></li>
-    <li value="393"><span class="number" aria-hidden="true">393</span><span class="song">Alexandra Stan - Mr. Saxobeat</span></li>
+    <li value="393"><span class="number" aria-hidden="true">393</span><span class="song">Alexandra Stan — Mr. Saxobeat</span></li>
     <li value="394"><span class="number" aria-hidden="true">394</span><span class="song">Cher : Do you believe</span></li>
-    <li value="395"><span class="number" aria-hidden="true">395</span><span class="song">Alex Gaudino - Destination unknown</span></li>
+    <li value="395"><span class="number" aria-hidden="true">395</span><span class="song">Alex Gaudino — Destination unknown</span></li>
     <li value="396"><span class="number" aria-hidden="true">396</span><span class="song">Daft punk : Get lucky</span></li>
     <li value="397"><span class="number" aria-hidden="true">397</span><span class="song">Tom jones : Sex bomb</span></li>
     <li value="398"><span class="number" aria-hidden="true">398</span><span class="song">Maroon 5: This love</span></li>
-    <li value="399"><span class="number" aria-hidden="true">399</span><span class="song">Sting – Englishman In New York</span></li>
-    <li value="400"><span class="number" aria-hidden="true">400</span><span class="song">Richie e Poveri - Mama Maria</span></li>
-    <li value="401"><span class="number" aria-hidden="true">401</span><span class="song">Shakira – Waka Waka</span></li>
-    <li value="402"><span class="number" aria-hidden="true">402</span><span class="song">Shakira – Objection</span></li>
-    <li value="403"><span class="number" aria-hidden="true">403</span><span class="song">Gloria Gaynor – I Will Survive</span></li>
-    <li value="404"><span class="number" aria-hidden="true">404</span><span class="song">Jefferson Airplane - Somebody to love</span></li>
-    <li value="405"><span class="number" aria-hidden="true">405</span><span class="song">Fifth Harmony - Worth it</span></li>
-    <li value="406"><span class="number" aria-hidden="true">406</span><span class="song">Modern Talking - You’re my heart</span></li>
-    <li value="407"><span class="number" aria-hidden="true">407</span><span class="song">Modern Talking - Cherry cherry lady</span></li>
-    <li value="408"><span class="number" aria-hidden="true">408</span><span class="song">Shocking Blue - Venus</span></li>
-    <li value="409"><span class="number" aria-hidden="true">409</span><span class="song">Mojo - Lady</span></li>
-    <li value="410"><span class="number" aria-hidden="true">410</span><span class="song">Ed Sheeran - Perfect</span></li>
-    <li value="411"><span class="number" aria-hidden="true">411</span><span class="song">Ed Sheeran - Shape of you</span></li>
+    <li value="399"><span class="number" aria-hidden="true">399</span><span class="song">Sting — Englishman In New York</span></li>
+    <li value="400"><span class="number" aria-hidden="true">400</span><span class="song">Richie e Poveri — Mama Maria</span></li>
+    <li value="401"><span class="number" aria-hidden="true">401</span><span class="song">Shakira — Waka Waka</span></li>
+    <li value="402"><span class="number" aria-hidden="true">402</span><span class="song">Shakira — Objection</span></li>
+    <li value="403"><span class="number" aria-hidden="true">403</span><span class="song">Gloria Gaynor — I Will Survive</span></li>
+    <li value="404"><span class="number" aria-hidden="true">404</span><span class="song">Jefferson Airplane — Somebody to love</span></li>
+    <li value="405"><span class="number" aria-hidden="true">405</span><span class="song">Fifth Harmony — Worth it</span></li>
+    <li value="406"><span class="number" aria-hidden="true">406</span><span class="song">Modern Talking — You’re my heart</span></li>
+    <li value="407"><span class="number" aria-hidden="true">407</span><span class="song">Modern Talking — Cherry cherry lady</span></li>
+    <li value="408"><span class="number" aria-hidden="true">408</span><span class="song">Shocking Blue — Venus</span></li>
+    <li value="409"><span class="number" aria-hidden="true">409</span><span class="song">Mojo — Lady</span></li>
+    <li value="410"><span class="number" aria-hidden="true">410</span><span class="song">Ed Sheeran — Perfect</span></li>
+    <li value="411"><span class="number" aria-hidden="true">411</span><span class="song">Ed Sheeran — Shape of you</span></li>
     <li value="412"><span class="number" aria-hidden="true">412</span><span class="song">Mr President coco Jambo</span></li>
     <li value="413"><span class="number" aria-hidden="true">413</span><span class="song">Elton John &amp;Dua lipa :Cold heart</span></li>
-    <li value="414"><span class="number" aria-hidden="true">414</span><span class="song">Earth, Wind &amp; Fire - September</span></li>
-    <li value="415"><span class="number" aria-hidden="true">415</span><span class="song">Little Richard - Tutti Frutti</span></li>
-    <li value="416"><span class="number" aria-hidden="true">416</span><span class="song">Fly project- Toca Toca</span></li>
+    <li value="414"><span class="number" aria-hidden="true">414</span><span class="song">Earth, Wind &amp; Fire — September</span></li>
+    <li value="415"><span class="number" aria-hidden="true">415</span><span class="song">Little Richard — Tutti Frutti</span></li>
+    <li value="416"><span class="number" aria-hidden="true">416</span><span class="song">Fly project — Toca Toca</span></li>
     <li value="417"><span class="number" aria-hidden="true">417</span><span class="song">Jim Carrey : a Cuban Pete</span></li>
     <li value="418"><span class="number" aria-hidden="true">418</span><span class="song">Katy Perry : I kissed a girl (rock)</span></li>
     <li value="419"><span class="number" aria-hidden="true">419</span><span class="song">Bonny M :Sunny</span></li>
     <li value="420"><span class="number" aria-hidden="true">420</span><span class="song">Bruno mars : Uptown funk</span></li>
     <li value="421"><span class="number" aria-hidden="true">421</span><span class="song">Baseballs: Umbrella</span></li>
-    <li value="422"><span class="number" aria-hidden="true">422</span><span class="song">Elvis Presley - a little less conversation</span></li>
+    <li value="422"><span class="number" aria-hidden="true">422</span><span class="song">Elvis Presley — a little less conversation</span></li>
     <li value="423"><span class="number" aria-hidden="true">423</span><span class="song">Bruno mars : Runaway baby</span></li>
   </ol>
 </section>
 </div>
 <p class="empty" hidden>Ничего не найдено. Попробуйте другое название или имя исполнителя.</p>
 </main>
-<footer><div class="wrap"><p>Пожелания и стоп-лист учитываем при подготовке программы. Состав и песни подберём под ваш вечер.</p><a href="/programs/jazz-irina/">Джаз с Ириной ↗</a></div></footer>
+<footer><div class="wrap"><p>Пожелания и стоп-лист учитываем при подготовке программы. Состав и песни подберём под ваш вечер.</p><div><a href="https://t.me/Luxurycover_ru">Обсудить выбранные песни →</a><br><a href="/repertoire/">К выбору программы</a></div></div></footer>
 <script>
 (() => {
+  if (new URLSearchParams(window.location.search).get('view') === 'embedded') document.documentElement.dataset.embedded = '';
   const search = document.querySelector('input[type="search"]');
   const sections = [...document.querySelectorAll('.song-section')];
   const status = document.querySelector('.results');
-  const normalize = value => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’‘]/g, "'").replace(/\s+/g, ' ').trim();
+  const normalize = value => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’‘]/g, "'").replace(/ё/g, 'е').replace(/голлюцинации/g, 'галлюцинации').replace(/^\s*the weekend\b/, 'the weeknd').replace(/\btons and i\b/g, 'tones and i').replace(/[—–-]/g, ' ').replace(/\s+/g, ' ').trim();
   const entries = sections.map(section => ({section, title:normalize(section.querySelector('h2').textContent), items:[...section.querySelectorAll('li')].map(item => ({item, text:normalize(item.querySelector('.song').textContent)}))}));
   search.addEventListener('input', () => {
     const query = normalize(search.value);
@@ -619,6 +626,10 @@ footer a { white-space:nowrap; }
     document.querySelector('nav').hidden = Boolean(query);
   });
   document.querySelector('.search').hidden = false;
+  const printButton = document.getElementById('print');
+  printButton.hidden = false;
+  printButton.addEventListener('click', () => window.print());
+  if (window.location.hash === '#print') printButton.focus();
 })();
 </script>
 </body>

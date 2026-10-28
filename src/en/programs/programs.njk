@@ -64,7 +64,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Video</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">in live format.</span></h2>
-		<p class="section__lead">{{ program.videoLead or "A few short videos to show the feel, repertoire and stage language of this program." }}</p>
+		<p class="section__lead">{% if program.slug == 'rock' %}These are general band performances and the Let's Get It Started promo, showing the lineup and stage presentation. For a specific rock song, request a performance example and confirm its inclusion in your programme.{% else %}{{ program.videoLead or "A few short videos to show the feel, repertoire and stage language of this program." }}{% endif %}</p>
 	</div>
 	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="{{ program.title }} videos">
 		<ul class="video-rail__track">
@@ -150,7 +150,7 @@ eleventyComputed:
 		<h2 class="section__title">Interested in<br><span class="muted-light">{{ program.title }}?</span></h2>
 		<p class="section__lead">Send us the date, venue and format — we will suggest the lineup and timing.</p>
 		<div class="book__cta">
-			<a class="btn btn--primary" href="{{ site.telegram }}">Message on Telegram</a>
+			<a class="btn btn--primary" href="{{ site.whatsapp }}">Message on WhatsApp</a>
 			<a class="btn btn--ghost-dark" href="{{ '/en/programs/' | url }}">All themed programs</a>
 		</div>
 	</div>
