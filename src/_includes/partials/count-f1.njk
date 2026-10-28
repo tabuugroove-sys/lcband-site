@@ -1,0 +1,103 @@
+{#- Блок цифр «вариант F1» (выбран Михаилом 28.10.2026): одна большая цифра
+    в градиенте с досчётом при появлении, под ней строкой остальные цифры.
+    Решение Михаила: на главных страницах — белый, на остальных — чёрный.
+    Параметры перед include:
+      countTheme     — 'dark' (чёрный фон, по умолчанию) | 'light' (белый фон)
+      countLang      — 'ru' (по умолчанию) | 'en' | 'pt' | 'ar'
+      countSongsHref — ссылка у «песен» (необязательно)
+      countLooksHref — ссылка у «сценических образов» (необязательно)
+      countNote      — строка мелким текстом под цифрами (необязательно)
+    Для pt/ar только подписи, которые уже были на этих страницах (без новых
+    переводов). Цифры — из site.stats; досчёт берёт итог из текста, поэтому
+    правка site.json сохраняет анимацию. Без JS и при reduced-motion — итог. -#}
+{%- set st = site.stats %}
+{%- set countDict = {
+	ru: {
+		aria: 'Luxury Cover Band в цифрах',
+		sub: 'выступлений в ' ~ st.countries ~ ' странах. От свадеб до приёмов первых лиц.',
+		minis: [
+			{num: st.years, label: 'лет на сцене'},
+			{num: st.tvShows, label: 'ТВ-проектов'},
+			{num: st.songs, label: 'песен', href: countSongsHref},
+			{num: st.languages, label: 'языков'},
+			{num: st.looks, label: 'сценических образов', href: countLooksHref},
+			{num: st.lineup, label: 'музыкантов на сцене'}
+		]
+	},
+	en: {
+		aria: 'Luxury Cover Band in numbers',
+		sub: 'performances in ' ~ st.countries ~ ' countries. From weddings to receptions for heads of state.',
+		minis: [
+			{num: st.years, label: 'years on stage'},
+			{num: st.tvShows, label: 'TV projects'},
+			{num: st.songs, label: 'songs', href: countSongsHref},
+			{num: st.languages, label: 'languages'},
+			{num: st.looks, label: 'stage looks', href: countLooksHref},
+			{num: st.lineup, label: 'musicians on stage'}
+		]
+	},
+	pt: {
+		aria: 'Luxury Cover Band',
+		sub: 'shows em ' ~ st.countries ~ ' países',
+		minis: [
+			{num: st.years, label: 'anos de palco'},
+			{num: st.songs, label: 'músicas no repertório', href: countSongsHref}
+		]
+	},
+	ar: {
+		aria: 'Luxury Cover Band',
+		sub: 'عرض في ' ~ st.countries ~ ' دولة',
+		minis: [
+			{num: st.years, label: 'عامًا على المسرح'},
+			{num: st.songs, label: 'أغنية في الريبرتوار', href: countSongsHref}
+		]
+	}
+} %}
+{%- set countText = countDict[countLang or 'ru'] %}
+<section class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
+	<div class="about-count__inner">
+		<p class="about-count__eyebrow">Luxury Cover Band</p>
+		<p class="about-count__hero" dir="ltr" data-count>{{ st.shows }}</p>
+		<p class="about-count__sub">{{ countText.sub }}</p>
+		<ul class="about-count__minis">
+			{% for s in countText.minis %}
+			<li class="about-count__mini">
+				{% if s.href %}<a href="{{ s.href | url }}">{% endif %}
+				<span class="about-count__n" dir="ltr" data-count>{{ s.num }}</span>
+				<span class="about-count__l">{{ s.label }}</span>
+				{% if s.href %}</a>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% if countNote %}<p class="about-count__note">{{ countNote }}</p>{% endif %}
+	</div>
+</section>
+<script>
+(function () {
+	// Досчёт цифр при появлении блока: все числа в тексте элемента (и обе
+	// границы диапазона «15–20») растут от нуля, в конце — исходный текст.
+	if (!('IntersectionObserver' in window)) return;
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	function run(el) {
+		var source = el.textContent, nums = source.match(/\d+/g), start = null;
+		if (!nums) return;
+		function tick(now) {
+			if (start === null) start = now;
+			var p = Math.min(1, (now - start) / 1200), e = 1 - Math.pow(1 - p, 3), i = 0;
+			el.textContent = source.replace(/\d+/g, function () { return String(Math.round(Number(nums[i++]) * e)); });
+			if (p < 1) requestAnimationFrame(tick); else el.textContent = source;
+		}
+		requestAnimationFrame(tick);
+	}
+	Array.prototype.forEach.call(document.querySelectorAll('[data-count-block]'), function (block) {
+		if (block.hasAttribute('data-count-wired')) return;
+		block.setAttribute('data-count-wired', '');
+		var io = new IntersectionObserver(function (entries) {
+			if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+			io.disconnect();
+			Array.prototype.forEach.call(block.querySelectorAll('[data-count]'), run);
+		}, { threshold: 0.25 });
+		io.observe(block);
+	});
+})();
+</script>

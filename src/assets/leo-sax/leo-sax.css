@@ -5,6 +5,7 @@
 	--leo-white: #f8f6f1;
 	--leo-muted: #6f6c66;
 	--leo-gold: #c6a466;
+	--leo-gold-ink: #7d5f28; /* мелкий текст на светлом фоне: ≥ 4,5:1 */
 	--leo-gold-bright: #e0c48c;
 	--leo-line: rgba(21, 21, 20, 0.15);
 	--leo-display: "SF Pro Display", "SF Pro Icons", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -365,7 +366,7 @@ img, video { display: block; max-width: 100%; }
 }
 .leo-kicker {
 	margin: 0;
-	color: var(--leo-gold);
+	color: var(--leo-gold-ink);
 	font-size: 12px;
 	font-weight: 650;
 	letter-spacing: 0.38em;
@@ -373,6 +374,7 @@ img, video { display: block; max-width: 100%; }
 }
 .leo-section-head--dark { width: min(1180px, calc(100% - 96px)); margin: 0 auto 64px; color: var(--leo-white); }
 .leo-section-head--dark h2 em { color: var(--leo-gold-bright); }
+.leo-section-head--dark .leo-kicker { color: var(--leo-gold); }
 
 /* Gallery — native horizontal scroll, circular clones added by JS. */
 .leo-gallery {
@@ -478,7 +480,7 @@ img, video { display: block; max-width: 100%; }
 	border-left: 1px solid var(--leo-line);
 }
 .leo-moments__grid article:last-child { border-right: 1px solid var(--leo-line); }
-.leo-moments__grid article > span { display: block; margin-bottom: 54px; color: var(--leo-gold); font-size: 11px; letter-spacing: 0.18em; }
+.leo-moments__grid article > span { display: block; margin-bottom: 54px; color: var(--leo-gold-ink); font-size: 11px; letter-spacing: 0.18em; }
 .leo-moments__grid h3 { margin: 0; font-size: clamp(21px, 2vw, 29px); font-weight: 620; line-height: 1.05; letter-spacing: -0.035em; }
 .leo-moments__grid p { max-width: 25ch; margin: 20px 0 0; color: var(--leo-muted); font-family: var(--leo-text); font-size: clamp(16px, 1.35vw, 19px); line-height: 1.47; letter-spacing: -0.022em; }
 
@@ -502,7 +504,7 @@ img, video { display: block; max-width: 100%; }
 }
 .leo-repertoire__group summary::-webkit-details-marker { display: none; }
 .leo-repertoire__group summary > span { font-size: clamp(21px, 2.6vw, 34px); font-weight: 600; letter-spacing: -0.035em; }
-.leo-repertoire__group summary small { color: var(--leo-gold); font-size: 11px; font-weight: 650; letter-spacing: 0.18em; text-transform: uppercase; }
+.leo-repertoire__group summary small { color: var(--leo-gold-ink); font-size: 11px; font-weight: 650; letter-spacing: 0.18em; text-transform: uppercase; }
 .leo-repertoire__group summary i {
 	position: relative;
 	width: 42px;

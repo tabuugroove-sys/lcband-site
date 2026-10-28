@@ -102,15 +102,14 @@ permalink: /en/
 			</div>
 		</div>
 	</div>
-	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">shows</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">countries</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">years on stage</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">songs in the repertoire</div></div>
-		</div>
-	</div>
 </section>
+
+<!-- =============== NUMBERS (F1; home pages — white) =============== -->
+{%- set countTheme = 'light' %}
+{%- set countLang = 'en' %}
+{%- set countSongsHref = '/en/repertoire/' %}
+{%- set countLooksHref = '/en/costumes/' %}
+{% include "partials/count-f1.njk" %}
 
 <!-- =============== VOCALISTS (hero only) =============== -->
 <section class="section section--light section--flush" id="vocalists">

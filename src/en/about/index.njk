@@ -58,9 +58,9 @@ permalink: /en/about/
 </section>
 
 {% set storyRooms = [
-	{eyebrow:'Repertoire', title:'12 languages.<br>One repertoire.', text:'We sing in 12 languages with authentic pronunciation rather than transliteration. Italian, Spanish, French, English and more — selected for the program and the audience.', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Repertoire', title:'500+ songs.<br>Every era and genre.', text:'From retro and jazz to current hits. We build the set list around your audience and occasion instead of playing the same concert at every event.', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
-	{eyebrow:'Interaction', title:'More than a concert.<br>A show with the room.', text:'Guest duets, contests and interactive numbers. We do more than play for the audience — we work with the room throughout the evening.', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-chainsmokers'},
+	{eyebrow:'Repertoire', title:'12 languages.<br>One repertoire.', text:'We sing in 12 languages with authentic pronunciation rather than transliteration. Italian, Spanish, French, English and more — selected for the program and the audience.', bg:'radial-gradient(at top right, #6a5ce0, #572f91)', tint:'#d4cfe8', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Repertoire', title:'500+ songs.<br>Every era and genre.', text:'From retro and jazz to current hits. We build the set list around your audience and occasion instead of playing the same concert at every event.', bg:'radial-gradient(at top right, #08876b, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
+	{eyebrow:'Interaction', title:'More than a concert.<br>A show with the room.', text:'Guest duets, contests and interactive numbers. We do more than play for the audience — we work with the room throughout the evening.', bg:'radial-gradient(at top right, #c9462a, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
 	{eyebrow:'Stage Looks', title:'20+ looks.<br>A visual identity for every event.', text:'From classic styling to themed shows, every band look is designed as a complete visual story.', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
@@ -85,21 +85,11 @@ permalink: /en/about/
 	</div>
 </section>
 
-<section class="section section--flush">
-	<div class="container reveal">
-		{% set aboutStats = [
-			{num: site.stats.shows, label: 'shows'}, {num: site.stats.countries, label: 'countries'},
-			{num: site.stats.years, label: 'years on stage'}, {num: site.stats.tvShows, label: 'TV projects'},
-			{num: site.stats.songs, label: 'songs in the repertoire'}, {num: site.stats.languages, label: 'languages'},
-			{num: site.stats.looks, label: 'stage looks', href: '/en/costumes/'}, {num: site.stats.lineup, label: 'musicians on stage'}
-		] %}
-		<ul class="highlight-stats">
-			{% for s in aboutStats %}<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
-				{% if s.href %}<a class="highlight-stat__link" href="{{ s.href | url }}"><div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div></a>{% else %}<div class="highlight-stat__num">{{ s.num }}</div><div class="highlight-stat__label">{{ s.label }}</div>{% endif %}
-			</li>{% endfor %}
-		</ul>
-	</div>
-</section>
+<!-- =============== NUMBERS (F1, dark) =============== -->
+{%- set countTheme = 'dark' %}
+{%- set countLang = 'en' %}
+{%- set countLooksHref = '/en/costumes/' %}
+{% include "partials/count-f1.njk" %}
 
 <section class="feature-block feature-block--light"><div class="feature-block__inner reveal">
 	<div class="feature-block__media"><img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on a stadium-scale stage" loading="lazy"></div>

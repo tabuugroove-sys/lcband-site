@@ -385,7 +385,7 @@ eleventyComputed:
 	font-weight: 750;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: rgba(21, 21, 21, 0.48);
+	color: rgba(21, 21, 21, 0.64);
 }
 
 .artist-catalog h1 {
@@ -481,6 +481,10 @@ eleventyComputed:
 	opacity: 0.62;
 }
 
+/* строка без прослушивания уже приглушена на 38 % — год в ней тёмный,
+   иначе вместе с прозрачностью он читается на 2,5:1 */
+.track-row--disabled .track-row__year { color: #151515; }
+
 .track-row__cover {
 	width: 48px;
 	height: 48px;
@@ -561,7 +565,7 @@ eleventyComputed:
 	font-size: 11px;
 	line-height: 1;
 	font-weight: 700;
-	color: rgba(21,21,21,0.38);
+	color: rgba(21,21,21,0.62);
 }
 
 .track-wave {
@@ -590,7 +594,7 @@ eleventyComputed:
 	align-items: center;
 	justify-content: center;
 	margin-top: 16px;
-	color: rgba(21,21,21,0.58);
+	color: rgba(21,21,21,0.66);
 	font-size: 13px;
 	line-height: 1.2;
 	font-weight: 700;

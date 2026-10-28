@@ -60,17 +60,11 @@ eleventyComputed:
 	</div>
 </section>
 
-<section class="section section--flush">
-	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">shows</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">countries</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">years on stage</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">songs in the repertoire</div></div>
-		</div>
-		{% if event.trustLine %}<p class="trust-line">{{ event.trustLine }}</p>{% endif %}
-	</div>
-</section>
+<!-- =============== ЦИФРЫ (F1, чёрный) =============== -->
+{%- set countTheme = 'dark' %}
+{%- set countLang = 'en' %}
+{%- set countNote = event.trustLine %}
+{% include "partials/count-f1.njk" %}
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">

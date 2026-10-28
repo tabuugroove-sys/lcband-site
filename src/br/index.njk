@@ -100,15 +100,12 @@ permalink: /br/
 			</div>
 		</div>
 	</div>
-	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">shows</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">países</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">anos de palco</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">músicas no repertório</div></div>
-		</div>
-	</div>
 </section>
+
+<!-- =============== NUMBERS (F1; home pages — white) =============== -->
+{%- set countTheme = 'light' %}
+{%- set countLang = 'pt' %}
+{% include "partials/count-f1.njk" %}
 
 <!-- =============== VOCALISTAS =============== -->
 <section class="section section--light section--flush" id="vocalists">

@@ -101,15 +101,12 @@ permalink: /ae/
 			</div>
 		</div>
 	</div>
-	<div class="container reveal">
-		<div class="stats">
-			<div class="stat"><div class="stat__num">{{ site.stats.shows }}</div><div class="stat__label">عرض</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.countries }}</div><div class="stat__label">دولة</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.years }}</div><div class="stat__label">عامًا على المسرح</div></div>
-			<div class="stat"><div class="stat__num">{{ site.stats.songs }}</div><div class="stat__label">أغنية في الريبرتوار</div></div>
-		</div>
-	</div>
 </section>
+
+<!-- =============== NUMBERS (F1; home pages — white) =============== -->
+{%- set countTheme = 'light' %}
+{%- set countLang = 'ar' %}
+{% include "partials/count-f1.njk" %}
 
 <!-- =============== VOCALISTS (hero only) =============== -->
 <section class="section section--light section--flush" id="vocalists">

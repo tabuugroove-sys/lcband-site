@@ -335,7 +335,7 @@ main { position: relative; isolation: isolate; overflow-x: clip; }
 .repertoire-note { color: #6e6e73; font-size: 12px; line-height: 1.6; }
 .repertoire-list li { break-inside: avoid; align-items: baseline; gap: 14px; padding: 17px 0; font-size: 17px; }
 .repertoire-list li:first-child { border-top: 0; }
-.repertoire-list .song-number { color: #8e8e93; font-family: inherit; font-size: 12px; min-width: 20px; }
+.repertoire-list .song-number { color: #6e6e73; font-family: inherit; font-size: 12px; min-width: 20px; }
 .repertoire-list .song-name { flex: 1; min-width: 0; }
 .song-detail { display: block; margin-top: 3px; font-size: 12px; color: #6e6e73; letter-spacing: 0; }
 @media(max-width:650px) { .repertoire-heading { display: block; } .repertoire-heading .text-link { display: inline-block; margin-top: 20px; } .repertoire-list { columns: 1; } }
