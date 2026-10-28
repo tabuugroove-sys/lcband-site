@@ -64,12 +64,14 @@ permalink: /about/
     запись {eyebrow, title, text, bg, tint?, light?, video}. Порядок записей =
     порядок полос и z-порядок слоёв. Видео и постер берутся по slug'у video:
     /assets/video/mp4/<video>-720.mp4 + /assets/video/posters/<video>.jpg
-    bg — любое CSS-background; палитра ниже = точные цвета полос section-rooms
-    с apple.com/apple-tv-4k (Music / Fitness+ / Arcade / Photos). -#}
+    bg — любое CSS-background; палитра ниже = цвета полос section-rooms
+    с apple.com/apple-tv-4k (Music / Fitness+ / Arcade / Photos). 28.10.2026
+    зелёная и красная полосы затемнены, тинт текста осветлён: белый текст на
+    исходных цветах читался на 1,2–3,1:1, нужно ≥ 4,5:1. -#}
 {% set storyRooms = [
-	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#beb8d8', video:'interact-chainsmokers'},
-	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #0ae8b5, #00bb53)', tint:'#afe9c4', video:'live-big-lineup'},
-	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Рассказ о выступлении 12 сентября 2026 года и выходе к зрителям — на странице LAZ.', href:'/vocalists/laz/', linkLabel:'Рассказ о концерте в Лабытнангах', bg:'radial-gradient(at top right, #ea6037, #d62c3f)', tint:'#fac0cb', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Репертуар', title:'12 языков.<br>Один репертуар.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #796bf2, #572f91)', tint:'#d4cfe8', video:'interact-chainsmokers'},
+	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #08876b, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
+	{eyebrow:'Интерактив', title:'«Не побоялись даже<br>выйти к зрителям»', text:'«Вы первый кто так сделал в нашем городе!!! Мы были в огромном восторге!!!» — зрительница о концерте Lazzy в Лабытнангах. Рассказ о выступлении 12 сентября 2026 года и выходе к зрителям — на странице LAZ.', href:'/vocalists/laz/', linkLabel:'Рассказ о концерте в Лабытнангах', bg:'radial-gradient(at top right, #c9462a, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
 	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'Красный, чёрно-белый, золотой и другие сценические образы — в фотогалерее. Выбираем костюмы под палитру и формат события.', href:'/costumes/', linkLabel:'Посмотреть сценические образы', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
@@ -104,35 +106,59 @@ permalink: /about/
 
 <!-- ЗАГЛУШКИ: видео в блоке выше — временные, позже заменим на слайдшоу образов и другие материалы -->
 
-<section class="section">
-	<div class="container reveal">
-		{% set aboutStats = [
-			{num: site.stats.shows, label: 'выступлений'},
-			{num: site.stats.countries, label: 'стран'},
-			{num: site.stats.years, label: 'лет на сцене'},
-			{num: site.stats.tvShows, label: 'ТВ-проектов'},
-			{num: site.stats.songs, label: 'песен в репертуаре'},
-			{num: site.stats.languages, label: 'языков'},
-			{num: site.stats.looks, label: 'сценических образов', href: '/costumes/'},
-			{num: site.stats.lineup, label: 'музыкантов на сцене'}
-		] %}
-		<ul class="highlight-stats">
-			{% for s in aboutStats %}
-			<li class="highlight-stat highlight-stat--{{ ['a','b','c','d'][loop.index0 % 4] }}{% if s.href %} highlight-stat--linked{% endif %}">
-				{% if s.href %}
-				<a class="highlight-stat__link" href="{{ s.href | url }}">
-					<div class="highlight-stat__num">{{ s.num }}</div>
-					<div class="highlight-stat__label">{{ s.label }}</div>
-				</a>
-				{% else %}
-				<div class="highlight-stat__num">{{ s.num }}</div>
-				<div class="highlight-stat__label">{{ s.label }}</div>
-				{% endif %}
+<!-- =============== ЦИФРЫ (вариант F1: большая цифра с досчётом + строка цифр) =============== -->
+{%- set aboutMinis = [
+	{num: site.stats.years, label: 'лет на сцене'},
+	{num: site.stats.tvShows, label: 'ТВ-проектов'},
+	{num: site.stats.songs, label: 'песен'},
+	{num: site.stats.languages, label: 'языков'},
+	{num: site.stats.looks, label: 'сценических образов', href: '/costumes/'},
+	{num: site.stats.lineup, label: 'музыкантов на сцене'}
+] %}
+<section class="about-count" data-about-count aria-label="Luxury Cover Band в цифрах">
+	<div class="about-count__inner">
+		<p class="about-count__eyebrow">Luxury Cover Band</p>
+		<p class="about-count__hero" data-count>{{ site.stats.shows }}</p>
+		<p class="about-count__sub">выступлений в {{ site.stats.countries }} странах. От свадеб до приёмов первых лиц.</p>
+		<ul class="about-count__minis">
+			{% for s in aboutMinis %}
+			<li class="about-count__mini">
+				{% if s.href %}<a href="{{ s.href | url }}">{% endif %}
+				<span class="about-count__n" data-count>{{ s.num }}</span>
+				<span class="about-count__l">{{ s.label }}</span>
+				{% if s.href %}</a>{% endif %}
 			</li>
 			{% endfor %}
 		</ul>
 	</div>
 </section>
+<script>
+(function () {
+	// Досчёт цифр при появлении блока: все числа в тексте элемента (и обе
+	// границы диапазона «15–20») растут от нуля, в конце — исходный текст.
+	var block = document.querySelector('[data-about-count]');
+	if (!block || !('IntersectionObserver' in window)) return;
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	var items = Array.prototype.slice.call(block.querySelectorAll('[data-count]'));
+	function run(el) {
+		var source = el.textContent, nums = source.match(/\d+/g), start = null;
+		if (!nums) return;
+		function tick(now) {
+			if (start === null) start = now;
+			var p = Math.min(1, (now - start) / 1200), e = 1 - Math.pow(1 - p, 3), i = 0;
+			el.textContent = source.replace(/\d+/g, function () { return String(Math.round(Number(nums[i++]) * e)); });
+			if (p < 1) requestAnimationFrame(tick); else el.textContent = source;
+		}
+		requestAnimationFrame(tick);
+	}
+	var io = new IntersectionObserver(function (entries) {
+		if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+		io.disconnect();
+		items.forEach(run);
+	}, { threshold: 0.25 });
+	io.observe(block);
+})();
+</script>
 
 <section class="feature-block feature-block--light">
 	<div class="feature-block__inner reveal">
