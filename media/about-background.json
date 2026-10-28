@@ -1,0 +1,12 @@
+{
+  "source": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
+  "startSeconds": 0,
+  "durationSeconds": 12,
+  "audio": false,
+  "fps": 24,
+  "outputs": [
+    {"path": "assets/video/mp4/about-background-20261028-540.mp4", "width": 960, "height": 540, "bytes": 1442827},
+    {"path": "assets/video/mp4/about-background-20261028-360.mp4", "width": 640, "height": 360, "bytes": 722610}
+  ],
+  "delivery": "Only while visible, without Save-Data or reduced-motion. Full performances remain available on click."
+}

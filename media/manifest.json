@@ -3,6 +3,16 @@
   "origin": "https://luxuryband.ru",
   "files": [
     {
+      "path": "assets/video/mp4/about-background-20261028-360.mp4",
+      "bytes": 722610,
+      "sha256": "4ebbc4d0d52dc1de9515a2531df0d60a573db4c330e281f6d7bce70962f177ae"
+    },
+    {
+      "path": "assets/video/mp4/about-background-20261028-540.mp4",
+      "bytes": 1442827,
+      "sha256": "ee8d9bf0075565455b32810bea381883c12090dd501230d50b0148c27b93a89e"
+    },
+    {
       "path": "assets/video/mp4/erhu-01-rain.mp4",
       "bytes": 19123771,
       "sha256": "c45bf2fa98682c67fb0dea24a14928f8a0fcaaf9db7623832fad7ee759f8018f"
