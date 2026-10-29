@@ -5795,21 +5795,13 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 
 .about-count__inner { max-width: 1040px; margin: 0 auto; }
 
-.about-count__eyebrow {
-	font-family: var(--ff-display);
-	font-size: clamp(17px, 1.6vw, 21px);
-	font-weight: 600;
-	color: var(--count-muted);
-	margin: 0;
-}
-
 .about-count__hero {
 	font-family: var(--ff-display);
 	font-size: clamp(84px, 13vw, 176px);
 	font-weight: 700;
 	letter-spacing: -.05em;
 	line-height: .92;
-	margin: 8px 0 clamp(14px, 1.6vw, 24px);
+	margin: 0 0 clamp(24px, 3vw, 40px);
 	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
 	color: var(--count-solid);
@@ -5830,13 +5822,13 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	font-family: var(--ff-display);
 	font-size: clamp(24px, 3vw, 40px);
 	font-weight: 600;
-	line-height: 1.1;
+	line-height: 1.2;
 	letter-spacing: -.01em;
 	margin: 0 auto;
 }
 .about-count__lead,
 .about-count__more { display: block; text-wrap: balance; }
-.about-count__more { color: var(--count-muted); }
+.about-count__more { color: var(--count-muted); margin-top: 8px; }
 
 /* flex, а не grid: строка ровная и при шести цифрах, и при двух (pt/ar) */
 .about-count__minis {

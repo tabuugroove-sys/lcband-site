@@ -17,8 +17,8 @@
 {%- set countDict = {
 	ru: {
 		aria: 'Luxury Cover Band в цифрах',
-		lead: 'выступлений в&nbsp;' ~ st.countries ~ '&nbsp;странах.',
-		more: 'От свадеб до&nbsp;приёмов первых&nbsp;лиц.',
+		lead: 'выступлений в&nbsp;' ~ st.countries ~ '&nbsp;странах,',
+		more: 'от свадеб до&nbsp;приёмов первых&nbsp;лиц.',
 		minis: [
 			{num: st.years, label: 'лет на сцене'},
 			{num: st.tvShows, label: 'ТВ-проектов'},
@@ -61,7 +61,6 @@
 {%- set countText = countDict[countLang or 'ru'] %}
 <section class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
 	<div class="about-count__inner">
-		<p class="about-count__eyebrow">Luxury Cover Band</p>
 		<p class="about-count__hero" dir="ltr" data-count>{{ st.shows }}</p>
 		<p class="about-count__sub"><span class="about-count__lead">{{ countText.lead | safe }}</span>{% if countText.more %} <span class="about-count__more">{{ countText.more | safe }}</span>{% endif %}</p>
 		<ul class="about-count__minis">
