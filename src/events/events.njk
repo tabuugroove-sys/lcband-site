@@ -102,8 +102,8 @@ eleventyComputed:
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		<p class="section__eyebrow">Как строится</p>
-		<h2 class="section__title">Структура<br><span class="muted">программы.</span></h2>
+		<p class="section__eyebrow">Программа</p>
+		<h2 class="section__title">Как это<br><span class="muted">обычно бывает.</span></h2>
 	</div>
 </section>
 
@@ -134,13 +134,13 @@ eleventyComputed:
 <section class="section section--light" id="booking-details">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Подготовка</p>
-		<h2 class="section__title">Что согласуем<br><span class="muted">до бронирования.</span></h2>
+		<h2 class="section__title">О чём договоримся<br><span class="muted">до брони.</span></h2>
 		<ul class="bullets">
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Состав.</strong> Количество вокалистов и инструментов под площадку и бюджет. <a href="{{ '/vocalists/' | url }}">Вокалисты и примеры исполнения</a> — на отдельных страницах.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Тайминг.</strong> Обычно 2×45 или 3×30 минут для основной программы. Welcome{% if event.slug == 'wedding' %}, церемонию и первый танец{% endif %} вписываем в сценарий отдельно.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Песни и выходы гостей.</strong> Выбираем композиции из <a href="{{ '/repertoire/' | url }}">репертуара</a>. Новую песню и совместный номер обсуждаем заранее: версия, сроки подготовки и момент выхода.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Техника.</strong> Проверяем звук, свет, сцену и время саундчека с площадкой по <a href="{{ '/riders/' | url }}">райдеру выбранного состава</a>.</span></li>
-			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Смета.</strong> Указываем состав и хронометраж; welcome, DJ, дополнительную технику и выезд учитываем по запросу. <a href="{{ '/blog/skolko-stoit-kaver-gruppa/' | url }}">Из чего складывается стоимость</a>.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Состав.</strong> Сколько будет вокалистов и инструментов, зависит от площадки и бюджета. <a href="{{ '/vocalists/' | url }}">Вокалистов можно послушать</a> на их страницах.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Тайминг.</strong> Основная программа обычно идёт два сета по 45 минут или три по 30. Welcome{% if event.slug == 'wedding' %}, церемонию и первый танец{% endif %} добавляем в расписание отдельно.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Песни и выходы гостей.</strong> Песни выбираете из нашего <a href="{{ '/repertoire/' | url }}">репертуара</a>. Если нужна новая песня или кто-то из гостей хочет спеть с нами, обсуждаем это заранее: как играть, успеем ли подготовить и когда выходить.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Техника.</strong> Звук, свет, сцену и время саундчека сверяем с площадкой по <a href="{{ '/riders/' | url }}">райдеру</a> вашего состава.</span></li>
+			<li class="bullet"><span class="bullet__check">✓</span><span class="bullet__text"><strong>Смета.</strong> В смете будут состав и сколько мы играем. Welcome, диджей, лишняя техника и выезд добавляются, если они нужны. <a href="{{ '/blog/skolko-stoit-kaver-gruppa/' | url }}">Из чего складывается цена</a>.</span></li>
 		</ul>
 	</div>
 </section>
@@ -213,8 +213,8 @@ eleventyComputed:
 {% elif event.slug == 'abroad' %}
 <section class="section section--elev" id="tour-details">
 	<div class="container container--narrow reveal">
-		<h2 class="section__title">Условия зарубежного выступления.</h2>
-		<p class="section__lead">Для расчёта нужны страна, город, даты, площадка, число выступлений и желаемый состав. Отдельно согласуем перелёты, трансферы, проживание, перевозку инструментов, необходимые документы и оборудование на месте.</p>
+		<h2 class="section__title">Как посчитать поездку.</h2>
+		<p class="section__lead">Напишите, куда и когда ехать, где играем, сколько раз и каким составом. Перелёты, жильё, документы и перевозку инструментов обсудим отдельно, в каждой стране тут свои правила.</p>
 		<div class="book__cta"><a class="btn btn--primary" href="{{ site.telegram }}">Обсудить даты и маршрут</a><a class="btn btn--ghost-dark" href="{{ '/assets/riders/rider-international-7pc-en.pdf' | url }}">Английский райдер · 7 человек · PDF</a></div>
 	</div>
 </section>

@@ -136,10 +136,10 @@ pageScript: /assets/stereo-sax/stereo-sax.js?v=20261028i18n
 				<p class="leo-repertoire__lead">{% if isEn %}Welcome music, sets with a DJ or cover band, and jazz during dinner.{% else %}Музыка на welcome, выступления с DJ или кавер-группой и джаз во время ужина.{% endif %}</p>
 			</div>
 			<div class="leo-moments__grid">
-				<article><span>01</span><h3>Welcome</h3><p>{% if isEn %}First meetings, clinking glasses — and the evening already has a sound.{% else %}Первые встречи, звон бокалов — и вечер уже звучит.{% endif %}</p></article>
-				<article><span>02</span><h3>Sax &amp; DJ</h3><p>{% if isEn %}Dance sets on top of the DJ — rhythm with a live pulse.{% else %}Танцы: саксофон поверх сета диджея — ритм с живым дыханием.{% endif %}</p></article>
-				<article><span>03</span><h3>{% if isEn %}With a cover band{% else %}С кавер-группой{% endif %}</h3><p>{% if isEn %}Joint numbers with a live band — one big show on stage.{% else %}Совместные номера с живой кавер-группой — единое шоу на сцене.{% endif %}</p></article>
-				<article><span>04</span><h3>Jazz</h3><p>{% if isEn %}Warm jazz for dinner and lounge, staying comfortably beside conversation.{% else %}Тёплый джаз для ужина и лаунжа — рядом с разговорами, не вместо них.{% endif %}</p></article>
+				<article><span>01</span><h3>Welcome</h3><p>{% if isEn %}First meetings, clinking glasses — and the evening already has a sound.{% else %}Гости только собираются, а саксофон уже играет.{% endif %}</p></article>
+				<article><span>02</span><h3>Sax &amp; DJ</h3><p>{% if isEn %}Dance sets on top of the DJ — rhythm with a live pulse.{% else %}Диджей ставит танцевальный сет, Андрей играет поверх него вживую.{% endif %}</p></article>
+				<article><span>03</span><h3>{% if isEn %}With a cover band{% else %}С кавер-группой{% endif %}</h3><p>{% if isEn %}Joint numbers with a live band — one big show on stage.{% else %}Выходит на сцену вместе с кавер-группой и играет с ней общие номера.{% endif %}</p></article>
+				<article><span>04</span><h3>Jazz</h3><p>{% if isEn %}Warm jazz for dinner and lounge, staying comfortably beside conversation.{% else %}Джаз во время ужина. Играет тихо, гостям удобно разговаривать.{% endif %}</p></article>
 			</div>
 		</div>
 	</section>
@@ -173,8 +173,8 @@ pageScript: /assets/stereo-sax/stereo-sax.js?v=20261028i18n
 		<div class="leo-wrap">
 			<div class="leo-section-head leo-section-head--rep">
 				<p class="leo-kicker">{% if isEn %}Repertoire{% else %}Репертуар{% endif %}</p>
-				<h2 id="stereo-repertoire-title">{% if isEn %}Music follows<br><em>the rhythm of the event.</em>{% else %}Музыка следует<br><em>ритму события.</em>{% endif %}</h2>
-				<p class="leo-repertoire__lead">{% if isEn %}This is a shared selection of saxophone repertoire ideas. Send your preferred songs so we can confirm the set list and arrangements with Stereo Sax for your date.{% else %}Общая подборка песен для саксофонной программы. Пришлите пожелания: конкретные композиции и версии исполнения подтвердим с Stereo Sax на вашу дату.{% endif %}</p>
+				<h2 id="stereo-repertoire-title">{% if isEn %}Music follows<br><em>the rhythm of the event.</em>{% else %}Что играет<br><em>Stereo Sax.</em>{% endif %}</h2>
+				<p class="leo-repertoire__lead">{% if isEn %}This is a shared selection of saxophone repertoire ideas. Send your preferred songs so we can confirm the set list and arrangements with Stereo Sax for your date.{% else %}Здесь 70 песен из программы Андрея. Если хотите что-то своё, пришлите, а он скажет, сыграет ли к вашей дате и в какой версии.{% endif %}</p>
 			</div>
 			<div class="leo-repertoire__groups">
 				{% for group in repertoire %}
@@ -191,7 +191,7 @@ pageScript: /assets/stereo-sax/stereo-sax.js?v=20261028i18n
 	<section class="section section--book" id="booking">
 		<div class="container container--narrow">
 			<h2 class="section__title">{% if isEn %}Discuss a Stereo Sax performance.{% else %}Обсудить выступление Stereo Sax.{% endif %}</h2>
-			<p class="section__lead">{% if isEn %}Send the date, venue and format: welcome, ceremony, dinner or a set with a DJ. We will check availability and agree songs, duration and sound equipment.{% else %}Пришлите дату, площадку и формат: welcome, церемония, ужин или сет с DJ. Проверим доступность, согласуем песни, продолжительность и звуковое оборудование.{% endif %}</p>
+			<p class="section__lead">{% if isEn %}Send the date, venue and format: welcome, ceremony, dinner or a set with a DJ. We will check availability and agree songs, duration and sound equipment.{% else %}Напишите дату, площадку и что нужно: welcome, церемония, ужин или сет с диджеем. Проверим, свободен ли Андрей, а потом вместе выберем песни, решим, сколько играть и какой нужен звук.{% endif %}</p>
 			<div class="book__cta"><a class="btn btn--primary" href="{{ site.whatsapp if isEn else site.telegram }}">{% if isEn %}Message on WhatsApp{% else %}Написать в Телеграм{% endif %}</a><a class="btn btn--ghost-dark" href="{{ ('/en/sax/' if isEn else '/sax/') | url }}">{% if isEn %}All saxophone formats{% else %}Все форматы с саксофоном{% endif %}</a></div>
 		</div>
 	</section>

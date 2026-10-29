@@ -14,7 +14,7 @@ permalink: /programs/
 		</p>
 		<p class="page-hero__eyebrow">6 тематических программ</p>
 		<h1 class="page-hero__title">Тематические программы.</h1>
-		<p class="page-hero__lead">Italia, France, Latin (латинское шоу), Ретро 60-х–90-х, Jazz Vocal/Инструментальный, Rock и другие направления. Каждая программа — собственный репертуар, подача и визуальный язык.</p>
+		<p class="page-hero__lead">Итальянская, французская, латина, ретро с 60-х по 90-е, джаз и рок. У каждой программы свои песни, своя подача и свои образы.</p>
 	</div>
 </section>
 
@@ -32,7 +32,7 @@ permalink: /programs/
 	<div class="container container--narrow">
 		<p class="section__eyebrow">Джаз · Женский вокал</p>
 		<h2 class="section__title">Джаз с Ириной.</h2>
-		<p class="section__lead">Живой бенд, свинг и вечерние образы. Видео выступлений и фотографии джазовой программы LuxuryBand.</p>
+		<p class="section__lead">Свинг, живой бенд и вечерние наряды. Внутри видео и фото с наших джазовых вечеров.</p>
 		<a class="btn btn--ghost-dark" href="{{ '/programs/jazz-irina/' | url }}">Смотреть джазовую программу с Ириной ↗</a>
 	</div>
 </section>
@@ -41,7 +41,7 @@ permalink: /programs/
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Видео</p>
 		<h2 class="section__title">Видео<br><span class="muted">по программам.</span></h2>
-		<p class="section__lead">Фрагменты live-выступлений и клипов, собранные по смыслу каждой программы.</p>
+		<p class="section__lead">Куски концертов и клипов, разложенные по программам.</p>
 	</div>
 	{% for p in programs %}
 		{% if p.videos %}
@@ -49,7 +49,7 @@ permalink: /programs/
 			<div class="container container--narrow reveal">
 				<h3 class="section__title section__title--compact">{{ p.title }}</h3>
 				<p class="section__lead">{{ p.lead }}</p>
-				{% if p.slug == 'italian' %}<p class="section__lead">Let's Get Loud — дополнительный латинский номер, который можно обсудить вместе с итальянским блоком.</p>{% elif p.slug == 'rock' %}<p class="section__lead">Ниже — общие примеры выступлений группы. Для конкретной рок-песни запросите пример исполнения и подтвердите её включение в программу.</p>{% endif %}
+				{% if p.slug == 'italian' %}<p class="section__lead">К итальянскому блоку можно добавить латинский номер Let's Get Loud.</p>{% elif p.slug == 'rock' %}<p class="section__lead">Ниже обычные записи наших концертов. Если вам нужна конкретная рок-песня, попросите, и мы пришлём, как она звучит у нас.</p>{% endif %}
 				<div class="program-video-carousel__controls" aria-label="Навигация по видео {{ p.title }}">
 					<button class="program-video-carousel__btn" type="button" data-video-carousel-prev aria-label="Предыдущее видео">‹</button>
 					<button class="program-video-carousel__btn" type="button" data-video-carousel-next aria-label="Следующее видео">›</button>

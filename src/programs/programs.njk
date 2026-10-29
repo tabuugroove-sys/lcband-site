@@ -107,7 +107,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Видео</p>
 		<h2 class="section__title">{{ program.title }}<br><span class="muted">в живом формате.</span></h2>
-		<p class="section__lead">{% if program.slug == 'rock' %}Ниже — общие примеры выступлений группы и промо Let's Get It Started. Они показывают состав и сценическую подачу. Для выбранной рок-песни запросите отдельный пример исполнения и подтвердите её включение в программу.{% else %}{{ program.videoLead or "Несколько фрагментов программы — live-выступления и клипы, чтобы быстро показать настроение этого блока." }}{% endif %}</p>
+		<p class="section__lead">{% if program.slug == 'rock' %}Ниже обычные записи наших концертов и клип Let's Get It Started, по ним видно состав и как мы держимся на сцене. Если вам нужна конкретная рок-песня, попросите, и мы пришлём, как она звучит у нас.{% else %}{{ program.videoLead or "Несколько фрагментов программы — live-выступления и клипы, чтобы быстро показать настроение этого блока." }}{% endif %}</p>
 	</div>
 	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="Видео {{ program.title }}">
 		<ul class="video-rail__track">
@@ -158,7 +158,7 @@ eleventyComputed:
 		<div class="container--narrow rep-head">
 			<p class="section__eyebrow">Репертуар</p>
 			<h2 class="section__title">{{ jazzRepertoire.total }}+ песен.<br><span class="muted">От Синатры до Земфиры.</span></h2>
-			<p class="section__lead">Опубликованный репертуар Old Money Band. Если нужной песни нет, пришлите название или ссылку: обсудим возможность и сроки подготовки.</p>
+			<p class="section__lead">Это репертуар Old Money Band. Нужной песни нет? Пришлите название или ссылку, скажем, сможем ли подготовить и к какому сроку.</p>
 			<div class="rep-filter">
 				<input class="rep-filter__input" type="search" placeholder="Найти песню или артиста…" data-rep-input aria-label="Найти песню в репертуаре Old Money Band">
 			</div>
@@ -180,7 +180,7 @@ eleventyComputed:
 				</ul>
 			</details>
 			{% endfor %}
-			<p class="rep-empty" data-rep-empty hidden>Ничего не найдено. Напишите нам в Телеграм — обсудим выбранную песню и возможность подготовки.</p>
+			<p class="rep-empty" data-rep-empty hidden>Такой песни в списке нет. Напишите нам в Телеграм, обсудим, сможем ли её подготовить.</p>
 		</div>
 	</div>
 </section>
@@ -197,7 +197,7 @@ eleventyComputed:
 			</li>
 			{% endfor %}
 		</ul>
-		{% if program.slug == 'italian' %}<p class="section__lead">Посмотрите <a class="evidence-link" href="{{ '/repertoire/' | url }}">репертуар с поиском</a> и выберите знакомые песни. Для новой композиции обсудим возможность подготовки к вашей дате. Состав, звук и время саундчека согласуем по <a class="evidence-link" href="{{ '/riders/' | url }}">техническому райдеру</a>.</p>{% endif %}
+		{% if program.slug == 'italian' %}<p class="section__lead">В нашем <a class="evidence-link" href="{{ '/repertoire/' | url }}">репертуаре</a> есть поиск, отметьте песни, которые знаете. Если хотите новую, скажем, успеем ли к вашей дате. Состав, звук и время саундчека сверяем по <a class="evidence-link" href="{{ '/riders/' | url }}">техническому райдеру</a>.</p>{% endif %}
 	</div>
 </section>
 
@@ -222,7 +222,7 @@ eleventyComputed:
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Варианты</p>
 		<h2 class="section__title">Другие тематические программы.</h2>
-		<p class="section__lead">Можно сочетать несколько тематических блоков. Песни, состав и длительность согласуем под ваше событие.</p>
+		<p class="section__lead">Несколько программ можно смешать в один вечер. Песни, состав и длительность подберём вместе.</p>
 	</div>
 	<div class="container reveal">
 		<ul class="caps">
@@ -247,7 +247,7 @@ eleventyComputed:
 		<p class="section__eyebrow">Бронирование</p>
 		{% set bookingTitles = {italian: 'Обсудить итальянскую программу.', french: 'Обсудить французскую программу.', latin: 'Обсудить латиноамериканское шоу.', retro: 'Обсудить ретропрограмму.', jazz: 'Обсудить выступление Old Money Band.', rock: 'Обсудить рок-программу.'} %}
 		<h2 class="section__title">{{ bookingTitles[program.slug] or 'Обсудить программу.' }}</h2>
-		<p class="section__lead">Напишите дату, место и формат — подберём состав и пришлём тайминг.</p>
+		<p class="section__lead">Напишите дату, место и что за праздник, предложим состав и пришлём расписание.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="{{ '/programs/' | url }}">Все тематические программы</a>
