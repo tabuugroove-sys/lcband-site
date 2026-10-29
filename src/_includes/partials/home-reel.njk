@@ -1,0 +1,35 @@
+{#- Четыре немых ролика 2×2 вместо фото блока «О группе» — решение Михаила 29.10:
+    Epic Live 04 «Голоса», студийное промо «пик за пиком», 06 «Неон», 03 «Зал поёт».
+    Полоса сверху — по образцу ленточки Apple One: одна фраза и «Узнать больше».
+    Формат сетки по ширине экрана: 21:9 → 2:1 → 3:2, на телефоне четыре квадрата
+    (там свои квадратные ролики). Ролики — assets/hero, описание — media/home-reel.json.
+    Странице задать reelTitle, reelHref, reelMore. -#}
+{% set reelLabels = {
+  ru: {pause:'Пауза видео', resume:'Включить видео'},
+  en: {pause:'Pause videos', resume:'Play videos'},
+  ar: {pause:'إيقاف الفيديو مؤقتًا', resume:'تشغيل الفيديو'},
+  'pt-BR': {pause:'Pausar vídeos', resume:'Reproduzir vídeos'}
+} %}
+{% set reelLabel = reelLabels[htmlLang or 'ru'] %}
+<section class="reel" id="about" data-reel aria-labelledby="reel-title">
+	<div class="reel__ribbon">
+		<h2 class="reel__title" id="reel-title">{{ reelTitle | safe }}</h2>
+		<a class="btn reel__more" href="{{ reelHref | url }}">{{ reelMore }}</a>
+	</div>
+	<div class="reel__grid" data-reel-grid>
+		{%- for id in ['epic-04', 'studio-11', 'epic-06', 'epic-03'] %}
+		<div class="reel__tile">
+			<picture class="reel__poster">
+				<source media="(max-width: 599px)" srcset="{{ ('/assets/hero/reel-20261029-' + id + '-square.webp') | url }}">
+				<img src="{{ ('/assets/hero/reel-20261029-' + id + '-wide.webp') | url }}" alt="" width="960" height="480" loading="lazy" decoding="async">
+			</picture>
+			<video class="reel__video" data-reel-video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
+				data-src-wide="{{ ('/assets/hero/reel-20261029-' + id + '-wide.mp4') | url }}"
+				data-src-square="{{ ('/assets/hero/reel-20261029-' + id + '-square.mp4') | url }}"></video>
+		</div>
+		{%- endfor %}
+		<button class="reel__toggle" type="button" data-reel-toggle hidden
+			data-label-pause="{{ reelLabel.pause }}" data-label-resume="{{ reelLabel.resume }}"
+			aria-label="{{ reelLabel.pause }}"></button>
+	</div>
+</section>

@@ -86,23 +86,11 @@ permalink: /en/
 	<a class="hero__scroll" href="#about" aria-label="Scroll to the description"><span></span></a>
 </section>
 
-<!-- =============== ABOUT / STATS =============== -->
-<section class="section section--elev" id="about">
-	<div class="container about-split reveal">
-		<div class="about-split__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on stage — stadium-level experience" loading="lazy">
-		</div>
-		<div class="about-split__body">
-			<p class="section__eyebrow">Luxury Cover Band · LC Band</p>
-			<h2 class="section__title">World-class stage.</h2>
-			<p class="section__lead">2000+ shows in 40 countries. Stadiums, TV, top stars — now at your event.</p>
-			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="{{ '/en/about/' | url }}">Learn more</a>
-				<a class="btn btn--blue-ghost" href="{{ site.whatsapp }}">Message on WhatsApp</a>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- =============== VIDEOS 2×2 (replace the about photo block; Mikhail 29.10) =============== -->
+{%- set reelTitle = 'World-class stage.' %}
+{%- set reelHref = '/en/about/' %}
+{%- set reelMore = 'Learn more' %}
+{% include "partials/home-reel.njk" %}
 
 <!-- =============== NUMBERS (F1; black, as on every page) =============== -->
 {%- set countTheme = 'dark' %}

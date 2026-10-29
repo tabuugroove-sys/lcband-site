@@ -123,6 +123,93 @@
 		return { selectCostume: () => changeMode(true), get costumeView() { return costumeView; } };
 	})();
 
+	// ---------- Home: four silent reels (2×2) ----------
+	// Same rules as the background montage: posters paint first, the videos load
+	// only after page load and while the grid is on screen, never under reduced
+	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts.
+	// One button pauses and resumes all four.
+	(() => {
+		const host = document.querySelector('[data-reel]');
+		const grid = host?.querySelector('[data-reel-grid]');
+		const toggle = host?.querySelector('[data-reel-toggle]');
+		const videos = host ? [...host.querySelectorAll('[data-reel-video]')] : [];
+		if (!grid || !toggle || !videos.length || !('IntersectionObserver' in window)) return;
+		const squareMedia = window.matchMedia('(max-width: 599px)');
+		let visible = false;
+		let ready = false;
+		let pageActive = true;
+		let userPaused = false;
+		const allowed = () => !reduceMotion.matches && !navigator.connection?.saveData
+			&& !/2g|3g/.test(navigator.connection?.effectiveType || '');
+		const playerOpen = () => document.body.classList.contains('hero-video-open')
+			|| document.getElementById('lightbox')?.classList.contains('is-open');
+		const shouldPlay = () => ready && visible && pageActive && !document.hidden
+			&& allowed() && !userPaused && !playerOpen();
+		const renderToggle = () => {
+			const label = userPaused ? toggle.dataset.labelResume : toggle.dataset.labelPause;
+			toggle.setAttribute('aria-label', label);
+			toggle.classList.toggle('is-paused', userPaused);
+			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
+		};
+		const update = () => {
+			renderToggle();
+			const play = shouldPlay();
+			for (const video of videos) {
+				if (!play) {
+					video.pause();
+					// A changed accessibility/data preference also stops further buffering.
+					if (!allowed() && video.getAttribute('src')) {
+						video.removeAttribute('src');
+						video.load();
+						video.classList.remove('is-ready');
+					}
+					continue;
+				}
+				const source = squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide;
+				if (video.getAttribute('src') !== source) {
+					video.classList.remove('is-ready');
+					video.muted = true;
+					video.defaultMuted = true;
+					video.src = source;
+				}
+				if (video.paused) video.play().catch(error => {
+					// Autoplay blocked (iOS Low Power Mode): keep the posters and offer
+					// the play button — a tap is a user gesture, so it plays.
+					if (error.name === 'NotAllowedError' && shouldPlay()) { userPaused = true; update(); }
+				});
+			}
+		};
+		toggle.addEventListener('click', () => { userPaused = !userPaused; update(); });
+		for (const video of videos) {
+			video.addEventListener('playing', () => {
+				if (!shouldPlay()) { video.pause(); return; }
+				video.classList.add('is-ready');
+			});
+			video.addEventListener('error', () => video.classList.remove('is-ready'));
+		}
+		new IntersectionObserver(entries => {
+			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
+			update();
+		}, { threshold: [0, 0.1] }).observe(grid);
+		document.addEventListener('visibilitychange', update);
+		window.addEventListener('pagehide', () => { pageActive = false; update(); });
+		window.addEventListener('pageshow', () => { pageActive = true; update(); });
+		reduceMotion.addEventListener('change', update);
+		squareMedia.addEventListener('change', update);
+		navigator.connection?.addEventListener?.('change', update);
+		const modalObserver = new MutationObserver(update);
+		modalObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+		const lightboxHost = document.getElementById('lightbox');
+		if (lightboxHost) modalObserver.observe(lightboxHost, { attributes: true, attributeFilter: ['class'] });
+		const afterLoad = () => {
+			const start = () => { ready = true; update(); };
+			if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 1500 });
+			else window.setTimeout(start, 800);
+		};
+		if (document.readyState === 'complete') afterLoad();
+		else window.addEventListener('load', afterLoad, { once: true });
+	})();
+
 	// ---------- Locale memory ----------
 	try {
 		const path = window.location.pathname;

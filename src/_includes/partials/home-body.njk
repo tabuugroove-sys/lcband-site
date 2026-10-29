@@ -76,24 +76,11 @@
 	<a class="hero__scroll" href="#about" aria-label="К описанию"><span></span></a>
 </section>
 
-<!-- =============== ABOUT / STATS =============== -->
-<section class="section section--elev" id="about">
-	<div class="container about-split reveal">
-		<div class="about-split__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band на сцене — стадионная практика" loading="lazy">
-		</div>
-		<div class="about-split__body">
-			<p class="section__eyebrow">Luxury Cover Band · LC Band</p>
-			<h2 class="section__title">Живой бенд для вашего события.</h2>
-			<p class="section__lead">На свадьбу — церемония, первый танец и банкет. На корпоратив — welcome, концертные блоки и танцпол. Подбираем состав и песни под площадку и сценарий.</p>
-			<p class="section__lead">Посмотрите <a href="{{ '/about/#examples' | url }}">примеры выступлений</a>, <a href="{{ '/#reviews' | url }}">отзывы после концертов</a> и <a href="{{ '/riders/' | url }}">райдеры составов</a>.</p>
-			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="{{ '/about/' | url }}">Узнать больше</a>
-				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- =============== ВИДЕО 2×2 (вместо фото блока «О группе»; Михаил 29.10) =============== -->
+{%- set reelTitle = 'Топовый <span class="reel__nowrap">кавер-бенд</span> для вашего события.' %}
+{%- set reelHref = '/about/' %}
+{%- set reelMore = 'Узнать больше' %}
+{% include "partials/home-reel.njk" %}
 
 <!-- =============== ЦИФРЫ (вариант F1; чёрный, как на всех страницах) =============== -->
 {%- set countTheme = 'dark' %}
@@ -117,7 +104,7 @@
 		<div class="hero-banner__overlay">
 			<p class="section__eyebrow">Вокалисты</p>
 			<h2 class="section__title">Ирина, Стас,<br><span class="muted">Тедди и LAZ.</span></h2>
-			<p class="section__lead">Каждый ведёт свою часть программы. Комбинируем в дуэтах, трио и квартетах под задачу ивента.</p>
+			<p class="section__lead">У каждого своя часть программы, а вместе они поют дуэтами, втроём или все вчетвером.</p>
 			<div class="cta-row">
 				<a class="btn btn--blue" href="{{ '/vocalists/' | url }}">Узнать больше</a>
 				<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
@@ -171,7 +158,7 @@
 				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">День рождения</h3>
-					<p class="tile__sub">Концерты, которые помнят годами.</p>
+					<p class="tile__sub">Любимые песни именинника вживую.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/events/birthday/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
@@ -208,7 +195,7 @@
 				</div>
 				<div class="tile__content">
 					<h3 class="tile__title">Тематические<span class="tile__line"> программы</span></h3>
-					<p class="tile__sub">6 тематических программ — под аудиторию и формат.</p>
+					<p class="tile__sub">Итальянская, французская, латина, ретро, джаз и рок.</p>
 					<div class="cta-row">
 						<a class="btn btn--blue" href="{{ '/programs/' | url }}">Узнать больше</a>
 						<a class="btn btn--blue-ghost" href="{{ site.telegram }}">Написать в Телеграм</a>
@@ -271,7 +258,7 @@
 	] %}
 	<div class="container container--narrow reveal">
 		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
-		<p class="section__lead">Студийные промо-ролики, запись с концертов, интерактивы и тематические программы.</p>
+		<p class="section__lead">Здесь наши клипы, записи с концертов и интерактивы с гостями.</p>
 		{% include "partials/promo-downloads.njk" %}
 	</div>
 
@@ -338,8 +325,8 @@
 <section class="section section--book" id="book">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Бронирование</p>
-		<h2 class="section__title">Напишите —<br><span class="muted">соберём программу под ваше событие.</span></h2>
-		<p class="section__lead">Расскажите дату, место и формат. Проверим доступность музыкантов и подготовим предложение с составом, таймингом и сметой.</p>
+		<h2 class="section__title">Напишите нам.<br><span class="muted">Расскажем, как пройдёт ваш вечер.</span></h2>
+		<p class="section__lead">Нужны дата, место и что у вас за праздник. Мы проверим, свободны ли музыканты, и пришлём, каким составом приедем, как построим вечер и сколько это будет стоить.</p>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="#top">Наверх</a>

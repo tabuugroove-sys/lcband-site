@@ -85,23 +85,11 @@ permalink: /ae/
 	<a class="hero__scroll" href="#about" aria-label="انتقل إلى الوصف"><span></span></a>
 </section>
 
-<!-- =============== ABOUT / STATS =============== -->
-<section class="section section--elev" id="about">
-	<div class="container about-split reveal">
-		<div class="about-split__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band على المسرح — خبرة الملاعب الكبرى" loading="lazy">
-		</div>
-		<div class="about-split__body">
-			<p class="section__eyebrow">عن الفرقة</p>
-			<h2 class="section__title">مستوى عالمي على المسرح.</h2>
-			<p class="section__lead">أكثر من 2000 عرض في 40 دولة. ملاعب كبرى، تلفزيون، نجوم الصف الأول — والآن في مناسبتك.</p>
-			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="#programs">اعرف المزيد</a>
-				<a class="btn btn--blue-ghost" href="{{ site.whatsapp }}">راسلنا على واتساب</a>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- =============== VIDEOS 2×2 (replace the about photo block; Mikhail 29.10) =============== -->
+{%- set reelTitle = 'مستوى عالمي على المسرح.' %}
+{%- set reelHref = '#programs' %}
+{%- set reelMore = 'اعرف المزيد' %}
+{% include "partials/home-reel.njk" %}
 
 <!-- =============== NUMBERS (F1; black, as on every page) =============== -->
 {%- set countTheme = 'dark' %}

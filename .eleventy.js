@@ -6,7 +6,7 @@ export default function (eleventyConfig) {
 	const promoCatalogueFile = new URL('./media/lcband-promo-package.json', import.meta.url);
 	const promoCatalogue = fs.existsSync(promoCatalogueFile) ? JSON.parse(fs.readFileSync(promoCatalogueFile, 'utf8')) : null;
 	// Full performance MP4 files live on Sprinthost and are catalogued in
-	// media/manifest.json. Two short background loops (under 1.5 MB each) live
+	// media/manifest.json. Short silent background loops (under 1.6 MB each) live
 	// in assets/hero and are versioned with the site for reproducible deployment.
 	const passthroughAssetDirectories = [
 		"costumes",

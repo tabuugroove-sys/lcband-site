@@ -84,23 +84,11 @@ permalink: /br/
 	<a class="hero__scroll" href="#about" aria-label="Ir para a descrição"><span></span></a>
 </section>
 
-<!-- =============== SOBRE / ESTATÍSTICAS =============== -->
-<section class="section section--elev" id="about">
-	<div class="container about-split reveal">
-		<div class="about-split__media">
-			<img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band no palco — experiência de estádio" loading="lazy">
-		</div>
-		<div class="about-split__body">
-			<p class="section__eyebrow">Sobre a banda</p>
-			<h2 class="section__title">Palco de nível mundial.</h2>
-			<p class="section__lead">Mais de 2000 shows em 40 países. Estádios, TV, grandes estrelas — agora no seu evento.</p>
-			<div class="cta-row cta-row--left">
-				<a class="btn btn--blue" href="#programs">Saiba mais</a>
-				<a class="btn btn--blue-ghost" href="{{ site.whatsapp }}">Falar no WhatsApp</a>
-			</div>
-		</div>
-	</div>
-</section>
+<!-- =============== VÍDEOS 2×2 (no lugar do bloco de foto «Sobre»; Mikhail 29.10) =============== -->
+{%- set reelTitle = 'Palco de nível mundial.' %}
+{%- set reelHref = '#programs' %}
+{%- set reelMore = 'Saiba mais' %}
+{% include "partials/home-reel.njk" %}
 
 <!-- =============== NUMBERS (F1; black, as on every page) =============== -->
 {%- set countTheme = 'dark' %}
