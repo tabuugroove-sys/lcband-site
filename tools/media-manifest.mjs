@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { verifyProductionMediaEntry } from "./media-production-check.mjs";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const mediaDirectory = path.join(root, "src", "assets", "video", "mp4");
@@ -53,19 +54,10 @@ async function checkProduction() {
 	const workers = Array.from({ length: 8 }, async () => {
 		while (cursor < manifest.files.length) {
 			const entry = manifest.files[cursor++];
-			const url = `${manifest.origin}/${entry.path}`;
 			try {
-				const response = await fetch(url, {
-					method: "HEAD",
-					redirect: "follow",
-					signal: AbortSignal.timeout(20_000),
-				});
-				const remoteBytes = Number(response.headers.get("content-length"));
-				if (!response.ok || remoteBytes !== entry.bytes) {
-					failures.push(`${response.status} ${entry.path}: local ${entry.bytes}, remote ${remoteBytes || "unknown"}`);
-				}
+				await verifyProductionMediaEntry(entry, manifest.origin);
 			} catch (error) {
-				failures.push(`${entry.path}: ${error.message}`);
+				failures.push(error.message);
 			}
 		}
 	});
