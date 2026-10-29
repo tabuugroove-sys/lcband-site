@@ -299,7 +299,7 @@ permalink: /ae/
 		{slug:'live-lets-get-loud', title:'Let\'s Get Loud', eyebrow:'لايف'},
 		{slug:'live-jazz-vintage', title:'جاز · فينتاج', eyebrow:'موضوعي'},
 		{slug:'live-big-lineup', title:'Big Lineup', eyebrow:'لايف'},
-		{slug:'live-perfect', title:'Perfect', eyebrow:'لايف'},
+		{slug:'live-perfect', poster:'live-perfect-wedding-20261029', title:'Perfect', eyebrow:'لايف'},
 		{slug:'live-soho', title:'Soho Rooms', eyebrow:'لايف'},
 		{slug:'interact-chainsmokers', title:'Chainsmokers', eyebrow:'تفاعلي'},
 		{slug:'live-dance-monkey', title:'Dance Monkey', eyebrow:'لايف'},
@@ -341,8 +341,8 @@ permalink: /ae/
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
 						<source media="(max-width: 734px)" type="image/webp" sizes="72vw"
-							srcset="{{ ('/assets/video/posters/' + v.slug + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + v.slug + '-1080.webp') | url }} 1080w">
-						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + v.slug + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
