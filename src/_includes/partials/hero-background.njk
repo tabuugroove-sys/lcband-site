@@ -1,0 +1,19 @@
+{% set backgroundLabels = {
+  ru: {pause:'Пауза фона', resume:'Включить фон', back:'Вернуться к видео'},
+  en: {pause:'Pause background', resume:'Play background', back:'Back to video'},
+  ar: {pause:'إيقاف الخلفية مؤقتًا', resume:'تشغيل الخلفية', back:'العودة إلى الفيديو'},
+  'pt-BR': {pause:'Pausar fundo', resume:'Reproduzir fundo', back:'Voltar ao vídeo'}
+} %}
+{% set backgroundLabel = backgroundLabels[htmlLang or 'ru'] %}
+<div class="hero-background" aria-hidden="true">
+  <picture class="hero-background__poster">
+    <source media="(max-width: 734px) and (orientation: portrait)" srcset="{{ '/assets/hero/band-montage-20261028-640.webp' | url }}">
+    <img src="{{ '/assets/hero/band-montage-20261028-1280.webp' | url }}" alt="" width="1280" height="720" loading="eager" fetchpriority="high" decoding="async">
+  </picture>
+  <video class="hero-background__video" data-background-video muted loop playsinline preload="none" tabindex="-1"
+    data-src-desktop="{{ '/assets/hero/band-montage-20261028-540.mp4' | url }}"
+    data-src-mobile="{{ '/assets/hero/band-montage-20261028-360.mp4' | url }}"></video>
+</div>
+<button class="background-toggle" type="button" data-background-toggle hidden
+  data-label-pause="{{ backgroundLabel.pause }}" data-label-resume="{{ backgroundLabel.resume }}" data-label-back="{{ backgroundLabel.back }}"
+  aria-label="{{ backgroundLabel.pause }}">{{ backgroundLabel.pause }}</button>

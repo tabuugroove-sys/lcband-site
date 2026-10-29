@@ -38,18 +38,21 @@
 	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404.
 	   preloadHeroMobileWebp: на мобильном hero отдаётся webp из <picture> —
 	   прелоадим его, а jpg прелоадим только на десктопе (без двойной загрузки) #}
-	{% if preloadHeroMobileWebp %}
+	{% if preloadBackgroundPoster %}
+	<link rel="preload" as="image" href="{{ '/assets/hero/band-montage-20261028-640.webp' | url }}" media="(max-width: 734px) and (orientation: portrait)" fetchpriority="high">
+	<link rel="preload" as="image" href="{{ '/assets/hero/band-montage-20261028-1280.webp' | url }}" media="(min-width: 735px), (orientation: landscape)" fetchpriority="high">
+	{% elif preloadHeroMobileWebp %}
 	<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}" media="(min-width: 735px)">
 	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=65' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=66' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=65' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=66' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ ('/en/sax/' if htmlLang == 'en' else '/sax/') | url }}">
@@ -165,13 +168,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261014' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261028i18n' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261028montage' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261014' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261028i18n' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261028montage' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

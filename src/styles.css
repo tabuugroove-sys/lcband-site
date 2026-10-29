@@ -612,6 +612,58 @@ h1, h2, h3, p { margin: 0; }
 
 .hero__stage { position: absolute; inset: 0; z-index: 0; }
 
+/* One responsive poster paints first. The silent montage is revealed only
+   after playback starts; costume photographs load on explicit selection. */
+.hero-background {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+.hero-background__poster,
+.hero-background__poster img,
+.hero-background__video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+.hero-background__video { opacity: 0; transition: opacity .35s ease; }
+.hero-background__video.is-ready { opacity: 1; }
+@media (min-width: 735px) and (min-aspect-ratio: 16/9) {
+	.hero-background__poster img,
+	.hero-background__video { object-position: center 15%; }
+}
+.has-background-montage:not(.is-costume-view) .hero__bg { visibility: hidden; animation: none; }
+.has-background-montage.is-costume-view .hero-background { visibility: hidden; }
+.has-background-montage.is-playing .hero-background,
+.has-background-montage.is-playing .background-toggle { display: none; }
+.background-toggle {
+	position: absolute;
+	top: calc(var(--nav-h) + 16px);
+	inset-inline-end: 20px;
+	z-index: 3;
+	min-height: 44px;
+	padding: 10px 16px;
+	border: 1px solid rgba(255,255,255,.65);
+	border-radius: 100px;
+	background: rgba(0,0,0,.72);
+	color: #fff;
+	font: inherit;
+	font-size: 13px;
+	line-height: 1.3;
+	cursor: pointer;
+}
+.background-toggle[hidden] { display: none; }
+.background-toggle:hover { background: #000; }
+.background-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+	.hero-background__video { transition: none; }
+}
+
 .hero__video {
 	position: absolute;
 	inset: 0;

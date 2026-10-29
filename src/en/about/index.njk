@@ -5,6 +5,7 @@ ogLocale: en_US
 title: Luxury Band — About Luxury Cover Band
 description: "Luxury Band — Luxury Cover Band (LC Band): 2,000+ shows in 40 countries. Meet the vocalists, explore the band’s history, stage looks, TV projects and original music."
 keywords: "about Luxury Cover Band, international cover band, stadium experience, TV live band, event band Moscow"
+preloadBackgroundPoster: true
 permalink: /en/about/
 ---
 {% block schema %}
@@ -25,12 +26,8 @@ permalink: /en/about/
 </script>
 {% endblock %}
 
-<section class="about-hero" data-analytics-section="about-hero">
-	<video class="about-hero__video" muted loop playsinline preload="none" data-background-video
-		data-src-desktop="{{ '/assets/hero/about-background-20261028-540.mp4' | url }}"
-		data-src-mobile="{{ '/assets/hero/about-background-20261028-360.mp4' | url }}"
-		poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
-	</video>
+<section class="about-hero has-background-montage" data-analytics-section="about-hero" data-background-host>
+	{% include "partials/hero-background.njk" %}
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>

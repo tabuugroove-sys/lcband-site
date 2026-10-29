@@ -6,33 +6,33 @@ ogLocale: ar_AE
 title: Luxury Cover Band — فرقة كوفر عالمية · أكثر من 500 أغنية بـ 12 لغة
 description: "Luxury Cover Band — فرقة كوفر عالمية: أكثر من 500 أغنية بـ 12 لغة، خبرة الملاعب الكبرى والتلفزيون. حفلات زفاف، فعاليات شركات، جولات. تشكيلة من 2 إلى 20 موسيقيًا."
 keywords: "فرقة موسيقية دبي, فرقة كوفر دبي, فرقة زفاف دبي, فرقة حفلات الإمارات, موسيقى حية دبي, Luxury Cover Band, LC Band"
-preloadImage: assets/hero/hero-red.jpg
-preloadHeroMobileWebp: true
+preloadBackgroundPoster: true
 permalink: /ae/
 ---
 
 <!-- =============== HERO (AR · 4-COLOR SWITCHABLE LINEUP + INLINE VIDEO) =============== -->
-<section class="hero" data-hero>
+<section class="hero has-background-montage" data-hero data-background-host>
+	{% include "partials/hero-background.njk" %}
 	<div class="hero__stage">
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
-				srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
-			<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — إطلالة حمراء أمام شاشة LED" loading="eager" fetchpriority="high" data-hero-img="red">
+				data-srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--red is-active"  data-src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — إطلالة حمراء أمام شاشة LED" loading="eager" data-hero-img="red">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
-				srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w">
-			<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — إطلالة بالأبيض والأسود"  loading="lazy" data-hero-img="bw">
+				data-srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--bw"             data-src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — إطلالة بالأبيض والأسود"  loading="eager" data-hero-img="bw">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
-				srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w">
-			<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — إطلالة ذهبية على المسرح"       loading="lazy" data-hero-img="gold">
+				data-srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--gold"           data-src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — إطلالة ذهبية على المسرح"       loading="eager" data-hero-img="gold">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
-				srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w">
-			<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — إطلالة بيضاء على خلفية النجوم"  loading="lazy" data-hero-img="white">
+				data-srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w">
+			<img class="hero__bg hero__bg--white"          data-src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — إطلالة بيضاء على خلفية النجوم"  loading="eager" data-hero-img="white">
 		</picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>
 	</div>

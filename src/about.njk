@@ -3,6 +3,7 @@ layout: layouts/base.njk
 title: Luxury Band — о группе Luxury Cover Band
 description: "Luxury Band — о группе: примеры выступлений, концерт LAZ в Лабытнангах, совместные номера, отзывы, вокалисты, репертуар и райдеры для свадьбы и корпоратива."
 keywords: "о группе luxury cover band, опыт кавер группы, международная кавер группа, выступления на стадионах, кавер группа на тв"
+preloadBackgroundPoster: true
 permalink: /about/
 ---
 {% block schema %}
@@ -23,12 +24,8 @@ permalink: /about/
 </script>
 {% endblock %}
 
-<section class="about-hero" data-analytics-section="about-hero">
-	<video class="about-hero__video" muted loop playsinline preload="none" data-background-video
-		data-src-desktop="{{ '/assets/hero/about-background-20261028-540.mp4' | url }}"
-		data-src-mobile="{{ '/assets/hero/about-background-20261028-360.mp4' | url }}"
-		poster="{{ '/assets/video/posters/promo-main-reel.jpg' | url }}">
-	</video>
+<section class="about-hero has-background-montage" data-analytics-section="about-hero" data-background-host>
+	{% include "partials/hero-background.njk" %}
 	<div class="about-hero__scrim"></div>
 	<div class="about-hero__content">
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>

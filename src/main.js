@@ -9,16 +9,119 @@
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	const saveData = Boolean(navigator.connection?.saveData);
 	const backgroundVideo = document.querySelector('[data-background-video]');
-	if (backgroundVideo && !reduceMotion.matches && !saveData) {
+	// Decorative media has a separate lifecycle from the user's full video player.
+	const backgroundController = (() => {
+		if (!backgroundVideo) return null;
+		const host = backgroundVideo.closest('[data-background-host]');
+		const toggle = host?.querySelector('[data-background-toggle]');
+		const poster = host?.querySelector('.hero-background__poster img');
+		if (!host || !toggle || !poster) return null;
+		const canObserve = 'IntersectionObserver' in window;
+		const mobileMedia = window.matchMedia('(max-width: 734px) and (orientation: portrait)');
 		let visible = false;
-		const updateBackground = () => {
-			if (!visible || document.hidden) { backgroundVideo.pause(); return; }
-			if (!backgroundVideo.getAttribute('src')) backgroundVideo.src = window.innerWidth <= 734 ? backgroundVideo.dataset.srcMobile : backgroundVideo.dataset.srcDesktop;
-			backgroundVideo.play().catch(() => {});
+		let ready = false;
+		let pageActive = true;
+		let userPaused = false;
+		let costumeView = false;
+		let playPending = false;
+		let playAttempt = 0;
+		const pause = () => {
+			if (playPending || !backgroundVideo.paused) {
+				playAttempt += 1;
+				playPending = false;
+				backgroundVideo.pause();
+			}
 		};
-		new IntersectionObserver(entries => { visible = entries[0].isIntersecting; updateBackground(); }, {threshold:0.1}).observe(backgroundVideo);
-		document.addEventListener('visibilitychange', updateBackground);
-	}
+		const allowed = () => !reduceMotion.matches && !navigator.connection?.saveData
+			&& !/2g|3g/.test(navigator.connection?.effectiveType || '');
+		const playerOpen = () => document.body.classList.contains('hero-video-open')
+			|| document.getElementById('lightbox')?.classList.contains('is-open');
+		const shouldPlay = () => ready && visible && pageActive && !document.hidden
+			&& allowed() && !userPaused && !costumeView && !playerOpen();
+		const renderToggle = () => {
+			const label = costumeView ? toggle.dataset.labelBack : userPaused ? toggle.dataset.labelResume : toggle.dataset.labelPause;
+			toggle.textContent = label;
+			toggle.setAttribute('aria-label', label);
+			toggle.hidden = Boolean(playerOpen()) || (!costumeView && (!ready || !allowed() || !canObserve));
+		};
+		const update = () => {
+			renderToggle();
+			if (!shouldPlay()) {
+				pause();
+				// A changed accessibility/data preference also stops further buffering.
+				if (!allowed() && backgroundVideo.getAttribute('src')) {
+					backgroundVideo.removeAttribute('src');
+					backgroundVideo.load();
+					backgroundVideo.classList.remove('is-ready');
+				}
+				return;
+			}
+			const selectedSource = mobileMedia.matches ? backgroundVideo.dataset.srcMobile : backgroundVideo.dataset.srcDesktop;
+			if (backgroundVideo.getAttribute('src') !== selectedSource) {
+				pause();
+				backgroundVideo.classList.remove('is-ready');
+				// Reuse the already loaded responsive image, avoiding a second poster GET.
+				backgroundVideo.poster = poster.currentSrc || poster.src;
+				backgroundVideo.muted = true;
+				backgroundVideo.defaultMuted = true;
+				backgroundVideo.src = selectedSource;
+			}
+			if (!backgroundVideo.paused || playPending) return;
+			playPending = true;
+			const attempt = ++playAttempt;
+			backgroundVideo.play().catch(error => {
+				if (attempt !== playAttempt || !shouldPlay()) return;
+				if (error.name === 'AbortError') { requestAnimationFrame(update); return; }
+				if (shouldPlay()) {
+					userPaused = true;
+					backgroundVideo.classList.remove('is-ready');
+					renderToggle();
+				}
+			}).finally(() => { if (attempt === playAttempt) playPending = false; });
+		};
+		const changeMode = nextCostumeView => {
+			costumeView = nextCostumeView;
+			host.classList.toggle('is-costume-view', costumeView);
+			host.dispatchEvent(new CustomEvent('background-modechange', { detail: { costumeView } }));
+			update();
+		};
+		toggle.addEventListener('click', () => {
+			if (costumeView) { userPaused = false; changeMode(false); }
+			else { userPaused = !userPaused; update(); }
+		});
+		backgroundVideo.addEventListener('playing', () => {
+			if (!shouldPlay()) { backgroundVideo.pause(); return; }
+			backgroundVideo.classList.add('is-ready');
+		});
+		backgroundVideo.addEventListener('error', () => {
+			if (!backgroundVideo.getAttribute('src')) return;
+			userPaused = true;
+			backgroundVideo.classList.remove('is-ready');
+			renderToggle();
+		});
+		if (canObserve) new IntersectionObserver(entries => {
+			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
+			update();
+		}, { threshold: [0, 0.1] }).observe(host);
+		document.addEventListener('visibilitychange', update);
+		window.addEventListener('pagehide', () => { pageActive = false; update(); });
+		window.addEventListener('pageshow', () => { pageActive = true; update(); });
+		reduceMotion.addEventListener('change', update);
+		mobileMedia.addEventListener('change', update);
+		navigator.connection?.addEventListener?.('change', update);
+		const modalObserver = new MutationObserver(update);
+		modalObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+		const lightboxHost = document.getElementById('lightbox');
+		if (lightboxHost) modalObserver.observe(lightboxHost, { attributes: true, attributeFilter: ['class'] });
+		const afterLoad = () => {
+			const start = () => { ready = true; update(); };
+			if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 1500 });
+			else window.setTimeout(start, 800);
+		};
+		if (document.readyState === 'complete') afterLoad();
+		else window.addEventListener('load', afterLoad, { once: true });
+		return { selectCostume: () => changeMode(true), get costumeView() { return costumeView; } };
+	})();
 
 	// ---------- Locale memory ----------
 	try {
@@ -658,7 +761,7 @@
 	});
 
 	document.addEventListener('click', (e) => {
-		const a = e.target.closest('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play, #examples .format__link[data-video]');
+		const a = e.target.closest('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play, .about-hero [data-video], #examples .format__link[data-video]');
 			if (!a) return;
 			e.preventDefault();
 			e.stopPropagation();
@@ -788,6 +891,31 @@
 		let autoTimer = null;
 		let autoResumeTimer = null;
 		let heroOrientationTimer = null;
+		let costumeRequest = 0;
+		const imagePromises = new WeakMap();
+
+		function loadHeroImage(key) {
+			const image = hero.querySelector(`[data-hero-img="${key}"]`);
+			if (image?.dataset.src && !image.getAttribute('src')) {
+				image.closest('picture')?.querySelectorAll('source[data-srcset]').forEach(source => { source.srcset = source.dataset.srcset; });
+				image.src = image.dataset.src;
+			}
+			return image;
+		}
+
+		function imageReady(image) {
+			if (!image) return Promise.resolve(false);
+			if (image.complete && image.naturalWidth) return Promise.resolve(true);
+			if (!imagePromises.has(image)) imagePromises.set(image, new Promise(resolve => {
+				image.addEventListener('load', () => resolve(true), { once: true });
+				image.addEventListener('error', () => resolve(false), { once: true });
+			}));
+			return imagePromises.get(image);
+		}
+
+		function showCostume(key) {
+			return setActive(key, true);
+		}
 
 		function isMobileHeroViewport() {
 			return coarseHeroPointer.matches || Math.min(window.innerWidth, window.innerHeight) <= 734;
@@ -841,15 +969,22 @@
 			}, 180);
 		}
 
-		function setActive(key) {
-			current = key;
-			dots.forEach(d => {
-				const on = d.dataset.heroDot === key;
-				d.classList.toggle('is-active', on);
-				d.setAttribute('aria-selected', on ? 'true' : 'false');
+		function setActive(key, revealCostume = false) {
+			const request = ++costumeRequest;
+			return imageReady(loadHeroImage(key)).then(loaded => {
+				// Keep the last usable image (or montage) visible while the next loads.
+				if (!loaded || request !== costumeRequest) return false;
+				current = key;
+				dots.forEach(d => {
+					const on = d.dataset.heroDot === key;
+					d.classList.toggle('is-active', on);
+					d.setAttribute('aria-selected', on ? 'true' : 'false');
+				});
+				imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
+				taglines.forEach(line => line.classList.toggle('is-active', line.dataset.tagline === key));
+				if (revealCostume) backgroundController?.selectCostume();
+				return true;
 			});
-			imgs.forEach(i => i.classList.toggle('is-active', i.dataset.heroImg === key));
-			taglines.forEach(line => line.classList.toggle('is-active', line.dataset.tagline === key));
 		}
 
 		function nextKey() {
@@ -858,7 +993,7 @@
 		}
 
 		function startAuto() {
-			if (reducedHeroMotion.matches || hero.classList.contains('is-playing')) return;
+			if (reducedHeroMotion.matches || hero.classList.contains('is-playing') || (backgroundController && !backgroundController.costumeView)) return;
 			if (autoTimer) clearInterval(autoTimer);
 			const delay = mobileHeroSwipe.matches ? 3000 : 5500;
 			autoTimer = setInterval(() => setActive(nextKey()), delay);
@@ -1088,7 +1223,7 @@
 			d.addEventListener('click', () => {
 				stopAuto();
 				if (hero.classList.contains('is-playing')) stopHeroVideo();
-				setActive(d.dataset.heroDot);
+				showCostume(d.dataset.heroDot);
 				scheduleAutoResume();
 			});
 		});
@@ -1139,9 +1274,17 @@
 			const dx = swipePendingX;
 			const direction = dx < 0 ? -1 : 1;
 			const targetKey = adjacentHeroKey(direction);
-			const activeImg = hero.querySelector(`[data-hero-img="${current}"]`);
-			const underImg = hero.querySelector(`[data-hero-img="${targetKey}"]`);
+			const activeImg = loadHeroImage(current);
+			const underImg = loadHeroImage(targetKey);
 			if (!activeImg || !underImg) return;
+			swipeTargetKey = targetKey;
+			if (!activeImg.complete || !activeImg.naturalWidth || !underImg.complete || !underImg.naturalWidth) {
+				Promise.all([imageReady(activeImg), imageReady(underImg)]).then(loaded => {
+					if (loaded.every(Boolean) && swipePointerId !== null && swipeTargetKey === targetKey) queueMobileSwipe(swipePendingX);
+				});
+				return;
+			}
+			if (backgroundController && !backgroundController.costumeView) backgroundController.selectCostume();
 
 			if (swipeUnderImg && swipeUnderImg !== underImg) {
 				swipeUnderImg.classList.remove('is-swipe-under');
@@ -1175,7 +1318,9 @@
 				renderMobileSwipe();
 			}
 			if (!swipeActiveImg || !swipeUnderImg || !swipeTargetKey) {
+				const targetKey = swipeTargetKey || adjacentHeroKey(dx < 0 ? -1 : 1);
 				clearMobileSwipe();
+				if (commit) showCostume(targetKey);
 				scheduleAutoResume();
 				return;
 			}
@@ -1202,7 +1347,7 @@
 			});
 
 			setTimeout(() => {
-				if (commit) setActive(targetKey);
+				showCostume(commit ? targetKey : current);
 				clearMobileSwipe();
 				scheduleAutoResume();
 			}, reducedHeroMotion.matches ? 0 : 320);
@@ -1263,7 +1408,7 @@
 			e.preventDefault();
 			lastHeroSwipeAt = performance.now();
 			const next = adjacentHeroKey(dx < 0 ? -1 : 1);
-			setActive(next);
+			showCostume(next);
 			scheduleAutoResume();
 		});
 		hero.addEventListener('pointercancel', () => {
@@ -1275,11 +1420,17 @@
 			swipeAxis = '';
 		});
 		hero.addEventListener('click', (e) => {
-			if (performance.now() - lastHeroSwipeAt > 500) return;
+			if (!lastHeroSwipeAt || performance.now() - lastHeroSwipeAt > 500) return;
 			e.preventDefault();
 			e.stopPropagation();
 		}, true);
 		heroStage?.addEventListener('dragstart', (e) => e.preventDefault());
+		hero.addEventListener('background-modechange', event => {
+			if (event.detail.costumeView) return;
+			costumeRequest += 1;
+			stopAuto();
+			clearMobileSwipe();
+		});
 
 		heroPlay?.addEventListener('click', playHeroVideo);
 		heroClose?.addEventListener('click', stopHeroVideo);
