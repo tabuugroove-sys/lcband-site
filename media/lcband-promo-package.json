@@ -1,14 +1,14 @@
 {
-  "version": "20261028-icon-cut42",
-  "timestamp": 1793236991,
+  "version": "20261029-approved-promo-compact-icon",
+  "timestamp": 1793313298,
   "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
     {
       "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  4K.mp4",
-      "path": "assets/video/mp4/promo-main-reel-3c92641df748-2160.mp4",
-      "bytes": 943419316,
-      "sha256": "3c92641df7482a07312a6bc746e44fc695a6a08e5ebb4a4d7db26b269190907a",
-      "crc32": "629fc5ed"
+      "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4",
+      "bytes": 321807682,
+      "sha256": "4ef6085a27d4eb64da5a1e35b66f3ef977c9761241a1eac8e9d90f9aed4c3634",
+      "crc32": "e1f76547"
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/01 Эгоистка .mp4",
@@ -124,10 +124,10 @@
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
-      "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
-      "bytes": 481259419,
-      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89",
-      "crc32": "c9fd1553"
+      "path": "assets/video/mp4/live-icon-c970843de9c5-1080.mp4",
+      "bytes": 190780302,
+      "sha256": "c970843de9c5efb291d8b142eac9f2a82c1f9f521fcc3497782cd497a1592f52",
+      "crc32": "89200fd4"
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
@@ -685,13 +685,13 @@
   ],
   "videos": {
     "promo-main-reel": {
-      "original": "assets/video/mp4/promo-main-reel-3c92641df748-2160.mp4",
+      "original": "assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4",
       "quality": 2160,
       "has720": true,
       "width": 3840,
       "height": 2160,
-      "duration": 388.2,
-      "family": "promo-main-reel-3c92641df748"
+      "duration": 104.72,
+      "family": "promo-main-reel-4ef6085a27d4"
     },
     "promo-egoistka": {
       "original": "assets/video/mp4/promo-egoistka-76bde926f919-2160.mp4",
@@ -838,13 +838,13 @@
       "family": "live-soho-28f9b449e584"
     },
     "live-icon": {
-      "original": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
+      "original": "assets/video/mp4/live-icon-c970843de9c5-1080.mp4",
       "quality": 1080,
       "has720": true,
       "width": 1920,
       "height": 1080,
       "duration": 254.137,
-      "family": "live-icon-f2aea6a94310"
+      "family": "live-icon-c970843de9c5"
     },
     "live-big-lineup": {
       "original": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-1080.mp4",
@@ -1102,18 +1102,18 @@
       }
     }
   },
-  "bytes": 4716956542,
+  "bytes": 3804865791,
   "variants": {
     "720": {
       "archiveName": "LCBAND-promo-720p.zip",
-      "bytes": 1161454230,
+      "bytes": 1064475249,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  720p.mp4",
-          "path": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
-          "bytes": 115806379,
-          "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537",
-          "crc32": "bdc6b5ae"
+          "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-720.mp4",
+          "bytes": 13526213,
+          "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144",
+          "crc32": "cf529361"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/01 Эгоистка .mp4",
@@ -1229,10 +1229,10 @@
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
-          "path": "assets/video/mp4/live-icon-f2aea6a94310-720.mp4",
-          "bytes": 91336550,
-          "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694",
-          "crc32": "4adcf0d4"
+          "path": "assets/video/mp4/live-icon-c970843de9c5-720.mp4",
+          "bytes": 96637735,
+          "sha256": "0f6ef3c14c4a8ebd1d5439629f3b7b47268fe59e84cf7da8926982de45ecb152",
+          "crc32": "583f196a"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
@@ -1791,14 +1791,14 @@
     },
     "1080": {
       "archiveName": "LCBAND-promo-1080p.zip",
-      "bytes": 2661465139,
+      "bytes": 2132754514,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  1080p.mp4",
-          "path": "assets/video/mp4/promo-main-reel-3c92641df748-1080.mp4",
-          "bytes": 270978715,
-          "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20",
-          "crc32": "60487196"
+          "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-1080.mp4",
+          "bytes": 32747207,
+          "sha256": "1ed13156b858b6116b66fc2769b06bd1daf8c47d82cf31e0b745f535966a0a63",
+          "crc32": "124cf54f"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ВСЕ ПРОМО/01 Эгоистка .mp4",
@@ -1914,10 +1914,10 @@
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
-          "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
-          "bytes": 481259419,
-          "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89",
-          "crc32": "c9fd1553"
+          "path": "assets/video/mp4/live-icon-c970843de9c5-1080.mp4",
+          "bytes": 190780302,
+          "sha256": "c970843de9c5efb291d8b142eac9f2a82c1f9f521fcc3497782cd497a1592f52",
+          "crc32": "89200fd4"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",

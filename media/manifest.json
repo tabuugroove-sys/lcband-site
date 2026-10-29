@@ -514,23 +514,23 @@
     },
     {
       "path": "assets/video/mp4/live-icon-1080.mp4",
-      "bytes": 481259419,
-      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89"
+      "bytes": 190780302,
+      "sha256": "c970843de9c5efb291d8b142eac9f2a82c1f9f521fcc3497782cd497a1592f52"
     },
     {
       "path": "assets/video/mp4/live-icon-720.mp4",
-      "bytes": 91336550,
-      "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694"
+      "bytes": 96637735,
+      "sha256": "0f6ef3c14c4a8ebd1d5439629f3b7b47268fe59e84cf7da8926982de45ecb152"
     },
     {
-      "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
-      "bytes": 481259419,
-      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89"
+      "path": "assets/video/mp4/live-icon-c970843de9c5-1080.mp4",
+      "bytes": 190780302,
+      "sha256": "c970843de9c5efb291d8b142eac9f2a82c1f9f521fcc3497782cd497a1592f52"
     },
     {
-      "path": "assets/video/mp4/live-icon-f2aea6a94310-720.mp4",
-      "bytes": 91336550,
-      "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694"
+      "path": "assets/video/mp4/live-icon-c970843de9c5-720.mp4",
+      "bytes": 96637735,
+      "sha256": "0f6ef3c14c4a8ebd1d5439629f3b7b47268fe59e84cf7da8926982de45ecb152"
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",
@@ -919,33 +919,33 @@
     },
     {
       "path": "assets/video/mp4/promo-main-reel-1080.mp4",
-      "bytes": 270978715,
-      "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20"
+      "bytes": 32747207,
+      "sha256": "1ed13156b858b6116b66fc2769b06bd1daf8c47d82cf31e0b745f535966a0a63"
     },
     {
       "path": "assets/video/mp4/promo-main-reel-2160.mp4",
-      "bytes": 943419316,
-      "sha256": "3c92641df7482a07312a6bc746e44fc695a6a08e5ebb4a4d7db26b269190907a"
+      "bytes": 321807682,
+      "sha256": "4ef6085a27d4eb64da5a1e35b66f3ef977c9761241a1eac8e9d90f9aed4c3634"
     },
     {
-      "path": "assets/video/mp4/promo-main-reel-3c92641df748-1080.mp4",
-      "bytes": 270978715,
-      "sha256": "fad632899783817061458d25a6f2e6048b583bdb0a616af7109f959dd498ff20"
+      "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-1080.mp4",
+      "bytes": 32747207,
+      "sha256": "1ed13156b858b6116b66fc2769b06bd1daf8c47d82cf31e0b745f535966a0a63"
     },
     {
-      "path": "assets/video/mp4/promo-main-reel-3c92641df748-2160.mp4",
-      "bytes": 943419316,
-      "sha256": "3c92641df7482a07312a6bc746e44fc695a6a08e5ebb4a4d7db26b269190907a"
+      "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4",
+      "bytes": 321807682,
+      "sha256": "4ef6085a27d4eb64da5a1e35b66f3ef977c9761241a1eac8e9d90f9aed4c3634"
     },
     {
-      "path": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
-      "bytes": 115806379,
-      "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537"
+      "path": "assets/video/mp4/promo-main-reel-4ef6085a27d4-720.mp4",
+      "bytes": 13526213,
+      "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
     },
     {
       "path": "assets/video/mp4/promo-main-reel-720.mp4",
-      "bytes": 115806379,
-      "sha256": "cd88da67cdc281b6c0c946b7123baf952a7c5084f24cc250f8b3a5cda5b56537"
+      "bytes": 13526213,
+      "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
     },
     {
       "path": "assets/video/mp4/raim-piano-karaoke.mp4",

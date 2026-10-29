@@ -1,42 +1,42 @@
 {
   "ru": {
     "label": "Скачать промопакет",
-    "original": "4K / Оригинал",
-    "fullHd": "Full HD 1080p",
+    "original": "Скачать с 4K",
+    "fullHd": "Скачать Full HD",
     "hd": "HD 720p",
     "unit": "ГБ",
     "description": "Каждый ZIP включает видео, фото, репертуар и райдеры.",
-    "qualityNote": "Качество видео — до выбранного разрешения. Записи меньшего разрешения, фото и документы сохраняются в оригинале.",
+    "qualityNote": "Пакет Full HD легче и не содержит 4K-видео. Фото и документы одинаковые в обоих вариантах.",
     "languageNote": ""
   },
   "en": {
     "label": "Download promo package",
-    "original": "4K / Original",
-    "fullHd": "Full HD 1080p",
+    "original": "Download with 4K",
+    "fullHd": "Download Full HD",
     "hd": "HD 720p",
     "unit": "GB",
     "description": "Each ZIP includes videos, photos, repertoire and riders.",
-    "qualityNote": "Videos are available up to the selected resolution. Lower-resolution recordings, photos and documents keep their original quality.",
+    "qualityNote": "The smaller Full HD package contains no 4K videos. Photos and documents are identical in both versions.",
     "languageNote": "Archive filenames and documents retain their original languages."
   },
   "ar": {
     "label": "تحميل الحزمة الترويجية",
-    "original": "4K / النسخة الأصلية",
-    "fullHd": "Full HD 1080p",
+    "original": "تحميل مع فيديوهات 4K",
+    "fullHd": "تحميل Full HD",
     "hd": "HD 720p",
     "unit": "غيغابايت",
     "description": "تتضمن كل حزمة ZIP فيديوهات وصورًا وقائمة الأغاني والمتطلبات الفنية.",
-    "qualityNote": "تصل دقة الفيديو إلى الدقة المحددة. تبقى التسجيلات الأقل دقة والصور والمستندات بجودتها الأصلية.",
+    "qualityNote": "حزمة Full HD أصغر حجمًا ولا تحتوي على فيديوهات 4K. الصور والمستندات متطابقة في النسختين.",
     "languageNote": "تحتفظ أسماء الملفات والمستندات داخل الحزمة بلغاتها الأصلية."
   },
   "pt-BR": {
     "label": "Baixar pacote promocional",
-    "original": "4K / Original",
-    "fullHd": "Full HD 1080p",
+    "original": "Baixar com vídeos 4K",
+    "fullHd": "Baixar Full HD",
     "hd": "HD 720p",
     "unit": "GB",
     "description": "Cada ZIP inclui vídeos, fotos, repertório e riders.",
-    "qualityNote": "Os vídeos têm resolução de até a opção escolhida. Gravações de resolução inferior, fotos e documentos mantêm a qualidade original.",
+    "qualityNote": "O pacote Full HD é mais leve e não inclui vídeos 4K. As fotos e os documentos são iguais nas duas versões.",
     "languageNote": "Os nomes dos arquivos e os documentos mantêm seus idiomas originais."
   }
 }

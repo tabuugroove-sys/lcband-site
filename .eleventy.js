@@ -53,7 +53,7 @@ export default function (eleventyConfig) {
 		});
 		content = content.replace(/assets\/photos\/wall\/costumes--[a-z0-9-]+-(300|520)\.webp(?!\?)/g, '$&?v=20261014canon');
 		content = content.replace('</head>', `<link rel="stylesheet" href="${pathPrefix}video-share.css?v=2"><script src="${pathPrefix}locale.js?v=1" defer></script><script src="${pathPrefix}video-quality.js?v=3" defer></script></head>`);
-		if (this.page.url === '/embed/') return content.replace('</head>', `<script src="${pathPrefix}promo-media.js?v=20261029costumes" defer></script></head>`);
+		if (this.page.url === '/embed/') return content.replace('</head>', `<script src="${pathPrefix}promo-media.js?v=20261029package" defer></script></head>`);
 		return content.replace(/live-icon-(720|1080)\.mp4(?!\?)/g, 'live-icon-$1.mp4?v=20261002cut6')
 			.replace('</body>', `<script src="${pathPrefix}video-share.js?v=6" defer></script></body>`);
 	});

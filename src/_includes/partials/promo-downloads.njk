@@ -7,7 +7,6 @@
   <div class="cta-row">
     <a class="btn btn--blue" href="{{ downloadBase }}{% if downloadLangQuery %}?{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.original }}"><bdi>{{ downloadCopy.original }} · {{ (promoPackage.bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
     <a class="btn btn--blue" href="{{ downloadBase }}?quality=1080{% if downloadLangQuery %}&amp;{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.fullHd }}"><bdi>{{ downloadCopy.fullHd }} · {{ (promoPackage.variants['1080'].bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
-    <a class="btn btn--blue" href="{{ downloadBase }}?quality=720{% if downloadLangQuery %}&amp;{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.hd }}"><bdi>{{ downloadCopy.hd }} · {{ (promoPackage.variants['720'].bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
   </div>
   <p class="muted">{{ downloadCopy.qualityNote }}{% if downloadCopy.languageNote %} {{ downloadCopy.languageNote }}{% endif %}</p>
 </div>
