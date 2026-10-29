@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-	await page.route('**/*.mp4*', route => route.abort());
+	await page.route(url => /\.mp4$/i.test(url.pathname), route => route.abort());
 });
 
 const ENGLISH_ROUTES = [
@@ -114,8 +114,8 @@ test('the root URL stays Russian even after visiting an explicit locale', async 
 	expect(await page.evaluate(() => localStorage.getItem('lcb_locale'))).toBe('ru');
 });
 
-test('Russian and English homepages keep their own opening videos in the first block', async ({ page }) => {
-	await page.route('**/*.mp4', (route) => route.abort());
+test('costume promo finishes into the page language playlist', async ({ page }) => {
+	await page.route('**/promo-costume-*.mp4', () => {});
 	const openingPromos = async () => page
 		.locator('.video-rail--big .vtile__link[data-video]')
 		.evaluateAll((links) => links.slice(0, 2).map((link) => link.dataset.video));
@@ -128,18 +128,63 @@ test('Russian and English homepages keep their own opening videos in the first b
 	expect(await openingPromos()).toEqual(['promo-main-reel', 'promo-egoistka']);
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
-	expect(await heroVideoSource()).toMatch(/promo-main-reel-[a-f0-9]{12}-\d+\.mp4$/);
+	expect(await heroVideoSource()).toMatch(/promo-costume-red-[a-f0-9]{12}-\d+\.mp4$/);
 	await finishHeroVideo();
-	expect(await heroVideoSource()).toMatch(/promo-egoistka-[a-f0-9]{12}-\d+\.mp4$/);
+	expect(await heroVideoSource()).toMatch(/promo-main-reel-[a-f0-9]{12}-\d+\.mp4$/);
 
 	await page.goto('/en/');
 	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
-	expect(await heroVideoSource()).toContain('/promo-lets-get-it-started-');
+	expect(await heroVideoSource()).toContain('/promo-costume-red-');
 	await finishHeroVideo();
-	expect(await heroVideoSource()).toContain('/promo-danza-cuduro-');
+	expect(await heroVideoSource()).toContain('/promo-lets-get-it-started-');
 });
+
+for (const route of ['/', '/en/', '/ae/', '/br/']) {
+	test(`${route} costume photo opens its matching short promo`, async ({ page, isMobile }) => {
+		await page.route('**/promo-costume-*.mp4', () => {});
+		await page.emulateMedia({ reducedMotion: 'reduce' });
+		for (const costume of ['red', 'bw', 'gold', 'white']) {
+			await page.goto(route);
+			const dot = page.locator(`[data-hero-dot="${costume}"]`);
+			await dot.click();
+			await expect(dot).toHaveAttribute('aria-selected', 'true');
+			await expect(page.locator(`[data-hero-img="${costume}"]`)).toHaveClass(/is-active/);
+			await page.locator('[data-hero-play]').click();
+			await expect(page.locator('[data-hero-video]')).toHaveAttribute('src',
+				new RegExp(`promo-costume-${costume}-[a-f0-9]{12}-${isMobile ? '720' : '1080'}\\.mp4$`));
+		}
+	});
+}
+
+for (const supported of [true, false]) {
+	test(`costume 4K respects device codec support: ${supported}`, async ({ page }) => {
+		await page.route('**/promo-costume-*.mp4', () => {});
+		await page.addInitScript(value => {
+			const original = HTMLMediaElement.prototype.canPlayType;
+			HTMLMediaElement.prototype.canPlayType = function(type) {
+				return type.includes('hvc1') ? (value ? 'probably' : '') : original.call(this, type);
+			};
+		}, supported);
+		await page.emulateMedia({ reducedMotion: 'reduce' });
+		await page.goto('/');
+		await page.locator('[data-hero-play]').click();
+		const button = page.locator('[data-hero-q="2160"]');
+		if (supported) {
+			await expect(button).toBeVisible();
+			await button.click();
+			await expect(page.locator('[data-hero-video]')).toHaveAttribute('src', /promo-costume-red-[a-f0-9]{12}-2160\.mp4$/);
+		} else {
+			await expect(button).toBeHidden();
+			await expect(page.locator('[data-hero-video]')).toHaveAttribute('src', /promo-costume-red-[a-f0-9]{12}-(720|1080)\.mp4$/);
+		}
+		const family = await page.evaluate(() => window.LCBPromoVideoSources['promo-costume-red'].family);
+		await page.goto(`/embed/?src=${encodeURIComponent(`/assets/video/mp4/${family}-2160.mp4`)}`, { waitUntil: 'domcontentloaded' });
+		await expect(page.locator('video')).toHaveAttribute('src',
+			new RegExp(`${family}-${supported ? '2160' : '1080'}\\.mp4$`));
+	});
+}
 
 test('English sax page is a translated structural twin of the Russian page', async ({ page }) => {
 	const sectionSignature = async () => page.locator('.sx > section').evaluateAll((sections) =>

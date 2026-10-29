@@ -1052,6 +1052,54 @@
       "height": 848,
       "duration": 26.366667,
       "family": "teddy-jzhet-b9672528ed35"
+    },
+    "promo-costume-red": {
+      "original": "assets/video/mp4/promo-costume-red-6f67800c7805-2160.mp4",
+      "quality": 2160,
+      "has720": true,
+      "width": 3840,
+      "height": 2160,
+      "duration": 104.72,
+      "family": "promo-costume-red-6f67800c7805",
+      "codecs": {
+        "2160": "hvc1"
+      }
+    },
+    "promo-costume-bw": {
+      "original": "assets/video/mp4/promo-costume-bw-822965daacce-2160.mp4",
+      "quality": 2160,
+      "has720": true,
+      "width": 3840,
+      "height": 2160,
+      "duration": 104.72,
+      "family": "promo-costume-bw-822965daacce",
+      "codecs": {
+        "2160": "hvc1"
+      }
+    },
+    "promo-costume-gold": {
+      "original": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-2160.mp4",
+      "quality": 2160,
+      "has720": true,
+      "width": 3840,
+      "height": 2160,
+      "duration": 104.72,
+      "family": "promo-costume-gold-b9f4a6ecf5ab",
+      "codecs": {
+        "2160": "hvc1"
+      }
+    },
+    "promo-costume-white": {
+      "original": "assets/video/mp4/promo-costume-white-bcef639df1ff-2160.mp4",
+      "quality": 2160,
+      "has720": true,
+      "width": 3840,
+      "height": 2160,
+      "duration": 104.72,
+      "family": "promo-costume-white-bcef639df1ff",
+      "codecs": {
+        "2160": "hvc1"
+      }
     }
   },
   "bytes": 4716956542,

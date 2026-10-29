@@ -584,6 +584,7 @@
 	}
 
 	function videoQualityExists(key, quality) {
+		if (!window.LCBVideoQuality.supports(videoUrl(key, quality))) return Promise.resolve(false);
 		const shared = window.LCBPromoVideoSources?.[key];
 		if (shared) return Promise.resolve(quality === '2160' ? shared.quality === 2160 : quality !== '720' || shared.has720);
 		return window.LCBVideoQuality.exists(videoUrl(key, quality));
@@ -818,21 +819,33 @@
 			return `${m}:${s < 10 ? '0' : ''}${s}`;
 		}
 		const order = ['red', 'bw', 'gold', 'white'];
-		// Costume → matching clip (sourced from LCB promo 2025 reels):
-		//   red   = Let's Get It Started (red suits, first hero clip)
-		//   bw    = LAZ Loca Loca (black-white styling)
-		//   gold  = РЕТРО "You're my heart" (gold, glam)
-		//   white = Shallow (white suits, fourth hero clip)
+		// Each photograph opens the short edit beginning in that costume.
 		const heroVideoMap = {
-			red:   'promo-lets-get-it-started',
-			bw:    'promo-loca-loca',
-			gold:  'thematic-retro-heart',
-			white: 'interact-wedding-shallow'
+			red:   'promo-costume-red',
+			bw:    'promo-costume-bw',
+			gold:  'promo-costume-gold',
+			white: 'promo-costume-white'
 		};
 		const heroPromoPlaylist = [...document.querySelectorAll('.video-rail--big .vtile__link[data-video]')]
 			.map(link => link.dataset.video)
 			.filter((key, index, list) => key && list.indexOf(key) === index);
 		const heroClips = {
+			'promo-costume-red': {
+				title: copy.egoistka, costume: 'red', costumeLabel: heroCopy.costumes.red,
+				poster: 'promo-egoistka-2026-red-stage.jpg?v=20260620i'
+			},
+			'promo-costume-bw': {
+				title: 'Loca Loca', costume: 'bw', costumeLabel: heroCopy.costumes.bw,
+				poster: 'promo-loca-loca.jpg?v=20260620i'
+			},
+			'promo-costume-gold': {
+				title: "You're My Heart, You're My Soul", costume: 'gold', costumeLabel: heroCopy.costumes.gold,
+				poster: 'thematic-retro-heart-2026.jpg?v=20260620i'
+			},
+			'promo-costume-white': {
+				title: copy.letet, costume: 'white', costumeLabel: heroCopy.costumes.white,
+				poster: 'promo-letet.jpg?v=20260620i'
+			},
 			'promo-egoistka': {
 				title: copy.egoistka, costume: 'red', costumeLabel: heroCopy.costumes.red,
 				poster: 'promo-egoistka-2026-red-stage.jpg?v=20260620i'
@@ -1162,7 +1175,7 @@
 		}
 
 		function playHeroVideo() {
-			playHeroClip(heroPromoPlaylist[0] || heroVideoMap[current] || 'promo-main-reel');
+			playHeroClip(heroVideoMap[current] || heroPromoPlaylist[0] || 'promo-main-reel');
 		}
 
 		function syncQualityButtons() {

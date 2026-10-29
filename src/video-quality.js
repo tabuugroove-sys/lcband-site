@@ -3,8 +3,20 @@
   const availability = new Map();
   const attached = new WeakSet();
   const suffix = /-(480|720|1080|2160)\.mp4$/;
+  const capabilityProbe = document.createElement('video');
+
+  function supports(source) {
+    const path = new URL(source, location.href).pathname;
+    const match = path.match(suffix);
+    if (!match) return true;
+    const family = path.slice(path.lastIndexOf('/') + 1).replace(suffix, '');
+    const entry = Object.values(window.LCBPromoVideoSources || {}).find(video => video.family === family);
+    const codec = entry?.codecs?.[match[1]];
+    return !codec || Boolean(capabilityProbe.canPlayType(`video/mp4; codecs="${codec}"`));
+  }
 
   function exists(source) {
+    if (!supports(source)) return Promise.resolve(false);
     const url = new URL(source, location.href).href;
     if (!availability.has(url)) {
       const request = fetch(url, { method: 'HEAD', cache: 'no-cache', signal: AbortSignal.timeout(10000) })
@@ -97,5 +109,5 @@
     update();
   }
 
-  window.LCBVideoQuality = { exists, attach };
+  window.LCBVideoQuality = { exists, supports, attach };
 })();
