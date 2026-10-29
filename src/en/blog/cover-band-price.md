@@ -22,7 +22,7 @@ faq:
 related:
   - href: "/en/blog/kaver-gruppa-ili-didzhej/"
     title: "Cover Band or DJ"
-    sub: "What to choose for your format and budget"
+    sub: "Choosing by musical style and the evening's programme"
   - href: "/en/events/wedding/"
     title: "Wedding Cover Band"
     sub: "One live band from ceremony to dancefloor"
