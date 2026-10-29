@@ -1062,7 +1062,7 @@
       "duration": 104.72,
       "family": "promo-costume-red-6f67800c7805",
       "codecs": {
-        "2160": "hvc1"
+        "2160": "hvc1.1.6.L153.B0"
       }
     },
     "promo-costume-bw": {
@@ -1074,7 +1074,7 @@
       "duration": 104.72,
       "family": "promo-costume-bw-822965daacce",
       "codecs": {
-        "2160": "hvc1"
+        "2160": "hvc1.1.6.L153.B0"
       }
     },
     "promo-costume-gold": {
@@ -1086,7 +1086,7 @@
       "duration": 104.72,
       "family": "promo-costume-gold-b9f4a6ecf5ab",
       "codecs": {
-        "2160": "hvc1"
+        "2160": "hvc1.1.6.L153.B0"
       }
     },
     "promo-costume-white": {
@@ -1098,7 +1098,7 @@
       "duration": 104.72,
       "family": "promo-costume-white-bcef639df1ff",
       "codecs": {
-        "2160": "hvc1"
+        "2160": "hvc1.1.6.L153.B0"
       }
     }
   },
