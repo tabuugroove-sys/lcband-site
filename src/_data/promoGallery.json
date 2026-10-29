@@ -326,10 +326,11 @@
           "captionEn": "Stas — concert performance"
         },
         {
-          "preview": "assets/photos/stas-202610-studio-bw.jpg",
-          "original": "assets/photos/stas-202610-studio-bw-full.jpg",
-          "caption": "Стас — студийный портрет",
-          "captionEn": "Stas — studio portrait"
+          "preview": "assets/photos/corporate-1152.webp",
+          "original": "assets/photos/corporate.jpg",
+          "caption": "Стас — портрет в смокинге",
+          "captionEn": "Stas — portrait in a tuxedo",
+          "cropScale": 1.3
         },
         {
           "preview": "assets/photos/stas-202610-portrait-suit.jpg",
