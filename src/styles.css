@@ -5809,7 +5809,7 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	font-weight: 700;
 	letter-spacing: -.05em;
 	line-height: .92;
-	margin: 8px 0 10px;
+	margin: 8px 0 clamp(14px, 1.6vw, 24px);
 	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
 	color: var(--count-solid);
@@ -5824,15 +5824,19 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	}
 }
 
+/* как подписи Apple Music: фраза о цифре светлая, продолжение серым,
+   один кегль и вес; каждая фраза своей строкой (у Apple — span.line) */
 .about-count__sub {
 	font-family: var(--ff-display);
-	font-size: clamp(22px, 2.6vw, 32px);
+	font-size: clamp(24px, 3vw, 40px);
 	font-weight: 600;
-	line-height: 1.12;
-	max-width: 22ch;
+	line-height: 1.1;
+	letter-spacing: -.01em;
 	margin: 0 auto;
-	text-wrap: balance;
 }
+.about-count__lead,
+.about-count__more { display: block; text-wrap: balance; }
+.about-count__more { color: var(--count-muted); }
 
 /* flex, а не grid: строка ровная и при шести цифрах, и при двух (pt/ar) */
 .about-count__minis {

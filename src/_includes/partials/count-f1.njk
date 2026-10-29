@@ -1,12 +1,15 @@
 {#- Блок цифр «вариант F1» (выбран Михаилом 28.10.2026): одна большая цифра
     в градиенте с досчётом при появлении, под ней строкой остальные цифры.
-    Решение Михаила: на главных страницах — белый, на остальных — чёрный.
+    Решение Михаила 29.10: чёрный на всех страницах (28.10 главные были белыми).
     Параметры перед include:
       countTheme     — 'dark' (чёрный фон, по умолчанию) | 'light' (белый фон)
       countLang      — 'ru' (по умолчанию) | 'en' | 'pt' | 'ar'
       countSongsHref — ссылка у «песен» (необязательно)
       countLooksHref — ссылка у «сценических образов» (необязательно)
       countNote      — строка мелким текстом под цифрами (необязательно)
+    Подпись под большой цифрой — как на apple.com/apple-music: первая фраза
+    светлая, продолжение серым тем же кеглем, каждая фраза своей строкой;
+    &nbsp; держит «в 40 странах» и не оставляет предлог в конце строки.
     Для pt/ar только подписи, которые уже были на этих страницах (без новых
     переводов). Цифры — из site.stats; досчёт берёт итог из текста, поэтому
     правка site.json сохраняет анимацию. Без JS и при reduced-motion — итог. -#}
@@ -14,7 +17,8 @@
 {%- set countDict = {
 	ru: {
 		aria: 'Luxury Cover Band в цифрах',
-		sub: 'выступлений в ' ~ st.countries ~ ' странах. От свадеб до приёмов первых лиц.',
+		lead: 'выступлений в&nbsp;' ~ st.countries ~ '&nbsp;странах.',
+		more: 'От свадеб до&nbsp;приёмов первых&nbsp;лиц.',
 		minis: [
 			{num: st.years, label: 'лет на сцене'},
 			{num: st.tvShows, label: 'ТВ-проектов'},
@@ -26,7 +30,8 @@
 	},
 	en: {
 		aria: 'Luxury Cover Band in numbers',
-		sub: 'performances in ' ~ st.countries ~ ' countries. From weddings to receptions for heads of state.',
+		lead: 'performances in&nbsp;' ~ st.countries ~ '&nbsp;countries.',
+		more: 'From weddings to receptions for heads&nbsp;of&nbsp;state.',
 		minis: [
 			{num: st.years, label: 'years on stage'},
 			{num: st.tvShows, label: 'TV projects'},
@@ -38,7 +43,7 @@
 	},
 	pt: {
 		aria: 'Luxury Cover Band',
-		sub: 'shows em ' ~ st.countries ~ ' países',
+		lead: 'shows em&nbsp;' ~ st.countries ~ '&nbsp;países',
 		minis: [
 			{num: st.years, label: 'anos de palco'},
 			{num: st.songs, label: 'músicas no repertório', href: countSongsHref}
@@ -46,7 +51,7 @@
 	},
 	ar: {
 		aria: 'Luxury Cover Band',
-		sub: 'عرض في ' ~ st.countries ~ ' دولة',
+		lead: 'عرض في&nbsp;' ~ st.countries ~ '&nbsp;دولة',
 		minis: [
 			{num: st.years, label: 'عامًا على المسرح'},
 			{num: st.songs, label: 'أغنية في الريبرتوار', href: countSongsHref}
@@ -58,7 +63,7 @@
 	<div class="about-count__inner">
 		<p class="about-count__eyebrow">Luxury Cover Band</p>
 		<p class="about-count__hero" dir="ltr" data-count>{{ st.shows }}</p>
-		<p class="about-count__sub">{{ countText.sub }}</p>
+		<p class="about-count__sub"><span class="about-count__lead">{{ countText.lead | safe }}</span>{% if countText.more %} <span class="about-count__more">{{ countText.more | safe }}</span>{% endif %}</p>
 		<ul class="about-count__minis">
 			{% for s in countText.minis %}
 			<li class="about-count__mini">

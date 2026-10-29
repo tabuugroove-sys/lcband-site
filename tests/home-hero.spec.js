@@ -1,12 +1,5 @@
 import { expect, test } from '@playwright/test';
 
-async function chooseCostume(page, key) {
-	await page.locator(`[data-hero-dot="${key}"]`).click();
-	await expect.poll(() => page.locator(`[data-hero-img="${key}"]`).evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
-	await expect(page.locator(`[data-hero-img="${key}"]`)).toHaveClass(/is-active/);
-	await expect(page.locator('[data-hero]')).toHaveClass(/is-costume-view/);
-}
-
 async function holdBackgroundIdle(page) {
 	await page.addInitScript(() => {
 		window.backgroundIdle = [];
@@ -26,7 +19,9 @@ test.describe('Homepage hero swipe', () => {
 		await page.goto('/');
 		const hero = page.locator('[data-hero]');
 		await expect(hero).toBeVisible();
-		await chooseCostume(page, 'red');
+		await expect.poll(() => page.locator('[data-hero-img]').evaluateAll(images =>
+			images.every(image => image.complete && image.naturalWidth > 0)
+		)).toBe(true);
 
 		await hero.dispatchEvent('pointerdown', {
 			pointerId: 1,
@@ -45,7 +40,6 @@ test.describe('Homepage hero swipe', () => {
 
 		const under = page.locator('.hero__bg.is-swipe-under');
 		await expect(under).toHaveCount(1);
-		await expect.poll(() => under.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
 		await expect.poll(() => under.evaluate(image => Number.parseFloat(getComputedStyle(image).opacity)))
 			.toBeGreaterThan(0.55);
 
@@ -57,33 +51,6 @@ test.describe('Homepage hero swipe', () => {
 			bubbles: true,
 		});
 	});
-});
-
-test('keeps the last costume visible until a successful latest image selection loads', async ({ page }) => {
-	await page.emulateMedia({ reducedMotion: 'reduce' });
-	let releaseGold;
-	let releaseBw;
-	await page.route(/\/hero-gold[-.]/, route => { releaseGold = () => route.continue(); });
-	await page.route(/\/hero-bw[-.]/, route => { releaseBw = () => route.continue(); });
-	await page.route(/\/hero-white[-.]/, route => route.abort());
-	await page.goto('/');
-	await chooseCostume(page, 'red');
-	await page.locator('[data-hero-dot="gold"]').click();
-	await expect.poll(() => Boolean(releaseGold)).toBe(true);
-	await expect(page.locator('[data-hero-img="red"]')).toHaveClass(/is-active/);
-	await expect(page.locator('[data-hero-img="gold"]')).not.toHaveClass(/is-active/);
-	await releaseGold();
-	await expect(page.locator('[data-hero-img="gold"]')).toHaveClass(/is-active/);
-	await page.locator('[data-hero-dot="white"]').click();
-	await expect.poll(() => page.locator('[data-hero-img="white"]').evaluate(image => image.complete && image.naturalWidth === 0)).toBe(true);
-	await expect(page.locator('[data-hero-img="gold"]')).toHaveClass(/is-active/);
-	await page.locator('[data-hero-dot="bw"]').click();
-	await expect.poll(() => Boolean(releaseBw)).toBe(true);
-	await chooseCostume(page, 'red');
-	await releaseBw();
-	await expect.poll(() => page.locator('[data-hero-img="bw"]').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
-	await expect(page.locator('[data-hero-img="red"]')).toHaveClass(/is-active/);
-	await expect(page.locator('[data-hero-img="bw"]')).not.toHaveClass(/is-active/);
 });
 
 test.describe('Homepage hero crop', () => {
@@ -98,7 +65,9 @@ test.describe('Homepage hero crop', () => {
 			await page.setViewportSize(viewport);
 			await page.goto('/');
 			await page.addStyleTag({ content: '.hero__bg.is-active { animation: none !important; }' });
-			for (const key of ['red', 'bw', 'gold', 'white']) await chooseCostume(page, key);
+			await expect.poll(() => page.locator('[data-hero-img]').evaluateAll(images =>
+				images.every(image => image.complete && image.naturalWidth > 0)
+			)).toBe(true);
 
 			const headLines = await page.locator('[data-hero-img]').evaluateAll(images =>
 				images.map(image => {
@@ -113,49 +82,8 @@ test.describe('Homepage hero crop', () => {
 	}
 });
 
-test.describe('Silent background lifecycle', () => {
-	test('loads one responsive source after idle, keeps costumes deferred and respects pause states', async ({ page, isMobile }) => {
-		await holdBackgroundIdle(page);
-		await page.route('**/*.mp4*', route => route.request().url().includes('band-montage-') ? route.continue() : route.abort());
-		const requested = [];
-		page.on('request', request => requested.push(new URL(request.url()).pathname));
-		await page.goto('/');
-		const video = page.locator('[data-background-video]');
-		const toggle = page.locator('[data-background-toggle]');
-		await expect(video).not.toHaveAttribute('src', /.+/);
-		await expect(page.locator('[data-hero-video]')).not.toHaveAttribute('src', /.+/);
-		await expect(page.locator('[data-hero-img][src]')).toHaveCount(0);
-		expect(requested.filter(path => /\/hero-(red|bw|gold|white)[-.]/.test(path))).toEqual([]);
-		expect(new Set(requested.filter(path => /band-montage-.*\.webp$/.test(path))).size).toBe(1);
-		await releaseBackgroundIdle(page);
-		await expect(video).toHaveAttribute('src', new RegExp(`-${isMobile ? '360' : '540'}\\.mp4$`));
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-		await expect(video).toHaveClass(/is-ready/);
-		expect(new Set(requested.filter(path => /band-montage-.*\.mp4$/.test(path))).size).toBe(1);
-		await toggle.click();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
-		await page.locator('footer').scrollIntoViewIfNeeded();
-		await page.locator('[data-background-host]').scrollIntoViewIfNeeded();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
-		await toggle.click();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-		await page.locator('footer').scrollIntoViewIfNeeded();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
-		await page.locator('[data-background-host]').scrollIntoViewIfNeeded();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-		await chooseCostume(page, 'gold');
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
-		await expect(page.locator('[data-hero-img="gold"]')).toHaveAttribute('src', /hero-gold/);
-		await toggle.click();
-		await expect(page.locator('[data-hero]')).not.toHaveClass(/is-costume-view/);
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-		await page.locator('[data-hero-play]').click();
-		await expect(page.locator('[data-hero]')).toHaveClass(/is-playing/);
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
-		await page.locator('[data-hero-close]').click();
-		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
-	});
-
+// The silent montage stays on /about/ only; the homepage keeps the four costumes (Mikhail, 29.10).
+test.describe('Silent background lifecycle on /about/', () => {
 	for (const preference of ['saveData', '2g', '3g', 'reducedMotion']) {
 		test(`${preference} retains the poster without requesting the montage`, async ({ page }) => {
 			await holdBackgroundIdle(page);
