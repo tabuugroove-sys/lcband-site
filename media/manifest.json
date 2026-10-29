@@ -514,23 +514,23 @@
     },
     {
       "path": "assets/video/mp4/live-icon-1080.mp4",
-      "bytes": 562307219,
-      "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87"
-    },
-    {
-      "path": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
-      "bytes": 562307219,
-      "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87"
-    },
-    {
-      "path": "assets/video/mp4/live-icon-658a05cb8405-720.mp4",
-      "bytes": 113468576,
-      "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f"
+      "bytes": 481259419,
+      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89"
     },
     {
       "path": "assets/video/mp4/live-icon-720.mp4",
-      "bytes": 113468576,
-      "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f"
+      "bytes": 91336550,
+      "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
+      "bytes": 481259419,
+      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-f2aea6a94310-720.mp4",
+      "bytes": 91336550,
+      "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694"
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",

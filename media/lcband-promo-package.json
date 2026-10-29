@@ -1,6 +1,6 @@
 {
-  "version": "20261022-vocalists",
-  "timestamp": 1791979200,
+  "version": "20261028-icon-cut42",
+  "timestamp": 1793236991,
   "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
     {
@@ -123,11 +123,11 @@
       "crc32": "ff1d030b"
     },
     {
-      "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mov",
-      "path": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
-      "bytes": 562307219,
-      "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87",
-      "crc32": "9570fd4c"
+      "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
+      "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
+      "bytes": 481259419,
+      "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89",
+      "crc32": "c9fd1553"
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
@@ -838,13 +838,13 @@
       "family": "live-soho-28f9b449e584"
     },
     "live-icon": {
-      "original": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
+      "original": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
       "quality": 1080,
       "has720": true,
       "width": 1920,
       "height": 1080,
-      "duration": 296.28,
-      "family": "live-icon-658a05cb8405"
+      "duration": 254.137,
+      "family": "live-icon-f2aea6a94310"
     },
     "live-big-lineup": {
       "original": "assets/video/mp4/live-big-lineup-8e85acb4c9bb-1080.mp4",
@@ -1054,11 +1054,11 @@
       "family": "teddy-jzhet-b9672528ed35"
     }
   },
-  "bytes": 4798004342,
+  "bytes": 4716956542,
   "variants": {
     "720": {
       "archiveName": "LCBAND-promo-720p.zip",
-      "bytes": 1183586256,
+      "bytes": 1161454230,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  720p.mp4",
@@ -1180,11 +1180,11 @@
           "crc32": "aa4f685b"
         },
         {
-          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mov",
-          "path": "assets/video/mp4/live-icon-658a05cb8405-720.mp4",
-          "bytes": 113468576,
-          "sha256": "5d74acbbb565e0f4a3c4bb1da16d96b4c9ea9322589db0d41bf122569d10850f",
-          "crc32": "e2b06ef6"
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
+          "path": "assets/video/mp4/live-icon-f2aea6a94310-720.mp4",
+          "bytes": 91336550,
+          "sha256": "0d802a55335aea873ff2b4897ee2a8e2007bff8973d7ba44b9a66f988d47d694",
+          "crc32": "4adcf0d4"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",
@@ -1743,7 +1743,7 @@
     },
     "1080": {
       "archiveName": "LCBAND-promo-1080p.zip",
-      "bytes": 2742512939,
+      "bytes": 2661465139,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  1080p.mp4",
@@ -1865,11 +1865,11 @@
           "crc32": "ff1d030b"
         },
         {
-          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mov",
-          "path": "assets/video/mp4/live-icon-658a05cb8405-1080.mp4",
-          "bytes": 562307219,
-          "sha256": "658a05cb840517c11eb72bd3a01b5b67aa5ebfe77b572e1ca36a2e3c8ef7bf87",
-          "crc32": "9570fd4c"
+          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ИНТЕРКАТИВНЫЙ Эпичный Лайв в ICON.mp4",
+          "path": "assets/video/mp4/live-icon-f2aea6a94310-1080.mp4",
+          "bytes": 481259419,
+          "sha256": "f2aea6a9431031fb6f727fc18e9b7abf00c9e9e1e8b0e5b994bdddd1ac982b89",
+          "crc32": "c9fd1553"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/4 вокала.mp4",

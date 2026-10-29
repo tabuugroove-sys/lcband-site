@@ -36,6 +36,12 @@ RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoi
 RewriteRule ^programs/spanish/?$ https://luxuryband.ru/programs/latin/ [L,R=301]
 RewriteRule ^en/programs/spanish/?$ https://luxuryband.ru/en/programs/latin/ [L,R=301]
 
+# Live Icon now starts with the second song. Keep previously shared links usable
+# after removing the old media files from the hosting account.
+RewriteRule ^assets/video/mp4/live-icon-658a05cb8405-(720|1080)\.mp4$ https://luxuryband.ru/assets/video/mp4/live-icon-f2aea6a94310-$1.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=live-icon-658a05cb8405-(720|1080)\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=live-icon-f2aea6a94310-%2.mp4 [L,R=301,NE]
+
 # 3) /index.html → /  (корень и подпапки) — убирает дубль главной и вложенных
 RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
 RewriteRule ^(([^/]+/)*)index\.html$ https://luxuryband.ru/%1 [L,R=301,NE]
