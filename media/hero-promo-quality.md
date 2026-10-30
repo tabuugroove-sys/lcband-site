@@ -27,16 +27,18 @@ The hero has no video `src` before Play and uses `preload="none"`. Desktop start
 at 1080p; mobile/slow connections use 720p. The full master is requested only when
 the viewer chooses 4K. Preserve this separation from initial page loading.
 
-The red 4K and 1080p files are byte-identical to the existing full promo and share
-its server inodes. The other 1080p variants are derived directly from the 4K
+The red 4K file is byte-identical to the existing full promo and shares its
+server inode. All four 1080p variants are derived directly from the 4K
 masters using Lanczos scaling, libx264 CRF 22 / medium and copied AAC audio. Their
 video bitrate is about 6 Mbit/s; large scene-dependent peaks are not clipped by
 a low fixed-rate cap. Frame count, timing and AAC payloads are verified against
 the masters. Unchanged 720p variants also use hard links under the new family
 names. New files must be registered in `media/manifest.json` before upload,
 published atomically, checked with server SHA-256, and only then referenced by
-the public catalogue. Keep older encodes for rollback; never regenerate the
-whole manifest from an incomplete local media directory.
+the public catalogue. The four retired HEVC 4K copies are retained locally for
+rollback; their old playback and download URLs redirect to the approved masters.
+This avoids occupying the hosting quota with both revisions. Never regenerate
+the whole manifest from an incomplete local media directory.
 
 Validate actual browser `currentSrc`, decoded dimensions and playback for all
 four costumes. Compare face/hand crops at 100% scale: averaged SSIM alone missed
