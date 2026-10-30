@@ -648,6 +648,16 @@
       "sha256": "c8c6a3c1374371fbd4639f142c043cf06300df7f5a0071af2054d544ea2b99c4"
     },
     {
+      "path": "assets/video/mp4/live-perfect-036df3756a04-1080.mp4",
+      "bytes": 59010346,
+      "sha256": "036df3756a0428f0b4f16f2bba082b4482fb2416864ca06275cb425c09b82d0b"
+    },
+    {
+      "path": "assets/video/mp4/live-perfect-036df3756a04-720.mp4",
+      "bytes": 30799914,
+      "sha256": "065dc9749210b8ef3ad22e54bf022f774ffb52c676284293cff2f5ee5f177fb7"
+    },
+    {
       "path": "assets/video/mp4/live-perfect-1080.mp4",
       "bytes": 92869031,
       "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567"

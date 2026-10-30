@@ -36,13 +36,13 @@ const performances = [
     slug: 'perfect', mediaSlug: 'live-perfect',
     ru: {
       title: 'Perfect — живое исполнение Luxury Cover Band',
-      description: 'Живая версия Perfect в исполнении Luxury Cover Band: запись около 2 минут 43 секунд. Послушайте песню и обсудите музыку для первого танца.',
+      description: 'Живая версия Perfect в исполнении Luxury Cover Band: запись около 1 минуты 37 секунд. Послушайте песню и обсудите музыку для первого танца.',
       context: 'Послушайте живую версию Perfect перед выбором песни для первого танца. На свадебной странице — варианты программы и отзыв клиента. Песню, аранжировку и длительность номера согласуем под ваш сценарий.',
       relatedUrl: '/events/wedding/', relatedLabel: 'Музыка для свадьбы и первого танца',
     },
     en: {
       title: 'Perfect — a live performance by Luxury Cover Band',
-      description: 'Listen to Luxury Cover Band’s live version of Perfect, approximately 2 minutes 43 seconds long, and discuss music for your first dance.',
+      description: 'Listen to Luxury Cover Band’s live version of Perfect, approximately 1 minute 37 seconds long, and discuss music for your first dance.',
       context: 'Listen to this live version of Perfect while choosing music for your first dance. Our wedding page has programme options and a client review. We agree the song, arrangement and performance length around your event.',
       relatedUrl: '/en/events/wedding/', relatedLabel: 'Wedding and first-dance music',
     },

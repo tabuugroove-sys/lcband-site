@@ -1,6 +1,6 @@
 {
-  "version": "20261029-approved-promo-compact-icon",
-  "timestamp": 1793313298,
+  "version": "20261030-perfect-restored-audio",
+  "timestamp": 1793345180,
   "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
     {
@@ -173,10 +173,10 @@
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
-      "path": "assets/video/mp4/live-perfect-34be773c40a4-1080.mp4",
-      "bytes": 92869031,
-      "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567",
-      "crc32": "2adb14af"
+      "path": "assets/video/mp4/live-perfect-036df3756a04-1080.mp4",
+      "bytes": 59010346,
+      "sha256": "036df3756a0428f0b4f16f2bba082b4482fb2416864ca06275cb425c09b82d0b",
+      "crc32": "b9285d68"
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/19 · Джазовая · Винтажная.mp4",
@@ -901,13 +901,13 @@
       "family": "live-dance-monkey-19d241bf349c"
     },
     "live-perfect": {
-      "original": "assets/video/mp4/live-perfect-34be773c40a4-1080.mp4",
+      "original": "assets/video/mp4/live-perfect-036df3756a04-1080.mp4",
       "quality": 1080,
       "has720": true,
       "width": 1080,
       "height": 1920,
-      "duration": 163.050522,
-      "family": "live-perfect-34be773c40a4"
+      "duration": 96.654,
+      "family": "live-perfect-036df3756a04"
     },
     "live-jazz-vintage": {
       "original": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",
@@ -1102,11 +1102,11 @@
       }
     }
   },
-  "bytes": 3804865791,
+  "bytes": 3771007106,
   "variants": {
     "720": {
       "archiveName": "LCBAND-promo-720p.zip",
-      "bytes": 1064475249,
+      "bytes": 1035241192,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  720p.mp4",
@@ -1278,10 +1278,10 @@
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
-          "path": "assets/video/mp4/live-perfect-34be773c40a4-720.mp4",
-          "bytes": 60033971,
-          "sha256": "8b8482ddf792d2fbd9440876238ba4fb19d708ca588656ac3345745137d9f5cf",
-          "crc32": "d4f2e1ad"
+          "path": "assets/video/mp4/live-perfect-036df3756a04-720.mp4",
+          "bytes": 30799914,
+          "sha256": "065dc9749210b8ef3ad22e54bf022f774ffb52c676284293cff2f5ee5f177fb7",
+          "crc32": "b5be2c38"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/19 · Джазовая · Винтажная.mp4",
@@ -1791,7 +1791,7 @@
     },
     "1080": {
       "archiveName": "LCBAND-promo-1080p.zip",
-      "bytes": 2132754514,
+      "bytes": 2098895829,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  1080p.mp4",
@@ -1963,10 +1963,10 @@
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
-          "path": "assets/video/mp4/live-perfect-34be773c40a4-1080.mp4",
-          "bytes": 92869031,
-          "sha256": "34be773c40a452a8165c3601f88f760700a3bd524a5298fcabcfa82e6cd46567",
-          "crc32": "2adb14af"
+          "path": "assets/video/mp4/live-perfect-036df3756a04-1080.mp4",
+          "bytes": 59010346,
+          "sha256": "036df3756a0428f0b4f16f2bba082b4482fb2416864ca06275cb425c09b82d0b",
+          "crc32": "b9285d68"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/Тематические программы/19 · Джазовая · Винтажная.mp4",
