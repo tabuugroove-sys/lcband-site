@@ -224,40 +224,76 @@
 		else window.addEventListener('load', afterLoad, { once: true });
 	})();
 
-	// ---------- Home reels: one by one (Mikhail 29.10: «один появился, поиграл, потом второй…») ----------
-	// The first tile grows out of the grid centre, like the cards on apple.com/apple-music
-	// (scale 0.5 → 1, fade in, corners square off), and plays alone for three seconds;
-	// then the next one comes in, and so on until the four close into one video wall.
-	// The sequence starts once half the grid is on screen. Off under reduced motion:
-	// all four are there at once.
+	// ---------- Home reels: one by one (Mikhail 29–30.10) ----------
+	// «Один появился, поиграл, потом второй…»; 30.10 «быстрее в два раза; чем быстрее
+	// крутит, тем быстрее появляется», and the magnet of the cards on apple.com/apple-music:
+	// each next tile waits off to the side, transparent, then quickly pulls up to its
+	// neighbour (styles.css). Tiles come 1.5 s apart; scrolling speeds the clock up, and
+	// when the grid is about to leave the screen the rest come at once, so all four are in
+	// before it is scrolled away. Off under reduced motion: all four are there at once.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
 		if (!grid || reduceMotion.matches || !('IntersectionObserver' in window)) return;
 		const ribbon = host.querySelector('.reel__ribbon');
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
-		const pause = 3000;
-		const timers = [];
-		const announce = shown => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown } }));
-		const place = () => {
-			const cx = grid.clientWidth / 2;
-			const cy = grid.clientHeight / 2;
-			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
+		const pause = 1500;
+		let shown = 0;
+		let clock = 0;
+		let last = 0;
+		let frame = 0;
+		let velocity = 0;
+		let lastY = window.scrollY;
+		let lastScroll = 0;
+		const announce = count => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown: count } }));
+		const onScroll = () => {
+			const now = performance.now();
+			const v = (window.scrollY - lastY) / Math.max(now - lastScroll, 8) * 1000;
+			velocity = velocity * 0.5 + v * 0.5;
+			lastY = window.scrollY;
+			lastScroll = now;
 		};
-		const show = i => {
-			tiles[i].classList.add('is-shown');
-			announce(i + 1);
-			if (i + 1 < tiles.length) timers.push(window.setTimeout(() => show(i + 1), pause));
+		// How many times faster than real time the sequence runs right now: up to four
+		// times while the visitor scrolls, and once the grid starts to leave the screen
+		// (past the top going down, past the bottom going up) fast enough to finish in
+		// under half the time it has left.
+		const boost = now => {
+			if (now - lastScroll > 150) velocity *= 0.85;
+			const speed = Math.abs(velocity);
+			let k = 1 + Math.min(speed / 800, 3);
+			const rect = grid.getBoundingClientRect();
+			const leaving = velocity > 40 ? rect.top < window.innerHeight * 0.1
+				: velocity < -40 ? rect.bottom > window.innerHeight * 0.9 : false;
+			if (leaving) {
+				const distance = velocity > 0 ? rect.bottom : window.innerHeight - rect.top;
+				const timeLeft = Math.max(distance, 0) / speed * 1000;
+				const remaining = (tiles.length - 1) * pause - clock;
+				k = Math.max(k, remaining / Math.max(timeLeft * 0.4, 16));
+			}
+			return Math.min(k, 40);
 		};
-		place();
+		const tick = now => {
+			const k = boost(now);
+			clock += Math.min(now - last, 100) * k;
+			last = now;
+			grid.style.setProperty('--reel-boost', k.toFixed(2));
+			while (shown < tiles.length && clock >= shown * pause) {
+				tiles[shown].classList.add('is-shown');
+				shown += 1;
+				announce(shown);
+			}
+			if (shown < tiles.length) frame = requestAnimationFrame(tick);
+			else { frame = 0; window.removeEventListener('scroll', onScroll); }
+		};
 		grid.classList.add('is-sequenced');
 		announce(0);
-		window.addEventListener('resize', place);
+		window.addEventListener('scroll', onScroll, { passive: true });
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
 			begin.disconnect();
-			show(0);
-		}, { threshold: 0.5 });
+			last = performance.now();
+			frame = requestAnimationFrame(tick);
+		}, { threshold: 0.3 });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
@@ -273,11 +309,13 @@
 		reduceMotion.addEventListener('change', () => {
 			if (!reduceMotion.matches) return;
 			begin.disconnect();
-			timers.forEach(timer => window.clearTimeout(timer));
+			cancelAnimationFrame(frame);
+			window.removeEventListener('scroll', onScroll);
 			ribbonWatch?.disconnect();
 			ribbon?.classList.remove('is-armed');
 			grid.classList.remove('is-sequenced');
-			for (const tile of tiles) { tile.classList.add('is-shown'); tile.style.removeProperty('transform-origin'); }
+			grid.style.removeProperty('--reel-boost');
+			for (const tile of tiles) tile.classList.add('is-shown');
 			announce(tiles.length);
 		});
 	})();

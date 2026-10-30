@@ -3,8 +3,8 @@ import { serveHqMedia } from './hq-media.js';
 
 // Four silent reels 2×2 replaced the about photo block on the homepage (Mikhail, 29.10):
 // the grid is 21:9 → 2:1 → 3:2 by width and four squares on phones, with square cuts there.
-// 30.10: HQ cuts from 4K sources, and the tiles come in one by one, three seconds apart,
-// each video starting with its tile.
+// 30.10: HQ cuts from 4K sources; the tiles come in one by one, 1.5 s apart and faster while
+// the visitor scrolls, each video starting with its tile.
 const reelVideos = page => page.locator('[data-reel-video]');
 const allPlaying = list => list.every(video => !video.paused && video.readyState >= 2);
 
@@ -37,18 +37,39 @@ test.describe('Homepage reel', () => {
 
 	test('brings the tiles in one by one, each video starting with its tile', async ({ page, isMobile }) => {
 		await page.goto('/');
-		await page.locator('[data-reel-grid]').scrollIntoViewIfNeeded();
+		// An instant jump: a smooth scroll would itself speed the sequence up.
+		await page.evaluate(() => {
+			const grid = document.querySelector('[data-reel-grid]');
+			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - (innerHeight - grid.offsetHeight) / 2, behavior: 'instant' });
+		});
 		const tiles = page.locator('.reel__tile');
 		const videos = reelVideos(page);
 		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
 		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
-		await expect.poll(() => videos.nth(0).evaluate(video => !video.paused && video.readyState >= 2), { timeout: 10_000 }).toBe(true);
 		expect(await videos.nth(3).evaluate(video => video.paused)).toBe(true);
-		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 5_000 });
-		await expect(tiles.nth(3)).toHaveClass(/is-shown/, { timeout: 10_000 });
+		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 3_000 });
+		await expect(tiles.nth(3)).toHaveClass(/is-shown/, { timeout: 6_000 });
 		await expect.poll(() => videos.evaluateAll(allPlaying), { timeout: 15_000 }).toBe(true);
 		const sources = await videos.evaluateAll(list => list.map(video => video.getAttribute('src')));
 		for (const src of sources) expect(src).toMatch(isMobile ? /-square\.mp4$/ : /-wide(1280|1920)\.mp4$/);
+	});
+
+	test('a fast scroll brings all four in before the grid leaves the screen', async ({ page }) => {
+		await page.goto('/');
+		await page.evaluate(() => {
+			const grid = document.querySelector('[data-reel-grid]');
+			scrollTo(0, grid.getBoundingClientRect().top + scrollY - innerHeight * 0.6);
+		});
+		await expect(page.locator('.reel__tile').nth(0)).toHaveClass(/is-shown/);
+		const shownWhenGone = await page.evaluate(async () => {
+			const grid = document.querySelector('[data-reel-grid]');
+			while (grid.getBoundingClientRect().bottom > 0) {
+				scrollBy(0, 120);
+				await new Promise(resolve => setTimeout(resolve, 30));
+			}
+			return document.querySelectorAll('.reel__tile.is-shown').length;
+		});
+		expect(shownWhenGone).toBe(4);
 	});
 
 	test('one button pauses and resumes the videos; scrolling away pauses them', async ({ page }) => {
