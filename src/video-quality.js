@@ -30,8 +30,10 @@
     return availability.get(url);
   }
 
-  // Native players (About and shared embeds) do not have the main player's picker.
-  // Offer their real variants without changing the initial playback quality.
+  // Native players (About, watch pages and shared embeds) do not have the main player's
+  // picker. Offer their real variants without changing the initial playback quality:
+  // 720p and 1080p on every video that has both, 4K where it exists (Mikhail, 30.10:
+  // «на всех видео должно быть переключение качества 720, 1080 и там, где есть, 4К»).
   function attach(video, host) {
     if (attached.has(video)) return;
     attached.add(video);
@@ -71,10 +73,9 @@
         next.pathname = next.pathname.replace(suffix, `-${quality}.mp4`);
         return next.href;
       };
-      if (!await exists(variant('2160')) || attempt !== revision) return;
       const qualities = [...new Set([match[1], '720', '1080', '2160'])].sort((a, b) => Number(a) - Number(b));
       const available = await Promise.all(qualities.map(async quality => ({ quality, url: variant(quality), available: await exists(variant(quality)) })));
-      if (attempt !== revision) return;
+      if (attempt !== revision || available.filter(item => item.available).length < 2) return;
       for (const item of available.filter(item => item.available)) {
         const button = document.createElement('button');
         button.type = 'button';

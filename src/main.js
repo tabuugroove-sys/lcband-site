@@ -843,7 +843,7 @@
 		const btn4k = lightboxPicker?.querySelector('[data-q="2160"]');
 		if (!btn1080 || !btn4k) return;
 		if (btn720) btn720.hidden = shared?.has720 === false;
-		btn1080.textContent = shared?.quality === 1080 ? copy.original : '1080p';
+		btn1080.textContent = '1080p';
 		btn1080.hidden = known720OnlyVideoKeys.has(key);
 		btn4k.hidden = true;
 		if (btn1080.hidden && currentQuality === '1080') {

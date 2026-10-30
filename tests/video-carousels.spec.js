@@ -128,7 +128,8 @@ test.describe('video rails — open + play', () => {
 		await page.locator('[data-video="latin-music-luxury-cover-band"]').first().click();
 		const lightbox = page.locator('#lightbox');
 		await expect(lightbox).toHaveClass(/is-open/);
-		await expect(lightbox.locator('[data-q="1080"]')).toHaveText('Оригинал');
+		// Mikhail 30.10: the switch reads 720p / 1080p / 4K on every video.
+		await expect(lightbox.locator('[data-q="1080"]')).toHaveText('1080p');
 		await expect(lightbox.locator('[data-q="2160"]')).toBeHidden();
 		const video = lightbox.locator('video');
 		await expect.poll(() => video.evaluate(el => el.readyState)).toBeGreaterThanOrEqual(2);

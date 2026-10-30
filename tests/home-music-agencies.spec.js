@@ -52,3 +52,16 @@ test('direction cards wait lower near the bottom edge and stick in place further
 	await placeAt(0.3);
 	await expect.poll(lift).toBeLessThan(1);
 });
+
+test('a watch page player offers 720p and 1080p even without 4K', async ({ page }) => {
+	await page.unroute('**/*.mp4*');
+	await page.route('**/*.mp4*', route => (route.request().method() === 'HEAD' ? route.fulfill({ status: 200, headers: { 'content-type': 'video/mp4' } }) : route.abort()));
+	await page.route(/-2160\.mp4/, route => route.fulfill({ status: 404 }));
+	await page.goto('/watch/perfect/');
+	const video = page.locator('video[controls]').first();
+	await video.evaluate(element => element.dispatchEvent(new Event('play')));
+	await video.evaluate(element => element.dispatchEvent(new Event('loadstart')));
+	const picker = page.locator('.video-quality-picker');
+	await expect(picker).toBeVisible({ timeout: 10_000 });
+	await expect(picker.locator('button')).toHaveText(['720p', '1080p']);
+});
