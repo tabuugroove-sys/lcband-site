@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { serveHqMedia } from './hq-media.js';
 
 async function holdBackgroundIdle(page) {
 	await page.addInitScript(() => {
@@ -90,7 +91,7 @@ test.describe('Silent background lifecycle on /about/', () => {
 			await page.addInitScript(value => Object.defineProperty(navigator, 'connection', { configurable: true, value: { saveData: value === 'saveData', effectiveType: value === '2g' || value === '3g' ? value : '4g' } }), preference);
 			if (preference === 'reducedMotion') await page.emulateMedia({ reducedMotion: 'reduce' });
 			const requests = [];
-			page.on('request', request => { if (/band-montage-.*\.mp4/.test(request.url())) requests.push(request.url()); });
+			page.on('request', request => { if (/hq-20261029-about-.*\.mp4/.test(request.url())) requests.push(request.url()); });
 			await page.goto('/about/');
 			await releaseBackgroundIdle(page);
 			await expect(page.locator('[data-background-video]')).not.toHaveAttribute('src', /.+/);
@@ -101,12 +102,13 @@ test.describe('Silent background lifecycle on /about/', () => {
 
 	test('pauses for the lightbox and hidden document, then follows orientation', async ({ page }) => {
 		await holdBackgroundIdle(page);
-		await page.route('**/*.mp4*', route => route.request().url().includes('band-montage-') ? route.continue() : route.abort());
+		await page.route('**/*.mp4*', route => route.abort());
+		await serveHqMedia(page);
 		await page.setViewportSize({ width: 390, height: 844 });
 		await page.goto('/about/');
 		await releaseBackgroundIdle(page);
 		const video = page.locator('[data-background-video]');
-		await expect(video).toHaveAttribute('src', /-360\.mp4$/);
+		await expect(video).toHaveAttribute('src', /-916\.mp4$/);
 		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
 		await page.locator('.about-hero [data-video]').click();
 		await expect.poll(() => video.evaluate(element => element.paused)).toBe(true);
@@ -117,7 +119,7 @@ test.describe('Silent background lifecycle on /about/', () => {
 		await page.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, value: false }); document.dispatchEvent(new Event('visibilitychange')); });
 		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
 		await page.setViewportSize({ width: 844, height: 390 });
-		await expect(video).toHaveAttribute('src', /-540\.mp4$/);
+		await expect(video).toHaveAttribute('src', /-(1280|1920)\.mp4$/);
 		await expect.poll(() => video.evaluate(element => element.paused)).toBe(false);
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		await expect(video).not.toHaveAttribute('src', /.+/);

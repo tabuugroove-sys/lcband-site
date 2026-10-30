@@ -5830,12 +5830,20 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 }
 .reel__video { opacity: 0; transition: opacity .35s ease; }
 .reel__video.is-ready { opacity: 1; }
-/* Появление по очереди — приём карточек apple.com/apple-music: при прокрутке
-   карточка вырастает (scale .5 → 1) и проявляется. У нас все четыре растут из
-   центра сетки одна за другой и теряют скругление, смыкаясь в видеостену.
-   Значения на плитки ставит main.js; без JS и при reduced-motion плитки стоят
-   как есть. Полоса над сеткой выезжает снизу, как заголовки Apple Music. */
-.reel__grid.is-blooming .reel__tile { will-change: transform, opacity; }
+/* Появление по очереди (Михаил 29.10: «один появился, поиграл, потом второй…»):
+   плитка вырастает из центра сетки, как карточки apple.com/apple-music
+   (scale .5 → 1), проявляется и теряет скругление; следующая — через три
+   секунды. Классы ставит main.js; без JS и при reduced-motion все четыре
+   стоят сразу. Полоса над сеткой выезжает снизу, как заголовки Apple Music. */
+.reel__grid.is-sequenced .reel__tile {
+	clip-path: inset(0 round 0);
+	transition: opacity .9s cubic-bezier(.28, .11, .32, 1), transform 1.4s cubic-bezier(.16, 1, .3, 1), clip-path 1.4s cubic-bezier(.16, 1, .3, 1);
+}
+.reel__grid.is-sequenced .reel__tile:not(.is-shown) {
+	opacity: 0;
+	transform: scale(.5);
+	clip-path: inset(0 round 28px);
+}
 .reel__ribbon.is-armed > * {
 	opacity: 0;
 	transform: translateY(18px);

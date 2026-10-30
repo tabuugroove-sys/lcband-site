@@ -39,20 +39,20 @@
 	   preloadHeroMobileWebp: на мобильном hero отдаётся webp из <picture> —
 	   прелоадим его, а jpg прелоадим только на десктопе (без двойной загрузки) #}
 	{% if preloadBackgroundPoster %}
-	<link rel="preload" as="image" href="{{ '/assets/hero/band-montage-20261028-640.webp' | url }}" media="(max-width: 734px) and (orientation: portrait)" fetchpriority="high">
-	<link rel="preload" as="image" href="{{ '/assets/hero/band-montage-20261028-1280.webp' | url }}" media="(min-width: 735px), (orientation: landscape)" fetchpriority="high">
+	<link rel="preload" as="image" href="{{ '/assets/hero/hq-20261029-about-916.webp' | url }}" media="(max-width: 734px) and (orientation: portrait)" fetchpriority="high">
+	<link rel="preload" as="image" href="{{ '/assets/hero/hq-20261029-about-1920.webp' | url }}" media="(min-width: 735px), (orientation: landscape)" fetchpriority="high">
 	{% elif preloadHeroMobileWebp %}
 	<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}" media="(min-width: 735px)">
 	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=70' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=71' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=70' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=71' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ ('/en/sax/' if htmlLang == 'en' else '/sax/') | url }}">
@@ -168,13 +168,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261029package' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261029bloom' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030hq' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261029package' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261029bloom' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030hq' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

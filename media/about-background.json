@@ -1,12 +1,42 @@
 {
-  "source": "assets/video/mp4/promo-main-reel-3c92641df748-720.mp4",
-  "startSeconds": 0,
-  "durationSeconds": 12,
+  "decision": "Михаил 30.10.2026 про фон /about/: «и тут тоже пиксельное получилось видео». Тот же монтаж (Codex 28.10, ~/output/luxuryband-hero-montage-20261028/edit.json), перегнан из 2160/1080-исходников вместо 960×540 при 0,84 Мбит/с.",
   "audio": false,
   "fps": 24,
   "outputs": [
-    {"path": "assets/hero/about-background-20261028-540.mp4", "width": 960, "height": 540, "bytes": 1442827, "sha256": "ee8d9bf0075565455b32810bea381883c12090dd501230d50b0148c27b93a89e"},
-    {"path": "assets/hero/about-background-20261028-360.mp4", "width": 640, "height": 360, "bytes": 722610, "sha256": "4ebbc4d0d52dc1de9515a2531df0d60a573db4c330e281f6d7bce70962f177ae"}
+    {
+      "path": "assets/video/mp4/hq-20261029-about-1920.mp4",
+      "bytes": 12458528,
+      "sha256": "64dc53e826e4b5950bad8679b0f60529ffb7401bbab198e0a77f0255e13d1e3a",
+      "width": 1920,
+      "height": 1080,
+      "durationSeconds": 13.708
+    },
+    {
+      "path": "assets/video/mp4/hq-20261029-about-1280.mp4",
+      "bytes": 7189977,
+      "sha256": "c8e20a99159784faa3733d79bce99c4dc7a95192b088b86e020015fe0d2a32c8",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 13.708
+    },
+    {
+      "path": "assets/video/mp4/hq-20261029-about-916.mp4",
+      "bytes": 8142493,
+      "sha256": "1e1e659bae081ae6aa6006cfbbc5e8c61a1ba21a82bf807e6fa376f9edf983a6",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 13.708
+    },
+    {
+      "path": "assets/hero/hq-20261029-about-1920.webp",
+      "bytes": 58212,
+      "sha256": "6c51435d94d8a512646ea8b3d3ce99059d310a1cc9b73e8ebbd975d5cf74258a"
+    },
+    {
+      "path": "assets/hero/hq-20261029-about-916.webp",
+      "bytes": 52818,
+      "sha256": "0e4eb15a17dca2e6813c50af1466e321065eedd581af2141b86f1d31c6f8bacb"
+    }
   ],
-  "delivery": "Small background loops are committed under assets/hero and deployed with the normal site build. Only play while visible, without Save-Data or reduced-motion. Full performances remain available on click."
+  "delivery": "MP4 — на хостинге в assets/video/mp4 (media/manifest.json); постеры — assets/hero. 1920 — когда ширина окна × devicePixelRatio больше 1600, иначе 1280; на телефоне в портретной ориентации — 1080×1920. Играет только на экране, без Save-Data, 2g/3g и reduced-motion."
 }

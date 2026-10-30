@@ -56,7 +56,10 @@
 				}
 				return;
 			}
-			const selectedSource = mobileMedia.matches ? backgroundVideo.dataset.srcMobile : backgroundVideo.dataset.srcDesktop;
+			// Full-screen 1920 cut on large and retina screens, 1280 elsewhere, portrait cut on phones.
+			const largeScreen = window.innerWidth * (window.devicePixelRatio || 1) > 1600;
+			const selectedSource = mobileMedia.matches ? backgroundVideo.dataset.srcMobile
+				: (largeScreen && backgroundVideo.dataset.srcDesktopHd) || backgroundVideo.dataset.srcDesktop;
 			if (backgroundVideo.getAttribute('src') !== selectedSource) {
 				pause();
 				backgroundVideo.classList.remove('is-ready');
@@ -126,8 +129,10 @@
 	// ---------- Home: four silent reels (2×2) ----------
 	// Same rules as the background montage: posters paint first, the videos load
 	// only after page load and while the grid is on screen, never under reduced
-	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts.
-	// One button pauses and resumes all four.
+	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts
+	// (1920 wide when a tile spans more than 1500 device pixels, else 1280).
+	// The reveal below shows the tiles one by one: a video starts with its tile and
+	// the next one loads ahead of its turn. One button pauses and resumes all four.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
@@ -139,6 +144,7 @@
 		let ready = false;
 		let pageActive = true;
 		let userPaused = false;
+		let shown = videos.length;
 		const allowed = () => !reduceMotion.matches && !navigator.connection?.saveData
 			&& !/2g|3g/.test(navigator.connection?.effectiveType || '');
 		const playerOpen = () => document.body.classList.contains('hero-video-open')
@@ -151,11 +157,16 @@
 			toggle.classList.toggle('is-paused', userPaused);
 			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
 		};
+		const sourceFor = video => {
+			if (squareMedia.matches) return video.dataset.srcSquare;
+			const tilePixels = grid.clientWidth / 2 * (window.devicePixelRatio || 1);
+			return tilePixels > 1500 ? video.dataset.srcWideHd : video.dataset.srcWide;
+		};
 		const update = () => {
 			renderToggle();
 			const play = shouldPlay();
-			for (const video of videos) {
-				if (!play) {
+			videos.forEach((video, i) => {
+				if (!play || i > shown) {
 					video.pause();
 					// A changed accessibility/data preference also stops further buffering.
 					if (!allowed() && video.getAttribute('src')) {
@@ -163,22 +174,25 @@
 						video.load();
 						video.classList.remove('is-ready');
 					}
-					continue;
+					return;
 				}
-				const source = squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide;
+				const source = sourceFor(video);
 				if (video.getAttribute('src') !== source) {
 					video.classList.remove('is-ready');
 					video.muted = true;
 					video.defaultMuted = true;
+					video.preload = 'auto';
 					video.src = source;
 				}
-				if (video.paused) video.play().catch(error => {
+				// The tile after the last shown one only loads; it plays when its turn comes.
+				if (i < shown && video.paused) video.play().catch(error => {
 					// Autoplay blocked (iOS Low Power Mode): keep the posters and offer
 					// the play button — a tap is a user gesture, so it plays.
 					if (error.name === 'NotAllowedError' && shouldPlay()) { userPaused = true; update(); }
 				});
-			}
+			});
 		};
+		host.addEventListener('reel-reveal', event => { shown = event.detail.shown; update(); });
 		toggle.addEventListener('click', () => { userPaused = !userPaused; update(); });
 		for (const video of videos) {
 			video.addEventListener('playing', () => {
@@ -210,62 +224,44 @@
 		else window.addEventListener('load', afterLoad, { once: true });
 	})();
 
-	// ---------- Home reels: one by one, like the cards on apple.com/apple-music ----------
-	// As the grid scrolls in, each tile grows out of the grid centre (scale 0.5 → 1),
-	// fades in and loses its rounded corners, one after another, until the four close
-	// into one video wall. Progress follows the scroll but eases towards it, so a fast
-	// flick or the hero arrow still shows the tiles in turn. Off under reduced motion.
+	// ---------- Home reels: one by one (Mikhail 29.10: «один появился, поиграл, потом второй…») ----------
+	// The first tile grows out of the grid centre, like the cards on apple.com/apple-music
+	// (scale 0.5 → 1, fade in, corners square off), and plays alone for three seconds;
+	// then the next one comes in, and so on until the four close into one video wall.
+	// The sequence starts once half the grid is on screen. Off under reduced motion:
+	// all four are there at once.
 	(() => {
-		const grid = document.querySelector('[data-reel-grid]');
-		if (!grid || reduceMotion.matches) return;
-		const ribbon = grid.closest('[data-reel]')?.querySelector('.reel__ribbon');
+		const host = document.querySelector('[data-reel]');
+		const grid = host?.querySelector('[data-reel-grid]');
+		if (!grid || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+		const ribbon = host.querySelector('.reel__ribbon');
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
-		const stagger = 0.14;
-		const span = 1 - (tiles.length - 1) * stagger;
-		let target = 0;
-		let current = 0;
-		let frame = 0;
-		const ease = t => t * t * (3 - 2 * t);
+		const pause = 3000;
+		const timers = [];
+		const announce = shown => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown } }));
 		const place = () => {
 			const cx = grid.clientWidth / 2;
 			const cy = grid.clientHeight / 2;
 			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
 		};
-		// 0 when the grid top is 90% down the screen, 1 when it is 20% from the top,
-		// so the whole sequence plays while the grid is in view.
-		const progress = () => {
-			const top = grid.getBoundingClientRect().top;
-			return Math.min(1, Math.max(0, (window.innerHeight * 0.9 - top) / (window.innerHeight * 0.7)));
+		const show = i => {
+			tiles[i].classList.add('is-shown');
+			announce(i + 1);
+			if (i + 1 < tiles.length) timers.push(window.setTimeout(() => show(i + 1), pause));
 		};
-		const paint = () => {
-			tiles.forEach((tile, i) => {
-				const p = ease(Math.min(1, Math.max(0, (current - i * stagger) / span)));
-				const done = p >= 0.999;
-				tile.style.opacity = done ? '' : String(0.001 + 0.999 * p);
-				tile.style.transform = done ? '' : `scale(${0.5 + 0.5 * p})`;
-				tile.style.clipPath = done ? '' : `inset(0 round ${28 * (1 - p)}px)`;
-			});
-			grid.classList.toggle('is-blooming', current > 0 && current < 1);
-		};
-		const tick = () => {
-			current += (target - current) * 0.16;
-			if (Math.abs(target - current) < 0.002) current = target;
-			paint();
-			frame = current === target ? 0 : requestAnimationFrame(tick);
-		};
-		const onScroll = () => {
-			target = progress();
-			if (!frame && target !== current) frame = requestAnimationFrame(tick);
-		};
-		const onResize = () => { place(); onScroll(); };
 		place();
-		target = current = progress();
-		paint();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		window.addEventListener('resize', onResize);
+		grid.classList.add('is-sequenced');
+		announce(0);
+		window.addEventListener('resize', place);
+		const begin = new IntersectionObserver(entries => {
+			if (!entries[0].isIntersecting) return;
+			begin.disconnect();
+			show(0);
+		}, { threshold: 0.5 });
+		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
-		if (ribbon && 'IntersectionObserver' in window) {
+		if (ribbon) {
 			ribbon.classList.add('is-armed');
 			ribbonWatch = new IntersectionObserver(entries => {
 				if (!entries[0].isIntersecting) return;
@@ -276,13 +272,13 @@
 		}
 		reduceMotion.addEventListener('change', () => {
 			if (!reduceMotion.matches) return;
-			cancelAnimationFrame(frame);
-			window.removeEventListener('scroll', onScroll);
-			window.removeEventListener('resize', onResize);
+			begin.disconnect();
+			timers.forEach(timer => window.clearTimeout(timer));
 			ribbonWatch?.disconnect();
 			ribbon?.classList.remove('is-armed');
-			grid.classList.remove('is-blooming');
-			for (const tile of tiles) tile.removeAttribute('style');
+			grid.classList.remove('is-sequenced');
+			for (const tile of tiles) { tile.classList.add('is-shown'); tile.style.removeProperty('transform-origin'); }
+			announce(tiles.length);
 		});
 	})();
 

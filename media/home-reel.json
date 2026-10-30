@@ -1,132 +1,149 @@
 {
-  "decision": "Михаил 29.10.2026: вместо фото блока «О группе» на главной — четыре немых ролика 2×2: Epic Live 04 «Голоса», студийное промо «пик за пиком», Epic Live 06 «Неон», Epic Live 03 «Зал поёт».",
+  "decision": "Михаил 29.10.2026: вместо фото блока «О группе» на главной — четыре немых ролика 2×2: Epic Live 04 «Голоса», студийное промо «пик за пиком», лучшие моменты остальных видео (mix-12, вместо 06 «Неон» — слева снизу), Epic Live 03 «Зал поёт». 30.10: «взять версии из 4k, чтобы пикселей не было»; плитки появляются по очереди с паузой 3 с.",
   "sources": {
-    "epic": "Epic Live (ICON): edit-03/04/06.json из ~/output/luxuryband-epic-montage-20261029, HQ live-icon-cut42-1080.mp4; первая песня — только из резервной копии 2,1 Мбит/с",
-    "studio-11": "студийное промо 4K (promo-main-reel-3c92641df748-2160.mp4), edit-11.json в ~/output/luxuryband-reel-grid-20261029"
+    "epic": "Epic Live (ICON): edit-03/04 из ~/output/luxuryband-epic-montage-20261029, кадры первой песни (только 2,1 Мбит/с) заменены моментами из HQ-нарезки 1080p 15 Мбит/с",
+    "studio-11": "студийное промо 4K (promo-main-reel-3c92641df748-2160.mp4)",
+    "mix-12": "яркие моменты остальных видео сайта (2160/1080): live-big-lineup, latin dance master class, live-adele-hello, old-money-band, live-soho, laz-video-02/03, thematic-retro-90s; edit в ~/output/luxuryband-hq-reels-20261029/work/edit-mix-12.json"
   },
   "audio": false,
   "fps": 24,
   "outputs": [
     {
-      "path": "assets/hero/reel-20261029-epic-04-wide.mp4",
-      "width": 960,
-      "height": 480,
-      "bytes": 1580315,
-      "sha256": "7d2c424fa4aeaa7b36c40a5186ab5c47a5ce219f979c10d5e5a43d05980acb06",
+      "path": "assets/video/mp4/hq-20261029-epic-04-wide1920.mp4",
+      "bytes": 10771939,
+      "sha256": "c36738dbb141f7ddce27ac77b469a3b1abe9133212d731409d4bc795d4ce0d0f",
+      "width": 1920,
+      "height": 960,
       "durationSeconds": 13.583
     },
     {
-      "path": "assets/hero/reel-20261029-epic-04-wide.webp",
-      "width": 960,
-      "height": 480,
-      "bytes": 21970,
-      "sha256": "7b535f6e73b827e977b489165e32ebccc3c4d2cf019378d95376f37aedbf4c8f"
-    },
-    {
-      "path": "assets/hero/reel-20261029-epic-04-square.mp4",
-      "width": 540,
-      "height": 540,
-      "bytes": 1079320,
-      "sha256": "bc868d806438b5f5ef4e36b2c7476f046c1d1691e4cbd6498540cb7d39f98f83",
+      "path": "assets/video/mp4/hq-20261029-epic-04-wide1280.mp4",
+      "bytes": 6271932,
+      "sha256": "b91b8b54e0cc50498ed376bead6d5342d8afb7930549ac4a498694445ddbeebb",
+      "width": 1280,
+      "height": 640,
       "durationSeconds": 13.583
     },
     {
-      "path": "assets/hero/reel-20261029-epic-04-square.webp",
-      "width": 540,
-      "height": 540,
-      "bytes": 16654,
-      "sha256": "2925272ddd378b2967bb7a0337f2f56f67da4f42b303f3f17c9398d2d1aafbbb"
+      "path": "assets/video/mp4/hq-20261029-epic-04-square.mp4",
+      "bytes": 4486212,
+      "sha256": "c5be201cc7330481d70609f8193bc1383f1238dbbb3f0746ff50446af47e7c5a",
+      "width": 720,
+      "height": 720,
+      "durationSeconds": 13.583
     },
     {
-      "path": "assets/hero/reel-20261029-studio-11-wide.mp4",
-      "width": 960,
-      "height": 480,
-      "bytes": 1483946,
-      "sha256": "311acff4dab662ca6fab7f289f1424c35f616b64c488d719cdf841a5c80334ff",
+      "path": "assets/hero/hq-20261029-epic-04-wide.webp",
+      "bytes": 41786,
+      "sha256": "334f6b0ae787917a466055a1354596c09bc51a46d4dbcc2a46303d01eb4581eb"
+    },
+    {
+      "path": "assets/hero/hq-20261029-epic-04-square.webp",
+      "bytes": 31320,
+      "sha256": "3df434ae4f15303282ee5a1ec1f9b5268eee9f561acbe6e5ae0b7c2cb6281050"
+    },
+    {
+      "path": "assets/video/mp4/hq-20261029-studio-11-wide1920.mp4",
+      "bytes": 9794149,
+      "sha256": "ce2c1fe174ada83611acf6983469e91406c15685c5f9f0e6abd231a42f302241",
+      "width": 1920,
+      "height": 960,
       "durationSeconds": 12.5
     },
     {
-      "path": "assets/hero/reel-20261029-studio-11-wide.webp",
-      "width": 960,
-      "height": 480,
-      "bytes": 10782,
-      "sha256": "803ec87592063fefe522125f6860f9fbde22d127e1b26bc9c9c9abd8f91baee4"
-    },
-    {
-      "path": "assets/hero/reel-20261029-studio-11-square.mp4",
-      "width": 540,
-      "height": 540,
-      "bytes": 1077122,
-      "sha256": "a38e76ade91aafd626b6dff42ea0346ec024e1e545fe6407f27d2b4eb7c710a9",
+      "path": "assets/video/mp4/hq-20261029-studio-11-wide1280.mp4",
+      "bytes": 4530268,
+      "sha256": "7862c024938f9c635791dd847a1e916481e1afc9e8b8875892429d860d274868",
+      "width": 1280,
+      "height": 640,
       "durationSeconds": 12.5
     },
     {
-      "path": "assets/hero/reel-20261029-studio-11-square.webp",
-      "width": 540,
-      "height": 540,
-      "bytes": 7486,
-      "sha256": "04351cb65d1cb23057ac22edb78a6b2eef6300871f33ab62690f006411b22a62"
+      "path": "assets/video/mp4/hq-20261029-studio-11-square.mp4",
+      "bytes": 3343959,
+      "sha256": "159b39bbf44ce8bf796b45f66a67743fc0a1a7bc576a2d0639f29349dea39632",
+      "width": 720,
+      "height": 720,
+      "durationSeconds": 12.5
     },
     {
-      "path": "assets/hero/reel-20261029-epic-06-wide.mp4",
-      "width": 960,
-      "height": 480,
-      "bytes": 1575736,
-      "sha256": "46e13acda19336f66e041743b147caeb1dc76d829ac14b3f819e550f5ee40613",
-      "durationSeconds": 13.542
+      "path": "assets/hero/hq-20261029-studio-11-wide.webp",
+      "bytes": 21030,
+      "sha256": "2302a1195c24951d3527f8447335551b693262bb4190b3f6a0d934f54a69dc67"
     },
     {
-      "path": "assets/hero/reel-20261029-epic-06-wide.webp",
-      "width": 960,
-      "height": 480,
-      "bytes": 40166,
-      "sha256": "1a6a7767cc6d5faa941928b646831a4775811b0a83c8a984713b8416bb983d4e"
+      "path": "assets/hero/hq-20261029-studio-11-square.webp",
+      "bytes": 14632,
+      "sha256": "6fc8a8435d93dc7f3fdd935a6f10094dde6a7d4af5426b174551ab9794e2b37a"
     },
     {
-      "path": "assets/hero/reel-20261029-epic-06-square.mp4",
-      "width": 540,
-      "height": 540,
-      "bytes": 1076084,
-      "sha256": "0b0700404a818613d360b1e818b89fd861284b2ae6a9337c082949bb071e376e",
-      "durationSeconds": 13.542
+      "path": "assets/video/mp4/hq-20261029-mix-12-wide1920.mp4",
+      "bytes": 10000447,
+      "sha256": "a5069f63960bc710301f36b625ee0660b0152719dea6246729241ac7e003de54",
+      "width": 1920,
+      "height": 960,
+      "durationSeconds": 12.583
     },
     {
-      "path": "assets/hero/reel-20261029-epic-06-square.webp",
-      "width": 540,
-      "height": 540,
-      "bytes": 23992,
-      "sha256": "f481b0444cc78b473aa4b0d9b001b07580f64f6366cf5f0246819e534372a65e"
+      "path": "assets/video/mp4/hq-20261029-mix-12-wide1280.mp4",
+      "bytes": 5829510,
+      "sha256": "d5aa8949736a92090e4cfa2065a4b4cb685d7541d2b31f52fb0d3d5da9154e46",
+      "width": 1280,
+      "height": 640,
+      "durationSeconds": 12.583
     },
     {
-      "path": "assets/hero/reel-20261029-epic-03-wide.mp4",
-      "width": 960,
-      "height": 480,
-      "bytes": 1592256,
-      "sha256": "6a943cf367b69c49ecb4722e2bc407d51a9f87ea95f5414bf9101d4179227a0c",
+      "path": "assets/video/mp4/hq-20261029-mix-12-square.mp4",
+      "bytes": 4181597,
+      "sha256": "cdaf5025b4793cdf60aef423aeadc4617a37d1b56c1ca4259a3baffcde5e4a87",
+      "width": 720,
+      "height": 720,
+      "durationSeconds": 12.583
+    },
+    {
+      "path": "assets/hero/hq-20261029-mix-12-wide.webp",
+      "bytes": 53884,
+      "sha256": "fc4d2d006e3d76be6ef1cb1e4d8676a3857acf6465efeafd3b84239e8f03087a"
+    },
+    {
+      "path": "assets/hero/hq-20261029-mix-12-square.webp",
+      "bytes": 43988,
+      "sha256": "406030893c9c21422c61ee3c33dbbdcb012292d289f0b0e9d0cc56138b9cfa55"
+    },
+    {
+      "path": "assets/video/mp4/hq-20261029-epic-03-wide1920.mp4",
+      "bytes": 11654457,
+      "sha256": "dbefe8d959637999ddfa9f1e46b82e52f11ce3e39ea22a435ba886c15141abd8",
+      "width": 1920,
+      "height": 960,
       "durationSeconds": 14.75
     },
     {
-      "path": "assets/hero/reel-20261029-epic-03-wide.webp",
-      "width": 960,
-      "height": 480,
-      "bytes": 27774,
-      "sha256": "2367a83c006365c190bac0783fe310ed4497420867a382048d06f65193565bc6"
-    },
-    {
-      "path": "assets/hero/reel-20261029-epic-03-square.mp4",
-      "width": 540,
-      "height": 540,
-      "bytes": 1069947,
-      "sha256": "30aca6af815e9eed7e61e7f571b39c45b3f43ac86e6b6528d6015f6dbcc6a261",
+      "path": "assets/video/mp4/hq-20261029-epic-03-wide1280.mp4",
+      "bytes": 6778208,
+      "sha256": "ef2e6231d4f7670a44a637809ca1f1453b414ef3d072393f5c56065e41ea1659",
+      "width": 1280,
+      "height": 640,
       "durationSeconds": 14.75
     },
     {
-      "path": "assets/hero/reel-20261029-epic-03-square.webp",
-      "width": 540,
-      "height": 540,
-      "bytes": 19162,
-      "sha256": "270bf8fe481df6eabab7e18a870a17dd1dbee5127c0cb0fcb08f63ef6e7cb2fb"
+      "path": "assets/video/mp4/hq-20261029-epic-03-square.mp4",
+      "bytes": 4844999,
+      "sha256": "cb22e49725b2ef605638b4af0c5618ae2be33962003f998ed6a4a3ef204656e8",
+      "width": 720,
+      "height": 720,
+      "durationSeconds": 14.75
+    },
+    {
+      "path": "assets/hero/hq-20261029-epic-03-wide.webp",
+      "bytes": 57320,
+      "sha256": "c00331abed599e4a5d08f907d0704d469bdf521b6b568a0d7d2153d8f063abde"
+    },
+    {
+      "path": "assets/hero/hq-20261029-epic-03-square.webp",
+      "bytes": 40542,
+      "sha256": "c001866a77fd29036beae0a9d2a0147caea0320a24f733548aeb9d3cf47fec76"
     }
   ],
-  "delivery": "Короткие немые петли лежат в assets/hero и выкатываются со сборкой сайта. Широкие 2:1 — для экранов от 600px (плитки 3:2 → 2:1 → 21:9), квадратные — для телефонов. Играют только на экране, без Save-Data, 2g/3g и reduced-motion; до запуска — постеры webp."
+  "delivery": "MP4 лежат на хостинге в assets/video/mp4 и перечислены в media/manifest.json (выкладка — scp на sprinthost-luxuryband, новые имена, без перезаписи); постеры webp — assets/hero, идут со сборкой. Широкие 1920 — когда плитка шире 1500 пикселей устройства, иначе 1280; квадраты 720 — на телефонах. Ролик стартует, когда появляется его плитка; играют только на экране, без Save-Data, 2g/3g и reduced-motion."
 }
