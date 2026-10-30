@@ -127,14 +127,14 @@
 	})();
 
 	// ---------- Home: four silent reels (2×2) ----------
-	// Same rules as the background montage: posters paint first, the videos load
-	// only after page load and while the grid is on screen, never under reduced
-	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts.
-	// The reveal below shows the tiles one by one and a video loads only once its
-	// tile is shown, so four never load at once; the first one is fetched ahead as the
-	// grid comes near, so it moves as soon as it grows in. One button pauses and resumes them.
-	// «Первые два появились одновременно и не двигаются» (30.10, page still loading): a
-	// visitor who has scrolled to the grid does not wait for the rest of the page.
+	// Never under reduced motion, Save-Data or 2g/3g. Phones get square cuts, wider
+	// screens 2:1 cuts. «Основная фотка первая загрузилась — сразу пусть загружаются первые
+	// два, чтобы успели, пока он вниз листает» (Mikhail 30.10): once the first screen's
+	// picture is in, the first two videos load ahead (paused), the third once the second
+	// can play, the fourth once the third can — so the bottom of the page already has
+	// something to play when the visitor gets there, and no more than two load at once.
+	// A tile plays only once the reveal below has shown it, and only on screen.
+	// One button pauses and resumes them.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
@@ -143,7 +143,7 @@
 		if (!grid || !toggle || !videos.length || !('IntersectionObserver' in window)) return;
 		const squareMedia = window.matchMedia('(max-width: 599px)');
 		let visible = false;
-		let near = false;
+		let early = false;
 		let ready = false;
 		let pageActive = true;
 		let userPaused = false;
@@ -161,19 +161,23 @@
 			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
 		};
 		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
-		// «Чтобы сразу двигалось, а не картинка висит» (Mikhail 30.10): the tile that comes next
-		// warms up — its video already plays, hidden, once the one before it is moving (the
-		// first one as the grid comes near), so the tile grows in already moving. Still one
-		// video loading at a time.
-		const warming = i => i === shown && near && ready && pageActive && !document.hidden
-			&& allowed() && !userPaused && !playerOpen()
-			&& (i === 0 || videos[i - 1].classList.contains('is-ready'));
-		const wanted = i => (i < shown && shouldPlay()) || warming(i);
+		const ahead = i => early && pageActive && allowed() && (i < 2 || videos[i - 1].readyState >= 3);
+		const wanted = i => i < shown && shouldPlay();
+		const attach = video => {
+			const source = sourceFor(video);
+			if (video.getAttribute('src') === source) return;
+			video.classList.remove('is-ready');
+			video.muted = true;
+			video.defaultMuted = true;
+			video.preload = 'auto';
+			video.src = source;
+		};
 		const update = () => {
 			renderToggle();
 			videos.forEach((video, i) => {
 				if (!wanted(i)) {
 					video.pause();
+					if (ahead(i)) attach(video);
 					// A changed accessibility/data preference also stops further buffering.
 					if (!allowed() && video.getAttribute('src')) {
 						video.removeAttribute('src');
@@ -182,14 +186,7 @@
 					}
 					return;
 				}
-				const source = sourceFor(video);
-				if (video.getAttribute('src') !== source) {
-					video.classList.remove('is-ready');
-					video.muted = true;
-					video.defaultMuted = true;
-					video.preload = 'auto';
-					video.src = source;
-				}
+				attach(video);
 				if (video.paused) video.play().catch(error => {
 					// Autoplay blocked (iOS Low Power Mode): keep the posters and offer
 					// the play button — a tap is a user gesture, so it plays.
@@ -203,19 +200,23 @@
 			video.addEventListener('playing', () => {
 				if (!wanted(i)) { video.pause(); return; }
 				video.classList.add('is-ready');
-				update();
 			});
+			video.addEventListener('canplay', update);
 			video.addEventListener('error', () => video.classList.remove('is-ready'));
 		});
 		new IntersectionObserver(entries => {
 			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
 			update();
 		}, { threshold: [0, 0.1] }).observe(grid);
-		new IntersectionObserver(entries => {
-			near = entries[0].isIntersecting;
-			if (near) ready = true;
-			update();
-		}, { rootMargin: '0px 0px 600px 0px' }).observe(grid);
+		const begin = () => { if (early) return; early = true; ready = true; update(); };
+		const firstPicture = document.querySelector('.hero img[fetchpriority="high"], .hero img');
+		if (!firstPicture || firstPicture.complete) begin();
+		else {
+			firstPicture.addEventListener('load', begin, { once: true });
+			firstPicture.addEventListener('error', begin, { once: true });
+		}
+		// Whatever the first screen does, a visitor who reaches the grid gets it at once.
+		new IntersectionObserver(entries => { if (entries[0].isIntersecting) begin(); }, { rootMargin: '0px 0px 600px 0px' }).observe(grid);
 		document.addEventListener('visibilitychange', update);
 		window.addEventListener('pagehide', () => { pageActive = false; update(); });
 		window.addEventListener('pageshow', () => { pageActive = true; update(); });
@@ -264,23 +265,26 @@
 			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
 		};
 		let stopWaiting = () => {};
-		// The next tile grows in once its warmed-up video moves, so no still picture hangs
-		// there; a slow network holds it no longer than readyWait.
+		// The next tile grows in once its video, loaded ahead, can play, so no still picture
+		// hangs there; a slow network holds it no longer than readyWait.
 		let holding = false;
 		const whenMoving = show => {
 			const index = shown;
 			const video = tiles[index]?.querySelector('[data-reel-video]');
-			if (!video?.getAttribute('src') || video.currentTime > 0.05) { show(); return; }
+			const playable = () => video.readyState >= 3 || video.currentTime > 0.05;
+			if (!video?.getAttribute('src') || playable()) { show(); return; }
 			if (holding) return;
 			holding = true;
 			const done = () => {
+				video.removeEventListener('canplay', check);
 				video.removeEventListener('timeupdate', check);
 				window.clearTimeout(cap);
 				holding = false;
 				if (shown === index) show();
 			};
-			const check = () => { if (video.currentTime > 0.05) done(); };
+			const check = () => { if (playable()) done(); };
 			const cap = window.setTimeout(done, readyWait);
+			video.addEventListener('canplay', check);
 			video.addEventListener('timeupdate', check);
 		};
 		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
@@ -443,9 +447,10 @@
 	// WebGL shader. «Круги быстро из середины выходят, переливаются на краях экрана и
 	// пропадают, пока снова мышкой не поводят», «чёрный четырёхугольник не надо, фон и так
 	// чёрный»: a wave is born in the middle, faint under the text, at full strength past the
-	// text's edge (its half-diagonal), rushes to the screen's side edges in ~0.7 s, lingers
-	// there for about a second, shimmering, while the next ones catch up and gather, then
-	// speeds off the screen («у краёв притормаживает… скапливаются… потом уходят», 30.10);
+	// text's edge (its half-diagonal), flies out fast and slows as if against gravity to
+	// almost a stop at the screen's side edges, shimmering there while the next ones catch
+	// up, then speeds off the screen — one cubic curve, two seconds («у краёв притормаживает…
+	// как будто гравитация… потом уходит», 30.10);
 	// no masks of any kind. «Плавно поворачивались на 25°, чем ближе к мышке, тем
 	// больше поворот»: the ring's plane tilts towards the cursor, up to 25° as it comes near,
 	// easing in and out. Moving the mouse over the block sends new waves (scrolling does on
@@ -523,16 +528,16 @@ void main(){
 	for(int i=0;i<6;i++){
 		float age=time-waves[i].x;float amp=waves[i].y;
 		if(age<0.||amp<=0.)continue;
-		float life=age/2.4;
+		float life=age/2.;
 		if(life>1.)continue;
 		vec2 dir=waves[i].zw;
 		float face=.5+.5*dot(q/(d+.001),dir);
-		// «У краёв притормаживает, следующие догоняют, переливаются, потом уходят» (Михаил 30.10):
-		// быстро к краю экрана, почти стоит у края (там копятся следующие), разгон и за экран.
+		// «У краёв притормаживает… но как будто гравитация: быстро идёт, постепенно замедляется,
+		// потом уходит» (Михаил 30.10): одна кубическая кривая — быстрый вылет, плавное
+		// торможение до почти нуля у края экрана (там и переливается), плавный разгон за экран.
 		float rb=radius*.12;
-		float rr=life<.3?mix(rb,rEdge*.86,ease(life/.3))
-			:life<.76?rEdge*mix(.86,.97,(life-.3)/.46)
-			:mix(rEdge*.97,rExit,(life-.76)*(life-.76)/.0576);
+		float sl0=life-.5;
+		float rr=max(rb,rEdge*(1.+(1.-rb/rEdge)*8.*sl0*sl0*sl0));
 		float travel=clamp((rr-rb)/(rExit-rb),0.,1.);
 		float r0=rr+6.*px*amp*face*sin(th*5.+t*6.);
 		float T=Tfull*(.4+.6*travel)*(1.+amp*.15*face);
@@ -568,7 +573,7 @@ void main(){
 	col=min(col,.85)+.15*(1.-exp(-kx/.15));
 	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
 }`;
-		const life = 2.4;
+		const life = 2;
 		const setup = (canvas, section, inner) => {
 			const gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true });
 			if (!gl) { canvas.remove(); return; }

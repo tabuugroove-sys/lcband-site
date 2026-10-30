@@ -3,8 +3,8 @@ import { serveHqMedia } from './hq-media.js';
 
 // Four silent reels 2×2 replaced the about photo block on the homepage (Mikhail, 29.10):
 // the grid is 21:9 → 2:1 → 3:2 by width and four squares on phones, with square cuts there.
-// 30.10: light cuts from 4K sources; a tile comes in only once the video before it is moving,
-// and a video loads only when its tile is shown.
+// 30.10: light cuts from 4K sources; a tile comes in only once the video before it is moving;
+// the first two videos load as soon as the first screen's picture is in, the others in turn.
 const reelVideos = page => page.locator('[data-reel-video]');
 const allPlaying = list => list.every(video => !video.paused && video.readyState >= 2);
 
@@ -47,7 +47,8 @@ test.describe('Homepage reel', () => {
 		const videos = reelVideos(page);
 		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
 		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
-		expect(await videos.nth(3).getAttribute('src')).toBeNull();
+		// Videos load ahead (30.10), but a tile's video plays only once the tile is shown.
+		expect(await videos.nth(3).evaluate(video => video.paused)).toBe(true);
 		// The second tile waits until the first video is really moving.
 		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 6_000 });
 		expect(await videos.nth(0).evaluate(video => video.currentTime)).toBeGreaterThan(0);
