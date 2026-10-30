@@ -3846,6 +3846,11 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 }
 
 .page-hero--list { padding-bottom: 48px; }
+/* Райдеры (Михаил 30.10): сначала файлы, под ними текст мелким, без крупного заголовка. */
+.riders-page .page-hero__eyebrow { margin-bottom: 24px; }
+.riders-page__text { margin-top: 40px; max-width: 720px; }
+.riders-page__text .page-hero__lead { font-size: 17px; line-height: 1.47; letter-spacing: -.022em; }
+.riders-page__text .page-hero__lead + .page-hero__lead { margin-top: 12px; }
 
 .page-hero__breadcrumb {
 	font-family: var(--ff-display);

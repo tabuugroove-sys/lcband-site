@@ -6,21 +6,14 @@ keywords: "технический райдер, hospitality райдер, рай
 permalink: /riders/
 ---
 
-<section class="page-hero page-hero--list">
-	<div class="container container--narrow">
+{#- Михаил 30.10: «сначала пусть будут файлы, а потом текст; крупным не надо, сразу то, что мелким». -#}
+<section class="page-hero page-hero--list riders-page">
+	<div class="container">
 		<p class="page-hero__breadcrumb">
 			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
 			<span>Райдеры</span>
 		</p>
-		<p class="page-hero__eyebrow">Технические райдеры</p>
-		<h1 class="page-hero__title">Обычно нас шестеро.<br><span class="muted">Бывает четверо, бывает семеро.</span></h1>
-		<p class="page-hero__lead">Обычно мы выступаем вшестером: три вокалиста и три музыканта, под этот состав и написан основной райдер. На маленькую площадку или под скромный бюджет приедем вчетвером или впятером, а на большую сцену можем выйти всемером.</p>
-		<p class="page-hero__lead">Все райдеры ниже, их можно скачать. Для поездок за границу есть английская версия. Нужен дуэт или состав больше семи человек? <a href="{{ site.telegram }}">Напишите нам в Телеграм</a>, пришлём райдер под ваш вариант.</p>
-	</div>
-</section>
-
-<section class="section section--elev">
-	<div class="container reveal">
+		<h1 class="page-hero__eyebrow">Технические райдеры</h1>
 		<ul class="riders">
 			<li class="rider rider--main">
 				<div class="rider__badge">Основной</div>
@@ -65,5 +58,9 @@ permalink: /riders/
 				<a class="rider__link" href="{{ '/assets/riders/rider-international-7pc-en.pdf' | url }}" download>Download PDF →</a>
 			</li>
 		</ul>
+		<div class="riders-page__text">
+			<p class="page-hero__lead">Обычно мы выступаем вшестером: три вокалиста и три музыканта, под этот состав и написан основной райдер. На маленькую площадку или под скромный бюджет приедем вчетвером или впятером, а на большую сцену можем выйти всемером.</p>
+			<p class="page-hero__lead">Для поездок за границу есть английская версия. Нужен дуэт или состав больше семи человек? <a href="{{ site.telegram }}">Напишите нам в Телеграм</a>, пришлём райдер под ваш вариант.</p>
+		</div>
 	</div>
 </section>
