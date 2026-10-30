@@ -115,8 +115,8 @@
 
 <!-- =============== DIRECTIONS (6 tiles, 2-up Apple-style) =============== -->
 <section class="section section--flush" id="directions">
-	<div class="reveal">
-		<ul class="tile-grid tile-grid--bleed{% if tilesVariant == 'v4' %} tile-grid--v4{% endif %}">
+	<div>
+		<ul data-magnet="desktop" class="tile-grid tile-grid--bleed{% if tilesVariant == 'v4' %} tile-grid--v4{% endif %}">
 			<li class="tile tile--has-photo tile--copy-top tile--copy-dark tile--corporate">
 				<a class="tile__tap-target" href="{{ '/events/corporate/' | url }}" aria-label="Открыть: Корпоративы"></a>
 				<picture class="tile__pic">

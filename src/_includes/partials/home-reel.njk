@@ -3,8 +3,8 @@
     видео (mix-12, вместо 06 «Неон» — слева снизу) и 03 «Зал поёт».
     Полоса сверху — по образцу ленточки Apple One: одна фраза и «Узнать больше».
     Формат сетки по ширине экрана: 21:9 → 2:1 → 3:2, на телефоне четыре квадрата.
-    Ролики из 4K/HQ-исходников («чтобы пикселей не было»): широкие 1280 и 1920
-    (main.js берёт 1920 на больших и retina-экранах), квадраты 720; лежат на хостинге
+    Ролики из 4K/HQ-исходников («чтобы пикселей не было»), 30.10 облегчены («приоритет —
+    скорость»): широкие 1280×640 ≈ 1,6 Мбит/с, квадраты 640 ≈ 1 Мбит/с; лежат на хостинге
     в assets/video/mp4 (media/manifest.json), постеры — assets/hero, описание —
     media/home-reel.json. Странице задать reelTitle, reelHref, reelMore. -#}
 {% set reelLabels = {
@@ -29,9 +29,8 @@
 				<img src="{{ ('/assets/hero/hq-20261029-' + id + '-wide.webp') | url }}" alt="" width="1280" height="640" loading="lazy" decoding="async">
 			</picture>
 			<video class="reel__video" data-reel-video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
-				data-src-wide="{{ ('/assets/video/mp4/hq-20261029-' + id + '-wide1280.mp4') | url }}"
-				data-src-wide-hd="{{ ('/assets/video/mp4/hq-20261029-' + id + '-wide1920.mp4') | url }}"
-				data-src-square="{{ ('/assets/video/mp4/hq-20261029-' + id + '-square.mp4') | url }}"></video>
+				data-src-wide="{{ ('/assets/video/mp4/lt2-20261030-' + id + '-wide.mp4') | url }}"
+				data-src-square="{{ ('/assets/video/mp4/lt2-20261030-' + id + '-square.mp4') | url }}"></video>
 		</div>
 		{%- endfor %}
 		<button class="reel__toggle" type="button" data-reel-toggle hidden

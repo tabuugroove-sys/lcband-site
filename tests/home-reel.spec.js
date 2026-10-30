@@ -3,8 +3,8 @@ import { serveHqMedia } from './hq-media.js';
 
 // Four silent reels 2×2 replaced the about photo block on the homepage (Mikhail, 29.10):
 // the grid is 21:9 → 2:1 → 3:2 by width and four squares on phones, with square cuts there.
-// 30.10: HQ cuts from 4K sources; the tiles come in one by one, 1.5 s apart and faster while
-// the visitor scrolls, each video starting with its tile.
+// 30.10: light cuts from 4K sources; a tile comes in only once the video before it is moving,
+// and a video loads only when its tile is shown.
 const reelVideos = page => page.locator('[data-reel-video]');
 const allPlaying = list => list.every(video => !video.paused && video.readyState >= 2);
 
@@ -46,12 +46,14 @@ test.describe('Homepage reel', () => {
 		const videos = reelVideos(page);
 		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
 		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
-		expect(await videos.nth(3).evaluate(video => video.paused)).toBe(true);
-		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 3_000 });
-		await expect(tiles.nth(3)).toHaveClass(/is-shown/, { timeout: 6_000 });
+		expect(await videos.nth(3).getAttribute('src')).toBeNull();
+		// The second tile waits until the first video is really moving.
+		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 6_000 });
+		expect(await videos.nth(0).evaluate(video => video.currentTime)).toBeGreaterThan(0);
+		await expect(tiles.nth(3)).toHaveClass(/is-shown/, { timeout: 15_000 });
 		await expect.poll(() => videos.evaluateAll(allPlaying), { timeout: 15_000 }).toBe(true);
 		const sources = await videos.evaluateAll(list => list.map(video => video.getAttribute('src')));
-		for (const src of sources) expect(src).toMatch(isMobile ? /-square\.mp4$/ : /-wide(1280|1920)\.mp4$/);
+		for (const src of sources) expect(src).toMatch(isMobile ? /-square\.mp4$/ : /-wide\.mp4$/);
 	});
 
 	test('a fast scroll brings all four in before the grid leaves the screen', async ({ page }) => {
@@ -98,7 +100,7 @@ test.describe('Homepage reel under reduced motion', () => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		const requests = [];
 		page.on('request', request => {
-			if (/hq-20261029-[a-z0-9-]+\.mp4/.test(request.url())) requests.push(request.url());
+			if (/(hq-20261029|lt2-20261030)-[a-z0-9-]+\.mp4/.test(request.url())) requests.push(request.url());
 		});
 		await page.goto('/');
 		await page.locator('#about').scrollIntoViewIfNeeded();

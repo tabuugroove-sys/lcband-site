@@ -1,30 +1,30 @@
 {
-  "decision": "Михаил 30.10.2026 про фон /about/: «и тут тоже пиксельное получилось видео». Тот же монтаж (Codex 28.10, ~/output/luxuryband-hero-montage-20261028/edit.json), перегнан из 2160/1080-исходников вместо 960×540 при 0,84 Мбит/с.",
+  "decision": "Михаил 30.10.2026 про фон /about/: «и тут тоже пиксельное получилось видео». Тот же монтаж (Codex 28.10, ~/output/luxuryband-hero-montage-20261028/edit.json), перегнан из 2160/1080-исходников вместо 960×540 при 0,84 Мбит/с. Михаил 30.10: облегчено («приоритет скорость»): 1920 (≤2,6 Мбит/с) для больших и retina-экранов, 1280 (≤1,6 Мбит/с), портрет 720×1280 (≤1,6 Мбит/с).",
   "audio": false,
   "fps": 24,
   "outputs": [
     {
-      "path": "assets/video/mp4/hq-20261029-about-1920.mp4",
-      "bytes": 12458528,
-      "sha256": "64dc53e826e4b5950bad8679b0f60529ffb7401bbab198e0a77f0255e13d1e3a",
+      "path": "assets/video/mp4/lt2-20261030-about-1920.mp4",
+      "bytes": 4718134,
+      "sha256": "0f43c407030ab50feb2395bc4335d0d428995cd451bbd38d1587ac8fc61f7566",
       "width": 1920,
       "height": 1080,
       "durationSeconds": 13.708
     },
     {
-      "path": "assets/video/mp4/hq-20261029-about-1280.mp4",
-      "bytes": 7189977,
-      "sha256": "c8e20a99159784faa3733d79bce99c4dc7a95192b088b86e020015fe0d2a32c8",
+      "path": "assets/video/mp4/lt2-20261030-about-1280.mp4",
+      "bytes": 2894861,
+      "sha256": "d11d607c482ae69b24a13e43d272145834a1bef6caf970cd62c9c8ea83b72467",
       "width": 1280,
       "height": 720,
       "durationSeconds": 13.708
     },
     {
-      "path": "assets/video/mp4/hq-20261029-about-916.mp4",
-      "bytes": 8142493,
-      "sha256": "1e1e659bae081ae6aa6006cfbbc5e8c61a1ba21a82bf807e6fa376f9edf983a6",
-      "width": 1080,
-      "height": 1920,
+      "path": "assets/video/mp4/lt2-20261030-about-916.mp4",
+      "bytes": 2894902,
+      "sha256": "520c888c4ad6f29a252b6dd5f4caed8f8d171ec622877a8e9125b2b346a0a6f5",
+      "width": 720,
+      "height": 1280,
       "durationSeconds": 13.708
     },
     {

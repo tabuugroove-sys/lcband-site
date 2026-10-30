@@ -91,7 +91,7 @@ test.describe('Silent background lifecycle on /about/', () => {
 			await page.addInitScript(value => Object.defineProperty(navigator, 'connection', { configurable: true, value: { saveData: value === 'saveData', effectiveType: value === '2g' || value === '3g' ? value : '4g' } }), preference);
 			if (preference === 'reducedMotion') await page.emulateMedia({ reducedMotion: 'reduce' });
 			const requests = [];
-			page.on('request', request => { if (/hq-20261029-about-.*\.mp4/.test(request.url())) requests.push(request.url()); });
+			page.on('request', request => { if (/(hq-20261029|lt2-20261030)-about-.*\.mp4/.test(request.url())) requests.push(request.url()); });
 			await page.goto('/about/');
 			await releaseBackgroundIdle(page);
 			await expect(page.locator('[data-background-video]')).not.toHaveAttribute('src', /.+/);

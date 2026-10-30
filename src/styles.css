@@ -5984,19 +5984,19 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	.about-count__waves { display: none; }
 }
 
-/* «Главное — музыка.» над видео (Михаил 30.10): одна крупная надпись, по образцу
-   заголовков apple.com/apple-music («Get your friends in the mix.») — очень жирно,
-   плотно, крупно; широкое начертание там, где система его умеет. */
+/* «Главное — музыка.» над видео (Михаил 30.10): одна крупная надпись по образцу
+   заголовков apple.com/apple-music («Get your friends in the mix.» — 70px при окне
+   1680, SF Pro Expanded 600); широкое начертание там, где система его умеет. */
 .music-title {
 	margin: 0;
 	font-family: var(--ff-display);
-	font-size: clamp(56px, 10vw, 144px);
-	font-weight: 800;
+	font-size: clamp(40px, 4.2vw, 70px);
+	font-weight: 700;
 	font-stretch: 125%;
-	line-height: .95;
-	letter-spacing: -.03em;
+	line-height: 1.1;
+	letter-spacing: -.009em;
 	color: #1D1D1F;
-	padding-bottom: clamp(28px, 4vw, 56px);
+	padding-bottom: clamp(24px, 3vw, 40px);
 }
 
 .about-count__hero {

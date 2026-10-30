@@ -37,3 +37,18 @@ test('sound waves run behind 2000+ and stay away under reduced motion', async ({
 	await page.emulateMedia({ reducedMotion: 'reduce' });
 	await expect(page.locator('[data-count-block] .about-count__waves')).toBeHidden();
 });
+
+test('direction cards wait lower near the bottom edge and stick in place further up', async ({ page, isMobile }) => {
+	test.skip(isMobile, 'the shelf is a swipe carousel on phones');
+	await page.goto('/');
+	const card = page.locator('#directions [data-magnet] > li').nth(2);
+	const placeAt = fraction => card.evaluate((element, f) => {
+		const top = element.getBoundingClientRect().top + scrollY - (Number.parseFloat(getComputedStyle(element).transform.split(',')[5]) || 0);
+		scrollTo({ top: top - innerHeight * f, behavior: 'instant' });
+	}, fraction);
+	const lift = () => card.evaluate(element => { const m = getComputedStyle(element).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
+	await placeAt(0.95);
+	await expect.poll(lift).toBeGreaterThan(40);
+	await placeAt(0.3);
+	await expect.poll(lift).toBeLessThan(1);
+});

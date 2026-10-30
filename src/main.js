@@ -129,10 +129,9 @@
 	// ---------- Home: four silent reels (2×2) ----------
 	// Same rules as the background montage: posters paint first, the videos load
 	// only after page load and while the grid is on screen, never under reduced
-	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts
-	// (1920 wide when a tile spans more than 1500 device pixels, else 1280).
-	// The reveal below shows the tiles one by one: a video starts with its tile and
-	// the next one loads ahead of its turn. One button pauses and resumes all four.
+	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts.
+	// The reveal below shows the tiles one by one and a video loads only once its
+	// tile is shown, so four never load at once. One button pauses and resumes them.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
@@ -157,16 +156,12 @@
 			toggle.classList.toggle('is-paused', userPaused);
 			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
 		};
-		const sourceFor = video => {
-			if (squareMedia.matches) return video.dataset.srcSquare;
-			const tilePixels = grid.clientWidth / 2 * (window.devicePixelRatio || 1);
-			return tilePixels > 1500 ? video.dataset.srcWideHd : video.dataset.srcWide;
-		};
+		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
 		const update = () => {
 			renderToggle();
 			const play = shouldPlay();
 			videos.forEach((video, i) => {
-				if (!play || i > shown) {
+				if (!play || i >= shown) {
 					video.pause();
 					// A changed accessibility/data preference also stops further buffering.
 					if (!allowed() && video.getAttribute('src')) {
@@ -184,8 +179,7 @@
 					video.preload = 'auto';
 					video.src = source;
 				}
-				// The tile after the last shown one only loads; it plays when its turn comes.
-				if (i < shown && video.paused) video.play().catch(error => {
+				if (video.paused) video.play().catch(error => {
 					// Autoplay blocked (iOS Low Power Mode): keep the posters and offer
 					// the play button — a tap is a user gesture, so it plays.
 					if (error.name === 'NotAllowedError' && shouldPlay()) { userPaused = true; update(); }
@@ -224,82 +218,71 @@
 		else window.addEventListener('load', afterLoad, { once: true });
 	})();
 
-	// ---------- Home reels: one by one (Mikhail 29–30.10) ----------
-	// «Один появился, поиграл, потом второй…»; 30.10 «быстрее в два раза; чем быстрее
-	// крутит, тем быстрее появляется» and «чтобы появлялись из середины, выдвигались»:
-	// each tile grows out of the grid centre (styles.css; the growth point is set here).
-	// Tiles come 1.5 s apart; scrolling speeds the clock up, and
-	// when the grid is about to leave the screen the rest come at once, so all four are in
-	// before it is scrolled away. Off under reduced motion: all four are there at once.
+	// ---------- Home reels: one by one, each after the one before is moving (Mikhail 29–30.10) ----------
+	// «Первое видео появилось сразу, из середины увеличилось; когда задвигалось — второй
+	// квадратик, он задвигался — третий…»: a tile grows out of the grid centre
+	// (styles.css), its video loads and starts, and only once it is really moving does
+	// the next tile come in and start loading, so four videos never load at once. A slow
+	// video (4 s) or videos switched off (Save-Data, slow network) do not hold the next
+	// tile; when the grid is being scrolled away, the rest come at once. Off under
+	// reduced motion: all four are there at once.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
 		if (!grid || reduceMotion.matches || !('IntersectionObserver' in window)) return;
 		const ribbon = host.querySelector('.reel__ribbon');
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
-		const pause = 1500;
+		const minGap = 1200;
+		const maxWait = 4000;
 		let shown = 0;
-		let clock = 0;
-		let last = 0;
-		let frame = 0;
-		let velocity = 0;
-		let lastY = window.scrollY;
-		let lastScroll = 0;
-		const announce = count => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown: count } }));
+		let timer = 0;
+		const announce = () => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown } }));
 		const place = () => {
 			const cx = grid.clientWidth / 2;
 			const cy = grid.clientHeight / 2;
 			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
 		};
+		const next = () => {
+			window.clearTimeout(timer);
+			if (shown >= tiles.length) return;
+			const tile = tiles[shown];
+			tile.classList.add('is-shown');
+			shown += 1;
+			announce();
+			if (shown >= tiles.length) return;
+			const since = performance.now();
+			const video = tile.querySelector('[data-reel-video]');
+			let done = false;
+			const go = () => {
+				if (done) return;
+				done = true;
+				video?.removeEventListener('timeupdate', moving);
+				window.clearTimeout(timer);
+				timer = window.setTimeout(next, Math.max(0, minGap - (performance.now() - since)));
+			};
+			const moving = () => { if (video.currentTime > 0.05) go(); };
+			video?.addEventListener('timeupdate', moving);
+			timer = window.setTimeout(go, maxWait);
+		};
+		const rest = () => {
+			window.clearTimeout(timer);
+			while (shown < tiles.length) tiles[shown++].classList.add('is-shown');
+			announce();
+		};
 		const onScroll = () => {
-			const now = performance.now();
-			const v = (window.scrollY - lastY) / Math.max(now - lastScroll, 8) * 1000;
-			velocity = velocity * 0.5 + v * 0.5;
-			lastY = window.scrollY;
-			lastScroll = now;
-		};
-		// How many times faster than real time the sequence runs right now: up to four
-		// times while the visitor scrolls, and once the grid starts to leave the screen
-		// (past the top going down, past the bottom going up) fast enough to finish in
-		// under half the time it has left.
-		const boost = now => {
-			if (now - lastScroll > 150) velocity *= 0.85;
-			const speed = Math.abs(velocity);
-			let k = 1 + Math.min(speed / 800, 3);
+			if (shown === 0 || shown >= tiles.length) return;
 			const rect = grid.getBoundingClientRect();
-			const leaving = velocity > 40 ? rect.top < window.innerHeight * 0.1
-				: velocity < -40 ? rect.bottom > window.innerHeight * 0.9 : false;
-			if (leaving) {
-				const distance = velocity > 0 ? rect.bottom : window.innerHeight - rect.top;
-				const timeLeft = Math.max(distance, 0) / speed * 1000;
-				const remaining = (tiles.length - 1) * pause - clock;
-				k = Math.max(k, remaining / Math.max(timeLeft * 0.4, 16));
-			}
-			return Math.min(k, 40);
-		};
-		const tick = now => {
-			const k = boost(now);
-			clock += Math.min(now - last, 100) * k;
-			last = now;
-			grid.style.setProperty('--reel-boost', k.toFixed(2));
-			while (shown < tiles.length && clock >= shown * pause) {
-				tiles[shown].classList.add('is-shown');
-				shown += 1;
-				announce(shown);
-			}
-			if (shown < tiles.length) frame = requestAnimationFrame(tick);
-			else { frame = 0; window.removeEventListener('scroll', onScroll); }
+			if (rect.bottom < window.innerHeight * 0.35 || rect.top > window.innerHeight * 0.9) rest();
 		};
 		place();
 		grid.classList.add('is-sequenced');
-		announce(0);
+		announce();
 		window.addEventListener('resize', place);
 		window.addEventListener('scroll', onScroll, { passive: true });
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
 			begin.disconnect();
-			last = performance.now();
-			frame = requestAnimationFrame(tick);
+			next();
 		}, { threshold: 0.3 });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
@@ -316,15 +299,74 @@
 		reduceMotion.addEventListener('change', () => {
 			if (!reduceMotion.matches) return;
 			begin.disconnect();
-			cancelAnimationFrame(frame);
 			window.removeEventListener('scroll', onScroll);
 			ribbonWatch?.disconnect();
 			ribbon?.classList.remove('is-armed');
 			grid.classList.remove('is-sequenced');
-			grid.style.removeProperty('--reel-boost');
-			for (const tile of tiles) { tile.classList.add('is-shown'); tile.style.removeProperty('transform-origin'); }
-			announce(tiles.length);
+			rest();
+			for (const tile of tiles) tile.style.removeProperty('transform-origin');
 		});
+	})();
+
+	// ---------- Magnet cards (Mikhail 30.10) ----------
+	// «Сначала большое расстояние, а потом как магнитик прилипает… и в другую сторону
+	// отлипает»: a card near the bottom edge of the screen waits lower and fainter and
+	// catches up with the card above as the page scrolls on, a touch later than the
+	// scroll, like the cards on apple.com/apple-music; scrolling back, it drops away
+	// faster than the page moves. Containers opt in with data-magnet ("desktop": from
+	// 735px). Transform and opacity only, one rAF loop while something still moves,
+	// only cards near the screen; off under reduced motion.
+	(() => {
+		const groups = [...document.querySelectorAll('[data-magnet]')];
+		if (!groups.length || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+		const desktop = window.matchMedia('(min-width: 735px)');
+		const lift = 96;
+		const zone = 0.42;
+		const items = groups.flatMap(group => [...group.children].map(el => ({ el, group, y: 0, o: 1, near: false })));
+		const active = item => item.group.dataset.magnet !== 'desktop' || desktop.matches;
+		let frame = 0;
+		const reset = item => { item.y = 0; item.o = 1; item.el.style.transform = ''; item.el.style.opacity = ''; };
+		const tick = () => {
+			frame = 0;
+			let moving = false;
+			for (const item of items) {
+				if (!item.near || !active(item)) continue;
+				// Where the card sits without our offset: 0 at the bottom edge, 1 once it is
+				// `zone` of the screen higher.
+				const top = item.el.getBoundingClientRect().top - item.y;
+				const p = Math.min(1, Math.max(0, (window.innerHeight - top) / (window.innerHeight * zone)));
+				const e = 1 - (1 - p) ** 3;
+				const y = (1 - e) * lift;
+				const o = 0.2 + 0.8 * e;
+				item.y += (y - item.y) * 0.2;
+				item.o += (o - item.o) * 0.2;
+				if (Math.abs(y - item.y) < 0.3 && Math.abs(o - item.o) < 0.005) { item.y = y; item.o = o; } else moving = true;
+				item.el.style.transform = item.y > 0.3 ? `translate3d(0, ${item.y.toFixed(1)}px, 0)` : '';
+				item.el.style.opacity = item.o < 0.995 ? item.o.toFixed(3) : '';
+			}
+			if (moving) frame = requestAnimationFrame(tick);
+		};
+		const kick = () => { if (!frame) frame = requestAnimationFrame(tick); };
+		const watch = new IntersectionObserver(entries => {
+			for (const entry of entries) {
+				const item = items.find(candidate => candidate.el === entry.target);
+				if (item) item.near = entry.isIntersecting;
+			}
+			kick();
+		}, { rootMargin: '240px 0px 240px 0px' });
+		items.forEach(item => watch.observe(item.el));
+		window.addEventListener('scroll', kick, { passive: true });
+		window.addEventListener('resize', kick);
+		desktop.addEventListener('change', () => { items.filter(item => !active(item)).forEach(reset); kick(); });
+		reduceMotion.addEventListener('change', () => {
+			if (!reduceMotion.matches) return;
+			cancelAnimationFrame(frame);
+			watch.disconnect();
+			window.removeEventListener('scroll', kick);
+			window.removeEventListener('resize', kick);
+			items.forEach(reset);
+		});
+		kick();
 	})();
 
 	// ---------- Locale memory ----------

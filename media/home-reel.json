@@ -1,5 +1,5 @@
 {
-  "decision": "Михаил 29.10.2026: вместо фото блока «О группе» на главной — четыре немых ролика 2×2: Epic Live 04 «Голоса», студийное промо «пик за пиком», лучшие моменты остальных видео (mix-12, вместо 06 «Неон» — слева снизу), Epic Live 03 «Зал поёт». 30.10: «взять версии из 4k, чтобы пикселей не было»; плитки появляются по очереди с паузой 3 с.",
+  "decision": "Михаил 29.10.2026: вместо фото блока «О группе» на главной — четыре немых ролика 2×2: Epic Live 04 «Голоса», студийное промо «пик за пиком», лучшие моменты остальных видео (mix-12, вместо 06 «Неон» — слева снизу), Epic Live 03 «Зал поёт». 30.10: «взять версии из 4k, чтобы пикселей не было»; плитки появляются по очереди с паузой 3 с. Михаил 30.10: «видео слишком тяжёлые… приоритет скорость» — облегчённые версии из HQ-рендеров: 1280×640 (CRF 25, ≤1,6 Мбит/с) и квадраты 640 (≤1 Мбит/с), H.264 High; плитка появляется, когда видео перед ней уже едет, ролики грузятся по одному.",
   "sources": {
     "epic": "Epic Live (ICON): edit-03/04 из ~/output/luxuryband-epic-montage-20261029, кадры первой песни (только 2,1 Мбит/с) заменены моментами из HQ-нарезки 1080p 15 Мбит/с",
     "studio-11": "студийное промо 4K (promo-main-reel-3c92641df748-2160.mp4)",
@@ -9,28 +9,68 @@
   "fps": 24,
   "outputs": [
     {
-      "path": "assets/video/mp4/hq-20261029-epic-04-wide1920.mp4",
-      "bytes": 10771939,
-      "sha256": "c36738dbb141f7ddce27ac77b469a3b1abe9133212d731409d4bc795d4ce0d0f",
-      "width": 1920,
-      "height": 960,
-      "durationSeconds": 13.583
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-epic-04-wide1280.mp4",
-      "bytes": 6271932,
-      "sha256": "b91b8b54e0cc50498ed376bead6d5342d8afb7930549ac4a498694445ddbeebb",
+      "path": "assets/video/mp4/lt2-20261030-epic-04-wide.mp4",
+      "bytes": 2869853,
+      "sha256": "c230a56a43dc8ac944466ba056f19d3f691ccb65f1b276edfa5c94c3716059a6",
       "width": 1280,
       "height": 640,
       "durationSeconds": 13.583
     },
     {
-      "path": "assets/video/mp4/hq-20261029-epic-04-square.mp4",
-      "bytes": 4486212,
-      "sha256": "c5be201cc7330481d70609f8193bc1383f1238dbbb3f0746ff50446af47e7c5a",
-      "width": 720,
-      "height": 720,
+      "path": "assets/video/mp4/lt2-20261030-epic-04-square.mp4",
+      "bytes": 1795867,
+      "sha256": "7e9f40529cbe933a743e5ec76cb624899bb571328f80be54000455e489c9a147",
+      "width": 640,
+      "height": 640,
       "durationSeconds": 13.583
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-studio-11-wide.mp4",
+      "bytes": 2629788,
+      "sha256": "955f227be6a909b115e9b5d44a9cd92061f3cd2205bb9ccf426df981fe567d81",
+      "width": 1280,
+      "height": 640,
+      "durationSeconds": 12.5
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-studio-11-square.mp4",
+      "bytes": 1638737,
+      "sha256": "4eef3c8983d3fb2275bf1ceec368cb517be5b2c944ea88ea46513d891c94f5db",
+      "width": 640,
+      "height": 640,
+      "durationSeconds": 12.5
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-mix-12-wide.mp4",
+      "bytes": 2673947,
+      "sha256": "60f6e89dbd883688b50732942347b837e15edbc2b4a3045a744b184188f396b6",
+      "width": 1280,
+      "height": 640,
+      "durationSeconds": 12.583
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-mix-12-square.mp4",
+      "bytes": 1671435,
+      "sha256": "3651a8295748b0442d9d1ee85f130157ef6bc2faee804f18ab5fd28bcc00bcbb",
+      "width": 640,
+      "height": 640,
+      "durationSeconds": 12.583
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-03-wide.mp4",
+      "bytes": 3101886,
+      "sha256": "1dbf60194c6e1d399db058a043e95143caa4ff49a118b7a2b45cc67036d75c42",
+      "width": 1280,
+      "height": 640,
+      "durationSeconds": 14.75
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-03-square.mp4",
+      "bytes": 1940838,
+      "sha256": "2df00d64dac8012d6cbe3d90a5377d6ae5ae42b6e4dd175ecdddf07405b180b9",
+      "width": 640,
+      "height": 640,
+      "durationSeconds": 14.75
     },
     {
       "path": "assets/hero/hq-20261029-epic-04-wide.webp",
@@ -43,30 +83,6 @@
       "sha256": "3df434ae4f15303282ee5a1ec1f9b5268eee9f561acbe6e5ae0b7c2cb6281050"
     },
     {
-      "path": "assets/video/mp4/hq-20261029-studio-11-wide1920.mp4",
-      "bytes": 9794149,
-      "sha256": "ce2c1fe174ada83611acf6983469e91406c15685c5f9f0e6abd231a42f302241",
-      "width": 1920,
-      "height": 960,
-      "durationSeconds": 12.5
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-studio-11-wide1280.mp4",
-      "bytes": 4530268,
-      "sha256": "7862c024938f9c635791dd847a1e916481e1afc9e8b8875892429d860d274868",
-      "width": 1280,
-      "height": 640,
-      "durationSeconds": 12.5
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-studio-11-square.mp4",
-      "bytes": 3343959,
-      "sha256": "159b39bbf44ce8bf796b45f66a67743fc0a1a7bc576a2d0639f29349dea39632",
-      "width": 720,
-      "height": 720,
-      "durationSeconds": 12.5
-    },
-    {
       "path": "assets/hero/hq-20261029-studio-11-wide.webp",
       "bytes": 21030,
       "sha256": "2302a1195c24951d3527f8447335551b693262bb4190b3f6a0d934f54a69dc67"
@@ -77,30 +93,6 @@
       "sha256": "6fc8a8435d93dc7f3fdd935a6f10094dde6a7d4af5426b174551ab9794e2b37a"
     },
     {
-      "path": "assets/video/mp4/hq-20261029-mix-12-wide1920.mp4",
-      "bytes": 10000447,
-      "sha256": "a5069f63960bc710301f36b625ee0660b0152719dea6246729241ac7e003de54",
-      "width": 1920,
-      "height": 960,
-      "durationSeconds": 12.583
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-mix-12-wide1280.mp4",
-      "bytes": 5829510,
-      "sha256": "d5aa8949736a92090e4cfa2065a4b4cb685d7541d2b31f52fb0d3d5da9154e46",
-      "width": 1280,
-      "height": 640,
-      "durationSeconds": 12.583
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-mix-12-square.mp4",
-      "bytes": 4181597,
-      "sha256": "cdaf5025b4793cdf60aef423aeadc4617a37d1b56c1ca4259a3baffcde5e4a87",
-      "width": 720,
-      "height": 720,
-      "durationSeconds": 12.583
-    },
-    {
       "path": "assets/hero/hq-20261029-mix-12-wide.webp",
       "bytes": 53884,
       "sha256": "fc4d2d006e3d76be6ef1cb1e4d8676a3857acf6465efeafd3b84239e8f03087a"
@@ -109,30 +101,6 @@
       "path": "assets/hero/hq-20261029-mix-12-square.webp",
       "bytes": 43988,
       "sha256": "406030893c9c21422c61ee3c33dbbdcb012292d289f0b0e9d0cc56138b9cfa55"
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-epic-03-wide1920.mp4",
-      "bytes": 11654457,
-      "sha256": "dbefe8d959637999ddfa9f1e46b82e52f11ce3e39ea22a435ba886c15141abd8",
-      "width": 1920,
-      "height": 960,
-      "durationSeconds": 14.75
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-epic-03-wide1280.mp4",
-      "bytes": 6778208,
-      "sha256": "ef2e6231d4f7670a44a637809ca1f1453b414ef3d072393f5c56065e41ea1659",
-      "width": 1280,
-      "height": 640,
-      "durationSeconds": 14.75
-    },
-    {
-      "path": "assets/video/mp4/hq-20261029-epic-03-square.mp4",
-      "bytes": 4844999,
-      "sha256": "cb22e49725b2ef605638b4af0c5618ae2be33962003f998ed6a4a3ef204656e8",
-      "width": 720,
-      "height": 720,
-      "durationSeconds": 14.75
     },
     {
       "path": "assets/hero/hq-20261029-epic-03-wide.webp",

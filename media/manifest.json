@@ -718,6 +718,61 @@
       "sha256": "a56f3a717aa89b37314e0914f0231a3c229d3e1bba73fb01d633bcc914114276"
     },
     {
+      "path": "assets/video/mp4/lt2-20261030-about-1280.mp4",
+      "bytes": 2894861,
+      "sha256": "d11d607c482ae69b24a13e43d272145834a1bef6caf970cd62c9c8ea83b72467"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-about-1920.mp4",
+      "bytes": 4718134,
+      "sha256": "0f43c407030ab50feb2395bc4335d0d428995cd451bbd38d1587ac8fc61f7566"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-about-916.mp4",
+      "bytes": 2894902,
+      "sha256": "520c888c4ad6f29a252b6dd5f4caed8f8d171ec622877a8e9125b2b346a0a6f5"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-03-square.mp4",
+      "bytes": 1940838,
+      "sha256": "2df00d64dac8012d6cbe3d90a5377d6ae5ae42b6e4dd175ecdddf07405b180b9"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-03-wide.mp4",
+      "bytes": 3101886,
+      "sha256": "1dbf60194c6e1d399db058a043e95143caa4ff49a118b7a2b45cc67036d75c42"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-04-square.mp4",
+      "bytes": 1795867,
+      "sha256": "7e9f40529cbe933a743e5ec76cb624899bb571328f80be54000455e489c9a147"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-epic-04-wide.mp4",
+      "bytes": 2869853,
+      "sha256": "c230a56a43dc8ac944466ba056f19d3f691ccb65f1b276edfa5c94c3716059a6"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-mix-12-square.mp4",
+      "bytes": 1671435,
+      "sha256": "3651a8295748b0442d9d1ee85f130157ef6bc2faee804f18ab5fd28bcc00bcbb"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-mix-12-wide.mp4",
+      "bytes": 2673947,
+      "sha256": "60f6e89dbd883688b50732942347b837e15edbc2b4a3045a744b184188f396b6"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-studio-11-square.mp4",
+      "bytes": 1638737,
+      "sha256": "4eef3c8983d3fb2275bf1ceec368cb517be5b2c944ea88ea46513d891c94f5db"
+    },
+    {
+      "path": "assets/video/mp4/lt2-20261030-studio-11-wide.mp4",
+      "bytes": 2629788,
+      "sha256": "955f227be6a909b115e9b5d44a9cd92061f3cd2205bb9ccf426df981fe567d81"
+    },
+    {
       "path": "assets/video/mp4/luxury-latin-dance-master-class-1080.mp4",
       "bytes": 42143090,
       "sha256": "1ff201fa861bddfa0ed7f1fec15c335e7b60ef42aa19813b13b7c8a91eca74e8"
