@@ -62,6 +62,28 @@ test.describe('Homepage reel', () => {
 	});
 });
 
+test.describe('Homepage reel reveal (Mikhail, 29.10: tiles appear one by one)', () => {
+	const tileState = page => page.locator('.reel__tile').evaluateAll(tiles =>
+		tiles.map(tile => ({ opacity: Number(getComputedStyle(tile).opacity), transform: getComputedStyle(tile).transform })));
+	const scrollGridTo = (page, fraction) => page.evaluate(f => {
+		const grid = document.querySelector('[data-reel-grid]');
+		scrollTo(0, grid.getBoundingClientRect().top + scrollY - innerHeight * f);
+	}, fraction);
+
+	test('blooms the tiles in turn and settles into a full wall', async ({ page }) => {
+		await page.goto('/');
+		await scrollGridTo(page, 0.6);
+		await page.waitForTimeout(1200);
+		const mid = await tileState(page);
+		expect(mid[0].opacity).toBeGreaterThan(mid[1].opacity);
+		expect(mid[1].opacity).toBeGreaterThan(mid[3].opacity);
+		expect(mid[3].transform).not.toBe('none');
+
+		await scrollGridTo(page, 0.1);
+		await expect.poll(async () => (await tileState(page)).every(tile => tile.opacity === 1 && tile.transform === 'none')).toBe(true);
+	});
+});
+
 test.describe('Homepage reel under reduced motion', () => {
 	test('keeps the posters and never requests a video', async ({ page }) => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -74,5 +96,7 @@ test.describe('Homepage reel under reduced motion', () => {
 		await page.waitForTimeout(2500);
 		expect(requests).toEqual([]);
 		await expect(page.locator('[data-reel-toggle]')).toBeHidden();
+		// No reveal either: the tiles stand as they are.
+		expect(await page.locator('.reel__tile').evaluateAll(tiles => tiles.every(tile => !tile.getAttribute('style')))).toBe(true);
 	});
 });

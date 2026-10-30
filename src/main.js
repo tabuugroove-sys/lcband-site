@@ -210,6 +210,82 @@
 		else window.addEventListener('load', afterLoad, { once: true });
 	})();
 
+	// ---------- Home reels: one by one, like the cards on apple.com/apple-music ----------
+	// As the grid scrolls in, each tile grows out of the grid centre (scale 0.5 → 1),
+	// fades in and loses its rounded corners, one after another, until the four close
+	// into one video wall. Progress follows the scroll but eases towards it, so a fast
+	// flick or the hero arrow still shows the tiles in turn. Off under reduced motion.
+	(() => {
+		const grid = document.querySelector('[data-reel-grid]');
+		if (!grid || reduceMotion.matches) return;
+		const ribbon = grid.closest('[data-reel]')?.querySelector('.reel__ribbon');
+		const tiles = [...grid.querySelectorAll('.reel__tile')];
+		const stagger = 0.14;
+		const span = 1 - (tiles.length - 1) * stagger;
+		let target = 0;
+		let current = 0;
+		let frame = 0;
+		const ease = t => t * t * (3 - 2 * t);
+		const place = () => {
+			const cx = grid.clientWidth / 2;
+			const cy = grid.clientHeight / 2;
+			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
+		};
+		// 0 when the grid top is 90% down the screen, 1 when it is 20% from the top,
+		// so the whole sequence plays while the grid is in view.
+		const progress = () => {
+			const top = grid.getBoundingClientRect().top;
+			return Math.min(1, Math.max(0, (window.innerHeight * 0.9 - top) / (window.innerHeight * 0.7)));
+		};
+		const paint = () => {
+			tiles.forEach((tile, i) => {
+				const p = ease(Math.min(1, Math.max(0, (current - i * stagger) / span)));
+				const done = p >= 0.999;
+				tile.style.opacity = done ? '' : String(0.001 + 0.999 * p);
+				tile.style.transform = done ? '' : `scale(${0.5 + 0.5 * p})`;
+				tile.style.clipPath = done ? '' : `inset(0 round ${28 * (1 - p)}px)`;
+			});
+			grid.classList.toggle('is-blooming', current > 0 && current < 1);
+		};
+		const tick = () => {
+			current += (target - current) * 0.16;
+			if (Math.abs(target - current) < 0.002) current = target;
+			paint();
+			frame = current === target ? 0 : requestAnimationFrame(tick);
+		};
+		const onScroll = () => {
+			target = progress();
+			if (!frame && target !== current) frame = requestAnimationFrame(tick);
+		};
+		const onResize = () => { place(); onScroll(); };
+		place();
+		target = current = progress();
+		paint();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onResize);
+		// The line above the grid slides up once, like the headlines on Apple Music.
+		let ribbonWatch = null;
+		if (ribbon && 'IntersectionObserver' in window) {
+			ribbon.classList.add('is-armed');
+			ribbonWatch = new IntersectionObserver(entries => {
+				if (!entries[0].isIntersecting) return;
+				ribbon.classList.add('is-in');
+				ribbonWatch.disconnect();
+			}, { threshold: 0.5 });
+			ribbonWatch.observe(ribbon);
+		}
+		reduceMotion.addEventListener('change', () => {
+			if (!reduceMotion.matches) return;
+			cancelAnimationFrame(frame);
+			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('resize', onResize);
+			ribbonWatch?.disconnect();
+			ribbon?.classList.remove('is-armed');
+			grid.classList.remove('is-blooming');
+			for (const tile of tiles) tile.removeAttribute('style');
+		});
+	})();
+
 	// ---------- Locale memory ----------
 	try {
 		const path = window.location.pathname;
