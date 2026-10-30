@@ -37,10 +37,11 @@ test.describe('Homepage reel', () => {
 
 	test('brings the tiles in one by one, each video starting with its tile', async ({ page, isMobile }) => {
 		await page.goto('/');
-		// An instant jump: a smooth scroll would itself speed the sequence up.
+		// An instant jump: the grid has just risen into view, its top still below the middle
+		// (a scroll past the middle would bring the tiles at once, see the deadline test).
 		await page.evaluate(() => {
 			const grid = document.querySelector('[data-reel-grid]');
-			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - (innerHeight - grid.offsetHeight) / 2, behavior: 'instant' });
+			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * 0.6, behavior: 'instant' });
 		});
 		const tiles = page.locator('.reel__tile');
 		const videos = reelVideos(page);
@@ -65,6 +66,28 @@ test.describe('Homepage reel', () => {
 			tiles.every(tile => getComputedStyle(tile).opacity === '1' && getComputedStyle(tile).transform === 'none'))).toBe(true);
 		const first = reelVideos(page).first();
 		await expect.poll(() => first.getAttribute('src'), { timeout: 6_000 }).toMatch(/ph-20261030-epic-04-square\.mp4$/);
+	});
+
+	test('the first tile starts as the grid rises from below; the next ones by the middle of the screen', async ({ page }) => {
+		await page.goto('/');
+		const tiles = page.locator('.reel__tile');
+		const placeGrid = fraction => page.evaluate(f => {
+			const grid = document.querySelector('[data-reel-grid]');
+			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' });
+		}, fraction);
+		await placeGrid(0.84);
+		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
+		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
+		// The top row crosses the middle: the top-right tile comes in at once.
+		await placeGrid(0.49);
+		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 500 });
+		// The bottom-left tile's top crosses the middle: it comes in at once, video and all.
+		await page.evaluate(() => {
+			const tile = document.querySelectorAll('.reel__tile')[2];
+			scrollTo({ top: tile.getBoundingClientRect().top + scrollY - innerHeight * 0.49, behavior: 'instant' });
+		});
+		await expect(tiles.nth(2)).toHaveClass(/is-shown/, { timeout: 500 });
+		await expect.poll(() => tiles.nth(2).locator('video').getAttribute('src'), { timeout: 4_000 }).toMatch(/\.mp4$/);
 	});
 
 	test('a fast scroll brings all four in before the grid leaves the screen', async ({ page }) => {

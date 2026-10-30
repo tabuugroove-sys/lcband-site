@@ -245,12 +245,14 @@
 			const cy = grid.clientHeight / 2;
 			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
 		};
-		const next = () => {
+		let stopWaiting = () => {};
+		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
+		const next = (last = shown) => {
 			window.clearTimeout(timer);
+			stopWaiting();
 			if (shown >= tiles.length) return;
-			const tile = tiles[shown];
-			tile.classList.add('is-shown');
-			shown += 1;
+			while (shown <= last) tiles[shown++].classList.add('is-shown');
+			const tile = tiles[shown - 1];
 			announce();
 			if (shown >= tiles.length) return;
 			const since = performance.now();
@@ -258,17 +260,32 @@
 			let done = false;
 			const go = () => {
 				if (done) return;
-				done = true;
-				video?.removeEventListener('timeupdate', moving);
+				stopWaiting();
 				window.clearTimeout(timer);
 				timer = window.setTimeout(next, Math.max(0, minGap - (performance.now() - since)));
 			};
 			const moving = () => { if (video.currentTime > 0.05) go(); };
+			stopWaiting = () => { done = true; video?.removeEventListener('timeupdate', moving); };
 			video?.addEventListener('timeupdate', moving);
 			timer = window.setTimeout(go, maxWait);
 		};
+		// «Слева снизу — ровно в тот момент, когда его верх пересекает центр экрана; это крайнее
+		// время», «верхнее тоже… появление включается, когда снизу поднимаются» (Mikhail 30.10):
+		// the first tile starts as soon as the grid rises into view from below; the top-right
+		// and bottom-left tiles come in, video and all, no later than their top edge reaches
+		// the middle of the screen. A slow scroll keeps the usual pace; a fast one brings them
+		// sooner. The last tile follows them, or comes at once as the grid leaves.
+		const deadlines = tiles.slice(1, -1);
+		const due = () => {
+			// Where the tile sits in the grid, not its shrunken box while it waits.
+			const middle = window.innerHeight / 2 - grid.getBoundingClientRect().top;
+			const late = deadlines.filter(tile => !tile.classList.contains('is-shown')
+				&& tile.offsetTop <= middle).pop();
+			if (late) next(tiles.indexOf(late));
+		};
 		const rest = () => {
 			window.clearTimeout(timer);
+			stopWaiting();
 			while (shown < tiles.length) tiles[shown++].classList.add('is-shown');
 			announce();
 		};
@@ -276,6 +293,7 @@
 			if (shown === 0 || shown >= tiles.length) return;
 			const rect = grid.getBoundingClientRect();
 			if (rect.bottom < window.innerHeight * 0.35 || rect.top > window.innerHeight * 0.9) rest();
+			else due();
 		};
 		if (!phone) {
 			place();
@@ -288,7 +306,7 @@
 			if (!entries[0].isIntersecting) return;
 			begin.disconnect();
 			next();
-		}, { threshold: phone ? 0.1 : 0.3 });
+		}, { rootMargin: '0px 0px -12% 0px' });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
