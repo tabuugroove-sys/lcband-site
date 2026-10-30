@@ -61,6 +61,8 @@
 {%- set countText = countDict[countLang or 'ru'] %}
 <section class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
 	<div class="about-count__inner">
+		{#- Михаил 30.10: волны звука расходятся от «2000+», как кольца в шапке apple.com/apple-music. -#}
+		<div class="about-count__waves" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 		<p class="about-count__hero" dir="ltr" data-count>{{ st.shows }}</p>
 		<p class="about-count__sub"><span class="about-count__lead">{{ countText.lead | safe }}</span>{% if countText.more %} <span class="about-count__more">{{ countText.more | safe }}</span>{% endif %}</p>
 		<ul class="about-count__minis">

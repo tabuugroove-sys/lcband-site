@@ -226,9 +226,9 @@
 
 	// ---------- Home reels: one by one (Mikhail 29–30.10) ----------
 	// «Один появился, поиграл, потом второй…»; 30.10 «быстрее в два раза; чем быстрее
-	// крутит, тем быстрее появляется», and the magnet of the cards on apple.com/apple-music:
-	// each next tile waits off to the side, transparent, then quickly pulls up to its
-	// neighbour (styles.css). Tiles come 1.5 s apart; scrolling speeds the clock up, and
+	// крутит, тем быстрее появляется» and «чтобы появлялись из середины, выдвигались»:
+	// each tile grows out of the grid centre (styles.css; the growth point is set here).
+	// Tiles come 1.5 s apart; scrolling speeds the clock up, and
 	// when the grid is about to leave the screen the rest come at once, so all four are in
 	// before it is scrolled away. Off under reduced motion: all four are there at once.
 	(() => {
@@ -246,6 +246,11 @@
 		let lastY = window.scrollY;
 		let lastScroll = 0;
 		const announce = count => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown: count } }));
+		const place = () => {
+			const cx = grid.clientWidth / 2;
+			const cy = grid.clientHeight / 2;
+			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
+		};
 		const onScroll = () => {
 			const now = performance.now();
 			const v = (window.scrollY - lastY) / Math.max(now - lastScroll, 8) * 1000;
@@ -285,8 +290,10 @@
 			if (shown < tiles.length) frame = requestAnimationFrame(tick);
 			else { frame = 0; window.removeEventListener('scroll', onScroll); }
 		};
+		place();
 		grid.classList.add('is-sequenced');
 		announce(0);
+		window.addEventListener('resize', place);
 		window.addEventListener('scroll', onScroll, { passive: true });
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
@@ -315,7 +322,7 @@
 			ribbon?.classList.remove('is-armed');
 			grid.classList.remove('is-sequenced');
 			grid.style.removeProperty('--reel-boost');
-			for (const tile of tiles) tile.classList.add('is-shown');
+			for (const tile of tiles) { tile.classList.add('is-shown'); tile.style.removeProperty('transform-origin'); }
 			announce(tiles.length);
 		});
 	})();

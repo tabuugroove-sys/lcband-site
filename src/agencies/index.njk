@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Агентствам — Luxury Cover Band
+description: "Промо-пакет Luxury Cover Band для агентств: видео в 4K и Full HD, фото, репертуар и райдеры одним архивом."
+permalink: /agencies/
+---
+{#- Михаил 30.10: «сделай раздел агентствам и сделай там ссылки, где надо скачать»; в меню —
+    под «Райдерами». Сюда переехали кнопки промо-пакета с главной. Устроено как «Райдеры»:
+    маленький заголовок, сразу файлы, под ними мелкий текст. -#}
+<section class="page-hero page-hero--list riders-page agencies-page">
+	<div class="container">
+		<p class="page-hero__breadcrumb">
+			<a href="{{ '/' | url }}">{{ site.shortName }}</a> <span>·</span>
+			<span>Агентствам</span>
+		</p>
+		<h1 class="page-hero__eyebrow">Агентствам</h1>
+		{% include "partials/promo-downloads.njk" %}
+		<div class="riders-page__text">
+			<p class="page-hero__lead">Ещё пригодятся <a href="{{ '/riders/' | url }}">райдеры составов</a>, <a href="{{ '/assets/repertoire/' | url }}">репертуар с поиском</a> и <a href="{{ '/#videos' | url }}">видео выступлений</a>.</p>
+			<p class="page-hero__lead">Нужно что-то ещё или хотите проверить дату? <a href="{{ site.telegram }}">Напишите нам в Телеграм</a>.</p>
+		</div>
+	</div>
+</section>

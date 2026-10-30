@@ -86,6 +86,7 @@
 					<li><a href="{{ (footerBase + '/blog/') | url }}">{{ footerEn.links.blog if footerEn else 'Блог' }}</a></li>
 					<li><a href="{{ (footerBase + '/repertoire/') | url }}">{{ footerEn.links.repertoire if footerEn else 'Репертуар' }}</a></li>
 					<li><a href="{{ (footerBase + '/riders/') | url }}">{{ footerEn.links.riders if footerEn else 'Райдеры' }}</a></li>
+					{% if not footerEn %}<li><a href="{{ '/agencies/' | url }}">Агентствам</a></li>{% endif %}
 				</ul>
 			</div>
 		</div>

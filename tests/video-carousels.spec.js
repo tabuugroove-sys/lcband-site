@@ -135,9 +135,11 @@ test.describe('video rails — open + play', () => {
 		await expect.poll(() => video.evaluate(el => el.currentTime)).toBeGreaterThan(0);
 	});
 
-	test('the complete promo package has a direct download link', async ({ page }) => {
-		await page.goto('/');
-		await expect(page.getByRole('link', { name: 'Скачать промопакет ↓', exact: true })).toHaveAttribute('href', '/promo-package.php');
+	// 30.10 the promo package buttons moved from the homepage to /agencies/ (Mikhail).
+	test('the complete promo package downloads live on the agencies page', async ({ page }) => {
+		await page.goto('/agencies/');
+		await expect(page.getByRole('link', { name: 'Скачать промопакет — Скачать с 4K', exact: true })).toHaveAttribute('href', '/promo-package.php');
+		await expect(page.getByRole('link', { name: 'Скачать промопакет — Скачать Full HD', exact: true })).toHaveAttribute('href', '/promo-package.php?quality=1080');
 	});
 });
 

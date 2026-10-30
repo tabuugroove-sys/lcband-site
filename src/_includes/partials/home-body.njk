@@ -257,9 +257,9 @@
 		{slug:'live-adele-hello', title:'Adele · Hello', eyebrow:'Лайв'}
 	] %}
 	<div class="container container--narrow reveal">
-		<h2 class="section__title">Смотрите,<br><span class="muted">как это работает на сцене.</span></h2>
-		<p class="section__lead">Здесь наши клипы, записи с концертов и интерактивы с гостями.</p>
-		{% include "partials/promo-downloads.njk" %}
+		{#- Михаил 30.10: «вместо „смотрите, как это работает“ — „главное — музыка“ большим
+		    шрифтом, дальше сразу видео». Кнопки промо-пакета переехали на /agencies/. -#}
+		<h2 class="music-title">Главное —<br>музыка.</h2>
 	</div>
 
 	<div class="video-rail video-rail--big reveal" role="region" aria-label="Студийные проморолики">
@@ -331,8 +331,8 @@
 <section class="section section--book" id="book">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Бронирование</p>
-		<h2 class="section__title">Напишите нам.<br><span class="muted">Расскажем, как пройдёт ваш вечер.</span></h2>
-		<p class="section__lead">Нужны дата, место и что у вас за праздник. Мы проверим, свободны ли музыканты, и пришлём, каким составом приедем, как построим вечер и сколько это будет стоить.</p>
+		{#- Михаил 30.10: вместо «Напишите нам…» и абзаца — одна фраза. -#}
+		<h2 class="section__title">Давайте соберём всех друзей вместе<br><span class="muted">и добавим первоклассное музыкальное шоу.</span></h2>
 		<div class="book__cta">
 			<a class="btn btn--primary" href="{{ site.telegram }}">Написать в Телеграм</a>
 			<a class="btn btn--ghost-dark" href="#top">Наверх</a>

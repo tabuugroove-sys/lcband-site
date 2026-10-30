@@ -117,6 +117,11 @@
 	</div>
 </header>
 {% else %}
+{#- Михаил 30.10: при наведении на «Райдеры» выпадает ещё «Агентствам». -#}
+{% set ridersMenu = [
+	{href:'/riders/', label:'Технические райдеры'},
+	{href:'/agencies/', label:'Агентствам'}
+] %}
 {% set saxProfiles = [
 	{href:'/sax/', label:'Темнокожий саксофонист'},
 	{href:'/sax/leo-sax/', label:'Leo Sax'},
@@ -134,6 +139,7 @@
 				{% if item.href == '/programs/' %}{% set kids = programs %}{% set labelField = 'label' %}{% endif %}
 				{% if item.href == '/vocalists/' %}{% set kids = vocalists %}{% set labelField = 'name' %}{% endif %}
 				{% if item.href == '/sax/' %}{% set kids = saxProfiles %}{% set labelField = 'label' %}{% endif %}
+				{% if item.href == '/riders/' %}{% set kids = ridersMenu %}{% set labelField = 'label' %}{% endif %}
 
 				{% if kids | length %}
 				<div class="nav__item nav__item--has-dropdown" data-nav-path="{{ item.href }}">

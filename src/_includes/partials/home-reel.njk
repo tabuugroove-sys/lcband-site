@@ -19,7 +19,9 @@
 		<h2 class="reel__title" id="reel-title">{{ reelTitle | safe }}</h2>
 		<a class="btn reel__more" href="{{ reelHref | url }}">{{ reelMore }}</a>
 	</div>
-	<div class="reel__grid" data-reel-grid>
+	{#- data-reel-zoom — эксперимент 30.10: плитка вырастает из центра чуть больше своего размера
+	    и возвращается к обычному. Откатить — убрать атрибут. -#}
+	<div class="reel__grid" data-reel-grid data-reel-zoom>
 		{%- for id in ['epic-04', 'studio-11', 'mix-12', 'epic-03'] %}
 		<div class="reel__tile">
 			<picture class="reel__poster">
