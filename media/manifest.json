@@ -883,6 +883,16 @@
       "sha256": "2148b760b4f0219438601ec49987c0c9a31313dd25964dd0f3eba3591a234696"
     },
     {
+      "path": "assets/video/mp4/promo-costume-bw-01dc7bdc6938-2160.mp4",
+      "bytes": 310338289,
+      "sha256": "01dc7bdc69388b031ff4f8fc744a6e78b492cbbe7ceffae3df3c1085c2aefae7"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-bw-01dc7bdc6938-720.mp4",
+      "bytes": 13529889,
+      "sha256": "bc7046319727213bc0efb7622503a0591c165b0013de7f431af04155766ab9a0"
+    },
+    {
       "path": "assets/video/mp4/promo-costume-bw-822965daacce-1080.mp4",
       "bytes": 32746393,
       "sha256": "64a991e1e654d2d196893ee193bc40221b986e3125e7ae27ffba9252b37d2ec1"
@@ -891,6 +901,16 @@
       "path": "assets/video/mp4/promo-costume-bw-822965daacce-720.mp4",
       "bytes": 13529889,
       "sha256": "bc7046319727213bc0efb7622503a0591c165b0013de7f431af04155766ab9a0"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-gold-42ce52957175-2160.mp4",
+      "bytes": 299063313,
+      "sha256": "42ce529571750ef4ee523251af79c2d0c1754ceb3749049a7f29ec05714233ed"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-gold-42ce52957175-720.mp4",
+      "bytes": 13529219,
+      "sha256": "a5ec34aeabdce6ea7ed4490c9a41e7fe7a594191ed87f7a2e27437d13d9fb619"
     },
     {
       "path": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-1080.mp4",
@@ -903,6 +923,16 @@
       "sha256": "a5ec34aeabdce6ea7ed4490c9a41e7fe7a594191ed87f7a2e27437d13d9fb619"
     },
     {
+      "path": "assets/video/mp4/promo-costume-red-4ef6085a27d4-2160.mp4",
+      "bytes": 321807682,
+      "sha256": "4ef6085a27d4eb64da5a1e35b66f3ef977c9761241a1eac8e9d90f9aed4c3634"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-red-4ef6085a27d4-720.mp4",
+      "bytes": 13526213,
+      "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
+    },
+    {
       "path": "assets/video/mp4/promo-costume-red-6f67800c7805-1080.mp4",
       "bytes": 32747207,
       "sha256": "1ed13156b858b6116b66fc2769b06bd1daf8c47d82cf31e0b745f535966a0a63"
@@ -911,6 +941,16 @@
       "path": "assets/video/mp4/promo-costume-red-6f67800c7805-720.mp4",
       "bytes": 13526213,
       "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-white-9d71d4290f9c-2160.mp4",
+      "bytes": 310790326,
+      "sha256": "9d71d4290f9cbaaad501618dc4cc1d4379b509ac6b28877909580873af36e1ce"
+    },
+    {
+      "path": "assets/video/mp4/promo-costume-white-9d71d4290f9c-720.mp4",
+      "bytes": 13529548,
+      "sha256": "5a6076f2fac2e625777887fc9b96c42b5d19b364225ded6a0c38134e64f04e14"
     },
     {
       "path": "assets/video/mp4/promo-costume-white-bcef639df1ff-1080.mp4",
