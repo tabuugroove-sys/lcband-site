@@ -241,7 +241,8 @@
 	// когда дошли до середины первого видео; второе — полностью и двигается, когда коснулись
 	// нижней границы; третье — пару сантиметров второго ряда; четвёртое — когда второй ряд
 	// коснулся границы». Progress follows the page's bottom edge, so a fast scroll is a fast
-	// reveal and the top row shrinks back at the very same points on the way up. The bottom row
+	// reveal. On the way up the top row goes together, both at the first tile's points («правое
+	// уходит раньше левого, должны вместе», 30.10). The bottom row
 	// stays once it has come: going back it just drops away as a magnet layer and keeps
 	// playing. A tile grows out of the grid centre (scale .5 → 1). Phones (≤599px): no
 	// animation, the posters are there and only the videos start at these points. Off under
@@ -261,6 +262,7 @@
 		const reached = tiles.map(() => 0);
 		const started = tiles.map(() => false);
 		let frame = 0;
+		let lastY = window.scrollY;
 		const place = () => {
 			const cx = grid.clientWidth / 2;
 			const cy = grid.clientHeight / 2;
@@ -298,11 +300,14 @@
 		const tick = () => {
 			frame = 0;
 			const goal = targets();
+			const up = window.scrollY < lastY;
+			lastY = window.scrollY;
 			let moving = false;
 			let changed = false;
 			tiles.forEach((tile, i) => {
-				// The bottom row stays once it has come.
-				reached[i] = i >= 2 ? Math.max(reached[i], goal[i]) : goal[i];
+				// The bottom row stays once it has come; the second tile leaves with the first.
+				if (i === 1) reached[i] = up ? Math.min(reached[i], goal[0]) : Math.max(reached[i], goal[i]);
+				else reached[i] = i >= 2 ? Math.max(reached[i], goal[i]) : goal[i];
 				const on = reached[i] > 0;
 				if (on !== started[i]) {
 					started[i] = on;

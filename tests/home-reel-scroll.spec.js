@@ -63,16 +63,26 @@ test.describe('Homepage reel, scroll points', () => {
 		expect(await settledScale(page, 0)).toBeCloseTo(1, 2);
 	});
 
-	test('going back up the top row shrinks at the same points; the bottom row stays and keeps playing', async ({ page }) => {
+	test('going back up the top row leaves together at the first tile\'s points; the bottom row stays and keeps playing', async ({ page }) => {
 		test.setTimeout(60_000);
 		await page.goto('/');
 		const { row, second, ribbon } = await geometry(page);
 		await setEdge(page, second + row);
 		await expect.poll(() => playing(page, 2), { timeout: 15_000 }).toBe(true);
-		await setEdge(page, row * 0.4);
-		await expect.poll(() => shown(page)).toBe('1011');
+		// The bottom of the first row passed on the way up: the right tile has not gone before the left.
+		await setEdge(page, row * 0.7);
+		expect(await settledScale(page, 1)).toBeCloseTo(1, 2);
+		// Below the middle of the row both shrink, by the same amount.
+		await setEdge(page, row * 0.25);
+		const left = await settledScale(page, 0);
+		expect(left).toBeLessThan(0.999);
+		expect(await scaleOf(page, 1)).toBeCloseTo(left, 2);
+		expect(await shown(page)).toBe('1111');
 		await setEdge(page, 60 - ribbon);
 		await expect.poll(() => shown(page)).toBe('0011');
+		// Going down again, the order is as before: the left first, the right after it.
+		await setEdge(page, 110 - ribbon);
+		await expect.poll(() => shown(page)).toBe('1011');
 		await setEdge(page, second + 20);
 		await expect.poll(() => shown(page)).toBe('1111');
 		await expect.poll(() => playing(page, 2), { timeout: 15_000 }).toBe(true);
