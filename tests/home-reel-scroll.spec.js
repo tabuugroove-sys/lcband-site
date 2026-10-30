@@ -1,131 +1,109 @@
 import { expect, test } from '@playwright/test';
 import { serveHqMedia } from './hq-media.js';
 
-// Mikhail 30.10 (screenshot, page still loading): «первые два появились одновременно и не
-// двигаются. Должен появляться только первый ролик, прям с нижней границы, когда прокрутка
-// идёт: появляется в два раза меньше и увеличивается, начинает двигаться, через секунду
-// следующий, он тоже с середины появился и увеличился, затем остальные два по очереди».
-// A visitor scrolls down slowly with the wheel while the rest of the page is still loading.
+// Mikhail 30.10: each tile comes in at its own scroll point, measured from the screen's bottom edge.
 test.use({ viewport: { width: 1440, height: 800 } });
 
-test('slow scroll during page load: one tile at a time, each grows in and moves before the next', async ({ page, isMobile }) => {
-	test.skip(isMobile, 'phones have no reveal animation');
-	test.setTimeout(60_000);
-	await serveHqMedia(page);
-	// Keep the page loading, as on a slow connection: one more picture answers only after 25 s.
-	await page.route('**/__slow-picture.png', async route => { await new Promise(resolve => setTimeout(resolve, 25_000)); await route.abort().catch(() => {}); });
-	await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
-		const picture = new Image();
-		picture.src = '/__slow-picture.png';
-		picture.alt = '';
-		picture.style.cssText = 'position:absolute;width:1px;height:1px';
-		document.body.append(picture);
-	}));
-	await page.goto('/', { waitUntil: 'domcontentloaded' });
-	await page.mouse.move(720, 400);
-
-	const log = [];
-	const sample = () => page.evaluate(() => {
-		const grid = document.querySelector('[data-reel-grid]');
-		const tiles = [...grid.querySelectorAll('.reel__tile')];
-		return {
-			t: performance.now(),
-			loading: document.readyState !== 'complete',
-			gridTop: grid.getBoundingClientRect().top / innerHeight,
-			tiles: tiles.map(tile => {
-				const m = new DOMMatrix(getComputedStyle(tile).transform);
-				const box = tile.getBoundingClientRect();
-				const video = tile.querySelector('video');
-				return { shown: tile.classList.contains('is-shown') || tile.hasAttribute('data-magnet-item'), scale: m.a, top: box.top / innerHeight, playing: video.currentTime > 0.05 && !video.paused };
-			})
-		};
-	});
-	for (let i = 0; i < 140; i++) {
-		const grid = await page.evaluate(() => document.querySelector('[data-reel-grid]').getBoundingClientRect().top / innerHeight);
-		if (grid > 0.15) await page.mouse.wheel(0, 40);
-		await page.waitForTimeout(100);
-		log.push(await sample());
-		const firstAt = log.find(sample => sample.tiles[0].shown);
-		if (firstAt && log.at(-1).t - firstAt.t > 1500 && log.at(-1).tiles.every(tile => tile.shown && tile.playing)) break;
-	}
-
-	expect(log[0].loading).toBe(true);
-	const firstShown = i => log.findIndex(s => s.tiles[i].shown);
-	const firstPlaying = i => log.findIndex(s => s.tiles[i].playing);
-	// The top row grows in one by one, the second after the first is moving; the bottom
-	// row is a magnet layer (30.10) and simply plays.
-	const order = [0, 1].map(firstShown);
-	for (const index of order) expect(index).toBeGreaterThanOrEqual(0);
-	expect(order[1]).toBeGreaterThan(order[0]);
-	expect(firstPlaying(0)).toBeGreaterThanOrEqual(0);
-	expect(order[1]).toBeGreaterThanOrEqual(firstPlaying(0));
-	for (const i of [2, 3]) expect(firstPlaying(i)).toBeGreaterThanOrEqual(0);
-	// The first one comes alone, while the grid is still rising from the bottom edge.
-	const first = log[order[0]];
-	expect(first.tiles.slice(0, 2).filter(tile => tile.shown)).toHaveLength(1);
-	expect(first.gridTop).toBeGreaterThan(0.45);
-	// It is seen growing: small and on screen at the start, full size afterwards.
-	expect(first.tiles[0].scale).toBeLessThan(0.9);
-	expect(first.tiles[0].top).toBeLessThan(1);
-	const later = log.find(sample => sample.t - first.t > 1000);
-	expect(later).toBeTruthy();
-	expect(later.tiles[0].scale).toBeCloseTo(1, 1);
-	// The second tile also grows in from the middle.
-	expect(log[order[1]].tiles[1].scale).toBeLessThan(0.9);
-	// «Чтобы сразу двигалось, а не картинка висит» (30.10): every tile is already moving
-	// when it grows in — its video warmed up while the one before it played.
-	for (let i = 0; i < 2; i++) expect(firstPlaying(i)).toBeLessThanOrEqual(order[i] + 1);
-	// Its video moves while the page is still loading, not after.
-	expect(log[firstPlaying(0)].loading).toBe(true);
-	// About a second or more between the first two, as before.
-	expect(log[order[1]].t - log[order[0]].t).toBeGreaterThan(900);
+const geometry = page => page.evaluate(() => {
+	const grid = document.querySelector('[data-reel-grid]');
+	const tiles = grid.querySelectorAll('.reel__tile');
+	return { row: tiles[0].offsetHeight, second: tiles[2].offsetTop, ribbon: grid.getBoundingClientRect().top - document.querySelector('.reel__ribbon').getBoundingClientRect().top };
 });
+// Puts the screen's bottom edge `edge` px below the grid's top.
+const setEdge = (page, edge) => page.evaluate(value => {
+	const grid = document.querySelector('[data-reel-grid]');
+	scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight + value, behavior: 'instant' });
+}, edge);
+const shown = page => page.locator('.reel__tile').evaluateAll(tiles => tiles.map(tile => (tile.classList.contains('is-shown') ? 1 : 0)).join(''));
+const scaleOf = (page, i) => page.locator('.reel__bloom').nth(i).evaluate(bloom => new DOMMatrix(getComputedStyle(bloom).transform).a);
+// Once the tile has settled: a value seen on the way there proves nothing.
+const settledScale = async (page, i) => { await page.waitForTimeout(700); return scaleOf(page, i); };
+const playing = (page, i) => page.locator('[data-reel-video]').nth(i).evaluate(video => !video.paused && video.currentTime > 0.05);
 
-test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
-	test.beforeEach(({ isMobile }) => test.skip(isMobile, 'desktop animation'));
-
-	const placeGrid = (page, fraction) => page.evaluate(f => {
-		const grid = document.querySelector('[data-reel-grid]');
-		scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' });
-	}, fraction);
-	const shownFlags = page => page.locator('.reel__tile:not([data-magnet-item])').evaluateAll(tiles => tiles.map(tile => tile.classList.contains('is-shown')));
-	const bottomLift = page => page.locator('.reel__tile[data-magnet-item]').first().evaluate(element => { const m = getComputedStyle(element).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
-
-	test('scrolling back up, the bottom row drops away and the top tiles shrink last first; down brings them again', async ({ page }) => {
-		test.setTimeout(60_000);
+test.describe('Homepage reel, scroll points', () => {
+	test.beforeEach(async ({ page, isMobile }) => {
+		test.skip(isMobile, 'phones have no reveal animation');
 		await serveHqMedia(page);
+	});
+
+	test('each tile starts and finishes at its point on the way down', async ({ page }) => {
+		test.setTimeout(60_000);
 		await page.goto('/');
-		await placeGrid(page, 0.15);
-		await expect.poll(() => shownFlags(page), { timeout: 20_000 }).toEqual([true, true]);
-		expect(await bottomLift(page)).toBeLessThan(1);
-		const seen = [];
-		let dropped = 0;
-		for (let i = 0; i < 60; i++) {
-			await page.mouse.wheel(0, -40);
-			await page.waitForTimeout(80);
-			dropped = Math.max(dropped, await bottomLift(page));
-			const flags = (await shownFlags(page)).map(Number).join('');
-			if (seen.at(-1) !== flags) seen.push(flags);
-			if (flags === '00') break;
-		}
-		// The bottom layer comes unstuck and slides down; the top tiles go last first.
-		expect(dropped).toBeGreaterThan(40);
-		expect(seen).toEqual(['11', '10', '00']);
-		// A hidden tile is half size and invisible again.
-		const back = await page.locator('.reel__tile').first().evaluate(tile => ({ o: getComputedStyle(tile).opacity, s: new DOMMatrix(getComputedStyle(tile).transform).a }));
-		await expect.poll(() => page.locator('.reel__tile').first().evaluate(tile => new DOMMatrix(getComputedStyle(tile).transform).a)).toBeLessThan(0.6);
-		expect(back).toBeTruthy();
-		await placeGrid(page, 0.6);
-		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
+		const { row, second, ribbon } = await geometry(page);
+		await setEdge(page, 60 - ribbon);
+		await expect.poll(() => shown(page)).toBe('0000');
+		// The ribbon has risen a couple of centimetres: the first tile starts, alone.
+		await setEdge(page, 110 - ribbon);
+		await expect.poll(() => shown(page)).toBe('1000');
+		// The edge at the middle of the first row: the first tile is whole, the second starting.
+		await setEdge(page, row * 0.5);
+		expect(await settledScale(page, 0)).toBeCloseTo(1, 2);
+		await expect.poll(() => shown(page)).toBe('1100');
+		// The edge touches the bottom of the first row: the second is whole and moving.
+		await setEdge(page, row);
+		expect(await settledScale(page, 1)).toBeCloseTo(1, 2);
+		await expect.poll(() => playing(page, 1), { timeout: 15_000 }).toBe(true);
+		expect(await shown(page)).toBe('1100');
+		// A couple of centimetres of the second row: the third starts.
+		await setEdge(page, second + 110);
+		await expect.poll(() => shown(page)).toBe('1110');
+		// The edge touches the bottom of the second row: the fourth is whole and moving.
+		await setEdge(page, second + row);
+		expect(await settledScale(page, 3)).toBeCloseTo(1, 2);
+		await expect.poll(() => playing(page, 3), { timeout: 15_000 }).toBe(true);
+	});
+
+	test('a tile grows from half size, seen on screen', async ({ page }) => {
+		await page.goto('/');
+		const { row, ribbon } = await geometry(page);
+		await setEdge(page, 110 - ribbon);
+		await expect.poll(() => shown(page)).toBe('1000');
+		expect(await scaleOf(page, 0)).toBeLessThan(0.9);
+		await setEdge(page, row * 0.5);
+		expect(await settledScale(page, 0)).toBeCloseTo(1, 2);
+	});
+
+	test('going back up the top row shrinks at the same points; the bottom row stays and keeps playing', async ({ page }) => {
+		test.setTimeout(60_000);
+		await page.goto('/');
+		const { row, second, ribbon } = await geometry(page);
+		await setEdge(page, second + row);
+		await expect.poll(() => playing(page, 2), { timeout: 15_000 }).toBe(true);
+		await setEdge(page, row * 0.4);
+		await expect.poll(() => shown(page)).toBe('1011');
+		await setEdge(page, 60 - ribbon);
+		await expect.poll(() => shown(page)).toBe('0011');
+		await setEdge(page, second + 20);
+		await expect.poll(() => shown(page)).toBe('1111');
+		await expect.poll(() => playing(page, 2), { timeout: 15_000 }).toBe(true);
+	});
+
+	test('the first video moves while the rest of the page is still loading', async ({ page }) => {
+		test.setTimeout(60_000);
+		// Keep the page loading, as on a slow connection: one more picture answers only after 25 s.
+		await page.route('**/__slow-picture.png', async route => { await new Promise(resolve => setTimeout(resolve, 25_000)); await route.abort().catch(() => {}); });
+		await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
+			const picture = new Image();
+			picture.src = '/__slow-picture.png';
+			picture.alt = '';
+			picture.style.cssText = 'position:absolute;width:1px;height:1px';
+			document.body.append(picture);
+		}));
+		await page.goto('/', { waitUntil: 'domcontentloaded' });
+		const { row } = await geometry(page);
+		await setEdge(page, row * 0.5);
+		await expect.poll(() => playing(page, 0), { timeout: 15_000 }).toBe(true);
+		expect(await page.evaluate(() => document.readyState)).not.toBe('complete');
 	});
 
 	test('the first tile comes at once, poster first, even before its video can play', async ({ page }) => {
+		await page.unrouteAll();
 		await page.route(/\/assets\/video\/mp4\//, async route => { await new Promise(resolve => setTimeout(resolve, 15_000)); await route.abort().catch(() => {}); });
 		await page.goto('/');
-		await placeGrid(page, 0.6);
-		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/, { timeout: 500 });
-		await expect.poll(() => page.locator('.reel__tile').first().evaluate(tile => getComputedStyle(tile).opacity)).toBe('1');
-		expect(await page.locator('.reel__tile').first().locator('img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+		const { row } = await geometry(page);
+		await setEdge(page, row * 0.5);
+		await expect.poll(() => page.locator('.reel__bloom').first().evaluate(bloom => getComputedStyle(bloom).opacity)).toBe('1');
+		expect(await page.locator('.reel__bloom img').first().evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
 	});
 
 	test('the tiles are hidden before main.js arrives, so no poster flashes and vanishes', async ({ page }) => {
@@ -135,10 +113,9 @@ test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
 		// A deferred script holds DOMContentLoaded, so wait only for the grid's markup.
 		await page.goto('/', { waitUntil: 'commit' });
 		await page.waitForSelector('#reviews', { state: 'attached' });
-		await placeGrid(page, 0.5);
+		await setEdge(page, 400);
 		expect(await page.evaluate(() => window.LCBReelSequence)).toBeUndefined();
-		// The top row waits hidden; the bottom row is a magnet layer, there from the start.
-		expect(await page.locator('.reel__tile:not([data-magnet-item])').evaluateAll(tiles => tiles.map(tile => getComputedStyle(tile).opacity))).toEqual(['0', '0']);
+		expect(await page.locator('.reel__bloom').evaluateAll(blooms => blooms.map(bloom => getComputedStyle(bloom).opacity))).toEqual(['0', '0', '0', '0']);
 		release();
 		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
 	});
@@ -146,22 +123,40 @@ test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
 	test('without main.js the tiles come back after 8 s', async ({ page }) => {
 		await page.route(/\/main\.js/, route => route.abort());
 		await page.goto('/');
-		await placeGrid(page, 0.5);
-		await expect.poll(() => page.locator('[data-reel-grid]').getAttribute('class'), { timeout: 12_000 }).not.toMatch(/is-sequenced/);
+		await setEdge(page, 400);
+		await expect.poll(() => page.locator('.reel__bloom').first().evaluate(bloom => getComputedStyle(bloom).opacity), { timeout: 12_000 }).toBe('1');
 	});
 
-	test('the lower video rail waits lower and fainter, then sticks under the upper one', async ({ page }) => {
-		await page.route('**/*.mp4*', route => route.abort());
+	test('the upper video rail under the title stands still', async ({ page }) => {
 		await page.goto('/');
-		const rail = page.locator('.video-rails[data-magnet] > .video-rail--small');
-		const placeAt = fraction => rail.evaluate((element, f) => {
-			const top = element.getBoundingClientRect().top + scrollY - (Number.parseFloat(getComputedStyle(element).transform.split(',')[5]) || 0);
-			scrollTo({ top: top - innerHeight * f, behavior: 'instant' });
-		}, fraction);
-		const lift = () => rail.evaluate(element => { const m = getComputedStyle(element).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
-		await placeAt(0.95);
-		await expect.poll(lift).toBeGreaterThan(40);
-		await placeAt(0.3);
-		await expect.poll(lift).toBeLessThan(1);
+		const rail = page.locator('.video-rail--big').first();
+		expect(await rail.getAttribute('data-magnet-item')).toBeNull();
+		await rail.evaluate(node => scrollTo({ top: node.getBoundingClientRect().top + scrollY - innerHeight + 60, behavior: 'instant' }));
+		await page.waitForTimeout(400);
+		expect(await rail.evaluate(node => getComputedStyle(node).transform)).toBe('none');
 	});
+
+	// Measured on the live apple.com/apple-music on 30.10: straight in the scroll from the bottom edge.
+	for (const [name, selector] of [['lower video rail', '.video-rails > .video-rail--small[data-magnet-item]'], ['direction card', '#directions [data-magnet] > li:nth-child(3)']]) {
+		test(`the ${name} sticks within 200 px of the bottom edge, straight in the scroll`, async ({ page }) => {
+			await page.unrouteAll();
+			await page.route('**/*.mp4*', route => route.abort());
+			await page.goto('/');
+			const element = page.locator(selector).first();
+			const lift = () => element.evaluate(node => { const m = getComputedStyle(node).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
+			const past = distance => element.evaluate((node, d) => {
+				const top = node.getBoundingClientRect().top + scrollY - (Number.parseFloat(getComputedStyle(node).transform.split(',')[5]) || 0);
+				scrollTo({ top: top - innerHeight + d, behavior: 'instant' });
+			}, distance);
+			await past(100);
+			await expect.poll(lift).toBeGreaterThan(36);
+			await expect.poll(lift).toBeLessThan(44);
+			expect(Number(await element.evaluate(node => getComputedStyle(node).opacity))).toBeCloseTo(0.5, 0);
+			await past(205);
+			await expect.poll(lift).toBeLessThan(1);
+			// Back to the same point: it comes unstuck again.
+			await past(100);
+			await expect.poll(lift).toBeGreaterThan(36);
+		});
+	}
 });

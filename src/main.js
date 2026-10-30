@@ -133,7 +133,7 @@
 	// the first screen's picture is in, the first video loads ahead (paused) on its own, the
 	// second as soon as the first can play, then the third and the fourth the same way — so
 	// the bottom of the page already has something to play when the visitor gets there.
-	// A tile plays only once the reveal below has shown it, and only on screen.
+	// A tile plays from its scroll point on (the reveal below), and only near the screen.
 	// One button pauses and resumes them.
 	(() => {
 		const host = document.querySelector('[data-reel]');
@@ -147,7 +147,7 @@
 		let ready = false;
 		let pageActive = true;
 		let userPaused = false;
-		let shown = videos.length;
+		let started = videos.map(() => true);
 		const allowed = () => !reduceMotion.matches && !navigator.connection?.saveData
 			&& !/2g|3g/.test(navigator.connection?.effectiveType || '');
 		const playerOpen = () => document.body.classList.contains('hero-video-open')
@@ -162,9 +162,7 @@
 		};
 		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
 		const ahead = i => early && pageActive && allowed() && (i === 0 || videos[i - 1].readyState >= 3);
-		// The bottom row is its own layer (a magnet, see below): it plays whenever it is on screen.
-		const layer = videos.map(video => Boolean(video.closest('[data-magnet-item]')));
-		const wanted = i => (layer[i] || i < shown) && shouldPlay();
+		const wanted = i => started[i] && shouldPlay();
 		const attach = video => {
 			const source = sourceFor(video);
 			if (video.getAttribute('src') === source) return;
@@ -196,7 +194,7 @@
 				});
 			});
 		};
-		host.addEventListener('reel-reveal', event => { shown = event.detail.shown; update(); });
+		host.addEventListener('reel-reveal', event => { started = event.detail.started; update(); });
 		toggle.addEventListener('click', () => { userPaused = !userPaused; update(); });
 		videos.forEach((video, i) => {
 			video.addEventListener('playing', () => {
@@ -207,9 +205,9 @@
 			video.addEventListener('error', () => video.classList.remove('is-ready'));
 		});
 		new IntersectionObserver(entries => {
-			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
+			visible = entries[0].isIntersecting;
 			update();
-		}, { threshold: [0, 0.1] }).observe(grid);
+		}, { rootMargin: '0px 0px 160px 0px' }).observe(grid);
 		const begin = () => { if (early) return; early = true; ready = true; update(); };
 		const firstPicture = document.querySelector('.hero img[fetchpriority="high"], .hero img');
 		if (!firstPicture || firstPicture.complete) begin();
@@ -238,20 +236,16 @@
 		else window.addEventListener('load', afterLoad, { once: true });
 	})();
 
-	// ---------- Home reels: one by one, each after the one before is moving (Mikhail 29–30.10) ----------
-	// «Первое видео появилось сразу, из середины увеличилось; когда задвигалось — второй
-	// квадратик, он задвигался — третий…»: a tile grows out of the grid centre
-	// (styles.css), its video loads and starts, and only once it is really moving does
-	// the next tile come in and start loading, so four videos never load at once. A slow
-	// video (4 s) or videos switched off (Save-Data, slow network) do not hold the next
-	// tile; when the grid is being scrolled away, the rest come at once. Off under
-	// reduced motion: all four are there at once. Phones (30.10, «на телефоне максимально
-	// быстро, анимация не нужна»): the four posters are there at once with no animation;
-	// only the videos still come one after another, so a phone never pulls four at once.
-	// «Когда вверх мотаешь — наоборот, уходят в квадрат в два раза меньше» (30.10): scrolling
-	// back up, the tiles shrink away one by one, last first, and come in again on the way down.
-	// The grid is already hidden by a line in home-reel.njk before this script arrives, so
-	// the posters never flash and vanish.
+	// ---------- Home reels: each tile comes in at its own scroll point (Mikhail 30.10) ----------
+	// «Первое — когда полоса поднялась на пару сантиметров от нижней границы, почти полностью,
+	// когда дошли до середины первого видео; второе — полностью и двигается, когда коснулись
+	// нижней границы; третье — пару сантиметров второго ряда; четвёртое — когда второй ряд
+	// коснулся границы». Progress follows the page's bottom edge, so a fast scroll is a fast
+	// reveal and the top row shrinks back at the very same points on the way up. The bottom row
+	// stays once it has come: going back it just drops away as a magnet layer and keeps
+	// playing. A tile grows out of the grid centre (scale .5 → 1). Phones (≤599px): no
+	// animation, the posters are there and only the videos start at these points. Off under
+	// reduced motion. A line in home-reel.njk hides the tiles before this script arrives.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
@@ -259,130 +253,82 @@
 		const phone = window.matchMedia('(max-width: 599px)').matches;
 		window.LCBReelSequence = true;
 		const ribbon = host.querySelector('.reel__ribbon');
-		// Only the top row comes one by one; the bottom row is a magnet layer
-		// («раздели верхнее и нижнее видео… отлипает и уезжает вниз», 30.10).
-		const tiles = [...grid.querySelectorAll('.reel__tile:not([data-magnet-item])')];
-		const minGap = 1200;
-		const maxWait = 4000;
-		const readyWait = 1200;
-		let shown = 0;
-		let timer = 0;
-		const announce = () => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown } }));
+		const tiles = [...grid.querySelectorAll('.reel__tile')];
+		const blooms = tiles.map(tile => tile.querySelector('.reel__bloom'));
+		const overshoot = grid.hasAttribute('data-reel-zoom') ? 0.03 : 0;
+		const couple = 100; // «пара сантиметров» on the screen, CSS px
+		const progress = tiles.map(() => 0);
+		const reached = tiles.map(() => 0);
+		const started = tiles.map(() => false);
+		let frame = 0;
 		const place = () => {
 			const cx = grid.clientWidth / 2;
 			const cy = grid.clientHeight / 2;
-			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
+			tiles.forEach((tile, i) => { blooms[i].style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`; });
 		};
-		let stopWaiting = () => {};
-		// The next tile grows in once its video, loaded ahead, can play, so no still picture
-		// hangs there; a slow network holds it no longer than readyWait.
-		let holding = false;
-		const whenMoving = show => {
-			const index = shown;
-			const video = tiles[index]?.querySelector('[data-reel-video]');
-			const playable = () => video.readyState >= 3 || video.currentTime > 0.05;
-			if (!video?.getAttribute('src') || playable()) { show(); return; }
-			if (holding) return;
-			holding = true;
-			const done = () => {
-				video.removeEventListener('canplay', check);
-				video.removeEventListener('timeupdate', check);
-				window.clearTimeout(cap);
-				holding = false;
-				if (shown === index) show();
-			};
-			const check = () => { if (playable()) done(); };
-			const cap = window.setTimeout(done, readyWait);
-			video.addEventListener('canplay', check);
-			video.addEventListener('timeupdate', check);
+		const targets = () => {
+			const top = grid.getBoundingClientRect().top;
+			const edge = window.innerHeight - top; // how far the screen's bottom edge is into the grid
+			const rowHeight = tiles[0].offsetHeight;
+			const second = tiles[2].offsetTop;
+			const ribbonSpace = ribbon ? top - ribbon.getBoundingClientRect().top : 0;
+			const span = (from, to) => Math.min(1, Math.max(0, (edge - from) / (to - from)));
+			return [
+				span(couple - ribbonSpace, rowHeight * 0.5),
+				span(rowHeight * 0.45, rowHeight),
+				span(second + couple, second + rowHeight * 0.5),
+				span(second + rowHeight * 0.45, second + rowHeight)
+			];
 		};
-		// Waits for the last shown tile's video to move, then brings the next tile.
-		let armed = false;
-		const arm = () => {
-			armed = true;
-			const tile = tiles[shown - 1];
-			const since = performance.now();
-			const video = tile.querySelector('[data-reel-video]');
-			let done = false;
-			const go = () => {
-				if (done) return;
-				stopWaiting();
-				window.clearTimeout(timer);
-				timer = window.setTimeout(() => whenMoving(next), Math.max(0, minGap - (performance.now() - since)));
-			};
-			const moving = () => { if (video.currentTime > 0.05) go(); };
-			stopWaiting = () => { done = true; video?.removeEventListener('timeupdate', moving); };
-			video?.addEventListener('timeupdate', moving);
-			timer = window.setTimeout(go, maxWait);
+		const paint = i => {
+			const p = progress[i];
+			const bloom = blooms[i];
+			if (p >= 0.999) {
+				// Explicit values: the hidden state in styles.css would come back otherwise.
+				bloom.style.transform = 'none';
+				bloom.style.clipPath = 'none';
+				bloom.style.opacity = '1';
+				return;
+			}
+			const eased = 1 - (1 - p) ** 3;
+			bloom.style.transform = `scale(${(0.5 + 0.5 * eased + overshoot * Math.sin(Math.PI * eased)).toFixed(4)})`;
+			bloom.style.clipPath = `inset(0 round ${(28 * (1 - eased)).toFixed(1)}px)`;
+			bloom.style.opacity = Math.min(1, p / 0.35).toFixed(3);
 		};
-		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
-		const next = (last = shown) => {
-			window.clearTimeout(timer);
-			stopWaiting();
-			armed = false;
-			if (shown >= tiles.length) return;
-			while (shown <= last) tiles[shown++].classList.add('is-shown');
-			announce();
-			if (shown < tiles.length) arm();
+		const tick = () => {
+			frame = 0;
+			const goal = targets();
+			let moving = false;
+			let changed = false;
+			tiles.forEach((tile, i) => {
+				// The bottom row stays once it has come.
+				reached[i] = i >= 2 ? Math.max(reached[i], goal[i]) : goal[i];
+				const on = reached[i] > 0;
+				if (on !== started[i]) {
+					started[i] = on;
+					tile.classList.toggle('is-shown', on);
+					changed = true;
+				}
+				if (phone) return;
+				const gap = reached[i] - progress[i];
+				if (Math.abs(gap) < 0.002) progress[i] = reached[i];
+				else { progress[i] += gap * 0.22; moving = true; }
+				paint(i);
+			});
+			if (changed) host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { started: started.slice() } }));
+			if (moving) frame = requestAnimationFrame(tick);
 		};
-		// Going back up: the last shown tile shrinks away once the grid has dropped past where
-		// it came in, one tile at a time.
-		let lastHide = 0;
-		const backOff = () => {
-			const rect = grid.getBoundingClientRect();
-			const height = window.innerHeight;
-			const gone = rect.top > height;
-			if (!gone && performance.now() - lastHide < 160) return;
-			const tile = tiles[shown - 1];
-			const out = gone || (shown === 1
-				? rect.top + rect.height * 0.3 > height * 0.97
-				: rect.top + tile.offsetTop > height * (tile.offsetTop ? 0.75 : 0.8));
-			if (!out) return;
-			window.clearTimeout(timer);
-			stopWaiting();
-			armed = false;
-			lastHide = performance.now();
-			do tiles[--shown].classList.remove('is-shown'); while (gone && shown > 0);
-			announce();
-		};
-		// «Первый — прям с нижней границы, когда прокрутка идёт, в два раза меньше и
-		// увеличивается»: it starts while the grid is still rising from the bottom edge, once
-		// the shrunken tile (the upper part of the grid's middle) is on screen to be seen growing.
-		const maybeBegin = () => {
-			if (shown) return;
-			const rect = grid.getBoundingClientRect();
-			// The first tile comes at once, poster first if its video is not ready yet.
-			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) next();
-		};
-		const rest = () => {
-			window.clearTimeout(timer);
-			stopWaiting();
-			while (shown < tiles.length) tiles[shown++].classList.add('is-shown');
-			announce();
-		};
-		let lastY = window.scrollY;
-		const onScroll = () => {
-			const up = window.scrollY < lastY;
-			lastY = window.scrollY;
-			if (up && !phone && shown > 0) { backOff(); return; }
-			maybeBegin();
-			if (shown === 0 || shown >= tiles.length) return;
-			const rect = grid.getBoundingClientRect();
-			if (rect.bottom < window.innerHeight * 0.35) rest();
-			else if (!armed && !holding) arm();
-		};
+		const kick = () => { if (!frame) frame = requestAnimationFrame(tick); };
 		if (!phone) {
 			place();
 			grid.classList.add('is-sequenced');
 			window.addEventListener('resize', place);
+			blooms.forEach((bloom, i) => paint(i));
 		}
-		announce();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		const begin = new IntersectionObserver(entries => {
-			if (!entries[0].isIntersecting) return;
-			maybeBegin();
-		}, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
-		begin.observe(grid);
+		host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { started: started.slice() } }));
+		window.addEventListener('scroll', kick, { passive: true });
+		window.addEventListener('resize', kick);
+		kick();
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
 		if (ribbon && !phone) {
@@ -391,27 +337,31 @@
 				if (!entries[0].isIntersecting) return;
 				ribbon.classList.add('is-in');
 				ribbonWatch.disconnect();
-			}, { threshold: 0.5 });
+			}, { threshold: 0.1 });
 			ribbonWatch.observe(ribbon);
 		}
 		reduceMotion.addEventListener('change', () => {
 			if (!reduceMotion.matches) return;
-			begin.disconnect();
-			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('scroll', kick);
+			window.removeEventListener('resize', kick);
+			window.removeEventListener('resize', place);
+			cancelAnimationFrame(frame);
 			ribbonWatch?.disconnect();
 			ribbon?.classList.remove('is-armed');
 			grid.classList.remove('is-sequenced');
-			rest();
-			for (const tile of tiles) tile.style.removeProperty('transform-origin');
+			blooms.forEach(bloom => { bloom.style.cssText = ''; });
+			tiles.forEach((tile, i) => { tile.classList.add('is-shown'); started[i] = true; });
+			host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { started: started.slice() } }));
 		});
 	})();
 
 	// ---------- Magnet cards (Mikhail 30.10) ----------
 	// «Сначала большое расстояние, а потом как магнитик прилипает… и в другую сторону
 	// отлипает»: a card near the bottom edge of the screen waits lower and fainter and
-	// catches up with the card above as the page scrolls on, a touch later than the
-	// scroll, like the cards on apple.com/apple-music; scrolling back, it drops away
-	// faster than the page moves. Containers opt in with data-magnet ("desktop": from
+	// catches up with the card above as the page scrolls on. «Буквально 3–4 сантиметра, и
+	// прилепилось»: as measured on the live apple.com/apple-music on 30.10, straight in the
+	// scroll (80 px → 0, opacity 0 → 1, from the bottom edge), lightly smoothed; Apple takes
+	// 270 px, ours 200 px. Scrolling back, it drops away the same way. Containers opt in with data-magnet ("desktop": from
 	// 735px). Transform and opacity only, one rAF loop while something still moves,
 	// only cards near the screen; off under reduced motion.
 	(() => {
@@ -421,8 +371,8 @@
 		const singles = [...document.querySelectorAll('[data-magnet-item]')];
 		if (!(groups.length || singles.length) || reduceMotion.matches || !('IntersectionObserver' in window)) return;
 		const desktop = window.matchMedia('(min-width: 735px)');
-		const lift = 96;
-		const zone = 0.42;
+		const lift = 80;
+		const zone = 200;
 		const items = [
 			...groups.flatMap(group => [...group.children].map(el => ({ el, mode: group.dataset.magnet, y: 0, o: 1, near: false }))),
 			...singles.map(el => ({ el, mode: el.dataset.magnetItem, y: 0, o: 1, near: false }))
@@ -436,14 +386,13 @@
 			for (const item of items) {
 				if (!item.near || !active(item)) continue;
 				// Where the card sits without our offset: 0 at the bottom edge, 1 once it is
-				// `zone` of the screen higher.
+				// `zone` px higher.
 				const top = item.el.getBoundingClientRect().top - item.y;
-				const p = Math.min(1, Math.max(0, (window.innerHeight - top) / (window.innerHeight * zone)));
-				const e = 1 - (1 - p) ** 3;
-				const y = (1 - e) * lift;
-				const o = 0.2 + 0.8 * e;
-				item.y += (y - item.y) * 0.2;
-				item.o += (o - item.o) * 0.2;
+				const p = Math.min(1, Math.max(0, (window.innerHeight - top) / zone));
+				const y = (1 - p) * lift;
+				const o = p;
+				item.y += (y - item.y) * 0.22;
+				item.o += (o - item.o) * 0.22;
 				if (Math.abs(y - item.y) < 0.3 && Math.abs(o - item.o) < 0.005) { item.y = y; item.o = o; } else moving = true;
 				item.el.style.transform = item.y > 0.3 ? `translate3d(0, ${item.y.toFixed(1)}px, 0)` : '';
 				item.el.style.opacity = item.o < 0.995 ? item.o.toFixed(3) : '';

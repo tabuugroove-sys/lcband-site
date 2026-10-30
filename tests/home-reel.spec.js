@@ -3,8 +3,8 @@ import { serveHqMedia } from './hq-media.js';
 
 // Four silent reels 2×2 replaced the about photo block on the homepage (Mikhail, 29.10):
 // the grid is 21:9 → 2:1 → 3:2 by width and four squares on phones, with square cuts there.
-// 30.10: light cuts from 4K sources; a tile comes in only once the video before it is moving;
-// the first two videos load as soon as the first screen's picture is in, the others in turn.
+// 30.10: light cuts from 4K sources; each tile comes in at its own scroll point (see
+// home-reel-scroll.spec.js); the videos load in turn from the first screen's picture on.
 const reelVideos = page => page.locator('[data-reel-video]');
 const allPlaying = list => list.every(video => !video.paused && video.readyState >= 2);
 
@@ -35,22 +35,13 @@ test.describe('Homepage reel', () => {
 		});
 	}
 
-	test('brings the top tiles in one by one; every video plays', async ({ page, isMobile }) => {
+	test('every video plays once the grid is passed, in the screen format', async ({ page, isMobile }) => {
 		await page.goto('/');
-		// An instant jump: the grid has just risen into view.
 		await page.evaluate(() => {
 			const grid = document.querySelector('[data-reel-grid]');
-			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * 0.6, behavior: 'instant' });
+			scrollTo({ top: grid.getBoundingClientRect().bottom + scrollY - innerHeight + 2, behavior: 'instant' });
 		});
-		const tiles = page.locator('.reel__tile');
 		const videos = reelVideos(page);
-		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
-		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
-		// Videos load ahead (30.10), but a top tile's video plays only once the tile is shown.
-		expect(await videos.nth(1).evaluate(video => video.paused)).toBe(true);
-		// The second tile waits until the first video is really moving.
-		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 6_000 });
-		expect(await videos.nth(0).evaluate(video => video.currentTime)).toBeGreaterThan(0);
 		await expect.poll(() => videos.evaluateAll(allPlaying), { timeout: 15_000 }).toBe(true);
 		const sources = await videos.evaluateAll(list => list.map(video => video.getAttribute('src')));
 		for (const src of sources) expect(src).toMatch(isMobile ? /-square\.mp4$/ : /-wide\.mp4$/);
@@ -87,7 +78,7 @@ test.describe('Homepage reel', () => {
 		await expect.poll(lift).toBeGreaterThan(40);
 	});
 
-	test('a fast scroll brings the top tiles in before the grid leaves the screen', async ({ page }) => {
+	test('a fast scroll brings all four in before the grid leaves the screen', async ({ page }) => {
 		await page.goto('/');
 		await page.evaluate(() => {
 			const grid = document.querySelector('[data-reel-grid]');
@@ -102,14 +93,17 @@ test.describe('Homepage reel', () => {
 			}
 			return document.querySelectorAll('.reel__tile.is-shown').length;
 		});
-		expect(shownWhenGone).toBe(2);
+		expect(shownWhenGone).toBe(4);
 	});
 
 	test('one button pauses and resumes the videos; scrolling away pauses them', async ({ page }) => {
 		await page.goto('/');
 		await page.locator('[data-reel-grid]').scrollIntoViewIfNeeded();
 		const videos = reelVideos(page);
-		await expect(page.locator('.reel__tile').nth(1)).toHaveClass(/is-shown/, { timeout: 15_000 });
+		await page.evaluate(() => {
+			const grid = document.querySelector('[data-reel-grid]');
+			scrollTo({ top: grid.getBoundingClientRect().bottom + scrollY - innerHeight + 2, behavior: 'instant' });
+		});
 		await expect.poll(() => videos.evaluateAll(allPlaying), { timeout: 15_000 }).toBe(true);
 
 		const toggle = page.locator('[data-reel-toggle]');

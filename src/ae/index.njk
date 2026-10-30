@@ -308,7 +308,7 @@ permalink: /ae/
 		{% include "partials/promo-downloads.njk" %}
 	</div>
 
-	<div class="video-rails" data-magnet="desktop">
+	<div class="video-rails">
 	<div class="video-rail video-rail--big" role="region" aria-label="الفيديوهات الترويجية">
 		<div class="video-rail__heading"><h3 class="video-rail__title">فيديوهات ترويجية من الاستوديو</h3></div>
 		<ul class="video-rail__track">
@@ -330,7 +330,7 @@ permalink: /ae/
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="video-rail video-rail--small" role="region" aria-label="فيديوهات الحفلات الحية">
+	<div class="video-rail video-rail--small" data-magnet-item="desktop" role="region" aria-label="فيديوهات الحفلات الحية">
 		<div class="video-rail__heading"><h3 class="video-rail__title">فيديوهات الحفلات الحية</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives | internationalVideos %}

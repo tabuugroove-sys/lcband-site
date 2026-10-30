@@ -29,6 +29,7 @@
 		{%- for id in ['epic-04', 'studio-11', 'mix-12', 'epic-03'] %}
 		{#- 30.10: нижний ряд — отдельный слой с магнитом, как остальные блоки; верхний появляется по одному. -#}
 		<div class="reel__tile"{% if loop.index0 >= 2 %} data-magnet-item="desktop"{% endif %}>
+			<div class="reel__bloom">
 			<picture class="reel__poster">
 				<source media="(max-width: 599px)" srcset="{{ ('/assets/hero/hq-20261029-' + id + '-square.webp') | url }}">
 				<img src="{{ ('/assets/hero/hq-20261029-' + id + '-wide.webp') | url }}" alt="" width="1280" height="640" decoding="async">
@@ -36,6 +37,7 @@
 			<video class="reel__video" data-reel-video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
 				data-src-wide="{{ ('/assets/video/mp4/lt2-20261030-' + id + '-wide.mp4') | url }}"
 				data-src-square="{{ ('/assets/video/mp4/ph-20261030-' + id + '-square.mp4') | url }}"></video>
+			</div>
 		</div>
 		{%- endfor %}
 		<button class="reel__toggle" type="button" data-reel-toggle hidden
