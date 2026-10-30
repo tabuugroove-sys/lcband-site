@@ -36,6 +36,10 @@ RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoi
 RewriteRule ^programs/spanish/?$ https://luxuryband.ru/programs/latin/ [L,R=301]
 RewriteRule ^en/programs/spanish/?$ https://luxuryband.ru/en/programs/latin/ [L,R=301]
 
+# The separate concert gallery is retired; keep shared URLs useful.
+RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/#videos [L,R=301,NE]
+RewriteRule ^en/live(?:/index\.html)?/?$ https://luxuryband.ru/en/#videos [L,R=301,NE]
+
 # Preserve shared links after replacing the full promo and compacting Live Icon.
 RewriteRule ^assets/video/mp4/promo-main-reel-(?:3c92641df748-)?(720|1080|2160)\.mp4$ https://luxuryband.ru/assets/video/mp4/promo-main-reel-4ef6085a27d4-$1.mp4 [L,R=301,NE,QSD]
 RewriteCond %{QUERY_STRING} (^|&)file=promo-main-reel-(?:3c92641df748-)?(720|1080|2160)\.mp4(&|$)

@@ -58,7 +58,7 @@ eleventyComputed:
 {% if vocalist.story and vocalist.story.length %}
 <section class="section section--light vocalist-story" aria-labelledby="vocalist-story-title">
 	<div class="container vocalist-story__layout">
-		<h2 class="section__title" id="vocalist-story-title">Voice<br><span class="muted">and audience.</span></h2>
+		<h2 class="section__title" id="vocalist-story-title">{% if vocalist.slug == 'laz' %}Black Eyed Peas<br><span class="muted">tribute.</span>{% else %}Voice<br><span class="muted">and audience.</span>{% endif %}</h2>
 		<div class="vocalist-story__text">
 			{% for paragraph in vocalist.story %}<p>{{ paragraph }}</p>{% endfor %}
 		</div>

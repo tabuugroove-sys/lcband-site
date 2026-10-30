@@ -66,7 +66,7 @@ for (const [section, russianPages, englishPages] of collections) {
 }
 
 // Shared templates generate both languages from explicit locale permalinks.
-for (const filename of ['artistLocales.json', 'liveLocales.json', 'leoSaxLocales.json', 'stereoSaxLocales.json']) {
+for (const filename of ['artistLocales.json', 'leoSaxLocales.json', 'stereoSaxLocales.json']) {
 	const locales = readData(filename);
 	const russian = locales.find(({ lang }) => lang === 'ru');
 	const english = locales.find(({ lang }) => lang === 'en');

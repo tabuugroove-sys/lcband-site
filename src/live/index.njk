@@ -1,49 +1,17 @@
 ---
-layout: layouts/base.njk
-pagination:
-  data: liveLocales
-  size: 1
-  alias: locale
-permalink: "{{ locale.permalink }}"
-eleventyComputed:
-  title: "{{ locale.title }}"
-  description: "{{ locale.description }}"
-  keywords: "{{ locale.keywords }}"
-  htmlLang: "{{ locale.lang }}"
-  ogLocale: "{% if locale.lang == 'en' %}en_US{% else %}ru_RU{% endif %}"
+permalink: "/live/"
+eleventyExcludeFromCollections: true
 ---
-{% set isEn = locale.lang == 'en' %}
-
-<section class="page-hero page-hero--list">
-	<div class="container container--narrow">
-		<p class="page-hero__breadcrumb">
-			<a href="{{ ('/en/' if isEn else '/') | url }}">{{ site.shortName }}</a> <span>·</span>
-			<span>{% if isEn %}Live Shows{% else %}Концерты{% endif %}</span>
-		</p>
-		<p class="page-hero__eyebrow">{% if isEn %}Live Shows{% else %}Концерты{% endif %}</p>
-		<h1 class="page-hero__title">{% if isEn %}From private events<br><span class="muted">to stadiums.</span>{% else %}От частных ивентов<br><span class="muted">до стадионов.</span>{% endif %}</h1>
-		<p class="page-hero__lead">{% if isEn %}<a href="{{ '/en/events/corporate/' | url }}">Corporate events</a>, private celebrations, <a href="{{ '/en/events/wedding/' | url }}">weddings</a>, television stages and major outdoor venues.{% else %}Нас зовут на <a href="{{ '/events/corporate/' | url }}">корпоративы</a> и <a href="{{ '/events/wedding/' | url }}">свадьбы</a>, на частные вечеринки и съёмки для ТВ. А 12 сентября наш LAZ пел на Дне города в Лабытнангах.{% endif %}</p>
-	</div>
-</section>
-
-<section class="section section--light" id="event-stories">
-	<div class="container container--narrow reveal">
-		<h2 class="section__title">{% if isEn %}More about the performances.{% else %}Подробнее о выступлениях.{% endif %}</h2>
-		<p class="section__lead">{% if isEn %}Read about <a href="{{ '/en/vocalists/laz/' | url }}">LAZ and his audience interaction</a>, or see <a href="{{ '/en/events/wedding/' | url }}">wedding performance formats and video examples</a>.{% else %}Нам потом пишут. Вот <a href="{{ '/vocalists/laz/#review' | url }}">зрительница после концерта LAZ в Лабытнангах</a>, вот <a href="{{ '/events/wedding/#review' | url }}">Алёна после своей свадьбы в июне 2026 года</a>.{% endif %}</p>
-	</div>
-</section>
-
-<section class="section section--light">
-	<div class="container reveal">
-		<div class="live-grid">
-			<a class="live-grid__tile live-grid__tile--wide" href="{{ '/assets/photos/concert-big.jpg' | url }}" data-lightbox><img data-photo-layout="live-wide" src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="{% if isEn %}Luxury Cover Band at a major concert{% else %}Большой концерт Luxury Cover Band{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/concert-10k.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="{% if isEn %}Performance on a stadium stage{% else %}Выступление на стадионной сцене{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/concert-event.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/concert-event.jpg' | url }}" alt="{% if isEn %}Evening event performance{% else %}Вечерний ивент{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/concert-light.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/concert-light.jpg' | url }}" alt="{% if isEn %}Concert with a lighting show{% else %}Концерт со световым шоу{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile live-grid__tile--wide" href="{{ '/assets/photos/concert-teddi.jpg' | url }}" data-lightbox><img data-photo-layout="live-wide" src="{{ '/assets/photos/concert-teddi.jpg' | url }}" alt="{% if isEn %}Luxury Cover Band live performance{% else %}Концертная фотосъёмка{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/sax.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/sax.jpg' | url }}" alt="{% if isEn %}LCB saxophonist{% else %}Саксофонист LCB{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/vocalists.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/vocalists.jpg' | url }}" alt="{% if isEn %}LCB vocalists{% else %}Вокалисты LCB{% endif %}" loading="lazy"></a>
-			<a class="live-grid__tile" href="{{ '/assets/photos/hero-studio.jpg' | url }}" data-lightbox><img data-photo-layout="live" src="{{ '/assets/photos/hero-studio.jpg' | url }}" alt="{% if isEn %}Luxury Cover Band studio portrait{% else %}Студийное фото группы{% endif %}" loading="lazy"></a>
-		</div>
-	</div>
-</section>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Видео выступлений — Luxury Cover Band</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ site.url }}/">
+<meta http-equiv="refresh" content="0; url={{ '/#videos' | url }}">
+</head>
+<body>
+<p><a href="{{ '/#videos' | url }}">Смотреть видео Luxury Cover Band</a></p>
+</body>
+</html>

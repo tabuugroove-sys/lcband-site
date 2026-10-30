@@ -43,7 +43,6 @@ const ENGLISH_ROUTES = [
 	'/en/blog/',
 	'/en/blog/kaver-gruppa-ili-didzhej/',
 	'/en/blog/skolko-stoit-kaver-gruppa/',
-	'/en/live/',
 	'/en/sax/leo-sax/',
 	'/en/sax/stereo-sax/',
 ];

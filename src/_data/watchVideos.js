@@ -23,13 +23,13 @@ const performances = [
       title: 'Volare — Николай Басков и Luxury Cover Band',
       description: 'Короткая запись совместного исполнения Volare Николаем Басковым и Luxury Cover Band. Концертный фрагмент продолжительностью около восьми секунд.',
       context: 'В этой короткой записи Николай Басков и Luxury Cover Band исполняют Volare. Участие гостевого артиста в этой записи не означает его участие в стандартной программе группы. Состав на ваше событие обсудим отдельно.',
-      relatedUrl: '/live/', relatedLabel: 'Другие записи Luxury Cover Band',
+      relatedUrl: '/#videos', relatedLabel: 'Другие записи Luxury Cover Band',
     },
     en: {
       title: 'Volare — Nikolay Baskov and Luxury Cover Band',
       description: 'A short recording of Volare performed by Nikolay Baskov and Luxury Cover Band. The concert clip runs for approximately eight seconds.',
       context: 'Nikolay Baskov and Luxury Cover Band perform Volare in this short recording. The guest artist appearing in this clip is not part of the band’s standard lineup. Contact us to discuss the performers for your event.',
-      relatedUrl: '/en/live/', relatedLabel: 'More Luxury Cover Band recordings',
+      relatedUrl: '/en/#videos', relatedLabel: 'More Luxury Cover Band recordings',
     },
   },
   {

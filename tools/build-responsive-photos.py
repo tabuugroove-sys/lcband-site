@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Build versioned WebP variants for existing costume/live gallery photos."""
+"""Build versioned WebP variants for costume and concert photos used by the site."""
 import hashlib
 import json
-import re
 import subprocess
 from pathlib import Path
 
@@ -11,7 +10,11 @@ DEST = ROOT / "src/assets/photos/responsive"
 DEST.mkdir(parents=True, exist_ok=True)
 gallery = json.loads((ROOT / "src/_data/promoGallery.json").read_text())
 sources = {f"/assets/costumes/{item['slug']}.jpg" for item in gallery["costumes"]}
-sources.update(re.findall(r"/assets/photos/[\w-]+\.jpg", (ROOT / "src/live/index.njk").read_text()))
+# These photos remain in other site sections after retiring the /live/ page.
+sources.update(f"/assets/photos/{name}.jpg" for name in (
+    "concert-big", "concert-10k", "concert-event", "concert-light",
+    "concert-teddi", "sax", "vocalists", "hero-studio",
+))
 aliases = {
     "/assets/costumes/shimmer.jpg": "/assets/photos/concert-light.jpg",
     "/assets/costumes/dark-green-group.jpg": "/assets/photos/concert-light.jpg",

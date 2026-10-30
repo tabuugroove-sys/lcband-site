@@ -42,7 +42,7 @@ Start with the music you want to hear and the atmosphere you want to create. Con
 - **Key moments** — the first dance, entrances, congratulations and the climax of the evening become real events.
 - **Atmosphere and status** — a live group establishes the level of the occasion from the welcome onward.
 - **Emotion and participation** — the singer works with the room and guests can perform on stage.
-- **Video and content** — [live performance]({{ '/en/live/' | url }}) creates moments people want to revisit and share.
+- **Video and content** — [live performance]({{ '/en/#videos' | url }}) creates moments people want to revisit and share.
 
 ## When to choose a DJ
 
