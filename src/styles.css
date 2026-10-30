@@ -5836,7 +5836,10 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
    карточки apple.com/apple-music версии 2025 (scale .5 → 1), проявляется и теряет
    скругление. Пауза 1,5 с; чем быстрее прокрутка, тем быстрее — main.js ставит
    --reel-boost и точку роста. Без JS и при reduced-motion все четыре сразу. */
-.reel__grid.is-sequenced { overflow: hidden; }
+/* 30.10 «нижнее видео — отдельным слоем, отлипает и уезжает вниз, как остальные блоки»:
+   нижний ряд — магнит (data-magnet-item), ему нужен выход за низ сетки; по ширине
+   секция режет переполнение (плитка проскакивает на 4 %). */
+.reel { overflow-x: clip; }
 .reel__grid.is-sequenced .reel__tile {
 	clip-path: inset(0 round 0);
 	transition:
@@ -5850,7 +5853,8 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 .reel__grid.is-sequenced[data-reel-zoom] .reel__tile {
 	transition-timing-function: cubic-bezier(.28, .11, .32, 1), cubic-bezier(.3, 1.5, .55, 1), cubic-bezier(.16, 1, .3, 1);
 }
-.reel__grid.is-sequenced .reel__tile:not(.is-shown) {
+.reel__grid.is-sequenced .reel__tile[data-magnet-item] { transition: none; }
+.reel__grid.is-sequenced .reel__tile:not(.is-shown):not([data-magnet-item]) {
 	opacity: 0;
 	transform: scale(.5);
 	clip-path: inset(0 round 28px);

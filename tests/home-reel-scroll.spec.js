@@ -36,7 +36,7 @@ test('slow scroll during page load: one tile at a time, each grows in and moves 
 				const m = new DOMMatrix(getComputedStyle(tile).transform);
 				const box = tile.getBoundingClientRect();
 				const video = tile.querySelector('video');
-				return { shown: tile.classList.contains('is-shown'), scale: m.a, top: box.top / innerHeight, playing: video.currentTime > 0.05 && !video.paused };
+				return { shown: tile.classList.contains('is-shown') || tile.hasAttribute('data-magnet-item'), scale: m.a, top: box.top / innerHeight, playing: video.currentTime > 0.05 && !video.paused };
 			})
 		};
 	});
@@ -45,33 +45,36 @@ test('slow scroll during page load: one tile at a time, each grows in and moves 
 		if (grid > 0.15) await page.mouse.wheel(0, 40);
 		await page.waitForTimeout(100);
 		log.push(await sample());
-		if (log.at(-1).tiles.every(tile => tile.shown && tile.playing)) break;
+		const firstAt = log.find(sample => sample.tiles[0].shown);
+		if (firstAt && log.at(-1).t - firstAt.t > 1500 && log.at(-1).tiles.every(tile => tile.shown && tile.playing)) break;
 	}
 
 	expect(log[0].loading).toBe(true);
 	const firstShown = i => log.findIndex(s => s.tiles[i].shown);
 	const firstPlaying = i => log.findIndex(s => s.tiles[i].playing);
-	const order = [0, 1, 2, 3].map(firstShown);
-	// All four came, in order, each one only after the one before is moving.
+	// The top row grows in one by one, the second after the first is moving; the bottom
+	// row is a magnet layer (30.10) and simply plays.
+	const order = [0, 1].map(firstShown);
 	for (const index of order) expect(index).toBeGreaterThanOrEqual(0);
-	for (let i = 1; i < 4; i++) {
-		expect(order[i]).toBeGreaterThan(order[i - 1]);
-		expect(firstPlaying(i - 1)).toBeGreaterThanOrEqual(0);
-		expect(order[i]).toBeGreaterThanOrEqual(firstPlaying(i - 1));
-	}
+	expect(order[1]).toBeGreaterThan(order[0]);
+	expect(firstPlaying(0)).toBeGreaterThanOrEqual(0);
+	expect(order[1]).toBeGreaterThanOrEqual(firstPlaying(0));
+	for (const i of [2, 3]) expect(firstPlaying(i)).toBeGreaterThanOrEqual(0);
 	// The first one comes alone, while the grid is still rising from the bottom edge.
 	const first = log[order[0]];
-	expect(first.tiles.filter(tile => tile.shown)).toHaveLength(1);
+	expect(first.tiles.slice(0, 2).filter(tile => tile.shown)).toHaveLength(1);
 	expect(first.gridTop).toBeGreaterThan(0.45);
 	// It is seen growing: small and on screen at the start, full size afterwards.
 	expect(first.tiles[0].scale).toBeLessThan(0.9);
 	expect(first.tiles[0].top).toBeLessThan(1);
-	expect(log[order[0] + 10].tiles[0].scale).toBeCloseTo(1, 1);
+	const later = log.find(sample => sample.t - first.t > 1000);
+	expect(later).toBeTruthy();
+	expect(later.tiles[0].scale).toBeCloseTo(1, 1);
 	// The second tile also grows in from the middle.
 	expect(log[order[1]].tiles[1].scale).toBeLessThan(0.9);
 	// «Чтобы сразу двигалось, а не картинка висит» (30.10): every tile is already moving
 	// when it grows in — its video warmed up while the one before it played.
-	for (let i = 0; i < 4; i++) expect(firstPlaying(i)).toBeLessThanOrEqual(order[i] + 1);
+	for (let i = 0; i < 2; i++) expect(firstPlaying(i)).toBeLessThanOrEqual(order[i] + 1);
 	// Its video moves while the page is still loading, not after.
 	expect(log[firstPlaying(0)].loading).toBe(true);
 	// About a second or more between the first two, as before.
@@ -85,24 +88,29 @@ test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
 		const grid = document.querySelector('[data-reel-grid]');
 		scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' });
 	}, fraction);
-	const shownFlags = page => page.locator('.reel__tile').evaluateAll(tiles => tiles.map(tile => tile.classList.contains('is-shown')));
+	const shownFlags = page => page.locator('.reel__tile:not([data-magnet-item])').evaluateAll(tiles => tiles.map(tile => tile.classList.contains('is-shown')));
+	const bottomLift = page => page.locator('.reel__tile[data-magnet-item]').first().evaluate(element => { const m = getComputedStyle(element).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
 
-	test('scrolling back up, the tiles shrink away last first; scrolling down brings them again', async ({ page }) => {
+	test('scrolling back up, the bottom row drops away and the top tiles shrink last first; down brings them again', async ({ page }) => {
 		test.setTimeout(60_000);
 		await serveHqMedia(page);
 		await page.goto('/');
 		await placeGrid(page, 0.15);
-		await expect.poll(() => shownFlags(page), { timeout: 20_000 }).toEqual([true, true, true, true]);
+		await expect.poll(() => shownFlags(page), { timeout: 20_000 }).toEqual([true, true]);
+		expect(await bottomLift(page)).toBeLessThan(1);
 		const seen = [];
+		let dropped = 0;
 		for (let i = 0; i < 60; i++) {
 			await page.mouse.wheel(0, -40);
 			await page.waitForTimeout(80);
+			dropped = Math.max(dropped, await bottomLift(page));
 			const flags = (await shownFlags(page)).map(Number).join('');
 			if (seen.at(-1) !== flags) seen.push(flags);
-			if (flags === '0000') break;
+			if (flags === '00') break;
 		}
-		// Last first, one at a time.
-		expect(seen).toEqual(['1111', '1110', '1100', '1000', '0000']);
+		// The bottom layer comes unstuck and slides down; the top tiles go last first.
+		expect(dropped).toBeGreaterThan(40);
+		expect(seen).toEqual(['11', '10', '00']);
 		// A hidden tile is half size and invisible again.
 		const back = await page.locator('.reel__tile').first().evaluate(tile => ({ o: getComputedStyle(tile).opacity, s: new DOMMatrix(getComputedStyle(tile).transform).a }));
 		await expect.poll(() => page.locator('.reel__tile').first().evaluate(tile => new DOMMatrix(getComputedStyle(tile).transform).a)).toBeLessThan(0.6);
@@ -129,7 +137,8 @@ test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
 		await page.waitForSelector('#reviews', { state: 'attached' });
 		await placeGrid(page, 0.5);
 		expect(await page.evaluate(() => window.LCBReelSequence)).toBeUndefined();
-		expect(await page.locator('.reel__tile').evaluateAll(tiles => tiles.map(tile => getComputedStyle(tile).opacity))).toEqual(['0', '0', '0', '0']);
+		// The top row waits hidden; the bottom row is a magnet layer, there from the start.
+		expect(await page.locator('.reel__tile:not([data-magnet-item])').evaluateAll(tiles => tiles.map(tile => getComputedStyle(tile).opacity))).toEqual(['0', '0']);
 		release();
 		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
 	});

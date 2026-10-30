@@ -47,12 +47,12 @@
 		imagesrcset="{{ '/assets/hero/hero-red-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-red-2400.webp' | url }} 2400w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=77' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=78' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=77' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=78' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ ('/en/sax/' if htmlLang == 'en' else '/sax/') | url }}">
@@ -168,13 +168,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030heromasters' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030back1' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030layer1' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030heromasters' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030back1' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030layer1' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

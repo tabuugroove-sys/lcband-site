@@ -162,7 +162,9 @@
 		};
 		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
 		const ahead = i => early && pageActive && allowed() && (i === 0 || videos[i - 1].readyState >= 3);
-		const wanted = i => i < shown && shouldPlay();
+		// The bottom row is its own layer (a magnet, see below): it plays whenever it is on screen.
+		const layer = videos.map(video => Boolean(video.closest('[data-magnet-item]')));
+		const wanted = i => (layer[i] || i < shown) && shouldPlay();
 		const attach = video => {
 			const source = sourceFor(video);
 			if (video.getAttribute('src') === source) return;
@@ -257,7 +259,9 @@
 		const phone = window.matchMedia('(max-width: 599px)').matches;
 		window.LCBReelSequence = true;
 		const ribbon = host.querySelector('.reel__ribbon');
-		const tiles = [...grid.querySelectorAll('.reel__tile')];
+		// Only the top row comes one by one; the bottom row is a magnet layer
+		// («раздели верхнее и нижнее видео… отлипает и уезжает вниз», 30.10).
+		const tiles = [...grid.querySelectorAll('.reel__tile:not([data-magnet-item])')];
 		const minGap = 1200;
 		const maxWait = 4000;
 		const readyWait = 1200;
@@ -341,12 +345,6 @@
 			do tiles[--shown].classList.remove('is-shown'); while (gone && shown > 0);
 			announce();
 		};
-		// «Слева снизу — ровно в тот момент, когда его верх пересекает центр экрана; это крайнее
-		// время» (Mikhail 30.10): the bottom-left tile comes in, video and all, no later than its
-		// top edge reaches the middle of the screen. A slow scroll keeps the usual pace; a fast
-		// one brings it sooner. The top-right one always waits for the first («должен появляться
-		// только первый ролик… через секунду следующий»).
-		const deadlines = tiles.filter((tile, i) => i > 1 && tile.offsetLeft === tiles[0].offsetLeft);
 		// «Первый — прям с нижней границы, когда прокрутка идёт, в два раза меньше и
 		// увеличивается»: it starts while the grid is still rising from the bottom edge, once
 		// the shrunken tile (the upper part of the grid's middle) is on screen to be seen growing.
@@ -355,13 +353,6 @@
 			const rect = grid.getBoundingClientRect();
 			// The first tile comes at once, poster first if its video is not ready yet.
 			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) next();
-		};
-		const due = () => {
-			// Where the tile sits in the grid, not its shrunken box while it waits.
-			const middle = window.innerHeight / 2 - grid.getBoundingClientRect().top;
-			const late = deadlines.filter(tile => !tile.classList.contains('is-shown')
-				&& tile.offsetTop <= middle).pop();
-			if (late) next(tiles.indexOf(late));
 		};
 		const rest = () => {
 			window.clearTimeout(timer);
@@ -378,10 +369,7 @@
 			if (shown === 0 || shown >= tiles.length) return;
 			const rect = grid.getBoundingClientRect();
 			if (rect.bottom < window.innerHeight * 0.35) rest();
-			else {
-				due();
-				if (!armed && !holding && shown < tiles.length) arm();
-			}
+			else if (!armed && !holding) arm();
 		};
 		if (!phone) {
 			place();
@@ -427,13 +415,19 @@
 	// 735px). Transform and opacity only, one rAF loop while something still moves,
 	// only cards near the screen; off under reduced motion.
 	(() => {
+		// An element can also be a magnet on its own (data-magnet-item), like the bottom row of
+		// the home reels, which sticks under the top row («второй слой прилипает», 30.10).
 		const groups = [...document.querySelectorAll('[data-magnet]')];
-		if (!groups.length || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+		const singles = [...document.querySelectorAll('[data-magnet-item]')];
+		if (!(groups.length || singles.length) || reduceMotion.matches || !('IntersectionObserver' in window)) return;
 		const desktop = window.matchMedia('(min-width: 735px)');
 		const lift = 96;
 		const zone = 0.42;
-		const items = groups.flatMap(group => [...group.children].map(el => ({ el, group, y: 0, o: 1, near: false })));
-		const active = item => item.group.dataset.magnet !== 'desktop' || desktop.matches;
+		const items = [
+			...groups.flatMap(group => [...group.children].map(el => ({ el, mode: group.dataset.magnet, y: 0, o: 1, near: false }))),
+			...singles.map(el => ({ el, mode: el.dataset.magnetItem, y: 0, o: 1, near: false }))
+		];
+		const active = item => item.mode !== 'desktop' || desktop.matches;
 		let frame = 0;
 		const reset = item => { item.y = 0; item.o = 1; item.el.style.transform = ''; item.el.style.opacity = ''; };
 		const tick = () => {
