@@ -31,6 +31,7 @@ if ($displayName === $filename) {
         }
     }
 }
+if (in_array($_GET['lang'] ?? '', ['en', 'ar', 'pt-BR'], true)) $displayName = $filename;
 header('Content-Disposition: attachment; filename="' . $filename . '"; filename*=UTF-8\'\'' . rawurlencode($displayName));
 header('Content-Length: ' . filesize($file));
 header('X-Content-Type-Options: nosniff');

@@ -65,6 +65,7 @@
 	<script>
 		window.SITE_BASE = "{{ '/' | url }}";
 		window.VIDEO_BASE = "{{ site.url }}/";
+		{% if htmlLang and htmlLang != 'ru' %}window.LCBInternationalMedia = {{ internationalMedia | dump | safe }};{% endif %}
 	</script>
 
 	{% if leoSaxPage %}
@@ -168,13 +169,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030heromasters' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030layer1' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030international2' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030heromasters' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030layer1' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030international2' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

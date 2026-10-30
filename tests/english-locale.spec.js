@@ -135,16 +135,18 @@ test('costume promo finishes into the page language playlist', async ({ page }) 
 	expect(await openingPromos()).toEqual(['promo-lets-get-it-started', 'promo-danza-cuduro']);
 	await page.waitForTimeout(600);
 	await page.locator('[data-hero-play]').click();
-	expect(await heroVideoSource()).toContain('/promo-costume-red-');
-	await finishHeroVideo();
 	expect(await heroVideoSource()).toContain('/promo-lets-get-it-started-');
+	await finishHeroVideo();
+	expect(await heroVideoSource()).toContain('/promo-danza-cuduro-');
 });
 
 for (const route of ['/', '/en/', '/ae/', '/br/']) {
-	test(`${route} costume photo opens its matching short promo`, async ({ page, isMobile }) => {
+	test(`${route} costume photo opens its matching locale video`, async ({ page, isMobile }) => {
 		await page.route('**/promo-costume-*.mp4', () => {});
 		await page.emulateMedia({ reducedMotion: 'reduce' });
+		const internationalHero = { red: 'promo-lets-get-it-started', bw: 'promo-loca-loca', gold: 'thematic-retro-heart', white: 'interact-wedding-shallow' };
 		for (const costume of ['red', 'bw', 'gold', 'white']) {
+			const openingKey = route === '/' ? `promo-costume-${costume}` : internationalHero[costume];
 			await page.goto(route);
 			const dot = page.locator(`[data-hero-dot="${costume}"]`);
 			await dot.click();
@@ -152,7 +154,7 @@ for (const route of ['/', '/en/', '/ae/', '/br/']) {
 			await expect(page.locator(`[data-hero-img="${costume}"]`)).toHaveClass(/is-active/);
 			await page.locator('[data-hero-play]').click();
 			await expect(page.locator('[data-hero-video]')).toHaveAttribute('src',
-				new RegExp(`promo-costume-${costume}-[a-f0-9]{12}-${isMobile ? '720' : '1080'}\\.mp4$`));
+				new RegExp(`${openingKey}-[a-f0-9]{12}-${isMobile ? '720' : '1080'}\\.mp4$`));
 		}
 	});
 }
@@ -163,7 +165,7 @@ for (const supported of [true, false]) {
 		await page.addInitScript(value => {
 			const original = HTMLMediaElement.prototype.canPlayType;
 			HTMLMediaElement.prototype.canPlayType = function(type) {
-				return type.includes('hvc1') ? (value ? 'probably' : '') : original.call(this, type);
+				return type.includes('avc1.640033') ? (value ? 'probably' : '') : original.call(this, type);
 			};
 		}, supported);
 		await page.emulateMedia({ reducedMotion: 'reduce' });

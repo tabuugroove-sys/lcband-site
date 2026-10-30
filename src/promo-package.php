@@ -17,11 +17,12 @@ $errors = [
 ];
 $errorCopy = $errors[$language] ?? $errors['en'];
 try {
-    $raw = file_get_contents(__DIR__ . '/promo-package.json');
+    $catalogueName = $language === 'ru' ? '/promo-package.json' : '/promo-package-international.json';
+    $raw = file_get_contents(__DIR__ . $catalogueName);
     $catalogue = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
     $selected = lcb_zip_select($catalogue, $_GET['quality'] ?? null);
     foreach ($selected['files'] as $entry) {
-        if (!preg_match('~\Aassets/(?:video/mp4|promo/lcband|photos)/[a-z0-9][a-z0-9.-]*\z~', $entry['path'])) {
+        if (!preg_match('~\Aassets/(?:(?:video/mp4|promo/lcband|photos)/[a-z0-9][a-z0-9.-]*|(?:hero|costumes)/[a-z0-9][a-z0-9-]*\.jpg|riders/rider-international-7pc-en\.pdf)\z~', $entry['path'])) {
             throw new RuntimeException('Invalid public media path');
         }
     }

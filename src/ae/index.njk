@@ -312,13 +312,13 @@ permalink: /ae/
 	<div class="video-rail video-rail--big" role="region" aria-label="الفيديوهات الترويجية">
 		<div class="video-rail__heading"><h3 class="video-rail__title">فيديوهات ترويجية من الاستوديو</h3></div>
 		<ul class="video-rail__track">
-			{% for v in promos %}
+			{% for v in promos | internationalVideos %}
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
 						<source type="image/webp" sizes="(max-width: 734px) 84vw, min(70vw, 1100px)"
-							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
-						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+							srcset="{{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">
@@ -333,13 +333,13 @@ permalink: /ae/
 	<div class="video-rail video-rail--small" role="region" aria-label="فيديوهات الحفلات الحية">
 		<div class="video-rail__heading"><h3 class="video-rail__title">فيديوهات الحفلات الحية</h3></div>
 		<ul class="video-rail__track">
-			{% for v in lives %}
+			{% for v in lives | internationalVideos %}
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
 						<source type="image/webp" sizes="(max-width: 734px) 72vw, max(240px, min(28vw, 440px))"
-							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
-						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
+							srcset="{{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '-1080.webp') | url }} 1080w">
+						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + ((v.poster or v.slug) | internationalPoster(v.slug)) + '.jpg') | url }}?v=20260622c" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption">

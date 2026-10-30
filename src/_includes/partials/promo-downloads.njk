@@ -2,13 +2,14 @@
 <link rel="stylesheet" href="{{ '/promo-downloads.css?v=1' | url }}">
 {% set downloadLanguage = htmlLang or 'ru' %}
 {% set downloadCopy = promoDownloads[downloadLanguage] or promoDownloads.en %}
+{% set downloadPackage = promoPackage if downloadLanguage == 'ru' else internationalPromoPackage %}
 {% set downloadBase = '/promo-package.php' | url %}
 {% set downloadLangQuery = ('lang=' + downloadLanguage) if downloadLanguage != 'ru' else '' %}
 <div class="promo-downloads" role="group" aria-label="{{ downloadCopy.label }}">
   <p class="section__lead">{{ downloadCopy.description }}</p>
   <div class="cta-row">
-    <a class="btn btn--blue" href="{{ downloadBase }}{% if downloadLangQuery %}?{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.original }}"><bdi>{{ downloadCopy.original }} · {{ (promoPackage.bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
-    <a class="btn btn--blue" href="{{ downloadBase }}?quality=1080{% if downloadLangQuery %}&amp;{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.fullHd }}"><bdi>{{ downloadCopy.fullHd }} · {{ (promoPackage.variants['1080'].bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
+    <a class="btn btn--blue" href="{{ downloadBase }}{% if downloadLangQuery %}?{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.original }}"><bdi>{{ downloadCopy.original }} · {{ (downloadPackage.bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
+    <a class="btn btn--blue" href="{{ downloadBase }}?quality=1080{% if downloadLangQuery %}&amp;{{ downloadLangQuery }}{% endif %}" aria-label="{{ downloadCopy.label }} — {{ downloadCopy.fullHd }}"><bdi>{{ downloadCopy.fullHd }} · {{ (downloadPackage.variants['1080'].bytes / 1000000000) | round(2) }} {{ downloadCopy.unit }}</bdi> ↓</a>
   </div>
   <p class="muted">{{ downloadCopy.qualityNote }}{% if downloadCopy.languageNote %} {{ downloadCopy.languageNote }}{% endif %}</p>
 </div>

@@ -39,7 +39,7 @@ eleventyComputed:
 		{% if event.faq %},
 		{ "@type": "FAQPage", "@id": "{{ site.url }}{{ page.url }}#faq", "mainEntity": [{%- for item in event.faq %}{ "@type": "Question", "name": {{ item.q | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | dump | safe }} } }{% if not loop.last %},{% endif %}{%- endfor %}] }
 		{% endif %}
-		{% if event.featuredVideo %},
+		{% if event.featuredVideo | internationalVideo %},
 		{ "@type": "VideoObject", "@id": "{{ site.url }}{{ page.url }}#video-{{ event.featuredVideo }}", "name": "{{ event.title }} — {{ site.name }} video", "description": {{ event.lead | dump | safe }}, "thumbnailUrl": "{{ site.url }}/assets/video/posters/{{ event.featuredVideo }}.jpg", "contentUrl": "{{ site.url }}/assets/video/mp4/{{ event.featuredVideo }}-720.mp4", "embedUrl": "{{ site.url }}{{ page.url }}", "uploadDate": "2026-06-18", "publisher": { "@id": "{{ site.url }}/#musicgroup" } }
 		{% endif %}
 	]
@@ -77,7 +77,7 @@ eleventyComputed:
 <section class="feature-block feature-block--{% if loop.index0 % 2 == 0 %}light{% else %}elev{% endif %}{% if loop.index0 % 2 == 1 %} feature-block--reverse{% endif %}">
 	<div class="feature-block__inner reveal">
 		{% if b.image %}
-			{% if b.video %}
+			{% if b.video | internationalVideo %}
 			<a class="feature-block__media feature-block__media--video video-card" href="#" data-video="{{ b.video }}" aria-label="Watch video: {{ b.title }}">
 				<img src="{{ ('/assets/photos/' + b.image) | url }}" alt="{{ b.title }} — {{ event.title }}" loading="lazy">
 				<span class="video-card__play" aria-hidden="true"></span>
@@ -96,7 +96,7 @@ eleventyComputed:
 </section>
 {% endfor %}
 
-{% if event.featuredVideo %}
+{% if event.featuredVideo | internationalVideo %}
 <section class="section section--elev">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">Video</p>

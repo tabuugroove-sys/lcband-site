@@ -47,6 +47,26 @@ with tempfile.TemporaryDirectory(prefix="lcb-promo-http-") as directory:
     }
     catalogue_file = public / "promo-package.json"
     catalogue_file.write_text(json.dumps(catalogue))
+    international = json.loads(json.dumps(catalogue))
+    international["archiveName"] = "LCBAND-promo-international-4K.zip"
+    for quality, variant in international["variants"].items():
+        variant["archiveName"] = f"LCBAND-promo-international-{quality}p.zip"
+    international_payloads = {
+        "assets/hero/hero-red.jpg": ("Photos/Red-stage-outfits.jpg", b"reviewed band photo"),
+        "assets/costumes/blue.jpg": ("Photos/Blue-live-performance.jpg", b"reviewed stage photo"),
+        "assets/riders/rider-international-7pc-en.pdf": ("Documents/Technical-rider-English.pdf", b"English technical rider"),
+    }
+    international_entries = []
+    for relative, (name, payload) in international_payloads.items():
+        target = public / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(payload)
+        international_entries.append({"name": name, "path": relative, "bytes": len(payload), "crc32": f"{zlib.crc32(payload):08x}"})
+    for variant in [international, *international["variants"].values()]:
+        variant["files"][0]["name"] = "Videos/English-performance.mp4"
+        variant["files"] += international_entries
+    international_file = public / "promo-package-international.json"
+    international_file.write_text(json.dumps(international))
     with socket.socket() as listener:
         listener.bind(("127.0.0.1", 0))
         port = listener.getsockname()[1]
@@ -78,6 +98,31 @@ with tempfile.TemporaryDirectory(prefix="lcb-promo-http-") as directory:
             assert request(origin, query, headers={"If-None-Match": headers["ETag"]})[0] == 304
             assert request(origin, query, headers={"Range": "bytes=999999-"})[0] == 416
         assert len(set(etags)) == 3
+        for language in ["en", "ar", "pt-BR"]:
+            for index, quality in enumerate(["", "&quality=1080", "&quality=720"]):
+                query = f"?lang={language}{quality}"
+                status, headers, body = request(origin, query)
+                assert status == 200 and "international" in headers["Content-Disposition"]
+                assert headers["ETag"] not in etags, "Foreign request reused the Russian catalogue"
+                with zipfile.ZipFile(io.BytesIO(body)) as archive:
+                    assert archive.testzip() is None
+                    assert archive.read("Videos/English-performance.mp4") == payloads[index]
+                    assert set(archive.namelist()) == {"Videos/English-performance.mp4", *[name for name, _ in international_payloads.values()]}
+                    for name, payload in international_payloads.values():
+                        assert archive.read(name) == payload
+                status, head_headers, head_body = request(origin, query, method="HEAD")
+                assert status == 200 and not head_body and int(head_headers["Content-Length"]) == len(body)
+                assert request(origin, query, headers={"Range": "bytes=-22"})[2] == body[-22:]
+        # Missing or unsafe international files must not silently fall back to Russian.
+        international_file.unlink()
+        assert request(origin, "?lang=en")[0] == 503
+        assert request(origin)[0] == 200
+        international_file.write_text(json.dumps(international))
+        unsafe = json.loads(json.dumps(international))
+        unsafe["files"][0]["path"] = "assets/riders/private.pdf"
+        international_file.write_text(json.dumps(unsafe))
+        assert request(origin, "?lang=en")[0] == 503
+        international_file.write_text(json.dumps(international))
         assert request(origin, "?quality=720", headers={"Range": "bytes=0-3", "If-Range": etags[0]})[0] == 200
         for query in ["?quality=2160", "?quality=4k", "?quality=", "?quality[]=720", "?quality=../720"]:
             assert request(origin, query)[0] == 400, query
@@ -87,7 +132,7 @@ with tempfile.TemporaryDirectory(prefix="lcb-promo-http-") as directory:
         catalogue_file.write_text(json.dumps(catalogue))
         assert request(origin, "?quality=720")[0] == 503
         assert request(origin)[0] == 200
-        print(json.dumps({"ok": True, "variants": 3, "verified": ["ZIP CRC and payload", "Content-Length", "HEAD", "Range", "ETag isolation", "invalid quality 400", "missing quality 503", "no silent fallback"]}))
+        print(json.dumps({"ok": True, "variants": 3, "internationalLanguages": 3, "verified": ["ZIP CRC and payload", "Content-Length", "HEAD", "Range", "ETag isolation", "invalid quality 400", "missing quality 503", "international catalogue selection", "English archive filenames", "reviewed static directories", "no Russian fallback"]}))
     finally:
         process.terminate()
         process.wait(timeout=5)

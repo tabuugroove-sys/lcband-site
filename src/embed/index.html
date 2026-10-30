@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Видео — Luxury Band</title>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Video — Luxury Band</title>
 <style>html,body{margin:0;background:#090909;color:#fff;height:100%;font:14px system-ui}body{display:flex;flex-direction:column}video{width:100%;min-height:0;flex:1;object-fit:contain}footer{padding:10px 16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}a{color:#eee}p{padding:16px}</style></head>
 <body><video controls playsinline preload="metadata"></video><footer><span id="title">Luxury Band</span><a id="download" download hidden></a><a id="home" href="https://luxuryband.ru/" target="_blank" rel="noopener">Luxury Band ↗</a></footer><p id="error" hidden></p>
 <script>
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('title').textContent = title;
   const address = new URL('/download.php', 'https://luxuryband.ru');
   address.searchParams.set('file', url.pathname.split('/').pop());
+  if (lang !== 'ru') address.searchParams.set('lang', lang);
   const download = document.getElementById('download');
   download.href = address.href; download.hidden = false;
   video.addEventListener('loadstart', () => {

@@ -33,14 +33,14 @@ permalink: /en/about/
 		<p class="about-hero__eyebrow">Luxury Band · Luxury Cover Band</p>
 		<h1 class="about-hero__title">Live music for weddings,<br>corporate events and concerts.</h1>
 		<p class="about-hero__lead">Watch our live performances, then tell us about your event so we can discuss the lineup and programme.</p>
-		<div class="cta-row"><a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss your event</a><a class="btn btn--ghost" href="#" data-video="promo-main-reel">Watch live performances</a></div>
+		<div class="cta-row"><a class="btn btn--primary" href="{{ site.whatsapp }}">Discuss your event</a><a class="btn btn--ghost" href="#" data-video="promo-lets-get-it-started">Watch live performances</a></div>
 	</div>
 </section>
 
 <section class="photo-wall" aria-hidden="true">
 	{% set row0 = ['costumes/dark-green-group.jpg', 'photos/corporate-employee-interactive-live-band.jpg', 'photos/author-music-stage.jpg', 'photos/wedding.jpg', 'costumes/gold-studio.jpg', 'photos/sax-day.jpg', 'costumes/red.jpg', 'costumes/blue.jpg', 'photos/corporate.jpg', 'photos/concert-07.jpg', 'photos/clients.jpg', 'costumes/all-black.jpg', 'costumes/vocalists-red-feature.jpg', 'costumes/flowers.jpg', 'photos/themes.jpg', 'photos/birthday-guests-on-stage-live-band.jpg', 'costumes/red-group.jpg'] %}
 	{% set row1 = ['costumes/black-red.jpg', 'photos/birthday-surprise-live-band.jpg', 'photos/birthday.jpg', 'photos/vocalists-mobile.jpg', 'costumes/shimmer.jpg', 'photos/sax-band-show-dj-knobs-original-faces.jpg', 'photos/concert-moscow.jpg', 'photos/concert-2021.jpg', 'costumes/beige-glitter.jpg', 'costumes/white.jpg', 'photos/wedding-night-dance-floor-live-band.jpg', 'costumes/dark-green.jpg', 'costumes/pink.jpg', 'costumes/black-silver.jpg', 'photos/vocalists.jpg', 'photos/birthday-retro-block-live-band.jpg', 'costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg'] %}
-	{% set row2 = ['costumes/black-white.jpg', 'photos/sax.jpg', 'photos/hero-studio.jpg', 'photos/wedding-custom-song-story-live-band.jpg', 'photos/concert-big.jpg', 'costumes/gold.jpg', 'photos/concert-event.jpg', 'photos/concert-teddi.jpg', 'photos/concert-light.jpg', 'costumes/black-couple.jpg', 'photos/wedding-family-guest-performance-live-band.jpg', 'photos/corporate-dancefloor-live-cover-band.jpg', 'photos/concert-10k.jpg', 'photos/first-wedding-dance-live-cover-band.jpg', 'photos/wedding-ceremony-saxophone-live-music.jpg', 'photos/sax-night.jpg', 'photos/wedding-banquet-live-cover-band.jpg'] %}
+	{% set row2 = ['costumes/black-white.jpg', 'photos/sax.jpg', 'photos/wedding-custom-song-story-live-band.jpg', 'photos/concert-big.jpg', 'costumes/gold.jpg', 'photos/concert-event.jpg', 'photos/concert-teddi.jpg', 'photos/concert-light.jpg', 'costumes/black-couple.jpg', 'photos/wedding-family-guest-performance-live-band.jpg', 'photos/corporate-dancefloor-live-cover-band.jpg', 'photos/first-wedding-dance-live-cover-band.jpg', 'photos/wedding-ceremony-saxophone-live-music.jpg', 'photos/sax-night.jpg', 'photos/wedding-banquet-live-cover-band.jpg'] %}
 	{% set row0 = row0.concat(promoGallery.aboutRows[0]) %}
 	{% set row1 = row1.concat(promoGallery.aboutRows[1]) %}
 	{% set row2 = row2.concat(promoGallery.aboutRows[2]) %}
@@ -60,9 +60,9 @@ permalink: /en/about/
 
 {% set storyRooms = [
 	{eyebrow:'Repertoire', title:'Songs<br>in 12 languages.', text:'Italian, Spanish, French, English and other languages — selected for the programme and the audience.', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Repertoire', title:'Jazz, pop, rock<br>and Latin music.', text:'We select songs and arrange the sets around your audience and event schedule.', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
+	{eyebrow:'Repertoire', title:'Jazz, pop, rock<br>and Latin music.', text:'We select songs and arrange the sets around your audience and event schedule.', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-simple-the-best'},
 	{eyebrow:'Interaction', title:'Sing with the band.', text:'Guests sing duets with our vocalists and take part in live-band karaoke.', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
-	{eyebrow:'Stage Looks', title:'20+ stage looks.', text:'Red, black-and-white, gold and other stage costumes. We choose the outfits to suit the event colours and format.', bg:'#f5f5f7', light:true, video:'live-icon'}
+	{eyebrow:'Stage Looks', title:'20+ stage looks.', text:'Red, black-and-white, gold and other stage costumes. We choose the outfits to suit the event colours and format.', bg:'#f5f5f7', light:true, video:'promo-lets-get-it-started'}
 ] %}
 <section class="story-rooms" data-story-rooms>
 	<div class="story-rooms__gallery" aria-hidden="true">
@@ -94,7 +94,7 @@ permalink: /en/about/
 {% include "partials/count-f1.njk" %}
 
 <section class="feature-block feature-block--light"><div class="feature-block__inner reveal">
-	<div class="feature-block__media"><img src="{{ '/assets/photos/concert-10k.jpg' | url }}" alt="Luxury Cover Band on a stadium-scale stage" loading="lazy"></div>
+	<div class="feature-block__media"><img src="{{ '/assets/photos/concert-big.jpg' | url }}" alt="Luxury Cover Band on a stadium-scale stage" loading="lazy"></div>
 	<div class="feature-block__body"><p class="section__eyebrow">Experience</p><h2 class="feature-block__title">Big stages<br><span class="muted">and major events.</span></h2><p class="feature-block__text">The musicians have 15–20 years of stage experience: stadium concerts and halls for 2,000–5,000 guests, regular appearances on national television and joint performances with major artists.</p></div>
 </div></section>
 

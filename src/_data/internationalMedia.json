@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "red": "promo-lets-get-it-started",
+    "bw": "promo-loca-loca",
+    "gold": "thematic-retro-heart",
+    "white": "interact-wedding-shallow"
+  },
+  "allowedVideos": [
+    "promo-lets-get-it-started",
+    "promo-loca-loca",
+    "thematic-retro-heart",
+    "interact-wedding-shallow",
+    "promo-cold-heart",
+    "promo-amore-no",
+    "promo-danza-cuduro",
+    "thematic-italian",
+    "thematic-french",
+    "live-jazz-vintage",
+    "live-perfect",
+    "live-baskov-lcb",
+    "live-simple-the-best",
+    "live-adele-hello",
+    "interact-chainsmokers",
+    "interact-laz-coco-jambo",
+    "laz-video-02",
+    "laz-video-03",
+    "laz-video-04",
+    "live-sax-wedding-welcome",
+    "sax-welcome",
+    "old-money-band",
+    "luxury-latin-dance-master-class",
+    "teddy-latina-promo",
+    "teddy-macarena"
+  ],
+  "directSources": [
+    "/assets/video/mp4/sax-hero.mp4",
+    "/assets/video/mp4/stereo-sax-clip-hotel-720.mp4",
+    "/assets/video/mp4/stereo-sax-clip-showroom-720.mp4",
+    "/assets/video/mp4/stereo-sax-clip-party-720.mp4",
+    "/assets/video/mp4/stereo-sax-clip-newyear-720.mp4"
+  ],
+  "posterOverrides": {
+    "teddy-macarena": "teddy-macarena-en-4x3",
+    "teddy-latina-promo": "teddy-latina-promo-en-show-4x3",
+    "latin-music-luxury-cover-band": "latin-music-luxury-cover-band-en-show-4x3",
+    "latin-modern-program": "latin-modern-program-en-show-4x3",
+    "luxury-latin-dance-master-class": "luxury-latin-dance-master-class-en-4x3"
+  }
+}

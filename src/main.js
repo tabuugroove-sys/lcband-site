@@ -1278,13 +1278,17 @@ void main(){
 		});
 	}
 
+	function allowedVideoForLocale(key) {
+		return !window.LCBInternationalMedia || window.LCBInternationalMedia.allowedVideos.includes(key);
+	}
+
 	function getVideoItems() {
 		const scope = currentVideoRail || document; // keep arrow-nav within the same carousel
 		const nodes = [...scope.querySelectorAll('.vtile__link[data-video], .video-card[data-video], [data-video].page-hero__play, #examples .format__link[data-video]')];
 		const seen = new Set();
 		return nodes.reduce((items, node) => {
 			const key = node.dataset.video;
-			if (!key || seen.has(key)) return items;
+			if (!key || seen.has(key) || !allowedVideoForLocale(key)) return items;
 			seen.add(key);
 			const title = node.querySelector('.vtile__title, .video-card__name, .format__title')?.textContent?.trim() || node.getAttribute('aria-label') || copy.video;
 			const poster = node.querySelector('img')?.src || '';
@@ -1312,7 +1316,7 @@ void main(){
 	}
 
 	function openVideo(key, title, poster) {
-		if (!lightbox) return;
+		if (!lightbox || !allowedVideoForLocale(key)) return;
 		buildVideoUI();
 		currentVideoKey = key;
 		currentVideoTitle = title || copy.video;
@@ -1460,8 +1464,9 @@ void main(){
 			return `${m}:${s < 10 ? '0' : ''}${s}`;
 		}
 		const order = ['red', 'bw', 'gold', 'white'];
-		// Each photograph opens the short edit beginning in that costume.
-		const heroVideoMap = {
+		// International pages open the original individual performances in each costume.
+		const internationalMedia = heroLang !== 'ru' ? window.LCBInternationalMedia : null;
+		const heroVideoMap = internationalMedia?.hero || {
 			red:   'promo-costume-red',
 			bw:    'promo-costume-bw',
 			gold:  'promo-costume-gold',
@@ -1469,7 +1474,7 @@ void main(){
 		};
 		const heroPromoPlaylist = [...document.querySelectorAll('.video-rail--big .vtile__link[data-video]')]
 			.map(link => link.dataset.video)
-			.filter((key, index, list) => key && list.indexOf(key) === index);
+			.filter((key, index, list) => key && list.indexOf(key) === index && (!internationalMedia || internationalMedia.allowedVideos.includes(key)));
 		const heroClips = {
 			'promo-costume-red': {
 				title: copy.egoistka, costume: 'red', costumeLabel: heroCopy.costumes.red,
@@ -1534,6 +1539,15 @@ void main(){
 			white: ['interact-wedding-shallow', 'thematic-italian', 'promo-letet'],
 			bw: ['promo-loca-loca', 'promo-danza-cuduro']
 		};
+		if (internationalMedia) {
+			// Recommendations and fallback navigation use the same reviewed selection.
+			for (const key of Object.keys(heroClips)) {
+				if (!internationalMedia.allowedVideos.includes(key)) delete heroClips[key];
+			}
+			for (const costume of order) {
+				heroCostumeClips[costume] = heroCostumeClips[costume].filter(key => heroClips[key]);
+			}
+		}
 		const heroNextCostumes = {
 			red: ['gold', 'white'],
 			gold: ['white', 'bw'],
@@ -1796,7 +1810,7 @@ void main(){
 		}
 
 		function playHeroClip(key) {
-			if (!heroVideo) return;
+			if (!heroVideo || !allowedVideoForLocale(key)) return;
 			const clip = heroClips[key];
 			if (clip) setActive(clip.costume);
 			currentHeroVideoKey = key;
@@ -1816,7 +1830,7 @@ void main(){
 		}
 
 		function playHeroVideo() {
-			playHeroClip(heroVideoMap[current] || heroPromoPlaylist[0] || 'promo-main-reel');
+			playHeroClip(heroVideoMap[current] || heroPromoPlaylist[0] || heroVideoMap.red);
 		}
 
 		function syncQualityButtons() {

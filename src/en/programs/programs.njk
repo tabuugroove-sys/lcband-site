@@ -21,8 +21,8 @@ eleventyComputed:
   "@graph": [
     { "@type": "MusicGroup", "@id": "{{ site.url }}/#musicgroup", "name": "{{ site.name }}", "url": "{{ site.url }}" },
     { "@type": "Service", "@id": "{{ site.url }}{{ page.url }}#service", "name": "{{ program.title }}", "description": {{ program.lead | dump | safe }}, "serviceType": "Themed live-band program", "provider": { "@id": "{{ site.url }}/#musicgroup" }, "areaServed": ["Moscow", "Russia", "International tours"], "url": "{{ site.url }}{{ page.url }}" }
-    {% for item in program.videos %},
-    { "@type": "VideoObject", "@id": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}", "name": "{{ item.title }} — {{ program.title }}", "description": {{ program.lead | dump | safe }}, "thumbnailUrl": "{{ site.url }}/{{ item.poster }}", "contentUrl": "{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4", "embedUrl": "{{ site.url }}{{ page.url }}", "uploadDate": "2026-06-18", "publisher": { "@id": "{{ site.url }}/#musicgroup" } }
+    {% for item in program.videos | internationalVideos %},
+    { "@type": "VideoObject", "@id": "{{ site.url }}{{ page.url }}#video-{{ item.slug }}", "name": "{{ item.title }} — {{ program.title }}", "description": {{ program.lead | dump | safe }}, "thumbnailUrl": "{{ site.url }}/{{ item.poster | internationalPoster(item.slug) }}", "contentUrl": "{{ site.url }}/assets/video/mp4/{{ item.slug }}-720.mp4", "embedUrl": "{{ site.url }}{{ page.url }}", "uploadDate": "2026-06-18", "publisher": { "@id": "{{ site.url }}/#musicgroup" } }
     {% endfor %}
   ]
 }
@@ -53,7 +53,7 @@ eleventyComputed:
 	{% elif program.poster %}
 	<div class="page-hero__media">
 		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
-		{% if program.video %}
+		{% if program.video | internationalVideo %}
 		<a class="page-hero__play" href="#" data-video="{{ program.video }}" aria-label="Watch video"><span></span></a>
 		{% endif %}
 	</div>
@@ -68,10 +68,10 @@ eleventyComputed:
 	</div>
 	<div class="video-rail video-rail--big video-rail--program reveal" role="region" aria-label="{{ program.title }} videos">
 		<ul class="video-rail__track">
-		{% for item in program.videos %}
+		{% for item in program.videos | internationalVideos %}
 		<li class="vtile vtile--big">
 			<a class="vtile__link" href="#" data-video="{{ item.slug }}">
-				<img class="vtile__poster" src="{{ ('/' + item.poster) | url }}?v=20260817a" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
+				<img class="vtile__poster" src="{{ ('/' + (item.poster | internationalPoster(item.slug))) | url }}?v=20260817a" alt="{{ item.title }} — {{ program.title }}" loading="lazy">
 				<span class="vtile__play" aria-hidden="true"></span>
 				<div class="vtile__caption">
 					<span class="vtile__eyebrow">{{ item.label }}</span>

@@ -71,7 +71,7 @@ leoSaxPage: true
 				<source type="image/webp" srcset="{{ '/assets/leo-sax/hero/leo-sax-hero-640.webp?v=4' | url }} 640w, {{ '/assets/leo-sax/hero/leo-sax-hero-1280.webp?v=4' | url }} 1280w, {{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=4' | url }} 1672w" sizes="100vw">
 				<img class="leo-hero__image" src="{{ '/assets/leo-sax/hero/leo-sax-hero-1672.webp?v=4' | url }}" alt="{% if isEn %}Leo Sax performing live on stage{% else %}Leo Sax — саксофонист Лео на сцене с саксофоном{% endif %}" width="1672" height="941" fetchpriority="high" decoding="async">
 			</picture>
-			<video class="leo-player" data-leo-video playsinline preload="none" aria-label="{% if isEn %}Leo Sax promotional video{% else %}Промо-видео Leo Sax{% endif %}"></video>
+			{% if not isEn %}<video class="leo-player" data-leo-video playsinline preload="none" aria-label="Промо-видео Leo Sax"></video>{% endif %}
 		</div>
 		<div class="leo-hero__shade" aria-hidden="true"></div>
 
@@ -87,7 +87,8 @@ leoSaxPage: true
 			</div>
 		</div>
 
-		<button class="leo-play" type="button" data-leo-play aria-label="{% if isEn %}Watch the full Leo Sax promo{% else %}Смотреть полное промо Leo Sax{% endif %}">
+		{% if not isEn %}
+		<button class="leo-play" type="button" data-leo-play aria-label="Смотреть полное промо Leo Sax">
 			<span aria-hidden="true"></span>
 		</button>
 
@@ -106,6 +107,7 @@ leoSaxPage: true
 			</div>
 		</div>
 		<p class="leo-player-status" data-player-status aria-live="polite"></p>
+		{% endif %}
 	</section>
 
 	<section class="leo-gallery" aria-label="{% if isEn %}Leo Sax photos{% else %}Фотографии Leo Sax{% endif %}">

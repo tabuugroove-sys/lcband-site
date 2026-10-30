@@ -12,6 +12,7 @@
     "media:check": "node tools/media-manifest.mjs --check-production",
     "media:upload": "node tools/upload-video.mjs",
     "seo:audit": "node tools/seo-audit.mjs",
+    "international:check": "node tools/check-international-pages.mjs",
     "seo:check": "npm run preview && node tools/seo-audit.mjs",
     "test": "npm run preview && playwright test"
   },

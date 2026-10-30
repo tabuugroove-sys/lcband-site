@@ -1,6 +1,7 @@
 {% set media = promoGallery.vocalists[vocalist.slug] %}
 {% set isEn = htmlLang == 'en' %}
-{% if media.videos.length %}
+{% set mediaVideos = (media.videos | internationalVideos) if isEn else media.videos %}
+{% if mediaVideos.length %}
 <section class="section" id="videos">
 	<div class="container container--narrow reveal">
 		<p class="section__eyebrow">{{ vocalist.name }}</p>
@@ -8,10 +9,11 @@
 	</div>
 	<div class="video-rail video-rail--small reveal" role="region" aria-label="{{ vocalist.name }} — {% if isEn %}performance videos{% else %}видео выступлений{% endif %}">
 		<ul class="video-rail__track">
-			{% for video in media.videos %}
+			{% for video in mediaVideos %}
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ video.slug }}">
-					<img class="vtile__poster" src="{{ ('/' + video.poster) | url }}" alt="{{ video.titleEn if isEn else video.title }}" loading="lazy">
+					{% set videoPoster = (video.poster | internationalPoster(video.slug)) if isEn else video.poster %}
+					<img class="vtile__poster" src="{{ ('/' + videoPoster) | url }}" alt="{{ video.titleEn if isEn else video.title }}" loading="lazy">
 					<span class="vtile__play" aria-hidden="true"></span>
 					<div class="vtile__caption"><span class="vtile__title">{{ video.titleEn if isEn else video.title }}</span></div>
 				</a>
@@ -31,10 +33,10 @@
 	</ul>
 </section>
 {% endif %}
-{% if media.photos.length or media.videos.length %}
+{% if media.photos.length or mediaVideos.length %}
 <section class="section section--light">
 	<div class="container container--narrow reveal">
-		{% if media.videos.length %}<p class="section__lead">{% if isEn %}Individual videos on this page can be downloaded in the player.{% else %}Отдельные видео с этой страницы можно скачать в плеере.{% endif %}</p>{% endif %}
+		{% if mediaVideos.length %}<p class="section__lead">{% if isEn %}Individual videos on this page can be downloaded in the player.{% else %}Отдельные видео с этой страницы можно скачать в плеере.{% endif %}</p>{% endif %}
 		{% include "partials/promo-downloads.njk" %}
 	</div>
 </section>

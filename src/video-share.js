@@ -56,6 +56,7 @@
     dialog.querySelector('.video-share-name').textContent = sharedTitle;
     const download = new URL('/download.php', origin);
     download.searchParams.set('file', url.pathname.split('/').pop());
+    if (lang !== 'ru') download.searchParams.set('lang', lang);
     dialog.querySelector('.video-share-download').href = download.href;
     if (lang === 'ru') dialog.querySelector('[data-social="telegram"]').href = `https://t.me/share/url?url=${encodeURIComponent(player.href)}&text=${encodeURIComponent(sharedTitle)}`;
     dialog.querySelector('[data-social="whatsapp"]').href = `https://wa.me/?text=${encodeURIComponent(sharedTitle + ' ' + player.href)}`;
@@ -101,6 +102,7 @@
       if (source) {
         const address = new URL('/download.php', origin);
         address.searchParams.set('file', source.pathname.split('/').pop());
+        if (lang !== 'ru') address.searchParams.set('lang', lang);
         download.href = address.href;
       }
     };

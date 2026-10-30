@@ -31,6 +31,9 @@ jobs:
       - name: Build production site
         run: npm run preview
 
+      - name: Verify international pages and media selection
+        run: npm run international:check
+
       - name: Install deploy client
         run: sudo apt-get update && sudo apt-get install -y sshpass
 

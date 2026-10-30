@@ -21,7 +21,7 @@
 			"image": "{{ site.url }}/assets/leo-sax/hero/leo-sax-hero-1672.webp",
 			"url": "{{ site.url }}{{ page.url }}"
 		},
-		{
+		{% if htmlLang != 'en' %}{
 			"@type": "VideoObject",
 			"@id": "{{ site.url }}{{ page.url }}#promo",
 			"name": "{% if htmlLang == 'en' %}Leo Sax — Saxophonist Promo{% else %}Leo Sax — промо саксофониста{% endif %}",
@@ -31,7 +31,7 @@
 			"embedUrl": "{{ site.url }}{{ page.url }}",
 			"uploadDate": "2026-08-26",
 			"duration": "PT2M35S"
-		},
+		},{% endif %}
 		{
 			"@type": "BreadcrumbList",
 			"itemListElement": [
