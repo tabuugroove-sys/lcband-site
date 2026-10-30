@@ -23,7 +23,7 @@ permalink: /costumes/
 		{% for c in costumes %}
 		<li class="ig-tile">
 			<a class="ig-tile__link" href="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" data-lightbox>
-				<img src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.alt or (c.title + ' — образ Luxury Cover Band') }}" title="{{ c.imageTitle or (c.title + ' — сценический образ Luxury Cover Band') }}" loading="{{ 'eager' if c.priority else 'lazy' }}"{% if c.priority %} fetchpriority="high"{% endif %}>
+				<img data-photo-layout="costume" src="{{ ('/assets/costumes/' + c.slug + '.jpg') | url }}" alt="{{ c.alt or (c.title + ' — образ Luxury Cover Band') }}" title="{{ c.imageTitle or (c.title + ' — сценический образ Luxury Cover Band') }}" loading="{{ 'eager' if c.priority else 'lazy' }}"{% if c.priority %} fetchpriority="high"{% endif %}>
 				<span class="ig-tile__caption">{{ c.title }}</span>
 			</a>
 		</li>

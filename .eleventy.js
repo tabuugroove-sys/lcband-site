@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
 export default function (eleventyConfig) {
 	const pathPrefix = process.env.PATHPREFIX || "/lcband-site/";
@@ -137,6 +138,55 @@ export default function (eleventyConfig) {
 			const size = readImageSize(file);
 			if (!size || !size.w || !size.h) return tag;
 			return tag.replace(/\s*\/?>$/, ` width="${size.w}" height="${size.h}">`);
+		});
+	});
+
+	// Keep original JPEG links for the lightbox; cards select a versioned WebP.
+	const responsivePhotos = JSON.parse(fs.readFileSync(new URL('./media/responsive-photos.json', import.meta.url), 'utf8'));
+	for (const [url, photo] of Object.entries(responsivePhotos)) {
+		const source = path.join('src', url);
+		if (!fs.existsSync(source) || createHash('sha256').update(fs.readFileSync(source)).digest('hex') !== photo.sourceSha256) {
+			console.warn(`Responsive photo changed: ${url}; serving the original. Run python3 tools/build-responsive-photos.py to refresh WebP variants.`);
+			delete responsivePhotos[url];
+		}
+	}
+	eleventyConfig.addTransform("responsivePhotos", function (content) {
+		if (!this.page.outputPath?.endsWith('.html')) return content;
+		const renderedPhotos = new Map();
+		const rendered = content.replace(/<img\b[^>]*>/g, (tag) => {
+			const src = (tag.match(/\ssrc="([^"]+)"/) || [])[1];
+			const assetPath = src?.split('?')[0].replace(/^.*\/assets\//, '/assets/');
+			const photo = responsivePhotos[assetPath];
+			if (!photo || /\bsrcset=/.test(tag)) return tag;
+			const layout = (tag.match(/\sdata-photo-layout="([^"]+)"/) || [])[1];
+			const ratio = photo.width / photo.height;
+			let sizes = '100vw';
+			if (layout === 'costume') {
+				const cover = Math.max(1, ratio);
+				sizes = `(max-width: 734px) ${50 * cover}vw, ${100 / 3 * cover}vw`;
+			} else if (layout === 'live' || layout === 'live-wide') {
+				const desktopWidth = layout === 'live-wide' ? 1120 : 552;
+				const desktopFluid = layout === 'live-wide' ? 'calc(100vw - 80px)' : 'calc(50vw - 48px)';
+				sizes = `(max-width: 739px) max(calc(100vw - 44px), ${Math.ceil(320 * ratio)}px), (max-width: 900px) max(calc(100vw - 80px), ${Math.ceil(320 * ratio)}px), (min-width: 1200px) ${Math.ceil(Math.max(desktopWidth, 380 * ratio))}px, max(${desktopFluid}, ${Math.ceil(380 * ratio)}px)`;
+			}
+			const srcset = photo.variants.map(item => `${pathPrefix}${item.url.slice(1)} ${item.width}w`).join(', ');
+			renderedPhotos.set(assetPath, {srcset, sizes: (tag.match(/\ssizes="([^"]+)"/) || [])[1] || sizes});
+			tag = tag.replace(/\sdata-photo-layout="[^"]+"/, '');
+			const sizeAttr = /\bsizes=/.test(tag) ? '' : ` sizes="${sizes}"`;
+			const decodingAttr = /\bdecoding=/.test(tag) ? '' : ' decoding="async"';
+			return tag.replace(/\s*\/?>$/, ` srcset="${srcset}"${sizeAttr}${decodingAttr}>`);
+		});
+		// Match preloads to the responsive image; omit an unused photo preload.
+		return rendered.replace(/<link\b[^>]*>/g, (tag) => {
+			if (!/\brel="preload"/.test(tag) || !/\bas="image"/.test(tag)) return tag;
+			const href = (tag.match(/\shref="([^"]+)"/) || [])[1];
+			const assetPath = href?.split('?')[0].replace(/^.*\/assets\//, '/assets/');
+			if (!responsivePhotos[assetPath]) return tag;
+			const image = renderedPhotos.get(assetPath);
+			if (!image) return '';
+			const fallback = responsivePhotos[assetPath].variants.at(-1).url;
+			return tag.replace(/\shref="[^"]+"/, ` href="${pathPrefix}${fallback.slice(1)}"`)
+				.replace(/\s*\/?>$/, ` imagesrcset="${image.srcset}" imagesizes="${image.sizes}" type="image/webp">`);
 		});
 	});
 

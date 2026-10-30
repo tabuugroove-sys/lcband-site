@@ -1,26 +1,34 @@
 <!-- =============== HERO (4-COLOR SWITCHABLE LINEUP + INLINE VIDEO) =============== -->
 <section class="hero" data-hero>
 	<div class="hero__stage">
-		{#- Мобильный получает webp 640-1280w вместо 2400px jpg; eager — только
-		    активный красный образ, остальные три lazy -#}
+		{#- Mobile keeps its existing WebP sizes; desktop follows the 16:9 cover width.
+		    Only the active red look is eager; the other three remain lazy. -#}
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 				srcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+			<source media="(min-width: 735px)" type="image/webp" sizes="(min-aspect-ratio: 16/9) 100vw, max(100vw, clamp(1138px, 177.78svh, 1778px))"
+				srcset="{{ '/assets/hero/hero-red-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-red-2400.webp' | url }} 2400w">
 			<img class="hero__bg hero__bg--red is-active"  src="{{ '/assets/hero/hero-red.jpg' | url }}"   alt="{{ site.name }} — красный образ на LED-стене" loading="eager" fetchpriority="high" data-hero-img="red">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 				srcset="{{ '/assets/hero/hero-bw-640.webp' | url }} 640w, {{ '/assets/hero/hero-bw-960.webp' | url }} 960w, {{ '/assets/hero/hero-bw-1280.webp' | url }} 1280w">
+			<source media="(min-width: 735px)" type="image/webp" sizes="(min-aspect-ratio: 16/9) 100vw, max(100vw, clamp(1138px, 177.78svh, 1778px))"
+				srcset="{{ '/assets/hero/hero-bw-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-bw-2400.webp' | url }} 2400w">
 			<img class="hero__bg hero__bg--bw"             src="{{ '/assets/hero/hero-bw.jpg' | url }}"    alt="{{ site.name }} — чёрно-белый образ"  loading="lazy" data-hero-img="bw">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 				srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w">
+			<source media="(min-width: 735px)" type="image/webp" sizes="(min-aspect-ratio: 16/9) 100vw, max(100vw, clamp(1138px, 177.78svh, 1778px))"
+				srcset="{{ '/assets/hero/hero-gold-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-gold-2400.webp' | url }} 2400w">
 			<img class="hero__bg hero__bg--gold"           src="{{ '/assets/hero/hero-gold.jpg' | url }}"  alt="{{ site.name }} — золотой образ на сцене"       loading="lazy" data-hero-img="gold">
 		</picture>
 		<picture>
 			<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 				srcset="{{ '/assets/hero/hero-white-640.webp' | url }} 640w, {{ '/assets/hero/hero-white-960.webp' | url }} 960w, {{ '/assets/hero/hero-white-1280.webp' | url }} 1280w">
+			<source media="(min-width: 735px)" type="image/webp" sizes="(min-aspect-ratio: 16/9) 100vw, max(100vw, clamp(1138px, 177.78svh, 1778px))"
+				srcset="{{ '/assets/hero/hero-white-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-white-2400.webp' | url }} 2400w">
 			<img class="hero__bg hero__bg--white"          src="{{ '/assets/hero/hero-white.jpg' | url }}" alt="{{ site.name }} — белый образ на звёздном фоне"  loading="lazy" data-hero-img="white">
 		</picture>
 		<video class="hero__video" data-hero-video playsinline preload="none"></video>

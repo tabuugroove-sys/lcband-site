@@ -1,0 +1,726 @@
+{
+  "/assets/costumes/all-black.jpg": {
+    "sourceSha256": "e389ffc4caa8a8c98d4840518c2c790601a2ea4c7b198286ae8b94457b4667cf",
+    "width": 1080,
+    "height": 792,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--all-black-e389ffc4caa8-480.webp",
+        "width": 480,
+        "bytes": 36976
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--all-black-e389ffc4caa8-800.webp",
+        "width": 800,
+        "bytes": 67074
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--all-black-e389ffc4caa8-1080.webp",
+        "width": 1080,
+        "bytes": 92298
+      }
+    ]
+  },
+  "/assets/costumes/beige-glitter.jpg": {
+    "sourceSha256": "5c3b862cb4566dcfc64ac03200ee90529dc79a3bec7f1dd97c6c29b14e3cc1d0",
+    "width": 1486,
+    "height": 1800,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--beige-glitter-5c3b862cb456-480.webp",
+        "width": 480,
+        "bytes": 27900
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--beige-glitter-5c3b862cb456-800.webp",
+        "width": 800,
+        "bytes": 61014
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--beige-glitter-5c3b862cb456-1200.webp",
+        "width": 1200,
+        "bytes": 128250
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--beige-glitter-5c3b862cb456-1486.webp",
+        "width": 1486,
+        "bytes": 209624
+      }
+    ]
+  },
+  "/assets/costumes/black-red.jpg": {
+    "sourceSha256": "c746fa93a7d54c922d9321e83728c3af4655f1e319d7cc7fe3b93a31cef12f1e",
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--black-red-c746fa93a7d5-480.webp",
+        "width": 480,
+        "bytes": 43872
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-red-c746fa93a7d5-800.webp",
+        "width": 800,
+        "bytes": 86684
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-red-c746fa93a7d5-1086.webp",
+        "width": 1086,
+        "bytes": 128800
+      }
+    ]
+  },
+  "/assets/costumes/black-sequin-stage-costumes-cover-band-vocalists.jpg": {
+    "sourceSha256": "2c0b45078ede4427f61f492f68c4e7bf11696be5860092c6aff4682aa0070362",
+    "width": 1025,
+    "height": 1535,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--black-sequin-stage-costumes-cover-band-vocalists-2c0b45078ede-480.webp",
+        "width": 480,
+        "bytes": 57334
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-sequin-stage-costumes-cover-band-vocalists-2c0b45078ede-800.webp",
+        "width": 800,
+        "bytes": 121484
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-sequin-stage-costumes-cover-band-vocalists-2c0b45078ede-1025.webp",
+        "width": 1025,
+        "bytes": 165088
+      }
+    ]
+  },
+  "/assets/costumes/black-silver.jpg": {
+    "sourceSha256": "575983ac90b7a0e355e6b4b9d3d1d7ee298a848170ca6146351e21946916cc6f",
+    "width": 1472,
+    "height": 1800,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--black-silver-575983ac90b7-480.webp",
+        "width": 480,
+        "bytes": 51674
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-silver-575983ac90b7-800.webp",
+        "width": 800,
+        "bytes": 111120
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-silver-575983ac90b7-1200.webp",
+        "width": 1200,
+        "bytes": 182562
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-silver-575983ac90b7-1472.webp",
+        "width": 1472,
+        "bytes": 230310
+      }
+    ]
+  },
+  "/assets/costumes/black-white.jpg": {
+    "sourceSha256": "8947c77683030646f8f5b1560705a9050b3b4486f03b4b5edad5cc5cddc5c8eb",
+    "width": 1800,
+    "height": 1269,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--black-white-8947c7768303-480.webp",
+        "width": 480,
+        "bytes": 35226
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-white-8947c7768303-800.webp",
+        "width": 800,
+        "bytes": 74556
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-white-8947c7768303-1200.webp",
+        "width": 1200,
+        "bytes": 126836
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--black-white-8947c7768303-1800.webp",
+        "width": 1800,
+        "bytes": 215518
+      }
+    ]
+  },
+  "/assets/costumes/blue.jpg": {
+    "sourceSha256": "cd7be3a07a39fe8432ecf174cb0593b6838e23c85f22283752f69f5b85500823",
+    "width": 1800,
+    "height": 1361,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--blue-cd7be3a07a39-480.webp",
+        "width": 480,
+        "bytes": 22492
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--blue-cd7be3a07a39-800.webp",
+        "width": 800,
+        "bytes": 41564
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--blue-cd7be3a07a39-1200.webp",
+        "width": 1200,
+        "bytes": 66144
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--blue-cd7be3a07a39-1800.webp",
+        "width": 1800,
+        "bytes": 106444
+      }
+    ]
+  },
+  "/assets/costumes/dark-green-group.jpg": {
+    "sourceSha256": "9afe6bea37d0958f441e826748dffd0dec00387b2485d824161c949a9c38eef6",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-480.webp",
+        "width": 480,
+        "bytes": 28736
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-800.webp",
+        "width": 800,
+        "bytes": 55852
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1200.webp",
+        "width": 1200,
+        "bytes": 91756
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1536.webp",
+        "width": 1536,
+        "bytes": 122704
+      }
+    ]
+  },
+  "/assets/costumes/dark-green.jpg": {
+    "sourceSha256": "d040986e2ec81e408ffc49b0ca11c98a8c6d3433719f5bd866834280721be465",
+    "width": 1322,
+    "height": 1718,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--dark-green-d040986e2ec8-480.webp",
+        "width": 480,
+        "bytes": 43184
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--dark-green-d040986e2ec8-800.webp",
+        "width": 800,
+        "bytes": 86262
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--dark-green-d040986e2ec8-1200.webp",
+        "width": 1200,
+        "bytes": 138868
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--dark-green-d040986e2ec8-1322.webp",
+        "width": 1322,
+        "bytes": 156762
+      }
+    ]
+  },
+  "/assets/costumes/flowers.jpg": {
+    "sourceSha256": "94c68765f1c836dc2c434b40ac708b6d7a64ed7c887c1e07198379630598a763",
+    "width": 1264,
+    "height": 868,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--flowers-94c68765f1c8-480.webp",
+        "width": 480,
+        "bytes": 34478
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--flowers-94c68765f1c8-800.webp",
+        "width": 800,
+        "bytes": 70182
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--flowers-94c68765f1c8-1200.webp",
+        "width": 1200,
+        "bytes": 119446
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--flowers-94c68765f1c8-1264.webp",
+        "width": 1264,
+        "bytes": 128132
+      }
+    ]
+  },
+  "/assets/costumes/gold-studio.jpg": {
+    "sourceSha256": "9902109bda969ef0d2abe178ba7df349f19b792691c9bc8a033e33ca8a1b4cbc",
+    "width": 1476,
+    "height": 1754,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--gold-studio-9902109bda96-480.webp",
+        "width": 480,
+        "bytes": 47742
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-studio-9902109bda96-800.webp",
+        "width": 800,
+        "bytes": 99916
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-studio-9902109bda96-1200.webp",
+        "width": 1200,
+        "bytes": 164648
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-studio-9902109bda96-1476.webp",
+        "width": 1476,
+        "bytes": 215548
+      }
+    ]
+  },
+  "/assets/costumes/gold.jpg": {
+    "sourceSha256": "b2053986273b14cd3ef6672bfd20395aaf2c9076de342ff62d6564dc0f7cdd96",
+    "width": 1800,
+    "height": 1130,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--gold-b2053986273b-480.webp",
+        "width": 480,
+        "bytes": 24908
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-b2053986273b-800.webp",
+        "width": 800,
+        "bytes": 56062
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-b2053986273b-1200.webp",
+        "width": 1200,
+        "bytes": 103604
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--gold-b2053986273b-1800.webp",
+        "width": 1800,
+        "bytes": 197328
+      }
+    ]
+  },
+  "/assets/costumes/pink.jpg": {
+    "sourceSha256": "4fbf4c82aae0f503ec04e3d0a1f6b9cdfddd6ae48f9bb256bd1e0000d2355e40",
+    "width": 1800,
+    "height": 1587,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--pink-4fbf4c82aae0-480.webp",
+        "width": 480,
+        "bytes": 40468
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--pink-4fbf4c82aae0-800.webp",
+        "width": 800,
+        "bytes": 91204
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--pink-4fbf4c82aae0-1200.webp",
+        "width": 1200,
+        "bytes": 179366
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--pink-4fbf4c82aae0-1800.webp",
+        "width": 1800,
+        "bytes": 365724
+      }
+    ]
+  },
+  "/assets/costumes/red-group.jpg": {
+    "sourceSha256": "a83ff74e7369c14bcde2f7a2f95f641db7965fa028de5ad3532f951413050cda",
+    "width": 1462,
+    "height": 1648,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--red-group-a83ff74e7369-480.webp",
+        "width": 480,
+        "bytes": 42206
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-group-a83ff74e7369-800.webp",
+        "width": 800,
+        "bytes": 83638
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-group-a83ff74e7369-1200.webp",
+        "width": 1200,
+        "bytes": 131972
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-group-a83ff74e7369-1462.webp",
+        "width": 1462,
+        "bytes": 166910
+      }
+    ]
+  },
+  "/assets/costumes/red.jpg": {
+    "sourceSha256": "684064fd7975ace0c1c78820990f9ac82a5b7a33137d1784aef803798d3b95d2",
+    "width": 1800,
+    "height": 1299,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--red-684064fd7975-480.webp",
+        "width": 480,
+        "bytes": 32438
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-684064fd7975-800.webp",
+        "width": 800,
+        "bytes": 64966
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-684064fd7975-1200.webp",
+        "width": 1200,
+        "bytes": 111142
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--red-684064fd7975-1800.webp",
+        "width": 1800,
+        "bytes": 191190
+      }
+    ]
+  },
+  "/assets/costumes/shimmer.jpg": {
+    "sourceSha256": "9afe6bea37d0958f441e826748dffd0dec00387b2485d824161c949a9c38eef6",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-480.webp",
+        "width": 480,
+        "bytes": 28736
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-800.webp",
+        "width": 800,
+        "bytes": 55852
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1200.webp",
+        "width": 1200,
+        "bytes": 91756
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1536.webp",
+        "width": 1536,
+        "bytes": 122704
+      }
+    ]
+  },
+  "/assets/costumes/vocalists-red-feature.jpg": {
+    "sourceSha256": "916c1fb411bbc928ef3f130e064df1c53ef4240d0e210be81c753f6aa7ae0cc9",
+    "width": 1272,
+    "height": 1800,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--vocalists-red-feature-916c1fb411bb-480.webp",
+        "width": 480,
+        "bytes": 45284
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--vocalists-red-feature-916c1fb411bb-800.webp",
+        "width": 800,
+        "bytes": 88828
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--vocalists-red-feature-916c1fb411bb-1200.webp",
+        "width": 1200,
+        "bytes": 148542
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--vocalists-red-feature-916c1fb411bb-1272.webp",
+        "width": 1272,
+        "bytes": 161222
+      }
+    ]
+  },
+  "/assets/costumes/white.jpg": {
+    "sourceSha256": "5154cf746f1a38200415421464319c172b3a9356d994f4c77e27fa91ada1b2cf",
+    "width": 1800,
+    "height": 1461,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/costumes--white-5154cf746f1a-480.webp",
+        "width": 480,
+        "bytes": 51574
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--white-5154cf746f1a-800.webp",
+        "width": 800,
+        "bytes": 105608
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--white-5154cf746f1a-1200.webp",
+        "width": 1200,
+        "bytes": 177698
+      },
+      {
+        "url": "/assets/photos/responsive/costumes--white-5154cf746f1a-1800.webp",
+        "width": 1800,
+        "bytes": 289548
+      }
+    ]
+  },
+  "/assets/photos/concert-10k.jpg": {
+    "sourceSha256": "d4f24c0574a970290e2d03fb66f244707f390614370087cc80f7320116af7889",
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-10k-d4f24c0574a9-480.webp",
+        "width": 480,
+        "bytes": 14398
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-10k-d4f24c0574a9-800.webp",
+        "width": 800,
+        "bytes": 27120
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-10k-d4f24c0574a9-1200.webp",
+        "width": 1200,
+        "bytes": 44532
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-10k-d4f24c0574a9-1800.webp",
+        "width": 1800,
+        "bytes": 73512
+      }
+    ]
+  },
+  "/assets/photos/concert-big.jpg": {
+    "sourceSha256": "61d02172261c6da5fd7503d9327f511892b8b27bacdfee5d83d0a347f537ff89",
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-big-61d02172261c-480.webp",
+        "width": 480,
+        "bytes": 25700
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-big-61d02172261c-800.webp",
+        "width": 800,
+        "bytes": 55128
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-big-61d02172261c-1200.webp",
+        "width": 1200,
+        "bytes": 95354
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-big-61d02172261c-1800.webp",
+        "width": 1800,
+        "bytes": 170768
+      }
+    ]
+  },
+  "/assets/photos/concert-event.jpg": {
+    "sourceSha256": "5c5891455998256cd336b82d0369d9334ea59765f4c283d12b8b48532ca5d018",
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-event-5c5891455998-480.webp",
+        "width": 480,
+        "bytes": 19700
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-event-5c5891455998-800.webp",
+        "width": 800,
+        "bytes": 40364
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-event-5c5891455998-1200.webp",
+        "width": 1200,
+        "bytes": 69542
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-event-5c5891455998-1800.webp",
+        "width": 1800,
+        "bytes": 121986
+      }
+    ]
+  },
+  "/assets/photos/concert-light.jpg": {
+    "sourceSha256": "9afe6bea37d0958f441e826748dffd0dec00387b2485d824161c949a9c38eef6",
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-480.webp",
+        "width": 480,
+        "bytes": 28736
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-800.webp",
+        "width": 800,
+        "bytes": 55852
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1200.webp",
+        "width": 1200,
+        "bytes": 91756
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-light-9afe6bea37d0-1536.webp",
+        "width": 1536,
+        "bytes": 122704
+      }
+    ]
+  },
+  "/assets/photos/concert-teddi.jpg": {
+    "sourceSha256": "0bf988d2b64a9f86f275d631641a1c4452a2fc7573bc12896a3188de93c209e3",
+    "width": 1800,
+    "height": 1200,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--concert-teddi-0bf988d2b64a-480.webp",
+        "width": 480,
+        "bytes": 15950
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-teddi-0bf988d2b64a-800.webp",
+        "width": 800,
+        "bytes": 33696
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-teddi-0bf988d2b64a-1200.webp",
+        "width": 1200,
+        "bytes": 59352
+      },
+      {
+        "url": "/assets/photos/responsive/photos--concert-teddi-0bf988d2b64a-1800.webp",
+        "width": 1800,
+        "bytes": 100234
+      }
+    ]
+  },
+  "/assets/photos/hero-studio.jpg": {
+    "sourceSha256": "697a27ae05c33cb0bef772b3aa885d3e9947c9b9aac7889d4b7c9edbf8493ab5",
+    "width": 2000,
+    "height": 1500,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--hero-studio-697a27ae05c3-480.webp",
+        "width": 480,
+        "bytes": 9476
+      },
+      {
+        "url": "/assets/photos/responsive/photos--hero-studio-697a27ae05c3-800.webp",
+        "width": 800,
+        "bytes": 20466
+      },
+      {
+        "url": "/assets/photos/responsive/photos--hero-studio-697a27ae05c3-1200.webp",
+        "width": 1200,
+        "bytes": 34932
+      },
+      {
+        "url": "/assets/photos/responsive/photos--hero-studio-697a27ae05c3-1800.webp",
+        "width": 1800,
+        "bytes": 60356
+      },
+      {
+        "url": "/assets/photos/responsive/photos--hero-studio-697a27ae05c3-2000.webp",
+        "width": 2000,
+        "bytes": 70230
+      }
+    ]
+  },
+  "/assets/photos/promo-d36bfa38cad7.jpg": {
+    "sourceSha256": "402d27cc5f9bdcba0e502a9dcbc08a6c63048791541a59fe1ac146b360088e8d",
+    "width": 1280,
+    "height": 853,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--promo-d36bfa38cad7-402d27cc5f9b-480.webp",
+        "width": 480,
+        "bytes": 28826
+      },
+      {
+        "url": "/assets/photos/responsive/photos--promo-d36bfa38cad7-402d27cc5f9b-800.webp",
+        "width": 800,
+        "bytes": 55082
+      },
+      {
+        "url": "/assets/photos/responsive/photos--promo-d36bfa38cad7-402d27cc5f9b-1200.webp",
+        "width": 1200,
+        "bytes": 89322
+      },
+      {
+        "url": "/assets/photos/responsive/photos--promo-d36bfa38cad7-402d27cc5f9b-1280.webp",
+        "width": 1280,
+        "bytes": 97026
+      }
+    ]
+  },
+  "/assets/photos/sax.jpg": {
+    "sourceSha256": "104e6c54c294d1dad10a0840556e988f659c560b910e0bac63efed1b0664e8b2",
+    "width": 1800,
+    "height": 1197,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--sax-104e6c54c294-480.webp",
+        "width": 480,
+        "bytes": 34718
+      },
+      {
+        "url": "/assets/photos/responsive/photos--sax-104e6c54c294-800.webp",
+        "width": 800,
+        "bytes": 78804
+      },
+      {
+        "url": "/assets/photos/responsive/photos--sax-104e6c54c294-1200.webp",
+        "width": 1200,
+        "bytes": 157412
+      },
+      {
+        "url": "/assets/photos/responsive/photos--sax-104e6c54c294-1800.webp",
+        "width": 1800,
+        "bytes": 304690
+      }
+    ]
+  },
+  "/assets/photos/vocalists.jpg": {
+    "sourceSha256": "35acfb2d15fd86f915610838ec1e88bfcb271e40bf48356dff3ec114b43922d7",
+    "width": 2600,
+    "height": 1451,
+    "variants": [
+      {
+        "url": "/assets/photos/responsive/photos--vocalists-35acfb2d15fd-480.webp",
+        "width": 480,
+        "bytes": 6484
+      },
+      {
+        "url": "/assets/photos/responsive/photos--vocalists-35acfb2d15fd-800.webp",
+        "width": 800,
+        "bytes": 13612
+      },
+      {
+        "url": "/assets/photos/responsive/photos--vocalists-35acfb2d15fd-1200.webp",
+        "width": 1200,
+        "bytes": 25572
+      },
+      {
+        "url": "/assets/photos/responsive/photos--vocalists-35acfb2d15fd-1800.webp",
+        "width": 1800,
+        "bytes": 47450
+      },
+      {
+        "url": "/assets/photos/responsive/photos--vocalists-35acfb2d15fd-2600.webp",
+        "width": 2600,
+        "bytes": 84138
+      }
+    ]
+  }
+}

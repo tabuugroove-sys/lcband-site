@@ -36,15 +36,16 @@
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
 	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404.
-	   preloadHeroMobileWebp: на мобильном hero отдаётся webp из <picture> —
-	   прелоадим его, а jpg прелоадим только на десктопе (без двойной загрузки) #}
+	   preloadHeroMobileWebp: сохраняем имя флага; WebP теперь для всех экранов.
+	   srcset и sizes совпадают с hero picture, без дополнительного JPG #}
 	{% if preloadBackgroundPoster %}
 	<link rel="preload" as="image" href="{{ '/assets/hero/hq-20261029-about-916.webp' | url }}" media="(max-width: 734px) and (orientation: portrait)" fetchpriority="high">
 	<link rel="preload" as="image" href="{{ '/assets/hero/hq-20261029-about-1920.webp' | url }}" media="(min-width: 735px), (orientation: landscape)" fetchpriority="high">
 	{% elif preloadHeroMobileWebp %}
-	<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}" media="(min-width: 735px)">
-	<link rel="preload" as="image" media="(max-width: 734px)" imagesizes="100vw"
+	<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(max-width: 734px)" imagesizes="100vw"
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
+	<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(min-width: 735px)" imagesizes="(min-aspect-ratio: 16/9) 100vw, max(100vw, clamp(1138px, 177.78svh, 1778px))"
+		imagesrcset="{{ '/assets/hero/hero-red-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-red-2400.webp' | url }} 2400w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
 	<link rel="stylesheet" href="{{ '/styles.css?v=76' | url }}">
