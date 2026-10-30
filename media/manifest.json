@@ -888,11 +888,6 @@
       "sha256": "64a991e1e654d2d196893ee193bc40221b986e3125e7ae27ffba9252b37d2ec1"
     },
     {
-      "path": "assets/video/mp4/promo-costume-bw-822965daacce-2160.mp4",
-      "bytes": 40094931,
-      "sha256": "822965daacced580457375a38d1ec4975a0ac7a13c0a11dd50f3283fad740ebb"
-    },
-    {
       "path": "assets/video/mp4/promo-costume-bw-822965daacce-720.mp4",
       "bytes": 13529889,
       "sha256": "bc7046319727213bc0efb7622503a0591c165b0013de7f431af04155766ab9a0"
@@ -901,11 +896,6 @@
       "path": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-1080.mp4",
       "bytes": 32748258,
       "sha256": "4c5d80f090507174cf68af4ba4197d6cbe57112218c409cd278da298fb43b4e3"
-    },
-    {
-      "path": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-2160.mp4",
-      "bytes": 40094220,
-      "sha256": "b9f4a6ecf5abbe250c7400332794c252f94c4dda08220cd4fb5cc988632be0f6"
     },
     {
       "path": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-720.mp4",
@@ -918,11 +908,6 @@
       "sha256": "1ed13156b858b6116b66fc2769b06bd1daf8c47d82cf31e0b745f535966a0a63"
     },
     {
-      "path": "assets/video/mp4/promo-costume-red-6f67800c7805-2160.mp4",
-      "bytes": 40091070,
-      "sha256": "6f67800c7805f7d7c3e039739252555b22771aa72c0d31904fde07cbbe4f4341"
-    },
-    {
       "path": "assets/video/mp4/promo-costume-red-6f67800c7805-720.mp4",
       "bytes": 13526213,
       "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
@@ -931,11 +916,6 @@
       "path": "assets/video/mp4/promo-costume-white-bcef639df1ff-1080.mp4",
       "bytes": 32752960,
       "sha256": "3517224a2c422fba268481005fea1d84b3d7d6173528cbb6941af2c3c058d5d0"
-    },
-    {
-      "path": "assets/video/mp4/promo-costume-white-bcef639df1ff-2160.mp4",
-      "bytes": 40097690,
-      "sha256": "bcef639df1ff74045136ce5c3819e557dcedb13aba523a8943dd044c9a652773"
     },
     {
       "path": "assets/video/mp4/promo-costume-white-bcef639df1ff-720.mp4",
