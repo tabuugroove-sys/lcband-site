@@ -161,18 +161,19 @@
 			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
 		};
 		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
+		// «Чтобы сразу двигалось, а не картинка висит» (Mikhail 30.10): the tile that comes next
+		// warms up — its video already plays, hidden, once the one before it is moving (the
+		// first one as the grid comes near), so the tile grows in already moving. Still one
+		// video loading at a time.
+		const warming = i => i === shown && near && ready && pageActive && !document.hidden
+			&& allowed() && !userPaused && !playerOpen()
+			&& (i === 0 || videos[i - 1].classList.contains('is-ready'));
+		const wanted = i => (i < shown && shouldPlay()) || warming(i);
 		const update = () => {
 			renderToggle();
-			const play = shouldPlay();
 			videos.forEach((video, i) => {
-				if (!play || i >= shown) {
+				if (!wanted(i)) {
 					video.pause();
-					if (i === 0 && near && ready && allowed() && !video.getAttribute('src')) {
-						video.muted = true;
-						video.defaultMuted = true;
-						video.preload = 'auto';
-						video.src = sourceFor(video);
-					}
 					// A changed accessibility/data preference also stops further buffering.
 					if (!allowed() && video.getAttribute('src')) {
 						video.removeAttribute('src');
@@ -198,13 +199,14 @@
 		};
 		host.addEventListener('reel-reveal', event => { shown = event.detail.shown; update(); });
 		toggle.addEventListener('click', () => { userPaused = !userPaused; update(); });
-		for (const video of videos) {
+		videos.forEach((video, i) => {
 			video.addEventListener('playing', () => {
-				if (!shouldPlay()) { video.pause(); return; }
+				if (!wanted(i)) { video.pause(); return; }
 				video.classList.add('is-ready');
+				update();
 			});
 			video.addEventListener('error', () => video.classList.remove('is-ready'));
-		}
+		});
 		new IntersectionObserver(entries => {
 			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
 			update();
@@ -252,6 +254,7 @@
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
 		const minGap = 1200;
 		const maxWait = 4000;
+		const readyWait = 1200;
 		let shown = 0;
 		let timer = 0;
 		const announce = () => host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { shown } }));
@@ -261,6 +264,25 @@
 			for (const tile of tiles) tile.style.transformOrigin = `${cx - tile.offsetLeft}px ${cy - tile.offsetTop}px`;
 		};
 		let stopWaiting = () => {};
+		// The next tile grows in once its warmed-up video moves, so no still picture hangs
+		// there; a slow network holds it no longer than readyWait.
+		let holding = false;
+		const whenMoving = show => {
+			const index = shown;
+			const video = tiles[index]?.querySelector('[data-reel-video]');
+			if (!video?.getAttribute('src') || video.currentTime > 0.05) { show(); return; }
+			if (holding) return;
+			holding = true;
+			const done = () => {
+				video.removeEventListener('timeupdate', check);
+				window.clearTimeout(cap);
+				holding = false;
+				if (shown === index) show();
+			};
+			const check = () => { if (video.currentTime > 0.05) done(); };
+			const cap = window.setTimeout(done, readyWait);
+			video.addEventListener('timeupdate', check);
+		};
 		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
 		const next = (last = shown) => {
 			window.clearTimeout(timer);
@@ -277,7 +299,7 @@
 				if (done) return;
 				stopWaiting();
 				window.clearTimeout(timer);
-				timer = window.setTimeout(next, Math.max(0, minGap - (performance.now() - since)));
+				timer = window.setTimeout(() => whenMoving(next), Math.max(0, minGap - (performance.now() - since)));
 			};
 			const moving = () => { if (video.currentTime > 0.05) go(); };
 			stopWaiting = () => { done = true; video?.removeEventListener('timeupdate', moving); };
@@ -296,7 +318,7 @@
 		const maybeBegin = () => {
 			if (shown) return;
 			const rect = grid.getBoundingClientRect();
-			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) next();
+			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) whenMoving(next);
 		};
 		const due = () => {
 			// Where the tile sits in the grid, not its shrunken box while it waits.

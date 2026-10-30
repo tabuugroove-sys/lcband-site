@@ -45,7 +45,7 @@ test('slow scroll during page load: one tile at a time, each grows in and moves 
 		if (grid > 0.15) await page.mouse.wheel(0, 40);
 		await page.waitForTimeout(100);
 		log.push(await sample());
-		if (log.at(-1).tiles.every(tile => tile.playing)) break;
+		if (log.at(-1).tiles.every(tile => tile.shown && tile.playing)) break;
 	}
 
 	expect(log[0].loading).toBe(true);
@@ -69,6 +69,9 @@ test('slow scroll during page load: one tile at a time, each grows in and moves 
 	expect(log[order[0] + 10].tiles[0].scale).toBeCloseTo(1, 1);
 	// The second tile also grows in from the middle.
 	expect(log[order[1]].tiles[1].scale).toBeLessThan(0.9);
+	// «Чтобы сразу двигалось, а не картинка висит» (30.10): every tile is already moving
+	// when it grows in — its video warmed up while the one before it played.
+	for (let i = 0; i < 4; i++) expect(firstPlaying(i)).toBeLessThanOrEqual(order[i] + 1);
 	// Its video moves while the page is still loading, not after.
 	expect(log[firstPlaying(0)].loading).toBe(true);
 	// About a second or more between the first two, as before.
