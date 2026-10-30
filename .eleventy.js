@@ -58,6 +58,16 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/promo-downloads.css");
 	eleventyConfig.addPassthroughCopy("src/lib/promo-zip.php");
 	eleventyConfig.addPassthroughCopy({ "media/lcband-promo-package.json": "promo-package.json" });
+	// Mikhail 30.10: a poster chosen for a video stands on every page (src/_data/videoPosters.json).
+	const videoPosters = JSON.parse(fs.readFileSync("src/_data/videoPosters.json", "utf8"));
+	eleventyConfig.addTransform("videoPosters", function (content) {
+		if (!(this.page.outputPath || "").endsWith(".html")) return content;
+		const url = this.page.url || "";
+		const language = url.startsWith("/en/") ? videoPosters.en : /^\/(ae|br)\//.test(url) ? {} : videoPosters.ru;
+		const posters = { ...videoPosters.all, ...language };
+		return content.replace(/assets\/video\/posters\/([a-z0-9-]+?)(-720|-1080)?\.(jpg|webp)/g, (match, name, size = "", extension) =>
+			(posters[name] ? `assets/video/posters/${posters[name]}${size}.${extension}` : match));
+	});
 	eleventyConfig.addTransform("videoSharing", function (content) {
 		if (!this.page.outputPath?.endsWith('.html')) return content;
 		// Native players and existing embeds use the same revision as the ZIP.

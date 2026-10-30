@@ -66,3 +66,14 @@ test('a watch page player offers 720p and 1080p even without 4K', async ({ page 
 	await expect(picker).toBeVisible({ timeout: 10_000 });
 	await expect(picker.locator('button')).toHaveText(['720p', '1080p']);
 });
+
+test('the chosen poster of a video stands on every page, Perfect first', async ({ page }) => {
+	for (const path of ['/', '/about/', '/en/', '/watch/perfect/', '/events/wedding/']) {
+		const html = await (await page.request.get(path)).text();
+		expect(html, path).not.toMatch(/assets\/video\/posters\/(live-perfect|watch-perfect)(-720|-1080)?\.(jpg|webp)/);
+	}
+	const about = await (await page.request.get('/about/')).text();
+	expect(about).toContain('live-perfect-wedding-20261029');
+	expect(about).toContain('Примеры выступлений.');
+	expect(about).not.toContain('Записи, истории');
+});

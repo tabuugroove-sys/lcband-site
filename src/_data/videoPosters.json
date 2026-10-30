@@ -1,0 +1,21 @@
+{
+  "_comment": "Михаил 30.10: заставка, выбранная для видео, стоит на всех страницах. Одно место: имя файла в assets/video/posters без расширения. all — все языки; ru и en — заставки с текстом на языке страницы.",
+  "all": {
+    "live-perfect": "live-perfect-wedding-20261029",
+    "watch-perfect": "live-perfect-wedding-20261029",
+    "promo-main-reel": "promo-main-reel-20261029-approved",
+    "promo-egoistka": "promo-egoistka-2026-red-stage",
+    "promo-danza-cuduro": "promo-danza-cuduro-2026",
+    "thematic-retro-heart": "thematic-retro-heart-2026"
+  },
+  "ru": {
+    "teddy-macarena": "teddy-macarena-ru-4x3",
+    "teddy-latina-promo": "teddy-latina-promo-ru-4x3",
+    "luxury-latin-dance-master-class": "luxury-latin-dance-master-class-ru-4x3"
+  },
+  "en": {
+    "teddy-macarena": "teddy-macarena-en-4x3",
+    "teddy-latina-promo": "teddy-latina-promo-en-show-4x3",
+    "luxury-latin-dance-master-class": "luxury-latin-dance-master-class-en-4x3"
+  }
+}
