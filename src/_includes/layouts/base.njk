@@ -47,12 +47,12 @@
 		imagesrcset="{{ '/assets/hero/hero-red-640.webp' | url }} 640w, {{ '/assets/hero/hero-red-960.webp' | url }} 960w, {{ '/assets/hero/hero-red-1280.webp' | url }} 1280w">
 	{% elif preloadImage %}<link rel="preload" as="image" href="{{ ('/' + preloadImage) | replace('//', '/') | url }}">{% endif %}
 	{% if showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=75' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=76' | url }}">
 	{% endif %}
 	{% if pageStylesheet %}
 	<link rel="stylesheet" href="{{ pageStylesheet | url }}">
 	{% elif not showMainNav %}
-	<link rel="stylesheet" href="{{ '/styles.css?v=75' | url }}">
+	<link rel="stylesheet" href="{{ '/styles.css?v=76' | url }}">
 	{% endif %}
 	{% if leoSaxPage %}
 	<link rel="up" href="{{ ('/en/sax/' if htmlLang == 'en' else '/sax/') | url }}">
@@ -168,13 +168,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030perfect' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030quality' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030rings' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030perfect' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030quality' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030rings' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

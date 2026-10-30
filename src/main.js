@@ -369,6 +369,135 @@
 		kick();
 	})();
 
+	// ---------- Sound rings around 2000+ (Mikhail 30.10) ----------
+	// After the rings on the apple.com/apple-music hero (a pre-rendered video there): thick,
+	// iridescent rings from a small WebGL shader. Waves start just outside the text block
+	// and travel outwards, so they show left and right of it and never over the text;
+	// moving the mouse (scrolling on phones) pumps "sound" into them and they swell and
+	// wobble. Half resolution, drawn only while the block is on screen; without WebGL there
+	// are no rings, under reduced motion one still frame.
+	(() => {
+		const canvases = [...document.querySelectorAll('[data-count-rings]')];
+		if (!canvases.length) return;
+		const vertex = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+		const fragment = `precision mediump float;
+uniform vec2 res;uniform float time;uniform vec2 center;uniform vec4 box;uniform float energy;uniform vec2 pointer;uniform float radius;uniform float px;
+vec3 tone(float t){t=fract(t);vec3 a=vec3(1.,.70,.42),b=vec3(1.,.37,.43),c=vec3(.71,.42,1.),d=vec3(.36,.55,1.);
+	return t<.25?mix(a,b,t*4.):t<.5?mix(b,c,t*4.-1.):t<.75?mix(c,d,t*4.-2.):mix(d,a,t*4.-3.);}
+float ring(float x,float core,float soft){return exp(-x*x/(core*core))+.42*exp(-abs(x)/soft);}
+float boxDistance(vec2 p,vec2 hs,float r){vec2 q=abs(p)-hs+r;return length(max(q,0.))+min(max(q.x,q.y),0.)-r;}
+void main(){
+	vec2 f=gl_FragCoord.xy;vec2 p=f-center;float d=length(p);float ang=atan(p.y,p.x);
+	vec2 toward=normalize(pointer-center+.001);float facing=.5+.5*dot(p/(d+.001),toward);
+	float breathe=sin(time*.9)*radius*.012;
+	float wob=energy*(5.+16.*facing)*px*sin(ang*6.+time*4.)+energy*10.*px*facing;
+	float r=radius+breathe+wob;
+	float core=(3.2+2.*energy)*px;float soft=(20.+26.*energy)*px;
+	float split=(5.+5.*energy)*px;
+	vec3 tint=tone(ang/6.2832+time*.02);
+	vec3 col=vec3(ring(d-r+split,core,soft),ring(d-r,core,soft),ring(d-r-split,core,soft));
+	col=mix(col*tint,col,.35*exp(-(d-r)*(d-r)/(core*core*1.5)))*(1.+.8*energy);
+	for(int i=0;i<2;i++){
+		float phase=fract(time*.11+float(i)*.5);
+		float rr=r+phase*radius*.55;
+		col+=tone(ang/6.2832+phase+time*.02)*exp(-abs(d-rr)/(10.*px))*.22*sin(3.14159*phase)*(1.+energy);
+	}
+	vec2 mid=(box.xy+box.zw)*.5;vec2 hs=(box.zw-box.xy)*.5;
+	float keep=smoothstep(0.,26.*px,boxDistance(f-mid,hs,18.*px));
+	col=clamp(col*keep,0.,1.);
+	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
+}`;
+		for (const canvas of canvases) {
+			const section = canvas.closest('[data-count-block]');
+			const inner = section?.querySelector('.about-count__inner');
+			const gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true });
+			if (!section || !inner || !gl) { canvas.remove(); continue; }
+			const shader = (type, source) => { const s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s); return s; };
+			const program = gl.createProgram();
+			gl.attachShader(program, shader(gl.VERTEX_SHADER, vertex));
+			gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragment));
+			gl.linkProgram(program);
+			if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { canvas.remove(); continue; }
+			gl.useProgram(program);
+			gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+			const attribute = gl.getAttribLocation(program, 'a');
+			gl.enableVertexAttribArray(attribute);
+			gl.vertexAttribPointer(attribute, 2, gl.FLOAT, false, 0, 0);
+			const u = name => gl.getUniformLocation(program, name);
+			const uniforms = { res: u('res'), time: u('time'), center: u('center'), box: u('box'), energy: u('energy'), pointer: u('pointer'), radius: u('radius'), px: u('px') };
+			const scale = 0.5;
+			let width = 0;
+			let height = 0;
+			let visible = false;
+			let frame = 0;
+			let energy = 0;
+			let lastY = window.scrollY;
+			const pointer = { x: 0, y: 0, t: 0 };
+			const layout = () => {
+				const rect = section.getBoundingClientRect();
+				width = Math.max(1, Math.round(rect.width * scale));
+				height = Math.max(1, Math.round(rect.height * scale));
+				canvas.width = width;
+				canvas.height = height;
+				gl.viewport(0, 0, width, height);
+				const box = inner.getBoundingClientRect();
+				// Canvas pixels, y up (gl_FragCoord): the text block and its centre.
+				const x0 = (box.left - rect.left) * scale;
+				const x1 = (box.right - rect.left) * scale;
+				const y0 = height - (box.bottom - rect.top) * scale;
+				const y1 = height - (box.top - rect.top) * scale;
+				gl.uniform2f(uniforms.res, width, height);
+				gl.uniform4f(uniforms.box, x0, y0, x1, y1);
+				gl.uniform2f(uniforms.center, (x0 + x1) / 2, (y0 + y1) / 2);
+				// One big ring just outside the text block: it shows as arcs left and right of it.
+				gl.uniform1f(uniforms.radius, Math.max((x1 - x0) / 2, (y1 - y0) / 2) + 34 * scale);
+				gl.uniform1f(uniforms.px, scale);
+				if (!pointer.t) { pointer.x = (x0 + x1) / 2; pointer.y = y1; }
+			};
+			const draw = now => {
+				energy *= 0.965;
+				gl.uniform1f(uniforms.time, now / 1000);
+				gl.uniform1f(uniforms.energy, Math.min(energy, 1));
+				gl.uniform2f(uniforms.pointer, pointer.x, pointer.y);
+				gl.clearColor(0, 0, 0, 0);
+				gl.clear(gl.COLOR_BUFFER_BIT);
+				gl.drawArrays(gl.TRIANGLES, 0, 3);
+			};
+			const loop = now => {
+				frame = 0;
+				if (!visible || document.hidden || reduceMotion.matches) return;
+				draw(now);
+				frame = requestAnimationFrame(loop);
+			};
+			const start = () => {
+				if (reduceMotion.matches) { draw(8000); return; }
+				if (!frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
+			};
+			section.addEventListener('pointermove', event => {
+				const rect = section.getBoundingClientRect();
+				const x = (event.clientX - rect.left) * scale;
+				const y = height - (event.clientY - rect.top) * scale;
+				if (pointer.t) energy += Math.min(Math.hypot(x - pointer.x, y - pointer.y) / 120, 0.2);
+				pointer.x = x;
+				pointer.y = y;
+				pointer.t = event.timeStamp;
+			}, { passive: true });
+			window.addEventListener('scroll', () => {
+				if (visible) energy += Math.min(Math.abs(window.scrollY - lastY) / 900, 0.12);
+				lastY = window.scrollY;
+			}, { passive: true });
+			canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); visible = false; cancelAnimationFrame(frame); frame = 0; });
+			new IntersectionObserver(entries => {
+				visible = entries[0].isIntersecting;
+				if (visible) { layout(); start(); }
+			}, { rootMargin: '100px 0px' }).observe(section);
+			window.addEventListener('resize', () => { if (visible) { layout(); start(); } });
+			document.addEventListener('visibilitychange', start);
+			reduceMotion.addEventListener('change', start);
+		}
+	})();
+
 	// ---------- Locale memory ----------
 	try {
 		const path = window.location.pathname;

@@ -29,13 +29,12 @@ test('«Райдеры» in the menu leads to the agencies page as well', async 
 	await expect(page.locator('.promo-downloads a.btn')).toHaveCount(2);
 });
 
-test('sound waves run behind 2000+ and stay away under reduced motion', async ({ page }) => {
+test('sound rings sit behind 2000+ on a decorative canvas', async ({ page }) => {
 	await page.goto('/');
-	const waves = page.locator('[data-count-block] .about-count__waves span');
-	await expect(waves).toHaveCount(4);
-	expect(await waves.first().evaluate(span => getComputedStyle(span).animationName)).toBe('count-wave');
-	await page.emulateMedia({ reducedMotion: 'reduce' });
-	await expect(page.locator('[data-count-block] .about-count__waves')).toBeHidden();
+	const canvas = page.locator('[data-count-block] canvas[data-count-rings]');
+	await expect(canvas).toHaveCount(1);
+	await expect(canvas).toHaveAttribute('aria-hidden', 'true');
+	expect(await canvas.evaluate(element => getComputedStyle(element).pointerEvents)).toBe('none');
 });
 
 test('direction cards wait lower near the bottom edge and stick in place further up', async ({ page, isMobile }) => {

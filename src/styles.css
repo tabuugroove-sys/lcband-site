@@ -5939,50 +5939,22 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 
 .about-count__inner { max-width: 1040px; margin: 0 auto; }
 
-/* Волны звука от «2000+» (Михаил 30.10, по кольцам из шапки apple.com/apple-music):
-   тонкие кольца в цветах цифры расходятся из её центра и тают. Декор за текстом,
-   при reduced-motion их нет. */
-.about-count { position: relative; overflow: hidden; }
-.about-count__inner { position: relative; }
-.about-count__waves {
+/* Кольца звука вокруг «2000+» (Михаил 30.10, по шапке apple.com/apple-music):
+   толстые переливающиеся кольца рисует небольшой WebGL-шейдер в main.js. Они обходят
+   блок с текстом и видны слева и справа от него, на текст не заходят; движение мыши
+   (на телефоне — прокрутка) раскачивает их, как звук. Холст в половину разрешения,
+   рисуется только пока блок на экране; без WebGL колец нет, при reduced-motion —
+   один неподвижный кадр. */
+.about-count { position: relative; overflow: hidden; isolation: isolate; }
+.about-count__rings {
 	position: absolute;
-	left: 50%;
-	top: calc(clamp(84px, 13vw, 176px) * .46);
-	width: 0;
-	height: 0;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
 	pointer-events: none;
 }
-.about-count__waves span {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: min(96vw, 980px);
-	aspect-ratio: 1;
-	border-radius: 50%;
-	background: conic-gradient(from 210deg, #ffb36b, #ff5f6d, #b56cff, #5b8cff, #ffb36b);
-	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 5px), transparent 100%);
-	mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 5px), transparent 100%);
-	filter: blur(2px);
-	opacity: 0;
-	transform: translate(-50%, -50%) scale(.15);
-	will-change: transform, opacity;
-	animation: count-wave 7.2s cubic-bezier(.22, .61, .36, 1) infinite;
-}
-.about-count__waves span:nth-child(2) { animation-delay: 1.8s; }
-.about-count__waves span:nth-child(3) { animation-delay: 3.6s; }
-.about-count__waves span:nth-child(4) { animation-delay: 5.4s; }
-@keyframes count-wave {
-	0% { opacity: 0; transform: translate(-50%, -50%) scale(.15); }
-	12% { opacity: .7; }
-	100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
-}
-.about-count__hero,
-.about-count__sub,
-.about-count__minis,
-.about-count__note { position: relative; }
-@media (prefers-reduced-motion: reduce) {
-	.about-count__waves { display: none; }
-}
+.about-count__inner { position: relative; }
 
 /* «Главное — музыка.» над видео (Михаил 30.10): одна крупная надпись по образцу
    заголовков apple.com/apple-music («Get your friends in the mix.» — 70px при окне
