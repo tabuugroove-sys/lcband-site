@@ -32,7 +32,6 @@
 	{# Черновики/превью дизайна: исключены из выдачи, но доступны по прямой ссылке #}
 	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | url }}">
-	<link rel="stylesheet" href="{{ '/promo-downloads.css?v=1' | url }}">
 	<link rel="mask-icon" href="{{ '/assets/favicon.svg' | url }}" color="#000000">
 	{# preloadImage может быть с ведущим слэшем и без — нормализуем к абсолютному,
 	   иначе на /ae/ и /br/ preload резолвится в /ae/assets/... и бьёт в 404.
@@ -169,13 +168,13 @@
 
 	{% if showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030perfect' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030waves2' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030mobile1' | url }}" defer></script>
 	{% endif %}
 	{% if pageScript %}
 	<script src="{{ pageScript | url }}" defer></script>
 	{% elif not barePage and not showMainNav %}
 	<script src="{{ '/promo-media.js?v=20261030perfect' | url }}" defer></script>
-	<script src="{{ '/main.js?v=20261030waves2' | url }}" defer></script>
+	<script src="{{ '/main.js?v=20261030mobile1' | url }}" defer></script>
 	{% endif %}
 </body>
 </html>

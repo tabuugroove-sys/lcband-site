@@ -1,3 +1,5 @@
+{#- Стили кнопок пакета — только там, где пакет есть (30.10: не держать отрисовку всех страниц). -#}
+<link rel="stylesheet" href="{{ '/promo-downloads.css?v=1' | url }}">
 {% set downloadLanguage = htmlLang or 'ru' %}
 {% set downloadCopy = promoDownloads[downloadLanguage] or promoDownloads.en %}
 {% set downloadBase = '/promo-package.php' | url %}

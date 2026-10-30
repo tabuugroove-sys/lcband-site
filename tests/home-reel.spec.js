@@ -56,6 +56,17 @@ test.describe('Homepage reel', () => {
 		for (const src of sources) expect(src).toMatch(isMobile ? /-square\.mp4$/ : /-wide\.mp4$/);
 	});
 
+	test('on phones all four posters are there at once, light square videos, no animation', async ({ page, isMobile }) => {
+		test.skip(!isMobile, 'phones only');
+		await page.goto('/');
+		await page.locator('[data-reel-grid]').scrollIntoViewIfNeeded();
+		await expect(page.locator('[data-reel-grid]')).not.toHaveClass(/is-sequenced/);
+		expect(await page.locator('.reel__tile').evaluateAll(tiles =>
+			tiles.every(tile => getComputedStyle(tile).opacity === '1' && getComputedStyle(tile).transform === 'none'))).toBe(true);
+		const first = reelVideos(page).first();
+		await expect.poll(() => first.getAttribute('src'), { timeout: 6_000 }).toMatch(/ph-20261030-epic-04-square\.mp4$/);
+	});
+
 	test('a fast scroll brings all four in before the grid leaves the screen', async ({ page }) => {
 		await page.goto('/');
 		await page.evaluate(() => {
@@ -100,7 +111,7 @@ test.describe('Homepage reel under reduced motion', () => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		const requests = [];
 		page.on('request', request => {
-			if (/(hq-20261029|lt2-20261030)-[a-z0-9-]+\.mp4/.test(request.url())) requests.push(request.url());
+			if (/(hq-20261029|lt2-20261030|ph-20261030)-[a-z0-9-]+\.mp4/.test(request.url())) requests.push(request.url());
 		});
 		await page.goto('/');
 		await page.locator('#about').scrollIntoViewIfNeeded();

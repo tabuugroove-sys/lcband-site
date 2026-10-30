@@ -803,6 +803,26 @@
       "sha256": "dce85af977a6faee91f81a7be764e23d2178a7c3aa9e8d06d212b19f7faa4902"
     },
     {
+      "path": "assets/video/mp4/ph-20261030-epic-03-square.mp4",
+      "bytes": 1167280,
+      "sha256": "bb6fe4170f5c7733560e13c501c2fc6c1a9f2feea1aa627870d30b71282de8ee"
+    },
+    {
+      "path": "assets/video/mp4/ph-20261030-epic-04-square.mp4",
+      "bytes": 1079406,
+      "sha256": "360ecd08547688ba7e9edbd33ad9a5bc4d350b0fd9b85e903a65fc11baa8db9e"
+    },
+    {
+      "path": "assets/video/mp4/ph-20261030-mix-12-square.mp4",
+      "bytes": 1003701,
+      "sha256": "9481aa828d631ae4e58bb347bd885b5e21468febc5d58c91ae569b383090a66d"
+    },
+    {
+      "path": "assets/video/mp4/ph-20261030-studio-11-square.mp4",
+      "bytes": 964520,
+      "sha256": "39181524ef05732a1f8acbdb9036a1c72f503a64eb9def81d8c0f1adf3e14282"
+    },
+    {
       "path": "assets/video/mp4/promo-amore-no-1080.mp4",
       "bytes": 47840885,
       "sha256": "23b6f267b4269bccf6cd81a8c3ef626c27f836684105b7e571472d05a0329ed1"

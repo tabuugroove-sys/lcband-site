@@ -29,9 +29,11 @@ test('«Райдеры» in the menu leads to the agencies page as well', async 
 	await expect(page.locator('.promo-downloads a.btn')).toHaveCount(2);
 });
 
-test('sound rings sit behind 2000+ on a decorative canvas', async ({ page }) => {
+test('sound rings sit behind 2000+ on a decorative canvas', async ({ page, isMobile }) => {
 	await page.goto('/');
 	const canvas = page.locator('[data-count-block] canvas[data-count-rings]');
+	// 30.10: «на телефоне максимально быстро» — no rings on touch screens.
+	if (isMobile) { await expect(canvas).toHaveCount(0); return; }
 	await expect(canvas).toHaveCount(1);
 	await expect(canvas).toHaveAttribute('aria-hidden', 'true');
 	expect(await canvas.evaluate(element => getComputedStyle(element).pointerEvents)).toBe('none');

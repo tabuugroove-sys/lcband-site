@@ -225,11 +225,14 @@
 	// the next tile come in and start loading, so four videos never load at once. A slow
 	// video (4 s) or videos switched off (Save-Data, slow network) do not hold the next
 	// tile; when the grid is being scrolled away, the rest come at once. Off under
-	// reduced motion: all four are there at once.
+	// reduced motion: all four are there at once. Phones (30.10, «на телефоне максимально
+	// быстро, анимация не нужна»): the four posters are there at once with no animation;
+	// only the videos still come one after another, so a phone never pulls four at once.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
 		if (!grid || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+		const phone = window.matchMedia('(max-width: 599px)').matches;
 		const ribbon = host.querySelector('.reel__ribbon');
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
 		const minGap = 1200;
@@ -274,20 +277,22 @@
 			const rect = grid.getBoundingClientRect();
 			if (rect.bottom < window.innerHeight * 0.35 || rect.top > window.innerHeight * 0.9) rest();
 		};
-		place();
-		grid.classList.add('is-sequenced');
+		if (!phone) {
+			place();
+			grid.classList.add('is-sequenced');
+			window.addEventListener('resize', place);
+		}
 		announce();
-		window.addEventListener('resize', place);
 		window.addEventListener('scroll', onScroll, { passive: true });
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
 			begin.disconnect();
 			next();
-		}, { threshold: 0.3 });
+		}, { threshold: phone ? 0.1 : 0.3 });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
-		if (ribbon) {
+		if (ribbon && !phone) {
 			ribbon.classList.add('is-armed');
 			ribbonWatch = new IntersectionObserver(entries => {
 				if (!entries[0].isIntersecting) return;
@@ -383,9 +388,13 @@
 	// nothing. Half resolution, a frame loop only while a wave is alive; without WebGL or
 	// under reduced motion the canvas stays empty. The band's look won a five-variant,
 	// three-judge comparison against the Apple frames on 30.10 (bench: ~/lcb-constructor/tools/rings-lab).
+	// «На телефоне максимально быстро, анимация не нужна, если грузит» (30.10): no rings on
+	// touch screens. Elsewhere the shader is built only when the block comes near, and
+	// in the background where the browser can, so opening the page never waits for it.
 	(() => {
 		const canvases = [...document.querySelectorAll('[data-count-rings]')];
 		if (!canvases.length) return;
+		if (window.matchMedia('(hover: none)').matches) { canvases.forEach(canvas => canvas.remove()); return; }
 		const vertex = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
 		const fragment = `#ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
@@ -488,17 +497,24 @@ void main(){
 	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
 }`;
 		const life = 1.25;
-		for (const canvas of canvases) {
-			const section = canvas.closest('[data-count-block]');
-			const inner = section?.querySelector('.about-count__inner');
+		const setup = (canvas, section, inner) => {
 			const gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true });
-			if (!section || !inner || !gl) { canvas.remove(); continue; }
+			if (!gl) { canvas.remove(); return; }
 			const shader = (type, source) => { const s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s); return s; };
 			const program = gl.createProgram();
 			gl.attachShader(program, shader(gl.VERTEX_SHADER, vertex));
 			gl.attachShader(program, shader(gl.FRAGMENT_SHADER, fragment));
 			gl.linkProgram(program);
-			if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { canvas.remove(); continue; }
+			// KHR_parallel_shader_compile: the GPU process builds the program while the page goes on.
+			const parallel = gl.getExtension('KHR_parallel_shader_compile');
+			const built = () => {
+				if (parallel && !gl.getProgramParameter(program, parallel.COMPLETION_STATUS_KHR)) { requestAnimationFrame(built); return; }
+				if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { canvas.remove(); return; }
+				start(canvas, section, inner, gl, program);
+			};
+			built();
+		};
+		const start = (canvas, section, inner, gl, program) => {
 			gl.useProgram(program);
 			gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
 			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -625,6 +641,17 @@ void main(){
 			}, { rootMargin: '60px 0px' }).observe(section);
 			window.addEventListener('resize', () => { if (visible) { layout(); run(); } });
 			document.addEventListener('visibilitychange', run);
+		};
+		for (const canvas of canvases) {
+			const section = canvas.closest('[data-count-block]');
+			const inner = section?.querySelector('.about-count__inner');
+			if (!section || !inner || reduceMotion.matches) { canvas.remove(); continue; }
+			const near = new IntersectionObserver(entries => {
+				if (!entries[0].isIntersecting) return;
+				near.disconnect();
+				setup(canvas, section, inner);
+			}, { rootMargin: '800px 0px' });
+			near.observe(section);
 		}
 	})();
 
