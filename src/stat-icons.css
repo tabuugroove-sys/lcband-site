@@ -23,20 +23,16 @@
 	inset: 0;
 	isolation: isolate;
 	transform: perspective(600px) rotateX(var(--stat-pitch, 0deg)) rotateY(var(--stat-yaw, 0deg));
-	transition: transform 160ms ease-out;
 }
 
 .stat-icon__frame {
 	position: absolute;
 	inset: 0;
 	overflow: hidden;
-	mix-blend-mode: plus-lighter;
-	transition: opacity 100ms linear;
 }
 
-.stat-icon__frame--left { opacity: var(--stat-left, 0); }
-.stat-icon__frame--center { opacity: var(--stat-center, 1); }
-.stat-icon__frame--right { opacity: var(--stat-right, 0); }
+.stat-icon__frame--left,
+.stat-icon__frame--right { display: none; }
 
 .stat-icon__frame img {
 	display: block;
