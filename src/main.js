@@ -381,61 +381,110 @@
 	// easing in and out. Moving the mouse over the block sends new waves (scrolling does on
 	// phones), one wave greets the visitor when the block scrolls in; at rest there is
 	// nothing. Half resolution, a frame loop only while a wave is alive; without WebGL or
-	// under reduced motion the canvas stays empty.
+	// under reduced motion the canvas stays empty. The band's look won a five-variant,
+	// three-judge comparison against the Apple frames on 30.10 (bench: ~/lcb-constructor/tools/rings-lab).
 	(() => {
 		const canvases = [...document.querySelectorAll('[data-count-rings]')];
 		if (!canvases.length) return;
 		const vertex = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
-		const fragment = `precision mediump float;
+		const fragment = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
 uniform vec2 res;uniform float time;uniform vec2 center;uniform vec4 box;uniform float energy;uniform vec2 pointer;uniform float radius;uniform float px;uniform vec2 inner;
-uniform vec4 waves[4];
-uniform vec2 tilt; // наклон плоскости кольца к мыши: направление × угол (рад), до 25°
-// Волна звука (Михаил 30.10: «круги быстро из середины выходят, переливаются на краях
-// экрана и пропадают, пока снова мышкой не поводят»; «чёрный четырёхугольник не надо,
-// фон и так чёрный, надпись будет видна»). Кольцо рождается в середине, под текстом оно
-// ещё слабое, в полную силу входит за краем текста (radius — полудиагональ блока), за
-// ~1,2 с уходит к углам секции, у краёв переливается и гаснет. Никаких масок.
-vec3 warm(float t){return mix(vec3(.5,.04,.02),mix(vec3(1.,.4,.08),vec3(1.,.94,.78),smoothstep(.55,1.,t)),smoothstep(0.,.65,t));}
-vec3 cool(float t){return mix(vec3(.02,.07,.42),mix(vec3(.08,.48,1.),vec3(.86,.98,1.),smoothstep(.55,1.,t)),smoothstep(0.,.65,t));}
-float band(float x,float w){float q=x/w;return exp(-q*q*2.4)+.28*exp(-abs(q)*1.2);}
+uniform vec4 waves[4];uniform vec2 tilt;
+// Волны звука вокруг «2000+» (Михаил 30.10). Вид полосы — победитель отбора 30.10
+// («стеклянный тор» + идеи минималистичного варианта): толстая мягкая полоса, тёплая
+// половина (чёрный → тёмно-красный → красно-оранжевый → оранжево-жёлтый) и холодная
+// (чёрный → тёмно-синий → синий → голубовато-белый), ярче у внутреннего края, тёмные
+// лепестки, 2–3 коротких белых штриха, тонкое кольцо-эхо. Механика: волна рождается в
+// середине (под текстом слабая), за ~1,2 с уходит к краям, там переливается и гаснет;
+// плоскость наклонена к курсору до 25°. Никаких масок.
+const float PI=3.14159265;
+float wrap(float a){return a-6.2831853*floor((a+PI)/6.2831853);}
+float win(float da,float w){float x=clamp(1.-da*da/(w*w),0.,1.);return x*x*(3.-2.*x);}
+float g(float x){return exp(-x*x);}
 float ease(float t){return 1.-pow(1.-t,2.6);}
+vec3 warm(float x){vec3 c=mix(vec3(0.),vec3(.5,.03,.02),smoothstep(0.,.3,x));c=mix(c,vec3(.88,.13,.03),smoothstep(.3,.7,x));c=mix(c,vec3(1.,.44,.09),smoothstep(.7,1.,x));return mix(c,vec3(1.,.8,.5),smoothstep(1.,1.7,x));}
+vec3 cool(float x){vec3 c=mix(vec3(0.),vec3(.03,.06,.45),smoothstep(0.,.3,x));c=mix(c,vec3(.08,.36,1.),smoothstep(.3,.7,x));c=mix(c,vec3(.32,.72,1.),smoothstep(.7,1.,x));return mix(c,vec3(.8,.96,1.),smoothstep(1.,1.7,x));}
 void main(){
-	vec2 f=gl_FragCoord.xy;vec2 p=f-center;
-	// Плоскость кольца наклонена к курсору (Михаил 30.10: «плавно поворачивались на 25°,
-	// чем ближе к мышке, тем больше поворот»): вдоль направления на курсор круг сжат на
-	// cos(угла), ближняя к зрителю сторона чуть крупнее, дальняя мельче (перспектива).
-	float th=length(tilt);
-	if(th>.001){vec2 ax=tilt/th;float along=dot(p,ax);float perp=dot(p,vec2(-ax.y,ax.x));
-		float ext=length(vec2(max(center.x,res.x-center.x),max(center.y,res.y-center.y)));
-		along=along/cos(th)*(1.-.45*sin(th)*clamp(along/ext,-1.,1.));
+	float t=mod(time,418.879);
+	float e=energy;
+	float k=clamp(radius/(583.*px),.5,1.);
+	float kk=smoothstep(.55,.95,k);
+	vec2 p=gl_FragCoord.xy-center;
+	// наклон плоскости кольца к курсору («чем ближе к мышке, тем больше поворот», до 25°)
+	float th0=length(tilt);
+	float ext=length(vec2(max(center.x,res.x-center.x),max(center.y,res.y-center.y)));
+	if(th0>.001){vec2 ax=tilt/th0;float along=dot(p,ax);float perp=dot(p,vec2(-ax.y,ax.x));
+		along=along/cos(th0)*(1.-.45*sin(th0)*clamp(along/ext,-1.,1.));
 		p=ax*along+vec2(-ax.y,ax.x)*perp;}
-	float d=length(p);float ang=atan(p.y,p.x);
-	vec2 dirp=p/(d+.001);
-	float rExit=length(vec2(max(center.x,res.x-center.x),max(center.y,res.y-center.y)))+40.*px;
+	float sq=mix(1.,.94,kk);
+	vec2 q=vec2(p.x*sq,p.y);
+	float d=length(q);
+	float th=atan(q.y,q.x);
+	vec2 pq=vec2((pointer.x-center.x)*sq,pointer.y-center.y);
+	float pa=atan(pq.y,pq.x);
+	float facing=.5+.5*cos(th-pa);
+	// фазы: раздел тёплой/холодной половины, лепестки
+	float phS=mix(1.5708+.3*sin(t*.21),-.25+t*.045+.35*sin(t*.21),kk);
+	phS+=e*.3*wrap(pa-phS);
+	float phL=.9+t*.06;
+	float s=cos(th-phS);
+	float warmMix=smoothstep(-.15,.15,s);
+	float lum=mix(mix(.45,.08,kk),1.,smoothstep(.04,.5,abs(s)));
+	float lobe=smoothstep(-.9,.6,cos(3.*th-phL));
+	lum*=mix(mix(.6,.2*e,kk),1.,lobe);
+	// окна коротких штрихов (по углу; у краёв экрана они бегут быстрее — «переливаются»)
+	float aA=mix(1.9,.1,kk)+.35*sin(t*.09);
+	float aB=mix(4.3,PI-.3,kk)+.35*sin(t*.075+2.);
+	float aC=mix(1.,PI+.55,kk)+.3*sin(t*.21+1.);
+	vec3 white=mix(vec3(.85,.97,1.),vec3(1.,.96,.86),warmMix);
+	float rExit=ext+40.*px;
+	float Tfull=clamp(radius*.165,56.*px,100.*px)*(.94+.12*warmMix);
 	vec3 col=vec3(0.);
 	for(int i=0;i<4;i++){
 		float age=time-waves[i].x;float amp=waves[i].y;
 		if(age<0.||amp<=0.)continue;
-		vec2 dir=waves[i].zw;
-		float facing=.5+.5*dot(dirp,dir);
 		float life=age/1.25;
 		if(life>1.)continue;
+		vec2 dir=waves[i].zw;
+		float face=.5+.5*dot(q/(d+.001),dir);
 		float travel=ease(min(life*1.1,1.));
-		float r0=radius*.12;
-		float r=r0+(rExit-r0)*travel+8.*px*amp*facing*sin(ang*5.+time*6.);
-		float w=(18.+56.*travel)*px*(.8+.5*amp);
+		float rb=radius*.12;
+		float r0=rb+(rExit-rb)*travel+6.*px*amp*face*sin(th*5.+t*6.);
+		float T=Tfull*(.4+.6*travel)*(1.+amp*.15*face);
+		float u=(d-r0)/T;
+		float prof=smoothstep(0.,mix(.14,.26,kk),u)*(1.-smoothstep(.5,1.08,u));
+		float shape=.35+.65*exp(-3.*max(u,0.));
 		float env=smoothstep(0.,.07,life)*(1.-smoothstep(.55,1.,life));
-		float shimmer=.5+.5*sin(ang*9.-time*11.+float(i)*2.)*smoothstep(.3,.8,life);
-		float side=.5+.5*sin(ang+time*.3+float(i)*1.9);
-		float across=clamp(.5+(d-r)/(2.*w),0.,1.);
-		vec3 c=mix(cool(across),warm(across),smoothstep(.3,.7,side));
-		float b=band(d-r,w);
-		float hi=exp(-pow((d-r-w*.5)/(2.6*px),2.))*(.45+.9*shimmer)*smoothstep(.15,.5,life);
-		// под текстом волна слабее, за краем текста — в полную силу (плавно, без прямоугольника)
-		float under=.3+.7*smoothstep(radius*.45,radius,r);
-		col+=(c*b*(1.+.4*shimmer)+vec3(1.,.97,.9)*hi)*env*amp*(.6+.4*facing)*under;
+		float under=.3+.7*smoothstep(radius*.45,radius,r0);
+		float shimmer=1.+.35*sin(th*9.-t*11.+float(i)*2.)*smoothstep(.3,.8,life);
+		float streak=.85+.15*sin(th*4.+t*.15+1.);
+		float x=prof*shape*lum*mix(1.9,1.55,kk)*(1.+amp*.3*face)*streak*shimmer*env*amp*under;
+		col+=mix(cool(x),warm(x),warmMix);
+		// короткие штрихи у внутреннего края, с дисперсией (синий внутрь, красный наружу)
+		float sp=t+travel*6.;
+		float wA=win(wrap(th-aA-.3*sin(sp*.9)),.5);
+		float wB=win(wrap(th-aB+.3*sin(sp*.8+1.)),.45);
+		float wC=win(wrap(th-aC),.4);
+		float us=mix(.3,.1,kk);
+		vec3 rim=vec3(g((u-us-.025)/.045),g((u-us)/.045),g((u-us+.025)/.045));
+		float sl=sqrt(lum)*(1.15+.4*amp)*env*amp*under*smoothstep(.15,.45,life);
+		col+=rim*(wA+wB)*white*sl;
+		col+=g((u-.5)/.05)*wC*white*.6*sl;
+		// тонкое кольцо-эхо чуть дальше, со смещением
+		vec2 o=px*18.*k*vec2(cos(t*.12),sin(t*.12));
+		vec2 qe=q-o;float de=length(qe);float the=atan(qe.y,qe.x);
+		float ue=(de-(r0+T*1.2))/(T*.26);
+		float se=cos(the-phS+.5);
+		float lumE=mix(.15,1.,smoothstep(0.,.6,abs(se)))*smoothstep(-.8,.4,cos(3.*the-phL+1.2));
+		float xe=.85*lumE*env*amp*under;
+		col+=mix(cool(xe),warm(xe),smoothstep(-.15,.15,se))*exp(-ue*ue)*.7;
 	}
-	col=clamp(col,0.,1.);
+	vec3 kx=max(col-.85,0.);
+	col=min(col,.85)+.15*(1.-exp(-kx/.15));
 	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
 }`;
 		const life = 1.25;
@@ -459,7 +508,9 @@ void main(){
 			const u = name => gl.getUniformLocation(program, name);
 			const uniforms = { res: u('res'), time: u('time'), center: u('center'), box: u('box'), inner: u('inner'), energy: u('energy'), pointer: u('pointer'), radius: u('radius'), px: u('px'), waves: u('waves[0]'), tilt: u('tilt') };
 			const scale = 0.5;
-			const now = () => performance.now() / 1000;
+			// Seconds since this script started: small numbers keep the shader's drift phases exact.
+			const started = performance.now();
+			const now = () => (performance.now() - started) / 1000;
 			const waves = Array.from({ length: 4 }, () => ({ birth: -100, amp: 0, dx: 0, dy: 1 }));
 			let width = 0;
 			let height = 0;
