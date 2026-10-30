@@ -40,6 +40,53 @@ RewriteRule ^en/programs/spanish/?$ https://luxuryband.ru/en/programs/latin/ [L,
 RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/#videos [L,R=301,NE]
 RewriteRule ^en/live(?:/index\.html)?/?$ https://luxuryband.ru/en/#videos [L,R=301,NE]
 
+# Retired background reels: preserve shared playback/download links before freeing media storage.
+RewriteRule ^assets/video/mp4/hq-20261029-about-1280\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-about-1280.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-about-1280\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-about-1280.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-about-1920\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-about-1920.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-about-1920\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-about-1920.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-about-916\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-about-916.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-about-916\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-about-916.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-03-square\.mp4$ https://luxuryband.ru/assets/video/mp4/ph-20261030-epic-03-square.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-03-square\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=ph-20261030-epic-03-square.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-03-wide1280\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-epic-03-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-03-wide1280\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-epic-03-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-03-wide1920\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-epic-03-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-03-wide1920\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-epic-03-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-04-square\.mp4$ https://luxuryband.ru/assets/video/mp4/ph-20261030-epic-04-square.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-04-square\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=ph-20261030-epic-04-square.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-04-wide1280\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-epic-04-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-04-wide1280\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-epic-04-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-epic-04-wide1920\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-epic-04-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-epic-04-wide1920\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-epic-04-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-mix-12-square\.mp4$ https://luxuryband.ru/assets/video/mp4/ph-20261030-mix-12-square.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-mix-12-square\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=ph-20261030-mix-12-square.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-mix-12-wide1280\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-mix-12-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-mix-12-wide1280\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-mix-12-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-mix-12-wide1920\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-mix-12-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-mix-12-wide1920\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-mix-12-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-studio-11-square\.mp4$ https://luxuryband.ru/assets/video/mp4/ph-20261030-studio-11-square.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-studio-11-square\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=ph-20261030-studio-11-square.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-studio-11-wide1280\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-studio-11-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-studio-11-wide1280\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-studio-11-wide.mp4 [L,R=301,NE]
+RewriteRule ^assets/video/mp4/hq-20261029-studio-11-wide1920\.mp4$ https://luxuryband.ru/assets/video/mp4/lt2-20261030-studio-11-wide.mp4 [L,R=301,NE,QSD]
+RewriteCond %{QUERY_STRING} (^|&)file=hq-20261029-studio-11-wide1920\.mp4(&|$)
+RewriteRule ^download\.php$ https://luxuryband.ru/download.php?file=lt2-20261030-studio-11-wide.mp4 [L,R=301,NE]
+
 # Preserve shared links after replacing the full promo and compacting Live Icon.
 # Retired overcompressed costume 4K copies; approved masters preserve the edit.
 RewriteRule ^assets/video/mp4/promo-costume-red-6f67800c7805-2160\.mp4$ https://luxuryband.ru/assets/video/mp4/promo-costume-red-4ef6085a27d4-2160.mp4 [L,R=301,NE,QSD]
