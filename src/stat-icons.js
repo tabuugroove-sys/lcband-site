@@ -12,6 +12,13 @@
 	// вверх и вниз сайт». Far from the pointer an icon still turns towards it, gently (floor);
 	// scrolling rocks them by its speed (kick, degrees) and they settle back.
 	const floor = .35;
+	// «Чтобы реально что-то новое было видно, как будто двигаешь камеру» (30.10): nine real
+	// views per icon, loaded on computers once the icon is on screen; the yaw picks the view
+	// (two neighbours cross-fade), and the flat tilt stays only as a touch on top of it.
+	// The flat ones (TV, records) keep the plain tilt: the views tear on a thin frame.
+	const withViews = new Set(['years', 'languages', 'looks', 'lineup']);
+	const views = 9;
+	const flatShare = .2;
 	const maxKick = 14;
 	let kick = 0;
 	let lastScrollY = window.scrollY;
@@ -28,8 +35,37 @@
 		lastTime = performance.now();
 		frame = requestAnimationFrame(render);
 	};
+	const paintViews = state => {
+		if (!state.layers) return;
+		const position = (Math.max(-1, Math.min(1, state.yaw / maxAngle)) + 1) / 2 * (views - 1);
+		const lower = Math.min(views - 2, Math.floor(position));
+		const [first, second] = state.layers;
+		first.style.backgroundPositionX = lower / (views - 1) * 100 + '%';
+		second.style.backgroundPositionX = (lower + 1) / (views - 1) * 100 + '%';
+		second.style.opacity = (position - lower).toFixed(3);
+	};
+	const loadViews = state => {
+		if (state.viewsRequested || !withViews.has(state.icon.dataset.statIcon)) return;
+		state.viewsRequested = true;
+		const url = state.icon.querySelector('.stat-icon__frame--center img').currentSrc.replace(/-(\d+)\.webp/, '-views-$1.webp');
+		const sprite = new Image();
+		sprite.src = url;
+		sprite.decode().then(() => {
+			const stage = state.icon.querySelector('.stat-icon__stage');
+			state.layers = [0, 1].map(() => {
+				const layer = document.createElement('span');
+				layer.className = 'stat-icon__views';
+				layer.style.backgroundImage = `url("${url}")`;
+				stage.append(layer);
+				return layer;
+			});
+			paintViews(state);
+			state.icon.classList.add('has-views');
+		}).catch(() => {});
+	};
 	const resetState = state => {
 		state.yaw = state.pitch = 0;
+		paintViews(state);
 		state.bounds = null;
 		state.icon.classList.remove('is-tracking');
 		state.icon.style.removeProperty('--stat-yaw');
@@ -43,6 +79,7 @@
 		if (!image) { state.preparing = false; return; }
 		image.decode().then(() => {
 			state.decoded = true;
+			loadViews(state);
 			if (active) queue();
 		}).catch(() => { resetState(state); })
 			.finally(() => { state.preparing = false; });
@@ -81,7 +118,8 @@
 			const settled = Math.hypot(yaw - state.yaw, pitch - state.pitch) < .02;
 			if (settled) { state.yaw = yaw; state.pitch = pitch; }
 			else moving = true;
-			state.icon.style.setProperty('--stat-yaw', state.yaw.toFixed(3) + 'deg');
+			paintViews(state);
+			state.icon.style.setProperty('--stat-yaw', (state.layers ? state.yaw * flatShare : state.yaw).toFixed(3) + 'deg');
 			state.icon.style.setProperty('--stat-pitch', state.pitch.toFixed(3) + 'deg');
 			state.icon.classList.toggle('is-tracking', Math.hypot(state.yaw, state.pitch) > .02);
 		}

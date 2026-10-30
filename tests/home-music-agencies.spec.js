@@ -77,3 +77,21 @@ test('the chosen poster of a video stands on every page, Perfect first', async (
 	expect(about).toContain('Примеры выступлений.');
 	expect(about).not.toContain('Записи, истории');
 });
+
+test('stat icons show real views: the pointer changes the view, not only the tilt', async ({ page, isMobile }) => {
+	test.skip(isMobile, 'the views load on computers');
+	await page.route('**/*.mp4*', route => route.abort());
+	await page.goto('/');
+	const icon = page.locator('[data-stat-icon="looks"]').first();
+	await icon.evaluate(node => node.scrollIntoView({ block: 'center', behavior: 'instant' }));
+	await expect(icon).toHaveClass(/has-views/, { timeout: 10_000 });
+	const view = () => icon.locator('.stat-icon__views').first().evaluate(node => Number.parseFloat(node.style.backgroundPositionX));
+	const box = await icon.boundingBox();
+	await page.mouse.move(box.x - 80, box.y + box.height / 2, { steps: 4 });
+	await expect.poll(view).toBeLessThan(40);
+	const left = await view();
+	await page.mouse.move(box.x + box.width + 80, box.y + box.height / 2, { steps: 4 });
+	await expect.poll(view).toBeGreaterThan(left + 15);
+	const size = await (await page.request.get('/assets/icons/stats/looks-views-20261030.webp')).body();
+	expect(size.length).toBeLessThan(160_000);
+});

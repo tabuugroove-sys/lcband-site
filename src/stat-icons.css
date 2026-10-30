@@ -61,3 +61,12 @@
 	.stat-icon__frame--right { opacity: 0; }
 	.stat-icon__frame--center { opacity: 1; }
 }
+
+.stat-icon.has-views .stat-icon__frame { visibility: hidden; }
+.stat-icon__views {
+	position: absolute;
+	inset: 0;
+	background-repeat: no-repeat;
+	background-size: 900% 100%;
+	background-position-y: 0;
+}

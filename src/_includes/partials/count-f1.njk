@@ -59,7 +59,7 @@
 	}
 } %}
 {%- set countText = countDict[countLang or 'ru'] %}
-<link rel="stylesheet" href="{{ '/stat-icons.css?v=20261030tilt25' | url }}">
+<link rel="stylesheet" href="{{ '/stat-icons.css?v=20261030views1' | url }}">
 <section id="band-in-numbers" class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
 	{#- Михаил 30.10: кольца звука вокруг «2000+», как в шапке apple.com/apple-music — толстые,
 	    переливаются, обходят текст слева и справа и откликаются на мышь. Рисует main.js. -#}
@@ -85,7 +85,7 @@
 		{% if countNote %}<p class="about-count__note">{{ countNote }}</p>{% endif %}
 	</div>
 </section>
-<script src="{{ '/stat-icons.js?v=20261030alive1' | url }}" defer></script>
+<script src="{{ '/stat-icons.js?v=20261030views1' | url }}" defer></script>
 <script>
 (function () {
 	// Досчёт цифр при появлении блока: все числа в тексте элемента (и обе
