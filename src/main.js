@@ -443,8 +443,10 @@
 	// WebGL shader. «Круги быстро из середины выходят, переливаются на краях экрана и
 	// пропадают, пока снова мышкой не поводят», «чёрный четырёхугольник не надо, фон и так
 	// чёрный»: a wave is born in the middle, faint under the text, at full strength past the
-	// text's edge (its half-diagonal), runs to the edges in about a second, shimmers there
-	// and fades; no masks of any kind. «Плавно поворачивались на 25°, чем ближе к мышке, тем
+	// text's edge (its half-diagonal), rushes to the screen's side edges in ~0.7 s, lingers
+	// there for about a second, shimmering, while the next ones catch up and gather, then
+	// speeds off the screen («у краёв притормаживает… скапливаются… потом уходят», 30.10);
+	// no masks of any kind. «Плавно поворачивались на 25°, чем ближе к мышке, тем
 	// больше поворот»: the ring's plane tilts towards the cursor, up to 25° as it comes near,
 	// easing in and out. Moving the mouse over the block sends new waves (scrolling does on
 	// phones), one wave greets the visitor when the block scrolls in; at rest there is
@@ -465,7 +467,7 @@ precision highp float;
 precision mediump float;
 #endif
 uniform vec2 res;uniform float time;uniform vec2 center;uniform vec4 box;uniform float energy;uniform vec2 pointer;uniform float radius;uniform float px;uniform vec2 inner;
-uniform vec4 waves[4];uniform vec2 tilt;
+uniform vec4 waves[6];uniform vec2 tilt;
 // Волны звука вокруг «2000+» (Михаил 30.10). Вид полосы — победитель отбора 30.10
 // («стеклянный тор» + идеи минималистичного варианта): толстая мягкая полоса, тёплая
 // половина (чёрный → тёмно-красный → красно-оранжевый → оранжево-жёлтый) и холодная
@@ -514,25 +516,32 @@ void main(){
 	float aC=mix(1.,PI+.55,kk)+.3*sin(t*.21+1.);
 	vec3 white=mix(vec3(.85,.97,1.),vec3(1.,.96,.86),warmMix);
 	float rExit=ext+40.*px;
+	// край экрана по горизонтали: тут волна задерживается и переливается
+	float rEdge=max(min(center.x,res.x-center.x),radius*1.3);
 	float Tfull=clamp(radius*.165,56.*px,100.*px)*(.94+.12*warmMix);
 	vec3 col=vec3(0.);
-	for(int i=0;i<4;i++){
+	for(int i=0;i<6;i++){
 		float age=time-waves[i].x;float amp=waves[i].y;
 		if(age<0.||amp<=0.)continue;
-		float life=age/1.25;
+		float life=age/2.4;
 		if(life>1.)continue;
 		vec2 dir=waves[i].zw;
 		float face=.5+.5*dot(q/(d+.001),dir);
-		float travel=ease(min(life*1.1,1.));
+		// «У краёв притормаживает, следующие догоняют, переливаются, потом уходят» (Михаил 30.10):
+		// быстро к краю экрана, почти стоит у края (там копятся следующие), разгон и за экран.
 		float rb=radius*.12;
-		float r0=rb+(rExit-rb)*travel+6.*px*amp*face*sin(th*5.+t*6.);
+		float rr=life<.3?mix(rb,rEdge*.86,ease(life/.3))
+			:life<.76?rEdge*mix(.86,.97,(life-.3)/.46)
+			:mix(rEdge*.97,rExit,(life-.76)*(life-.76)/.0576);
+		float travel=clamp((rr-rb)/(rExit-rb),0.,1.);
+		float r0=rr+6.*px*amp*face*sin(th*5.+t*6.);
 		float T=Tfull*(.4+.6*travel)*(1.+amp*.15*face);
 		float u=(d-r0)/T;
 		float prof=smoothstep(0.,mix(.14,.26,kk),u)*(1.-smoothstep(.5,1.08,u));
 		float shape=.35+.65*exp(-3.*max(u,0.));
-		float env=smoothstep(0.,.07,life)*(1.-smoothstep(.55,1.,life));
+		float env=smoothstep(0.,.04,life)*(1.-smoothstep(.86,1.,life));
 		float under=.3+.7*smoothstep(radius*.45,radius,r0);
-		float shimmer=1.+.35*sin(th*9.-t*11.+float(i)*2.)*smoothstep(.3,.8,life);
+		float shimmer=1.+.35*sin(th*9.-t*11.+float(i)*2.)*smoothstep(.2,.4,life);
 		float streak=.85+.15*sin(th*4.+t*.15+1.);
 		float x=prof*shape*lum*mix(1.9,1.55,kk)*(1.+amp*.3*face)*streak*shimmer*env*amp*under;
 		col+=mix(cool(x),warm(x),warmMix);
@@ -559,7 +568,7 @@ void main(){
 	col=min(col,.85)+.15*(1.-exp(-kx/.15));
 	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
 }`;
-		const life = 1.25;
+		const life = 2.4;
 		const setup = (canvas, section, inner) => {
 			const gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true });
 			if (!gl) { canvas.remove(); return; }
@@ -590,7 +599,7 @@ void main(){
 			// Seconds since this script started: small numbers keep the shader's drift phases exact.
 			const started = performance.now();
 			const now = () => (performance.now() - started) / 1000;
-			const waves = Array.from({ length: 4 }, () => ({ birth: -100, amp: 0, dx: 0, dy: 1 }));
+			const waves = Array.from({ length: 6 }, () => ({ birth: -100, amp: 0, dx: 0, dy: 1 }));
 			let width = 0;
 			let height = 0;
 			let centre = { x: 0, y: 0 };
@@ -651,7 +660,7 @@ void main(){
 			const spawn = (amp, dx, dy) => {
 				if (reduceMotion.matches || !visible) return;
 				const t = now();
-				if (t - lastSpawn < 0.22) return;
+				if (t - lastSpawn < 0.35) return;
 				lastSpawn = t;
 				const slot = waves.reduce((oldest, wave) => (wave.birth < oldest.birth ? wave : oldest), waves[0]);
 				const length = Math.hypot(dx, dy) || 1;

@@ -279,7 +279,7 @@
 			<li class="vtile vtile--big">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
-						<source media="(max-width: 734px)" type="image/webp" sizes="84vw"
+						<source type="image/webp" sizes="(max-width: 734px) 84vw, min(70vw, 1100px)"
 							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
 						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260620i" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
@@ -300,7 +300,7 @@
 			<li class="vtile vtile--small">
 				<a class="vtile__link" href="#" data-video="{{ v.slug }}">
 					<picture class="vtile__pic">
-						<source media="(max-width: 734px)" type="image/webp" sizes="72vw"
+						<source type="image/webp" sizes="(max-width: 734px) 72vw, max(240px, min(28vw, 440px))"
 							srcset="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '-720.webp') | url }} 720w, {{ ('/assets/video/posters/' + (v.poster or v.slug) + '-1080.webp') | url }} 1080w">
 						<img class="vtile__poster" src="{{ ('/assets/video/posters/' + (v.poster or v.slug) + '.jpg') | url }}?v=20260826a" alt="{{ v.title }} — Luxury Cover Band" loading="lazy">
 					</picture>
