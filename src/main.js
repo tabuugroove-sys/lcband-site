@@ -1782,7 +1782,7 @@
 	// `pointer: fine`), so converting it to horizontal rail movement traps
 	// anyone trying to scroll the page past the rail — a worse bug than the
 	// "rail looks frozen" one it was meant to fix (regression found 2026-08-05).
-	document.querySelectorAll('.video-rail__track').forEach(track => {
+	document.querySelectorAll('.video-rail__track, .reviews-rail__track').forEach(track => {
 		track.addEventListener('dragstart', (e) => e.preventDefault());
 
 		let dragging = false;
@@ -1817,6 +1817,68 @@
 		window.addEventListener('pointerup', endDrag);
 		window.addEventListener('pointercancel', endDrag);
 	});
+
+	// ---------- Reviews: an endless strip that moves by itself (Mikhail 30.10) ----------
+	// The same infinite loop as the video rails (clones on both sides); on top of it
+	// the strip drifts left on its own. Hover, focus, touch, a drag and the pause
+	// button stop it; it moves on a few seconds after the hand leaves. Under reduced
+	// motion it stands still and is scrolled by hand.
+	(() => {
+		const rail = document.querySelector('[data-reviews-rail]');
+		const track = rail?.querySelector('.reviews-rail__track');
+		const toggle = rail?.querySelector('[data-reviews-toggle]');
+		if (!track || !toggle) return;
+		initInfiniteRail(track);
+		if (!('IntersectionObserver' in window)) return;
+		const speed = 32;
+		let visible = false;
+		let held = false;
+		let userPaused = false;
+		let resume = 0;
+		let frame = 0;
+		let last = 0;
+		let carry = 0;
+		const moving = () => visible && !held && !userPaused && !reduceMotion.matches && !document.hidden;
+		const step = now => {
+			frame = 0;
+			if (!moving()) { last = 0; return; }
+			if (last) {
+				// Sub-pixel steps that the browser rounds away are carried to the next frame;
+				// a jump of the infinite loop in between resets the carry.
+				const target = track.scrollLeft + speed * Math.min(now - last, 64) / 1000 + carry;
+				track.scrollLeft = target;
+				const left = target - track.scrollLeft;
+				carry = Math.abs(left) < 4 ? left : 0;
+			}
+			last = now;
+			frame = requestAnimationFrame(step);
+		};
+		const run = () => { if (!frame && moving()) frame = requestAnimationFrame(step); };
+		const render = () => {
+			const label = userPaused ? toggle.dataset.labelResume : toggle.dataset.labelPause;
+			toggle.setAttribute('aria-label', label);
+			toggle.classList.toggle('is-paused', userPaused);
+			toggle.hidden = reduceMotion.matches;
+		};
+		const hold = () => { held = true; window.clearTimeout(resume); };
+		const release = delay => {
+			window.clearTimeout(resume);
+			resume = window.setTimeout(() => { held = false; run(); }, delay);
+		};
+		track.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') hold(); });
+		track.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') release(800); });
+		track.addEventListener('pointerdown', hold);
+		track.addEventListener('touchstart', hold, { passive: true });
+		track.addEventListener('touchend', () => release(3000), { passive: true });
+		track.addEventListener('wheel', () => { hold(); release(2500); }, { passive: true });
+		rail.addEventListener('focusin', hold);
+		rail.addEventListener('focusout', () => release(800));
+		toggle.addEventListener('click', () => { userPaused = !userPaused; render(); run(); });
+		new IntersectionObserver(entries => { visible = entries[0].isIntersecting; run(); }, { threshold: 0.2 }).observe(rail);
+		document.addEventListener('visibilitychange', run);
+		reduceMotion.addEventListener('change', () => { render(); run(); });
+		render();
+	})();
 
 	// The event shelf is a carousel only on mobile. Starting on the middle copy
 	// keeps Corporate centred while a slice of Original music remains at left.

@@ -6235,6 +6235,56 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 }
 .reviews--single { grid-template-columns: minmax(0, 720px); }
 
+/* Отзывы на главной — бесконечная лента, которая едет сама (Михаил 30.10).
+   Клоны по краям ставит initInfiniteRail в main.js; наведение, фокус, касание,
+   перетаскивание и кнопка паузы её останавливают. При reduced-motion лента
+   стоит и листается рукой. */
+.reviews-rail__track {
+	display: flex;
+	align-items: flex-start;
+	gap: 24px;
+	overflow-x: auto;
+	padding: 4px 0 8px;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
+	cursor: grab;
+}
+.reviews-rail__track::-webkit-scrollbar { display: none; }
+.reviews-rail__track.is-dragging { cursor: grabbing; user-select: none; }
+.reviews-rail__track > .review { flex: 0 0 min(420px, 82vw); }
+.reviews-rail__controls { display: flex; justify-content: flex-end; margin-top: 16px; }
+.reviews-rail__toggle {
+	display: grid;
+	place-items: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 1px solid rgba(0,0,0,.28);
+	border-radius: 50%;
+	background: transparent;
+	color: #1D1D1F;
+	cursor: pointer;
+}
+.reviews-rail__toggle[hidden] { display: none; }
+.reviews-rail__toggle:hover { background: rgba(0,0,0,.04); }
+.reviews-rail__toggle:focus-visible { outline: 3px solid #0071E3; outline-offset: 3px; }
+.reviews-rail__toggle::before {
+	content: "";
+	box-sizing: border-box;
+	width: 10px;
+	height: 12px;
+	border-left: 3px solid currentColor;
+	border-right: 3px solid currentColor;
+}
+.reviews-rail__toggle.is-paused::before {
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	border-style: solid;
+	border-width: 6px 0 6px 10px;
+	border-color: transparent transparent transparent currentColor;
+}
+
 .review { margin: 0; }
 
 .review__bubble {

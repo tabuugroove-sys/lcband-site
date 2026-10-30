@@ -314,9 +314,15 @@
 		<h2 class="section__title">Пишут<br><span class="muted">после выступлений.</span></h2>
 		<p class="section__lead">Сообщения зрителей и клиентов — как есть, без редактуры.</p>
 	</div>
-	<div class="container reveal">
-		<div class="reviews">
+	{#- Михаил 30.10: отзывы — бесконечной лентой, которая прокручивается сама. -#}
+	<div class="reviews-rail" data-reviews-rail>
+		<div class="reviews-rail__track">
 			{% for id in reviews.home %}{{ reviewBubble(reviews.byId[id]) }}{% endfor %}
+		</div>
+		<div class="container reviews-rail__controls">
+			<button class="reviews-rail__toggle" type="button" data-reviews-toggle hidden
+				data-label-pause="Остановить отзывы" data-label-resume="Прокручивать отзывы"
+				aria-label="Остановить отзывы"></button>
 		</div>
 	</div>
 </section>
