@@ -1,5 +1,5 @@
 {
-  "version": "20261030-perfect-restored-audio",
+  "version": "20261030-hero-master-quality",
   "timestamp": 1793345180,
   "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
@@ -1054,51 +1054,51 @@
       "family": "teddy-jzhet-b9672528ed35"
     },
     "promo-costume-red": {
-      "original": "assets/video/mp4/promo-costume-red-6f67800c7805-2160.mp4",
+      "original": "assets/video/mp4/promo-costume-red-4ef6085a27d4-2160.mp4",
       "quality": 2160,
       "has720": true,
       "width": 3840,
       "height": 2160,
       "duration": 104.72,
-      "family": "promo-costume-red-6f67800c7805",
+      "family": "promo-costume-red-4ef6085a27d4",
       "codecs": {
-        "2160": "hvc1.1.6.L153.B0"
+        "2160": "avc1.640033"
       }
     },
     "promo-costume-bw": {
-      "original": "assets/video/mp4/promo-costume-bw-822965daacce-2160.mp4",
+      "original": "assets/video/mp4/promo-costume-bw-01dc7bdc6938-2160.mp4",
       "quality": 2160,
       "has720": true,
       "width": 3840,
       "height": 2160,
       "duration": 104.72,
-      "family": "promo-costume-bw-822965daacce",
+      "family": "promo-costume-bw-01dc7bdc6938",
       "codecs": {
-        "2160": "hvc1.1.6.L153.B0"
+        "2160": "avc1.640033"
       }
     },
     "promo-costume-gold": {
-      "original": "assets/video/mp4/promo-costume-gold-b9f4a6ecf5ab-2160.mp4",
+      "original": "assets/video/mp4/promo-costume-gold-42ce52957175-2160.mp4",
       "quality": 2160,
       "has720": true,
       "width": 3840,
       "height": 2160,
       "duration": 104.72,
-      "family": "promo-costume-gold-b9f4a6ecf5ab",
+      "family": "promo-costume-gold-42ce52957175",
       "codecs": {
-        "2160": "hvc1.1.6.L153.B0"
+        "2160": "avc1.640033"
       }
     },
     "promo-costume-white": {
-      "original": "assets/video/mp4/promo-costume-white-bcef639df1ff-2160.mp4",
+      "original": "assets/video/mp4/promo-costume-white-9d71d4290f9c-2160.mp4",
       "quality": 2160,
       "has720": true,
       "width": 3840,
       "height": 2160,
       "duration": 104.72,
-      "family": "promo-costume-white-bcef639df1ff",
+      "family": "promo-costume-white-9d71d4290f9c",
       "codecs": {
-        "2160": "hvc1.1.6.L153.B0"
+        "2160": "avc1.640033"
       }
     }
   },
