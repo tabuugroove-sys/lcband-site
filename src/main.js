@@ -369,44 +369,76 @@
 		kick();
 	})();
 
-	// ---------- Sound rings around 2000+ (Mikhail 30.10) ----------
-	// After the rings on the apple.com/apple-music hero (a pre-rendered video there): thick,
-	// iridescent rings from a small WebGL shader. Waves start just outside the text block
-	// and travel outwards, so they show left and right of it and never over the text;
-	// moving the mouse (scrolling on phones) pumps "sound" into them and they swell and
-	// wobble. Half resolution, drawn only while the block is on screen; without WebGL there
-	// are no rings, under reduced motion one still frame.
+	// ---------- Sound waves around 2000+ (Mikhail 30.10) ----------
+	// After the rings on the apple.com/apple-music hero (a pre-rendered video there): a thick
+	// iridescent ring, warm on one side, cool on the other, text inside it. Ours is a small
+	// WebGL shader. «Круги быстро из середины выходят, переливаются на краях экрана и
+	// пропадают, пока снова мышкой не поводят», «чёрный четырёхугольник не надо, фон и так
+	// чёрный»: a wave is born in the middle, faint under the text, at full strength past the
+	// text's edge (its half-diagonal), runs to the edges in about a second, shimmers there
+	// and fades; no masks of any kind. «Плавно поворачивались на 25°, чем ближе к мышке, тем
+	// больше поворот»: the ring's plane tilts towards the cursor, up to 25° as it comes near,
+	// easing in and out. Moving the mouse over the block sends new waves (scrolling does on
+	// phones), one wave greets the visitor when the block scrolls in; at rest there is
+	// nothing. Half resolution, a frame loop only while a wave is alive; without WebGL or
+	// under reduced motion the canvas stays empty.
 	(() => {
 		const canvases = [...document.querySelectorAll('[data-count-rings]')];
 		if (!canvases.length) return;
 		const vertex = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
 		const fragment = `precision mediump float;
-uniform vec2 res;uniform float time;uniform vec2 center;uniform vec4 box;uniform float energy;uniform vec2 pointer;uniform float radius;uniform float px;
-vec3 tone(float t){t=fract(t);vec3 a=vec3(1.,.70,.42),b=vec3(1.,.37,.43),c=vec3(.71,.42,1.),d=vec3(.36,.55,1.);
-	return t<.25?mix(a,b,t*4.):t<.5?mix(b,c,t*4.-1.):t<.75?mix(c,d,t*4.-2.):mix(d,a,t*4.-3.);}
-float ring(float x,float core,float soft){return exp(-x*x/(core*core))+.42*exp(-abs(x)/soft);}
-float boxDistance(vec2 p,vec2 hs,float r){vec2 q=abs(p)-hs+r;return length(max(q,0.))+min(max(q.x,q.y),0.)-r;}
+uniform vec2 res;uniform float time;uniform vec2 center;uniform vec4 box;uniform float energy;uniform vec2 pointer;uniform float radius;uniform float px;uniform vec2 inner;
+uniform vec4 waves[4];
+uniform vec2 tilt; // наклон плоскости кольца к мыши: направление × угол (рад), до 25°
+// Волна звука (Михаил 30.10: «круги быстро из середины выходят, переливаются на краях
+// экрана и пропадают, пока снова мышкой не поводят»; «чёрный четырёхугольник не надо,
+// фон и так чёрный, надпись будет видна»). Кольцо рождается в середине, под текстом оно
+// ещё слабое, в полную силу входит за краем текста (radius — полудиагональ блока), за
+// ~1,2 с уходит к углам секции, у краёв переливается и гаснет. Никаких масок.
+vec3 warm(float t){return mix(vec3(.5,.04,.02),mix(vec3(1.,.4,.08),vec3(1.,.94,.78),smoothstep(.55,1.,t)),smoothstep(0.,.65,t));}
+vec3 cool(float t){return mix(vec3(.02,.07,.42),mix(vec3(.08,.48,1.),vec3(.86,.98,1.),smoothstep(.55,1.,t)),smoothstep(0.,.65,t));}
+float band(float x,float w){float q=x/w;return exp(-q*q*2.4)+.28*exp(-abs(q)*1.2);}
+float ease(float t){return 1.-pow(1.-t,2.6);}
 void main(){
-	vec2 f=gl_FragCoord.xy;vec2 p=f-center;float d=length(p);float ang=atan(p.y,p.x);
-	vec2 toward=normalize(pointer-center+.001);float facing=.5+.5*dot(p/(d+.001),toward);
-	float breathe=sin(time*.9)*radius*.012;
-	float wob=energy*(5.+16.*facing)*px*sin(ang*6.+time*4.)+energy*10.*px*facing;
-	float r=radius+breathe+wob;
-	float core=(3.2+2.*energy)*px;float soft=(20.+26.*energy)*px;
-	float split=(5.+5.*energy)*px;
-	vec3 tint=tone(ang/6.2832+time*.02);
-	vec3 col=vec3(ring(d-r+split,core,soft),ring(d-r,core,soft),ring(d-r-split,core,soft));
-	col=mix(col*tint,col,.35*exp(-(d-r)*(d-r)/(core*core*1.5)))*(1.+.8*energy);
-	for(int i=0;i<2;i++){
-		float phase=fract(time*.11+float(i)*.5);
-		float rr=r+phase*radius*.55;
-		col+=tone(ang/6.2832+phase+time*.02)*exp(-abs(d-rr)/(10.*px))*.22*sin(3.14159*phase)*(1.+energy);
+	vec2 f=gl_FragCoord.xy;vec2 p=f-center;
+	// Плоскость кольца наклонена к курсору (Михаил 30.10: «плавно поворачивались на 25°,
+	// чем ближе к мышке, тем больше поворот»): вдоль направления на курсор круг сжат на
+	// cos(угла), ближняя к зрителю сторона чуть крупнее, дальняя мельче (перспектива).
+	float th=length(tilt);
+	if(th>.001){vec2 ax=tilt/th;float along=dot(p,ax);float perp=dot(p,vec2(-ax.y,ax.x));
+		float ext=length(vec2(max(center.x,res.x-center.x),max(center.y,res.y-center.y)));
+		along=along/cos(th)*(1.-.45*sin(th)*clamp(along/ext,-1.,1.));
+		p=ax*along+vec2(-ax.y,ax.x)*perp;}
+	float d=length(p);float ang=atan(p.y,p.x);
+	vec2 dirp=p/(d+.001);
+	float rExit=length(vec2(max(center.x,res.x-center.x),max(center.y,res.y-center.y)))+40.*px;
+	vec3 col=vec3(0.);
+	for(int i=0;i<4;i++){
+		float age=time-waves[i].x;float amp=waves[i].y;
+		if(age<0.||amp<=0.)continue;
+		vec2 dir=waves[i].zw;
+		float facing=.5+.5*dot(dirp,dir);
+		float life=age/1.25;
+		if(life>1.)continue;
+		float travel=ease(min(life*1.1,1.));
+		float r0=radius*.12;
+		float r=r0+(rExit-r0)*travel+8.*px*amp*facing*sin(ang*5.+time*6.);
+		float w=(18.+56.*travel)*px*(.8+.5*amp);
+		float env=smoothstep(0.,.07,life)*(1.-smoothstep(.55,1.,life));
+		float shimmer=.5+.5*sin(ang*9.-time*11.+float(i)*2.)*smoothstep(.3,.8,life);
+		float side=.5+.5*sin(ang+time*.3+float(i)*1.9);
+		float across=clamp(.5+(d-r)/(2.*w),0.,1.);
+		vec3 c=mix(cool(across),warm(across),smoothstep(.3,.7,side));
+		float b=band(d-r,w);
+		float hi=exp(-pow((d-r-w*.5)/(2.6*px),2.))*(.45+.9*shimmer)*smoothstep(.15,.5,life);
+		// под текстом волна слабее, за краем текста — в полную силу (плавно, без прямоугольника)
+		float under=.3+.7*smoothstep(radius*.45,radius,r);
+		col+=(c*b*(1.+.4*shimmer)+vec3(1.,.97,.9)*hi)*env*amp*(.6+.4*facing)*under;
 	}
-	vec2 mid=(box.xy+box.zw)*.5;vec2 hs=(box.zw-box.xy)*.5;
-	float keep=smoothstep(0.,26.*px,boxDistance(f-mid,hs,18.*px));
-	col=clamp(col*keep,0.,1.);
+	col=clamp(col,0.,1.);
 	gl_FragColor=vec4(col,max(col.r,max(col.g,col.b)));
 }`;
+		const life = 1.25;
 		for (const canvas of canvases) {
 			const section = canvas.closest('[data-count-block]');
 			const inner = section?.querySelector('.about-count__inner');
@@ -425,15 +457,22 @@ void main(){
 			gl.enableVertexAttribArray(attribute);
 			gl.vertexAttribPointer(attribute, 2, gl.FLOAT, false, 0, 0);
 			const u = name => gl.getUniformLocation(program, name);
-			const uniforms = { res: u('res'), time: u('time'), center: u('center'), box: u('box'), energy: u('energy'), pointer: u('pointer'), radius: u('radius'), px: u('px') };
+			const uniforms = { res: u('res'), time: u('time'), center: u('center'), box: u('box'), inner: u('inner'), energy: u('energy'), pointer: u('pointer'), radius: u('radius'), px: u('px'), waves: u('waves[0]'), tilt: u('tilt') };
 			const scale = 0.5;
+			const now = () => performance.now() / 1000;
+			const waves = Array.from({ length: 4 }, () => ({ birth: -100, amp: 0, dx: 0, dy: 1 }));
 			let width = 0;
 			let height = 0;
+			let centre = { x: 0, y: 0 };
 			let visible = false;
 			let frame = 0;
-			let energy = 0;
+			let lastSpawn = 0;
+			let travelled = 0;
 			let lastY = window.scrollY;
 			const pointer = { x: 0, y: 0, t: 0 };
+			const tilt = { x: 0, y: 0, tx: 0, ty: 0 };
+			const maxTilt = 25 * Math.PI / 180;
+			let reach = 1;
 			const layout = () => {
 				const rect = section.getBoundingClientRect();
 				width = Math.max(1, Math.round(rect.width * scale));
@@ -442,59 +481,99 @@ void main(){
 				canvas.height = height;
 				gl.viewport(0, 0, width, height);
 				const box = inner.getBoundingClientRect();
-				// Canvas pixels, y up (gl_FragCoord): the text block and its centre.
+				// Canvas pixels, y up (gl_FragCoord): the text block, its centre and half size.
 				const x0 = (box.left - rect.left) * scale;
 				const x1 = (box.right - rect.left) * scale;
 				const y0 = height - (box.bottom - rect.top) * scale;
 				const y1 = height - (box.top - rect.top) * scale;
+				centre = { x: (x0 + x1) / 2, y: (y0 + y1) / 2 };
 				gl.uniform2f(uniforms.res, width, height);
 				gl.uniform4f(uniforms.box, x0, y0, x1, y1);
-				gl.uniform2f(uniforms.center, (x0 + x1) / 2, (y0 + y1) / 2);
-				// One big ring just outside the text block: it shows as arcs left and right of it.
-				gl.uniform1f(uniforms.radius, Math.max((x1 - x0) / 2, (y1 - y0) / 2) + 34 * scale);
+				gl.uniform2f(uniforms.center, centre.x, centre.y);
+				gl.uniform2f(uniforms.inner, (x1 - x0) / 2, (y1 - y0) / 2);
+				// The circle around the text block: a wave reaches full strength once past it.
+				gl.uniform1f(uniforms.radius, Math.hypot((x1 - x0) / 2, (y1 - y0) / 2) + 16 * scale);
 				gl.uniform1f(uniforms.px, scale);
-				if (!pointer.t) { pointer.x = (x0 + x1) / 2; pointer.y = y1; }
+				reach = Math.hypot(Math.max(centre.x, width - centre.x), Math.max(centre.y, height - centre.y));
 			};
-			const draw = now => {
-				energy *= 0.965;
-				gl.uniform1f(uniforms.time, now / 1000);
-				gl.uniform1f(uniforms.energy, Math.min(energy, 1));
+			const alive = t => waves.some(wave => t - wave.birth < life);
+			const settling = () => Math.abs(tilt.tx - tilt.x) + Math.abs(tilt.ty - tilt.y) > 0.002;
+			const draw = t => {
+				tilt.x += (tilt.tx - tilt.x) * 0.1;
+				tilt.y += (tilt.ty - tilt.y) * 0.1;
+				gl.uniform2f(uniforms.tilt, tilt.x, tilt.y);
+				gl.uniform1f(uniforms.time, t);
+				gl.uniform1f(uniforms.energy, Math.max(0, ...waves.map(wave => (t - wave.birth < life ? wave.amp : 0))));
 				gl.uniform2f(uniforms.pointer, pointer.x, pointer.y);
+				gl.uniform4fv(uniforms.waves, new Float32Array(waves.flatMap(wave => [wave.birth, wave.amp, wave.dx, wave.dy])));
 				gl.clearColor(0, 0, 0, 0);
 				gl.clear(gl.COLOR_BUFFER_BIT);
 				gl.drawArrays(gl.TRIANGLES, 0, 3);
 			};
-			const loop = now => {
+			const loop = () => {
 				frame = 0;
-				if (!visible || document.hidden || reduceMotion.matches) return;
-				draw(now);
-				frame = requestAnimationFrame(loop);
+				if (!visible || document.hidden) return;
+				const t = now();
+				draw(t);
+				if (alive(t) || settling()) frame = requestAnimationFrame(loop);
 			};
-			const start = () => {
-				if (reduceMotion.matches) { draw(8000); return; }
-				if (!frame && visible && !document.hidden) frame = requestAnimationFrame(loop);
+			const run = () => { if (!frame && visible && !document.hidden) frame = requestAnimationFrame(loop); };
+			const spawn = (amp, dx, dy) => {
+				if (reduceMotion.matches || !visible) return;
+				const t = now();
+				if (t - lastSpawn < 0.22) return;
+				lastSpawn = t;
+				const slot = waves.reduce((oldest, wave) => (wave.birth < oldest.birth ? wave : oldest), waves[0]);
+				const length = Math.hypot(dx, dy) || 1;
+				Object.assign(slot, { birth: t, amp, dx: dx / length, dy: dy / length });
+				run();
 			};
 			section.addEventListener('pointermove', event => {
 				const rect = section.getBoundingClientRect();
 				const x = (event.clientX - rect.left) * scale;
 				const y = height - (event.clientY - rect.top) * scale;
-				if (pointer.t) energy += Math.min(Math.hypot(x - pointer.x, y - pointer.y) / 120, 0.2);
+				const t = event.timeStamp / 1000;
+				// Tilt towards the cursor: none at the very centre, full from a fifth of the way out,
+				// easing off towards the edges.
+				const dx = x - centre.x;
+				const dy = y - centre.y;
+				const dist = Math.hypot(dx, dy) || 1;
+				const near = Math.min(1, dist / (0.2 * reach));
+				const far = 1 - Math.min(1, Math.max(0, (dist - 0.45 * reach) / (0.65 * reach)));
+				const amount = maxTilt * near * near * far;
+				tilt.tx = dx / dist * amount;
+				tilt.ty = dy / dist * amount;
+				run();
+				if (pointer.t) {
+					const step = Math.hypot(x - pointer.x, y - pointer.y);
+					travelled += step;
+					const speed = step / Math.max(t - pointer.t, 0.004);
+					if (travelled > 40) {
+						travelled = 0;
+						spawn(Math.min(1, 0.55 + speed / 2600), x - centre.x, y - centre.y);
+					}
+				}
 				pointer.x = x;
 				pointer.y = y;
-				pointer.t = event.timeStamp;
+				pointer.t = t;
 			}, { passive: true });
+			section.addEventListener('pointerleave', () => { tilt.tx = 0; tilt.ty = 0; run(); });
 			window.addEventListener('scroll', () => {
-				if (visible) energy += Math.min(Math.abs(window.scrollY - lastY) / 900, 0.12);
+				const dy = window.scrollY - lastY;
 				lastY = window.scrollY;
+				if (visible && Math.abs(dy) > 40) spawn(0.7, 0, dy > 0 ? -1 : 1);
 			}, { passive: true });
 			canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); visible = false; cancelAnimationFrame(frame); frame = 0; });
 			new IntersectionObserver(entries => {
+				const was = visible;
 				visible = entries[0].isIntersecting;
-				if (visible) { layout(); start(); }
-			}, { rootMargin: '100px 0px' }).observe(section);
-			window.addEventListener('resize', () => { if (visible) { layout(); start(); } });
-			document.addEventListener('visibilitychange', start);
-			reduceMotion.addEventListener('change', start);
+				if (!visible) return;
+				layout();
+				if (!was) window.setTimeout(() => spawn(0.85, 0, 1), 250);
+				run();
+			}, { rootMargin: '60px 0px' }).observe(section);
+			window.addEventListener('resize', () => { if (visible) { layout(); run(); } });
+			document.addEventListener('visibilitychange', run);
 		}
 	})();
 
