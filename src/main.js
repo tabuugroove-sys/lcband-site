@@ -263,6 +263,7 @@
 		const started = tiles.map(() => false);
 		let frame = 0;
 		let lastY = window.scrollY;
+		let arrived = false;
 		const place = () => {
 			const cx = grid.clientWidth / 2;
 			const cy = grid.clientHeight / 2;
@@ -278,7 +279,8 @@
 			return [
 				span(couple - ribbonSpace, rowHeight * 0.5),
 				span(rowHeight * 0.45, rowHeight),
-				span(second + couple, second + rowHeight * 0.5),
+				// On phones a row is under 200 px: the start stays before the middle.
+				span(second + Math.min(couple, rowHeight * 0.28), second + rowHeight * 0.5),
 				span(second + rowHeight * 0.45, second + rowHeight)
 			];
 		};
@@ -290,12 +292,14 @@
 				bloom.style.transform = 'none';
 				bloom.style.clipPath = 'none';
 				bloom.style.opacity = '1';
+				bloom.style.willChange = 'auto';
 				return;
 			}
 			const eased = 1 - (1 - p) ** 3;
 			bloom.style.transform = `scale(${(0.5 + 0.5 * eased + overshoot * Math.sin(Math.PI * eased)).toFixed(4)})`;
 			bloom.style.clipPath = `inset(0 round ${(28 * (1 - eased)).toFixed(1)}px)`;
 			bloom.style.opacity = Math.min(1, p / 0.35).toFixed(3);
+			bloom.style.willChange = 'transform, opacity';
 		};
 		const tick = () => {
 			frame = 0;
@@ -316,10 +320,12 @@
 				}
 				if (phone) return;
 				const gap = reached[i] - progress[i];
-				if (Math.abs(gap) < 0.002) progress[i] = reached[i];
+				// On arrival (the visitor may be there already) a tile takes its place at once.
+				if (!arrived || Math.abs(gap) < 0.002) progress[i] = reached[i];
 				else { progress[i] += gap * 0.22; moving = true; }
 				paint(i);
 			});
+			arrived = true;
 			if (changed) host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { started: started.slice() } }));
 			if (moving) frame = requestAnimationFrame(tick);
 		};
@@ -328,12 +334,11 @@
 			place();
 			grid.classList.add('is-sequenced');
 			window.addEventListener('resize', place);
-			blooms.forEach((bloom, i) => paint(i));
 		}
 		host.dispatchEvent(new CustomEvent('reel-reveal', { detail: { started: started.slice() } }));
 		window.addEventListener('scroll', kick, { passive: true });
 		window.addEventListener('resize', kick);
-		kick();
+		tick();
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;
 		if (ribbon && !phone) {

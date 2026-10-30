@@ -5837,7 +5837,7 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
    проявляется и теряет скругление; прогресс и точку роста ставит main.js. Класс появляется
    до скрипта (home-reel.njk), поэтому постеры не мелькают. Без JS и при reduced-motion все
    четыре сразу. Нижний ряд — ещё и магнит (data-magnet-item) на самой плитке. */
-.reel__grid.is-sequenced .reel__bloom { opacity: 0; transform: scale(.5); will-change: transform, opacity; }
+.reel__grid.is-sequenced .reel__bloom { opacity: 0; transform: scale(.5); }
 .reel__ribbon.is-armed > * {
 	opacity: 0;
 	transform: translateY(18px);

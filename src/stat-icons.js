@@ -47,7 +47,7 @@
 	const loadViews = state => {
 		if (state.viewsRequested || !withViews.has(state.icon.dataset.statIcon)) return;
 		state.viewsRequested = true;
-		const url = state.icon.querySelector('.stat-icon__frame--center img').currentSrc.replace(/-(\d+)\.webp/, '-views-$1.webp');
+		const url = state.icon.querySelector('.stat-icon__frame--center img').currentSrc.replace(/-(\d+)\.webp/, '-views-$1.webp') + '?v=2';
 		const sprite = new Image();
 		sprite.src = url;
 		sprite.decode().then(() => {

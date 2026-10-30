@@ -23,16 +23,17 @@
 	{#- data-reel-zoom — эксперимент 30.10: плитка вырастает из центра чуть больше своего размера
 	    и возвращается к обычному. Откатить — убрать атрибут. -#}
 	<div class="reel__grid" data-reel-grid data-reel-zoom>
-		{#- 30.10: плитки прячутся сразу, до main.js, иначе все постеры мелькают и пропадают.
-		    Не пришёл main.js за 8 с — плитки возвращаются. Телефон и reduced-motion — без анимации. -#}
-		<script>(function(g){if(g&&innerWidth>599&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){g.classList.add('is-sequenced');setTimeout(function(){if(!window.LCBReelSequence)g.classList.remove('is-sequenced')},8000)}})(document.currentScript.parentElement);</script>
+		{#- 30.10: плитки прячутся сразу, до main.js, иначе все постеры мелькают и пропадают. Дошли до
+		    сетки раньше скрипта (медленный интернет) — показываем постеры, чтобы не было черноты.
+		    Телефон и reduced-motion — без анимации. -#}
+		<script>(function(g){if(g&&innerWidth>599&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){g.classList.add('is-sequenced');new IntersectionObserver(function(e,o){if(e[0].isIntersecting){o.disconnect();if(!window.LCBReelSequence)g.classList.remove('is-sequenced')}}).observe(g)}})(document.currentScript.parentElement);</script>
 		{%- for id in ['epic-04', 'studio-11', 'mix-12', 'epic-03'] %}
 		{#- 30.10: нижний ряд — отдельный слой с магнитом, как остальные блоки; верхний появляется по одному. -#}
 		<div class="reel__tile"{% if loop.index0 >= 2 %} data-magnet-item="desktop"{% endif %}>
 			<div class="reel__bloom">
 			<picture class="reel__poster">
 				<source media="(max-width: 599px)" srcset="{{ ('/assets/hero/hq-20261029-' + id + '-square.webp') | url }}">
-				<img src="{{ ('/assets/hero/hq-20261029-' + id + '-wide.webp') | url }}" alt="" width="1280" height="640" decoding="async">
+				<img src="{{ ('/assets/hero/hq-20261029-' + id + '-wide.webp') | url }}" alt="" width="1280" height="640" decoding="async"{% if loop.index0 == 0 %} fetchpriority="high"{% endif %}>
 			</picture>
 			<video class="reel__video" data-reel-video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
 				data-src-wide="{{ ('/assets/video/mp4/lt2-20261030-' + id + '-wide.mp4') | url }}"

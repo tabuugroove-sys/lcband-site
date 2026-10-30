@@ -20,6 +20,19 @@ const scaleOf = (page, i) => page.locator('.reel__bloom').nth(i).evaluate(bloom 
 const settledScale = async (page, i) => { await page.waitForTimeout(700); return scaleOf(page, i); };
 const playing = (page, i) => page.locator('[data-reel-video]').nth(i).evaluate(video => !video.paused && video.currentTime > 0.05);
 
+// Under 200 px a row used to put the third tile's start after its finish.
+test('on a narrow screen the tiles start in order', async ({ page }) => {
+	await serveHqMedia(page);
+	await page.setViewportSize({ width: 360, height: 740 });
+	await page.goto('/');
+	const { row, second } = await geometry(page);
+	expect(row).toBeLessThan(200);
+	await setEdge(page, second + row * 0.3);
+	await expect.poll(() => shown(page)).toBe('1110');
+	await setEdge(page, second + row * 0.6);
+	await expect.poll(() => shown(page)).toBe('1111');
+});
+
 test.describe('Homepage reel, scroll points', () => {
 	test.beforeEach(async ({ page, isMobile }) => {
 		test.skip(isMobile, 'phones have no reveal animation');
@@ -116,25 +129,29 @@ test.describe('Homepage reel, scroll points', () => {
 		expect(await page.locator('.reel__bloom img').first().evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
 	});
 
-	test('the tiles are hidden before main.js arrives, so no poster flashes and vanishes', async ({ page }) => {
+	test('the tiles wait hidden before main.js; reaching the grid first shows the posters, and main.js does not hide them', async ({ page }) => {
 		let release;
 		const held = new Promise(resolve => { release = resolve; });
 		await page.route(/\/main\.js/, async route => { await held; await route.continue(); });
 		// A deferred script holds DOMContentLoaded, so wait only for the grid's markup.
 		await page.goto('/', { waitUntil: 'commit' });
 		await page.waitForSelector('#reviews', { state: 'attached' });
-		await setEdge(page, 400);
+		const opacities = () => page.locator('.reel__bloom').evaluateAll(blooms => blooms.map(bloom => getComputedStyle(bloom).opacity));
 		expect(await page.evaluate(() => window.LCBReelSequence)).toBeUndefined();
-		expect(await page.locator('.reel__bloom').evaluateAll(blooms => blooms.map(bloom => getComputedStyle(bloom).opacity))).toEqual(['0', '0', '0', '0']);
+		expect(await opacities()).toEqual(['0', '0', '0', '0']);
+		const { row } = await geometry(page);
+		await setEdge(page, row * 1.5);
+		await expect.poll(opacities).toEqual(['1', '1', '1', '1']);
+		await page.evaluate(() => {
+			window.__lowest = 1;
+			const bloom = document.querySelector('.reel__bloom');
+			const watch = () => { window.__lowest = Math.min(window.__lowest, +getComputedStyle(bloom).opacity); requestAnimationFrame(watch); };
+			requestAnimationFrame(watch);
+		});
 		release();
-		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
-	});
-
-	test('without main.js the tiles come back after 8 s', async ({ page }) => {
-		await page.route(/\/main\.js/, route => route.abort());
-		await page.goto('/');
-		await setEdge(page, 400);
-		await expect.poll(() => page.locator('.reel__bloom').first().evaluate(bloom => getComputedStyle(bloom).opacity), { timeout: 12_000 }).toBe('1');
+		await expect.poll(() => page.evaluate(() => window.LCBReelSequence)).toBe(true);
+		await page.waitForTimeout(400);
+		expect(await page.evaluate(() => window.__lowest)).toBe(1);
 	});
 
 	test('the upper video rail under the title stands still', async ({ page }) => {
