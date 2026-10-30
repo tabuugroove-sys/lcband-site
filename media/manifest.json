@@ -958,6 +958,11 @@
       "sha256": "996e4a66c4d9c6e692950fade6de122db1a08189d4942fe2786cc2a470c20144"
     },
     {
+      "path": "assets/video/mp4/promo-costume-white-9d71d4290f9c-1080.mp4",
+      "bytes": 82398764,
+      "sha256": "a3382430c723262f7cd19dd34c47444c19f94450eb12d7a283e4f562ab8e255d"
+    },
+    {
       "path": "assets/video/mp4/promo-costume-white-9d71d4290f9c-2160.mp4",
       "bytes": 310790326,
       "sha256": "9d71d4290f9cbaaad501618dc4cc1d4379b509ac6b28877909580873af36e1ce"
