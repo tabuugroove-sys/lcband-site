@@ -131,7 +131,10 @@
 	// only after page load and while the grid is on screen, never under reduced
 	// motion, Save-Data or 2g/3g. Phones get square cuts, wider screens 2:1 cuts.
 	// The reveal below shows the tiles one by one and a video loads only once its
-	// tile is shown, so four never load at once. One button pauses and resumes them.
+	// tile is shown, so four never load at once; the first one is fetched ahead as the
+	// grid comes near, so it moves as soon as it grows in. One button pauses and resumes them.
+	// «Первые два появились одновременно и не двигаются» (30.10, page still loading): a
+	// visitor who has scrolled to the grid does not wait for the rest of the page.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
@@ -140,6 +143,7 @@
 		if (!grid || !toggle || !videos.length || !('IntersectionObserver' in window)) return;
 		const squareMedia = window.matchMedia('(max-width: 599px)');
 		let visible = false;
+		let near = false;
 		let ready = false;
 		let pageActive = true;
 		let userPaused = false;
@@ -163,6 +167,12 @@
 			videos.forEach((video, i) => {
 				if (!play || i >= shown) {
 					video.pause();
+					if (i === 0 && near && ready && allowed() && !video.getAttribute('src')) {
+						video.muted = true;
+						video.defaultMuted = true;
+						video.preload = 'auto';
+						video.src = sourceFor(video);
+					}
 					// A changed accessibility/data preference also stops further buffering.
 					if (!allowed() && video.getAttribute('src')) {
 						video.removeAttribute('src');
@@ -199,6 +209,11 @@
 			visible = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.1;
 			update();
 		}, { threshold: [0, 0.1] }).observe(grid);
+		new IntersectionObserver(entries => {
+			near = entries[0].isIntersecting;
+			if (near) ready = true;
+			update();
+		}, { rootMargin: '0px 0px 600px 0px' }).observe(grid);
 		document.addEventListener('visibilitychange', update);
 		window.addEventListener('pagehide', () => { pageActive = false; update(); });
 		window.addEventListener('pageshow', () => { pageActive = true; update(); });
@@ -270,12 +285,19 @@
 			timer = window.setTimeout(go, maxWait);
 		};
 		// «Слева снизу — ровно в тот момент, когда его верх пересекает центр экрана; это крайнее
-		// время», «верхнее тоже… появление включается, когда снизу поднимаются» (Mikhail 30.10):
-		// the first tile starts as soon as the grid rises into view from below; the top-right
-		// and bottom-left tiles come in, video and all, no later than their top edge reaches
-		// the middle of the screen. A slow scroll keeps the usual pace; a fast one brings them
-		// sooner. The last tile follows them, or comes at once as the grid leaves.
-		const deadlines = tiles.slice(1, -1);
+		// время» (Mikhail 30.10): the bottom-left tile comes in, video and all, no later than its
+		// top edge reaches the middle of the screen. A slow scroll keeps the usual pace; a fast
+		// one brings it sooner. The top-right one always waits for the first («должен появляться
+		// только первый ролик… через секунду следующий»).
+		const deadlines = tiles.filter((tile, i) => i > 1 && tile.offsetLeft === tiles[0].offsetLeft);
+		// «Первый — прям с нижней границы, когда прокрутка идёт, в два раза меньше и
+		// увеличивается»: it starts while the grid is still rising from the bottom edge, once
+		// the shrunken tile (the upper part of the grid's middle) is on screen to be seen growing.
+		const maybeBegin = () => {
+			if (shown) return;
+			const rect = grid.getBoundingClientRect();
+			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) next();
+		};
 		const due = () => {
 			// Where the tile sits in the grid, not its shrunken box while it waits.
 			const middle = window.innerHeight / 2 - grid.getBoundingClientRect().top;
@@ -290,6 +312,7 @@
 			announce();
 		};
 		const onScroll = () => {
+			maybeBegin();
 			if (shown === 0 || shown >= tiles.length) return;
 			const rect = grid.getBoundingClientRect();
 			if (rect.bottom < window.innerHeight * 0.35 || rect.top > window.innerHeight * 0.9) rest();
@@ -304,9 +327,9 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
-			begin.disconnect();
-			next();
-		}, { rootMargin: '0px 0px -12% 0px' });
+			maybeBegin();
+			if (shown) begin.disconnect();
+		}, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.
 		let ribbonWatch = null;

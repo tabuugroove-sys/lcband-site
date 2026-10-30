@@ -1,5 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { serveHqMedia } from './hq-media.js';
 
 /**
  * Regression coverage for the homepage video rails (#videos).
@@ -56,6 +57,8 @@ test.describe('video rails — infinite loop setup', () => {
 
 test.describe('video rails — open + play', () => {
 	test('clicking a tile opens the lightbox and starts real playback', async ({ page }) => {
+		// The first home reel may start on the way down to #videos (30.10).
+		await serveHqMedia(page);
 		const consoleErrors = [];
 		const unexpected404s = [];
 		page.on('console', (msg) => {

@@ -14,7 +14,7 @@ test.describe('Homepage reel', () => {
 	test('shows one line, the learn-more button and four tiles in the screen format', async ({ page, isMobile }) => {
 		await page.goto('/');
 		const reel = page.locator('section#about[data-reel]');
-		await expect(reel.locator('.reel__title')).toHaveText('Топовый кавер-бенд для вашего события.');
+		await expect(reel.locator('.reel__title')).toHaveText('Топовая кавер-группа для вашего события.');
 		await expect(reel.locator('.reel__more')).toHaveAttribute('href', '/about/');
 		await expect(reel.locator('.reel__tile')).toHaveCount(4);
 		const grid = await reel.locator('[data-reel-grid]').boundingBox();
@@ -68,19 +68,20 @@ test.describe('Homepage reel', () => {
 		await expect.poll(() => first.getAttribute('src'), { timeout: 6_000 }).toMatch(/ph-20261030-epic-04-square\.mp4$/);
 	});
 
-	test('the first tile starts as the grid rises from below; the next ones by the middle of the screen', async ({ page }) => {
+	test('the top-right tile waits for the first; the bottom-left comes by the middle of the screen', async ({ page }) => {
 		await page.goto('/');
 		const tiles = page.locator('.reel__tile');
 		const placeGrid = fraction => page.evaluate(f => {
 			const grid = document.querySelector('[data-reel-grid]');
 			scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' });
 		}, fraction);
-		await placeGrid(0.84);
+		await placeGrid(0.6);
 		await expect(tiles.nth(0)).toHaveClass(/is-shown/);
+		// The top row crossing the middle does not hurry the second tile (Mikhail 30.10:
+		// «первые два появились одновременно» was wrong).
+		await placeGrid(0.4);
+		await page.waitForTimeout(300);
 		await expect(tiles.nth(1)).not.toHaveClass(/is-shown/);
-		// The top row crosses the middle: the top-right tile comes in at once.
-		await placeGrid(0.49);
-		await expect(tiles.nth(1)).toHaveClass(/is-shown/, { timeout: 500 });
 		// The bottom-left tile's top crosses the middle: it comes in at once, video and all.
 		await page.evaluate(() => {
 			const tile = document.querySelectorAll('.reel__tile')[2];
