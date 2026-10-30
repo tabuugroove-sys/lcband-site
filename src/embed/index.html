@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
   catch { document.getElementById('error').hidden = false; return; }
   if (url.origin !== 'https://luxuryband.ru' || !/^\/assets\/video\/mp4\/[a-zA-Z0-9_-]+\.mp4$/.test(url.pathname)) { document.getElementById('error').hidden = false; return; }
   url.searchParams.delete('download');
+  const previousPerfect = url.pathname.match(/\/live-perfect(?:-34be773c40a4)?-(720|1080)\.mp4$/);
+  const currentPerfect = window.LCBPromoVideoSources?.['live-perfect'];
+  if (previousPerfect && currentPerfect?.family) {
+    url.pathname = `/assets/video/mp4/${currentPerfect.family}-${previousPerfect[1]}.mp4`;
+  }
   if (!window.LCBVideoQuality.supports(url.href)) url.pathname = url.pathname.replace(/-2160\.mp4$/, '-1080.mp4');
   if (/\/live-icon-(720|1080)\.mp4$/.test(url.pathname)) url.searchParams.set('v', '20261002cut6');
   const video = document.querySelector('video');
