@@ -20,12 +20,12 @@
 		lead: 'выступлений в&nbsp;' ~ st.countries ~ '&nbsp;странах,',
 		more: 'от свадеб до&nbsp;приёмов первых&nbsp;лиц.',
 		minis: [
-			{num: st.years, label: 'лет на сцене'},
-			{num: st.tvShows, label: 'ТВ-проектов'},
-			{num: st.songs, label: 'песен', href: countSongsHref},
-			{num: st.languages, label: 'языков'},
-			{num: st.looks, label: 'сценических образов', href: countLooksHref},
-			{num: st.lineup, label: 'музыкантов на сцене'}
+			{num: st.years, label: 'лет на сцене', icon: 'years'},
+			{num: st.tvShows, label: 'ТВ-проектов', icon: 'tv'},
+			{num: st.songs, label: 'песен', href: countSongsHref, icon: 'songs'},
+			{num: st.languages, label: 'языков', icon: 'languages'},
+			{num: st.looks, label: 'сценических образов', href: countLooksHref, icon: 'looks'},
+			{num: st.lineup, label: 'музыкантов на сцене', icon: 'lineup'}
 		]
 	},
 	en: {
@@ -33,33 +33,34 @@
 		lead: 'performances in&nbsp;' ~ st.countries ~ '&nbsp;countries.',
 		more: 'From weddings to receptions for heads&nbsp;of&nbsp;state.',
 		minis: [
-			{num: st.years, label: 'years on stage'},
-			{num: st.tvShows, label: 'TV projects'},
-			{num: st.songs, label: 'songs', href: countSongsHref},
-			{num: st.languages, label: 'languages'},
-			{num: st.looks, label: 'stage looks', href: countLooksHref},
-			{num: st.lineup, label: 'musicians on stage'}
+			{num: st.years, label: 'years on stage', icon: 'years'},
+			{num: st.tvShows, label: 'TV projects', icon: 'tv'},
+			{num: st.songs, label: 'songs', href: countSongsHref, icon: 'songs'},
+			{num: st.languages, label: 'languages', icon: 'languages'},
+			{num: st.looks, label: 'stage looks', href: countLooksHref, icon: 'looks'},
+			{num: st.lineup, label: 'musicians on stage', icon: 'lineup'}
 		]
 	},
 	pt: {
 		aria: 'Luxury Cover Band',
 		lead: 'shows em&nbsp;' ~ st.countries ~ '&nbsp;países',
 		minis: [
-			{num: st.years, label: 'anos de palco'},
-			{num: st.songs, label: 'músicas no repertório', href: countSongsHref}
+			{num: st.years, label: 'anos de palco', icon: 'years'},
+			{num: st.songs, label: 'músicas no repertório', href: countSongsHref, icon: 'songs'}
 		]
 	},
 	ar: {
 		aria: 'Luxury Cover Band',
 		lead: 'عرض في&nbsp;' ~ st.countries ~ '&nbsp;دولة',
 		minis: [
-			{num: st.years, label: 'عامًا على المسرح'},
-			{num: st.songs, label: 'أغنية في الريبرتوار', href: countSongsHref}
+			{num: st.years, label: 'عامًا على المسرح', icon: 'years'},
+			{num: st.songs, label: 'أغنية في الريبرتوار', href: countSongsHref, icon: 'songs'}
 		]
 	}
 } %}
 {%- set countText = countDict[countLang or 'ru'] %}
-<section class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
+<link rel="stylesheet" href="{{ '/stat-icons.css?v=20261030' | url }}">
+<section id="band-in-numbers" class="about-count{% if countTheme == 'light' %} about-count--light{% endif %}" data-count-block aria-label="{{ countText.aria }}">
 	{#- Михаил 30.10: кольца звука вокруг «2000+», как в шапке apple.com/apple-music — толстые,
 	    переливаются, обходят текст слева и справа и откликаются на мышь. Рисует main.js. -#}
 	<canvas class="about-count__rings" data-count-rings aria-hidden="true"></canvas>
@@ -72,6 +73,13 @@
 				{% if s.href %}<a href="{{ s.href | url }}">{% endif %}
 				<span class="about-count__n" dir="ltr" data-count>{{ s.num }}</span>
 				<span class="about-count__l">{{ s.label }}</span>
+				<span class="stat-icon" data-stat-icon="{{ s.icon }}" aria-hidden="true">
+					<span class="stat-icon__stage">
+						{% for view in ['left', 'center', 'right'] %}
+						<span class="stat-icon__frame stat-icon__frame--{{ view }}"><img src="{{ ('/assets/icons/stats/' ~ s.icon ~ '-20261030.webp') | url }}" width="768" height="256" loading="lazy" decoding="async" alt="" draggable="false"></span>
+						{% endfor %}
+					</span>
+				</span>
 				{% if s.href %}</a>{% endif %}
 			</li>
 			{% endfor %}
@@ -79,6 +87,7 @@
 		{% if countNote %}<p class="about-count__note">{{ countNote }}</p>{% endif %}
 	</div>
 </section>
+<script src="{{ '/stat-icons.js?v=20261030' | url }}" defer></script>
 <script>
 (function () {
 	// Досчёт цифр при появлении блока: все числа в тексте элемента (и обе

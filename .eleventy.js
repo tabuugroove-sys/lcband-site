@@ -13,6 +13,7 @@ export default function (eleventyConfig) {
 		"docs",
 		"erhu",
 		"hero",
+		"icons",
 		"jazz-irina",
 		"leo-sax",
 		"photos",
@@ -34,6 +35,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "assets/favicon.svg" });
 	eleventyConfig.addPassthroughCopy("src/assets/blog-list.css");
 	eleventyConfig.addPassthroughCopy("src/styles.css");
+	eleventyConfig.addPassthroughCopy("src/stat-icons.css");
+	eleventyConfig.addPassthroughCopy("src/stat-icons.js");
 	eleventyConfig.addPassthroughCopy("src/main.js");
 	eleventyConfig.addPassthroughCopy("src/analytics.js");
 	eleventyConfig.addPassthroughCopy("src/video-quality.js");
