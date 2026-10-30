@@ -8,6 +8,8 @@
     («на телефоне облегчённую версию, чтобы быстро», 30.10), без анимации появления; лежат на хостинге
     в assets/video/mp4 (media/manifest.json), постеры — assets/hero, описание —
     media/home-reel.json. Странице задать reelTitle, reelHref, reelMore. -#}
+{#- Размытая заглушка прямо в странице: плитка не чёрная, пока постер в пути (30.10, Safari). -#}
+{% set reelBlur = {'epic-04':'UklGRnYAAABXRUJQVlA4IGoAAADQAwCdASoUAAoAPxFysVAsJqSisAgBgCIJbACdH8ACuTLWFSfYW8AA/szSOLL3yzphADjN5cWT7dyj/JtXs67zk5EL2Qc8e7XDBXd2h0Vak4vLS7COzf2936aIPpH50meokO6cZkl1wAAA', 'studio-11':'UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASoUAAoAPxFysFAsJqSisAgBgCIJYgCdMoGv/gUDVg7FgAD+7Zpz/jS3yxikAB3/g1pJzQTeLz0UoEswSRJFzy0Gs0RQfKUoUyhRMsyZJAAAAA==', 'mix-12':'UklGRoAAAABXRUJQVlA4IHQAAABQBACdASoUAAoAPxFysFAsJqSisAgBgCIJbACdMoR3AB6gC4aQJ7NoDcgAAPk80lIWA/g3DW6Wvg+ITvI207rgYIFDpxw8e+XzChxu6zatSCOQB7nSbc/US+2Q3O5PuxaBZClvAT4yhIVLi68ImVZ2T3AAAA==', 'epic-03':'UklGRnQAAABXRUJQVlA4IGgAAABwBACdASoUAAoAPxFysVAsJqSisAgBgCIJbACdMoR4GCluxCaEqJV41rcayAD+Dz/NnuO04MKPdufRQGor4tjBetukmSsVWJd6nUkZX7tVUtABVVZGUyDc4XsGMV/jljZA8s6YnOYAAA=='} %}
 {% set reelLabels = {
   ru: {pause:'Пауза видео', resume:'Включить видео'},
   en: {pause:'Pause videos', resume:'Play videos'},
@@ -30,7 +32,7 @@
 		{%- for id in ['epic-04', 'studio-11', 'mix-12', 'epic-03'] %}
 		{#- 30.10: нижний ряд — отдельный слой с магнитом, как остальные блоки; верхний появляется по одному. -#}
 		<div class="reel__tile"{% if loop.index0 >= 2 %} data-magnet-item="desktop"{% endif %}>
-			<div class="reel__bloom">
+			<div class="reel__bloom" style="background-image:url(data:image/webp;base64,{{ reelBlur[id] }})">
 			<picture class="reel__poster">
 				<source media="(max-width: 599px)" srcset="{{ ('/assets/hero/hq-20261029-' + id + '-square.webp') | url }}">
 				<img src="{{ ('/assets/hero/hq-20261029-' + id + '-wide.webp') | url }}" alt="" width="1280" height="640" decoding="async"{% if loop.index0 == 0 %} fetchpriority="high"{% endif %}>

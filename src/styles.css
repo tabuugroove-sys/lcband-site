@@ -5820,7 +5820,7 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 @media (min-width: 900px)  { .reel__grid { aspect-ratio: 2 / 1; } }
 @media (min-width: 1280px) { .reel__grid { aspect-ratio: 21 / 9; } }
 .reel__tile { position: relative; overflow: hidden; }
-.reel__bloom { position: absolute; inset: 0; background: #111; }
+.reel__bloom { position: absolute; inset: 0; background: #111 center / cover no-repeat; }
 .reel__poster,
 .reel__poster img,
 .reel__video {
