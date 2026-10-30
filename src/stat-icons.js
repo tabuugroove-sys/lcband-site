@@ -8,6 +8,14 @@
 	const states = new Map();
 	const maxAngle = 25;
 	const reach = 260;
+	// Mikhail 30.10: «они всё время должны быть анимированы, когда мышкой проводишь, и когда
+	// вверх и вниз сайт». Far from the pointer an icon still turns towards it, gently (floor);
+	// scrolling rocks them by its speed (kick, degrees) and they settle back.
+	const floor = .35;
+	const maxKick = 14;
+	let kick = 0;
+	let lastScrollY = window.scrollY;
+	let lastScrollTime = performance.now();
 	const allowed = () => pointer.matches && !reduced.matches && !document.hidden;
 	let active = false;
 	let clientX = 0;
@@ -42,8 +50,11 @@
 	const render = now => {
 		frame = 0;
 		if (!allowed()) return;
-		const blend = 1 - Math.exp(-Math.min(now - lastTime, 64) / 100);
+		const step = Math.min(now - lastTime, 64);
+		const blend = 1 - Math.exp(-step / 100);
 		lastTime = now;
+		kick *= Math.exp(-step / 220);
+		if (Math.abs(kick) < .05) kick = 0;
 		let moving = false;
 		// Read geometry before writing transforms; the icon's own box is stable.
 		const visible = [...states.values()].filter(state => state.visible && state.decoded);
@@ -58,12 +69,13 @@
 				const distance = Math.hypot(dx, dy);
 				const halfSize = Math.max(bounds.width, bounds.height) / 2;
 				const near = Math.max(0, 1 - Math.max(0, distance - halfSize) / reach);
-				const strength = near * near * (3 - 2 * near);
+				const strength = floor + (1 - floor) * near * near * (3 - 2 * near);
 				// Soft direction near the centre prevents a flip as the pointer crosses it.
 				const scale = maxAngle * strength / Math.max(distance, halfSize);
 				yaw = dx * scale;
 				pitch = -dy * scale;
 			}
+			pitch += kick;
 			state.yaw += (yaw - state.yaw) * blend;
 			state.pitch += (pitch - state.pitch) * blend;
 			const settled = Math.hypot(yaw - state.yaw, pitch - state.pitch) < .02;
@@ -74,7 +86,7 @@
 			state.icon.classList.toggle('is-tracking', Math.hypot(state.yaw, state.pitch) > .02);
 		}
 		// One shared loop, stopped as soon as the icons reach their positions.
-		if (moving) frame = requestAnimationFrame(render);
+		if (moving || kick) frame = requestAnimationFrame(render);
 	};
 	const observer = new IntersectionObserver(entries => {
 		for (const entry of entries) {
@@ -105,10 +117,19 @@
 		for (const state of states.values()) state.bounds = null;
 		if (active) queue();
 	};
-	window.addEventListener('scroll', invalidate, { passive: true });
+	window.addEventListener('scroll', () => {
+		const now = performance.now();
+		const speed = (window.scrollY - lastScrollY) / Math.max(16, now - lastScrollTime);
+		lastScrollY = window.scrollY;
+		lastScrollTime = now;
+		kick = Math.max(-maxKick, Math.min(maxKick, kick + speed * 6));
+		invalidate();
+		queue();
+	}, { passive: true });
 	window.addEventListener('resize', invalidate, { passive: true });
 	const reset = () => {
 		active = false;
+		kick = 0;
 		if (frame) cancelAnimationFrame(frame);
 		frame = 0;
 		states.forEach(resetState);
