@@ -77,3 +77,82 @@ test('slow scroll during page load: one tile at a time, each grows in and moves 
 	// About a second or more between the first two, as before.
 	expect(log[order[1]].t - log[order[0]].t).toBeGreaterThan(900);
 });
+
+test.describe('Homepage reel, desktop details (Mikhail 30.10)', () => {
+	test.beforeEach(({ isMobile }) => test.skip(isMobile, 'desktop animation'));
+
+	const placeGrid = (page, fraction) => page.evaluate(f => {
+		const grid = document.querySelector('[data-reel-grid]');
+		scrollTo({ top: grid.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' });
+	}, fraction);
+	const shownFlags = page => page.locator('.reel__tile').evaluateAll(tiles => tiles.map(tile => tile.classList.contains('is-shown')));
+
+	test('scrolling back up, the tiles shrink away last first; scrolling down brings them again', async ({ page }) => {
+		test.setTimeout(60_000);
+		await serveHqMedia(page);
+		await page.goto('/');
+		await placeGrid(page, 0.15);
+		await expect.poll(() => shownFlags(page), { timeout: 20_000 }).toEqual([true, true, true, true]);
+		const seen = [];
+		for (let i = 0; i < 60; i++) {
+			await page.mouse.wheel(0, -40);
+			await page.waitForTimeout(80);
+			const flags = (await shownFlags(page)).map(Number).join('');
+			if (seen.at(-1) !== flags) seen.push(flags);
+			if (flags === '0000') break;
+		}
+		// Last first, one at a time.
+		expect(seen).toEqual(['1111', '1110', '1100', '1000', '0000']);
+		// A hidden tile is half size and invisible again.
+		const back = await page.locator('.reel__tile').first().evaluate(tile => ({ o: getComputedStyle(tile).opacity, s: new DOMMatrix(getComputedStyle(tile).transform).a }));
+		await expect.poll(() => page.locator('.reel__tile').first().evaluate(tile => new DOMMatrix(getComputedStyle(tile).transform).a)).toBeLessThan(0.6);
+		expect(back).toBeTruthy();
+		await placeGrid(page, 0.6);
+		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
+	});
+
+	test('the first tile comes at once, poster first, even before its video can play', async ({ page }) => {
+		await page.route(/\/assets\/video\/mp4\//, async route => { await new Promise(resolve => setTimeout(resolve, 15_000)); await route.abort().catch(() => {}); });
+		await page.goto('/');
+		await placeGrid(page, 0.6);
+		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/, { timeout: 500 });
+		await expect.poll(() => page.locator('.reel__tile').first().evaluate(tile => getComputedStyle(tile).opacity)).toBe('1');
+		expect(await page.locator('.reel__tile').first().locator('img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+	});
+
+	test('the tiles are hidden before main.js arrives, so no poster flashes and vanishes', async ({ page }) => {
+		let release;
+		const held = new Promise(resolve => { release = resolve; });
+		await page.route(/\/main\.js/, async route => { await held; await route.continue(); });
+		// A deferred script holds DOMContentLoaded, so wait only for the grid's markup.
+		await page.goto('/', { waitUntil: 'commit' });
+		await page.waitForSelector('#reviews', { state: 'attached' });
+		await placeGrid(page, 0.5);
+		expect(await page.evaluate(() => window.LCBReelSequence)).toBeUndefined();
+		expect(await page.locator('.reel__tile').evaluateAll(tiles => tiles.map(tile => getComputedStyle(tile).opacity))).toEqual(['0', '0', '0', '0']);
+		release();
+		await expect(page.locator('.reel__tile').first()).toHaveClass(/is-shown/);
+	});
+
+	test('without main.js the tiles come back after 8 s', async ({ page }) => {
+		await page.route(/\/main\.js/, route => route.abort());
+		await page.goto('/');
+		await placeGrid(page, 0.5);
+		await expect.poll(() => page.locator('[data-reel-grid]').getAttribute('class'), { timeout: 12_000 }).not.toMatch(/is-sequenced/);
+	});
+
+	test('the lower video rail waits lower and fainter, then sticks under the upper one', async ({ page }) => {
+		await page.route('**/*.mp4*', route => route.abort());
+		await page.goto('/');
+		const rail = page.locator('.video-rails[data-magnet] > .video-rail--small');
+		const placeAt = fraction => rail.evaluate((element, f) => {
+			const top = element.getBoundingClientRect().top + scrollY - (Number.parseFloat(getComputedStyle(element).transform.split(',')[5]) || 0);
+			scrollTo({ top: top - innerHeight * f, behavior: 'instant' });
+		}, fraction);
+		const lift = () => rail.evaluate(element => { const m = getComputedStyle(element).transform; return m === 'none' ? 0 : Number.parseFloat(m.split(',')[5]); });
+		await placeAt(0.95);
+		await expect.poll(lift).toBeGreaterThan(40);
+		await placeAt(0.3);
+		await expect.poll(lift).toBeLessThan(1);
+	});
+});

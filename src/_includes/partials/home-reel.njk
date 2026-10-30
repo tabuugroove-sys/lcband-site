@@ -23,6 +23,9 @@
 	{#- data-reel-zoom — эксперимент 30.10: плитка вырастает из центра чуть больше своего размера
 	    и возвращается к обычному. Откатить — убрать атрибут. -#}
 	<div class="reel__grid" data-reel-grid data-reel-zoom>
+		{#- 30.10: плитки прячутся сразу, до main.js, иначе все постеры мелькают и пропадают.
+		    Не пришёл main.js за 8 с — плитки возвращаются. Телефон и reduced-motion — без анимации. -#}
+		<script>(function(g){if(g&&innerWidth>599&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){g.classList.add('is-sequenced');setTimeout(function(){if(!window.LCBReelSequence)g.classList.remove('is-sequenced')},8000)}})(document.currentScript.parentElement);</script>
 		{%- for id in ['epic-04', 'studio-11', 'mix-12', 'epic-03'] %}
 		<div class="reel__tile">
 			<picture class="reel__poster">

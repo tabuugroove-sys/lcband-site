@@ -273,7 +273,8 @@ permalink: /en/
 		{% include "partials/promo-downloads.njk" %}
 	</div>
 
-	<div class="video-rail video-rail--big reveal" role="region" aria-label="Studio promo videos">
+	<div class="video-rails" data-magnet="desktop">
+	<div class="video-rail video-rail--big" role="region" aria-label="Studio promo videos">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Studio Promo Videos</h3></div>
 		<ul class="video-rail__track">
 			{% for v in promos %}
@@ -294,7 +295,7 @@ permalink: /en/
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="video-rail video-rail--small reveal" role="region" aria-label="Live concert videos">
+	<div class="video-rail video-rail--small" role="region" aria-label="Live concert videos">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Live Concert Videos</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives %}
@@ -314,6 +315,7 @@ permalink: /en/
 			</li>
 			{% endfor %}
 		</ul>
+	</div>
 	</div>
 </section>
 

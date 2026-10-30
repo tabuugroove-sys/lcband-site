@@ -129,10 +129,10 @@
 	// ---------- Home: four silent reels (2×2) ----------
 	// Never under reduced motion, Save-Data or 2g/3g. Phones get square cuts, wider
 	// screens 2:1 cuts. «Основная фотка первая загрузилась — сразу пусть загружаются первые
-	// два, чтобы успели, пока он вниз листает» (Mikhail 30.10): once the first screen's
-	// picture is in, the first two videos load ahead (paused), the third once the second
-	// can play, the fourth once the third can — so the bottom of the page already has
-	// something to play when the visitor gets there, and no more than two load at once.
+	// два, чтобы успели, пока он вниз листает», «особенно первое видео» (Mikhail 30.10): once
+	// the first screen's picture is in, the first video loads ahead (paused) on its own, the
+	// second as soon as the first can play, then the third and the fourth the same way — so
+	// the bottom of the page already has something to play when the visitor gets there.
 	// A tile plays only once the reveal below has shown it, and only on screen.
 	// One button pauses and resumes them.
 	(() => {
@@ -161,7 +161,7 @@
 			toggle.hidden = !ready || !allowed() || Boolean(playerOpen());
 		};
 		const sourceFor = video => (squareMedia.matches ? video.dataset.srcSquare : video.dataset.srcWide);
-		const ahead = i => early && pageActive && allowed() && (i < 2 || videos[i - 1].readyState >= 3);
+		const ahead = i => early && pageActive && allowed() && (i === 0 || videos[i - 1].readyState >= 3);
 		const wanted = i => i < shown && shouldPlay();
 		const attach = video => {
 			const source = sourceFor(video);
@@ -246,11 +246,16 @@
 	// reduced motion: all four are there at once. Phones (30.10, «на телефоне максимально
 	// быстро, анимация не нужна»): the four posters are there at once with no animation;
 	// only the videos still come one after another, so a phone never pulls four at once.
+	// «Когда вверх мотаешь — наоборот, уходят в квадрат в два раза меньше» (30.10): scrolling
+	// back up, the tiles shrink away one by one, last first, and come in again on the way down.
+	// The grid is already hidden by a line in home-reel.njk before this script arrives, so
+	// the posters never flash and vanish.
 	(() => {
 		const host = document.querySelector('[data-reel]');
 		const grid = host?.querySelector('[data-reel-grid]');
 		if (!grid || reduceMotion.matches || !('IntersectionObserver' in window)) return;
 		const phone = window.matchMedia('(max-width: 599px)').matches;
+		window.LCBReelSequence = true;
 		const ribbon = host.querySelector('.reel__ribbon');
 		const tiles = [...grid.querySelectorAll('.reel__tile')];
 		const minGap = 1200;
@@ -287,15 +292,11 @@
 			video.addEventListener('canplay', check);
 			video.addEventListener('timeupdate', check);
 		};
-		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
-		const next = (last = shown) => {
-			window.clearTimeout(timer);
-			stopWaiting();
-			if (shown >= tiles.length) return;
-			while (shown <= last) tiles[shown++].classList.add('is-shown');
+		// Waits for the last shown tile's video to move, then brings the next tile.
+		let armed = false;
+		const arm = () => {
+			armed = true;
 			const tile = tiles[shown - 1];
-			announce();
-			if (shown >= tiles.length) return;
 			const since = performance.now();
 			const video = tile.querySelector('[data-reel-video]');
 			let done = false;
@@ -310,6 +311,36 @@
 			video?.addEventListener('timeupdate', moving);
 			timer = window.setTimeout(go, maxWait);
 		};
+		// Shows the next tile (or every tile up to `last`), then waits for its video to move.
+		const next = (last = shown) => {
+			window.clearTimeout(timer);
+			stopWaiting();
+			armed = false;
+			if (shown >= tiles.length) return;
+			while (shown <= last) tiles[shown++].classList.add('is-shown');
+			announce();
+			if (shown < tiles.length) arm();
+		};
+		// Going back up: the last shown tile shrinks away once the grid has dropped past where
+		// it came in, one tile at a time.
+		let lastHide = 0;
+		const backOff = () => {
+			const rect = grid.getBoundingClientRect();
+			const height = window.innerHeight;
+			const gone = rect.top > height;
+			if (!gone && performance.now() - lastHide < 160) return;
+			const tile = tiles[shown - 1];
+			const out = gone || (shown === 1
+				? rect.top + rect.height * 0.3 > height * 0.97
+				: rect.top + tile.offsetTop > height * (tile.offsetTop ? 0.75 : 0.8));
+			if (!out) return;
+			window.clearTimeout(timer);
+			stopWaiting();
+			armed = false;
+			lastHide = performance.now();
+			do tiles[--shown].classList.remove('is-shown'); while (gone && shown > 0);
+			announce();
+		};
 		// «Слева снизу — ровно в тот момент, когда его верх пересекает центр экрана; это крайнее
 		// время» (Mikhail 30.10): the bottom-left tile comes in, video and all, no later than its
 		// top edge reaches the middle of the screen. A slow scroll keeps the usual pace; a fast
@@ -322,7 +353,8 @@
 		const maybeBegin = () => {
 			if (shown) return;
 			const rect = grid.getBoundingClientRect();
-			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) whenMoving(next);
+			// The first tile comes at once, poster first if its video is not ready yet.
+			if (rect.bottom > 0 && rect.top + rect.height * 0.3 <= window.innerHeight * 0.92) next();
 		};
 		const due = () => {
 			// Where the tile sits in the grid, not its shrunken box while it waits.
@@ -337,12 +369,19 @@
 			while (shown < tiles.length) tiles[shown++].classList.add('is-shown');
 			announce();
 		};
+		let lastY = window.scrollY;
 		const onScroll = () => {
+			const up = window.scrollY < lastY;
+			lastY = window.scrollY;
+			if (up && !phone && shown > 0) { backOff(); return; }
 			maybeBegin();
 			if (shown === 0 || shown >= tiles.length) return;
 			const rect = grid.getBoundingClientRect();
-			if (rect.bottom < window.innerHeight * 0.35 || rect.top > window.innerHeight * 0.9) rest();
-			else due();
+			if (rect.bottom < window.innerHeight * 0.35) rest();
+			else {
+				due();
+				if (!armed && !holding && shown < tiles.length) arm();
+			}
 		};
 		if (!phone) {
 			place();
@@ -354,7 +393,6 @@
 		const begin = new IntersectionObserver(entries => {
 			if (!entries[0].isIntersecting) return;
 			maybeBegin();
-			if (shown) begin.disconnect();
 		}, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
 		begin.observe(grid);
 		// The line above the grid slides up once, like the headlines on Apple Music.

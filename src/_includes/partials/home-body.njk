@@ -272,7 +272,9 @@
 		<h2 class="music-title">Главное — музыка.</h2>
 	</div>
 
-	<div class="video-rail video-rail--big reveal" role="region" aria-label="Студийные проморолики">
+	{#- Михаил 30.10: ленты — как плитки «Корпоративы…»: сначала верхняя, потом расстояние, нижняя подтягивается и прилипает. -#}
+	<div class="video-rails" data-magnet="desktop">
+	<div class="video-rail video-rail--big" role="region" aria-label="Студийные проморолики">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Студийные проморолики</h3></div>
 		<ul class="video-rail__track">
 			{% for v in promos %}
@@ -293,7 +295,7 @@
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="video-rail video-rail--small reveal" role="region" aria-label="Живые видео с концертов">
+	<div class="video-rail video-rail--small" role="region" aria-label="Живые видео с концертов">
 		<div class="video-rail__heading"><h3 class="video-rail__title">Живые видео с концертов</h3></div>
 		<ul class="video-rail__track">
 			{% for v in lives %}
@@ -313,6 +315,7 @@
 			</li>
 			{% endfor %}
 		</ul>
+	</div>
 	</div>
 </section>
 
