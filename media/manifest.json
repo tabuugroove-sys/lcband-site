@@ -368,6 +368,11 @@
       "sha256": "f335fd0cdf7f851cbb1501f5258cf979abff050ad55d8dbae07642d20e8447a0"
     },
     {
+      "path": "assets/video/mp4/lazzy-highlights-loop-20261031-720.mp4",
+      "bytes": 2001818,
+      "sha256": "b8639fd60a09c3ea9ebd5bf34bcf3986260a50f7425514d554d74220a80a9871"
+    },
+    {
       "path": "assets/video/mp4/leo-sax-promo-1080.mp4",
       "bytes": 69205183,
       "sha256": "c54414ced9d9995cdfe2f756b1f11c7e2bf8ccf045d077e1abc1a52203c20815"

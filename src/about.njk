@@ -71,7 +71,7 @@ permalink: /about/
 {% set storyRooms = [
 	{eyebrow:'Репертуар', title:'Песни<br>на 12 языках.', text:'Итальянский, испанский, французский, английский и другие языки — под программу и аудиторию. Список песен можно открыть с поиском или скачать в PDF.', href:'/repertoire/', linkLabel:'Открыть список песен', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
 	{eyebrow:'Репертуар', title:'500+ песен.<br>От джаза до танцпола.', text:'Для welcome — джаз и лаунж; для основной программы — поп, рок, ретро или латино. Выбираем песни и порядок блоков под сценарий вашего вечера.', href:'/programs/', linkLabel:'Посмотреть программы', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-big-lineup'},
-	{eyebrow:'Вокалисты', title:'Lazzy.<br>Трибьют Black Eyed Peas.', text:'В программе Lazzy — хиты Black Eyed Peas и англоязычные танцевальные песни. В ролике — «Coco Jambo» с гостями; другие записи можно посмотреть на странице вокалиста.', href:'/vocalists/laz/', linkLabel:'Программа и видео Lazzy', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
+	{eyebrow:'Вокалисты', title:'Lazzy.<br>Трибьют Black Eyed Peas.', text:'В программе Lazzy — хиты Black Eyed Peas и англоязычные танцевальные песни. Записи выступлений и программу можно посмотреть на странице вокалиста.', href:'/vocalists/laz/', linkLabel:'Программа и видео Lazzy', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo', preview:'lazzy-highlights-loop-20261031', previewPoster:'lazzy-highlights-loop-20261031'},
 	{eyebrow:'Образы', title:'20+ образов.<br>Свой стиль на каждый повод.', text:'Красный, чёрно-белый, золотой и другие сценические образы — в фотогалерее. Выбираем костюмы под палитру и формат события.', href:'/costumes/', linkLabel:'Посмотреть сценические образы', bg:'#f5f5f7', light:true, video:'live-icon'}
 ] %}
 <section class="story-rooms" data-story-rooms>
@@ -81,8 +81,8 @@ permalink: /about/
 				{% for r in storyRooms %}
 				<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
 					<video muted loop playsinline preload="none"
-						poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}">
-						<source data-src="{{ site.url }}/assets/video/mp4/{{ r.video }}-720.mp4" type="video/mp4">
+						poster="{{ ('/assets/video/posters/' + (r.previewPoster or r.video) + '.jpg') | url }}">
+						<source data-src="{{ site.url }}/assets/video/mp4/{{ r.preview or r.video }}-720.mp4" type="video/mp4">
 					</video>
 				</div>
 				{% endfor %}
@@ -93,7 +93,7 @@ permalink: /about/
 		{% for r in storyRooms %}
 		<div class="story-room{% if r.light %} story-room--light{% endif %}" data-room="{{ loop.index0 }}" style="--room-bg: {{ r.bg }};{% if r.tint %} --room-tint: {{ r.tint }};{% endif %}">
 			<div class="story-room__copy">
-				<img class="story-room__static" src="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
+				<img class="story-room__static" src="{{ ('/assets/video/posters/' + (r.previewPoster or r.video) + '.jpg') | url }}" alt="" loading="lazy" width="1800" height="1012">
 				<a class="story-room__watch" href="#" data-video="{{ r.video }}">Смотреть видео</a>
 				<p class="story-room__eyebrow">{{ r.eyebrow }}</p>
 				<h2 class="story-room__title">{{ r.title | safe }}</h2>
