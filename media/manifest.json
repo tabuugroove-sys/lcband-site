@@ -1388,6 +1388,21 @@
       "sha256": "79330f6a48e9f3f25893297576e5c8db033a468c0e141361ffb657df21344377"
     },
     {
+      "path": "assets/video/mp4/thematic-retro-shes-got-it-1080.mp4",
+      "bytes": 30546498,
+      "sha256": "d6bb188f65451acd4dcb4f7fdab7b8e563c668778acaaba88a9bd680f5e4c020"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-shes-got-it-2160.mp4",
+      "bytes": 60376141,
+      "sha256": "958db251cb42da91413cb07dbeca16d7dcf3f14ee09dee277c7d0f63d479ba40"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-shes-got-it-720.mp4",
+      "bytes": 15625372,
+      "sha256": "8eb70feb9cbdd23d23d472177603d9fb4fc2fe48f7005174ccb2e6a3220e7328"
+    },
+    {
       "path": "assets/video/mp4/thematic-retro-stilyagi-1080.mp4",
       "bytes": 64423500,
       "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
