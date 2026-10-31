@@ -726,7 +726,7 @@ h1, h2, h3, p { margin: 0; }
 	object-fit: cover;
 	object-position: center 50%;
 	opacity: 0;
-	transition: opacity 1.1s cubic-bezier(.4, 0, .2, 1);
+	transition: opacity .733s cubic-bezier(.4, 0, .2, 1);
 	will-change: opacity, transform;
 }
 

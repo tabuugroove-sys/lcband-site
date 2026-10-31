@@ -1516,7 +1516,7 @@ void main(){
 		const watchedHeroClips = new Set();
 		let current = 'red';
 		let autoTimer = null;
-		let autoResumeTimer = null;
+		let autoGeneration = 0;
 		let heroOrientationTimer = null;
 		let costumeRequest = 0;
 		const imagePromises = new WeakMap();
@@ -1619,21 +1619,26 @@ void main(){
 			return order[(idx + 1) % order.length];
 		}
 
-		function startAuto() {
+		const heroAutoDelay = () => (mobileHeroSwipe.matches ? 3000 : 5500) / 1.5;
+		function startAuto(delay = heroAutoDelay()) {
+			stopAuto();
 			if (reducedHeroMotion.matches || hero.classList.contains('is-playing') || (backgroundController && !backgroundController.costumeView)) return;
-			if (autoTimer) clearInterval(autoTimer);
-			const delay = mobileHeroSwipe.matches ? 3000 : 5500;
-			autoTimer = setInterval(() => setActive(nextKey()), delay);
+			const generation = autoGeneration;
+			autoTimer = setTimeout(async () => {
+				autoTimer = null;
+				await setActive(nextKey());
+				// Give every displayed look a full interval, even after a slow image load.
+				if (generation === autoGeneration) startAuto();
+			}, delay);
 		}
 
 		function stopAuto() {
-			if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+			autoGeneration += 1;
+			if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
 		}
 
 		function scheduleAutoResume() {
-			if (autoResumeTimer) clearTimeout(autoResumeTimer);
-			if (reducedHeroMotion.matches) return;
-			autoResumeTimer = setTimeout(startAuto, mobileHeroSwipe.matches ? 3000 : 7000);
+			startAuto();
 		}
 
 		function setHeroLoading(loading) {
@@ -1991,10 +1996,6 @@ void main(){
 			swipePointerId = e.pointerId;
 			swipeAxis = '';
 			stopAuto();
-			if (autoResumeTimer) {
-				clearTimeout(autoResumeTimer);
-				autoResumeTimer = null;
-			}
 			if (mobileHeroSwipe.matches) {
 				try { hero.setPointerCapture(e.pointerId); } catch (_) {}
 			}
@@ -2141,7 +2142,16 @@ void main(){
 		});
 
 		if (!reducedHeroMotion.matches) {
-			startAuto();
+			// Fetch upcoming responsive photos now, rather than on the first switch.
+			imgs.forEach(image => { image.loading = 'eager'; loadHeroImage(image.dataset.heroImg); });
+			imageReady(loadHeroImage(current)).then(loaded => {
+				if (!loaded || autoTimer || current !== 'red') return;
+				// Count the red photo's time already on screen during a cold script load.
+				const image = loadHeroImage(current);
+				const resource = performance.getEntriesByName(image.currentSrc || image.src).at(-1);
+				const shownAt = resource?.responseEnd || performance.now();
+				startAuto(Math.max(0, heroAutoDelay() - (performance.now() - shownAt)));
+			});
 		}
 	}
 
