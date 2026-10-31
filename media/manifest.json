@@ -1083,14 +1083,14 @@
       "sha256": "824fe37e3a6842541a8fe2bd0518f30e518e36720c4052556688ba2befb6e648"
     },
     {
-      "path": "assets/video/mp4/raim-piano-promo.mp4",
-      "bytes": 41946345,
-      "sha256": "f17a43707021d0788f5ce390269d43b73218f290382bd5b314e7feb24eb53617"
-    },
-    {
       "path": "assets/video/mp4/raim-piano-karaoke.mp4",
       "bytes": 22240227,
       "sha256": "824fe37e3a6842541a8fe2bd0518f30e518e36720c4052556688ba2befb6e648"
+    },
+    {
+      "path": "assets/video/mp4/raim-piano-promo.mp4",
+      "bytes": 41946345,
+      "sha256": "f17a43707021d0788f5ce390269d43b73218f290382bd5b314e7feb24eb53617"
     },
     {
       "path": "assets/video/mp4/raim-piano-promo.mp4",
@@ -1323,16 +1323,6 @@
       "sha256": "9fefec4883ae2eff8191b1356afeac6df576b72b9f3a6856916ab4f5804b2685"
     },
     {
-      "path": "assets/video/mp4/thematic-retro-90s-1080.mp4",
-      "bytes": 16202690,
-      "sha256": "a4f22af362e2421a8b4d9e6d9711f39dd972cdf60e3160a9fd1e457e814a9ebe"
-    },
-    {
-      "path": "assets/video/mp4/thematic-retro-90s-720.mp4",
-      "bytes": 17322268,
-      "sha256": "e76e064a2e5a64f658672e43ac0a9ec9a9de15d52925e8e3272a418d4dbe65c9"
-    },
-    {
       "path": "assets/video/mp4/thematic-retro-boyar-1080.mp4",
       "bytes": 51010011,
       "sha256": "b74af0408561d852b3239547eacaa71e7f8e333186ef2eef66798769aa9d299a"
@@ -1381,6 +1371,21 @@
       "path": "assets/video/mp4/thematic-retro-heart-720.mp4",
       "bytes": 10090950,
       "sha256": "d2933d768ec742c3b15aed8a56e77bd2c74383b7b8b0f7577409c27a015bccf5"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-main-1080.mp4",
+      "bytes": 159181229,
+      "sha256": "bac863ff9bff29b915386b59b95960d9a3f7b73d5065f59e32617f526537e7da"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-main-2160.mp4",
+      "bytes": 426112720,
+      "sha256": "dcc237d1e236d565f4aa366628efa9d00d437694151c6f63a124800915908118"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-main-720.mp4",
+      "bytes": 40894512,
+      "sha256": "79330f6a48e9f3f25893297576e5c8db033a468c0e141361ffb657df21344377"
     },
     {
       "path": "assets/video/mp4/thematic-retro-stilyagi-1080.mp4",

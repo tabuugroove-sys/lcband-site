@@ -121,12 +121,16 @@
 			"lead": "A flexible retro program with 60s, 70s, 80s and 90s blocks, international dance classics and signature costumes matched to the era.",
 			"bullets": ["Dance classics from the 60s and 70s", "1980s pop and disco", "International retro hits including Modern Talking", "A 1990s dance block", "Signature costumes for every era"],
 			"poster": "assets/video/posters/thematic-retro-heart-2026.jpg",
-			"video": "thematic-retro-heart",
+			"video": "thematic-retro-main",
 			"videos": [
+				{"slug": "thematic-retro-main", "title": "Retro Show", "label": "60s-90s", "poster": "assets/video/posters/thematic-retro-heart-2026.jpg"},
 				{"slug": "thematic-retro-stilyagi", "title": "Retro 60s", "label": "Retro", "poster": "assets/video/posters/thematic-retro-stilyagi.jpg"},
 				{"slug": "thematic-retro-boyar", "title": "Boyarsky", "label": "Soviet pop", "poster": "assets/video/posters/thematic-retro-boyar.jpg"},
-				{"slug": "thematic-retro-90s", "title": "90s Dance Block", "label": "Dance", "poster": "assets/video/posters/thematic-retro-90s.jpg"},
-				{"slug": "thematic-retro-heart", "title": "You're My Heart", "label": "Classic", "poster": "assets/video/posters/thematic-retro-heart.jpg"}
+				{"slug": "thematic-retro-heart", "title": "You're My Heart", "label": "Classic", "poster": "assets/video/posters/thematic-retro-heart.jpg"},
+				{"slug": "promo-amore-no", "title": "Amore No", "label": "Retro Italia", "poster": "assets/video/posters/promo-amore-no.jpg"},
+				{"slug": "thematic-italian", "title": "Cosa sei", "label": "Retro 80s", "poster": "assets/video/posters/thematic-italian.jpg"},
+				{"slug": "teddy-macarena", "title": "Macarena", "label": "Retro 90s", "poster": "assets/video/posters/teddy-macarena.jpg"},
+				{"slug": "live-jazz-vintage", "title": "Vintage Jazz", "label": "Vintage", "poster": "assets/video/posters/live-jazz-vintage.jpg"}
 			]
 		},
 		{

@@ -158,9 +158,15 @@
 			"90-е (ICON-программа)",
 			"Фирменные костюмы под эпоху"
 		],
-		"poster": "assets/video/posters/thematic-retro-stilyagi.jpg",
-		"video": "thematic-retro-stilyagi",
+		"poster": "assets/video/posters/thematic-retro-heart-2026.jpg",
+		"video": "thematic-retro-main",
 		"videos": [
+			{
+				"slug": "thematic-retro-main",
+				"title": "Ретро-шоу",
+				"label": "60-е–90-е",
+				"poster": "assets/video/posters/thematic-retro-heart-2026.jpg"
+			},
 			{
 				"slug": "thematic-retro-stilyagi",
 				"title": "Стиляги",
@@ -174,16 +180,34 @@
 				"poster": "assets/video/posters/thematic-retro-boyar.jpg"
 			},
 			{
-				"slug": "thematic-retro-90s",
-				"title": "90-е",
-				"label": "Dance block",
-				"poster": "assets/video/posters/thematic-retro-90s.jpg"
-			},
-			{
 				"slug": "thematic-retro-heart",
 				"title": "Retro heart",
 				"label": "Classic",
 				"poster": "assets/video/posters/thematic-retro-heart.jpg"
+			},
+			{
+				"slug": "promo-amore-no",
+				"title": "Amore No",
+				"label": "Retro Italia",
+				"poster": "assets/video/posters/promo-amore-no.jpg"
+			},
+			{
+				"slug": "thematic-italian",
+				"title": "Cosa sei",
+				"label": "Retro 80s",
+				"poster": "assets/video/posters/thematic-italian.jpg"
+			},
+			{
+				"slug": "teddy-macarena",
+				"title": "Macarena",
+				"label": "Retro 90s",
+				"poster": "assets/video/posters/teddy-macarena.jpg"
+			},
+			{
+				"slug": "live-jazz-vintage",
+				"title": "Vintage Jazz",
+				"label": "Vintage",
+				"poster": "assets/video/posters/live-jazz-vintage.jpg"
 			}
 		],
 		"keywords": "ретро кавер группа, стиляги программа, 90-е кавер группа москва, боярский кавер"
