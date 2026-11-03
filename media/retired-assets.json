@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "reason": "Unused historical background loops and image drafts; original files preserved in Git or SHA256-verified local backup. Excluded from passthrough deployment.",
+  "files": [
+    {
+      "path": "assets/hero/reel-20261029-studio-11-square.mp4",
+      "bytes": 1077122,
+      "sha256": "a38e76ade91aafd626b6dff42ea0346ec024e1e545fe6407f27d2b4eb7c710a9"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-03-square.mp4",
+      "bytes": 1069947,
+      "sha256": "30aca6af815e9eed7e61e7f571b39c45b3f43ac86e6b6528d6015f6dbcc6a261"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-03-wide.mp4",
+      "bytes": 1592256,
+      "sha256": "6a943cf367b69c49ecb4722e2bc407d51a9f87ea95f5414bf9101d4179227a0c"
+    },
+    {
+      "path": "assets/hero/reel-20261029-studio-11-wide.mp4",
+      "bytes": 1483946,
+      "sha256": "311acff4dab662ca6fab7f289f1424c35f616b64c488d719cdf841a5c80334ff"
+    },
+    {
+      "path": "assets/hero/about-background-20261028-540.mp4",
+      "bytes": 1442827,
+      "sha256": "ee8d9bf0075565455b32810bea381883c12090dd501230d50b0148c27b93a89e"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-06-wide.mp4",
+      "bytes": 1575736,
+      "sha256": "46e13acda19336f66e041743b147caeb1dc76d829ac14b3f819e550f5ee40613"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-04-square.mp4",
+      "bytes": 1079320,
+      "sha256": "bc868d806438b5f5ef4e36b2c7476f046c1d1691e4cbd6498540cb7d39f98f83"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-06-square.mp4",
+      "bytes": 1076084,
+      "sha256": "0b0700404a818613d360b1e818b89fd861284b2ae6a9337c082949bb071e376e"
+    },
+    {
+      "path": "assets/hero/reel-20261029-epic-04-wide.mp4",
+      "bytes": 1580315,
+      "sha256": "7d2c424fa4aeaa7b36c40a5186ab5c47a5ce219f979c10d5e5a43d05980acb06"
+    },
+    {
+      "path": "assets/hero/band-montage-20261028-540.mp4",
+      "bytes": 1447092,
+      "sha256": "b55a6af8aa86739e50ae81ac60eef72e00aae6bd1fc99bd344bb22485c611cf2"
+    },
+    {
+      "path": "assets/hero/band-montage-20261028-360.mp4",
+      "bytes": 634592,
+      "sha256": "50c7b17847cd1da7e3eb7d4ccd454ec6484623528af9557f4ce89787ce3a3166"
+    },
+    {
+      "path": "assets/hero/about-background-20261028-360.mp4",
+      "bytes": 722610,
+      "sha256": "4ebbc4d0d52dc1de9515a2531df0d60a573db4c330e281f6d7bce70962f177ae"
+    },
+    {
+      "path": "assets/photos/sax-band-show-source-dj-final.png",
+      "bytes": 1986066,
+      "sha256": "c1502b60142eca19e94dd6aa02471f6bdfb8f13736ea106d4b15b1c9fe1d9869"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-final.png",
+      "bytes": 1939249,
+      "sha256": "e1e410f0e9fcbfdccb8d93ae40e874ad357d68d0ffd77862ac19834ef2425eee"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-final.jpg",
+      "bytes": 361301,
+      "sha256": "cdc66e727dec4b6e80c0fea4bb72b8e2160a98d477e3fc686c23fda6988a6648"
+    },
+    {
+      "path": "assets/photos/sax-band-show-dj-party-vibe.jpg",
+      "bytes": 394900,
+      "sha256": "4ce8a04b50c71d30f8aab2c6d6dc658312724741aabfa3653b0f43bb60df2a28"
+    },
+    {
+      "path": "assets/photos/sax-band-show-dj-slight-low.jpg",
+      "bytes": 240485,
+      "sha256": "52c8d7bf89af519b7be764b795e29407df31a9f68b37dd3c6a90c24782d50e25"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-dj-low.png",
+      "bytes": 1990283,
+      "sha256": "c97c827b2f22abc5a2ce097d458727ff7d45c2110c378cc4f454a7d619a751e4"
+    },
+    {
+      "path": "assets/photos/vocalists-faceswap.jpg",
+      "bytes": 1373269,
+      "sha256": "20dea4a033b7cbdeef585c3267a0e4d700ee351c4e698e274507925484d00c7e"
+    },
+    {
+      "path": "assets/photos/sax-band-show-dj-party-vibe.png",
+      "bytes": 2021224,
+      "sha256": "31b62991d8592219db0a605c07ae825a708e0ef62fec3a50a37c12549a598b12"
+    },
+    {
+      "path": "assets/photos/vocalists_v5.jpg",
+      "bytes": 1373016,
+      "sha256": "b1f0fc83d6fb06b4f2f88eff8061d25909b7d4df516516860ca5cb02b34f0d08"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-dj-final.jpg",
+      "bytes": 387351,
+      "sha256": "cc569edd7ded3096e602576087dc0160a70ce4ac0f3ee2246bf0c3ec94689ce3"
+    },
+    {
+      "path": "assets/photos/sax-band-show-original-face-dj.jpg",
+      "bytes": 546787,
+      "sha256": "db7b1f2c04e2d3fccdf5eba5ea21c80a473519015f9cb88de7a7a0001bd1b06a"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-local.jpg",
+      "bytes": 588909,
+      "sha256": "b9d2c66303267ba29e9f37c90e44a1f25fd6332be36c2f68f6350d0263254d02"
+    },
+    {
+      "path": "assets/photos/sax-band-show-cover-dj.jpg",
+      "bytes": 483385,
+      "sha256": "85de55995e069f1b19a89f6f99ec50642f969906a9b5b71e2e685dbbe22d4f3b"
+    },
+    {
+      "path": "assets/photos/sax-band-show-dj-stas-original-eyes.jpg",
+      "bytes": 240453,
+      "sha256": "498f3ef2bd93a74ecdaaa26c58da5b70e452df87dfe6ae1e91108cd679c31ea9"
+    },
+    {
+      "path": "assets/photos/vocalists_v3.jpg",
+      "bytes": 1374205,
+      "sha256": "73915f871be6a0ab4849c2ba0892b909e4853ecfee74af5d591d22089b5566c8"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads.png",
+      "bytes": 1912192,
+      "sha256": "5af22e5c8959a2a2ff8c30b35891c54e050bee41adc8245b9fb3bb3118b7a8ef"
+    },
+    {
+      "path": "assets/photos/vocalists_v2.jpg",
+      "bytes": 1372920,
+      "sha256": "6662279bd41b97a9f5701da8a6ca55df7daeec0e79d5ea44180d235c22f78811"
+    },
+    {
+      "path": "assets/photos/sax-band-show-cover-dj.png",
+      "bytes": 2192911,
+      "sha256": "fb03d253c86f2d8c6d5277e05f9b7cd9613ead5d45b86ea93afb09357c27ff38"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-dj-final.png",
+      "bytes": 1990008,
+      "sha256": "86418479e44c9cccbb1e4a6df3a0359dbf54dc2be89506725c93077e457737c1"
+    },
+    {
+      "path": "assets/photos/vocalists_v6.jpg",
+      "bytes": 1372980,
+      "sha256": "ccc3eabb68bcd8970f6ebf13543c9e481449df62d8e9c14334bcc333f48f484f"
+    },
+    {
+      "path": "assets/photos/sax-band-show-cover.jpg",
+      "bytes": 323181,
+      "sha256": "0214eb07100fb0b062d69a99efe4b96afb6e6514923dfd628fc780399d76c0d8"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-dj-low.jpg",
+      "bytes": 380087,
+      "sha256": "00bfbb359821e2970b5dcbc1f2f42d7c4d7939ccf5cbe73feab69f98921e9929"
+    },
+    {
+      "path": "assets/photos/vocalists_v7.jpg",
+      "bytes": 1373168,
+      "sha256": "80857dabb68d927d0d7071df79cd166059788c3cf50df9eeba684543da92d6b6"
+    },
+    {
+      "path": "assets/photos/sax-band-show-source-dj-final.jpg",
+      "bytes": 378015,
+      "sha256": "9375f5c1debfb6826f800d8fabe13976b902ceb15a35d89f991464c2ab49d19d"
+    },
+    {
+      "path": "assets/photos/sax-band-show-no-ipads-composite.jpg",
+      "bytes": 752341,
+      "sha256": "2a212f85cc43d8c2f70b948cbe8b7796e44d97ef666fd4bc228f812e0480a381"
+    },
+    {
+      "path": "assets/photos/sax-band-show-dj-knobs-donor.png",
+      "bytes": 2028645,
+      "sha256": "d3f2763b8b4c5bfba47e5d0f7c28f35da8fa284fdb7087f71561888d94ca58e7"
+    },
+    {
+      "path": "assets/photos/vocalists_v4.jpg",
+      "bytes": 1374205,
+      "sha256": "73915f871be6a0ab4849c2ba0892b909e4853ecfee74af5d591d22089b5566c8"
+    }
+  ]
+}

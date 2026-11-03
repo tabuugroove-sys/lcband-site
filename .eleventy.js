@@ -19,6 +19,8 @@ export default function (eleventyConfig) {
 	// Full performance MP4 files live on Sprinthost and are catalogued in
 	// media/manifest.json. Short silent background loops (under 1.6 MB each) live
 	// in assets/hero and are versioned with the site for reproducible deployment.
+	// Keep archived source files in Git without copying retired media back to hosting.
+	const retiredAssets = JSON.parse(fs.readFileSync(new URL('./media/retired-assets.json', import.meta.url), 'utf8')).files;
 	const passthroughAssetDirectories = [
 		"costumes",
 		"docs",
@@ -35,9 +37,10 @@ export default function (eleventyConfig) {
 		"vocalists",
 	];
 	for (const assetDirectory of passthroughAssetDirectories) {
+		const prefix = `assets/${assetDirectory}/`;
 		eleventyConfig.addPassthroughCopy({
 			[`src/assets/${assetDirectory}`]: `assets/${assetDirectory}`,
-		});
+		}, { filter: ['**', ...retiredAssets.filter(file => file.path.startsWith(prefix)).map(file => `!${file.path.slice(prefix.length)}`)] });
 	}
 	// The catalogue HTML is rendered as a template. Copying the whole directory
 	// as well creates two writers for index.html and makes transforms race.
