@@ -8,6 +8,7 @@ const mediaDirectory = path.join(root, "src", "assets", "video", "mp4");
 const manifestFile = path.join(root, "media", "manifest.json");
 const publicOrigin = "https://luxuryband.ru";
 const options = new Set(process.argv.slice(2));
+const excludedVideos = JSON.parse(fs.readFileSync(path.join(root, "media", "lcband-promo-package.json"), "utf8")).excludedVideos || [];
 
 function sha256(file) {
 	const hash = crypto.createHash("sha256");
@@ -20,7 +21,7 @@ function localEntries() {
 		throw new Error(`Local media directory is missing: ${mediaDirectory}`);
 	}
 	return fs.readdirSync(mediaDirectory)
-		.filter(name => name.endsWith(".mp4"))
+		.filter(name => name.endsWith(".mp4") && !excludedVideos.some(slug => name === `${slug}.mp4` || name.startsWith(`${slug}-`)))
 		.sort()
 		.map(name => {
 			const file = path.join(mediaDirectory, name);

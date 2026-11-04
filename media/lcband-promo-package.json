@@ -1,6 +1,6 @@
 {
-  "version": "20261030-hero-master-quality",
-  "timestamp": 1793345180,
+  "version": "20261104-exclude-live-dance-monkey",
+  "timestamp": 1793806163,
   "archiveName": "LCBAND-promo-4K-original.zip",
   "files": [
     {
@@ -163,13 +163,6 @@
       "bytes": 30203738,
       "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73",
       "crc32": "a38ee747"
-    },
-    {
-      "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Живая Трансляция. -  DANCE MONKEY.m4v",
-      "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
-      "bytes": 73762792,
-      "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127",
-      "crc32": "851f4783"
     },
     {
       "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
@@ -891,15 +884,6 @@
       "duration": 23.476967,
       "family": "live-duet-bb9a54beebc4"
     },
-    "live-dance-monkey": {
-      "original": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
-      "quality": 1080,
-      "has720": true,
-      "width": 1920,
-      "height": 1080,
-      "duration": 58.416667,
-      "family": "live-dance-monkey-19d241bf349c"
-    },
     "live-perfect": {
       "original": "assets/video/mp4/live-perfect-036df3756a04-1080.mp4",
       "quality": 1080,
@@ -1102,11 +1086,11 @@
       }
     }
   },
-  "bytes": 3771007106,
+  "bytes": 3697243958,
   "variants": {
     "720": {
       "archiveName": "LCBAND-promo-720p.zip",
-      "bytes": 1035241192,
+      "bytes": 1020546175,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  720p.mp4",
@@ -1268,13 +1252,6 @@
           "bytes": 9428913,
           "sha256": "c23dc763d3d500fdced4d5d5a2242e54cefb4e2f88a9b608bac7f66121de8ad5",
           "crc32": "404fe5d2"
-        },
-        {
-          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Живая Трансляция. -  DANCE MONKEY.m4v",
-          "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-720.mp4",
-          "bytes": 14694661,
-          "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41",
-          "crc32": "e7da6414"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
@@ -1791,7 +1768,7 @@
     },
     "1080": {
       "archiveName": "LCBAND-promo-1080p.zip",
-      "bytes": 2098895829,
+      "bytes": 2025132681,
       "files": [
         {
           "name": "01 PROMO LCBAND/ВИДЕО/_ПРОМО ВИДЕО  1080p.mp4",
@@ -1953,13 +1930,6 @@
           "bytes": 30203738,
           "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73",
           "crc32": "a38ee747"
-        },
-        {
-          "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/Живая Трансляция. -  DANCE MONKEY.m4v",
-          "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
-          "bytes": 73762792,
-          "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127",
-          "crc32": "851f4783"
         },
         {
           "name": "01 PROMO LCBAND/ВИДЕО/ЛАЙВЫ и Интерактивы/ПЕРВЫЙ ТАНЕЦ.mp4",
@@ -2474,5 +2444,8 @@
         }
       ]
     }
-  }
+  },
+  "excludedVideos": [
+    "live-dance-monkey"
+  ]
 }

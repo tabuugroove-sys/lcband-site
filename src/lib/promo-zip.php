@@ -11,8 +11,15 @@ function lcb_zip_select(array $catalogue, mixed $quality): array
         !preg_match('/\ALCBAND-promo(?:-[A-Za-z0-9-]+)?\.zip\z/', $selected['archiveName'])) {
         throw new RuntimeException('Requested archive is unavailable');
     }
+    $excludedVideos = $catalogue['excludedVideos'] ?? [];
+    $files = array_values(array_filter($selected['files'], static function (array $entry) use ($excludedVideos): bool {
+        foreach ($excludedVideos as $slug) {
+            if (str_starts_with($entry['path'] ?? '', 'assets/video/mp4/' . $slug . '-')) return false;
+        }
+        return true;
+    }));
     return [
-        'files' => $selected['files'],
+        'files' => $files,
         'archiveName' => $selected['archiveName'],
         'timestamp' => $catalogue['timestamp'],
     ];

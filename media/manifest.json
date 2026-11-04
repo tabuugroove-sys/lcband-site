@@ -478,26 +478,6 @@
       "sha256": "516dcaa469cc3a6199437f3457c703cb2b2e2e68288f523b41b8ce335360dd3a"
     },
     {
-      "path": "assets/video/mp4/live-dance-monkey-1080.mp4",
-      "bytes": 73762792,
-      "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127"
-    },
-    {
-      "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-1080.mp4",
-      "bytes": 73762792,
-      "sha256": "19d241bf349c680f97459583d00cd9824eb021e627334c8e9a1834cfb44b8127"
-    },
-    {
-      "path": "assets/video/mp4/live-dance-monkey-19d241bf349c-720.mp4",
-      "bytes": 14694661,
-      "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41"
-    },
-    {
-      "path": "assets/video/mp4/live-dance-monkey-720.mp4",
-      "bytes": 14694661,
-      "sha256": "7741e115e6271ef06a018bfe9aa9d1cd933f8fc60b41565b9f3ea266d77b1d41"
-    },
-    {
       "path": "assets/video/mp4/live-duet-1080.mp4",
       "bytes": 30203738,
       "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73"
