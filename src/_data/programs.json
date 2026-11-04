@@ -268,14 +268,14 @@
 			"Современный рок (Muse, Foo Fighters, Green Day)",
 			"Русский рок блок (Цой, Наутилус, ДДТ)"
 		],
-		"poster": "assets/video/posters/live-icon.jpg",
+		"poster": "assets/video/posters/live-icon-ru-epic-wide-20261104.jpg",
 		"video": "live-icon",
 		"videos": [
 			{
 				"slug": "live-icon",
 				"title": "Icon",
 				"label": "Epic live",
-				"poster": "assets/video/posters/live-icon.jpg"
+				"poster": "assets/video/posters/live-icon-ru-epic-wide-20261104.jpg"
 			},
 			{
 				"slug": "live-big-lineup",
