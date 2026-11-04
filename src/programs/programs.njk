@@ -92,7 +92,7 @@ eleventyComputed:
 			<p class="spanish-promo__lead">{{ program.lead }}</p>
 		</div>
 	</div>
-	{% elif program.poster %}
+	{% elif program.poster and program.slug != 'retro' %}
 	<div class="page-hero__media">
 		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
 		{% if program.video %}
