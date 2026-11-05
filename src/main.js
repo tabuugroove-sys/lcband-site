@@ -1415,6 +1415,7 @@ void main(){
 		let heroQualityKey = '';
 		let currentHeroVideoKey = '';
 		let heroSourceAttemptId = 0;
+		let heroPlaybackRequested = false;
 
 		function fmtTime(sec) {
 			if (!isFinite(sec)) return '0:00';
@@ -1663,6 +1664,7 @@ void main(){
 
 		function loadHeroSource(key, quality, restoreTime = 0, autoplay = true) {
 			if (!heroVideo) return;
+			heroPlaybackRequested = autoplay;
 			const attempt = ++heroSourceAttemptId;
 			const source = videoUrl(key, quality);
 			const sourceIsReady = heroVideo.getAttribute('src') === source;
@@ -1811,19 +1813,20 @@ void main(){
 			});
 		}
 
-		function changeQuality(q) {
+		function changeQuality(q, resumeAfterError = false) {
 			if (q === heroQuality) return;
 			heroQuality = q;
 			syncQualityButtons();
 			if (!heroVideo || !hero.classList.contains('is-playing')) return;
 			const key = currentHeroVideoKey || heroVideoMap[current] || 'promo-main-reel';
-			const wasPlaying = !heroVideo.paused;
+			const wasPlaying = resumeAfterError || !heroVideo.paused;
 			const currentTime = heroVideo.currentTime;
 			loadHeroSource(key, heroQuality, currentTime, wasPlaying);
 		}
 
 		function stopHeroVideo() {
 			if (!heroVideo) return;
+			heroPlaybackRequested = false;
 			hideHeroRecommendations();
 			exitHeroFullscreen();
 			hero.classList.remove('is-playing', 'is-ended');
@@ -1843,6 +1846,7 @@ void main(){
 
 		function togglePlayPause() {
 			if (!heroVideo) return;
+			heroPlaybackRequested = heroVideo.paused;
 			if (heroVideo.paused) {
 				heroVideo.muted = false;
 				heroVideo.play().catch(() => {});
@@ -2105,10 +2109,10 @@ void main(){
 			if (!hero.classList.contains('is-playing') || !currentHeroVideoKey) return;
 			if (heroQuality === '2160') {
 				showToast(heroCopy.qualityFallback1080);
-				changeQuality('1080');
+				changeQuality('1080', heroPlaybackRequested);
 			} else if (heroQuality === '1080') {
 				showToast(heroCopy.qualityFallback720);
-				changeQuality('720');
+				changeQuality('720', heroPlaybackRequested);
 			} else {
 				setHeroLoading(false);
 				showToast(heroCopy.videoUnavailable);
