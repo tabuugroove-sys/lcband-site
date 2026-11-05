@@ -1784,7 +1784,6 @@ void main(){
 			syncQualityButtons();
 			updateHeroQualityAvailability(key);
 			stopAuto();
-			if (autoResumeTimer) clearTimeout(autoResumeTimer);
 			hideHeroRecommendations();
 			hero.classList.add('is-playing');
 			document.body.classList.add('hero-video-open');
