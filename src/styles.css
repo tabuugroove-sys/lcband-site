@@ -1414,6 +1414,27 @@ h1, h2, h3, p { margin: 0; }
 .btn--primary:hover {
 	background: #0077ED;
 }
+.hero__cta .btn--primary:hover,
+.hero__cta .btn--primary:focus-visible {
+	background: #1683F5;
+}
+
+.btn--whatsapp {
+	--whatsapp-green: #25D366;
+	padding: 11px 21px;
+	border: 1px solid var(--whatsapp-green);
+	background: transparent;
+	color: var(--whatsapp-green);
+}
+.btn--whatsapp:hover,
+.btn--whatsapp:focus-visible {
+	background: var(--whatsapp-green);
+	color: #102A1B;
+}
+.btn--whatsapp:focus-visible {
+	outline: 2px solid var(--whatsapp-green);
+	outline-offset: 3px;
+}
 
 .btn--ghost {
 	color: #fff;
