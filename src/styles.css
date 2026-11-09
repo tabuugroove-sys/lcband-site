@@ -5503,6 +5503,84 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	.vtile__link[data-video="promo-main-reel"] .vtile__title { font-size: 16px; }
 }
 
+/* Home programs: plain list below the two calls to action. */
+.tile-grid--bleed .tile--themes-list .tile__title {
+	margin-bottom: 18px;
+}
+.tile--themes-list .tile__programs {
+	display: grid;
+	gap: 2px;
+	max-width: 48%;
+	margin: 18px 0 0;
+	padding: 0;
+	list-style: none;
+	font-size: clamp(14px, 1.15vw, 18px);
+	line-height: 1.35;
+	color: #1D1D1F;
+}
+@media (max-width: 1199px) {
+	/* Keep longer copy off the performers when the card becomes narrow. */
+	.tile-grid--bleed .tile--themes-list {
+		display: flex;
+		flex-direction: column;
+		align-self: start;
+		aspect-ratio: auto;
+		background: #fff;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__content {
+		position: static;
+		inset: auto;
+		order: 1;
+		width: 100%;
+		padding: 28px 20px 24px;
+		pointer-events: auto;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__pic {
+		position: relative;
+		inset: auto;
+		order: 2;
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__img {
+		position: static;
+		width: 100%;
+		height: auto;
+		aspect-ratio: auto;
+		object-fit: contain;
+		opacity: 1;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__pic::before,
+	.tile-grid--bleed .tile--themes-list .tile__pic::after,
+	.tile-grid--bleed .tile--themes-list .tile__tap-target,
+	.tile-grid--bleed .tile--themes-list .tile__smoke {
+		display: none;
+	}
+	.tile-grid--bleed .tile--themes-list .cta-row {
+		display: flex;
+	}
+	.tile-grid--bleed .tile--themes-list .btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+	}
+	.tile--themes-list .tile__programs {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 8px 16px;
+		width: 100%;
+		max-width: none;
+		font-size: 15px;
+		line-height: 1.4;
+	}
+}
+@media (max-width: 734px) {
+	.tile-grid--bleed:has(.tile--themes-list) {
+		align-items: flex-start;
+	}
+}
+
 /* ========================================================================
    About — video hero
    ======================================================================== */
