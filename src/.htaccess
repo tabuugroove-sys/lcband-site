@@ -36,6 +36,13 @@ RewriteRule ^faq/stoimost-kaver-gruppy/?$ https://luxuryband.ru/blog/skolko-stoi
 RewriteRule ^programs/spanish/?$ https://luxuryband.ru/programs/latin/ [L,R=301]
 RewriteRule ^en/programs/spanish/?$ https://luxuryband.ru/en/programs/latin/ [L,R=301]
 
+# 2c) Короткие ссылки для сообщений клиентам. 302, а не 301: цель можно поменять,
+#     а уже отправленные ссылки поведут на новую. /promo — точное совпадение,
+#     вложенные /promo/... (erhu) не затрагиваются.
+RewriteRule ^info/?$ https://drive.google.com/drive/folders/10lY5tIuygwiqkgGxJBARGOibTddXP8ny [L,R=302,NE,QSD]
+RewriteRule ^rep/?$ https://docs.google.com/document/d/1DdjccWITrt0y8EGNTW1LXanUNc3LMFqkyHeSpo4GUIo [L,R=302,NE,QSD]
+RewriteRule ^promo/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4&title=Luxury+Band [L,R=302,NE]
+
 # The separate concert gallery is retired; keep shared URLs useful.
 RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/#videos [L,R=301,NE]
 RewriteRule ^en/live(?:/index\.html)?/?$ https://luxuryband.ru/en/#videos [L,R=301,NE]
