@@ -2135,7 +2135,18 @@ p.muted { color: #6E6E73; }
 	min-width: 0;
 }
 .tile__content .cta-row--messengers .btn { min-height: 44px; }
-.tile__content .btn--whatsapp:not(:hover):not(:focus-visible) { color: #087D35; }
+/* White pill: the green label stays readable on dark and busy photographs. */
+.tile__content .btn--whatsapp:not(:hover):not(:focus-visible) {
+	color: #087D35;
+	background: rgba(255, 255, 255, 0.94);
+}
+.tile__content .btn--blue-ghost:not(:hover):not(:focus-visible) {
+	background: rgba(255, 255, 255, 0.94);
+}
+@media (min-width: 735px) {
+	.tile__content .cta-row { flex-wrap: nowrap; }
+	.tile__content .btn { white-space: nowrap; }
+}
 @media (max-width: 734px) {
 	.tile__content .cta-row--messengers { flex-wrap: nowrap; gap: 8px; }
 	.tile__content .cta-row--messengers .btn { font-size: 12px; padding: 10px 8px; }
@@ -5528,7 +5539,7 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	.vtile__link[data-video="promo-main-reel"] .vtile__title { font-size: 16px; }
 }
 
-/* Home programs: plain list below the two calls to action. */
+/* Home programs: plain list between the two performers. */
 .tile-grid--bleed .tile--themes-list .tile__title {
 	margin-bottom: 18px;
 }
@@ -5543,67 +5554,136 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	line-height: 1.35;
 	color: #1D1D1F;
 }
-@media (max-width: 1199px) {
-	/* Keep longer copy off the performers when the card becomes narrow. */
-	.tile-grid--bleed .tile--themes-list {
-		display: flex;
-		flex-direction: column;
-		align-self: start;
-		aspect-ratio: auto;
-		background: #fff;
-	}
+/* Tablets (two 4:3 tiles in a row): the same picture as on desktop, with
+   type scaled to the tile so the card keeps the height of its neighbour. */
+@media (min-width: 735px) and (max-width: 1199px) {
 	.tile-grid--bleed .tile--themes-list .tile__content {
-		position: static;
-		inset: auto;
-		order: 1;
-		width: 100%;
-		padding: 28px 20px 24px;
-		pointer-events: auto;
+		top: 2vw;
+		padding: 0 12px;
 	}
-	.tile-grid--bleed .tile--themes-list .tile__pic {
-		position: relative;
-		inset: auto;
-		order: 2;
-		display: block;
-		width: 100%;
-		height: auto;
-	}
-	.tile-grid--bleed .tile--themes-list .tile__img {
-		position: static;
-		width: 100%;
-		height: auto;
-		aspect-ratio: auto;
-		object-fit: contain;
-		opacity: 1;
-	}
-	.tile-grid--bleed .tile--themes-list .tile__pic::before,
-	.tile-grid--bleed .tile--themes-list .tile__pic::after,
-	.tile-grid--bleed .tile--themes-list .tile__tap-target,
-	.tile-grid--bleed .tile--themes-list .tile__smoke {
-		display: none;
+	.tile-grid--bleed .tile--themes-list .tile__title {
+		font-size: clamp(19px, 2.5vw, 30px);
+		margin-bottom: 1vw;
 	}
 	.tile-grid--bleed .tile--themes-list .cta-row {
+		flex-wrap: nowrap;
+		gap: 8px;
+	}
+	.tile-grid--bleed .tile--themes-list .btn {
+		min-height: clamp(36px, 3.9vw, 44px);
+		padding: 0 clamp(10px, 1.3vw, 18px);
+		font-size: clamp(11.5px, 1.3vw, 14px);
+		white-space: nowrap;
+	}
+	/* Two columns keep the list above the bullet holes in the photograph. */
+	.tile--themes-list .tile__programs {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(3px, 0.5vw, 6px) 12px;
+		max-width: 60%;
+		margin-top: 1.3vw;
+		font-size: clamp(11.5px, 1.4vw, 16px);
+		line-height: 1.25;
+	}
+}
+@media (min-width: 735px) and (max-width: 899px) {
+	/* Portrait tablets: both buttons of every card stay on one line. */
+	.tile-grid--bleed .tile__content .btn {
+		padding: 8px 14px;
+		font-size: 13px;
+	}
+	.tile-grid--bleed .tile__content .cta-row { flex-wrap: nowrap; gap: 8px; }
+	.tile-grid--bleed .tile--themes-list .btn { padding: 0 12px; font-size: 12px; }
+}
+@media (max-width: 734px) {
+	/* Every slide fits one screen. Phones keep the 4:5 card; on short, wide
+	   screens (opened foldables, landscape) the height follows the viewport. */
+	.tile-grid--bleed { --tile-h: 107.5vw; }
+	@supports (height: 1svh) {
+		.tile-grid--bleed { --tile-h: clamp(300px, calc(100svh - 104px), 107.5vw); }
+	}
+	.tile-grid--bleed .tile {
+		aspect-ratio: auto;
+		height: var(--tile-h);
+	}
+
+	/* Programs card: title and buttons on top, then the photograph with the
+	   list in the empty field between the two performers — as on desktop. */
+	.tile-grid--bleed .tile--themes-list {
+		--strip-h: calc(var(--tile-h) - 100px);
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: auto auto minmax(0, 1fr);
+		padding-top: 14px;
+		background: #F8F8FA;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__content { display: contents; }
+	.tile-grid--bleed .tile--themes-list .tile__tap-target { display: none; }
+	.tile-grid--bleed .tile--themes-list .tile__title {
+		grid-row: 1;
+		justify-self: center;
+		margin: 0 0 9px;
+		font-size: clamp(20px, 5.4vw, 26px);
+		line-height: 1.1;
+		text-align: center;
+	}
+	.tile-grid--bleed .tile--themes-list .tile__line { display: inline; }
+	.tile-grid--bleed .tile--themes-list .cta-row {
+		grid-row: 2;
+		position: relative;
+		z-index: 3;
 		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		gap: 8px;
+		margin: 0 0 8px;
+		padding: 0 12px;
 	}
 	.tile-grid--bleed .tile--themes-list .btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 44px;
+		min-height: 40px;
+		padding: 0 14px;
+		font-size: 13px;
+		white-space: nowrap;
 	}
-	.tile--themes-list .tile__programs {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 8px 16px;
+	.tile-grid--bleed .tile--themes-list .tile__pic {
+		grid-row: 3;
+		grid-column: 1;
+		position: relative;
+		inset: auto;
 		width: 100%;
+		height: 100%;
+	}
+	/* Each half never shows more than its own half of the photograph and
+	   fades out towards the middle, where the list sits. */
+	.tile-grid--bleed .tile--themes-list .tile__pic::before,
+	.tile-grid--bleed .tile--themes-list .tile__pic::after {
+		width: min(52%, calc(var(--strip-h) * 0.66));
+	}
+	.tile-grid--bleed .tile--themes-list .tile__pic::before {
+		-webkit-mask-image: linear-gradient(to right, #000 64%, transparent);
+		mask-image: linear-gradient(to right, #000 64%, transparent);
+	}
+	.tile-grid--bleed .tile--themes-list .tile__pic::after {
+		-webkit-mask-image: linear-gradient(to left, #000 64%, transparent);
+		mask-image: linear-gradient(to left, #000 64%, transparent);
+	}
+	.tile-grid--bleed .tile--themes-list .tile__programs {
+		grid-row: 3;
+		grid-column: 1;
+		z-index: 2;
+		align-self: start;
+		justify-self: center;
+		gap: 0;
+		width: calc(86vw - var(--strip-h) * 0.57);
 		max-width: none;
-		font-size: 15px;
-		line-height: 1.4;
+		margin: 2px 0 0;
+		font-size: clamp(12.5px, calc(var(--strip-h) * 0.04), 16px);
+		line-height: 1.3;
+		text-align: center;
 	}
-}
-@media (max-width: 734px) {
-	.tile-grid--bleed:has(.tile--themes-list) {
-		align-items: flex-start;
-	}
+	.tile-grid--bleed .tile--themes-list .tile__programs li { text-wrap: balance; }
 }
 
 /* ========================================================================
