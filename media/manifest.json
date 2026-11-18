@@ -98,6 +98,16 @@
       "sha256": "d7a5a0c085c728304215d940a4d07ef7533294066e7a09ae727576bb4b1e7d1e"
     },
     {
+      "path": "assets/video/mp4/interact-chainsmokers-loop-20261118-720.mp4",
+      "bytes": 1283857,
+      "sha256": "01fb0764db9d607482a2a6b99e2086c00d1da80fcbea2800e3c4f1d2b3963a41"
+    },
+    {
+      "path": "assets/video/mp4/interact-chainsmokers-loop2-20261118-720.mp4",
+      "bytes": 1335641,
+      "sha256": "71231e05daee1637d0eb15bd343b0a5f921dd97ac86084c4554a9f75033e3b4d"
+    },
+    {
       "path": "assets/video/mp4/interact-laz-coco-jambo-1080.mp4",
       "bytes": 35870426,
       "sha256": "569e857aa75cf63f2ba46e2df8f2fe11b60e5386850bc995baaadcc2ff8c892d"
@@ -116,6 +126,11 @@
       "path": "assets/video/mp4/interact-laz-coco-jambo-720.mp4",
       "bytes": 11483793,
       "sha256": "f2c58cc68dc153d388ab91c4a756603904b8d9a8c0386e11281e7949ad4005a2"
+    },
+    {
+      "path": "assets/video/mp4/interact-laz-coco-jambo-loop-20261118-720.mp4",
+      "bytes": 2134160,
+      "sha256": "f6324b35fdd60dfe92f8db1f86bb2413d53560bf175775ae104726aa8ed0708f"
     },
     {
       "path": "assets/video/mp4/interact-macarena-1080.mp4",
@@ -478,6 +493,11 @@
       "sha256": "516dcaa469cc3a6199437f3457c703cb2b2e2e68288f523b41b8ce335360dd3a"
     },
     {
+      "path": "assets/video/mp4/live-big-lineup-loop-20261118-720.mp4",
+      "bytes": 2140520,
+      "sha256": "d70c1f29c44c1b8ef90680b170266159ec57b228a8dd7088f9803170ae2eb352"
+    },
+    {
       "path": "assets/video/mp4/live-duet-1080.mp4",
       "bytes": 30203738,
       "sha256": "bb9a54beebc49849850ffd732812878d943c263384a3d50e9ab050948a39cf73"
@@ -516,6 +536,11 @@
       "path": "assets/video/mp4/live-icon-c970843de9c5-720.mp4",
       "bytes": 96637735,
       "sha256": "0f6ef3c14c4a8ebd1d5439629f3b7b47268fe59e84cf7da8926982de45ecb152"
+    },
+    {
+      "path": "assets/video/mp4/live-icon-loop-20261118-720.mp4",
+      "bytes": 2110843,
+      "sha256": "9742ff3fa4ae934eaf1983cdc205e52e6ed23d7c25fb02ee5f2df325272904cf"
     },
     {
       "path": "assets/video/mp4/live-jazz-vintage-0e127868c356-1080.mp4",
@@ -606,6 +631,11 @@
       "path": "assets/video/mp4/live-simple-the-best-720.mp4",
       "bytes": 3062584,
       "sha256": "1de8ee7dc479854a4dc482747ecb435e520d696e8dd6af4a5c61f4cc18d0310f"
+    },
+    {
+      "path": "assets/video/mp4/live-simple-the-best-loop-20261118-720.mp4",
+      "bytes": 2155203,
+      "sha256": "3cfbce7b6f62ef2e9ec32ad9e6de1a581d2e9ead0a23aacf2b24927373aaa821"
     },
     {
       "path": "assets/video/mp4/live-soho-1080.mp4",
@@ -996,6 +1026,11 @@
       "path": "assets/video/mp4/promo-lets-get-it-started-720.mp4",
       "bytes": 10105901,
       "sha256": "f2b60e89d04ced97567d2a66b45eefe3a35343d5e27d3f706baff2e8c43f1e4d"
+    },
+    {
+      "path": "assets/video/mp4/promo-lets-get-it-started-loop-20261118-720.mp4",
+      "bytes": 2167582,
+      "sha256": "82aaba1027577cf331efad4aa31e2d23c210457a93c56df819d58e0a6318ea45"
     },
     {
       "path": "assets/video/mp4/promo-loca-loca-1080.mp4",

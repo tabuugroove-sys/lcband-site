@@ -19,7 +19,8 @@
 		const canObserve = 'IntersectionObserver' in window;
 		const mobileMedia = window.matchMedia('(max-width: 734px) and (orientation: portrait)');
 		let visible = false;
-		let ready = false;
+		// The inline script next to the video may have started it already (/about/).
+		let ready = Boolean(backgroundVideo.getAttribute('src'));
 		let pageActive = true;
 		let userPaused = false;
 		let costumeView = false;
@@ -903,6 +904,44 @@ void main(){
 			storyRooms.classList.add('is-enhanced');
 			measure(); render();
 		};
+
+		// «Они должны сразу двигаться, как на сайт заходишь» (Михаил 18.11): короткие петли
+		// качаются заранее, по одной сверху вниз — следующая, когда предыдущая может играть, —
+		// сразу за фоном первого экрана. К моменту прокрутки ролик уже готов.
+		const preloadNext = index => {
+			const video = videos[index];
+			if (!video || !storyRooms.classList.contains('is-enhanced')) return;
+			const next = () => preloadNext(index + 1);
+			const source = video.querySelector('source[data-src]');
+			if (source && !source.getAttribute('src')) {
+				source.src = source.dataset.src;
+				video.preload = 'auto';
+				video.load();
+			} else video.preload = 'auto';
+			if (video.readyState >= 3) next();
+			else {
+				video.addEventListener('canplay', next, { once: true });
+				video.addEventListener('error', next, { once: true });
+			}
+		};
+		let preloadStarted = false;
+		const startPreload = () => { if (!preloadStarted) { preloadStarted = true; preloadNext(0); } };
+		// Фон первого экрана качается первым: петли не делят с ним канал, пока он не докачан
+		// целиком (или 12 с, если сеть совсем медленная).
+		const heroBuffered = () => {
+			const b = backgroundVideo.buffered;
+			return b.length > 0 && backgroundVideo.duration > 0 && b.end(b.length - 1) >= backgroundVideo.duration - 0.25;
+		};
+		if (!backgroundVideo || !backgroundVideo.getAttribute('src') || heroBuffered()) startPreload();
+		else {
+			const onProgress = () => {
+				if (!heroBuffered()) return;
+				backgroundVideo.removeEventListener('progress', onProgress);
+				startPreload();
+			};
+			backgroundVideo.addEventListener('progress', onProgress);
+			window.setTimeout(startPreload, 12000);
+		}
 
 		measure();
 		render();

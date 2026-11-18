@@ -59,17 +59,17 @@ permalink: /en/about/
 </section>
 
 {% set storyRooms = [
-	{eyebrow:'Repertoire', title:'Songs<br>in 12 languages.', text:'Italian, Spanish, French, English and other languages — selected for the programme and the audience.', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo'},
-	{eyebrow:'Repertoire', title:'Jazz, pop, rock<br>and Latin music.', text:'We select songs and arrange the sets around your audience and event schedule.', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-simple-the-best'},
-	{eyebrow:'Interaction', title:'Sing with the band.', text:'Guests sing duets with our vocalists and take part in live-band karaoke.', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers'},
-	{eyebrow:'Stage Looks', title:'20+ stage looks.', text:'Red, black-and-white, gold and other stage costumes. We choose the outfits to suit the event colours and format.', bg:'#f5f5f7', light:true, video:'promo-lets-get-it-started'}
+	{eyebrow:'Repertoire', title:'Songs<br>in 12 languages.', text:'Italian, Spanish, French, English and other languages — selected for the programme and the audience.', bg:'radial-gradient(at top right, #6547ba, #572f91)', tint:'rgba(255,255,255,.9)', video:'interact-laz-coco-jambo', preview:'interact-laz-coco-jambo-loop-20261118'},
+	{eyebrow:'Repertoire', title:'Jazz, pop, rock<br>and Latin music.', text:'We select songs and arrange the sets around your audience and event schedule.', bg:'radial-gradient(at top right, #00745c, #005f2a)', tint:'rgba(255,255,255,.9)', video:'live-simple-the-best', preview:'live-simple-the-best-loop-20261118'},
+	{eyebrow:'Interaction', title:'Sing with the band.', text:'Guests sing duets with our vocalists and take part in live-band karaoke.', bg:'radial-gradient(at top right, #ad3720, #a91d30)', tint:'rgba(255,255,255,.9)', video:'interact-chainsmokers', preview:'interact-chainsmokers-loop2-20261118'},
+	{eyebrow:'Stage Looks', title:'20+ stage looks.', text:'Red, black-and-white, gold and other stage costumes. We choose the outfits to suit the event colours and format.', bg:'#f5f5f7', light:true, video:'promo-lets-get-it-started', preview:'promo-lets-get-it-started-loop-20261118'}
 ] %}
 <section class="story-rooms" data-story-rooms>
 	<div class="story-rooms__gallery" aria-hidden="true">
 		<div class="story-rooms__device"><div class="story-rooms__frame">
 			{% for r in storyRooms %}
 			<div class="story-rooms__layer" data-story-layer="{{ loop.index0 }}" style="z-index: {{ loop.index }};">
-				<video muted loop playsinline preload="none" poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}"><source data-src="{{ site.url }}/assets/video/mp4/{{ r.video }}-720.mp4" type="video/mp4"></video>
+				<video muted loop playsinline preload="none" poster="{{ ('/assets/video/posters/' + r.video + '.jpg') | url }}"><source data-src="{{ site.url }}/assets/video/mp4/{{ r.preview or r.video }}-720.mp4" type="video/mp4"></video>
 			</div>
 			{% endfor %}
 		</div></div>

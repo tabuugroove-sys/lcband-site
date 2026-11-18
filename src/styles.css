@@ -5554,6 +5554,18 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 	line-height: 1.35;
 	color: #1D1D1F;
 }
+/* Each programme name is a link to its page; above the card's tap target. */
+.tile--themes-list .tile__programs a {
+	position: relative;
+	z-index: 5;
+	color: inherit;
+	text-decoration: none;
+}
+.tile--themes-list .tile__programs a:hover,
+.tile--themes-list .tile__programs a:focus-visible {
+	color: #0066CC;
+	text-decoration: underline;
+}
 /* Tablets (two 4:3 tiles in a row): the same picture as on desktop, with
    type scaled to the tile so the card keeps the height of its neighbour. */
 @media (min-width: 735px) and (max-width: 1199px) {

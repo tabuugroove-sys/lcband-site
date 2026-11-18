@@ -14,6 +14,28 @@
     data-src-desktop="{{ '/assets/video/mp4/lt2-20261030-about-1280.mp4' | url }}"
     data-src-desktop-hd="{{ '/assets/video/mp4/lt2-20261030-about-1920.mp4' | url }}"
     data-src-mobile="{{ '/assets/video/mp4/lt2-20261030-about-916.mp4' | url }}"></video>
+  {#- The background starts buffering and playing right here, while CSS and scripts are
+      still on their way: waiting for main.js and window.load cost 6–7 s on a distant
+      connection. Far from the server (slow handshake) the 1920 cut stalls, so the 1280
+      one is used; main.js reads the same attributes and keeps this choice. -#}
+  <script>
+  (function () {
+    var v = document.querySelector('[data-background-video]');
+    var c = navigator.connection || {};
+    if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches || c.saveData || /2g|3g/.test(c.effectiveType || '')) return;
+    var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    if (nav && nav.connectEnd - nav.connectStart > 350) v.removeAttribute('data-src-desktop-hd');
+    var mobile = matchMedia('(max-width: 734px) and (orientation: portrait)').matches;
+    var large = innerWidth * (devicePixelRatio || 1) > 1600;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.preload = 'auto';
+    v.addEventListener('playing', function () { v.classList.add('is-ready'); }, { once: true });
+    v.src = mobile ? v.dataset.srcMobile : (large && v.dataset.srcDesktopHd) || v.dataset.srcDesktop;
+    var p = v.play();
+    if (p) p.catch(function () {});
+  })();
+  </script>
 </div>
 <button class="background-toggle" type="button" data-background-toggle hidden
   data-label-pause="{{ backgroundLabel.pause }}" data-label-resume="{{ backgroundLabel.resume }}" data-label-back="{{ backgroundLabel.back }}"
