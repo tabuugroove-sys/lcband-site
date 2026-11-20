@@ -94,11 +94,37 @@ eleventyComputed:
 	</div>
 </section>
 
+{% if event.slug == 'corporate' %}
+<!-- =============== ГОСТИ ПОЮТ САМИ (Михаил 20.11: карусель фото вместо цифр) ===============
+     Лента та же, что у отзывов на главной (data-reviews-rail в main.js): едет сама,
+     останавливается по мыши, касанию, фокусу и кнопке. Новое фото — строка в
+     _data/guestsSing.json. Чтобы показать на другой странице события, добавьте её slug
+     в условие выше. -->
+<section class="guests-sing" aria-label="Гости поют с группой">
+	<div class="container container--narrow reveal">
+		<h2 class="guests-sing__title">Когда гости<br><span class="muted">поют сами.</span></h2>
+	</div>
+	<div class="reviews-rail" data-reviews-rail>
+		<div class="reviews-rail__track guests-sing__track">
+			{%- for p in guestsSing %}
+			<figure class="guests-sing__slide"><img src="{{ ('/assets/photos/' + p.src) | url }}" alt="{{ p.alt }}" width="{{ p.w }}" height="{{ p.h }}" loading="lazy" decoding="async" draggable="false"></figure>
+			{%- endfor %}
+		</div>
+		<div class="container reviews-rail__controls">
+			<button class="reviews-rail__toggle" type="button" data-reviews-toggle hidden
+				data-label-pause="Остановить фото" data-label-resume="Прокручивать фото"
+				aria-label="Остановить фото"></button>
+		</div>
+	</div>
+	{% if event.trustLine %}<div class="container container--narrow"><p class="guests-sing__note">{{ event.trustLine }}</p></div>{% endif %}
+</section>
+{% else %}
 <!-- =============== ЦИФРЫ (F1, чёрный) =============== -->
 {%- set countTheme = 'dark' %}
 {%- set countLang = 'ru' %}
 {%- set countNote = event.trustLine %}
 {% include "partials/count-f1.njk" %}
+{% endif %}
 
 <section class="section section--light">
 	<div class="container container--narrow reveal">

@@ -6563,3 +6563,56 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
     white-space: normal;
   }
 }
+
+/* ========================================================================
+   События — «Когда гости поют сами»: фото-карусель вместо блока цифр
+   (Михаил 20.11.2026, страница корпоратива). Чёрный фон, как у блока цифр.
+   Движение и пауза — та же лента, что у отзывов (.reviews-rail, main.js).
+   ======================================================================== */
+.guests-sing {
+	background: #000;
+	color: #F5F5F7;
+	padding: clamp(64px, 9vw, 120px) 0 clamp(56px, 8vw, 104px);
+	text-align: center;
+	overflow: hidden;
+}
+.guests-sing__title {
+	font-family: var(--ff-display);
+	font-weight: 600;
+	font-size: clamp(32px, 4.8vw, 56px);
+	line-height: 1.07143;
+	letter-spacing: -0.005em;
+	margin: 0 0 clamp(28px, 4vw, 48px);
+}
+.guests-sing__title .muted { color: #86868B; }
+.guests-sing__track { align-items: stretch; gap: 12px; padding: 0; }
+.guests-sing__slide {
+	flex: 0 0 auto;
+	margin: 0;
+	height: clamp(230px, 40vw, 520px);
+	border-radius: 18px;
+	overflow: hidden;
+	background: #111;
+}
+.guests-sing__slide img {
+	display: block;
+	width: auto;
+	height: 100%;
+	max-width: none;
+	user-select: none;
+	-webkit-user-drag: none;
+}
+.guests-sing .reviews-rail__toggle { border-color: rgba(255,255,255,.4); color: #F5F5F7; }
+.guests-sing .reviews-rail__toggle:hover { background: rgba(255,255,255,.1); }
+.guests-sing__note {
+	max-width: 60ch;
+	margin: clamp(20px, 3vw, 32px) auto 0;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #86868B;
+	text-wrap: pretty;
+}
+@media (max-width: 734px) {
+	.guests-sing__track { gap: 8px; }
+	.guests-sing__slide { border-radius: 12px; }
+}
