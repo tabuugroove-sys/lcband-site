@@ -5375,6 +5375,8 @@ a.evidence-link { text-decoration: underline; text-underline-offset: .16em; }
 		text-wrap: balance;
 	}
 	.tile-grid--bleed .tile__line { display: block; }
+	/* Точки между словами нужны только в строку (десктоп); в столбик их нет. */
+	.tile-grid--bleed .tile__sep { display: none; }
 
 	/* Light studio cards: black editorial type in the white upper field. */
 	.tile-grid--bleed .tile--copy-dark .tile__title,
