@@ -6618,3 +6618,9 @@ html[dir="rtl"] .hero__quality { direction: ltr; }
 	.guests-sing__track { gap: 8px; }
 	.guests-sing__slide { border-radius: 12px; }
 }
+
+/* Плитка «Новогодний корпоратив» на планшетной ширине: без подзаголовка текст
+   и кнопки помещаются над головами вокалистов (Михаил 20.11.2026). */
+@media (min-width: 735px) and (max-width: 1300px) {
+	.tile-grid--bleed .tile--corporate .tile__sub { display: none; }
+}

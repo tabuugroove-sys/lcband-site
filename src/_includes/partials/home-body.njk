@@ -132,7 +132,12 @@
 				<picture class="tile__pic">
 					<source media="(max-width: 734px)" type="image/webp" sizes="100vw"
 						srcset="{{ '/assets/photos/new-year-corporate-768.webp' | url }} 768w, {{ '/assets/photos/new-year-corporate-1152.webp' | url }} 1152w">
-					<img class="tile__img" src="{{ '/assets/photos/new-year-corporate.jpg' | url }}" alt="Новогодний корпоратив — вокалисты Luxury Cover Band поют на сцене среди ёлок" loading="lazy">
+					{#- 735–1300 px: кнопки шире промежутка между головами, поэтому здесь кадр,
+					    где вокалисты стоят ниже текста; подзаголовок на этой ширине скрыт (styles.css). -#}
+					<source media="(max-width: 1300px)" type="image/webp" srcset="{{ '/assets/photos/new-year-corporate-wide-1100.webp' | url }}">
+					<source type="image/webp" sizes="50vw"
+						srcset="{{ '/assets/photos/new-year-corporate-desktop-1000.webp' | url }} 1000w, {{ '/assets/photos/new-year-corporate-desktop-1600.webp' | url }} 1600w">
+					<img class="tile__img" width="1600" height="1200" decoding="async" src="{{ '/assets/photos/new-year-corporate.jpg?v=2' | url }}" alt="Новогодний корпоратив — вокалисты Luxury Cover Band поют на сцене среди ёлок" loading="lazy">
 				</picture>
 				<div class="tile__content">
 					<h3 class="tile__title">Новогодний корпоратив</h3>
