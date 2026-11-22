@@ -21,6 +21,7 @@ tools/*
 !tools/clean-site.mjs
 !tools/media-manifest.mjs
 !tools/upload-video.mjs
+!tools/check-shortlinks.py
 !tools/hooks/
 !tools/hooks/pre-push
 output/

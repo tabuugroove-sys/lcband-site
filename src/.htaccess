@@ -43,8 +43,9 @@ RewriteRule ^info/?$ https://drive.google.com/drive/folders/10lY5tIuygwiqkgGxJBA
 RewriteRule ^rep/?$ https://docs.google.com/document/d/1DdjccWITrt0y8EGNTW1LXanUNc3LMFqkyHeSpo4GUIo [L,R=302,NE,QSD]
 RewriteRule ^promo/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4&title=Luxury+Band [L,R=302,NE]
 
-# The separate concert gallery is retired; keep shared URLs useful.
-RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/#videos [L,R=301,NE]
+# /live — короткая ссылка на живое видео (плеер /embed/). Старая галерея /live/ закрыта,
+#     поэтому прежние ссылки на неё теперь тоже ведут на живое видео. 302: цель можно менять.
+RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/live-icon-c970843de9c5-1080.mp4&title=Luxury+Band [L,R=302,NE]
 RewriteRule ^en/live(?:/index\.html)?/?$ https://luxuryband.ru/en/#videos [L,R=301,NE]
 
 # Retired background reels: preserve shared playback/download links before freeing media storage.
