@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the short client links (/promo, /live, /info, /rep) against a base URL.
+"""Check the short client links (/promo, /live, /info, /rep, /jazz, /v/<id>) against a base URL.
 
 Usage: python3 tools/check-shortlinks.py [BASE]   (default https://luxuryband.ru)
 Redirects are NOT followed: each short link must answer 301/302 with the exact
@@ -18,7 +18,21 @@ EXPECT = {
     "/live": ("/embed/", "/assets/video/mp4/live-icon-c970843de9c5-"),
     "/info": ("https://drive.google.com/drive/folders/", None),
     "/rep": ("https://docs.google.com/document/d/", None),
+    "/jazz": ("https://drive.google.com/file/d/1cnHc_KTdA3xl_litvDM13OpcyT5xnn4V/view", None),
 }
+# /v/<id> -> the exact long embed form the CRM used to send. ids = the _style_video("<id>", ...)
+# calls in the CRM's rewrite/spine/canon.py (checked 2026-11-23).
+VIDEO_IDS = [
+    "thematic-italian", "promo-amore-no", "live-lets-get-loud",
+    "thematic-french", "live-jazz-vintage", "live-soho",
+    "latin-modern-program", "latin-music-luxury-cover-band", "teddy-latina-promo",
+    "luxury-latin-dance-master-class", "live-baskov-revva",
+    "thematic-retro-stilyagi", "thematic-retro-boyar", "thematic-retro-heart",
+    "old-money-band", "live-icon", "live-big-lineup", "promo-lets-get-it-started",
+]
+# ids the CRM lists but for which no <id>-720.mp4 exists on the server: /v/<id> must 404, not redirect.
+VIDEO_IDS_NO_FILE = ["thematic-retro-90s"]
+MUST_404 = ["does-not-exist", "../etc/passwd", "UPPER", "a b"]
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -68,6 +82,25 @@ for path, (target, media) in EXPECT.items():
     check('property="og:title"' in html and 'property="og:image"' in html, f"{path}: embed page has og tags (needs the deploy of this change)")
     status, h, _ = get(BASE + src, "HEAD")
     check(status == 200 and "video/mp4" in (h.get("Content-Type") or ""), f"{path}: mp4 {status} {h.get('Content-Type')}")
+
+for vid in VIDEO_IDS:
+    path = f"/v/{vid}"
+    want = f"https://luxuryband.ru/embed/?src=/assets/video/mp4/{vid}-720.mp4&title=Luxury+Band"
+    for variant in (path, path + "/"):
+        status, h, _ = get(BASE + variant, "HEAD")
+        check(status in (301, 302) and (h.get("Location") or "") == want,
+              f"{variant}: {status} Location {h.get('Location')}")
+    q = urllib.parse.urlparse(want)
+    status, h, body = get(BASE + q.path + "?" + q.query)
+    check(status == 200 and "text/html" in (h.get("Content-Type") or ""), f"{path}: embed page {status}")
+    status, h, _ = get(BASE + f"/assets/video/mp4/{vid}-720.mp4", "HEAD")
+    check(status == 200 and "video/mp4" in (h.get("Content-Type") or ""), f"{path}: mp4 {status} {h.get('Content-Type')}")
+
+for vid in VIDEO_IDS_NO_FILE + MUST_404:
+    status, h, _ = get(BASE + "/v/" + urllib.parse.quote(vid, safe="./"), "HEAD")
+    check(status == 404 and not h.get("Location"), f"/v/{vid}: {status} (want 404, no redirect)")
+for vid in VIDEO_IDS_NO_FILE:
+    print(f"WARN /v/{vid}: no {vid}-720.mp4 on the server, so the CRM's long link for it is broken too")
 
 # the retired gallery file must not be indexed or shadow the rewrite
 status, h, body = get(BASE + "/live/index.html", "HEAD")

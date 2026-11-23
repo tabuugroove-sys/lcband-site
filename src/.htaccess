@@ -43,6 +43,18 @@ RewriteRule ^info/?$ https://drive.google.com/drive/folders/10lY5tIuygwiqkgGxJBA
 RewriteRule ^rep/?$ https://docs.google.com/document/d/1DdjccWITrt0y8EGNTW1LXanUNc3LMFqkyHeSpo4GUIo [L,R=302,NE,QSD]
 RewriteRule ^promo/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/promo-main-reel-4ef6085a27d4-2160.mp4&title=Luxury+Band [L,R=302,NE]
 
+# /jazz — промо джазовой группы на Google Drive (то же, что CRM шлёт как «jazz»).
+RewriteRule ^jazz/?$ https://drive.google.com/file/d/1cnHc_KTdA3xl_litvDM13OpcyT5xnn4V/view [L,R=302,NE,QSD]
+
+# /v/<id> — короткая ссылка на видео программы/стиля: ведёт в плеер /embed/ на <id>-720.mp4
+#     (ровно та длинная форма, которую CRM отправляла раньше). Безопасность: id берётся только
+#     из [a-z0-9-], а правило срабатывает ТОЛЬКО если файл assets/video/mp4/<id>-720.mp4 есть
+#     на сервере (видео лежат вне git, в public_html). Неизвестный id не совпадает ни с одним
+#     правилом и отдаёт 404, а не битый плеер. Список заводить вручную не нужно: новое видео
+#     <id>-720.mp4 в public_html автоматически получает /v/<id>.
+RewriteCond %{DOCUMENT_ROOT}/assets/video/mp4/$1-720.mp4 -f
+RewriteRule ^v/([a-z0-9][a-z0-9-]*)/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/$1-720.mp4&title=Luxury+Band [L,R=302,NE]
+
 # /live — короткая ссылка на живое видео (плеер /embed/). Старая галерея /live/ закрыта,
 #     поэтому прежние ссылки на неё теперь тоже ведут на живое видео. 302: цель можно менять.
 RewriteRule ^live(?:/index\.html)?/?$ https://luxuryband.ru/embed/?src=/assets/video/mp4/live-icon-c970843de9c5-1080.mp4&title=Luxury+Band [L,R=302,NE]
