@@ -1,0 +1,180 @@
+{
+ "_comment": "Playlist of the /embed/ player (arrows + end screen). slug -> mp4 family via promo-media.js (LCBPromoVideoSources) or the plain slug; poster = file base in assets/video/posters (-720.webp tile, -1080.webp player). intl: also offered when lang!=ru (internationalMedia.allowedVideos); titleEn/posterIntl are used there. Checked by tools/check-embed.py.",
+ "items": [
+  {
+   "slug": "promo-main-reel",
+   "title": "Промо — полная версия",
+   "poster": "promo-main-gold-20261104"
+  },
+  {
+   "slug": "live-icon",
+   "title": "Эпичный лайв · Icon",
+   "poster": "live-icon-ru-epic-wide-20261104"
+  },
+  {
+   "slug": "promo-egoistka",
+   "title": "Эгоистка",
+   "poster": "promo-egoistka-2026-red-stage"
+  },
+  {
+   "slug": "live-baskov-lcb",
+   "title": "Басков и Luxury Cover Band",
+   "poster": "live-baskov-lcb-ru-crop-20261104",
+   "intl": true,
+   "titleEn": "Baskov & Luxury Cover Band",
+   "posterIntl": "live-baskov-lcb"
+  },
+  {
+   "slug": "thematic-retro-heart",
+   "title": "You're My Heart · Ретро",
+   "poster": "thematic-retro-heart-2026",
+   "intl": true,
+   "titleEn": "You're My Heart · Retro"
+  },
+  {
+   "slug": "live-baskov-revva",
+   "title": "Басков + Ревва · Лайв",
+   "poster": "live-baskov-revva-ru-4x3-v6-20261104"
+  },
+  {
+   "slug": "promo-danza-cuduro",
+   "title": "Danza Kuduro · Live",
+   "poster": "promo-danza-cuduro-2026",
+   "intl": true,
+   "titleEn": "Danza Kuduro · Live"
+  },
+  {
+   "slug": "teddy-macarena",
+   "title": "Teddy · Macarena",
+   "poster": "teddy-macarena-ru-4x3-sunstrip-20261104",
+   "intl": true,
+   "titleEn": "Teddy · Macarena",
+   "posterIntl": "teddy-macarena-en-4x3"
+  },
+  {
+   "slug": "promo-lets-get-it-started",
+   "title": "Let's Get It Started",
+   "poster": "promo-lets-get-it-started",
+   "intl": true,
+   "titleEn": "Let's Get It Started"
+  },
+  {
+   "slug": "teddy-latina-promo",
+   "title": "Teddy · Латина",
+   "poster": "teddy-latina-promo-ru-4x3",
+   "intl": true,
+   "titleEn": "Teddy · Latin",
+   "posterIntl": "teddy-latina-promo-en-show-4x3"
+  },
+  {
+   "slug": "promo-cold-heart",
+   "title": "Cold Heart",
+   "poster": "promo-cold-heart",
+   "intl": true,
+   "titleEn": "Cold Heart"
+  },
+  {
+   "slug": "live-lets-get-loud",
+   "title": "Let's Get Loud · Лайв",
+   "poster": "live-lets-get-loud"
+  },
+  {
+   "slug": "promo-loca-loca",
+   "title": "Loca Loca · LAZ",
+   "poster": "promo-loca-loca",
+   "intl": true,
+   "titleEn": "Loca Loca · LAZ"
+  },
+  {
+   "slug": "live-jazz-vintage",
+   "title": "Джазовая · Винтажная",
+   "poster": "live-jazz-vintage",
+   "intl": true,
+   "titleEn": "Jazz · Vintage"
+  },
+  {
+   "slug": "promo-letet",
+   "title": "Лететь",
+   "poster": "promo-letet"
+  },
+  {
+   "slug": "live-adele-hello",
+   "title": "Adele · Hello",
+   "poster": "live-adele-hello",
+   "intl": true,
+   "titleEn": "Adele · Hello"
+  },
+  {
+   "slug": "promo-amore-no",
+   "title": "Amore No · Итальянская",
+   "poster": "promo-amore-no",
+   "intl": true,
+   "titleEn": "Amore No · Italian"
+  },
+  {
+   "slug": "live-big-lineup",
+   "title": "Большой состав",
+   "poster": "live-big-lineup"
+  },
+  {
+   "slug": "thematic-italian",
+   "title": "Cosa sei · Итальянская",
+   "poster": "thematic-italian",
+   "intl": true,
+   "titleEn": "Cosa sei · Italian"
+  },
+  {
+   "slug": "live-soho",
+   "title": "Soho Rooms",
+   "poster": "live-soho"
+  },
+  {
+   "slug": "interact-wedding-shallow",
+   "title": "Shallow · свадьба",
+   "poster": "interact-wedding-shallow",
+   "intl": true,
+   "titleEn": "Shallow · wedding"
+  },
+  {
+   "slug": "live-berezy",
+   "title": "Берёзы",
+   "poster": "live-berezy"
+  },
+  {
+   "slug": "interact-chainsmokers",
+   "title": "Chainsmokers",
+   "poster": "interact-chainsmokers",
+   "intl": true,
+   "titleEn": "Chainsmokers"
+  },
+  {
+   "slug": "live-simple-the-best",
+   "title": "Simply the Best · Jazz",
+   "poster": "live-simple-the-best",
+   "intl": true,
+   "titleEn": "Simply the Best · Jazz"
+  },
+  {
+   "slug": "interact-laz-coco-jambo",
+   "title": "LAZ · Coco Jambo",
+   "poster": "interact-laz-coco-jambo",
+   "intl": true,
+   "titleEn": "LAZ · Coco Jambo"
+  },
+  {
+   "slug": "luxury-latin-dance-master-class",
+   "title": "Teddy · Танцевальный мастер-класс",
+   "poster": "luxury-latin-dance-master-class-ru-4x3",
+   "intl": true,
+   "titleEn": "Teddy · Latin dance master class",
+   "posterIntl": "luxury-latin-dance-master-class-en-4x3"
+  },
+  {
+   "slug": "live-perfect",
+   "title": "Первый танец молодых",
+   "poster": "live-perfect-wedding-20261029",
+   "intl": true,
+   "titleEn": "First dance · Perfect"
+  }
+ ]
+}

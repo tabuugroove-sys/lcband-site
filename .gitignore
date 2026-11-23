@@ -22,6 +22,7 @@ tools/*
 !tools/media-manifest.mjs
 !tools/upload-video.mjs
 !tools/check-shortlinks.py
+!tools/check-embed.py
 !tools/hooks/
 !tools/hooks/pre-push
 output/
