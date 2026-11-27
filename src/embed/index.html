@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.title = titleOf(item) + ' — Luxury Band';
     try { history.replaceState(null, '', location.pathname + pageQuery(resolved.pathname + resolved.search, titleOf(item))); } catch {}
     describeArrows();
-    // Called inside the tap / key / swipe that asked for it, so mobile browsers allow sound.
+    // Reuse the same player for manual navigation and continuous playback.
     const started = video.play();
     if (started && started.catch) started.catch(() => {});
     wake();
@@ -266,7 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.replaceChildren();
     return true;
   }
-  video.addEventListener('ended', showEnd);
+  video.addEventListener('ended', async () => {
+    if (!items.length) await playlistReady;
+    if (!video.ended) return; // The viewer may have replayed or switched while the list loaded.
+    if (current >= 0 && current + 1 < items.length) open(current + 1);
+    else showEnd();
+  });
   video.addEventListener('playing', hideEnd);
   grid.addEventListener('click', event => {
     const link = event.target.closest('a[data-index]');
@@ -315,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   // The playlist is a separate small file; without it the page works exactly as a single-video player.
-  fetch('/embed/playlist.json', { cache: 'no-cache' }).then(response => response.ok ? response.json() : Promise.reject(new Error('playlist ' + response.status))).then(data => {
+  const playlistReady = fetch('/embed/playlist.json', { cache: 'no-cache' }).then(response => response.ok ? response.json() : Promise.reject(new Error('playlist ' + response.status))).then(data => {
     items = (data.items || []).filter(item => item.slug && item.poster && (lang === 'ru' || item.intl));
     if (!items.length) return;
     current = indexOfPath(url.pathname);
