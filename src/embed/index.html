@@ -6,7 +6,20 @@ body{display:flex;flex-direction:column}
 [hidden]{display:none!important}
 .stage{position:relative;flex:1;min-height:0;display:flex;background:#000}
 .stage>video{width:100%;height:100%;min-width:0;min-height:0;flex:1;object-fit:contain}
-footer{padding:10px 16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+body{height:100dvh}
+.player-bar,footer{display:flex;align-items:center;gap:8px;padding:4px 12px;flex:none}
+.player-bar{border-bottom:1px solid #292929}
+.player-bar a,footer .action{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:44px;color:#fff;text-decoration:none}
+.player-bar a:focus-visible,footer .action:focus-visible{outline:2px solid #d7b77d;outline-offset:-2px}
+#exit{width:44px;flex:none;font-size:28px;line-height:1}
+#title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#home{margin-inline-start:auto;flex:none;font-weight:650;gap:4px}
+footer{flex-wrap:wrap;border-top:1px solid #292929;padding-bottom:max(4px,env(safe-area-inset-bottom))}
+footer .action{border:0;border-radius:8px;background:none;font:inherit;padding:0 10px;cursor:pointer}
+.player-bar a:hover,footer .action:hover{background:#282828}
+.site-orb{display:block;width:32px;height:32px;flex:none;filter:drop-shadow(0 0 3px #b9a27355)}
+@media (prefers-reduced-motion:no-preference){.site-orb__tiles{animation:orb-turn 3.6s linear infinite}@keyframes orb-turn{to{transform:translateX(10px)}}}
+#share-status{font-size:12px;color:#ccc}
 a{color:#eee}
 p{padding:16px}
 /* previous / next arrows: at the side edges, centred vertically, clear of the native control bar */
@@ -40,11 +53,21 @@ p{padding:16px}
 @media (max-height:430px){.end{padding:8px 12px 10px}.end__top{margin-bottom:6px}.end h2{font-size:15px}.end__close{width:40px;height:40px}.end__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.tile__cap{font-size:11px;padding:14px 6px 5px}.tile__play{display:none}.end__again{margin-top:10px}}
 @media (max-height:430px) and (max-width:559px){.end__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head>
-<body><div class="stage" id="stage"><video controls playsinline preload="metadata"></video>
+<body><header class="player-bar"><a id="exit" href="https://luxuryband.ru/" target="_top" aria-label="Закрыть видео и перейти на главную">×</a><span id="title">Luxury Cover Band</span><a id="home" href="https://luxuryband.ru/" target="_top"><svg class="site-orb" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+<defs>
+  <radialGradient id="orbMetal" cx="32%" cy="24%" r="82%"><stop stop-color="#fff5d5"/><stop offset=".29" stop-color="#dacfaa"/><stop offset=".56" stop-color="#a18965"/><stop offset=".88" stop-color="#514638"/><stop offset="1" stop-color="#bba987"/></radialGradient>
+  <clipPath id="orbRim"><circle cx="20" cy="20" r="15.5"/></clipPath>
+  <pattern id="orbTiles" width="10" height="8" patternUnits="userSpaceOnUse"><path fill="#fffbdf" opacity=".32" d="M.6.6h4v3h-4zM5.6 4.6h4v3h-4z"/><path fill="#362e28" opacity=".3" d="M5.6.6h4v3h-4zM.6 4.6h4v3h-4z"/></pattern>
+</defs>
+<circle cx="20" cy="20" r="15.5" fill="url(#orbMetal)" stroke="#e6d9bd" stroke-width=".7"/>
+<g clip-path="url(#orbRim)"><g transform="rotate(-15 20 20)"><rect class="site-orb__tiles" x="-10" y="-10" width="65" height="65" fill="url(#orbTiles)"/>
+<g fill="none" stroke="#493d33" opacity=".65" stroke-width=".7"><ellipse cx="20" cy="20" rx="8.5" ry="15.5"/><path d="M20 4.5v31M4.5 20h31M5 13q15 5 30 0M5 27q15 -5 30 0"/></g></g></g>
+<path fill="#fff7da" d="M11 5l.9 3.3 3.3.9-3.3.9L11 13.5l-.9-3.4-3.4-.9 3.4-.9z"/>
+</svg><bdi>LuxuryBand.ru</bdi><span aria-hidden="true">↗</span></a></header><div class="stage" id="stage"><video controls playsinline preload="metadata"></video>
 <button type="button" class="nav nav--prev" id="prev" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 4 7 12l8 8"/></svg></button>
 <button type="button" class="nav nav--next" id="next" hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 4 8 8-8 8"/></svg></button>
 <div class="end" id="end" role="region" aria-labelledby="endTitle" hidden><div class="end__box"><div class="end__top"><h2 id="endTitle"></h2><button type="button" class="end__close" id="endClose">×</button></div><ul class="end__grid" id="endGrid"></ul><button type="button" class="end__again" id="again"></button></div></div></div>
-<footer><span id="title">Luxury Band</span><a id="download" download hidden></a><a id="home" href="https://luxuryband.ru/" target="_blank" rel="noopener">Luxury Band ↗</a></footer><p id="error" hidden></p>
+<footer><a class="action" id="download" download hidden></a><button class="action" type="button" id="share" hidden></button><span id="share-status" role="status"></span></footer><p id="error" hidden></p>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const { lang, copy } = window.LCBLocale;
@@ -52,9 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.lang = lang;
   document.documentElement.dir = rtl ? 'rtl' : 'ltr';
   document.title = copy.video + ' — Luxury Band';
-  document.getElementById('download').textContent = copy.downloadVideo + ' ↓';
+  document.getElementById('download').textContent = copy.download;
   document.getElementById('error').textContent = copy.embedError;
-  document.getElementById('home').href = 'https://luxuryband.ru' + copy.home;
+  const home = 'https://luxuryband.ru' + copy.home;
+  const exit = document.getElementById('exit');
+  document.getElementById('home').href = exit.href = home;
+  exit.setAttribute('aria-label', ({ ru: 'Закрыть видео и перейти на главную', en: 'Close video and go to homepage', ar: 'إغلاق الفيديو والانتقال إلى الصفحة الرئيسية', 'pt-BR': 'Fechar vídeo e ir para a página inicial' })[lang] || copy.close);
   const params = new URLSearchParams(location.search);
   const source = params.get('src');
   if (!source) { document.getElementById('error').hidden = false; return; }
@@ -89,6 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lang !== 'ru') address.searchParams.set('lang', lang);
   const download = document.getElementById('download');
   download.href = address.href; download.hidden = false;
+  const share = document.getElementById('share');
+  const status = document.getElementById('share-status');
+  share.textContent = copy.share;
+  share.hidden = false;
+  share.addEventListener('click', async () => {
+    const link = new URL('/embed/' + location.search, ORIGIN).href;
+    status.textContent = '';
+    if (navigator.share) {
+      try { await navigator.share({ title: document.getElementById('title').textContent, url: link }); return; }
+      catch (err) { if (err.name === 'AbortError') return; }
+    }
+    try { await navigator.clipboard.writeText(link); status.textContent = copy.copied; }
+    catch { window.prompt(copy.copyLink, link); }
+  });
   video.addEventListener('loadstart', () => {
     address.searchParams.set('file', new URL(video.src).pathname.split('/').pop());
     download.href = address.href;
