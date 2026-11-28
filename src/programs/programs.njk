@@ -161,6 +161,10 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% if program.slug == 'retro' %}
+{% include "partials/retro-repertoire.njk" %}
+{% endif %}
+
 {% if program.slug == 'jazz' and jazzRepertoire %}
 <!-- =============== JAZZ REPERTOIRE (Old Money Band, из официального PDF) =============== -->
 <section class="section section--elev rep-section" id="repertoire">
