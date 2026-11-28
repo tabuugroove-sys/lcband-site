@@ -162,10 +162,16 @@
 		"video": "thematic-retro-main",
 		"videos": [
 			{
-				"slug": "thematic-retro-main",
-				"title": "Ретро-шоу",
-				"label": "60-е–90-е",
+				"slug": "thematic-retro-heart",
+				"title": "You're My Heart",
+				"label": "Classic",
 				"poster": "assets/video/posters/thematic-retro-heart-2026.jpg"
+			},
+			{
+				"slug": "thematic-italian",
+				"title": "Cosa sei",
+				"label": "Retro 80s",
+				"poster": "assets/video/posters/thematic-italian.jpg"
 			},
 			{
 				"slug": "thematic-retro-stilyagi",
@@ -180,24 +186,6 @@
 				"poster": "assets/video/posters/thematic-retro-boyar.jpg"
 			},
 			{
-				"slug": "thematic-retro-heart",
-				"title": "Retro heart",
-				"label": "Classic",
-				"poster": "assets/video/posters/thematic-retro-heart.jpg"
-			},
-			{
-				"slug": "promo-amore-no",
-				"title": "Amore No",
-				"label": "Retro Italia",
-				"poster": "assets/video/posters/promo-amore-no.jpg"
-			},
-			{
-				"slug": "thematic-italian",
-				"title": "Cosa sei",
-				"label": "Retro 80s",
-				"poster": "assets/video/posters/thematic-italian.jpg"
-			},
-			{
 				"slug": "thematic-retro-shes-got-it",
 				"title": "She’s Got It",
 				"label": "Retro 80s",
@@ -210,10 +198,10 @@
 				"poster": "assets/video/posters/teddy-macarena.jpg"
 			},
 			{
-				"slug": "live-jazz-vintage",
-				"title": "Vintage Jazz",
-				"label": "Vintage",
-				"poster": "assets/video/posters/live-jazz-vintage.jpg"
+				"slug": "promo-amore-no",
+				"title": "Amore No",
+				"label": "Retro Italia",
+				"poster": "assets/video/posters/promo-amore-no.jpg"
 			}
 		],
 		"keywords": "ретро кавер группа, стиляги программа, 90-е кавер группа москва, боярский кавер"
