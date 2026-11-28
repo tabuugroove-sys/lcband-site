@@ -443,6 +443,13 @@ h1, h2, h3, p { margin: 0; }
 .nav__dropdown-list li:nth-child(10) { transition-delay: 260ms; }
 .nav__dropdown-list li:nth-child(11) { transition-delay: 280ms; }
 
+.header-lang { position: relative; flex: 0 0 auto; margin-inline-start: auto; }
+.header-lang summary { display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 44px; min-height: 44px; font-size: 12px; font-weight: 600; color: #1d1d1f; cursor: pointer; list-style: none; }
+.header-lang summary::-webkit-details-marker { display: none; }
+.header-lang__options { position: absolute; z-index: 5; inset-inline-end: 0; top: 100%; min-width: 132px; padding: 6px; background: #fff; color: #1d1d1f; border: 1px solid #d2d2d7; border-radius: 12px; box-shadow: 0 6px 20px #0002; }
+.header-lang__options a { display: flex; align-items: center; padding-inline: 12px; min-height: 44px; border-radius: 7px; color: inherit; white-space: nowrap; }
+.header-lang__options a:hover, .header-lang__options a:focus-visible { background: #f5f5f7; }
+.header-lang__options [aria-current] { color: #0066cc; font-weight: 600; }
 .nav__burger {
 	display: none;
 	width: 28px; height: 28px;

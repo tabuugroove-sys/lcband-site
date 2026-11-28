@@ -1,0 +1,15 @@
+{% set langCode = htmlLang or 'ru' %}
+{% set codes = {ru:'RU', en:'EN', ar:'AR', 'pt-BR':'PT'} %}
+{% set labels = {ru:'Язык', en:'Language', ar:'اللغة', 'pt-BR':'Idioma'} %}
+{% set langOptions = translations[page.url] or translations['/'] %}
+<details class="header-lang">
+	<summary aria-label="{{ labels[langCode] }}: {{ codes[langCode] }}" title="{{ labels[langCode] }}">
+		<svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="8"/><ellipse cx="10" cy="10" rx="3.6" ry="8"/><path d="M2 10h16"/></svg>
+		{{ codes[langCode] }}
+	</summary>
+	<nav class="header-lang__options" aria-label="{{ labels[langCode] }}">
+		{% for entry in langOptions %}{% if entry.lang != 'x-default' %}
+		<a href="{{ entry.url | url }}" hreflang="{{ entry.lang }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ footerI18n[langCode].languages[entry.lang] if footerI18n[langCode] else entry.label }}</a>
+		{% endif %}{% endfor %}
+	</nav>
+</details>

@@ -102,6 +102,7 @@ Verify **only the one poster** you changed returned HTTP 200 with the new size.
 ---
 
 ## Hard rules
+- Mirror public-facing site changes on the matching English page in the same release. Use English copy and English artwork; keep Russian-language songs, videos and mixed reels with Russian tracks off the English site. Preserve the international media allowlist. Do not invent a translated URL.
 - Continue from `origin/main` + live state, never from a stale local HEAD.
 - Git first, `scp` never alone.
 - One avatar = one jpg + (maybe) one line. Scope creep is a bug.

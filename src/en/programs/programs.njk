@@ -29,6 +29,7 @@ eleventyComputed:
 </script>
 {% endblock %}
 
+{% if program.slug == 'retro' %}{% include "partials/retro-group-portrait.njk" %}{% endif %}
 <section class="page-hero{% if program.slug == 'latin' %} page-hero--spanish-promo{% endif %}">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">
@@ -50,7 +51,7 @@ eleventyComputed:
 		</div>
 		<div class="spanish-promo__copy"><p class="spanish-promo__eyebrow">{{ program.eyebrow }}</p><h1 class="spanish-promo__title">{{ program.headline }}</h1><p class="spanish-promo__lead">{{ program.lead }}</p></div>
 	</div>
-	{% elif program.poster %}
+	{% elif program.poster and program.slug != 'retro' %}
 	<div class="page-hero__media">
 		<img src="{{ ('/' + program.poster) | url }}" alt="{{ program.title }} — Luxury Cover Band" loading="eager">
 		{% if program.video | internationalVideo %}
@@ -85,6 +86,7 @@ eleventyComputed:
 </section>
 {% endif %}
 
+{% if program.slug == 'retro' %}{% include "partials/retro-repertoire.njk" %}{% endif %}
 {% if program.photos %}
 <section class="section section--light program-photos-section">
 	<div class="container container--narrow reveal">
