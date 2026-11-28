@@ -62,6 +62,16 @@ eleventyComputed:
 </script>
 {% endblock %}
 
+{% if program.slug == 'retro' %}
+<style>
+	.retro-group-portrait { display: block; width: calc(100% - 24px); max-width: 1680px; height: auto; aspect-ratio: 75 / 22; margin: clamp(12px, 2.4vw, 36px) auto 0; object-fit: cover; object-position: 50% 10%; }
+	@media (max-width: 734px) { .retro-group-portrait { aspect-ratio: 16 / 9; } }
+</style>
+<img class="retro-group-portrait" src="{{ '/assets/hero/hero-gold-1280.webp' | url }}"
+	srcset="{{ '/assets/hero/hero-gold-640.webp' | url }} 640w, {{ '/assets/hero/hero-gold-960.webp' | url }} 960w, {{ '/assets/hero/hero-gold-1280.webp' | url }} 1280w, {{ '/assets/hero/hero-gold-1920.webp' | url }} 1920w, {{ '/assets/hero/hero-gold-2400.webp' | url }} 2400w"
+	sizes="(min-width: 1704px) 1680px, calc(100vw - 24px)" width="2400" height="1350"
+	fetchpriority="high" alt="Luxury Cover Band в чёрных и золотых костюмах на фоне сценических огней">
+{% endif %}
 <section class="page-hero{% if program.slug == 'latin' %} page-hero--spanish-promo{% endif %}">
 	<div class="container container--narrow">
 		<p class="page-hero__breadcrumb">

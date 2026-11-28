@@ -192,6 +192,12 @@
 				"poster": "assets/video/posters/thematic-retro-shes-got-it.jpg"
 			},
 			{
+				"slug": "thematic-retro-venus-live",
+				"title": "Venus",
+				"label": "Лайв в ICON",
+				"poster": "assets/video/posters/thematic-retro-venus-live.jpg"
+			},
+			{
 				"slug": "teddy-macarena",
 				"title": "Macarena",
 				"label": "Retro 90s",

@@ -1438,6 +1438,16 @@
       "sha256": "47279982f3a089a6fd3dbade9f5848c2eec7fa4dc551f56fdc694c1d44e375f5"
     },
     {
+      "path": "assets/video/mp4/thematic-retro-venus-live-1080.mp4",
+      "bytes": 69762411,
+      "sha256": "4dbf7425a1b060f9fb66a08edc9f71ca620cfb76aba47541aa26acb8f7296033"
+    },
+    {
+      "path": "assets/video/mp4/thematic-retro-venus-live-720.mp4",
+      "bytes": 33104867,
+      "sha256": "08a330356213646d83ecc89c960aabe264b2224907b5a0d407a22b2f308fbb77"
+    },
+    {
       "path": "assets/video/mp4/yuriy-acoustic-vocal-720.mp4",
       "bytes": 8293354,
       "sha256": "3d74f48f091845592e131746f2a40ab472f0b15ef6d8217749cd5e73637e63f8"
